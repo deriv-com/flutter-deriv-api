@@ -2,18 +2,21 @@
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/cancel_response_result.dart';
 import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
 import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
+import 'package:flutter_deriv_api/api/response/sell_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/cancel_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/sell_send.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-
 
 /// Proposal open contract response model class.
 abstract class ProposalOpenContractResponseModel {
@@ -155,6 +158,21 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
+  /// Sells this contract.
+  ///
+  /// [price] is the Minimum price at which to sell the contract,
+  /// Default be 0 for 'sell at market'.
+  /// Throws a [ContractOperationException] if API response contains an error
+  static Future<SellResponse> sell(
+          {required int contractId, double price = 0}) =>
+      SellResponse.sellContract(SellRequest(sell: contractId, price: price));
+
+  /// Cancels this contract
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  static Future<CancelResponse> cancel(int contractId) =>
+      CancelResponse.cancelContract(CancelRequest(cancel: contractId));
+
   /// Creates a copy of instance with given parameters.
   ProposalOpenContractResponse copyWith({
     ProposalOpenContract? proposalOpenContract,
@@ -196,6 +214,7 @@ enum StatusEnum {
   /// null.
   _null,
 }
+
 /// Proposal open contract model class.
 abstract class ProposalOpenContractModel {
   /// Initializes Proposal open contract model class .
@@ -865,6 +884,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationError: validationError ?? this.validationError,
       );
 }
+
 /// Audit details model class.
 abstract class AuditDetailsModel {
   /// Initializes Audit details model class .
@@ -963,6 +983,7 @@ class AuditDetails extends AuditDetailsModel {
         contractStart: contractStart ?? this.contractStart,
       );
 }
+
 /// All ticks item model class.
 abstract class AllTicksItemModel {
   /// Initializes All ticks item model class .
@@ -1045,6 +1066,7 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Contract end item model class.
 abstract class ContractEndItemModel {
   /// Initializes Contract end item model class .
@@ -1128,6 +1150,7 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Contract start item model class.
 abstract class ContractStartItemModel {
   /// Initializes Contract start item model class .
@@ -1211,6 +1234,7 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Cancellation model class.
 abstract class CancellationModel {
   /// Initializes Cancellation model class .
@@ -1263,6 +1287,7 @@ class Cancellation extends CancellationModel {
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
+
 /// Limit order model class.
 abstract class LimitOrderModel {
   /// Initializes Limit order model class .
@@ -1337,6 +1362,7 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
+
 /// Stop loss model class.
 abstract class StopLossModel {
   /// Initializes Stop loss model class .
@@ -1409,6 +1435,7 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
+
 /// Stop out model class.
 abstract class StopOutModel {
   /// Initializes Stop out model class .
@@ -1481,6 +1508,7 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel {
   /// Initializes Take profit model class .
@@ -1553,6 +1581,7 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
+
 /// Tick stream item model class.
 abstract class TickStreamItemModel {
   /// Initializes Tick stream item model class .
@@ -1615,6 +1644,7 @@ class TickStreamItem extends TickStreamItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Transaction ids model class.
 abstract class TransactionIdsModel {
   /// Initializes Transaction ids model class .
@@ -1667,6 +1697,7 @@ class TransactionIds extends TransactionIdsModel {
         sell: sell ?? this.sell,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

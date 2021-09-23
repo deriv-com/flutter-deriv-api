@@ -1,17 +1,13 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/response/cancel_response_result.dart';
 import 'package:flutter_deriv_api/api/response/contract_update_response_result.dart';
 import 'package:flutter_deriv_api/api/response/proposal_open_contract_response_result.dart';
-import 'package:flutter_deriv_api/api/response/sell_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/buy_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/buy_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/cancel_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contract_update_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/sell_send.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -136,20 +132,6 @@ class BuyResponse extends BuyResponseModel {
         comparePredicate: comparePredicate,
       );
 
-  /// Sells this contract.
-  ///
-  /// [price] is the Minimum price at which to sell the contract,
-  /// Default be 0 for 'sell at market'.
-  /// Throws a [ContractOperationException] if API response contains an error
-  Future<SellResponse> sell({double price = 0}) => SellResponse.sellContract(
-      SellRequest(sell: buy?.contractId, price: price));
-
-  /// Cancels this contract
-  ///
-  /// Throws a [ContractOperationException] if API response contains an error
-  Future<CancelResponse> cancel() =>
-      CancelResponse.cancelContract(CancelRequest(cancel: buy?.contractId));
-
   /// Updates this contract
   ///
   /// New [stopLoss] value for a contract. To cancel, pass null.
@@ -177,6 +159,7 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Buy model class.
 abstract class BuyModel {
   /// Initializes Buy model class .
@@ -299,6 +282,7 @@ class Buy extends BuyModel {
         transactionId: transactionId,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

@@ -300,14 +300,18 @@ void main() {
           getDateTime(1587744006));
       expect(updateContract.contractUpdate?.takeProfit?.value, '100.0');
 
-      final SellResponse sellContract = await boughtContract.sell();
+      final SellResponse sellContract = await ProposalOpenContractResponse.sell(
+        contractId: boughtContract.buy!.contractId,
+      );
       expect(sellContract.sell?.balanceAfter, 9706.5);
       expect(sellContract.sell?.contractId, 79939279308);
       expect(sellContract.sell?.referenceId, 2165326767);
       expect(sellContract.sell?.soldFor, 1200);
       expect(sellContract.sell?.transactionId, 159779308968);
 
-      final CancelResponse cancelContract = await boughtContract.cancel();
+      final CancelResponse cancelContract =
+          await ProposalOpenContractResponse.cancel(
+              boughtContract.buy!.contractId);
       expect(cancelContract.cancel?.balanceAfter, 1200.0);
       expect(cancelContract.cancel?.contractId, 2340843);
       expect(cancelContract.cancel?.referenceId, 7323042);
