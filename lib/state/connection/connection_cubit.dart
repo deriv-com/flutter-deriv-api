@@ -54,10 +54,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Connects to the web socket. This function MUST NOT be called outside of this package.
   Future<void> connect() async {
-    if (state is Connected) {
-      return;
-    }
-
     emit(Connecting());
 
     await _api?.connect(
@@ -84,13 +80,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }
 
   /// Reconnects to the web socket.
-  Future<void> reconnect({
-    ConnectionInformation? connectionInformation,
-  }) async {
-    if (state is Reconnecting) {
-      return;
-    }
-
+  Future<void> reconnect(ConnectionInformation? connectionInformation) async {
     emit(Reconnecting());
 
     if (connectionInformation != null) {
