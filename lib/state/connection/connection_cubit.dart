@@ -80,7 +80,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }
 
   /// Reconnects to the web socket.
-  Future<void> reconnect(ConnectionInformation? connectionInformation) async {
+  Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
     emit(Reconnecting());
 
     if (connectionInformation != null) {
@@ -89,9 +89,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     try {
       await _api?.disconnect();
-
-      emit(Disconnected());
-
       await _api?.connect(connectionInformation);
 
       emit(Connected());
