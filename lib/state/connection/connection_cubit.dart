@@ -27,6 +27,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionService().initialize(connectionCubit: this, isMock: isMock);
 
     _internetBloc = internet_bloc.InternetBloc();
+
     _internetListener = _internetBloc.stream.listen(
       (internet_bloc.InternetState internetState) {
         if (internetState is internet_bloc.Disconnected) {
@@ -38,8 +39,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
-
-  static const Duration _callTimeOut = Duration(seconds: 10);
 
   BaseAPI? _api;
 
@@ -55,17 +54,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Connects to the web socket. This function MUST NOT be called outside of this package.
   Future<void> connect() async {
+    if (state is Connected) {
+      return;
+    }
+
     emit(Connecting());
-
-    await _api?.disconnect();
-
-    emit(Disconnected());
 
     await _api?.connect(
       connectionInformation,
       onDone: (UniqueKey uniqueKey) async {
         if (_uniqueKey == uniqueKey) {
-          await _api!.disconnect();
+          await _api?.disconnect();
 
           emit(Disconnected());
         }
@@ -99,7 +98,11 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     }
 
     try {
-      await _api!.disconnect();
+      await _api?.disconnect();
+
+      emit(Disconnected());
+
+      await _api?.connect(connectionInformation);
 
       emit(Connected());
     } on Exception catch (e) {
@@ -111,7 +114,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Disconnects from the web socket.
   Future<void> disconnect() async {
-    await _api!.disconnect();
+    await _api?.disconnect();
 
     emit(Disconnected());
   }
