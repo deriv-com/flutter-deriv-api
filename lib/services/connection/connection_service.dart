@@ -4,7 +4,7 @@ import 'package:connectivity/connectivity.dart';
 
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:flutter_deriv_api/services/connection/connection_status.dart';
-import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
+import 'package:flutter_deriv_api/state/connection/connection_cubit.dart';
 
 /// A class to check the connectivity of the device to the Internet
 class ConnectionService {
@@ -43,20 +43,20 @@ class ConnectionService {
 
   Timer? _connectivityTimer;
 
-  ConnectionBloc? _connectionBloc;
+  ConnectionCubit? _connectionCubit;
 
   Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
     final ConnectionStatus previousConnection = _connectionStatus;
 
-    if (_connectionBloc!.state is Reconnecting) {
+    if (_connectionCubit!.state is Reconnecting) {
       return ConnectionStatus.connecting;
     }
 
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc!.state is! Connected) {
-          await _connectionBloc!.connectWebSocket();
+        if (_connectionCubit!.state is! Connected) {
+          await _connectionCubit!.connect();
         }
 
         final bool pingResult = await _checkPingConnection();
@@ -91,14 +91,14 @@ class ConnectionService {
 
   /// Initializes
   Future<void> initialize({
-    ConnectionBloc? connectionBloc,
+    ConnectionCubit? connectionCubit,
     bool isMock = false,
   }) async {
     if (isMock) {
       return;
     }
 
-    _connectionBloc = connectionBloc;
+    _connectionCubit = connectionCubit;
     await checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
     _startConnectivityTimer();
@@ -130,7 +130,7 @@ class ConnectionService {
     try {
       final Ping response = await Ping.ping().timeout(
         Duration(
-          seconds: _connectionBloc!.state is InitialConnectionState
+          seconds: _connectionCubit!.state is InitialConnectionState
               ? _initialPingTimeOut
               : _pingTimeout,
         ),

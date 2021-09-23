@@ -1,4 +1,4 @@
-part of 'connection_bloc.dart';
+part of 'connection_cubit.dart';
 
 /// Connection States
 abstract class ConnectionState {}
