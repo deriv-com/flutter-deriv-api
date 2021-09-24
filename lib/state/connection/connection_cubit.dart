@@ -67,9 +67,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Connects to the web socket.
   ///
   /// This function MUST NOT be called outside of this package.
-  Future<void> connect() async {
+  Future<void> connect({ConnectionInformation? connectionInformation}) async {
     if (state is! ConnectionConnectingState) {
       emit(ConnectionConnectingState());
+    }
+
+    if (connectionInformation != null) {
+      _connectionInformation = connectionInformation;
     }
 
     await _api!.disconnect().timeout(_callTimeOut);
