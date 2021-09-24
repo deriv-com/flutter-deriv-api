@@ -79,7 +79,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     await _api!.disconnect().timeout(_callTimeOut);
 
     await _api!.connect(
-      connectionInformation,
+      _connectionInformation,
       onDone: (UniqueKey uniqueKey) async {
         if (_uniqueKey == uniqueKey) {
           await _api!.disconnect();
