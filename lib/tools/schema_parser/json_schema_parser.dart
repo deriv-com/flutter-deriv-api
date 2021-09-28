@@ -1,5 +1,5 @@
 import 'package:dart_style/dart_style.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/helpers/enum_helper.dart';
 import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
 import 'package:recase/recase.dart';
 

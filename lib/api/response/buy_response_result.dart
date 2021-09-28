@@ -159,7 +159,6 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Buy model class.
 abstract class BuyModel {
   /// Initializes Buy model class .
@@ -282,7 +281,6 @@ class Buy extends BuyModel {
         transactionId: transactionId,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
