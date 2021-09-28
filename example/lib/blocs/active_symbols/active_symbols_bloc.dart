@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 
 part 'active_symbols_event.dart';
 part 'active_symbols_state.dart';

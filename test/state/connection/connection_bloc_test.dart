@@ -1,8 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Connection Bloc =>', () {

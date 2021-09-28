@@ -1,7 +1,6 @@
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/get_account_status_response_result.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));

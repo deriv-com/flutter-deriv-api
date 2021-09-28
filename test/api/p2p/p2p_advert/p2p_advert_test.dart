@@ -1,20 +1,19 @@
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_create_response_result.dart'
     as advert_create;
 import 'package:flutter_deriv_api/api/response/p2p_advert_info_response_result.dart'
     as advert_info;
 import 'package:flutter_deriv_api/api/response/p2p_advert_list_response_result.dart'
     as advert_list;
+import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart'
+    as advert_update;
 import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart'
     as order_create;
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart'
-    as advert_update;
-
-import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

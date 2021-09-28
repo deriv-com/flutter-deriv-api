@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/api/response/time_response_result.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 part 'server_time_event.dart';
 part 'server_time_state.dart';

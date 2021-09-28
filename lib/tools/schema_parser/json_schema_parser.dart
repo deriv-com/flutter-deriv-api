@@ -1,9 +1,7 @@
 import 'package:dart_style/dart_style.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-
-import 'package:recase/recase.dart';
-
 import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
+import 'package:recase/recase.dart';
 
 /// [JsonSchemaParser] is a utility class for extracting main and nested classes from JSON schema contents.
 /// for using this utility first you should call `preProcessModels()` method and pass decoded JSON schema to it,

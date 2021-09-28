@@ -34,9 +34,9 @@ dev_dependencies:
     sdk: flutter
 
   bloc_test: ^8.0.0
-  code_builder: ^3.7.0
-  build_config: ^0.4.7
-  build_runner: ^1.12.2
+  code_builder: ^4.1.0
+  build_config: ^1.0.0
+  build_runner: ^2.1.2
   build_test: ^2.0.0
   json_schema2: ^2.0.0
   path: ^1.8.0

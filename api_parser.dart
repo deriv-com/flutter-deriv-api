@@ -3,11 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:build/build.dart';
-
-import 'package:recase/recase.dart';
-
 import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
 import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
+import 'package:recase/recase.dart';
 
 Builder apiParser(final BuilderOptions _) => APIParser();
 

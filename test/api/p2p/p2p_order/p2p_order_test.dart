@@ -1,19 +1,18 @@
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_cancel_response_result.dart'
     as order_cancel;
 import 'package:flutter_deriv_api/api/response/p2p_order_confirm_response_result.dart'
     as order_confirm;
 import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart'
     as order_create;
+import 'package:flutter_deriv_api/api/response/p2p_order_info_response_result.dart'
+    as order_info;
 import 'package:flutter_deriv_api/api/response/p2p_order_list_response_result.dart'
     as order_list;
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/p2p_order_info_response_result.dart'
-    as order_info;
-
-import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

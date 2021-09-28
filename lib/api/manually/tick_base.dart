@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
@@ -6,8 +7,6 @@ import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-
-import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Spot price updates for a given symbol
 abstract class TickBaseModel extends APIBaseModel {

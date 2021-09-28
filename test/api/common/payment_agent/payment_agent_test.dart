@@ -1,12 +1,11 @@
+import 'package:flutter_deriv_api/api/api_initializer.dart';
+import 'package:flutter_deriv_api/api/response/paymentagent_list_response_result.dart';
+import 'package:flutter_deriv_api/api/response/paymentagent_transfer_response_result.dart';
+import 'package:flutter_deriv_api/api/response/paymentagent_withdraw_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_transfer_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_withdraw_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/paymentagent_list_response_result.dart';
-import 'package:flutter_deriv_api/api/response/paymentagent_transfer_response_result.dart';
-import 'package:flutter_deriv_api/api/response/paymentagent_withdraw_response_result.dart';
-
-import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

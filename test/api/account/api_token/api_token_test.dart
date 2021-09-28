@@ -1,7 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/api_token_response_result.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
