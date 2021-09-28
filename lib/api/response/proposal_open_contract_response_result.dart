@@ -163,14 +163,15 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<SellResponse> sell({double price = 0}) => SellResponse.sellContract(
-      SellRequest(sell: proposalOpenContract?.contractId, price: price));
+  static Future<SellResponse> sell(
+          {required int contractId, double price = 0}) =>
+      SellResponse.sellContract(SellRequest(sell: contractId, price: price));
 
   /// Cancels this contract
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<CancelResponse> cancel() => CancelResponse.cancelContract(
-      CancelRequest(cancel: proposalOpenContract?.contractId));
+  static Future<CancelResponse> cancel(int contractId) =>
+      CancelResponse.cancelContract(CancelRequest(cancel: contractId));
 
   /// Creates a copy of instance with given parameters.
   ProposalOpenContractResponse copyWith({

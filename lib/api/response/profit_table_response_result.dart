@@ -7,7 +7,6 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
-
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
   /// Initializes Profit table response model class .
