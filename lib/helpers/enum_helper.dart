@@ -127,7 +127,6 @@ extension EnumConverter on String {
   ContractType? get toContractTypeEnum => getEnumFromString(
         name: this,
         values: ContractType.values,
-        // enumCase: EnumCase.snakeCase 
-        // TODO(mohammad): check if this should be snakeCase
+        enumCase: EnumCase.upperCase,
       );
 }
