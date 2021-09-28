@@ -24,16 +24,6 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
   }
 
   @override
-  Stream<Transition<TicksEvent, TicksState>> transformEvents(
-    Stream<TicksEvent> events,
-    TransitionFunction<TicksEvent, TicksState> transitionFn,
-  ) =>
-      super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 200)),
-        transitionFn,
-      );
-
-  @override
   Stream<TicksState> mapEventToState(
     TicksEvent event,
   ) async* {

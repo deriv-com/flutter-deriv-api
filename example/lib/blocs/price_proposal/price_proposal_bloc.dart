@@ -24,16 +24,6 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
   }
 
   @override
-  Stream<Transition<PriceProposalEvent, PriceProposalState>> transformEvents(
-    Stream<PriceProposalEvent> events,
-    TransitionFunction<PriceProposalEvent, PriceProposalState> transitionFn,
-  ) =>
-      super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 200)),
-        transitionFn,
-      );
-
-  @override
   Stream<PriceProposalState> mapEventToState(
     PriceProposalEvent event,
   ) async* {
