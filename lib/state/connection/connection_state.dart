@@ -1,47 +1,41 @@
-part of 'connection_bloc.dart';
+part of 'connection_cubit.dart';
 
-/// Connection States
+/// Connection States.
 abstract class ConnectionState {}
 
-/// Initial state
-class InitialConnectionState extends ConnectionState {
+/// Connection initial state.
+class ConnectionInitialState extends ConnectionState {
   @override
   String toString() => 'ConnectionState: InitialConnectionState';
 }
 
-/// shows that we are in the process of connecting
-class Connecting extends ConnectionState {
-  /// Initializes
-  Connecting();
+/// Shows that we are in the process of connecting.
+class ConnectionConnectingState extends ConnectionState {
+  /// Initializes connection connecting state
+  ConnectionConnectingState();
 
   @override
   String toString() => 'ConnectionState: Connecting...';
 }
 
-/// Connected state
-class Connected extends ConnectionState {
+/// Connection connected state.
+class ConnectionConnectedState extends ConnectionState {
   @override
   String toString() => 'ConnectionState: Connected';
 }
 
-/// Disconnected state
-class Disconnected extends ConnectionState {
+/// Connection disconnected state.
+class ConnectionDisconnectedState extends ConnectionState {
   @override
   String toString() => 'ConnectionState: Disconnected';
 }
 
-/// Reconnecting state
-class Reconnecting extends ConnectionState {
-  @override
-  String toString() => 'ConnectionState: Reconnecting...';
-}
+/// Connection error state.
+class ConnectionErrorState extends ConnectionState {
+  /// Initializes with the this [error] message.
+  ConnectionErrorState(this.error);
 
-/// Connection error state
-class ConnectionError extends ConnectionState {
-  /// Initializes with the this [error] message
-  ConnectionError(this.error);
-
-  /// An exception or message from the server
+  /// An exception or message from the server.
   final String error;
 
   @override
