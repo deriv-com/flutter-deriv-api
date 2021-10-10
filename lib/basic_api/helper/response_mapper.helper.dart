@@ -65,6 +65,7 @@ import '../generated/p2p_chat_create_receive.dart';
 import '../generated/p2p_order_cancel_receive.dart';
 import '../generated/p2p_order_confirm_receive.dart';
 import '../generated/p2p_order_create_receive.dart';
+import '../generated/p2p_order_dispute_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
 import '../generated/payment_methods_receive.dart';
@@ -237,6 +238,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderConfirmResponse.fromJson(responseMap);
     case 'p2p_order_create':
       return P2pOrderCreateResponse.fromJson(responseMap);
+    case 'p2p_order_dispute':
+      return P2pOrderDisputeResponse.fromJson(responseMap);
     case 'p2p_order_info':
       return P2pOrderInfoResponse.fromJson(responseMap);
     case 'p2p_order_list':
