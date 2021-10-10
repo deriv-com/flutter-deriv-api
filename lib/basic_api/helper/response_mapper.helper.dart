@@ -85,6 +85,7 @@ import '../generated/revoke_oauth_app_receive.dart';
 import '../generated/sell_contract_for_multiple_accounts_receive.dart';
 import '../generated/sell_expired_receive.dart';
 import '../generated/sell_receive.dart';
+import '../generated/service_token_receive.dart';
 import '../generated/set_account_currency_receive.dart';
 import '../generated/set_financial_assessment_receive.dart';
 import '../generated/set_self_exclusion_receive.dart';
@@ -276,6 +277,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return SellExpiredResponse.fromJson(responseMap);
     case 'sell':
       return SellResponse.fromJson(responseMap);
+    case 'service_token':
+      return ServiceTokenResponse.fromJson(responseMap);
     case 'set_account_currency':
       return SetAccountCurrencyResponse.fromJson(responseMap);
     case 'set_financial_assessment':
