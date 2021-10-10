@@ -10,6 +10,7 @@ class DocumentUploadRequest extends Request {
   const DocumentUploadRequest({
     required this.documentFormat,
     this.documentId,
+    this.documentIssuingCountry,
     required this.documentType,
     this.documentUpload = true,
     required this.expectedChecksum,
@@ -30,6 +31,7 @@ class DocumentUploadRequest extends Request {
       DocumentUploadRequest(
         documentFormat: json['document_format'] as String?,
         documentId: json['document_id'] as String?,
+        documentIssuingCountry: json['document_issuing_country'] as String?,
         documentType: json['document_type'] as String?,
         documentUpload: json['document_upload'] == null
             ? null
@@ -49,6 +51,9 @@ class DocumentUploadRequest extends Request {
 
   /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
   final String? documentId;
+
+  /// [Optional] 2-letter country code
+  final String? documentIssuingCountry;
 
   /// Document type
   final String? documentType;
@@ -76,6 +81,7 @@ class DocumentUploadRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'document_format': documentFormat,
         'document_id': documentId,
+        'document_issuing_country': documentIssuingCountry,
         'document_type': documentType,
         'document_upload': documentUpload == null
             ? null
@@ -100,6 +106,7 @@ class DocumentUploadRequest extends Request {
   DocumentUploadRequest copyWith({
     String? documentFormat,
     String? documentId,
+    String? documentIssuingCountry,
     String? documentType,
     bool? documentUpload,
     String? expectedChecksum,
@@ -113,6 +120,8 @@ class DocumentUploadRequest extends Request {
       DocumentUploadRequest(
         documentFormat: documentFormat ?? this.documentFormat,
         documentId: documentId ?? this.documentId,
+        documentIssuingCountry:
+            documentIssuingCountry ?? this.documentIssuingCountry,
         documentType: documentType ?? this.documentType,
         documentUpload: documentUpload ?? this.documentUpload,
         expectedChecksum: expectedChecksum ?? this.expectedChecksum,
