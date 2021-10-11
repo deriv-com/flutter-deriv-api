@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Service Token (request)",
+  "description": "Retrieves the authorization token for the specified service.",
+  "hidden": 1,
+  "type": "object",
+  "auth_required": 1,
+  "auth_scopes": ["admin"],
+  "additionalProperties": false,
+  "required": ["service_token", "service"],
+  "properties": {
+    "service_token": {
+      "description": "Must be `1`",
+      "type": "integer",
+      "enum": [1]
+    },
+    "country": {
+      "description": "[Optional] The 2-letter country code.",
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "referrer": {
+      "description": "[Optional] The URL of the web page where the Web SDK will be used.",
+      "type": "string",
+      "pattern": "^https?://(?:[0-9a-zA-Z\\.-]+|\\*)[-a-zA-Z0-9()@:%_\\+.~#?&/=]*$"
+    },
+    "server": {
+      "description": "Server (dxtrade only).",
+      "type": "string",
+      "enum": ["demo", "real"]
+    },
+    "service": {
+      "description": "The service(s) to retrieve token(s) for.",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["onfido", "sendbird", "banxa", "wyre", "dxtrade"]
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["onfido", "sendbird", "banxa", "wyre"],
+            "uniqueItems": true
+          }
+        }
+      ]
+    },
+    "passthrough": {
+      "description": "[Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.",
+      "type": "object"
+    },
+    "req_id": {
+      "description": "[Optional] Used to map request to response.",
+      "type": "integer"
+    }
+  }
+}
