@@ -77,5 +77,5 @@ class P2pAdvertiserInfoRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[id!];
+  List<Object> get props => <Object>[id ?? 0];
 }
