@@ -1308,7 +1308,7 @@ class Cancellation extends CancellationModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[];
+  List<Object?> get props => <Object?>[askPrice, dateExpiry];
 }
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
