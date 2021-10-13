@@ -374,17 +374,17 @@ class JsonSchemaParser {
   static String _getEquatableFields(String classFullName) {
     switch (classFullName) {
       case 'Proposal':
-        return '<Object?>[id,askPrice,commission,dateExpiry,multiplier,cancellation,limitOrder]';
+        return '<Object?>[id,askPrice, commission, dateExpiry, multiplier, cancellation, limitOrder]';
       case 'LimitOrder':
-        return '<Object?>[stopLoss,stopOut,takeProfit]';
+        return '<Object?>[stopLoss, stopOut, takeProfit]';
       case 'StopLoss':
-        return '<Object?>[displayName,orderAmount,orderDate,value]';
+        return '<Object?>[displayName, orderAmount]';
       case 'StopOut':
-        return '<Object?>[displayName,orderAmount,orderDate,value]';
+        return '<Object?>[displayName, orderAmount]';
       case 'TakeProfit':
-        return '<Object?>[displayName,orderAmount,orderDate,value]';
+        return '<Object?>[displayName, orderAmount]';
       case 'Cancellation':
-        return '<Object?>[askPrice,dateExpiry]';
+        return '<Object?>[askPrice, dateExpiry]';
 
       default:
         return '<Object?>[]';

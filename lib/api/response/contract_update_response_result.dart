@@ -219,8 +219,7 @@ class StopLoss extends StopLossModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props =>
-      <Object?>[displayName, orderAmount, orderDate, value];
+  List<Object?> get props => <Object?>[displayName, orderAmount];
 }
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
@@ -296,6 +295,5 @@ class TakeProfit extends TakeProfitModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props =>
-      <Object?>[displayName, orderAmount, orderDate, value];
+  List<Object?> get props => <Object?>[displayName, orderAmount];
 }
