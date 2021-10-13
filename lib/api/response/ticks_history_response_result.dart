@@ -303,7 +303,7 @@ class History extends HistoryModel {
             ? null
             : List<double>.from(
                 json['prices']?.map(
-                  (dynamic item) => item,
+                  (dynamic item) => getDouble(item),
                 ),
               ),
         times: json['times'] == null

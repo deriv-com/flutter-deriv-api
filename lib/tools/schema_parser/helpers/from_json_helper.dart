@@ -106,6 +106,10 @@ String _getFromJsonFromArray(
       return 'getDateTime(item)';
     }
 
+    if (model.schemaType == 'number') {
+      return 'getDouble(item)';
+    }
+
     return model.isEnum
         ? '$nullCheck ${model.classType!.camelCase}Mapper[item]${model.isRequired ? '!' : ''}'
         : 'item';
