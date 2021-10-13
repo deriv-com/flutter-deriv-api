@@ -206,6 +206,7 @@ abstract class GetAccountStatusModel {
   /// - `max_turnover_limit_not_set`: client has not set financial limits on their account. Applies to UK and Malta clients.
   /// - `mt5_password_not_set`: MT5 password is not set.
   /// - `mt5_withdrawal_locked`: MT5 deposits allowed, but withdrawal is not allowed.
+  /// - `needs_affiliate_coc_approval`: user must approve the Affiliate's Code of Conduct Agreement.
   /// - `no_trading`: trading is disabled.
   /// - `no_withdrawal_or_trading`: client cannot trade or withdraw but can deposit.
   /// - `pa_withdrawal_explicitly_allowed`: withdrawal through payment agent is allowed.
