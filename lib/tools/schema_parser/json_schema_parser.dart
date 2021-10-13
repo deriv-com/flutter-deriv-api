@@ -383,6 +383,8 @@ class JsonSchemaParser {
         return '<Object?>[displayName,orderAmount,orderDate,value]';
       case 'TakeProfit':
         return '<Object?>[displayName,orderAmount,orderDate,value]';
+      case 'Cancellation':
+        return '<Object?>[askPrice,dateExpiry]';
 
       default:
         return '<Object?>[]';
