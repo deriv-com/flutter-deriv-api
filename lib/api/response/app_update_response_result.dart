@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_update_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App update response model class.
-abstract class AppUpdateResponseModel {
+abstract class AppUpdateResponseModel extends Equatable {
   /// Initializes App update response model class .
-  AppUpdateResponseModel({
+  const AppUpdateResponseModel({
     this.appUpdate,
   });
 
@@ -22,7 +23,7 @@ abstract class AppUpdateResponseModel {
 /// App update response class.
 class AppUpdateResponse extends AppUpdateResponseModel {
   /// Initializes App update response class.
-  AppUpdateResponse({
+  const AppUpdateResponse({
     AppUpdate? appUpdate,
   }) : super(
           appUpdate: appUpdate,
@@ -74,11 +75,15 @@ class AppUpdateResponse extends AppUpdateResponseModel {
       AppUpdateResponse(
         appUpdate: appUpdate ?? this.appUpdate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// App update model class.
-abstract class AppUpdateModel {
+abstract class AppUpdateModel extends Equatable {
   /// Initializes App update model class .
-  AppUpdateModel({
+  const AppUpdateModel({
     this.active,
     this.appId,
     this.appMarkupPercentage,
@@ -129,7 +134,7 @@ abstract class AppUpdateModel {
 /// App update class.
 class AppUpdate extends AppUpdateModel {
   /// Initializes App update class.
-  AppUpdate({
+  const AppUpdate({
     int? active,
     int? appId,
     double? appMarkupPercentage,
@@ -228,4 +233,8 @@ class AppUpdate extends AppUpdateModel {
         scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// Sell expired response model class.
-abstract class SellExpiredResponseModel {
+abstract class SellExpiredResponseModel extends Equatable {
   /// Initializes Sell expired response model class .
-  SellExpiredResponseModel({
+  const SellExpiredResponseModel({
     this.sellExpired,
   });
 
@@ -15,7 +16,7 @@ abstract class SellExpiredResponseModel {
 /// Sell expired response class.
 class SellExpiredResponse extends SellExpiredResponseModel {
   /// Initializes Sell expired response class.
-  SellExpiredResponse({
+  const SellExpiredResponse({
     SellExpired? sellExpired,
   }) : super(
           sellExpired: sellExpired,
@@ -49,11 +50,15 @@ class SellExpiredResponse extends SellExpiredResponseModel {
       SellExpiredResponse(
         sellExpired: sellExpired ?? this.sellExpired,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Sell expired model class.
-abstract class SellExpiredModel {
+abstract class SellExpiredModel extends Equatable {
   /// Initializes Sell expired model class .
-  SellExpiredModel({
+  const SellExpiredModel({
     this.count,
   });
 
@@ -64,7 +69,7 @@ abstract class SellExpiredModel {
 /// Sell expired class.
 class SellExpired extends SellExpiredModel {
   /// Initializes Sell expired class.
-  SellExpired({
+  const SellExpired({
     int? count,
   }) : super(
           count: count,
@@ -91,4 +96,8 @@ class SellExpired extends SellExpiredModel {
       SellExpired(
         count: count ?? this.count,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

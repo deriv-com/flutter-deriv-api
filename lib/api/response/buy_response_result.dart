@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/contract_update_response_result.dart';
@@ -15,9 +16,9 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Buy response model class.
-abstract class BuyResponseModel {
+abstract class BuyResponseModel extends Equatable {
   /// Initializes Buy response model class .
-  BuyResponseModel({
+  const BuyResponseModel({
     this.buy,
     this.subscription,
   });
@@ -32,7 +33,7 @@ abstract class BuyResponseModel {
 /// Buy response class.
 class BuyResponse extends BuyResponseModel {
   /// Initializes Buy response class.
-  BuyResponse({
+  const BuyResponse({
     Buy? buy,
     Subscription? subscription,
   }) : super(
@@ -158,11 +159,15 @@ class BuyResponse extends BuyResponseModel {
         buy: buy ?? this.buy,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Buy model class.
-abstract class BuyModel {
+abstract class BuyModel extends Equatable {
   /// Initializes Buy model class .
-  BuyModel({
+  const BuyModel({
     required this.transactionId,
     required this.startTime,
     required this.shortcode,
@@ -205,7 +210,7 @@ abstract class BuyModel {
 /// Buy class.
 class Buy extends BuyModel {
   /// Initializes Buy class.
-  Buy({
+  const Buy({
     required double balanceAfter,
     required double buyPrice,
     required int contractId,
@@ -280,11 +285,15 @@ class Buy extends BuyModel {
         startTime: startTime,
         transactionId: transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -295,7 +304,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -322,4 +331,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

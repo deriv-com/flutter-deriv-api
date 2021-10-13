@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/set_self_exclusion_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Set self exclusion response model class.
-abstract class SetSelfExclusionResponseModel {
+abstract class SetSelfExclusionResponseModel extends Equatable {
   /// Initializes Set self exclusion response model class .
-  SetSelfExclusionResponseModel({
+  const SetSelfExclusionResponseModel({
     this.setSelfExclusion,
   });
 
@@ -22,7 +23,7 @@ abstract class SetSelfExclusionResponseModel {
 /// Set self exclusion response class.
 class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// Initializes Set self exclusion response class.
-  SetSelfExclusionResponse({
+  const SetSelfExclusionResponse({
     int? setSelfExclusion,
   }) : super(
           setSelfExclusion: setSelfExclusion,
@@ -71,4 +72,8 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
       SetSelfExclusionResponse(
         setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

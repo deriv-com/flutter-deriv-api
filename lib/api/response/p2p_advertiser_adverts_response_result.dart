@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_adverts_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advertiser adverts response model class.
-abstract class P2pAdvertiserAdvertsResponseModel {
+abstract class P2pAdvertiserAdvertsResponseModel extends Equatable {
   /// Initializes P2p advertiser adverts response model class .
-  P2pAdvertiserAdvertsResponseModel({
+  const P2pAdvertiserAdvertsResponseModel({
     this.p2pAdvertiserAdverts,
   });
 
@@ -22,7 +23,7 @@ abstract class P2pAdvertiserAdvertsResponseModel {
 /// P2p advertiser adverts response class.
 class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
   /// Initializes P2p advertiser adverts response class.
-  P2pAdvertiserAdvertsResponse({
+  const P2pAdvertiserAdvertsResponse({
     P2pAdvertiserAdverts? p2pAdvertiserAdverts,
   }) : super(
           p2pAdvertiserAdverts: p2pAdvertiserAdverts,
@@ -76,6 +77,10 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
       P2pAdvertiserAdvertsResponse(
         p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -109,9 +114,9 @@ enum TypeEnum {
   sell,
 }
 /// P2p advertiser adverts model class.
-abstract class P2pAdvertiserAdvertsModel {
+abstract class P2pAdvertiserAdvertsModel extends Equatable {
   /// Initializes P2p advertiser adverts model class .
-  P2pAdvertiserAdvertsModel({
+  const P2pAdvertiserAdvertsModel({
     required this.list,
   });
 
@@ -122,7 +127,7 @@ abstract class P2pAdvertiserAdvertsModel {
 /// P2p advertiser adverts class.
 class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts class.
-  P2pAdvertiserAdverts({
+  const P2pAdvertiserAdverts({
     required List<ListItem> list,
   }) : super(
           list: list,
@@ -158,11 +163,15 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
       P2pAdvertiserAdverts(
         list: list,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// List item model class.
-abstract class ListItemModel {
+abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
-  ListItemModel({
+  const ListItemModel({
     required this.type,
     required this.remainingAmountDisplay,
     required this.remainingAmount,
@@ -297,7 +306,7 @@ abstract class ListItemModel {
 /// List item class.
 class ListItem extends ListItemModel {
   /// Initializes List item class.
-  ListItem({
+  const ListItem({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
     required double amount,
@@ -530,11 +539,15 @@ class ListItem extends ListItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel {
+abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
-  AdvertiserDetailsModel({
+  const AdvertiserDetailsModel({
     required this.name,
     required this.id,
     this.firstName,
@@ -561,7 +574,7 @@ abstract class AdvertiserDetailsModel {
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
-  AdvertiserDetails({
+  const AdvertiserDetails({
     required String id,
     required String name,
     String? firstName,
@@ -613,4 +626,8 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

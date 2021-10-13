@@ -9,7 +9,7 @@ StringBuffer _generateConstructor({
   final StringBuffer result = StringBuffer()
     ..write(
       '''
-          $className({
+          const $className({
         ''',
     );
 

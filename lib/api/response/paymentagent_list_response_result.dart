@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Paymentagent list response model class.
-abstract class PaymentagentListResponseModel {
+abstract class PaymentagentListResponseModel extends Equatable {
   /// Initializes Paymentagent list response model class .
-  PaymentagentListResponseModel({
+  const PaymentagentListResponseModel({
     this.paymentagentList,
   });
 
@@ -22,7 +23,7 @@ abstract class PaymentagentListResponseModel {
 /// Paymentagent list response class.
 class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Initializes Paymentagent list response class.
-  PaymentagentListResponse({
+  const PaymentagentListResponse({
     PaymentagentList? paymentagentList,
   }) : super(
           paymentagentList: paymentagentList,
@@ -76,11 +77,15 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
       PaymentagentListResponse(
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Paymentagent list model class.
-abstract class PaymentagentListModel {
+abstract class PaymentagentListModel extends Equatable {
   /// Initializes Paymentagent list model class .
-  PaymentagentListModel({
+  const PaymentagentListModel({
     required this.list,
     this.availableCountries,
   });
@@ -95,7 +100,7 @@ abstract class PaymentagentListModel {
 /// Paymentagent list class.
 class PaymentagentList extends PaymentagentListModel {
   /// Initializes Paymentagent list class.
-  PaymentagentList({
+  const PaymentagentList({
     required List<ListItem> list,
     List<List<String>>? availableCountries,
   }) : super(
@@ -158,11 +163,15 @@ class PaymentagentList extends PaymentagentListModel {
         list: list,
         availableCountries: availableCountries ?? this.availableCountries,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// List item model class.
-abstract class ListItemModel {
+abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
-  ListItemModel({
+  const ListItemModel({
     this.currencies,
     this.depositCommission,
     this.email,
@@ -221,7 +230,7 @@ abstract class ListItemModel {
 /// List item class.
 class ListItem extends ListItemModel {
   /// Initializes List item class.
-  ListItem({
+  const ListItem({
     String? currencies,
     String? depositCommission,
     String? email,
@@ -320,4 +329,8 @@ class ListItem extends ListItemModel {
         url: url ?? this.url,
         withdrawalCommission: withdrawalCommission ?? this.withdrawalCommission,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/trading_durations_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Trading durations response model class.
-abstract class TradingDurationsResponseModel {
+abstract class TradingDurationsResponseModel extends Equatable {
   /// Initializes Trading durations response model class .
-  TradingDurationsResponseModel({
+  const TradingDurationsResponseModel({
     this.tradingDurations,
   });
 
@@ -22,7 +23,7 @@ abstract class TradingDurationsResponseModel {
 /// Trading durations response class.
 class TradingDurationsResponse extends TradingDurationsResponseModel {
   /// Initializes Trading durations response class.
-  TradingDurationsResponse({
+  const TradingDurationsResponse({
     List<TradingDurationsItem>? tradingDurations,
   }) : super(
           tradingDurations: tradingDurations,
@@ -85,11 +86,15 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
       TradingDurationsResponse(
         tradingDurations: tradingDurations ?? this.tradingDurations,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Trading durations item model class.
-abstract class TradingDurationsItemModel {
+abstract class TradingDurationsItemModel extends Equatable {
   /// Initializes Trading durations item model class .
-  TradingDurationsItemModel({
+  const TradingDurationsItemModel({
     this.data,
     this.market,
     this.submarket,
@@ -108,7 +113,7 @@ abstract class TradingDurationsItemModel {
 /// Trading durations item class.
 class TradingDurationsItem extends TradingDurationsItemModel {
   /// Initializes Trading durations item class.
-  TradingDurationsItem({
+  const TradingDurationsItem({
     List<DataItem>? data,
     TradingDurationsItemMarket? market,
     TradingDurationsItemSubmarket? submarket,
@@ -168,11 +173,15 @@ class TradingDurationsItem extends TradingDurationsItemModel {
         market: market ?? this.market,
         submarket: submarket ?? this.submarket,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Data item model class.
-abstract class DataItemModel {
+abstract class DataItemModel extends Equatable {
   /// Initializes Data item model class .
-  DataItemModel({
+  const DataItemModel({
     this.market,
     this.submarket,
     this.symbol,
@@ -195,7 +204,7 @@ abstract class DataItemModel {
 /// Data item class.
 class DataItem extends DataItemModel {
   /// Initializes Data item class.
-  DataItem({
+  const DataItem({
     Market? market,
     Submarket? submarket,
     List<SymbolItem>? symbol,
@@ -270,11 +279,15 @@ class DataItem extends DataItemModel {
         symbol: symbol ?? this.symbol,
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Market model class.
-abstract class MarketModel {
+abstract class MarketModel extends Equatable {
   /// Initializes Market model class .
-  MarketModel({
+  const MarketModel({
     this.displayName,
     this.name,
   });
@@ -289,7 +302,7 @@ abstract class MarketModel {
 /// Market class.
 class Market extends MarketModel {
   /// Initializes Market class.
-  Market({
+  const Market({
     String? displayName,
     String? name,
   }) : super(
@@ -322,11 +335,15 @@ class Market extends MarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Submarket model class.
-abstract class SubmarketModel {
+abstract class SubmarketModel extends Equatable {
   /// Initializes Submarket model class .
-  SubmarketModel({
+  const SubmarketModel({
     this.displayName,
     this.name,
   });
@@ -341,7 +358,7 @@ abstract class SubmarketModel {
 /// Submarket class.
 class Submarket extends SubmarketModel {
   /// Initializes Submarket class.
-  Submarket({
+  const Submarket({
     String? displayName,
     String? name,
   }) : super(
@@ -374,11 +391,15 @@ class Submarket extends SubmarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Symbol item model class.
-abstract class SymbolItemModel {
+abstract class SymbolItemModel extends Equatable {
   /// Initializes Symbol item model class .
-  SymbolItemModel({
+  const SymbolItemModel({
     this.displayName,
     this.name,
   });
@@ -393,7 +414,7 @@ abstract class SymbolItemModel {
 /// Symbol item class.
 class SymbolItem extends SymbolItemModel {
   /// Initializes Symbol item class.
-  SymbolItem({
+  const SymbolItem({
     String? displayName,
     String? name,
   }) : super(
@@ -426,11 +447,15 @@ class SymbolItem extends SymbolItemModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Trade durations item model class.
-abstract class TradeDurationsItemModel {
+abstract class TradeDurationsItemModel extends Equatable {
   /// Initializes Trade durations item model class .
-  TradeDurationsItemModel({
+  const TradeDurationsItemModel({
     this.durations,
     this.tradeType,
   });
@@ -445,7 +470,7 @@ abstract class TradeDurationsItemModel {
 /// Trade durations item class.
 class TradeDurationsItem extends TradeDurationsItemModel {
   /// Initializes Trade durations item class.
-  TradeDurationsItem({
+  const TradeDurationsItem({
     List<DurationsItem>? durations,
     TradeType? tradeType,
   }) : super(
@@ -495,11 +520,15 @@ class TradeDurationsItem extends TradeDurationsItemModel {
         durations: durations ?? this.durations,
         tradeType: tradeType ?? this.tradeType,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Durations item model class.
-abstract class DurationsItemModel {
+abstract class DurationsItemModel extends Equatable {
   /// Initializes Durations item model class .
-  DurationsItemModel({
+  const DurationsItemModel({
     this.displayName,
     this.max,
     this.min,
@@ -522,7 +551,7 @@ abstract class DurationsItemModel {
 /// Durations item class.
 class DurationsItem extends DurationsItemModel {
   /// Initializes Durations item class.
-  DurationsItem({
+  const DurationsItem({
     String? displayName,
     int? max,
     int? min,
@@ -567,11 +596,15 @@ class DurationsItem extends DurationsItemModel {
         min: min ?? this.min,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Trade type model class.
-abstract class TradeTypeModel {
+abstract class TradeTypeModel extends Equatable {
   /// Initializes Trade type model class .
-  TradeTypeModel({
+  const TradeTypeModel({
     this.displayName,
     this.name,
   });
@@ -586,7 +619,7 @@ abstract class TradeTypeModel {
 /// Trade type class.
 class TradeType extends TradeTypeModel {
   /// Initializes Trade type class.
-  TradeType({
+  const TradeType({
     String? displayName,
     String? name,
   }) : super(
@@ -619,11 +652,15 @@ class TradeType extends TradeTypeModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Trading durations item market model class.
-abstract class TradingDurationsItemMarketModel {
+abstract class TradingDurationsItemMarketModel extends Equatable {
   /// Initializes Trading durations item market model class .
-  TradingDurationsItemMarketModel({
+  const TradingDurationsItemMarketModel({
     this.displayName,
     this.name,
   });
@@ -638,7 +675,7 @@ abstract class TradingDurationsItemMarketModel {
 /// Trading durations item market class.
 class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
   /// Initializes Trading durations item market class.
-  TradingDurationsItemMarket({
+  const TradingDurationsItemMarket({
     String? displayName,
     String? name,
   }) : super(
@@ -672,11 +709,15 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Trading durations item submarket model class.
-abstract class TradingDurationsItemSubmarketModel {
+abstract class TradingDurationsItemSubmarketModel extends Equatable {
   /// Initializes Trading durations item submarket model class .
-  TradingDurationsItemSubmarketModel({
+  const TradingDurationsItemSubmarketModel({
     this.displayName,
     this.name,
   });
@@ -691,7 +732,7 @@ abstract class TradingDurationsItemSubmarketModel {
 /// Trading durations item submarket class.
 class TradingDurationsItemSubmarket extends TradingDurationsItemSubmarketModel {
   /// Initializes Trading durations item submarket class.
-  TradingDurationsItemSubmarket({
+  const TradingDurationsItemSubmarket({
     String? displayName,
     String? name,
   }) : super(
@@ -725,4 +766,8 @@ class TradingDurationsItemSubmarket extends TradingDurationsItemSubmarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

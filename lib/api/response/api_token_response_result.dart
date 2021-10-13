@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api_token_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api_token_send.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Api token response model class.
-abstract class ApiTokenResponseModel {
+abstract class ApiTokenResponseModel extends Equatable {
   /// Initializes Api token response model class .
-  ApiTokenResponseModel({
+  const ApiTokenResponseModel({
     this.apiToken,
   });
 
@@ -21,7 +22,7 @@ abstract class ApiTokenResponseModel {
 /// Api token response class.
 class ApiTokenResponse extends ApiTokenResponseModel {
   /// Initializes Api token response class.
-  ApiTokenResponse({
+  const ApiTokenResponse({
     ApiToken? apiToken,
   }) : super(
           apiToken: apiToken,
@@ -103,6 +104,10 @@ class ApiTokenResponse extends ApiTokenResponseModel {
       ApiTokenResponse(
         apiToken: apiToken ?? this.apiToken,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// ScopesItemEnum mapper.
@@ -133,9 +138,9 @@ enum ScopesItemEnum {
   admin,
 }
 /// Api token model class.
-abstract class ApiTokenModel {
+abstract class ApiTokenModel extends Equatable {
   /// Initializes Api token model class .
-  ApiTokenModel({
+  const ApiTokenModel({
     this.deleteToken,
     this.newToken,
     this.tokens,
@@ -154,7 +159,7 @@ abstract class ApiTokenModel {
 /// Api token class.
 class ApiToken extends ApiTokenModel {
   /// Initializes Api token class.
-  ApiToken({
+  const ApiToken({
     int? deleteToken,
     int? newToken,
     List<TokensItem>? tokens,
@@ -205,11 +210,15 @@ class ApiToken extends ApiTokenModel {
         newToken: newToken ?? this.newToken,
         tokens: tokens ?? this.tokens,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Tokens item model class.
-abstract class TokensItemModel {
+abstract class TokensItemModel extends Equatable {
   /// Initializes Tokens item model class .
-  TokensItemModel({
+  const TokensItemModel({
     this.displayName,
     this.lastUsed,
     this.scopes,
@@ -236,7 +245,7 @@ abstract class TokensItemModel {
 /// Tokens item class.
 class TokensItem extends TokensItemModel {
   /// Initializes Tokens item class.
-  TokensItem({
+  const TokensItem({
     String? displayName,
     String? lastUsed,
     List<ScopesItemEnum>? scopes,
@@ -303,4 +312,8 @@ class TokensItem extends TokensItemModel {
         token: token ?? this.token,
         validForIp: validForIp ?? this.validForIp,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

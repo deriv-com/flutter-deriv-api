@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/manually/ohlc_response.dart';
@@ -18,9 +19,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Ticks history response model class.
-abstract class TicksHistoryResponseModel {
+abstract class TicksHistoryResponseModel extends Equatable {
   /// Initializes Ticks history response model class .
-  TicksHistoryResponseModel({
+  const TicksHistoryResponseModel({
     this.candles,
     this.history,
     this.pipSize,
@@ -43,7 +44,7 @@ abstract class TicksHistoryResponseModel {
 /// Ticks history response class.
 class TicksHistoryResponse extends TicksHistoryResponseModel {
   /// Initializes Ticks history response class.
-  TicksHistoryResponse({
+  const TicksHistoryResponse({
     List<CandlesItem>? candles,
     History? history,
     double? pipSize,
@@ -188,11 +189,15 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         pipSize: pipSize ?? this.pipSize,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Candles item model class.
-abstract class CandlesItemModel {
+abstract class CandlesItemModel extends Equatable {
   /// Initializes Candles item model class .
-  CandlesItemModel({
+  const CandlesItemModel({
     this.close,
     this.epoch,
     this.high,
@@ -219,7 +224,7 @@ abstract class CandlesItemModel {
 /// Candles item class.
 class CandlesItem extends CandlesItemModel {
   /// Initializes Candles item class.
-  CandlesItem({
+  const CandlesItem({
     double? close,
     DateTime? epoch,
     double? high,
@@ -270,11 +275,15 @@ class CandlesItem extends CandlesItemModel {
         low: low ?? this.low,
         open: open ?? this.open,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// History model class.
-abstract class HistoryModel {
+abstract class HistoryModel extends Equatable {
   /// Initializes History model class .
-  HistoryModel({
+  const HistoryModel({
     this.prices,
     this.times,
   });
@@ -289,7 +298,7 @@ abstract class HistoryModel {
 /// History class.
 class History extends HistoryModel {
   /// Initializes History class.
-  History({
+  const History({
     List<double>? prices,
     List<DateTime>? times,
   }) : super(
@@ -346,11 +355,15 @@ class History extends HistoryModel {
         prices: prices ?? this.prices,
         times: times ?? this.times,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -361,7 +374,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -388,4 +401,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

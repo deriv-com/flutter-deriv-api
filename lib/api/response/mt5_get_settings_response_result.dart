@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_get_settings_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Mt5 get settings response model class.
-abstract class Mt5GetSettingsResponseModel {
+abstract class Mt5GetSettingsResponseModel extends Equatable {
   /// Initializes Mt5 get settings response model class .
-  Mt5GetSettingsResponseModel({
+  const Mt5GetSettingsResponseModel({
     this.mt5GetSettings,
   });
 
@@ -22,7 +23,7 @@ abstract class Mt5GetSettingsResponseModel {
 /// Mt5 get settings response class.
 class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// Initializes Mt5 get settings response class.
-  Mt5GetSettingsResponse({
+  const Mt5GetSettingsResponse({
     Mt5GetSettings? mt5GetSettings,
   }) : super(
           mt5GetSettings: mt5GetSettings,
@@ -76,6 +77,10 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
       Mt5GetSettingsResponse(
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -166,9 +171,9 @@ enum SubAccountTypeEnum {
   swapFree,
 }
 /// Mt5 get settings model class.
-abstract class Mt5GetSettingsModel {
+abstract class Mt5GetSettingsModel extends Equatable {
   /// Initializes Mt5 get settings model class .
-  Mt5GetSettingsModel({
+  const Mt5GetSettingsModel({
     this.accountType,
     this.address,
     this.balance,
@@ -251,7 +256,7 @@ abstract class Mt5GetSettingsModel {
 /// Mt5 get settings class.
 class Mt5GetSettings extends Mt5GetSettingsModel {
   /// Initializes Mt5 get settings class.
-  Mt5GetSettings({
+  const Mt5GetSettings({
     AccountTypeEnum? accountType,
     String? address,
     String? balance,
@@ -406,4 +411,8 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         subAccountType: subAccountType ?? this.subAccountType,
         zipCode: zipCode ?? this.zipCode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

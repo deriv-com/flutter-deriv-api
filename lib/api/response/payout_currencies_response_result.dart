@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/payout_currencies_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Payout currencies response model class.
-abstract class PayoutCurrenciesResponseModel {
+abstract class PayoutCurrenciesResponseModel extends Equatable {
   /// Initializes Payout currencies response model class .
-  PayoutCurrenciesResponseModel({
+  const PayoutCurrenciesResponseModel({
     this.payoutCurrencies,
   });
 
@@ -22,7 +23,7 @@ abstract class PayoutCurrenciesResponseModel {
 /// Payout currencies response class.
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Initializes Payout currencies response class.
-  PayoutCurrenciesResponse({
+  const PayoutCurrenciesResponse({
     List<String>? payoutCurrencies,
   }) : super(
           payoutCurrencies: payoutCurrencies,
@@ -86,4 +87,8 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
       PayoutCurrenciesResponse(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

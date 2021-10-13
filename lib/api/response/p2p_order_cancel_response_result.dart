@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// P2p order cancel response model class.
-abstract class P2pOrderCancelResponseModel {
+abstract class P2pOrderCancelResponseModel extends Equatable {
   /// Initializes P2p order cancel response model class .
-  P2pOrderCancelResponseModel({
+  const P2pOrderCancelResponseModel({
     this.p2pOrderCancel,
   });
 
@@ -15,7 +16,7 @@ abstract class P2pOrderCancelResponseModel {
 /// P2p order cancel response class.
 class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
   /// Initializes P2p order cancel response class.
-  P2pOrderCancelResponse({
+  const P2pOrderCancelResponse({
     P2pOrderCancel? p2pOrderCancel,
   }) : super(
           p2pOrderCancel: p2pOrderCancel,
@@ -49,6 +50,10 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
       P2pOrderCancelResponse(
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// StatusEnum mapper.
@@ -62,9 +67,9 @@ enum StatusEnum {
   cancelled,
 }
 /// P2p order cancel model class.
-abstract class P2pOrderCancelModel {
+abstract class P2pOrderCancelModel extends Equatable {
   /// Initializes P2p order cancel model class .
-  P2pOrderCancelModel({
+  const P2pOrderCancelModel({
     required this.status,
     required this.id,
   });
@@ -79,7 +84,7 @@ abstract class P2pOrderCancelModel {
 /// P2p order cancel class.
 class P2pOrderCancel extends P2pOrderCancelModel {
   /// Initializes P2p order cancel class.
-  P2pOrderCancel({
+  const P2pOrderCancel({
     required String id,
     required StatusEnum status,
   }) : super(
@@ -115,4 +120,8 @@ class P2pOrderCancel extends P2pOrderCancelModel {
         id: id,
         status: status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Exchange rates response model class.
-abstract class ExchangeRatesResponseModel {
+abstract class ExchangeRatesResponseModel extends Equatable {
   /// Initializes Exchange rates response model class .
-  ExchangeRatesResponseModel({
+  const ExchangeRatesResponseModel({
     this.exchangeRates,
   });
 
@@ -22,7 +23,7 @@ abstract class ExchangeRatesResponseModel {
 /// Exchange rates response class.
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
-  ExchangeRatesResponse({
+  const ExchangeRatesResponse({
     ExchangeRates? exchangeRates,
   }) : super(
           exchangeRates: exchangeRates,
@@ -78,11 +79,15 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
       ExchangeRatesResponse(
         exchangeRates: exchangeRates ?? this.exchangeRates,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Exchange rates model class.
-abstract class ExchangeRatesModel {
+abstract class ExchangeRatesModel extends Equatable {
   /// Initializes Exchange rates model class .
-  ExchangeRatesModel({
+  const ExchangeRatesModel({
     this.baseCurrency,
     this.date,
     this.rates,
@@ -101,7 +106,7 @@ abstract class ExchangeRatesModel {
 /// Exchange rates class.
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes Exchange rates class.
-  ExchangeRates({
+  const ExchangeRates({
     String? baseCurrency,
     DateTime? date,
     Map<String, double>? rates,
@@ -147,4 +152,8 @@ class ExchangeRates extends ExchangeRatesModel {
         date: date ?? this.date,
         rates: rates ?? this.rates,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

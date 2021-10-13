@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/set_financial_assessment_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Set financial assessment response model class.
-abstract class SetFinancialAssessmentResponseModel {
+abstract class SetFinancialAssessmentResponseModel extends Equatable {
   /// Initializes Set financial assessment response model class .
-  SetFinancialAssessmentResponseModel({
+  const SetFinancialAssessmentResponseModel({
     this.setFinancialAssessment,
   });
 
@@ -23,7 +24,7 @@ abstract class SetFinancialAssessmentResponseModel {
 class SetFinancialAssessmentResponse
     extends SetFinancialAssessmentResponseModel {
   /// Initializes Set financial assessment response class.
-  SetFinancialAssessmentResponse({
+  const SetFinancialAssessmentResponse({
     SetFinancialAssessment? setFinancialAssessment,
   }) : super(
           setFinancialAssessment: setFinancialAssessment,
@@ -82,11 +83,15 @@ class SetFinancialAssessmentResponse
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Set financial assessment model class.
-abstract class SetFinancialAssessmentModel {
+abstract class SetFinancialAssessmentModel extends Equatable {
   /// Initializes Set financial assessment model class .
-  SetFinancialAssessmentModel({
+  const SetFinancialAssessmentModel({
     this.cfdScore,
     this.financialInformationScore,
     this.totalScore,
@@ -109,7 +114,7 @@ abstract class SetFinancialAssessmentModel {
 /// Set financial assessment class.
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
   /// Initializes Set financial assessment class.
-  SetFinancialAssessment({
+  const SetFinancialAssessment({
     int? cfdScore,
     int? financialInformationScore,
     int? totalScore,
@@ -156,4 +161,8 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         totalScore: totalScore ?? this.totalScore,
         tradingScore: tradingScore ?? this.tradingScore,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

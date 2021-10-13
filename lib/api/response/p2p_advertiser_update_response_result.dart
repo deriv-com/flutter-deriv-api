@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_update_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advertiser update response model class.
-abstract class P2pAdvertiserUpdateResponseModel {
+abstract class P2pAdvertiserUpdateResponseModel extends Equatable {
   /// Initializes P2p advertiser update response model class .
-  P2pAdvertiserUpdateResponseModel({
+  const P2pAdvertiserUpdateResponseModel({
     this.p2pAdvertiserUpdate,
   });
 
@@ -22,7 +23,7 @@ abstract class P2pAdvertiserUpdateResponseModel {
 /// P2p advertiser update response class.
 class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
   /// Initializes P2p advertiser update response class.
-  P2pAdvertiserUpdateResponse({
+  const P2pAdvertiserUpdateResponse({
     P2pAdvertiserUpdate? p2pAdvertiserUpdate,
   }) : super(
           p2pAdvertiserUpdate: p2pAdvertiserUpdate,
@@ -76,11 +77,15 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
       P2pAdvertiserUpdateResponse(
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p advertiser update model class.
-abstract class P2pAdvertiserUpdateModel {
+abstract class P2pAdvertiserUpdateModel extends Equatable {
   /// Initializes P2p advertiser update model class .
-  P2pAdvertiserUpdateModel({
+  const P2pAdvertiserUpdateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
     required this.name,
@@ -223,7 +228,7 @@ abstract class P2pAdvertiserUpdateModel {
 /// P2p advertiser update class.
 class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update class.
-  P2pAdvertiserUpdate({
+  const P2pAdvertiserUpdate({
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
@@ -450,4 +455,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         showName: showName ?? this.showName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/revoke_oauth_app_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Revoke oauth app response model class.
-abstract class RevokeOauthAppResponseModel {
+abstract class RevokeOauthAppResponseModel extends Equatable {
   /// Initializes Revoke oauth app response model class .
-  RevokeOauthAppResponseModel({
+  const RevokeOauthAppResponseModel({
     this.revokeOauthApp,
   });
 
@@ -22,7 +23,7 @@ abstract class RevokeOauthAppResponseModel {
 /// Revoke oauth app response class.
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Initializes Revoke oauth app response class.
-  RevokeOauthAppResponse({
+  const RevokeOauthAppResponse({
     int? revokeOauthApp,
   }) : super(
           revokeOauthApp: revokeOauthApp,
@@ -72,4 +73,8 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
       RevokeOauthAppResponse(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/topup_virtual_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Topup virtual response model class.
-abstract class TopupVirtualResponseModel {
+abstract class TopupVirtualResponseModel extends Equatable {
   /// Initializes Topup virtual response model class .
-  TopupVirtualResponseModel({
+  const TopupVirtualResponseModel({
     this.topupVirtual,
   });
 
@@ -22,7 +23,7 @@ abstract class TopupVirtualResponseModel {
 /// Topup virtual response class.
 class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Initializes Topup virtual response class.
-  TopupVirtualResponse({
+  const TopupVirtualResponse({
     TopupVirtual? topupVirtual,
   }) : super(
           topupVirtual: topupVirtual,
@@ -78,11 +79,15 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
       TopupVirtualResponse(
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Topup virtual model class.
-abstract class TopupVirtualModel {
+abstract class TopupVirtualModel extends Equatable {
   /// Initializes Topup virtual model class .
-  TopupVirtualModel({
+  const TopupVirtualModel({
     this.amount,
     this.currency,
   });
@@ -97,7 +102,7 @@ abstract class TopupVirtualModel {
 /// Topup virtual class.
 class TopupVirtual extends TopupVirtualModel {
   /// Initializes Topup virtual class.
-  TopupVirtual({
+  const TopupVirtual({
     double? amount,
     String? currency,
   }) : super(
@@ -130,4 +135,8 @@ class TopupVirtual extends TopupVirtualModel {
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

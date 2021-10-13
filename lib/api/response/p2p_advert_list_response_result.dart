@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/p2p_advert_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advert list response model class.
-abstract class P2pAdvertListResponseModel {
+abstract class P2pAdvertListResponseModel extends Equatable {
   /// Initializes P2p advert list response model class .
-  P2pAdvertListResponseModel({
+  const P2pAdvertListResponseModel({
     this.p2pAdvertList,
   });
 
@@ -22,7 +23,7 @@ abstract class P2pAdvertListResponseModel {
 /// P2p advert list response class.
 class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   /// Initializes P2p advert list response class.
-  P2pAdvertListResponse({
+  const P2pAdvertListResponse({
     P2pAdvertList? p2pAdvertList,
   }) : super(
           p2pAdvertList: p2pAdvertList,
@@ -76,6 +77,10 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
       P2pAdvertListResponse(
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -109,9 +114,9 @@ enum TypeEnum {
   sell,
 }
 /// P2p advert list model class.
-abstract class P2pAdvertListModel {
+abstract class P2pAdvertListModel extends Equatable {
   /// Initializes P2p advert list model class .
-  P2pAdvertListModel({
+  const P2pAdvertListModel({
     required this.list,
   });
 
@@ -122,7 +127,7 @@ abstract class P2pAdvertListModel {
 /// P2p advert list class.
 class P2pAdvertList extends P2pAdvertListModel {
   /// Initializes P2p advert list class.
-  P2pAdvertList({
+  const P2pAdvertList({
     required List<ListItem> list,
   }) : super(
           list: list,
@@ -157,11 +162,15 @@ class P2pAdvertList extends P2pAdvertListModel {
       P2pAdvertList(
         list: list,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// List item model class.
-abstract class ListItemModel {
+abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
-  ListItemModel({
+  const ListItemModel({
     required this.type,
     required this.rateDisplay,
     required this.rate,
@@ -296,7 +305,7 @@ abstract class ListItemModel {
 /// List item class.
 class ListItem extends ListItemModel {
   /// Initializes List item class.
-  ListItem({
+  const ListItem({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
     required CounterpartyTypeEnum counterpartyType,
@@ -532,11 +541,15 @@ class ListItem extends ListItemModel {
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel {
+abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
-  AdvertiserDetailsModel({
+  const AdvertiserDetailsModel({
     required this.name,
     required this.id,
     this.firstName,
@@ -567,7 +580,7 @@ abstract class AdvertiserDetailsModel {
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
-  AdvertiserDetails({
+  const AdvertiserDetails({
     required String id,
     required String name,
     String? firstName,
@@ -625,4 +638,8 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

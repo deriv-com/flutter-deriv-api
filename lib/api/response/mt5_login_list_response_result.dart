@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Mt5 login list response model class.
-abstract class Mt5LoginListResponseModel {
+abstract class Mt5LoginListResponseModel extends Equatable {
   /// Initializes Mt5 login list response model class .
-  Mt5LoginListResponseModel({
+  const Mt5LoginListResponseModel({
     this.mt5LoginList,
   });
 
@@ -22,7 +23,7 @@ abstract class Mt5LoginListResponseModel {
 /// Mt5 login list response class.
 class Mt5LoginListResponse extends Mt5LoginListResponseModel {
   /// Initializes Mt5 login list response class.
-  Mt5LoginListResponse({
+  const Mt5LoginListResponse({
     List<Mt5LoginListItem>? mt5LoginList,
   }) : super(
           mt5LoginList: mt5LoginList,
@@ -84,6 +85,10 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
       Mt5LoginListResponse(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -194,9 +199,9 @@ enum SubAccountTypeEnum {
   swapFree,
 }
 /// Mt5 login list item model class.
-abstract class Mt5LoginListItemModel {
+abstract class Mt5LoginListItemModel extends Equatable {
   /// Initializes Mt5 login list item model class .
-  Mt5LoginListItemModel({
+  const Mt5LoginListItemModel({
     this.accountType,
     this.balance,
     this.country,
@@ -263,7 +268,7 @@ abstract class Mt5LoginListItemModel {
 /// Mt5 login list item class.
 class Mt5LoginListItem extends Mt5LoginListItemModel {
   /// Initializes Mt5 login list item class.
-  Mt5LoginListItem({
+  const Mt5LoginListItem({
     AccountTypeEnum? accountType,
     double? balance,
     String? country,
@@ -399,11 +404,15 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         serverInfo: serverInfo ?? this.serverInfo,
         subAccountType: subAccountType ?? this.subAccountType,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Server info model class.
-abstract class ServerInfoModel {
+abstract class ServerInfoModel extends Equatable {
   /// Initializes Server info model class .
-  ServerInfoModel({
+  const ServerInfoModel({
     this.environment,
     this.geolocation,
     this.id,
@@ -422,7 +431,7 @@ abstract class ServerInfoModel {
 /// Server info class.
 class ServerInfo extends ServerInfoModel {
   /// Initializes Server info class.
-  ServerInfo({
+  const ServerInfo({
     EnvironmentEnum? environment,
     Geolocation? geolocation,
     String? id,
@@ -470,11 +479,15 @@ class ServerInfo extends ServerInfoModel {
         geolocation: geolocation ?? this.geolocation,
         id: id ?? this.id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Geolocation model class.
-abstract class GeolocationModel {
+abstract class GeolocationModel extends Equatable {
   /// Initializes Geolocation model class .
-  GeolocationModel({
+  const GeolocationModel({
     this.location,
     this.region,
     this.sequence,
@@ -493,7 +506,7 @@ abstract class GeolocationModel {
 /// Geolocation class.
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
-  Geolocation({
+  const Geolocation({
     String? location,
     String? region,
     int? sequence,
@@ -532,4 +545,8 @@ class Geolocation extends GeolocationModel {
         region: region ?? this.region,
         sequence: sequence ?? this.sequence,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

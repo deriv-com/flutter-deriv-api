@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_markup_details_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_markup_details_send.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App markup details response model class.
-abstract class AppMarkupDetailsResponseModel {
+abstract class AppMarkupDetailsResponseModel extends Equatable {
   /// Initializes App markup details response model class .
-  AppMarkupDetailsResponseModel({
+  const AppMarkupDetailsResponseModel({
     this.appMarkupDetails,
   });
 
@@ -21,7 +22,7 @@ abstract class AppMarkupDetailsResponseModel {
 /// App markup details response class.
 class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// Initializes App markup details response class.
-  AppMarkupDetailsResponse({
+  const AppMarkupDetailsResponse({
     AppMarkupDetails? appMarkupDetails,
   }) : super(
           appMarkupDetails: appMarkupDetails,
@@ -75,11 +76,15 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
       AppMarkupDetailsResponse(
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// App markup details model class.
-abstract class AppMarkupDetailsModel {
+abstract class AppMarkupDetailsModel extends Equatable {
   /// Initializes App markup details model class .
-  AppMarkupDetailsModel({
+  const AppMarkupDetailsModel({
     this.transactions,
   });
 
@@ -90,7 +95,7 @@ abstract class AppMarkupDetailsModel {
 /// App markup details class.
 class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Initializes App markup details class.
-  AppMarkupDetails({
+  const AppMarkupDetails({
     List<TransactionsItem>? transactions,
   }) : super(
           transactions: transactions,
@@ -130,11 +135,15 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
       AppMarkupDetails(
         transactions: transactions ?? this.transactions,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Transactions item model class.
-abstract class TransactionsItemModel {
+abstract class TransactionsItemModel extends Equatable {
   /// Initializes Transactions item model class .
-  TransactionsItemModel({
+  const TransactionsItemModel({
     this.appId,
     this.appMarkup,
     this.appMarkupUsd,
@@ -181,7 +190,7 @@ abstract class TransactionsItemModel {
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
-  TransactionsItem({
+  const TransactionsItem({
     int? appId,
     double? appMarkup,
     double? appMarkupUsd,
@@ -263,4 +272,8 @@ class TransactionsItem extends TransactionsItemModel {
         transactionId: transactionId ?? this.transactionId,
         transactionTime: transactionTime ?? this.transactionTime,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

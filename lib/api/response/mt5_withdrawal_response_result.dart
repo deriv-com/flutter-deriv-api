@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_withdrawal_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Mt5 withdrawal response model class.
-abstract class Mt5WithdrawalResponseModel {
+abstract class Mt5WithdrawalResponseModel extends Equatable {
   /// Initializes Mt5 withdrawal response model class .
-  Mt5WithdrawalResponseModel({
+  const Mt5WithdrawalResponseModel({
     this.mt5Withdrawal,
     this.binaryTransactionId,
   });
@@ -26,7 +27,7 @@ abstract class Mt5WithdrawalResponseModel {
 /// Mt5 withdrawal response class.
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Initializes Mt5 withdrawal response class.
-  Mt5WithdrawalResponse({
+  const Mt5WithdrawalResponse({
     int? mt5Withdrawal,
     int? binaryTransactionId,
   }) : super(
@@ -86,4 +87,8 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

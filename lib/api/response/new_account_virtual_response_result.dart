@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// New account virtual response model class.
-abstract class NewAccountVirtualResponseModel {
+abstract class NewAccountVirtualResponseModel extends Equatable {
   /// Initializes New account virtual response model class .
-  NewAccountVirtualResponseModel({
+  const NewAccountVirtualResponseModel({
     this.newAccountVirtual,
   });
 
@@ -22,7 +23,7 @@ abstract class NewAccountVirtualResponseModel {
 /// New account virtual response class.
 class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// Initializes New account virtual response class.
-  NewAccountVirtualResponse({
+  const NewAccountVirtualResponse({
     NewAccountVirtual? newAccountVirtual,
   }) : super(
           newAccountVirtual: newAccountVirtual,
@@ -76,6 +77,10 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
       NewAccountVirtualResponse(
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// TypeEnum mapper.
@@ -93,9 +98,9 @@ enum TypeEnum {
   wallet,
 }
 /// New account virtual model class.
-abstract class NewAccountVirtualModel {
+abstract class NewAccountVirtualModel extends Equatable {
   /// Initializes New account virtual model class .
-  NewAccountVirtualModel({
+  const NewAccountVirtualModel({
     required this.oauthToken,
     required this.email,
     required this.currency,
@@ -126,7 +131,7 @@ abstract class NewAccountVirtualModel {
 /// New account virtual class.
 class NewAccountVirtual extends NewAccountVirtualModel {
   /// Initializes New account virtual class.
-  NewAccountVirtual({
+  const NewAccountVirtual({
     required double balance,
     required String clientId,
     required String currency,
@@ -186,4 +191,8 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: oauthToken,
         type: type ?? this.type,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

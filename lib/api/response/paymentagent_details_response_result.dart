@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Paymentagent details response model class.
-abstract class PaymentagentDetailsResponseModel {
+abstract class PaymentagentDetailsResponseModel extends Equatable {
   /// Initializes Paymentagent details response model class .
-  PaymentagentDetailsResponseModel({
+  const PaymentagentDetailsResponseModel({
     this.paymentagentDetails,
   });
 
@@ -15,7 +16,7 @@ abstract class PaymentagentDetailsResponseModel {
 /// Paymentagent details response class.
 class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
   /// Initializes Paymentagent details response class.
-  PaymentagentDetailsResponse({
+  const PaymentagentDetailsResponse({
     PaymentagentDetails? paymentagentDetails,
   }) : super(
           paymentagentDetails: paymentagentDetails,
@@ -49,11 +50,15 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
       PaymentagentDetailsResponse(
         paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Paymentagent details model class.
-abstract class PaymentagentDetailsModel {
+abstract class PaymentagentDetailsModel extends Equatable {
   /// Initializes Paymentagent details model class .
-  PaymentagentDetailsModel({
+  const PaymentagentDetailsModel({
     this.affiliateId,
     this.codeOfConductApproval,
     this.commissionDeposit,
@@ -124,7 +129,7 @@ abstract class PaymentagentDetailsModel {
 /// Paymentagent details class.
 class PaymentagentDetails extends PaymentagentDetailsModel {
   /// Initializes Paymentagent details class.
-  PaymentagentDetails({
+  const PaymentagentDetails({
     String? affiliateId,
     bool? codeOfConductApproval,
     double? commissionDeposit,
@@ -256,4 +261,8 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         targetCountry: targetCountry ?? this.targetCountry,
         url: url ?? this.url,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

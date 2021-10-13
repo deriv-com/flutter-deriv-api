@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// Buy contract for multiple accounts response model class.
-abstract class BuyContractForMultipleAccountsResponseModel {
+abstract class BuyContractForMultipleAccountsResponseModel extends Equatable {
   /// Initializes Buy contract for multiple accounts response model class .
-  BuyContractForMultipleAccountsResponseModel({
+  const BuyContractForMultipleAccountsResponseModel({
     this.buyContractForMultipleAccounts,
   });
 
@@ -16,7 +17,7 @@ abstract class BuyContractForMultipleAccountsResponseModel {
 class BuyContractForMultipleAccountsResponse
     extends BuyContractForMultipleAccountsResponseModel {
   /// Initializes Buy contract for multiple accounts response class.
-  BuyContractForMultipleAccountsResponse({
+  const BuyContractForMultipleAccountsResponse({
     BuyContractForMultipleAccounts? buyContractForMultipleAccounts,
   }) : super(
           buyContractForMultipleAccounts: buyContractForMultipleAccounts,
@@ -54,11 +55,15 @@ class BuyContractForMultipleAccountsResponse
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
             this.buyContractForMultipleAccounts,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Buy contract for multiple accounts model class.
-abstract class BuyContractForMultipleAccountsModel {
+abstract class BuyContractForMultipleAccountsModel extends Equatable {
   /// Initializes Buy contract for multiple accounts model class .
-  BuyContractForMultipleAccountsModel({
+  const BuyContractForMultipleAccountsModel({
     required this.result,
   });
 
@@ -70,7 +75,7 @@ abstract class BuyContractForMultipleAccountsModel {
 class BuyContractForMultipleAccounts
     extends BuyContractForMultipleAccountsModel {
   /// Initializes Buy contract for multiple accounts class.
-  BuyContractForMultipleAccounts({
+  const BuyContractForMultipleAccounts({
     required List<Map<String, dynamic>> result,
   }) : super(
           result: result,
@@ -106,4 +111,8 @@ class BuyContractForMultipleAccounts
       BuyContractForMultipleAccounts(
         result: result,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

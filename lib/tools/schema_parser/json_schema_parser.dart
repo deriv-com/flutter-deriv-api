@@ -72,7 +72,7 @@ class JsonSchemaParser {
       ..write(
         '''
           /// ${ReCase(className).sentenceCase} model class.
-          abstract class ${className}Model {
+          abstract class ${className}Model extends Equatable {
             /// Initializes ${ReCase(className).sentenceCase} model class .
             ${model.getConstructor(className: '${className}Model', isSubclass: false)}
             ${model.getProperties()}
@@ -91,6 +91,10 @@ class JsonSchemaParser {
 
             /// Creates a copy of instance with given parameters.
             ${model.getCopyWith()}
+
+            /// Override equatable class.
+              @override
+              List<Object> get props => ${_getEquatableFields(className)};
           }
 
           ${_generateEnums()}
@@ -365,6 +369,24 @@ class JsonSchemaParser {
     }
 
     return false;
+  }
+
+  static String _getEquatableFields(String classFullName) {
+    switch (classFullName) {
+      case 'Proposal':
+        return '<Object>[id,askPrice,commission!,dateExpiry!,multiplier!,cancellation!,limitOrder!]';
+      case 'LimitOrder':
+        return '<Object>[stopLoss!,stopOut!,takeProfit!]';
+      case 'StopLoss':
+        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+      case 'StopOut':
+        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+      case 'TakeProfit':
+        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+
+      default:
+        return '<Object>[]';
+    }
   }
 
   /// Generating main and nested classes from schema models that comes from `getModel()` method.

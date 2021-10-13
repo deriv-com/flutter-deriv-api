@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Contracts for response model class.
-abstract class ContractsForResponseModel {
+abstract class ContractsForResponseModel extends Equatable {
   /// Initializes Contracts for response model class .
-  ContractsForResponseModel({
+  const ContractsForResponseModel({
     this.contractsFor,
   });
 
@@ -22,7 +23,7 @@ abstract class ContractsForResponseModel {
 /// Contracts for response class.
 class ContractsForResponse extends ContractsForResponseModel {
   /// Initializes Contracts for response class.
-  ContractsForResponse({
+  const ContractsForResponse({
     ContractsFor? contractsFor,
   }) : super(
           contractsFor: contractsFor,
@@ -77,11 +78,15 @@ class ContractsForResponse extends ContractsForResponseModel {
       ContractsForResponse(
         contractsFor: contractsFor ?? this.contractsFor,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contracts for model class.
-abstract class ContractsForModel {
+abstract class ContractsForModel extends Equatable {
   /// Initializes Contracts for model class .
-  ContractsForModel({
+  const ContractsForModel({
     required this.available,
     this.close,
     this.feedLicense,
@@ -112,7 +117,7 @@ abstract class ContractsForModel {
 /// Contracts for class.
 class ContractsFor extends ContractsForModel {
   /// Initializes Contracts for class.
-  ContractsFor({
+  const ContractsFor({
     required List<AvailableItem> available,
     DateTime? close,
     String? feedLicense,
@@ -178,11 +183,15 @@ class ContractsFor extends ContractsForModel {
         open: open ?? this.open,
         spot: spot ?? this.spot,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Available item model class.
-abstract class AvailableItemModel {
+abstract class AvailableItemModel extends Equatable {
   /// Initializes Available item model class .
-  AvailableItemModel({
+  const AvailableItemModel({
     required this.underlyingSymbol,
     required this.submarket,
     required this.startType,
@@ -293,7 +302,7 @@ abstract class AvailableItemModel {
 /// Available item class.
 class AvailableItem extends AvailableItemModel {
   /// Initializes Available item class.
-  AvailableItem({
+  const AvailableItem({
     required String barrierCategory,
     required double barriers,
     required String contractCategory,
@@ -543,11 +552,15 @@ class AvailableItem extends AvailableItemModel {
         payoutLimit: payoutLimit ?? this.payoutLimit,
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Forward starting options item model class.
-abstract class ForwardStartingOptionsItemModel {
+abstract class ForwardStartingOptionsItemModel extends Equatable {
   /// Initializes Forward starting options item model class .
-  ForwardStartingOptionsItemModel({
+  const ForwardStartingOptionsItemModel({
     this.blackouts,
     this.close,
     this.date,
@@ -570,7 +583,7 @@ abstract class ForwardStartingOptionsItemModel {
 /// Forward starting options item class.
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item class.
-  ForwardStartingOptionsItem({
+  const ForwardStartingOptionsItem({
     List<dynamic>? blackouts,
     String? close,
     String? date,
@@ -628,4 +641,8 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
         date: date ?? this.date,
         open: open ?? this.open,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

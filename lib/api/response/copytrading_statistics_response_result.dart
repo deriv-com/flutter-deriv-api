@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copytrading_statistics_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Copytrading statistics response model class.
-abstract class CopytradingStatisticsResponseModel {
+abstract class CopytradingStatisticsResponseModel extends Equatable {
   /// Initializes Copytrading statistics response model class .
-  CopytradingStatisticsResponseModel({
+  const CopytradingStatisticsResponseModel({
     this.copytradingStatistics,
   });
 
@@ -22,7 +23,7 @@ abstract class CopytradingStatisticsResponseModel {
 /// Copytrading statistics response class.
 class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
   /// Initializes Copytrading statistics response class.
-  CopytradingStatisticsResponse({
+  const CopytradingStatisticsResponse({
     CopytradingStatistics? copytradingStatistics,
   }) : super(
           copytradingStatistics: copytradingStatistics,
@@ -79,11 +80,15 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
         copytradingStatistics:
             copytradingStatistics ?? this.copytradingStatistics,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Copytrading statistics model class.
-abstract class CopytradingStatisticsModel {
+abstract class CopytradingStatisticsModel extends Equatable {
   /// Initializes Copytrading statistics model class .
-  CopytradingStatisticsModel({
+  const CopytradingStatisticsModel({
     required this.tradesProfitable,
     required this.tradesBreakdown,
     required this.totalTrades,
@@ -138,7 +143,7 @@ abstract class CopytradingStatisticsModel {
 /// Copytrading statistics class.
 class CopytradingStatistics extends CopytradingStatisticsModel {
   /// Initializes Copytrading statistics class.
-  CopytradingStatistics({
+  const CopytradingStatistics({
     required DateTime activeSince,
     required int avgDuration,
     required double avgLoss,
@@ -248,4 +253,8 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
         yearlyProfitableTrades:
             yearlyProfitableTrades ?? this.yearlyProfitableTrades,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

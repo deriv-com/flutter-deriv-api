@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -19,9 +20,9 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Proposal open contract response model class.
-abstract class ProposalOpenContractResponseModel {
+abstract class ProposalOpenContractResponseModel extends Equatable {
   /// Initializes Proposal open contract response model class .
-  ProposalOpenContractResponseModel({
+  const ProposalOpenContractResponseModel({
     this.proposalOpenContract,
     this.subscription,
   });
@@ -36,7 +37,7 @@ abstract class ProposalOpenContractResponseModel {
 /// Proposal open contract response class.
 class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// Initializes Proposal open contract response class.
-  ProposalOpenContractResponse({
+  const ProposalOpenContractResponse({
     ProposalOpenContract? proposalOpenContract,
     Subscription? subscription,
   }) : super(
@@ -182,6 +183,10 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// StatusEnum mapper.
@@ -215,9 +220,9 @@ enum StatusEnum {
   _null,
 }
 /// Proposal open contract model class.
-abstract class ProposalOpenContractModel {
+abstract class ProposalOpenContractModel extends Equatable {
   /// Initializes Proposal open contract model class .
-  ProposalOpenContractModel({
+  const ProposalOpenContractModel({
     this.accountId,
     this.auditDetails,
     this.barrier,
@@ -464,7 +469,7 @@ abstract class ProposalOpenContractModel {
 /// Proposal open contract class.
 class ProposalOpenContract extends ProposalOpenContractModel {
   /// Initializes Proposal open contract class.
-  ProposalOpenContract({
+  const ProposalOpenContract({
     double? accountId,
     AuditDetails? auditDetails,
     String? barrier,
@@ -882,11 +887,15 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         underlying: underlying ?? this.underlying,
         validationError: validationError ?? this.validationError,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Audit details model class.
-abstract class AuditDetailsModel {
+abstract class AuditDetailsModel extends Equatable {
   /// Initializes Audit details model class .
-  AuditDetailsModel({
+  const AuditDetailsModel({
     this.allTicks,
     this.contractEnd,
     this.contractStart,
@@ -905,7 +914,7 @@ abstract class AuditDetailsModel {
 /// Audit details class.
 class AuditDetails extends AuditDetailsModel {
   /// Initializes Audit details class.
-  AuditDetails({
+  const AuditDetails({
     List<AllTicksItem>? allTicks,
     List<ContractEndItem>? contractEnd,
     List<ContractStartItem>? contractStart,
@@ -980,11 +989,15 @@ class AuditDetails extends AuditDetailsModel {
         contractEnd: contractEnd ?? this.contractEnd,
         contractStart: contractStart ?? this.contractStart,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// All ticks item model class.
-abstract class AllTicksItemModel {
+abstract class AllTicksItemModel extends Equatable {
   /// Initializes All ticks item model class .
-  AllTicksItemModel({
+  const AllTicksItemModel({
     this.epoch,
     this.flag,
     this.name,
@@ -1011,7 +1024,7 @@ abstract class AllTicksItemModel {
 /// All ticks item class.
 class AllTicksItem extends AllTicksItemModel {
   /// Initializes All ticks item class.
-  AllTicksItem({
+  const AllTicksItem({
     DateTime? epoch,
     String? flag,
     String? name,
@@ -1062,11 +1075,15 @@ class AllTicksItem extends AllTicksItemModel {
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contract end item model class.
-abstract class ContractEndItemModel {
+abstract class ContractEndItemModel extends Equatable {
   /// Initializes Contract end item model class .
-  ContractEndItemModel({
+  const ContractEndItemModel({
     this.epoch,
     this.flag,
     this.name,
@@ -1093,7 +1110,7 @@ abstract class ContractEndItemModel {
 /// Contract end item class.
 class ContractEndItem extends ContractEndItemModel {
   /// Initializes Contract end item class.
-  ContractEndItem({
+  const ContractEndItem({
     DateTime? epoch,
     String? flag,
     String? name,
@@ -1145,11 +1162,15 @@ class ContractEndItem extends ContractEndItemModel {
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contract start item model class.
-abstract class ContractStartItemModel {
+abstract class ContractStartItemModel extends Equatable {
   /// Initializes Contract start item model class .
-  ContractStartItemModel({
+  const ContractStartItemModel({
     this.epoch,
     this.flag,
     this.name,
@@ -1176,7 +1197,7 @@ abstract class ContractStartItemModel {
 /// Contract start item class.
 class ContractStartItem extends ContractStartItemModel {
   /// Initializes Contract start item class.
-  ContractStartItem({
+  const ContractStartItem({
     DateTime? epoch,
     String? flag,
     String? name,
@@ -1228,11 +1249,15 @@ class ContractStartItem extends ContractStartItemModel {
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Cancellation model class.
-abstract class CancellationModel {
+abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
-  CancellationModel({
+  const CancellationModel({
     this.askPrice,
     this.dateExpiry,
   });
@@ -1247,7 +1272,7 @@ abstract class CancellationModel {
 /// Cancellation class.
 class Cancellation extends CancellationModel {
   /// Initializes Cancellation class.
-  Cancellation({
+  const Cancellation({
     double? askPrice,
     DateTime? dateExpiry,
   }) : super(
@@ -1280,11 +1305,15 @@ class Cancellation extends CancellationModel {
         askPrice: askPrice ?? this.askPrice,
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Limit order model class.
-abstract class LimitOrderModel {
+abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
-  LimitOrderModel({
+  const LimitOrderModel({
     this.stopLoss,
     this.stopOut,
     this.takeProfit,
@@ -1303,7 +1332,7 @@ abstract class LimitOrderModel {
 /// Limit order class.
 class LimitOrder extends LimitOrderModel {
   /// Initializes Limit order class.
-  LimitOrder({
+  const LimitOrder({
     StopLoss? stopLoss,
     StopOut? stopOut,
     TakeProfit? takeProfit,
@@ -1354,11 +1383,15 @@ class LimitOrder extends LimitOrderModel {
         stopOut: stopOut ?? this.stopOut,
         takeProfit: takeProfit ?? this.takeProfit,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[stopLoss!, stopOut!, takeProfit!];
 }
 /// Stop loss model class.
-abstract class StopLossModel {
+abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
-  StopLossModel({
+  const StopLossModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -1381,7 +1414,7 @@ abstract class StopLossModel {
 /// Stop loss class.
 class StopLoss extends StopLossModel {
   /// Initializes Stop loss class.
-  StopLoss({
+  const StopLoss({
     String? displayName,
     double? orderAmount,
     DateTime? orderDate,
@@ -1426,11 +1459,16 @@ class StopLoss extends StopLossModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props =>
+      <Object>[displayName!, orderAmount!, orderDate!, value!];
 }
 /// Stop out model class.
-abstract class StopOutModel {
+abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
-  StopOutModel({
+  const StopOutModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -1453,7 +1491,7 @@ abstract class StopOutModel {
 /// Stop out class.
 class StopOut extends StopOutModel {
   /// Initializes Stop out class.
-  StopOut({
+  const StopOut({
     String? displayName,
     double? orderAmount,
     DateTime? orderDate,
@@ -1498,11 +1536,16 @@ class StopOut extends StopOutModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props =>
+      <Object>[displayName!, orderAmount!, orderDate!, value!];
 }
 /// Take profit model class.
-abstract class TakeProfitModel {
+abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
-  TakeProfitModel({
+  const TakeProfitModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -1525,7 +1568,7 @@ abstract class TakeProfitModel {
 /// Take profit class.
 class TakeProfit extends TakeProfitModel {
   /// Initializes Take profit class.
-  TakeProfit({
+  const TakeProfit({
     String? displayName,
     double? orderAmount,
     DateTime? orderDate,
@@ -1570,11 +1613,16 @@ class TakeProfit extends TakeProfitModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props =>
+      <Object>[displayName!, orderAmount!, orderDate!, value!];
 }
 /// Tick stream item model class.
-abstract class TickStreamItemModel {
+abstract class TickStreamItemModel extends Equatable {
   /// Initializes Tick stream item model class .
-  TickStreamItemModel({
+  const TickStreamItemModel({
     this.epoch,
     this.tick,
     this.tickDisplayValue,
@@ -1593,7 +1641,7 @@ abstract class TickStreamItemModel {
 /// Tick stream item class.
 class TickStreamItem extends TickStreamItemModel {
   /// Initializes Tick stream item class.
-  TickStreamItem({
+  const TickStreamItem({
     DateTime? epoch,
     double? tick,
     String? tickDisplayValue,
@@ -1632,11 +1680,15 @@ class TickStreamItem extends TickStreamItemModel {
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Transaction ids model class.
-abstract class TransactionIdsModel {
+abstract class TransactionIdsModel extends Equatable {
   /// Initializes Transaction ids model class .
-  TransactionIdsModel({
+  const TransactionIdsModel({
     this.buy,
     this.sell,
   });
@@ -1651,7 +1703,7 @@ abstract class TransactionIdsModel {
 /// Transaction ids class.
 class TransactionIds extends TransactionIdsModel {
   /// Initializes Transaction ids class.
-  TransactionIds({
+  const TransactionIds({
     int? buy,
     int? sell,
   }) : super(
@@ -1684,11 +1736,15 @@ class TransactionIds extends TransactionIdsModel {
         buy: buy ?? this.buy,
         sell: sell ?? this.sell,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -1699,7 +1755,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -1726,4 +1782,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

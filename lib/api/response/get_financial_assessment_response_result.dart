@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/get_financial_assessment_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Get financial assessment response model class.
-abstract class GetFinancialAssessmentResponseModel {
+abstract class GetFinancialAssessmentResponseModel extends Equatable {
   /// Initializes Get financial assessment response model class .
-  GetFinancialAssessmentResponseModel({
+  const GetFinancialAssessmentResponseModel({
     this.getFinancialAssessment,
   });
 
@@ -23,7 +24,7 @@ abstract class GetFinancialAssessmentResponseModel {
 class GetFinancialAssessmentResponse
     extends GetFinancialAssessmentResponseModel {
   /// Initializes Get financial assessment response class.
-  GetFinancialAssessmentResponse({
+  const GetFinancialAssessmentResponse({
     GetFinancialAssessment? getFinancialAssessment,
   }) : super(
           getFinancialAssessment: getFinancialAssessment,
@@ -81,11 +82,15 @@ class GetFinancialAssessmentResponse
         getFinancialAssessment:
             getFinancialAssessment ?? this.getFinancialAssessment,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Get financial assessment model class.
-abstract class GetFinancialAssessmentModel {
+abstract class GetFinancialAssessmentModel extends Equatable {
   /// Initializes Get financial assessment model class .
-  GetFinancialAssessmentModel({
+  const GetFinancialAssessmentModel({
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
     this.binaryOptionsTradingFrequency,
@@ -208,7 +213,7 @@ abstract class GetFinancialAssessmentModel {
 /// Get financial assessment class.
 class GetFinancialAssessment extends GetFinancialAssessmentModel {
   /// Initializes Get financial assessment class.
-  GetFinancialAssessment({
+  const GetFinancialAssessment({
     String? accountTurnover,
     String? binaryOptionsTradingExperience,
     String? binaryOptionsTradingFrequency,
@@ -430,4 +435,8 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         totalScore: totalScore ?? this.totalScore,
         tradingScore: tradingScore ?? this.tradingScore,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

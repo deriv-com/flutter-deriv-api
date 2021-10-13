@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/set_settings_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Set settings response model class.
-abstract class SetSettingsResponseModel {
+abstract class SetSettingsResponseModel extends Equatable {
   /// Initializes Set settings response model class .
-  SetSettingsResponseModel({
+  const SetSettingsResponseModel({
     this.setSettings,
   });
 
@@ -22,7 +23,7 @@ abstract class SetSettingsResponseModel {
 /// Set settings response class.
 class SetSettingsResponse extends SetSettingsResponseModel {
   /// Initializes Set settings response class.
-  SetSettingsResponse({
+  const SetSettingsResponse({
     int? setSettings,
   }) : super(
           setSettings: setSettings,
@@ -71,4 +72,8 @@ class SetSettingsResponse extends SetSettingsResponseModel {
       SetSettingsResponse(
         setSettings: setSettings ?? this.setSettings,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

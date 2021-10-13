@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/cashier_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Cashier response model class.
-abstract class CashierResponseModel {
+abstract class CashierResponseModel extends Equatable {
   /// Initializes Cashier response model class .
-  CashierResponseModel({
+  const CashierResponseModel({
     this.cashierString,
     this.cashierObject,
   });
@@ -26,7 +27,7 @@ abstract class CashierResponseModel {
 /// Cashier response class.
 class CashierResponse extends CashierResponseModel {
   /// Initializes Cashier response class.
-  CashierResponse({
+  const CashierResponse({
     String? cashierString,
     CashierObject? cashierObject,
   }) : super(
@@ -86,6 +87,10 @@ class CashierResponse extends CashierResponseModel {
         cashierString: cashierString ?? this.cashierString,
         cashierObject: cashierObject ?? this.cashierObject,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// ActionEnum mapper.
@@ -103,9 +108,9 @@ enum ActionEnum {
   withdraw,
 }
 /// Cashier object model class.
-abstract class CashierObjectModel {
+abstract class CashierObjectModel extends Equatable {
   /// Initializes Cashier object model class .
-  CashierObjectModel({
+  const CashierObjectModel({
     required this.action,
     this.deposit,
     this.withdraw,
@@ -124,7 +129,7 @@ abstract class CashierObjectModel {
 /// Cashier object class.
 class CashierObject extends CashierObjectModel {
   /// Initializes Cashier object class.
-  CashierObject({
+  const CashierObject({
     required ActionEnum action,
     Deposit? deposit,
     Map<String, dynamic>? withdraw,
@@ -169,11 +174,15 @@ class CashierObject extends CashierObjectModel {
         deposit: deposit ?? this.deposit,
         withdraw: withdraw ?? this.withdraw,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Deposit model class.
-abstract class DepositModel {
+abstract class DepositModel extends Equatable {
   /// Initializes Deposit model class .
-  DepositModel({
+  const DepositModel({
     required this.address,
   });
 
@@ -184,7 +193,7 @@ abstract class DepositModel {
 /// Deposit class.
 class Deposit extends DepositModel {
   /// Initializes Deposit class.
-  Deposit({
+  const Deposit({
     required String address,
   }) : super(
           address: address,
@@ -211,4 +220,8 @@ class Deposit extends DepositModel {
       Deposit(
         address: address,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

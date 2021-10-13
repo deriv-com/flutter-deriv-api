@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/asset_index_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Asset index response model class.
-abstract class AssetIndexResponseModel {
+abstract class AssetIndexResponseModel extends Equatable {
   /// Initializes Asset index response model class .
-  AssetIndexResponseModel({
+  const AssetIndexResponseModel({
     this.assetIndex,
   });
 
@@ -22,7 +23,7 @@ abstract class AssetIndexResponseModel {
 /// Asset index response class.
 class AssetIndexResponse extends AssetIndexResponseModel {
   /// Initializes Asset index response class.
-  AssetIndexResponse({
+  const AssetIndexResponse({
     List<dynamic>? assetIndex,
   }) : super(
           assetIndex: assetIndex,
@@ -86,4 +87,8 @@ class AssetIndexResponse extends AssetIndexResponseModel {
       AssetIndexResponse(
         assetIndex: assetIndex ?? this.assetIndex,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

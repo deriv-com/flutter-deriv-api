@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ping_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Ping response model class.
-abstract class PingResponseModel {
+abstract class PingResponseModel extends Equatable {
   /// Initializes Ping response model class .
-  PingResponseModel({
+  const PingResponseModel({
     this.ping,
   });
 
@@ -22,7 +23,7 @@ abstract class PingResponseModel {
 /// Ping response class.
 class PingResponse extends PingResponseModel {
   /// Initializes Ping response class.
-  PingResponse({
+  const PingResponse({
     PingEnum? ping,
   }) : super(
           ping: ping,
@@ -76,6 +77,10 @@ class PingResponse extends PingResponseModel {
       PingResponse(
         ping: ping ?? this.ping,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// PingEnum mapper.

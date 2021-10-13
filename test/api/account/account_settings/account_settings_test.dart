@@ -20,7 +20,7 @@ void main() {
     });
 
     test('Set Account Setting Test', () async {
-      final SetSettingsResponse setSettings = await GetSettingsResponse(
+      final SetSettingsResponse setSettings = await const GetSettingsResponse(
         // ignore: missing_required_param
         getSettings: GetSettings(
           accountOpeningReason: 'Speculative',

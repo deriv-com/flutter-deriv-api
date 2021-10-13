@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/get_account_status_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Get account status response model class.
-abstract class GetAccountStatusResponseModel {
+abstract class GetAccountStatusResponseModel extends Equatable {
   /// Initializes Get account status response model class .
-  GetAccountStatusResponseModel({
+  const GetAccountStatusResponseModel({
     this.getAccountStatus,
   });
 
@@ -22,7 +23,7 @@ abstract class GetAccountStatusResponseModel {
 /// Get account status response class.
 class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Initializes Get account status response class.
-  GetAccountStatusResponse({
+  const GetAccountStatusResponse({
     GetAccountStatus? getAccountStatus,
   }) : super(
           getAccountStatus: getAccountStatus,
@@ -73,6 +74,10 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
       GetAccountStatusResponse(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// StatusEnum mapper.
@@ -173,9 +178,9 @@ enum SocialIdentityProviderEnum {
   apple,
 }
 /// Get account status model class.
-abstract class GetAccountStatusModel {
+abstract class GetAccountStatusModel extends Equatable {
   /// Initializes Get account status model class .
-  GetAccountStatusModel({
+  const GetAccountStatusModel({
     required this.status,
     required this.riskClassification,
     required this.promptClientToAuthenticate,
@@ -248,7 +253,7 @@ abstract class GetAccountStatusModel {
 /// Get account status class.
 class GetAccountStatus extends GetAccountStatusModel {
   /// Initializes Get account status class.
-  GetAccountStatus({
+  const GetAccountStatus({
     required Map<String, CurrencyConfigProperty> currencyConfig,
     required bool promptClientToAuthenticate,
     required String riskClassification,
@@ -370,11 +375,15 @@ class GetAccountStatus extends GetAccountStatusModel {
         socialIdentityProvider:
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Currency config property model class.
-abstract class CurrencyConfigPropertyModel {
+abstract class CurrencyConfigPropertyModel extends Equatable {
   /// Initializes Currency config property model class .
-  CurrencyConfigPropertyModel({
+  const CurrencyConfigPropertyModel({
     this.isDepositSuspended,
     this.isWithdrawalSuspended,
   });
@@ -389,7 +398,7 @@ abstract class CurrencyConfigPropertyModel {
 /// Currency config property class.
 class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
   /// Initializes Currency config property class.
-  CurrencyConfigProperty({
+  const CurrencyConfigProperty({
     bool? isDepositSuspended,
     bool? isWithdrawalSuspended,
   }) : super(
@@ -424,11 +433,15 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
         isWithdrawalSuspended:
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Authentication model class.
-abstract class AuthenticationModel {
+abstract class AuthenticationModel extends Equatable {
   /// Initializes Authentication model class .
-  AuthenticationModel({
+  const AuthenticationModel({
     required this.needsVerification,
     this.attempts,
     this.document,
@@ -451,7 +464,7 @@ abstract class AuthenticationModel {
 /// Authentication class.
 class Authentication extends AuthenticationModel {
   /// Initializes Authentication class.
-  Authentication({
+  const Authentication({
     required List<String> needsVerification,
     Attempts? attempts,
     Document? document,
@@ -517,11 +530,15 @@ class Authentication extends AuthenticationModel {
         document: document ?? this.document,
         identity: identity ?? this.identity,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Attempts model class.
-abstract class AttemptsModel {
+abstract class AttemptsModel extends Equatable {
   /// Initializes Attempts model class .
-  AttemptsModel({
+  const AttemptsModel({
     this.count,
     this.history,
     this.latest,
@@ -540,7 +557,7 @@ abstract class AttemptsModel {
 /// Attempts class.
 class Attempts extends AttemptsModel {
   /// Initializes Attempts class.
-  Attempts({
+  const Attempts({
     int? count,
     List<HistoryItem>? history,
     Map<String, dynamic>? latest,
@@ -591,11 +608,15 @@ class Attempts extends AttemptsModel {
         history: history ?? this.history,
         latest: latest ?? this.latest,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// History item model class.
-abstract class HistoryItemModel {
+abstract class HistoryItemModel extends Equatable {
   /// Initializes History item model class .
-  HistoryItemModel({
+  const HistoryItemModel({
     this.countryCode,
     this.id,
     this.service,
@@ -622,7 +643,7 @@ abstract class HistoryItemModel {
 /// History item class.
 class HistoryItem extends HistoryItemModel {
   /// Initializes History item class.
-  HistoryItem({
+  const HistoryItem({
     String? countryCode,
     String? id,
     String? service,
@@ -677,11 +698,15 @@ class HistoryItem extends HistoryItemModel {
         status: status ?? this.status,
         timestamp: timestamp ?? this.timestamp,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Document model class.
-abstract class DocumentModel {
+abstract class DocumentModel extends Equatable {
   /// Initializes Document model class .
-  DocumentModel({
+  const DocumentModel({
     this.expiryDate,
     this.status,
   });
@@ -696,7 +721,7 @@ abstract class DocumentModel {
 /// Document class.
 class Document extends DocumentModel {
   /// Initializes Document class.
-  Document({
+  const Document({
     DateTime? expiryDate,
     DocumentStatusEnum? status,
   }) : super(
@@ -734,11 +759,15 @@ class Document extends DocumentModel {
         expiryDate: expiryDate ?? this.expiryDate,
         status: status ?? this.status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Identity model class.
-abstract class IdentityModel {
+abstract class IdentityModel extends Equatable {
   /// Initializes Identity model class .
-  IdentityModel({
+  const IdentityModel({
     this.expiryDate,
     this.services,
     this.status,
@@ -757,7 +786,7 @@ abstract class IdentityModel {
 /// Identity class.
 class Identity extends IdentityModel {
   /// Initializes Identity class.
-  Identity({
+  const Identity({
     DateTime? expiryDate,
     Services? services,
     DocumentStatusEnum? status,
@@ -805,11 +834,15 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
         status: status ?? this.status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Services model class.
-abstract class ServicesModel {
+abstract class ServicesModel extends Equatable {
   /// Initializes Services model class .
-  ServicesModel({
+  const ServicesModel({
     this.idv,
     this.manual,
     this.onfido,
@@ -828,7 +861,7 @@ abstract class ServicesModel {
 /// Services class.
 class Services extends ServicesModel {
   /// Initializes Services class.
-  Services({
+  const Services({
     Idv? idv,
     Manual? manual,
     Onfido? onfido,
@@ -873,11 +906,15 @@ class Services extends ServicesModel {
         manual: manual ?? this.manual,
         onfido: onfido ?? this.onfido,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Idv model class.
-abstract class IdvModel {
+abstract class IdvModel extends Equatable {
   /// Initializes Idv model class .
-  IdvModel({
+  const IdvModel({
     this.expiryDate,
     this.lastRejected,
     this.reportedProperties,
@@ -904,7 +941,7 @@ abstract class IdvModel {
 /// Idv class.
 class Idv extends IdvModel {
   /// Initializes Idv class.
-  Idv({
+  const Idv({
     DateTime? expiryDate,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
@@ -971,11 +1008,15 @@ class Idv extends IdvModel {
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Manual model class.
-abstract class ManualModel {
+abstract class ManualModel extends Equatable {
   /// Initializes Manual model class .
-  ManualModel({
+  const ManualModel({
     this.status,
   });
 
@@ -986,7 +1027,7 @@ abstract class ManualModel {
 /// Manual class.
 class Manual extends ManualModel {
   /// Initializes Manual class.
-  Manual({
+  const Manual({
     DocumentStatusEnum? status,
   }) : super(
           status: status,
@@ -1018,11 +1059,15 @@ class Manual extends ManualModel {
       Manual(
         status: status ?? this.status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Onfido model class.
-abstract class OnfidoModel {
+abstract class OnfidoModel extends Equatable {
   /// Initializes Onfido model class .
-  OnfidoModel({
+  const OnfidoModel({
     this.countryCode,
     this.documents,
     this.documentsSupported,
@@ -1061,7 +1106,7 @@ abstract class OnfidoModel {
 /// Onfido class.
 class Onfido extends OnfidoModel {
   /// Initializes Onfido class.
-  Onfido({
+  const Onfido({
     String? countryCode,
     List<String>? documents,
     List<String>? documentsSupported,
@@ -1171,4 +1216,8 @@ class Onfido extends OnfidoModel {
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

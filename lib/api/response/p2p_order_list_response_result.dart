@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
@@ -15,9 +16,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p order list response model class.
-abstract class P2pOrderListResponseModel {
+abstract class P2pOrderListResponseModel extends Equatable {
   /// Initializes P2p order list response model class .
-  P2pOrderListResponseModel({
+  const P2pOrderListResponseModel({
     this.p2pOrderList,
     this.subscription,
   });
@@ -32,7 +33,7 @@ abstract class P2pOrderListResponseModel {
 /// P2p order list response class.
 class P2pOrderListResponse extends P2pOrderListResponseModel {
   /// Initializes P2p order list response class.
-  P2pOrderListResponse({
+  const P2pOrderListResponse({
     P2pOrderList? p2pOrderList,
     Subscription? subscription,
   }) : super(
@@ -150,6 +151,10 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
         p2pOrderList: p2pOrderList ?? this.p2pOrderList,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// TypeEnum mapper.
@@ -214,9 +219,9 @@ enum StatusEnum {
   disputeCompleted,
 }
 /// P2p order list model class.
-abstract class P2pOrderListModel {
+abstract class P2pOrderListModel extends Equatable {
   /// Initializes P2p order list model class .
-  P2pOrderListModel({
+  const P2pOrderListModel({
     required this.list,
   });
 
@@ -227,7 +232,7 @@ abstract class P2pOrderListModel {
 /// P2p order list class.
 class P2pOrderList extends P2pOrderListModel {
   /// Initializes P2p order list class.
-  P2pOrderList({
+  const P2pOrderList({
     required List<ListItem> list,
   }) : super(
           list: list,
@@ -262,11 +267,15 @@ class P2pOrderList extends P2pOrderListModel {
       P2pOrderList(
         list: list,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// List item model class.
-abstract class ListItemModel {
+abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
-  ListItemModel({
+  const ListItemModel({
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -365,7 +374,7 @@ abstract class ListItemModel {
 /// List item class.
 class ListItem extends ListItemModel {
   /// Initializes List item class.
-  ListItem({
+  const ListItem({
     required String accountCurrency,
     required AdvertDetails advertDetails,
     required AdvertiserDetails advertiserDetails,
@@ -549,11 +558,15 @@ class ListItem extends ListItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Advert details model class.
-abstract class AdvertDetailsModel {
+abstract class AdvertDetailsModel extends Equatable {
   /// Initializes Advert details model class .
-  AdvertDetailsModel({
+  const AdvertDetailsModel({
     required this.type,
     required this.id,
     required this.description,
@@ -576,7 +589,7 @@ abstract class AdvertDetailsModel {
 /// Advert details class.
 class AdvertDetails extends AdvertDetailsModel {
   /// Initializes Advert details class.
-  AdvertDetails({
+  const AdvertDetails({
     required String description,
     required String id,
     required TypeEnum type,
@@ -623,11 +636,15 @@ class AdvertDetails extends AdvertDetailsModel {
         type: type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel {
+abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
-  AdvertiserDetailsModel({
+  const AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
     required this.id,
@@ -654,7 +671,7 @@ abstract class AdvertiserDetailsModel {
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
-  AdvertiserDetails({
+  const AdvertiserDetails({
     required String id,
     required String loginid,
     required String name,
@@ -706,11 +723,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Dispute details model class.
-abstract class DisputeDetailsModel {
+abstract class DisputeDetailsModel extends Equatable {
   /// Initializes Dispute details model class .
-  DisputeDetailsModel({
+  const DisputeDetailsModel({
     this.disputeReason,
     this.disputerLoginid,
   });
@@ -725,7 +746,7 @@ abstract class DisputeDetailsModel {
 /// Dispute details class.
 class DisputeDetails extends DisputeDetailsModel {
   /// Initializes Dispute details class.
-  DisputeDetails({
+  const DisputeDetails({
     String? disputeReason,
     String? disputerLoginid,
   }) : super(
@@ -758,11 +779,15 @@ class DisputeDetails extends DisputeDetailsModel {
         disputeReason: disputeReason ?? this.disputeReason,
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Client details model class.
-abstract class ClientDetailsModel {
+abstract class ClientDetailsModel extends Equatable {
   /// Initializes Client details model class .
-  ClientDetailsModel({
+  const ClientDetailsModel({
     required this.name,
     required this.loginid,
     required this.id,
@@ -789,7 +814,7 @@ abstract class ClientDetailsModel {
 /// Client details class.
 class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
-  ClientDetails({
+  const ClientDetails({
     required String id,
     required String loginid,
     required String name,
@@ -840,11 +865,15 @@ class ClientDetails extends ClientDetailsModel {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -855,7 +884,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -882,4 +911,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/trading_servers_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Trading servers response model class.
-abstract class TradingServersResponseModel {
+abstract class TradingServersResponseModel extends Equatable {
   /// Initializes Trading servers response model class .
-  TradingServersResponseModel({
+  const TradingServersResponseModel({
     this.tradingServers,
   });
 
@@ -22,7 +23,7 @@ abstract class TradingServersResponseModel {
 /// Trading servers response class.
 class TradingServersResponse extends TradingServersResponseModel {
   /// Initializes Trading servers response class.
-  TradingServersResponse({
+  const TradingServersResponse({
     List<TradingServersItem>? tradingServers,
   }) : super(
           tradingServers: tradingServers,
@@ -84,6 +85,10 @@ class TradingServersResponse extends TradingServersResponseModel {
       TradingServersResponse(
         tradingServers: tradingServers ?? this.tradingServers,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -149,9 +154,9 @@ enum IdEnum {
   p02Ts02,
 }
 /// Trading servers item model class.
-abstract class TradingServersItemModel {
+abstract class TradingServersItemModel extends Equatable {
   /// Initializes Trading servers item model class .
-  TradingServersItemModel({
+  const TradingServersItemModel({
     this.accountType,
     this.disabled,
     this.environment,
@@ -194,7 +199,7 @@ abstract class TradingServersItemModel {
 /// Trading servers item class.
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes Trading servers item class.
-  TradingServersItem({
+  const TradingServersItem({
     AccountTypeEnum? accountType,
     bool? disabled,
     EnvironmentEnum? environment,
@@ -298,11 +303,15 @@ class TradingServersItem extends TradingServersItemModel {
         recommended: recommended ?? this.recommended,
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Geolocation model class.
-abstract class GeolocationModel {
+abstract class GeolocationModel extends Equatable {
   /// Initializes Geolocation model class .
-  GeolocationModel({
+  const GeolocationModel({
     this.location,
     this.region,
     this.sequence,
@@ -321,7 +330,7 @@ abstract class GeolocationModel {
 /// Geolocation class.
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
-  Geolocation({
+  const Geolocation({
     String? location,
     String? region,
     int? sequence,
@@ -360,4 +369,8 @@ class Geolocation extends GeolocationModel {
         region: region ?? this.region,
         sequence: sequence ?? this.sequence,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

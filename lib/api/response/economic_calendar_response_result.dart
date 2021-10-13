@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Economic calendar response model class.
-abstract class EconomicCalendarResponseModel {
+abstract class EconomicCalendarResponseModel extends Equatable {
   /// Initializes Economic calendar response model class .
-  EconomicCalendarResponseModel({
+  const EconomicCalendarResponseModel({
     this.economicCalendar,
   });
 
@@ -15,7 +16,7 @@ abstract class EconomicCalendarResponseModel {
 /// Economic calendar response class.
 class EconomicCalendarResponse extends EconomicCalendarResponseModel {
   /// Initializes Economic calendar response class.
-  EconomicCalendarResponse({
+  const EconomicCalendarResponse({
     EconomicCalendar? economicCalendar,
   }) : super(
           economicCalendar: economicCalendar,
@@ -49,11 +50,15 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
       EconomicCalendarResponse(
         economicCalendar: economicCalendar ?? this.economicCalendar,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Economic calendar model class.
-abstract class EconomicCalendarModel {
+abstract class EconomicCalendarModel extends Equatable {
   /// Initializes Economic calendar model class .
-  EconomicCalendarModel({
+  const EconomicCalendarModel({
     this.events,
   });
 
@@ -64,7 +69,7 @@ abstract class EconomicCalendarModel {
 /// Economic calendar class.
 class EconomicCalendar extends EconomicCalendarModel {
   /// Initializes Economic calendar class.
-  EconomicCalendar({
+  const EconomicCalendar({
     List<EventsItem>? events,
   }) : super(
           events: events,
@@ -104,11 +109,15 @@ class EconomicCalendar extends EconomicCalendarModel {
       EconomicCalendar(
         events: events ?? this.events,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Events item model class.
-abstract class EventsItemModel {
+abstract class EventsItemModel extends Equatable {
   /// Initializes Events item model class .
-  EventsItemModel({
+  const EventsItemModel({
     this.actual,
     this.currency,
     this.eventName,
@@ -143,7 +152,7 @@ abstract class EventsItemModel {
 /// Events item class.
 class EventsItem extends EventsItemModel {
   /// Initializes Events item class.
-  EventsItem({
+  const EventsItem({
     Actual? actual,
     String? currency,
     String? eventName,
@@ -216,11 +225,15 @@ class EventsItem extends EventsItemModel {
         previous: previous ?? this.previous,
         releaseDate: releaseDate ?? this.releaseDate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Actual model class.
-abstract class ActualModel {
+abstract class ActualModel extends Equatable {
   /// Initializes Actual model class .
-  ActualModel({
+  const ActualModel({
     this.displayValue,
   });
 
@@ -231,7 +244,7 @@ abstract class ActualModel {
 /// Actual class.
 class Actual extends ActualModel {
   /// Initializes Actual class.
-  Actual({
+  const Actual({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
@@ -258,11 +271,15 @@ class Actual extends ActualModel {
       Actual(
         displayValue: displayValue ?? this.displayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Forecast model class.
-abstract class ForecastModel {
+abstract class ForecastModel extends Equatable {
   /// Initializes Forecast model class .
-  ForecastModel({
+  const ForecastModel({
     this.displayValue,
   });
 
@@ -273,7 +290,7 @@ abstract class ForecastModel {
 /// Forecast class.
 class Forecast extends ForecastModel {
   /// Initializes Forecast class.
-  Forecast({
+  const Forecast({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
@@ -300,11 +317,15 @@ class Forecast extends ForecastModel {
       Forecast(
         displayValue: displayValue ?? this.displayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Previous model class.
-abstract class PreviousModel {
+abstract class PreviousModel extends Equatable {
   /// Initializes Previous model class .
-  PreviousModel({
+  const PreviousModel({
     this.displayValue,
   });
 
@@ -315,7 +336,7 @@ abstract class PreviousModel {
 /// Previous class.
 class Previous extends PreviousModel {
   /// Initializes Previous class.
-  Previous({
+  const Previous({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
@@ -342,4 +363,8 @@ class Previous extends PreviousModel {
       Previous(
         displayValue: displayValue ?? this.displayValue,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_receive.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Profit table response model class.
-abstract class ProfitTableResponseModel {
+abstract class ProfitTableResponseModel extends Equatable {
   /// Initializes Profit table response model class .
-  ProfitTableResponseModel({
+  const ProfitTableResponseModel({
     this.profitTable,
   });
 
@@ -21,7 +22,7 @@ abstract class ProfitTableResponseModel {
 /// Profit table response class.
 class ProfitTableResponse extends ProfitTableResponseModel {
   /// Initializes Profit table response class.
-  ProfitTableResponse({
+  const ProfitTableResponse({
     ProfitTable? profitTable,
   }) : super(
           profitTable: profitTable,
@@ -73,11 +74,15 @@ class ProfitTableResponse extends ProfitTableResponseModel {
       ProfitTableResponse(
         profitTable: profitTable ?? this.profitTable,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Profit table model class.
-abstract class ProfitTableModel {
+abstract class ProfitTableModel extends Equatable {
   /// Initializes Profit table model class .
-  ProfitTableModel({
+  const ProfitTableModel({
     this.count,
     this.transactions,
   });
@@ -92,7 +97,7 @@ abstract class ProfitTableModel {
 /// Profit table class.
 class ProfitTable extends ProfitTableModel {
   /// Initializes Profit table class.
-  ProfitTable({
+  const ProfitTable({
     double? count,
     List<TransactionsItem>? transactions,
   }) : super(
@@ -137,11 +142,15 @@ class ProfitTable extends ProfitTableModel {
         count: count ?? this.count,
         transactions: transactions ?? this.transactions,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Transactions item model class.
-abstract class TransactionsItemModel {
+abstract class TransactionsItemModel extends Equatable {
   /// Initializes Transactions item model class .
-  TransactionsItemModel({
+  const TransactionsItemModel({
     this.appId,
     this.buyPrice,
     this.contractId,
@@ -192,7 +201,7 @@ abstract class TransactionsItemModel {
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
-  TransactionsItem({
+  const TransactionsItem({
     int? appId,
     double? buyPrice,
     int? contractId,
@@ -280,4 +289,8 @@ class TransactionsItem extends TransactionsItemModel {
         shortcode: shortcode ?? this.shortcode,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

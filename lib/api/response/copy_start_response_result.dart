@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copy_start_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Copy start response model class.
-abstract class CopyStartResponseModel {
+abstract class CopyStartResponseModel extends Equatable {
   /// Initializes Copy start response model class .
-  CopyStartResponseModel({
+  const CopyStartResponseModel({
     this.copyStart,
   });
 
@@ -22,7 +23,7 @@ abstract class CopyStartResponseModel {
 /// Copy start response class.
 class CopyStartResponse extends CopyStartResponseModel {
   /// Initializes Copy start response class.
-  CopyStartResponse({
+  const CopyStartResponse({
     int? copyStart,
   }) : super(
           copyStart: copyStart,
@@ -70,4 +71,8 @@ class CopyStartResponse extends CopyStartResponseModel {
       CopyStartResponse(
         copyStart: copyStart ?? this.copyStart,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

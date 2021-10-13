@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Forget all response model class.
-abstract class ForgetAllResponseModel {
+abstract class ForgetAllResponseModel extends Equatable {
   /// Initializes Forget all response model class .
-  ForgetAllResponseModel({
+  const ForgetAllResponseModel({
     this.forgetAll,
   });
 
@@ -22,7 +23,7 @@ abstract class ForgetAllResponseModel {
 /// Forget all response class.
 class ForgetAllResponse extends ForgetAllResponseModel {
   /// Initializes Forget all response class.
-  ForgetAllResponse({
+  const ForgetAllResponse({
     List<dynamic>? forgetAll,
   }) : super(
           forgetAll: forgetAll,
@@ -84,4 +85,8 @@ class ForgetAllResponse extends ForgetAllResponseModel {
       ForgetAllResponse(
         forgetAll: forgetAll ?? this.forgetAll,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

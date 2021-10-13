@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/new_account_real_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// New account real response model class.
-abstract class NewAccountRealResponseModel {
+abstract class NewAccountRealResponseModel extends Equatable {
   /// Initializes New account real response model class .
-  NewAccountRealResponseModel({
+  const NewAccountRealResponseModel({
     this.newAccountReal,
   });
 
@@ -22,7 +23,7 @@ abstract class NewAccountRealResponseModel {
 /// New account real response class.
 class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Initializes New account real response class.
-  NewAccountRealResponse({
+  const NewAccountRealResponse({
     NewAccountReal? newAccountReal,
   }) : super(
           newAccountReal: newAccountReal,
@@ -76,11 +77,15 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
       NewAccountRealResponse(
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// New account real model class.
-abstract class NewAccountRealModel {
+abstract class NewAccountRealModel extends Equatable {
   /// Initializes New account real model class .
-  NewAccountRealModel({
+  const NewAccountRealModel({
     required this.oauthToken,
     required this.landingCompany,
     required this.clientId,
@@ -111,7 +116,7 @@ abstract class NewAccountRealModel {
 /// New account real class.
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes New account real class.
-  NewAccountReal({
+  const NewAccountReal({
     required String clientId,
     required String landingCompany,
     required String oauthToken,
@@ -169,4 +174,8 @@ class NewAccountReal extends NewAccountRealModel {
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

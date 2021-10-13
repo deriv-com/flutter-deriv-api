@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
@@ -13,9 +14,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Sell response model class.
-abstract class SellResponseModel {
+abstract class SellResponseModel extends Equatable {
   /// Initializes Sell response model class .
-  SellResponseModel({
+  const SellResponseModel({
     this.sell,
   });
 
@@ -26,7 +27,7 @@ abstract class SellResponseModel {
 /// Sell response class.
 class SellResponse extends SellResponseModel {
   /// Initializes Sell response class.
-  SellResponse({
+  const SellResponse({
     Sell? sell,
   }) : super(
           sell: sell,
@@ -94,11 +95,15 @@ class SellResponse extends SellResponseModel {
       SellResponse(
         sell: sell ?? this.sell,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Sell model class.
-abstract class SellModel {
+abstract class SellModel extends Equatable {
   /// Initializes Sell model class .
-  SellModel({
+  const SellModel({
     this.balanceAfter,
     this.contractId,
     this.referenceId,
@@ -125,7 +130,7 @@ abstract class SellModel {
 /// Sell class.
 class Sell extends SellModel {
   /// Initializes Sell class.
-  Sell({
+  const Sell({
     double? balanceAfter,
     int? contractId,
     int? referenceId,
@@ -176,4 +181,8 @@ class Sell extends SellModel {
         soldFor: soldFor ?? this.soldFor,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/verify_email_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Verify email response model class.
-abstract class VerifyEmailResponseModel {
+abstract class VerifyEmailResponseModel extends Equatable {
   /// Initializes Verify email response model class .
-  VerifyEmailResponseModel({
+  const VerifyEmailResponseModel({
     this.verifyEmail,
   });
 
@@ -22,7 +23,7 @@ abstract class VerifyEmailResponseModel {
 /// Verify email response class.
 class VerifyEmailResponse extends VerifyEmailResponseModel {
   /// Initializes Verify email response class.
-  VerifyEmailResponse({
+  const VerifyEmailResponse({
     bool? verifyEmail,
   }) : super(
           verifyEmail: verifyEmail,
@@ -73,4 +74,8 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
       VerifyEmailResponse(
         verifyEmail: verifyEmail ?? this.verifyEmail,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

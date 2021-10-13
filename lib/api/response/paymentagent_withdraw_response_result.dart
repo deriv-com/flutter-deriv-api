@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_withdraw_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Paymentagent withdraw response model class.
-abstract class PaymentagentWithdrawResponseModel {
+abstract class PaymentagentWithdrawResponseModel extends Equatable {
   /// Initializes Paymentagent withdraw response model class .
-  PaymentagentWithdrawResponseModel({
+  const PaymentagentWithdrawResponseModel({
     this.paymentagentWithdraw,
     this.paymentagentName,
     this.transactionId,
@@ -30,7 +31,7 @@ abstract class PaymentagentWithdrawResponseModel {
 /// Paymentagent withdraw response class.
 class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// Initializes Paymentagent withdraw response class.
-  PaymentagentWithdrawResponse({
+  const PaymentagentWithdrawResponse({
     int? paymentagentWithdraw,
     String? paymentagentName,
     int? transactionId,
@@ -96,4 +97,8 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
         paymentagentName: paymentagentName ?? this.paymentagentName,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

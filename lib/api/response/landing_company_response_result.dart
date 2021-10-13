@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/landing_company_details_response_result.dart';
@@ -12,9 +13,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Landing company response model class.
-abstract class LandingCompanyResponseModel {
+abstract class LandingCompanyResponseModel extends Equatable {
   /// Initializes Landing company response model class .
-  LandingCompanyResponseModel({
+  const LandingCompanyResponseModel({
     this.landingCompany,
   });
 
@@ -25,7 +26,7 @@ abstract class LandingCompanyResponseModel {
 /// Landing company response class.
 class LandingCompanyResponse extends LandingCompanyResponseModel {
   /// Initializes Landing company response class.
-  LandingCompanyResponse({
+  const LandingCompanyResponse({
     LandingCompany? landingCompany,
   }) : super(
           landingCompany: landingCompany,
@@ -98,11 +99,15 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
       LandingCompanyResponse(
         landingCompany: landingCompany ?? this.landingCompany,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Landing company model class.
-abstract class LandingCompanyModel {
+abstract class LandingCompanyModel extends Equatable {
   /// Initializes Landing company model class .
-  LandingCompanyModel({
+  const LandingCompanyModel({
     this.addressParseable,
     this.config,
     this.dxtradeFinancialCompany,
@@ -213,7 +218,7 @@ abstract class LandingCompanyModel {
 /// Landing company class.
 class LandingCompany extends LandingCompanyModel {
   /// Initializes Landing company class.
-  LandingCompany({
+  const LandingCompany({
     bool? addressParseable,
     Map<String, dynamic>? config,
     DxtradeFinancialCompany? dxtradeFinancialCompany,
@@ -441,11 +446,15 @@ class LandingCompany extends LandingCompanyModel {
         ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
         virtualCompany: virtualCompany ?? this.virtualCompany,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Dxtrade financial company model class.
-abstract class DxtradeFinancialCompanyModel {
+abstract class DxtradeFinancialCompanyModel extends Equatable {
   /// Initializes Dxtrade financial company model class .
-  DxtradeFinancialCompanyModel({
+  const DxtradeFinancialCompanyModel({
     this.standard,
   });
 
@@ -456,7 +465,7 @@ abstract class DxtradeFinancialCompanyModel {
 /// Dxtrade financial company class.
 class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
   /// Initializes Dxtrade financial company class.
-  DxtradeFinancialCompany({
+  const DxtradeFinancialCompany({
     Standard? standard,
   }) : super(
           standard: standard,
@@ -488,11 +497,15 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
       DxtradeFinancialCompany(
         standard: standard ?? this.standard,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Standard model class.
-abstract class StandardModel {
+abstract class StandardModel extends Equatable {
   /// Initializes Standard model class .
-  StandardModel({
+  const StandardModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -547,7 +560,7 @@ abstract class StandardModel {
 /// Standard class.
 class Standard extends StandardModel {
   /// Initializes Standard class.
-  Standard({
+  const Standard({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -692,11 +705,15 @@ class Standard extends StandardModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Dxtrade gaming company model class.
-abstract class DxtradeGamingCompanyModel {
+abstract class DxtradeGamingCompanyModel extends Equatable {
   /// Initializes Dxtrade gaming company model class .
-  DxtradeGamingCompanyModel({
+  const DxtradeGamingCompanyModel({
     this.standard,
   });
 
@@ -707,7 +724,7 @@ abstract class DxtradeGamingCompanyModel {
 /// Dxtrade gaming company class.
 class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
   /// Initializes Dxtrade gaming company class.
-  DxtradeGamingCompany({
+  const DxtradeGamingCompany({
     DxtradeGamingCompanyStandard? standard,
   }) : super(
           standard: standard,
@@ -739,11 +756,15 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
       DxtradeGamingCompany(
         standard: standard ?? this.standard,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Dxtrade gaming company standard model class.
-abstract class DxtradeGamingCompanyStandardModel {
+abstract class DxtradeGamingCompanyStandardModel extends Equatable {
   /// Initializes Dxtrade gaming company standard model class .
-  DxtradeGamingCompanyStandardModel({
+  const DxtradeGamingCompanyStandardModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -798,7 +819,7 @@ abstract class DxtradeGamingCompanyStandardModel {
 /// Dxtrade gaming company standard class.
 class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
   /// Initializes Dxtrade gaming company standard class.
-  DxtradeGamingCompanyStandard({
+  const DxtradeGamingCompanyStandard({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -944,11 +965,15 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Financial company model class.
-abstract class FinancialCompanyModel {
+abstract class FinancialCompanyModel extends Equatable {
   /// Initializes Financial company model class .
-  FinancialCompanyModel({
+  const FinancialCompanyModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -1003,7 +1028,7 @@ abstract class FinancialCompanyModel {
 /// Financial company class.
 class FinancialCompany extends FinancialCompanyModel {
   /// Initializes Financial company class.
-  FinancialCompany({
+  const FinancialCompany({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -1149,11 +1174,15 @@ class FinancialCompany extends FinancialCompanyModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Gaming company model class.
-abstract class GamingCompanyModel {
+abstract class GamingCompanyModel extends Equatable {
   /// Initializes Gaming company model class .
-  GamingCompanyModel({
+  const GamingCompanyModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -1208,7 +1237,7 @@ abstract class GamingCompanyModel {
 /// Gaming company class.
 class GamingCompany extends GamingCompanyModel {
   /// Initializes Gaming company class.
-  GamingCompany({
+  const GamingCompany({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -1353,11 +1382,15 @@ class GamingCompany extends GamingCompanyModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt financial company model class.
-abstract class MtFinancialCompanyModel {
+abstract class MtFinancialCompanyModel extends Equatable {
   /// Initializes Mt financial company model class .
-  MtFinancialCompanyModel({
+  const MtFinancialCompanyModel({
     this.financial,
     this.financialStp,
     this.swapFree,
@@ -1376,7 +1409,7 @@ abstract class MtFinancialCompanyModel {
 /// Mt financial company class.
 class MtFinancialCompany extends MtFinancialCompanyModel {
   /// Initializes Mt financial company class.
-  MtFinancialCompany({
+  const MtFinancialCompany({
     Financial? financial,
     FinancialStp? financialStp,
     SwapFree? swapFree,
@@ -1428,11 +1461,15 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
         financialStp: financialStp ?? this.financialStp,
         swapFree: swapFree ?? this.swapFree,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Financial model class.
-abstract class FinancialModel {
+abstract class FinancialModel extends Equatable {
   /// Initializes Financial model class .
-  FinancialModel({
+  const FinancialModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -1487,7 +1524,7 @@ abstract class FinancialModel {
 /// Financial class.
 class Financial extends FinancialModel {
   /// Initializes Financial class.
-  Financial({
+  const Financial({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -1632,11 +1669,15 @@ class Financial extends FinancialModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Financial stp model class.
-abstract class FinancialStpModel {
+abstract class FinancialStpModel extends Equatable {
   /// Initializes Financial stp model class .
-  FinancialStpModel({
+  const FinancialStpModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -1691,7 +1732,7 @@ abstract class FinancialStpModel {
 /// Financial stp class.
 class FinancialStp extends FinancialStpModel {
   /// Initializes Financial stp class.
-  FinancialStp({
+  const FinancialStp({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -1836,11 +1877,15 @@ class FinancialStp extends FinancialStpModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Swap free model class.
-abstract class SwapFreeModel {
+abstract class SwapFreeModel extends Equatable {
   /// Initializes Swap free model class .
-  SwapFreeModel({
+  const SwapFreeModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -1895,7 +1940,7 @@ abstract class SwapFreeModel {
 /// Swap free class.
 class SwapFree extends SwapFreeModel {
   /// Initializes Swap free class.
-  SwapFree({
+  const SwapFree({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -2040,11 +2085,15 @@ class SwapFree extends SwapFreeModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt gaming company model class.
-abstract class MtGamingCompanyModel {
+abstract class MtGamingCompanyModel extends Equatable {
   /// Initializes Mt gaming company model class .
-  MtGamingCompanyModel({
+  const MtGamingCompanyModel({
     this.financial,
     this.swapFree,
   });
@@ -2059,7 +2108,7 @@ abstract class MtGamingCompanyModel {
 /// Mt gaming company class.
 class MtGamingCompany extends MtGamingCompanyModel {
   /// Initializes Mt gaming company class.
-  MtGamingCompany({
+  const MtGamingCompany({
     MtGamingCompanyFinancial? financial,
     MtGamingCompanySwapFree? swapFree,
   }) : super(
@@ -2101,11 +2150,15 @@ class MtGamingCompany extends MtGamingCompanyModel {
         financial: financial ?? this.financial,
         swapFree: swapFree ?? this.swapFree,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt gaming company financial model class.
-abstract class MtGamingCompanyFinancialModel {
+abstract class MtGamingCompanyFinancialModel extends Equatable {
   /// Initializes Mt gaming company financial model class .
-  MtGamingCompanyFinancialModel({
+  const MtGamingCompanyFinancialModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -2160,7 +2213,7 @@ abstract class MtGamingCompanyFinancialModel {
 /// Mt gaming company financial class.
 class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
   /// Initializes Mt gaming company financial class.
-  MtGamingCompanyFinancial({
+  const MtGamingCompanyFinancial({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -2306,11 +2359,15 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt gaming company swap free model class.
-abstract class MtGamingCompanySwapFreeModel {
+abstract class MtGamingCompanySwapFreeModel extends Equatable {
   /// Initializes Mt gaming company swap free model class .
-  MtGamingCompanySwapFreeModel({
+  const MtGamingCompanySwapFreeModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -2365,7 +2422,7 @@ abstract class MtGamingCompanySwapFreeModel {
 /// Mt gaming company swap free class.
 class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
   /// Initializes Mt gaming company swap free class.
-  MtGamingCompanySwapFree({
+  const MtGamingCompanySwapFree({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -2511,4 +2568,8 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

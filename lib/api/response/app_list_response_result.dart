@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App list response model class.
-abstract class AppListResponseModel {
+abstract class AppListResponseModel extends Equatable {
   /// Initializes App list response model class .
-  AppListResponseModel({
+  const AppListResponseModel({
     this.appList,
   });
 
@@ -22,7 +23,7 @@ abstract class AppListResponseModel {
 /// App list response class.
 class AppListResponse extends AppListResponseModel {
   /// Initializes App list response class.
-  AppListResponse({
+  const AppListResponse({
     List<AppListItem>? appList,
   }) : super(
           appList: appList,
@@ -84,11 +85,15 @@ class AppListResponse extends AppListResponseModel {
       AppListResponse(
         appList: appList ?? this.appList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// App list item model class.
-abstract class AppListItemModel {
+abstract class AppListItemModel extends Equatable {
   /// Initializes App list item model class .
-  AppListItemModel({
+  const AppListItemModel({
     required this.redirectUri,
     required this.name,
     required this.appMarkupPercentage,
@@ -139,7 +144,7 @@ abstract class AppListItemModel {
 /// App list item class.
 class AppListItem extends AppListItemModel {
   /// Initializes App list item class.
-  AppListItem({
+  const AppListItem({
     required int appId,
     required double appMarkupPercentage,
     required String name,
@@ -238,4 +243,8 @@ class AppListItem extends AppListItemModel {
         scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

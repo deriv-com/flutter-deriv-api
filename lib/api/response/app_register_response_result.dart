@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_register_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App register response model class.
-abstract class AppRegisterResponseModel {
+abstract class AppRegisterResponseModel extends Equatable {
   /// Initializes App register response model class .
-  AppRegisterResponseModel({
+  const AppRegisterResponseModel({
     this.appRegister,
   });
 
@@ -22,7 +23,7 @@ abstract class AppRegisterResponseModel {
 /// App register response class.
 class AppRegisterResponse extends AppRegisterResponseModel {
   /// Initializes App register response class.
-  AppRegisterResponse({
+  const AppRegisterResponse({
     AppRegister? appRegister,
   }) : super(
           appRegister: appRegister,
@@ -76,11 +77,15 @@ class AppRegisterResponse extends AppRegisterResponseModel {
       AppRegisterResponse(
         appRegister: appRegister ?? this.appRegister,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// App register model class.
-abstract class AppRegisterModel {
+abstract class AppRegisterModel extends Equatable {
   /// Initializes App register model class .
-  AppRegisterModel({
+  const AppRegisterModel({
     required this.verificationUri,
     required this.redirectUri,
     required this.name,
@@ -131,7 +136,7 @@ abstract class AppRegisterModel {
 /// App register class.
 class AppRegister extends AppRegisterModel {
   /// Initializes App register class.
-  AppRegister({
+  const AppRegister({
     required int appId,
     required double appMarkupPercentage,
     required String appstore,
@@ -230,4 +235,8 @@ class AppRegister extends AppRegisterModel {
         active: active ?? this.active,
         scopes: scopes ?? this.scopes,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

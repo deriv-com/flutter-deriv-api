@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Document upload response model class.
-abstract class DocumentUploadResponseModel {
+abstract class DocumentUploadResponseModel extends Equatable {
   /// Initializes Document upload response model class .
-  DocumentUploadResponseModel({
+  const DocumentUploadResponseModel({
     this.documentUpload,
   });
 
@@ -15,7 +16,7 @@ abstract class DocumentUploadResponseModel {
 /// Document upload response class.
 class DocumentUploadResponse extends DocumentUploadResponseModel {
   /// Initializes Document upload response class.
-  DocumentUploadResponse({
+  const DocumentUploadResponse({
     DocumentUpload? documentUpload,
   }) : super(
           documentUpload: documentUpload,
@@ -49,11 +50,15 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
       DocumentUploadResponse(
         documentUpload: documentUpload ?? this.documentUpload,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Document upload model class.
-abstract class DocumentUploadModel {
+abstract class DocumentUploadModel extends Equatable {
   /// Initializes Document upload model class .
-  DocumentUploadModel({
+  const DocumentUploadModel({
     required this.uploadId,
     required this.callType,
     this.checksum,
@@ -84,7 +89,7 @@ abstract class DocumentUploadModel {
 /// Document upload class.
 class DocumentUpload extends DocumentUploadModel {
   /// Initializes Document upload class.
-  DocumentUpload({
+  const DocumentUpload({
     required double callType,
     required double uploadId,
     String? checksum,
@@ -142,4 +147,8 @@ class DocumentUpload extends DocumentUploadModel {
         size: size ?? this.size,
         status: status ?? this.status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

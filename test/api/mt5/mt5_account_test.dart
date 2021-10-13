@@ -71,7 +71,7 @@ void main() {
     test('MT5 Deposit Test', () async {
       // ignore: missing_required_param
       final Mt5DepositResponse mt5Deposit =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).deposit(
         amount: 1000,
@@ -84,7 +84,7 @@ void main() {
 
     test('MT5 Change Password Test', () async {
       final Mt5PasswordChangeResponse result =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).changePassword(
         newPassword: 'abcd1234',
@@ -97,7 +97,7 @@ void main() {
 
     test('MT5 Check Password Test', () async {
       final Mt5PasswordCheckResponse result =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).checkPassword(
         password: 'abcd1234',
@@ -109,7 +109,7 @@ void main() {
 
     test('MT5 Reset Password Test', () async {
       final Mt5PasswordResetResponse result =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).resetPassword(
         newPassword: 'abcd1234',
@@ -122,7 +122,7 @@ void main() {
 
     test('Fetch MT5 Settings Test', () async {
       final Mt5GetSettingsResponse mt5Settings =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).fetchSettings();
 
@@ -145,7 +145,7 @@ void main() {
 
     test('MT5 Withdrawal Test', () async {
       final Mt5WithdrawalResponse mt5Withdrawal =
-          await new_account.Mt5NewAccountResponse(
+          await const new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).withdraw(
         amount: 1000,

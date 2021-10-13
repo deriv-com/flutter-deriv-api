@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contract_update_history_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Contract update history response model class.
-abstract class ContractUpdateHistoryResponseModel {
+abstract class ContractUpdateHistoryResponseModel extends Equatable {
   /// Initializes Contract update history response model class .
-  ContractUpdateHistoryResponseModel({
+  const ContractUpdateHistoryResponseModel({
     this.contractUpdateHistory,
   });
 
@@ -22,7 +23,7 @@ abstract class ContractUpdateHistoryResponseModel {
 /// Contract update history response class.
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   /// Initializes Contract update history response class.
-  ContractUpdateHistoryResponse({
+  const ContractUpdateHistoryResponse({
     List<ContractUpdateHistoryItem>? contractUpdateHistory,
   }) : super(
           contractUpdateHistory: contractUpdateHistory,
@@ -86,11 +87,15 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contract update history item model class.
-abstract class ContractUpdateHistoryItemModel {
+abstract class ContractUpdateHistoryItemModel extends Equatable {
   /// Initializes Contract update history item model class .
-  ContractUpdateHistoryItemModel({
+  const ContractUpdateHistoryItemModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -117,7 +122,7 @@ abstract class ContractUpdateHistoryItemModel {
 /// Contract update history item class.
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item class.
-  ContractUpdateHistoryItem({
+  const ContractUpdateHistoryItem({
     String? displayName,
     String? orderAmount,
     DateTime? orderDate,
@@ -169,4 +174,8 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
         orderType: orderType ?? this.orderType,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

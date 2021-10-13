@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/set_account_currency_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Set account currency response model class.
-abstract class SetAccountCurrencyResponseModel {
+abstract class SetAccountCurrencyResponseModel extends Equatable {
   /// Initializes Set account currency response model class .
-  SetAccountCurrencyResponseModel({
+  const SetAccountCurrencyResponseModel({
     this.setAccountCurrency,
   });
 
@@ -22,7 +23,7 @@ abstract class SetAccountCurrencyResponseModel {
 /// Set account currency response class.
 class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   /// Initializes Set account currency response class.
-  SetAccountCurrencyResponse({
+  const SetAccountCurrencyResponse({
     bool? setAccountCurrency,
   }) : super(
           setAccountCurrency: setAccountCurrency,
@@ -74,4 +75,8 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
       SetAccountCurrencyResponse(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// New account maltainvest response model class.
-abstract class NewAccountMaltainvestResponseModel {
+abstract class NewAccountMaltainvestResponseModel extends Equatable {
   /// Initializes New account maltainvest response model class .
-  NewAccountMaltainvestResponseModel({
+  const NewAccountMaltainvestResponseModel({
     this.newAccountMaltainvest,
   });
 
@@ -15,7 +16,7 @@ abstract class NewAccountMaltainvestResponseModel {
 /// New account maltainvest response class.
 class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
   /// Initializes New account maltainvest response class.
-  NewAccountMaltainvestResponse({
+  const NewAccountMaltainvestResponse({
     NewAccountMaltainvest? newAccountMaltainvest,
   }) : super(
           newAccountMaltainvest: newAccountMaltainvest,
@@ -50,11 +51,15 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// New account maltainvest model class.
-abstract class NewAccountMaltainvestModel {
+abstract class NewAccountMaltainvestModel extends Equatable {
   /// Initializes New account maltainvest model class .
-  NewAccountMaltainvestModel({
+  const NewAccountMaltainvestModel({
     required this.oauthToken,
     required this.landingCompany,
     required this.clientId,
@@ -81,7 +86,7 @@ abstract class NewAccountMaltainvestModel {
 /// New account maltainvest class.
 class NewAccountMaltainvest extends NewAccountMaltainvestModel {
   /// Initializes New account maltainvest class.
-  NewAccountMaltainvest({
+  const NewAccountMaltainvest({
     required String clientId,
     required String landingCompany,
     required String oauthToken,
@@ -134,4 +139,8 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

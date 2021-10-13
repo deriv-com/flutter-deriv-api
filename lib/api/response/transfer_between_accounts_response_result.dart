@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/transfer_between_accounts_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Transfer between accounts response model class.
-abstract class TransferBetweenAccountsResponseModel {
+abstract class TransferBetweenAccountsResponseModel extends Equatable {
   /// Initializes Transfer between accounts response model class .
-  TransferBetweenAccountsResponseModel({
+  const TransferBetweenAccountsResponseModel({
     this.transferBetweenAccounts,
     this.accounts,
     this.clientToFullName,
@@ -39,7 +40,7 @@ abstract class TransferBetweenAccountsResponseModel {
 class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
   /// Initializes Transfer between accounts response class.
-  TransferBetweenAccountsResponse({
+  const TransferBetweenAccountsResponse({
     bool? transferBetweenAccounts,
     List<AccountsItem>? accounts,
     String? clientToFullName,
@@ -138,6 +139,10 @@ class TransferBetweenAccountsResponse
         clientToLoginid: clientToLoginid ?? this.clientToLoginid,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -184,9 +189,9 @@ enum MarketTypeEnum {
   synthetic,
 }
 /// Accounts item model class.
-abstract class AccountsItemModel {
+abstract class AccountsItemModel extends Equatable {
   /// Initializes Accounts item model class .
-  AccountsItemModel({
+  const AccountsItemModel({
     this.accountType,
     this.balance,
     this.currency,
@@ -221,7 +226,7 @@ abstract class AccountsItemModel {
 /// Accounts item class.
 class AccountsItem extends AccountsItemModel {
   /// Initializes Accounts item class.
-  AccountsItem({
+  const AccountsItem({
     AccountTypeEnum? accountType,
     String? balance,
     String? currency,
@@ -294,4 +299,8 @@ class AccountsItem extends AccountsItemModel {
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

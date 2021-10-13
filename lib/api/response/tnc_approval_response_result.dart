@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/tnc_approval_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Tnc approval response model class.
-abstract class TncApprovalResponseModel {
+abstract class TncApprovalResponseModel extends Equatable {
   /// Initializes Tnc approval response model class .
-  TncApprovalResponseModel({
+  const TncApprovalResponseModel({
     this.tncApproval,
   });
 
@@ -22,7 +23,7 @@ abstract class TncApprovalResponseModel {
 /// Tnc approval response class.
 class TncApprovalResponse extends TncApprovalResponseModel {
   /// Initializes Tnc approval response class.
-  TncApprovalResponse({
+  const TncApprovalResponse({
     int? tncApproval,
   }) : super(
           tncApproval: tncApproval,
@@ -72,4 +73,8 @@ class TncApprovalResponse extends TncApprovalResponseModel {
       TncApprovalResponse(
         tncApproval: tncApproval ?? this.tncApproval,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

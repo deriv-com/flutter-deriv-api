@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/oauth_apps_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Oauth apps response model class.
-abstract class OauthAppsResponseModel {
+abstract class OauthAppsResponseModel extends Equatable {
   /// Initializes Oauth apps response model class .
-  OauthAppsResponseModel({
+  const OauthAppsResponseModel({
     this.oauthApps,
   });
 
@@ -22,7 +23,7 @@ abstract class OauthAppsResponseModel {
 /// Oauth apps response class.
 class OauthAppsResponse extends OauthAppsResponseModel {
   /// Initializes Oauth apps response class.
-  OauthAppsResponse({
+  const OauthAppsResponse({
     List<OauthAppsItem>? oauthApps,
   }) : super(
           oauthApps: oauthApps,
@@ -85,11 +86,15 @@ class OauthAppsResponse extends OauthAppsResponseModel {
       OauthAppsResponse(
         oauthApps: oauthApps ?? this.oauthApps,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Oauth apps item model class.
-abstract class OauthAppsItemModel {
+abstract class OauthAppsItemModel extends Equatable {
   /// Initializes Oauth apps item model class .
-  OauthAppsItemModel({
+  const OauthAppsItemModel({
     required this.scopes,
     required this.name,
     required this.appMarkupPercentage,
@@ -116,7 +121,7 @@ abstract class OauthAppsItemModel {
 /// Oauth apps item class.
 class OauthAppsItem extends OauthAppsItemModel {
   /// Initializes Oauth apps item class.
-  OauthAppsItem({
+  const OauthAppsItem({
     required int appId,
     required double appMarkupPercentage,
     required String name,
@@ -176,4 +181,8 @@ class OauthAppsItem extends OauthAppsItemModel {
         scopes: scopes,
         lastUsed: lastUsed ?? this.lastUsed,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

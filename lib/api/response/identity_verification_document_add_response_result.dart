@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// Identity verification document add response model class.
-abstract class IdentityVerificationDocumentAddResponseModel {
+abstract class IdentityVerificationDocumentAddResponseModel extends Equatable {
   /// Initializes Identity verification document add response model class .
-  IdentityVerificationDocumentAddResponseModel({
+  const IdentityVerificationDocumentAddResponseModel({
     this.identityVerificationDocumentAdd,
   });
 
@@ -16,7 +17,7 @@ abstract class IdentityVerificationDocumentAddResponseModel {
 class IdentityVerificationDocumentAddResponse
     extends IdentityVerificationDocumentAddResponseModel {
   /// Initializes Identity verification document add response class.
-  IdentityVerificationDocumentAddResponse({
+  const IdentityVerificationDocumentAddResponse({
     int? identityVerificationDocumentAdd,
   }) : super(
           identityVerificationDocumentAdd: identityVerificationDocumentAdd,
@@ -48,4 +49,8 @@ class IdentityVerificationDocumentAddResponse
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??
             this.identityVerificationDocumentAdd,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

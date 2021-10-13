@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/statement_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Statement response model class.
-abstract class StatementResponseModel {
+abstract class StatementResponseModel extends Equatable {
   /// Initializes Statement response model class .
-  StatementResponseModel({
+  const StatementResponseModel({
     this.statement,
   });
 
@@ -22,7 +23,7 @@ abstract class StatementResponseModel {
 /// Statement response class.
 class StatementResponse extends StatementResponseModel {
   /// Initializes Statement response class.
-  StatementResponse({
+  const StatementResponse({
     Statement? statement,
   }) : super(
           statement: statement,
@@ -73,6 +74,10 @@ class StatementResponse extends StatementResponseModel {
       StatementResponse(
         statement: statement ?? this.statement,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// ActionTypeEnum mapper.
@@ -119,9 +124,9 @@ enum ActionTypeEnum {
   transfer,
 }
 /// Statement model class.
-abstract class StatementModel {
+abstract class StatementModel extends Equatable {
   /// Initializes Statement model class .
-  StatementModel({
+  const StatementModel({
     this.count,
     this.transactions,
   });
@@ -136,7 +141,7 @@ abstract class StatementModel {
 /// Statement class.
 class Statement extends StatementModel {
   /// Initializes Statement class.
-  Statement({
+  const Statement({
     double? count,
     List<TransactionsItem>? transactions,
   }) : super(
@@ -181,11 +186,15 @@ class Statement extends StatementModel {
         count: count ?? this.count,
         transactions: transactions ?? this.transactions,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Transactions item model class.
-abstract class TransactionsItemModel {
+abstract class TransactionsItemModel extends Equatable {
   /// Initializes Transactions item model class .
-  TransactionsItemModel({
+  const TransactionsItemModel({
     this.actionType,
     this.amount,
     this.appId,
@@ -256,7 +265,7 @@ abstract class TransactionsItemModel {
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
-  TransactionsItem({
+  const TransactionsItem({
     ActionTypeEnum? actionType,
     double? amount,
     int? appId,
@@ -386,11 +395,15 @@ class TransactionsItem extends TransactionsItemModel {
         transactionTime: transactionTime ?? this.transactionTime,
         withdrawalDetails: withdrawalDetails ?? this.withdrawalDetails,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Fees model class.
-abstract class FeesModel {
+abstract class FeesModel extends Equatable {
   /// Initializes Fees model class .
-  FeesModel({
+  const FeesModel({
     this.amount,
     this.currency,
     this.minimum,
@@ -413,7 +426,7 @@ abstract class FeesModel {
 /// Fees class.
 class Fees extends FeesModel {
   /// Initializes Fees class.
-  Fees({
+  const Fees({
     double? amount,
     String? currency,
     double? minimum,
@@ -458,11 +471,15 @@ class Fees extends FeesModel {
         minimum: minimum ?? this.minimum,
         percentage: percentage ?? this.percentage,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// From model class.
-abstract class FromModel {
+abstract class FromModel extends Equatable {
   /// Initializes From model class .
-  FromModel({
+  const FromModel({
     this.loginid,
   });
 
@@ -473,7 +490,7 @@ abstract class FromModel {
 /// From class.
 class From extends FromModel {
   /// Initializes From class.
-  From({
+  const From({
     String? loginid,
   }) : super(
           loginid: loginid,
@@ -500,11 +517,15 @@ class From extends FromModel {
       From(
         loginid: loginid ?? this.loginid,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// To model class.
-abstract class ToModel {
+abstract class ToModel extends Equatable {
   /// Initializes To model class .
-  ToModel({
+  const ToModel({
     this.loginid,
   });
 
@@ -515,7 +536,7 @@ abstract class ToModel {
 /// To class.
 class To extends ToModel {
   /// Initializes To class.
-  To({
+  const To({
     String? loginid,
   }) : super(
           loginid: loginid,
@@ -542,4 +563,8 @@ class To extends ToModel {
       To(
         loginid: loginid ?? this.loginid,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

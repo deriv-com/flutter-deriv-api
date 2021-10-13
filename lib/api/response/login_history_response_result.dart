@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/login_history_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Login history response model class.
-abstract class LoginHistoryResponseModel {
+abstract class LoginHistoryResponseModel extends Equatable {
   /// Initializes Login history response model class .
-  LoginHistoryResponseModel({
+  const LoginHistoryResponseModel({
     this.loginHistory,
   });
 
@@ -22,7 +23,7 @@ abstract class LoginHistoryResponseModel {
 /// Login history response class.
 class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Initializes Login history response class.
-  LoginHistoryResponse({
+  const LoginHistoryResponse({
     List<LoginHistoryItem>? loginHistory,
   }) : super(
           loginHistory: loginHistory,
@@ -86,11 +87,15 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
       LoginHistoryResponse(
         loginHistory: loginHistory ?? this.loginHistory,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Login history item model class.
-abstract class LoginHistoryItemModel {
+abstract class LoginHistoryItemModel extends Equatable {
   /// Initializes Login history item model class .
-  LoginHistoryItemModel({
+  const LoginHistoryItemModel({
     required this.time,
     required this.status,
     required this.environment,
@@ -113,7 +118,7 @@ abstract class LoginHistoryItemModel {
 /// Login history item class.
 class LoginHistoryItem extends LoginHistoryItemModel {
   /// Initializes Login history item class.
-  LoginHistoryItem({
+  const LoginHistoryItem({
     required String action,
     required String environment,
     required bool status,
@@ -159,4 +164,8 @@ class LoginHistoryItem extends LoginHistoryItemModel {
         status: status,
         time: time,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

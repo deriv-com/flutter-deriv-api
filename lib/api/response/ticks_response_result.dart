@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -14,9 +15,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Ticks response model class.
-abstract class TicksResponseModel {
+abstract class TicksResponseModel extends Equatable {
   /// Initializes Ticks response model class .
-  TicksResponseModel({
+  const TicksResponseModel({
     this.tick,
     this.subscription,
   });
@@ -31,7 +32,7 @@ abstract class TicksResponseModel {
 /// Ticks response class.
 class TicksResponse extends TicksResponseModel {
   /// Initializes Ticks response class.
-  TicksResponse({
+  const TicksResponse({
     Tick? tick,
     Subscription? subscription,
   }) : super(
@@ -118,11 +119,15 @@ class TicksResponse extends TicksResponseModel {
         tick: tick ?? this.tick,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Tick model class.
-abstract class TickModel {
+abstract class TickModel extends Equatable {
   /// Initializes Tick model class .
-  TickModel({
+  const TickModel({
     required this.pipSize,
     this.ask,
     this.bid,
@@ -157,7 +162,7 @@ abstract class TickModel {
 /// Tick class.
 class Tick extends TickModel {
   /// Initializes Tick class.
-  Tick({
+  const Tick({
     required double pipSize,
     double? ask,
     double? bid,
@@ -220,11 +225,15 @@ class Tick extends TickModel {
         quote: quote ?? this.quote,
         symbol: symbol ?? this.symbol,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -235,7 +244,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -262,4 +271,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

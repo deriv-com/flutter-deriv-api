@@ -80,9 +80,15 @@ class APIParser extends Builder {
       };
 }
 
-List<StringBuffer> _addImports(
-    {required List<StringBuffer> source, required String imports}) {
-  final StringBuffer baseImports = StringBuffer(imports)..write('\n\n');
+List<StringBuffer> _addImports({
+  required List<StringBuffer> source,
+  required String imports,
+}) {
+  final String extraImports =
+      source.isNotEmpty ? "import 'package:equatable/equatable.dart';\n" : '';
+
+  final StringBuffer baseImports = StringBuffer('$extraImports$imports')
+    ..write('\n\n');
 
   return <StringBuffer>[baseImports, ...source];
 }

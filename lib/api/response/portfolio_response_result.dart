@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/portfolio_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Portfolio response model class.
-abstract class PortfolioResponseModel {
+abstract class PortfolioResponseModel extends Equatable {
   /// Initializes Portfolio response model class .
-  PortfolioResponseModel({
+  const PortfolioResponseModel({
     this.portfolio,
   });
 
@@ -22,7 +23,7 @@ abstract class PortfolioResponseModel {
 /// Portfolio response class.
 class PortfolioResponse extends PortfolioResponseModel {
   /// Initializes Portfolio response class.
-  PortfolioResponse({
+  const PortfolioResponse({
     Portfolio? portfolio,
   }) : super(
           portfolio: portfolio,
@@ -73,11 +74,15 @@ class PortfolioResponse extends PortfolioResponseModel {
       PortfolioResponse(
         portfolio: portfolio ?? this.portfolio,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Portfolio model class.
-abstract class PortfolioModel {
+abstract class PortfolioModel extends Equatable {
   /// Initializes Portfolio model class .
-  PortfolioModel({
+  const PortfolioModel({
     required this.contracts,
   });
 
@@ -88,7 +93,7 @@ abstract class PortfolioModel {
 /// Portfolio class.
 class Portfolio extends PortfolioModel {
   /// Initializes Portfolio class.
-  Portfolio({
+  const Portfolio({
     required List<ContractsItem> contracts,
   }) : super(
           contracts: contracts,
@@ -123,11 +128,15 @@ class Portfolio extends PortfolioModel {
       Portfolio(
         contracts: contracts,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contracts item model class.
-abstract class ContractsItemModel {
+abstract class ContractsItemModel extends Equatable {
   /// Initializes Contracts item model class .
-  ContractsItemModel({
+  const ContractsItemModel({
     this.appId,
     this.buyPrice,
     this.contractId,
@@ -186,7 +195,7 @@ abstract class ContractsItemModel {
 /// Contracts item class.
 class ContractsItem extends ContractsItemModel {
   /// Initializes Contracts item class.
-  ContractsItem({
+  const ContractsItem({
     int? appId,
     double? buyPrice,
     int? contractId,
@@ -285,4 +294,8 @@ class ContractsItem extends ContractsItemModel {
         symbol: symbol ?? this.symbol,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

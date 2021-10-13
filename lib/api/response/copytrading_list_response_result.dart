@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copytrading_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Copytrading list response model class.
-abstract class CopytradingListResponseModel {
+abstract class CopytradingListResponseModel extends Equatable {
   /// Initializes Copytrading list response model class .
-  CopytradingListResponseModel({
+  const CopytradingListResponseModel({
     this.copytradingList,
   });
 
@@ -22,7 +23,7 @@ abstract class CopytradingListResponseModel {
 /// Copytrading list response class.
 class CopytradingListResponse extends CopytradingListResponseModel {
   /// Initializes Copytrading list response class.
-  CopytradingListResponse({
+  const CopytradingListResponse({
     CopytradingList? copytradingList,
   }) : super(
           copytradingList: copytradingList,
@@ -77,11 +78,15 @@ class CopytradingListResponse extends CopytradingListResponseModel {
       CopytradingListResponse(
         copytradingList: copytradingList ?? this.copytradingList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Copytrading list model class.
-abstract class CopytradingListModel {
+abstract class CopytradingListModel extends Equatable {
   /// Initializes Copytrading list model class .
-  CopytradingListModel({
+  const CopytradingListModel({
     required this.traders,
     required this.copiers,
   });
@@ -96,7 +101,7 @@ abstract class CopytradingListModel {
 /// Copytrading list class.
 class CopytradingList extends CopytradingListModel {
   /// Initializes Copytrading list class.
-  CopytradingList({
+  const CopytradingList({
     required List<CopiersItem> copiers,
     required List<TradersItem> traders,
   }) : super(
@@ -147,11 +152,15 @@ class CopytradingList extends CopytradingListModel {
         copiers: copiers,
         traders: traders,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Copiers item model class.
-abstract class CopiersItemModel {
+abstract class CopiersItemModel extends Equatable {
   /// Initializes Copiers item model class .
-  CopiersItemModel({
+  const CopiersItemModel({
     required this.loginid,
   });
 
@@ -162,7 +171,7 @@ abstract class CopiersItemModel {
 /// Copiers item class.
 class CopiersItem extends CopiersItemModel {
   /// Initializes Copiers item class.
-  CopiersItem({
+  const CopiersItem({
     required String loginid,
   }) : super(
           loginid: loginid,
@@ -189,11 +198,15 @@ class CopiersItem extends CopiersItemModel {
       CopiersItem(
         loginid: loginid,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Traders item model class.
-abstract class TradersItemModel {
+abstract class TradersItemModel extends Equatable {
   /// Initializes Traders item model class .
-  TradersItemModel({
+  const TradersItemModel({
     this.assets,
     this.loginid,
     this.maxTradeStake,
@@ -224,7 +237,7 @@ abstract class TradersItemModel {
 /// Traders item class.
 class TradersItem extends TradersItemModel {
   /// Initializes Traders item class.
-  TradersItem({
+  const TradersItem({
     List<String>? assets,
     String? loginid,
     double? maxTradeStake,
@@ -305,4 +318,8 @@ class TradersItem extends TradersItemModel {
         token: token ?? this.token,
         tradeTypes: tradeTypes ?? this.tradeTypes,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

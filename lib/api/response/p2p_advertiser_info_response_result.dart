@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -16,9 +17,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advertiser info response model class.
-abstract class P2pAdvertiserInfoResponseModel {
+abstract class P2pAdvertiserInfoResponseModel extends Equatable {
   /// Initializes P2p advertiser info response model class .
-  P2pAdvertiserInfoResponseModel({
+  const P2pAdvertiserInfoResponseModel({
     this.p2pAdvertiserInfo,
     this.subscription,
   });
@@ -33,7 +34,7 @@ abstract class P2pAdvertiserInfoResponseModel {
 /// P2p advertiser info response class.
 class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
   /// Initializes P2p advertiser info response class.
-  P2pAdvertiserInfoResponse({
+  const P2pAdvertiserInfoResponse({
     P2pAdvertiserInfo? p2pAdvertiserInfo,
     Subscription? subscription,
   }) : super(
@@ -162,11 +163,15 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         p2pAdvertiserInfo: p2pAdvertiserInfo ?? this.p2pAdvertiserInfo,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p advertiser info model class.
-abstract class P2pAdvertiserInfoModel {
+abstract class P2pAdvertiserInfoModel extends Equatable {
   /// Initializes P2p advertiser info model class .
-  P2pAdvertiserInfoModel({
+  const P2pAdvertiserInfoModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
     required this.name,
@@ -317,7 +322,7 @@ abstract class P2pAdvertiserInfoModel {
 /// P2p advertiser info class.
 class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info class.
-  P2pAdvertiserInfo({
+  const P2pAdvertiserInfo({
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
@@ -556,11 +561,15 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         showName: showName ?? this.showName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -571,7 +580,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -598,4 +607,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

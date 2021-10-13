@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/residence_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Residence list response model class.
-abstract class ResidenceListResponseModel {
+abstract class ResidenceListResponseModel extends Equatable {
   /// Initializes Residence list response model class .
-  ResidenceListResponseModel({
+  const ResidenceListResponseModel({
     this.residenceList,
   });
 
@@ -22,7 +23,7 @@ abstract class ResidenceListResponseModel {
 /// Residence list response class.
 class ResidenceListResponse extends ResidenceListResponseModel {
   /// Initializes Residence list response class.
-  ResidenceListResponse({
+  const ResidenceListResponse({
     List<ResidenceListItem>? residenceList,
   }) : super(
           residenceList: residenceList,
@@ -85,11 +86,15 @@ class ResidenceListResponse extends ResidenceListResponseModel {
       ResidenceListResponse(
         residenceList: residenceList ?? this.residenceList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Residence list item model class.
-abstract class ResidenceListItemModel {
+abstract class ResidenceListItemModel extends Equatable {
   /// Initializes Residence list item model class .
-  ResidenceListItemModel({
+  const ResidenceListItemModel({
     this.disabled,
     this.identity,
     this.phoneIdd,
@@ -124,7 +129,7 @@ abstract class ResidenceListItemModel {
 /// Residence list item class.
 class ResidenceListItem extends ResidenceListItemModel {
   /// Initializes Residence list item class.
-  ResidenceListItem({
+  const ResidenceListItem({
     String? disabled,
     Identity? identity,
     String? phoneIdd,
@@ -204,11 +209,15 @@ class ResidenceListItem extends ResidenceListItemModel {
         tinFormat: tinFormat ?? this.tinFormat,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Identity model class.
-abstract class IdentityModel {
+abstract class IdentityModel extends Equatable {
   /// Initializes Identity model class .
-  IdentityModel({
+  const IdentityModel({
     this.services,
   });
 
@@ -219,7 +228,7 @@ abstract class IdentityModel {
 /// Identity class.
 class Identity extends IdentityModel {
   /// Initializes Identity class.
-  Identity({
+  const Identity({
     Services? services,
   }) : super(
           services: services,
@@ -250,11 +259,15 @@ class Identity extends IdentityModel {
       Identity(
         services: services ?? this.services,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Services model class.
-abstract class ServicesModel {
+abstract class ServicesModel extends Equatable {
   /// Initializes Services model class .
-  ServicesModel({
+  const ServicesModel({
     this.idv,
     this.onfido,
   });
@@ -269,7 +282,7 @@ abstract class ServicesModel {
 /// Services class.
 class Services extends ServicesModel {
   /// Initializes Services class.
-  Services({
+  const Services({
     Idv? idv,
     Onfido? onfido,
   }) : super(
@@ -306,11 +319,15 @@ class Services extends ServicesModel {
         idv: idv ?? this.idv,
         onfido: onfido ?? this.onfido,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Idv model class.
-abstract class IdvModel {
+abstract class IdvModel extends Equatable {
   /// Initializes Idv model class .
-  IdvModel({
+  const IdvModel({
     this.documentsSupported,
     this.hasVisualSample,
     this.isCountrySupported,
@@ -329,7 +346,7 @@ abstract class IdvModel {
 /// Idv class.
 class Idv extends IdvModel {
   /// Initializes Idv class.
-  Idv({
+  const Idv({
     Map<String, DocumentsSupportedProperty>? documentsSupported,
     bool? hasVisualSample,
     bool? isCountrySupported,
@@ -376,11 +393,15 @@ class Idv extends IdvModel {
         hasVisualSample: hasVisualSample ?? this.hasVisualSample,
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Documents supported property model class.
-abstract class DocumentsSupportedPropertyModel {
+abstract class DocumentsSupportedPropertyModel extends Equatable {
   /// Initializes Documents supported property model class .
-  DocumentsSupportedPropertyModel({
+  const DocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
   });
@@ -395,7 +416,7 @@ abstract class DocumentsSupportedPropertyModel {
 /// Documents supported property class.
 class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property class.
-  DocumentsSupportedProperty({
+  const DocumentsSupportedProperty({
     String? displayName,
     String? format,
   }) : super(
@@ -429,11 +450,15 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
         displayName: displayName ?? this.displayName,
         format: format ?? this.format,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Onfido model class.
-abstract class OnfidoModel {
+abstract class OnfidoModel extends Equatable {
   /// Initializes Onfido model class .
-  OnfidoModel({
+  const OnfidoModel({
     this.documentsSupported,
     this.isCountrySupported,
   });
@@ -449,7 +474,7 @@ abstract class OnfidoModel {
 /// Onfido class.
 class Onfido extends OnfidoModel {
   /// Initializes Onfido class.
-  Onfido({
+  const Onfido({
     Map<String, DocumentsSupportedDocumentsSupportedProperty>?
         documentsSupported,
     bool? isCountrySupported,
@@ -494,11 +519,16 @@ class Onfido extends OnfidoModel {
         documentsSupported: documentsSupported ?? this.documentsSupported,
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Documents supported documents supported property model class.
-abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
+abstract class DocumentsSupportedDocumentsSupportedPropertyModel
+    extends Equatable {
   /// Initializes Documents supported documents supported property model class .
-  DocumentsSupportedDocumentsSupportedPropertyModel({
+  const DocumentsSupportedDocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
   });
@@ -514,7 +544,7 @@ abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
 class DocumentsSupportedDocumentsSupportedProperty
     extends DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property class.
-  DocumentsSupportedDocumentsSupportedProperty({
+  const DocumentsSupportedDocumentsSupportedProperty({
     String? displayName,
     String? format,
   }) : super(
@@ -549,4 +579,8 @@ class DocumentsSupportedDocumentsSupportedProperty
         displayName: displayName ?? this.displayName,
         format: format ?? this.format,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

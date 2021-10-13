@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copy_stop_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Copy stop response model class.
-abstract class CopyStopResponseModel {
+abstract class CopyStopResponseModel extends Equatable {
   /// Initializes Copy stop response model class .
-  CopyStopResponseModel({
+  const CopyStopResponseModel({
     this.copyStop,
   });
 
@@ -22,7 +23,7 @@ abstract class CopyStopResponseModel {
 /// Copy stop response class.
 class CopyStopResponse extends CopyStopResponseModel {
   /// Initializes Copy stop response class.
-  CopyStopResponse({
+  const CopyStopResponse({
     int? copyStop,
   }) : super(
           copyStop: copyStop,
@@ -70,4 +71,8 @@ class CopyStopResponse extends CopyStopResponseModel {
       CopyStopResponse(
         copyStop: copyStop ?? this.copyStop,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

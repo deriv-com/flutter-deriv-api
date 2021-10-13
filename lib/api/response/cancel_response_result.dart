@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/cancel_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Cancel response model class.
-abstract class CancelResponseModel {
+abstract class CancelResponseModel extends Equatable {
   /// Initializes Cancel response model class .
-  CancelResponseModel({
+  const CancelResponseModel({
     this.cancel,
   });
 
@@ -22,7 +23,7 @@ abstract class CancelResponseModel {
 /// Cancel response class.
 class CancelResponse extends CancelResponseModel {
   /// Initializes Cancel response class.
-  CancelResponse({
+  const CancelResponse({
     Cancel? cancel,
   }) : super(
           cancel: cancel,
@@ -71,11 +72,15 @@ class CancelResponse extends CancelResponseModel {
       CancelResponse(
         cancel: cancel ?? this.cancel,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Cancel model class.
-abstract class CancelModel {
+abstract class CancelModel extends Equatable {
   /// Initializes Cancel model class .
-  CancelModel({
+  const CancelModel({
     this.balanceAfter,
     this.contractId,
     this.referenceId,
@@ -102,7 +107,7 @@ abstract class CancelModel {
 /// Cancel class.
 class Cancel extends CancelModel {
   /// Initializes Cancel class.
-  Cancel({
+  const Cancel({
     double? balanceAfter,
     int? contractId,
     int? referenceId,
@@ -153,4 +158,8 @@ class Cancel extends CancelModel {
         soldFor: soldFor ?? this.soldFor,
         transactionId: transactionId ?? this.transactionId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

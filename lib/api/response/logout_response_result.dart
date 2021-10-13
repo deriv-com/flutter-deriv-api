@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/logout_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Logout response model class.
-abstract class LogoutResponseModel {
+abstract class LogoutResponseModel extends Equatable {
   /// Initializes Logout response model class .
-  LogoutResponseModel({
+  const LogoutResponseModel({
     this.logout,
   });
 
@@ -22,7 +23,7 @@ abstract class LogoutResponseModel {
 /// Logout response class.
 class LogoutResponse extends LogoutResponseModel {
   /// Initializes Logout response class.
-  LogoutResponse({
+  const LogoutResponse({
     int? logout,
   }) : super(
           logout: logout,
@@ -74,4 +75,8 @@ class LogoutResponse extends LogoutResponseModel {
       LogoutResponse(
         logout: logout ?? this.logout,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -22,9 +23,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Mt5 new account response model class.
-abstract class Mt5NewAccountResponseModel {
+abstract class Mt5NewAccountResponseModel extends Equatable {
   /// Initializes Mt5 new account response model class .
-  Mt5NewAccountResponseModel({
+  const Mt5NewAccountResponseModel({
     this.mt5NewAccount,
   });
 
@@ -35,7 +36,7 @@ abstract class Mt5NewAccountResponseModel {
 /// Mt5 new account response class.
 class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Initializes Mt5 new account response class.
-  Mt5NewAccountResponse({
+  const Mt5NewAccountResponse({
     Mt5NewAccount? mt5NewAccount,
   }) : super(
           mt5NewAccount: mt5NewAccount,
@@ -175,6 +176,10 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
       Mt5NewAccountResponse(
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -229,9 +234,9 @@ enum Mt5AccountTypeEnum {
   financialStp,
 }
 /// Mt5 new account model class.
-abstract class Mt5NewAccountModel {
+abstract class Mt5NewAccountModel extends Equatable {
   /// Initializes Mt5 new account model class .
-  Mt5NewAccountModel({
+  const Mt5NewAccountModel({
     this.accountType,
     this.agent,
     this.balance,
@@ -270,7 +275,7 @@ abstract class Mt5NewAccountModel {
 /// Mt5 new account class.
 class Mt5NewAccount extends Mt5NewAccountModel {
   /// Initializes Mt5 new account class.
-  Mt5NewAccount({
+  const Mt5NewAccount({
     AccountTypeEnum? accountType,
     String? agent,
     double? balance,
@@ -354,4 +359,8 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         mt5AccountCategory: mt5AccountCategory ?? this.mt5AccountCategory,
         mt5AccountType: mt5AccountType ?? this.mt5AccountType,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

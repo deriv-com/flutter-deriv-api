@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/payment_methods_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/payment_methods_send.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Payment methods response model class.
-abstract class PaymentMethodsResponseModel {
+abstract class PaymentMethodsResponseModel extends Equatable {
   /// Initializes Payment methods response model class .
-  PaymentMethodsResponseModel({
+  const PaymentMethodsResponseModel({
     this.paymentMethods,
   });
 
@@ -21,7 +22,7 @@ abstract class PaymentMethodsResponseModel {
 /// Payment methods response class.
 class PaymentMethodsResponse extends PaymentMethodsResponseModel {
   /// Initializes Payment methods response class.
-  PaymentMethodsResponse({
+  const PaymentMethodsResponse({
     List<PaymentMethodsItem>? paymentMethods,
   }) : super(
           paymentMethods: paymentMethods,
@@ -82,11 +83,15 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
       PaymentMethodsResponse(
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Payment methods item model class.
-abstract class PaymentMethodsItemModel {
+abstract class PaymentMethodsItemModel extends Equatable {
   /// Initializes Payment methods item model class .
-  PaymentMethodsItemModel({
+  const PaymentMethodsItemModel({
     required this.withdrawalTime,
     required this.withdrawLimits,
     required this.typeDisplayName,
@@ -145,7 +150,7 @@ abstract class PaymentMethodsItemModel {
 /// Payment methods item class.
 class PaymentMethodsItem extends PaymentMethodsItemModel {
   /// Initializes Payment methods item class.
-  PaymentMethodsItem({
+  const PaymentMethodsItem({
     required Map<String, DepositLimitsProperty> depositLimits,
     required String depositTime,
     required String description,
@@ -275,11 +280,15 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawLimits: withdrawLimits,
         withdrawalTime: withdrawalTime,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Deposit limits property model class.
-abstract class DepositLimitsPropertyModel {
+abstract class DepositLimitsPropertyModel extends Equatable {
   /// Initializes Deposit limits property model class .
-  DepositLimitsPropertyModel({
+  const DepositLimitsPropertyModel({
     required this.min,
     required this.max,
   });
@@ -294,7 +303,7 @@ abstract class DepositLimitsPropertyModel {
 /// Deposit limits property class.
 class DepositLimitsProperty extends DepositLimitsPropertyModel {
   /// Initializes Deposit limits property class.
-  DepositLimitsProperty({
+  const DepositLimitsProperty({
     required int max,
     required int min,
   }) : super(
@@ -328,11 +337,15 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         max: max,
         min: min,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Withdraw limits property model class.
-abstract class WithdrawLimitsPropertyModel {
+abstract class WithdrawLimitsPropertyModel extends Equatable {
   /// Initializes Withdraw limits property model class .
-  WithdrawLimitsPropertyModel({
+  const WithdrawLimitsPropertyModel({
     required this.min,
     required this.max,
   });
@@ -347,7 +360,7 @@ abstract class WithdrawLimitsPropertyModel {
 /// Withdraw limits property class.
 class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property class.
-  WithdrawLimitsProperty({
+  const WithdrawLimitsProperty({
     required int max,
     required int min,
   }) : super(
@@ -381,4 +394,8 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
         max: max,
         min: min,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

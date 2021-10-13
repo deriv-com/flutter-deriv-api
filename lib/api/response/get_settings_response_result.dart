@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/set_settings_response_result.dart';
@@ -12,9 +13,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Get settings response model class.
-abstract class GetSettingsResponseModel {
+abstract class GetSettingsResponseModel extends Equatable {
   /// Initializes Get settings response model class .
-  GetSettingsResponseModel({
+  const GetSettingsResponseModel({
     this.getSettings,
   });
 
@@ -25,7 +26,7 @@ abstract class GetSettingsResponseModel {
 /// Get settings response class.
 class GetSettingsResponse extends GetSettingsResponseModel {
   /// Initializes Get settings response class.
-  GetSettingsResponse({
+  const GetSettingsResponse({
     GetSettings? getSettings,
   }) : super(
           getSettings: getSettings,
@@ -129,11 +130,15 @@ class GetSettingsResponse extends GetSettingsResponseModel {
       GetSettingsResponse(
         getSettings: getSettings ?? this.getSettings,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Get settings model class.
-abstract class GetSettingsModel {
+abstract class GetSettingsModel extends Equatable {
   /// Initializes Get settings model class .
-  GetSettingsModel({
+  const GetSettingsModel({
     this.accountOpeningReason,
     this.addressCity,
     this.addressLine1,
@@ -260,7 +265,7 @@ abstract class GetSettingsModel {
 /// Get settings class.
 class GetSettings extends GetSettingsModel {
   /// Initializes Get settings class.
-  GetSettings({
+  const GetSettings({
     String? accountOpeningReason,
     String? addressCity,
     String? addressLine1,
@@ -481,11 +486,15 @@ class GetSettings extends GetSettingsModel {
         taxResidence: taxResidence ?? this.taxResidence,
         userHash: userHash ?? this.userHash,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Feature flag model class.
-abstract class FeatureFlagModel {
+abstract class FeatureFlagModel extends Equatable {
   /// Initializes Feature flag model class .
-  FeatureFlagModel({
+  const FeatureFlagModel({
     this.wallet,
   });
 
@@ -496,7 +505,7 @@ abstract class FeatureFlagModel {
 /// Feature flag class.
 class FeatureFlag extends FeatureFlagModel {
   /// Initializes Feature flag class.
-  FeatureFlag({
+  const FeatureFlag({
     bool? wallet,
   }) : super(
           wallet: wallet,
@@ -523,4 +532,8 @@ class FeatureFlag extends FeatureFlagModel {
       FeatureFlag(
         wallet: wallet ?? this.wallet,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

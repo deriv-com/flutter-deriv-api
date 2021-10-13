@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -16,9 +17,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Transaction response model class.
-abstract class TransactionResponseModel {
+abstract class TransactionResponseModel extends Equatable {
   /// Initializes Transaction response model class .
-  TransactionResponseModel({
+  const TransactionResponseModel({
     this.transaction,
     this.subscription,
   });
@@ -33,7 +34,7 @@ abstract class TransactionResponseModel {
 /// Transaction response class.
 class TransactionResponse extends TransactionResponseModel {
   /// Initializes Transaction response class.
-  TransactionResponse({
+  const TransactionResponse({
     Transaction? transaction,
     Subscription? subscription,
   }) : super(
@@ -142,6 +143,10 @@ class TransactionResponse extends TransactionResponseModel {
         transaction: transaction ?? this.transaction,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// ActionEnum mapper.
@@ -183,9 +188,9 @@ enum ActionEnum {
   transfer,
 }
 /// Transaction model class.
-abstract class TransactionModel {
+abstract class TransactionModel extends Equatable {
   /// Initializes Transaction model class .
-  TransactionModel({
+  const TransactionModel({
     this.action,
     this.amount,
     this.balance,
@@ -268,7 +273,7 @@ abstract class TransactionModel {
 /// Transaction class.
 class Transaction extends TransactionModel {
   /// Initializes Transaction class.
-  Transaction({
+  const Transaction({
     ActionEnum? action,
     double? amount,
     double? balance,
@@ -408,11 +413,15 @@ class Transaction extends TransactionModel {
         transactionId: transactionId ?? this.transactionId,
         transactionTime: transactionTime ?? this.transactionTime,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -423,7 +432,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -450,4 +459,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

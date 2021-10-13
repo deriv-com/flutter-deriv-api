@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_delete_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_delete_send.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App delete response model class.
-abstract class AppDeleteResponseModel {
+abstract class AppDeleteResponseModel extends Equatable {
   /// Initializes App delete response model class .
-  AppDeleteResponseModel({
+  const AppDeleteResponseModel({
     this.appDelete,
   });
 
@@ -21,7 +22,7 @@ abstract class AppDeleteResponseModel {
 /// App delete response class.
 class AppDeleteResponse extends AppDeleteResponseModel {
   /// Initializes App delete response class.
-  AppDeleteResponse({
+  const AppDeleteResponse({
     int? appDelete,
   }) : super(
           appDelete: appDelete,
@@ -70,4 +71,8 @@ class AppDeleteResponse extends AppDeleteResponseModel {
       AppDeleteResponse(
         appDelete: appDelete ?? this.appDelete,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

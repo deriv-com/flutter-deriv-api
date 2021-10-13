@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// Sell contract for multiple accounts response model class.
-abstract class SellContractForMultipleAccountsResponseModel {
+abstract class SellContractForMultipleAccountsResponseModel extends Equatable {
   /// Initializes Sell contract for multiple accounts response model class .
-  SellContractForMultipleAccountsResponseModel({
+  const SellContractForMultipleAccountsResponseModel({
     this.sellContractForMultipleAccounts,
   });
 
@@ -16,7 +17,7 @@ abstract class SellContractForMultipleAccountsResponseModel {
 class SellContractForMultipleAccountsResponse
     extends SellContractForMultipleAccountsResponseModel {
   /// Initializes Sell contract for multiple accounts response class.
-  SellContractForMultipleAccountsResponse({
+  const SellContractForMultipleAccountsResponse({
     SellContractForMultipleAccounts? sellContractForMultipleAccounts,
   }) : super(
           sellContractForMultipleAccounts: sellContractForMultipleAccounts,
@@ -54,11 +55,15 @@ class SellContractForMultipleAccountsResponse
         sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
             this.sellContractForMultipleAccounts,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Sell contract for multiple accounts model class.
-abstract class SellContractForMultipleAccountsModel {
+abstract class SellContractForMultipleAccountsModel extends Equatable {
   /// Initializes Sell contract for multiple accounts model class .
-  SellContractForMultipleAccountsModel({
+  const SellContractForMultipleAccountsModel({
     this.result,
   });
 
@@ -70,7 +75,7 @@ abstract class SellContractForMultipleAccountsModel {
 class SellContractForMultipleAccounts
     extends SellContractForMultipleAccountsModel {
   /// Initializes Sell contract for multiple accounts class.
-  SellContractForMultipleAccounts({
+  const SellContractForMultipleAccounts({
     List<Map<String, dynamic>>? result,
   }) : super(
           result: result,
@@ -110,4 +115,8 @@ class SellContractForMultipleAccounts
       SellContractForMultipleAccounts(
         result: result ?? this.result,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

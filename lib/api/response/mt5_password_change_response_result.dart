@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_password_change_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Mt5 password change response model class.
-abstract class Mt5PasswordChangeResponseModel {
+abstract class Mt5PasswordChangeResponseModel extends Equatable {
   /// Initializes Mt5 password change response model class .
-  Mt5PasswordChangeResponseModel({
+  const Mt5PasswordChangeResponseModel({
     this.mt5PasswordChange,
   });
 
@@ -22,7 +23,7 @@ abstract class Mt5PasswordChangeResponseModel {
 /// Mt5 password change response class.
 class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
   /// Initializes Mt5 password change response class.
-  Mt5PasswordChangeResponse({
+  const Mt5PasswordChangeResponse({
     int? mt5PasswordChange,
   }) : super(
           mt5PasswordChange: mt5PasswordChange,
@@ -72,4 +73,8 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
       Mt5PasswordChangeResponse(
         mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

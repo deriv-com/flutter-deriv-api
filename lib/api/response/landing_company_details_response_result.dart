@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Landing company details response model class.
-abstract class LandingCompanyDetailsResponseModel {
+abstract class LandingCompanyDetailsResponseModel extends Equatable {
   /// Initializes Landing company details response model class .
-  LandingCompanyDetailsResponseModel({
+  const LandingCompanyDetailsResponseModel({
     this.landingCompanyDetails,
   });
 
@@ -15,7 +16,7 @@ abstract class LandingCompanyDetailsResponseModel {
 /// Landing company details response class.
 class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
   /// Initializes Landing company details response class.
-  LandingCompanyDetailsResponse({
+  const LandingCompanyDetailsResponse({
     LandingCompanyDetails? landingCompanyDetails,
   }) : super(
           landingCompanyDetails: landingCompanyDetails,
@@ -50,11 +51,15 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Landing company details model class.
-abstract class LandingCompanyDetailsModel {
+abstract class LandingCompanyDetailsModel extends Equatable {
   /// Initializes Landing company details model class .
-  LandingCompanyDetailsModel({
+  const LandingCompanyDetailsModel({
     this.address,
     this.changeableFields,
     this.country,
@@ -109,7 +114,7 @@ abstract class LandingCompanyDetailsModel {
 /// Landing company details class.
 class LandingCompanyDetails extends LandingCompanyDetailsModel {
   /// Initializes Landing company details class.
-  LandingCompanyDetails({
+  const LandingCompanyDetails({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
@@ -259,11 +264,15 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Currency config model class.
-abstract class CurrencyConfigModel {
+abstract class CurrencyConfigModel extends Equatable {
   /// Initializes Currency config model class .
-  CurrencyConfigModel({
+  const CurrencyConfigModel({
     this.commodities,
     this.cryptocurrency,
     this.forex,
@@ -294,7 +303,7 @@ abstract class CurrencyConfigModel {
 /// Currency config class.
 class CurrencyConfig extends CurrencyConfigModel {
   /// Initializes Currency config class.
-  CurrencyConfig({
+  const CurrencyConfig({
     Map<String, dynamic>? commodities,
     Map<String, dynamic>? cryptocurrency,
     Map<String, dynamic>? forex,
@@ -353,11 +362,15 @@ class CurrencyConfig extends CurrencyConfigModel {
         market: market ?? this.market,
         syntheticIndex: syntheticIndex ?? this.syntheticIndex,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Market model class.
-abstract class MarketModel {
+abstract class MarketModel extends Equatable {
   /// Initializes Market model class .
-  MarketModel({
+  const MarketModel({
     this.currency,
   });
 
@@ -368,7 +381,7 @@ abstract class MarketModel {
 /// Market class.
 class Market extends MarketModel {
   /// Initializes Market class.
-  Market({
+  const Market({
     Currency? currency,
   }) : super(
           currency: currency,
@@ -399,11 +412,15 @@ class Market extends MarketModel {
       Market(
         currency: currency ?? this.currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Currency model class.
-abstract class CurrencyModel {
+abstract class CurrencyModel extends Equatable {
   /// Initializes Currency model class .
-  CurrencyModel({
+  const CurrencyModel({
     this.maxPayout,
     this.minStake,
   });
@@ -418,7 +435,7 @@ abstract class CurrencyModel {
 /// Currency class.
 class Currency extends CurrencyModel {
   /// Initializes Currency class.
-  Currency({
+  const Currency({
     int? maxPayout,
     int? minStake,
   }) : super(
@@ -451,4 +468,8 @@ class Currency extends CurrencyModel {
         maxPayout: maxPayout ?? this.maxPayout,
         minStake: minStake ?? this.minStake,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

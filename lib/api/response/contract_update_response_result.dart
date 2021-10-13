@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contract_update_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Contract update response model class.
-abstract class ContractUpdateResponseModel {
+abstract class ContractUpdateResponseModel extends Equatable {
   /// Initializes Contract update response model class .
-  ContractUpdateResponseModel({
+  const ContractUpdateResponseModel({
     this.contractUpdate,
   });
 
@@ -22,7 +23,7 @@ abstract class ContractUpdateResponseModel {
 /// Contract update response class.
 class ContractUpdateResponse extends ContractUpdateResponseModel {
   /// Initializes Contract update response class.
-  ContractUpdateResponse({
+  const ContractUpdateResponse({
     ContractUpdate? contractUpdate,
   }) : super(
           contractUpdate: contractUpdate,
@@ -75,11 +76,15 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
       ContractUpdateResponse(
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Contract update model class.
-abstract class ContractUpdateModel {
+abstract class ContractUpdateModel extends Equatable {
   /// Initializes Contract update model class .
-  ContractUpdateModel({
+  const ContractUpdateModel({
     this.stopLoss,
     this.takeProfit,
   });
@@ -94,7 +99,7 @@ abstract class ContractUpdateModel {
 /// Contract update class.
 class ContractUpdate extends ContractUpdateModel {
   /// Initializes Contract update class.
-  ContractUpdate({
+  const ContractUpdate({
     StopLoss? stopLoss,
     TakeProfit? takeProfit,
   }) : super(
@@ -135,11 +140,15 @@ class ContractUpdate extends ContractUpdateModel {
         stopLoss: stopLoss ?? this.stopLoss,
         takeProfit: takeProfit ?? this.takeProfit,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Stop loss model class.
-abstract class StopLossModel {
+abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
-  StopLossModel({
+  const StopLossModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -162,7 +171,7 @@ abstract class StopLossModel {
 /// Stop loss class.
 class StopLoss extends StopLossModel {
   /// Initializes Stop loss class.
-  StopLoss({
+  const StopLoss({
     String? displayName,
     double? orderAmount,
     DateTime? orderDate,
@@ -207,11 +216,16 @@ class StopLoss extends StopLossModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props =>
+      <Object>[displayName!, orderAmount!, orderDate!, value!];
 }
 /// Take profit model class.
-abstract class TakeProfitModel {
+abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
-  TakeProfitModel({
+  const TakeProfitModel({
     this.displayName,
     this.orderAmount,
     this.orderDate,
@@ -234,7 +248,7 @@ abstract class TakeProfitModel {
 /// Take profit class.
 class TakeProfit extends TakeProfitModel {
   /// Initializes Take profit class.
-  TakeProfit({
+  const TakeProfit({
     String? displayName,
     double? orderAmount,
     DateTime? orderDate,
@@ -279,4 +293,9 @@ class TakeProfit extends TakeProfitModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props =>
+      <Object>[displayName!, orderAmount!, orderDate!, value!];
 }

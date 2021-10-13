@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advert update response model class.
-abstract class P2pAdvertUpdateResponseModel {
+abstract class P2pAdvertUpdateResponseModel extends Equatable {
   /// Initializes P2p advert update response model class .
-  P2pAdvertUpdateResponseModel({
+  const P2pAdvertUpdateResponseModel({
     this.p2pAdvertUpdate,
   });
 
@@ -22,7 +23,7 @@ abstract class P2pAdvertUpdateResponseModel {
 /// P2p advert update response class.
 class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
   /// Initializes P2p advert update response class.
-  P2pAdvertUpdateResponse({
+  const P2pAdvertUpdateResponse({
     P2pAdvertUpdate? p2pAdvertUpdate,
   }) : super(
           p2pAdvertUpdate: p2pAdvertUpdate,
@@ -76,6 +77,10 @@ class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
       P2pAdvertUpdateResponse(
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -125,9 +130,9 @@ enum P2pAdvertUpdateTypeEnum {
   sell,
 }
 /// P2p advert update model class.
-abstract class P2pAdvertUpdateModel {
+abstract class P2pAdvertUpdateModel extends Equatable {
   /// Initializes P2p advert update model class .
-  P2pAdvertUpdateModel({
+  const P2pAdvertUpdateModel({
     required this.id,
     this.accountCurrency,
     this.advertiserDetails,
@@ -270,7 +275,7 @@ abstract class P2pAdvertUpdateModel {
 /// P2p advert update class.
 class P2pAdvertUpdate extends P2pAdvertUpdateModel {
   /// Initializes P2p advert update class.
-  P2pAdvertUpdate({
+  const P2pAdvertUpdate({
     required String id,
     String? accountCurrency,
     AdvertiserDetails? advertiserDetails,
@@ -537,11 +542,15 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
             remainingAmountDisplay ?? this.remainingAmountDisplay,
         type: type ?? this.type,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel {
+abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
-  AdvertiserDetailsModel({
+  const AdvertiserDetailsModel({
     required this.name,
     required this.id,
     this.firstName,
@@ -568,7 +577,7 @@ abstract class AdvertiserDetailsModel {
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
-  AdvertiserDetails({
+  const AdvertiserDetails({
     required String id,
     required String name,
     String? firstName,
@@ -620,11 +629,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Payment method details property model class.
-abstract class PaymentMethodDetailsPropertyModel {
+abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
-  PaymentMethodDetailsPropertyModel({
+  const PaymentMethodDetailsPropertyModel({
     required this.method,
     required this.isEnabled,
     required this.fields,
@@ -647,7 +660,7 @@ abstract class PaymentMethodDetailsPropertyModel {
 /// Payment method details property class.
 class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property class.
-  PaymentMethodDetailsProperty({
+  const PaymentMethodDetailsProperty({
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
@@ -698,11 +711,15 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         method: method,
         displayName: displayName ?? this.displayName,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Fields property model class.
-abstract class FieldsPropertyModel {
+abstract class FieldsPropertyModel extends Equatable {
   /// Initializes Fields property model class .
-  FieldsPropertyModel({
+  const FieldsPropertyModel({
     required this.value,
     required this.type,
     required this.required,
@@ -725,7 +742,7 @@ abstract class FieldsPropertyModel {
 /// Fields property class.
 class FieldsProperty extends FieldsPropertyModel {
   /// Initializes Fields property class.
-  FieldsProperty({
+  const FieldsProperty({
     required String displayName,
     required int required,
     required TypeEnum type,
@@ -772,4 +789,8 @@ class FieldsProperty extends FieldsPropertyModel {
         type: type,
         value: value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

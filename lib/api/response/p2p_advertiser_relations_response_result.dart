@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 // TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.
  import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p advertiser relations response model class.
-abstract class P2pAdvertiserRelationsResponseModel {
+abstract class P2pAdvertiserRelationsResponseModel extends Equatable {
   /// Initializes P2p advertiser relations response model class .
-  P2pAdvertiserRelationsResponseModel({
+  const P2pAdvertiserRelationsResponseModel({
     this.p2pAdvertiserRelations,
   });
 
@@ -17,7 +18,7 @@ abstract class P2pAdvertiserRelationsResponseModel {
 class P2pAdvertiserRelationsResponse
     extends P2pAdvertiserRelationsResponseModel {
   /// Initializes P2p advertiser relations response class.
-  P2pAdvertiserRelationsResponse({
+  const P2pAdvertiserRelationsResponse({
     P2pAdvertiserRelations? p2pAdvertiserRelations,
   }) : super(
           p2pAdvertiserRelations: p2pAdvertiserRelations,
@@ -52,11 +53,15 @@ class P2pAdvertiserRelationsResponse
         p2pAdvertiserRelations:
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p advertiser relations model class.
-abstract class P2pAdvertiserRelationsModel {
+abstract class P2pAdvertiserRelationsModel extends Equatable {
   /// Initializes P2p advertiser relations model class .
-  P2pAdvertiserRelationsModel({
+  const P2pAdvertiserRelationsModel({
     required this.favouriteAdvertisers,
     required this.blockedAdvertisers,
   });
@@ -71,7 +76,7 @@ abstract class P2pAdvertiserRelationsModel {
 /// P2p advertiser relations class.
 class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations class.
-  P2pAdvertiserRelations({
+  const P2pAdvertiserRelations({
     required List<BlockedAdvertisersItem> blockedAdvertisers,
     required List<FavouriteAdvertisersItem> favouriteAdvertisers,
   }) : super(
@@ -122,11 +127,15 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
         blockedAdvertisers: blockedAdvertisers,
         favouriteAdvertisers: favouriteAdvertisers,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Blocked advertisers item model class.
-abstract class BlockedAdvertisersItemModel {
+abstract class BlockedAdvertisersItemModel extends Equatable {
   /// Initializes Blocked advertisers item model class .
-  BlockedAdvertisersItemModel({
+  const BlockedAdvertisersItemModel({
     this.createdTime,
     this.id,
     this.name,
@@ -145,7 +154,7 @@ abstract class BlockedAdvertisersItemModel {
 /// Blocked advertisers item class.
 class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item class.
-  BlockedAdvertisersItem({
+  const BlockedAdvertisersItem({
     DateTime? createdTime,
     String? id,
     String? name,
@@ -185,11 +194,15 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
         id: id ?? this.id,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Favourite advertisers item model class.
-abstract class FavouriteAdvertisersItemModel {
+abstract class FavouriteAdvertisersItemModel extends Equatable {
   /// Initializes Favourite advertisers item model class .
-  FavouriteAdvertisersItemModel({
+  const FavouriteAdvertisersItemModel({
     this.createdTime,
     this.id,
     this.name,
@@ -208,7 +221,7 @@ abstract class FavouriteAdvertisersItemModel {
 /// Favourite advertisers item class.
 class FavouriteAdvertisersItem extends FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item class.
-  FavouriteAdvertisersItem({
+  const FavouriteAdvertisersItem({
     DateTime? createdTime,
     String? id,
     String? name,
@@ -248,4 +261,8 @@ class FavouriteAdvertisersItem extends FavouriteAdvertisersItemModel {
         id: id ?? this.id,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/reality_check_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Reality check response model class.
-abstract class RealityCheckResponseModel {
+abstract class RealityCheckResponseModel extends Equatable {
   /// Initializes Reality check response model class .
-  RealityCheckResponseModel({
+  const RealityCheckResponseModel({
     this.realityCheck,
   });
 
@@ -22,7 +23,7 @@ abstract class RealityCheckResponseModel {
 /// Reality check response class.
 class RealityCheckResponse extends RealityCheckResponseModel {
   /// Initializes Reality check response class.
-  RealityCheckResponse({
+  const RealityCheckResponse({
     RealityCheck? realityCheck,
   }) : super(
           realityCheck: realityCheck,
@@ -80,11 +81,15 @@ class RealityCheckResponse extends RealityCheckResponseModel {
       RealityCheckResponse(
         realityCheck: realityCheck ?? this.realityCheck,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Reality check model class.
-abstract class RealityCheckModel {
+abstract class RealityCheckModel extends Equatable {
   /// Initializes Reality check model class .
-  RealityCheckModel({
+  const RealityCheckModel({
     this.buyAmount,
     this.buyCount,
     this.currency,
@@ -127,7 +132,7 @@ abstract class RealityCheckModel {
 /// Reality check class.
 class RealityCheck extends RealityCheckModel {
   /// Initializes Reality check class.
-  RealityCheck({
+  const RealityCheck({
     double? buyAmount,
     int? buyCount,
     String? currency,
@@ -202,4 +207,8 @@ class RealityCheck extends RealityCheckModel {
         sellCount: sellCount ?? this.sellCount,
         startTime: startTime ?? this.startTime,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

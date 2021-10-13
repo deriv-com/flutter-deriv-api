@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/app_delete_response_result.dart';
@@ -21,9 +22,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// App get response model class.
-abstract class AppGetResponseModel {
+abstract class AppGetResponseModel extends Equatable {
   /// Initializes App get response model class .
-  AppGetResponseModel({
+  const AppGetResponseModel({
     this.appGet,
   });
 
@@ -34,7 +35,7 @@ abstract class AppGetResponseModel {
 /// App get response class.
 class AppGetResponse extends AppGetResponseModel {
   /// Initializes App get response class.
-  AppGetResponse({
+  const AppGetResponse({
     AppGet? appGet,
   }) : super(
           appGet: appGet,
@@ -183,11 +184,15 @@ class AppGetResponse extends AppGetResponseModel {
       AppGetResponse(
         appGet: appGet ?? this.appGet,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// App get model class.
-abstract class AppGetModel {
+abstract class AppGetModel extends Equatable {
   /// Initializes App get model class .
-  AppGetModel({
+  const AppGetModel({
     required this.verificationUri,
     required this.redirectUri,
     required this.name,
@@ -238,7 +243,7 @@ abstract class AppGetModel {
 /// App get class.
 class AppGet extends AppGetModel {
   /// Initializes App get class.
-  AppGet({
+  const AppGet({
     required int appId,
     required double appMarkupPercentage,
     required String appstore,
@@ -337,4 +342,8 @@ class AppGet extends AppGetModel {
         active: active ?? this.active,
         scopes: scopes ?? this.scopes,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Active symbols response model class.
-abstract class ActiveSymbolsResponseModel {
+abstract class ActiveSymbolsResponseModel extends Equatable {
   /// Initializes Active symbols response model class .
-  ActiveSymbolsResponseModel({
+  const ActiveSymbolsResponseModel({
     this.activeSymbols,
   });
 
@@ -21,7 +22,7 @@ abstract class ActiveSymbolsResponseModel {
 /// Active symbols response class.
 class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Initializes Active symbols response class.
-  ActiveSymbolsResponse({
+  const ActiveSymbolsResponse({
     List<ActiveSymbolsItem>? activeSymbols,
   }) : super(
           activeSymbols: activeSymbols,
@@ -85,11 +86,15 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
       ActiveSymbolsResponse(
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Active symbols item model class.
-abstract class ActiveSymbolsItemModel {
+abstract class ActiveSymbolsItemModel extends Equatable {
   /// Initializes Active symbols item model class .
-  ActiveSymbolsItemModel({
+  const ActiveSymbolsItemModel({
     required this.symbolType,
     required this.symbol,
     required this.submarketDisplayName,
@@ -168,7 +173,7 @@ abstract class ActiveSymbolsItemModel {
 /// Active symbols item class.
 class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   /// Initializes Active symbols item class.
-  ActiveSymbolsItem({
+  const ActiveSymbolsItem({
     required String displayName,
     required bool exchangeIsOpen,
     required bool isTradingSuspended,
@@ -299,4 +304,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         spotAge: spotAge ?? this.spotAge,
         spotTime: spotTime ?? this.spotTime,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

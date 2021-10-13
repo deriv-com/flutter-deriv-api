@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/get_self_exclusion_receive.dart';
@@ -11,9 +12,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Get self exclusion response model class.
-abstract class GetSelfExclusionResponseModel {
+abstract class GetSelfExclusionResponseModel extends Equatable {
   /// Initializes Get self exclusion response model class .
-  GetSelfExclusionResponseModel({
+  const GetSelfExclusionResponseModel({
     this.getSelfExclusion,
   });
 
@@ -24,7 +25,7 @@ abstract class GetSelfExclusionResponseModel {
 /// Get self exclusion response class.
 class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Initializes Get self exclusion response class.
-  GetSelfExclusionResponse({
+  const GetSelfExclusionResponse({
     GetSelfExclusion? getSelfExclusion,
   }) : super(
           getSelfExclusion: getSelfExclusion,
@@ -132,11 +133,15 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
       GetSelfExclusionResponse(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Get self exclusion model class.
-abstract class GetSelfExclusionModel {
+abstract class GetSelfExclusionModel extends Equatable {
   /// Initializes Get self exclusion model class .
-  GetSelfExclusionModel({
+  const GetSelfExclusionModel({
     this.excludeUntil,
     this.max30dayDeposit,
     this.max30dayLosses,
@@ -199,7 +204,7 @@ abstract class GetSelfExclusionModel {
 /// Get self exclusion class.
 class GetSelfExclusion extends GetSelfExclusionModel {
   /// Initializes Get self exclusion class.
-  GetSelfExclusion({
+  const GetSelfExclusion({
     String? excludeUntil,
     double? max30dayDeposit,
     double? max30dayLosses,
@@ -305,4 +310,8 @@ class GetSelfExclusion extends GetSelfExclusionModel {
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
         timeoutUntil: timeoutUntil ?? this.timeoutUntil,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

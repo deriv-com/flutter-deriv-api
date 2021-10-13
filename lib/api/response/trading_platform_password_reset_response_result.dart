@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';    
 
 /// Trading platform password reset response model class.
-abstract class TradingPlatformPasswordResetResponseModel {
+abstract class TradingPlatformPasswordResetResponseModel extends Equatable {
   /// Initializes Trading platform password reset response model class .
-  TradingPlatformPasswordResetResponseModel({
+  const TradingPlatformPasswordResetResponseModel({
     this.tradingPlatformPasswordReset,
   });
 
@@ -16,7 +17,7 @@ abstract class TradingPlatformPasswordResetResponseModel {
 class TradingPlatformPasswordResetResponse
     extends TradingPlatformPasswordResetResponseModel {
   /// Initializes Trading platform password reset response class.
-  TradingPlatformPasswordResetResponse({
+  const TradingPlatformPasswordResetResponse({
     bool? tradingPlatformPasswordReset,
   }) : super(
           tradingPlatformPasswordReset: tradingPlatformPasswordReset,
@@ -47,4 +48,8 @@ class TradingPlatformPasswordResetResponse
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

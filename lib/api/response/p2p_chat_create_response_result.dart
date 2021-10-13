@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_chat_create_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p chat create response model class.
-abstract class P2pChatCreateResponseModel {
+abstract class P2pChatCreateResponseModel extends Equatable {
   /// Initializes P2p chat create response model class .
-  P2pChatCreateResponseModel({
+  const P2pChatCreateResponseModel({
     this.p2pChatCreate,
   });
 
@@ -22,7 +23,7 @@ abstract class P2pChatCreateResponseModel {
 /// P2p chat create response class.
 class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   /// Initializes P2p chat create response class.
-  P2pChatCreateResponse({
+  const P2pChatCreateResponse({
     P2pChatCreate? p2pChatCreate,
   }) : super(
           p2pChatCreate: p2pChatCreate,
@@ -76,11 +77,15 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
       P2pChatCreateResponse(
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p chat create model class.
-abstract class P2pChatCreateModel {
+abstract class P2pChatCreateModel extends Equatable {
   /// Initializes P2p chat create model class .
-  P2pChatCreateModel({
+  const P2pChatCreateModel({
     required this.orderId,
     required this.channelUrl,
   });
@@ -95,7 +100,7 @@ abstract class P2pChatCreateModel {
 /// P2p chat create class.
 class P2pChatCreate extends P2pChatCreateModel {
   /// Initializes P2p chat create class.
-  P2pChatCreate({
+  const P2pChatCreate({
     required String channelUrl,
     required String orderId,
   }) : super(
@@ -128,4 +133,8 @@ class P2pChatCreate extends P2pChatCreateModel {
         channelUrl: channelUrl,
         orderId: orderId,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

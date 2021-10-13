@@ -64,7 +64,7 @@ void main() {
     });
 
     test('Fetch Markup Details Test', () async {
-      final AppMarkupDetailsResponse appMarkupDetails = await AppGetResponse(
+      final AppMarkupDetailsResponse appMarkupDetails = await const AppGetResponse(
         appGet: AppGet(
           appId: 1234,
           appstore: '',
@@ -119,7 +119,7 @@ void main() {
     });
 
     test('Application Delete Test', () async {
-      final AppDeleteResponse appDelete = await AppGetResponse(
+      final AppDeleteResponse appDelete = await const AppGetResponse(
         appGet: AppGet(
           appId: 1234,
           appstore: '',
@@ -137,7 +137,7 @@ void main() {
     });
 
     test('Application Register Test', () async {
-      final AppRegisterResponse appRegister = await AppGetResponse(
+      final AppRegisterResponse appRegister = await const AppGetResponse(
         appGet: AppGet(
             appId: 1234,
             appstore: 'https://itunes.apple.com/test_app',

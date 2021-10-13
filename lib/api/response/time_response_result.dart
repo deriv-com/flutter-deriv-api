@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Time response model class.
-abstract class TimeResponseModel {
+abstract class TimeResponseModel extends Equatable {
   /// Initializes Time response model class .
-  TimeResponseModel({
+  const TimeResponseModel({
     this.time,
   });
 
@@ -22,7 +23,7 @@ abstract class TimeResponseModel {
 /// Time response class.
 class TimeResponse extends TimeResponseModel {
   /// Initializes Time response class.
-  TimeResponse({
+  const TimeResponse({
     DateTime? time,
   }) : super(
           time: time,
@@ -73,4 +74,8 @@ class TimeResponse extends TimeResponseModel {
       TimeResponse(
         time: time ?? this.time,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

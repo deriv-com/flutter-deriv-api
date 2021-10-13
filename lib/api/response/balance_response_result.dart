@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -16,9 +17,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Balance response model class.
-abstract class BalanceResponseModel {
+abstract class BalanceResponseModel extends Equatable {
   /// Initializes Balance response model class .
-  BalanceResponseModel({
+  const BalanceResponseModel({
     this.balance,
     this.subscription,
   });
@@ -33,7 +34,7 @@ abstract class BalanceResponseModel {
 /// Balance response class.
 class BalanceResponse extends BalanceResponseModel {
   /// Initializes Balance response class.
-  BalanceResponse({
+  const BalanceResponse({
     Balance? balance,
     Subscription? subscription,
   }) : super(
@@ -154,6 +155,10 @@ class BalanceResponse extends BalanceResponseModel {
         balance: balance ?? this.balance,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// TypeEnum mapper.
@@ -171,9 +176,9 @@ enum TypeEnum {
   deriv,
 }
 /// Balance model class.
-abstract class BalanceModel {
+abstract class BalanceModel extends Equatable {
   /// Initializes Balance model class .
-  BalanceModel({
+  const BalanceModel({
     required this.loginid,
     required this.currency,
     required this.balance,
@@ -204,7 +209,7 @@ abstract class BalanceModel {
 /// Balance class.
 class Balance extends BalanceModel {
   /// Initializes Balance class.
-  Balance({
+  const Balance({
     required double balance,
     required String currency,
     required String loginid,
@@ -270,11 +275,15 @@ class Balance extends BalanceModel {
         id: id ?? this.id,
         total: total ?? this.total,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Accounts property model class.
-abstract class AccountsPropertyModel {
+abstract class AccountsPropertyModel extends Equatable {
   /// Initializes Accounts property model class .
-  AccountsPropertyModel({
+  const AccountsPropertyModel({
     required this.type,
     required this.status,
     required this.demoAccount,
@@ -305,7 +314,7 @@ abstract class AccountsPropertyModel {
 /// Accounts property class.
 class AccountsProperty extends AccountsPropertyModel {
   /// Initializes Accounts property class.
-  AccountsProperty({
+  const AccountsProperty({
     required double balance,
     required double convertedAmount,
     required String currency,
@@ -365,11 +374,15 @@ class AccountsProperty extends AccountsPropertyModel {
         status: status,
         type: type,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Total model class.
-abstract class TotalModel {
+abstract class TotalModel extends Equatable {
   /// Initializes Total model class .
-  TotalModel({
+  const TotalModel({
     this.deriv,
     this.derivDemo,
     this.mt5,
@@ -392,7 +405,7 @@ abstract class TotalModel {
 /// Total class.
 class Total extends TotalModel {
   /// Initializes Total class.
-  Total({
+  const Total({
     Deriv? deriv,
     DerivDemo? derivDemo,
     Mt5? mt5,
@@ -449,11 +462,15 @@ class Total extends TotalModel {
         mt5: mt5 ?? this.mt5,
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Deriv model class.
-abstract class DerivModel {
+abstract class DerivModel extends Equatable {
   /// Initializes Deriv model class .
-  DerivModel({
+  const DerivModel({
     required this.currency,
     required this.amount,
   });
@@ -468,7 +485,7 @@ abstract class DerivModel {
 /// Deriv class.
 class Deriv extends DerivModel {
   /// Initializes Deriv class.
-  Deriv({
+  const Deriv({
     required double amount,
     required String currency,
   }) : super(
@@ -501,11 +518,15 @@ class Deriv extends DerivModel {
         amount: amount,
         currency: currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Deriv demo model class.
-abstract class DerivDemoModel {
+abstract class DerivDemoModel extends Equatable {
   /// Initializes Deriv demo model class .
-  DerivDemoModel({
+  const DerivDemoModel({
     required this.currency,
     required this.amount,
   });
@@ -520,7 +541,7 @@ abstract class DerivDemoModel {
 /// Deriv demo class.
 class DerivDemo extends DerivDemoModel {
   /// Initializes Deriv demo class.
-  DerivDemo({
+  const DerivDemo({
     required double amount,
     required String currency,
   }) : super(
@@ -553,11 +574,15 @@ class DerivDemo extends DerivDemoModel {
         amount: amount,
         currency: currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt5 model class.
-abstract class Mt5Model {
+abstract class Mt5Model extends Equatable {
   /// Initializes Mt5 model class .
-  Mt5Model({
+  const Mt5Model({
     required this.currency,
     required this.amount,
   });
@@ -572,7 +597,7 @@ abstract class Mt5Model {
 /// Mt5 class.
 class Mt5 extends Mt5Model {
   /// Initializes Mt5 class.
-  Mt5({
+  const Mt5({
     required double amount,
     required String currency,
   }) : super(
@@ -605,11 +630,15 @@ class Mt5 extends Mt5Model {
         amount: amount,
         currency: currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Mt5 demo model class.
-abstract class Mt5DemoModel {
+abstract class Mt5DemoModel extends Equatable {
   /// Initializes Mt5 demo model class .
-  Mt5DemoModel({
+  const Mt5DemoModel({
     required this.currency,
     required this.amount,
   });
@@ -624,7 +653,7 @@ abstract class Mt5DemoModel {
 /// Mt5 demo class.
 class Mt5Demo extends Mt5DemoModel {
   /// Initializes Mt5 demo class.
-  Mt5Demo({
+  const Mt5Demo({
     required double amount,
     required String currency,
   }) : super(
@@ -657,11 +686,15 @@ class Mt5Demo extends Mt5DemoModel {
         amount: amount,
         currency: currency,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -672,7 +705,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -699,4 +732,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

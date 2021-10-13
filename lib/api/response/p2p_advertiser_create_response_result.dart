@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_create_receive.dart';
@@ -11,9 +12,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// P2p advertiser create response model class.
-abstract class P2pAdvertiserCreateResponseModel {
+abstract class P2pAdvertiserCreateResponseModel extends Equatable {
   /// Initializes P2p advertiser create response model class .
-  P2pAdvertiserCreateResponseModel({
+  const P2pAdvertiserCreateResponseModel({
     this.p2pAdvertiserCreate,
     this.subscription,
   });
@@ -28,7 +29,7 @@ abstract class P2pAdvertiserCreateResponseModel {
 /// P2p advertiser create response class.
 class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   /// Initializes P2p advertiser create response class.
-  P2pAdvertiserCreateResponse({
+  const P2pAdvertiserCreateResponse({
     P2pAdvertiserCreate? p2pAdvertiserCreate,
     Subscription? subscription,
   }) : super(
@@ -119,11 +120,15 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p advertiser create model class.
-abstract class P2pAdvertiserCreateModel {
+abstract class P2pAdvertiserCreateModel extends Equatable {
   /// Initializes P2p advertiser create model class .
-  P2pAdvertiserCreateModel({
+  const P2pAdvertiserCreateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
     required this.paymentInfo,
@@ -242,7 +247,7 @@ abstract class P2pAdvertiserCreateModel {
 /// P2p advertiser create class.
 class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create class.
-  P2pAdvertiserCreate({
+  const P2pAdvertiserCreate({
     required int buyOrdersCount,
     required int cancelsRemaining,
     required String chatToken,
@@ -433,11 +438,15 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         showName: showName ?? this.showName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -448,7 +457,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -475,4 +484,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

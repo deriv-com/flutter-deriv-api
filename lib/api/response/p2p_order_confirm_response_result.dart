@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 
 
 /// P2p order confirm response model class.
-abstract class P2pOrderConfirmResponseModel {
+abstract class P2pOrderConfirmResponseModel extends Equatable {
   /// Initializes P2p order confirm response model class .
-  P2pOrderConfirmResponseModel({
+  const P2pOrderConfirmResponseModel({
     this.p2pOrderConfirm,
   });
 
@@ -15,7 +16,7 @@ abstract class P2pOrderConfirmResponseModel {
 /// P2p order confirm response class.
 class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Initializes P2p order confirm response class.
-  P2pOrderConfirmResponse({
+  const P2pOrderConfirmResponse({
     P2pOrderConfirm? p2pOrderConfirm,
   }) : super(
           p2pOrderConfirm: p2pOrderConfirm,
@@ -49,6 +50,10 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
       P2pOrderConfirmResponse(
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// StatusEnum mapper.
@@ -66,9 +71,9 @@ enum StatusEnum {
   completed,
 }
 /// P2p order confirm model class.
-abstract class P2pOrderConfirmModel {
+abstract class P2pOrderConfirmModel extends Equatable {
   /// Initializes P2p order confirm model class .
-  P2pOrderConfirmModel({
+  const P2pOrderConfirmModel({
     required this.status,
     required this.id,
   });
@@ -83,7 +88,7 @@ abstract class P2pOrderConfirmModel {
 /// P2p order confirm class.
 class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Initializes P2p order confirm class.
-  P2pOrderConfirm({
+  const P2pOrderConfirm({
     required String id,
     required StatusEnum status,
   }) : super(
@@ -120,4 +125,8 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
         id: id,
         status: status,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

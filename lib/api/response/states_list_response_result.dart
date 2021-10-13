@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/states_list_receive.dart';
@@ -9,9 +10,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// States list response model class.
-abstract class StatesListResponseModel {
+abstract class StatesListResponseModel extends Equatable {
   /// Initializes States list response model class .
-  StatesListResponseModel({
+  const StatesListResponseModel({
     this.statesList,
   });
 
@@ -22,7 +23,7 @@ abstract class StatesListResponseModel {
 /// States list response class.
 class StatesListResponse extends StatesListResponseModel {
   /// Initializes States list response class.
-  StatesListResponse({
+  const StatesListResponse({
     List<StatesListItem>? statesList,
   }) : super(
           statesList: statesList,
@@ -82,11 +83,15 @@ class StatesListResponse extends StatesListResponseModel {
       StatesListResponse(
         statesList: statesList ?? this.statesList,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// States list item model class.
-abstract class StatesListItemModel {
+abstract class StatesListItemModel extends Equatable {
   /// Initializes States list item model class .
-  StatesListItemModel({
+  const StatesListItemModel({
     this.text,
     this.value,
   });
@@ -101,7 +106,7 @@ abstract class StatesListItemModel {
 /// States list item class.
 class StatesListItem extends StatesListItemModel {
   /// Initializes States list item class.
-  StatesListItem({
+  const StatesListItem({
     String? text,
     String? value,
   }) : super(
@@ -134,4 +139,8 @@ class StatesListItem extends StatesListItemModel {
         text: text ?? this.text,
         value: value ?? this.value,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }

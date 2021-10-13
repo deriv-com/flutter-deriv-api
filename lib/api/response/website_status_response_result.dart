@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_single_quotes
+import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -16,9 +17,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
 /// Website status response model class.
-abstract class WebsiteStatusResponseModel {
+abstract class WebsiteStatusResponseModel extends Equatable {
   /// Initializes Website status response model class .
-  WebsiteStatusResponseModel({
+  const WebsiteStatusResponseModel({
     this.websiteStatus,
     this.subscription,
   });
@@ -33,7 +34,7 @@ abstract class WebsiteStatusResponseModel {
 /// Website status response class.
 class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Initializes Website status response class.
-  WebsiteStatusResponse({
+  const WebsiteStatusResponse({
     WebsiteStatus? websiteStatus,
     Subscription? subscription,
   }) : super(
@@ -160,6 +161,10 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
         websiteStatus: websiteStatus ?? this.websiteStatus,
         subscription: subscription ?? this.subscription,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 
 /// TypeEnum mapper.
@@ -197,9 +202,9 @@ enum SiteStatusEnum {
   updating,
 }
 /// Website status model class.
-abstract class WebsiteStatusModel {
+abstract class WebsiteStatusModel extends Equatable {
   /// Initializes Website status model class .
-  WebsiteStatusModel({
+  const WebsiteStatusModel({
     required this.p2pConfig,
     required this.currenciesConfig,
     required this.cryptoConfig,
@@ -242,7 +247,7 @@ abstract class WebsiteStatusModel {
 /// Website status class.
 class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes Website status class.
-  WebsiteStatus({
+  const WebsiteStatus({
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
@@ -349,11 +354,15 @@ class WebsiteStatus extends WebsiteStatusModel {
         termsConditionsVersion:
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Api call limits model class.
-abstract class ApiCallLimitsModel {
+abstract class ApiCallLimitsModel extends Equatable {
   /// Initializes Api call limits model class .
-  ApiCallLimitsModel({
+  const ApiCallLimitsModel({
     required this.maxRequestsPricing,
     required this.maxRequestsOutcome,
     required this.maxRequestesGeneral,
@@ -376,7 +385,7 @@ abstract class ApiCallLimitsModel {
 /// Api call limits class.
 class ApiCallLimits extends ApiCallLimitsModel {
   /// Initializes Api call limits class.
-  ApiCallLimits({
+  const ApiCallLimits({
     required MaxProposalSubscription maxProposalSubscription,
     required MaxRequestesGeneral maxRequestesGeneral,
     required MaxRequestsOutcome maxRequestsOutcome,
@@ -428,11 +437,15 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsOutcome: maxRequestsOutcome,
         maxRequestsPricing: maxRequestsPricing,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Max proposal subscription model class.
-abstract class MaxProposalSubscriptionModel {
+abstract class MaxProposalSubscriptionModel extends Equatable {
   /// Initializes Max proposal subscription model class .
-  MaxProposalSubscriptionModel({
+  const MaxProposalSubscriptionModel({
     required this.max,
     required this.appliesTo,
   });
@@ -447,7 +460,7 @@ abstract class MaxProposalSubscriptionModel {
 /// Max proposal subscription class.
 class MaxProposalSubscription extends MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription class.
-  MaxProposalSubscription({
+  const MaxProposalSubscription({
     required String appliesTo,
     required double max,
   }) : super(
@@ -481,11 +494,15 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         appliesTo: appliesTo,
         max: max,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Max requestes general model class.
-abstract class MaxRequestesGeneralModel {
+abstract class MaxRequestesGeneralModel extends Equatable {
   /// Initializes Max requestes general model class .
-  MaxRequestesGeneralModel({
+  const MaxRequestesGeneralModel({
     required this.minutely,
     required this.hourly,
     required this.appliesTo,
@@ -504,7 +521,7 @@ abstract class MaxRequestesGeneralModel {
 /// Max requestes general class.
 class MaxRequestesGeneral extends MaxRequestesGeneralModel {
   /// Initializes Max requestes general class.
-  MaxRequestesGeneral({
+  const MaxRequestesGeneral({
     required String appliesTo,
     required double hourly,
     required double minutely,
@@ -544,11 +561,15 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         hourly: hourly,
         minutely: minutely,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Max requests outcome model class.
-abstract class MaxRequestsOutcomeModel {
+abstract class MaxRequestsOutcomeModel extends Equatable {
   /// Initializes Max requests outcome model class .
-  MaxRequestsOutcomeModel({
+  const MaxRequestsOutcomeModel({
     required this.minutely,
     required this.hourly,
     required this.appliesTo,
@@ -567,7 +588,7 @@ abstract class MaxRequestsOutcomeModel {
 /// Max requests outcome class.
 class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome class.
-  MaxRequestsOutcome({
+  const MaxRequestsOutcome({
     required String appliesTo,
     required double hourly,
     required double minutely,
@@ -607,11 +628,15 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         hourly: hourly,
         minutely: minutely,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Max requests pricing model class.
-abstract class MaxRequestsPricingModel {
+abstract class MaxRequestsPricingModel extends Equatable {
   /// Initializes Max requests pricing model class .
-  MaxRequestsPricingModel({
+  const MaxRequestsPricingModel({
     required this.minutely,
     required this.hourly,
     required this.appliesTo,
@@ -630,7 +655,7 @@ abstract class MaxRequestsPricingModel {
 /// Max requests pricing class.
 class MaxRequestsPricing extends MaxRequestsPricingModel {
   /// Initializes Max requests pricing class.
-  MaxRequestsPricing({
+  const MaxRequestsPricing({
     required String appliesTo,
     required double hourly,
     required double minutely,
@@ -670,11 +695,15 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         hourly: hourly,
         minutely: minutely,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Crypto config property model class.
-abstract class CryptoConfigPropertyModel {
+abstract class CryptoConfigPropertyModel extends Equatable {
   /// Initializes Crypto config property model class .
-  CryptoConfigPropertyModel({
+  const CryptoConfigPropertyModel({
     required this.minimumWithdrawal,
   });
 
@@ -685,7 +714,7 @@ abstract class CryptoConfigPropertyModel {
 /// Crypto config property class.
 class CryptoConfigProperty extends CryptoConfigPropertyModel {
   /// Initializes Crypto config property class.
-  CryptoConfigProperty({
+  const CryptoConfigProperty({
     required double minimumWithdrawal,
   }) : super(
           minimumWithdrawal: minimumWithdrawal,
@@ -713,11 +742,15 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
       CryptoConfigProperty(
         minimumWithdrawal: minimumWithdrawal,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Currencies config property model class.
-abstract class CurrenciesConfigPropertyModel {
+abstract class CurrenciesConfigPropertyModel extends Equatable {
   /// Initializes Currencies config property model class .
-  CurrenciesConfigPropertyModel({
+  const CurrenciesConfigPropertyModel({
     required this.type,
     required this.transferBetweenAccounts,
     required this.stakeDefault,
@@ -756,7 +789,7 @@ abstract class CurrenciesConfigPropertyModel {
 /// Currencies config property class.
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property class.
-  CurrenciesConfigProperty({
+  const CurrenciesConfigProperty({
     required double fractionalDigits,
     required double isDepositSuspended,
     required double isSuspended,
@@ -830,11 +863,15 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         type: type,
         name: name ?? this.name,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Transfer between accounts model class.
-abstract class TransferBetweenAccountsModel {
+abstract class TransferBetweenAccountsModel extends Equatable {
   /// Initializes Transfer between accounts model class .
-  TransferBetweenAccountsModel({
+  const TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
     this.limitsDxtrade,
@@ -857,7 +894,7 @@ abstract class TransferBetweenAccountsModel {
 /// Transfer between accounts class.
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts class.
-  TransferBetweenAccounts({
+  const TransferBetweenAccounts({
     required Map<String, double> fees,
     required Limits limits,
     Map<String, dynamic>? limitsDxtrade,
@@ -907,11 +944,15 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Limits model class.
-abstract class LimitsModel {
+abstract class LimitsModel extends Equatable {
   /// Initializes Limits model class .
-  LimitsModel({
+  const LimitsModel({
     required this.min,
     this.max,
   });
@@ -926,7 +967,7 @@ abstract class LimitsModel {
 /// Limits class.
 class Limits extends LimitsModel {
   /// Initializes Limits class.
-  Limits({
+  const Limits({
     required double min,
     double? max,
   }) : super(
@@ -959,11 +1000,15 @@ class Limits extends LimitsModel {
         min: min,
         max: max ?? this.max,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// P2p config model class.
-abstract class P2pConfigModel {
+abstract class P2pConfigModel extends Equatable {
   /// Initializes P2p config model class .
-  P2pConfigModel({
+  const P2pConfigModel({
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
@@ -1014,7 +1059,7 @@ abstract class P2pConfigModel {
 /// P2p config class.
 class P2pConfig extends P2pConfigModel {
   /// Initializes P2p config class.
-  P2pConfig({
+  const P2pConfig({
     required int advertsActiveLimit,
     required int cancellationBlockDuration,
     required int cancellationCountPeriod,
@@ -1101,11 +1146,15 @@ class P2pConfig extends P2pConfigModel {
         orderPaymentPeriod: orderPaymentPeriod,
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel {
+abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
-  SubscriptionModel({
+  const SubscriptionModel({
     required this.id,
   });
 
@@ -1116,7 +1165,7 @@ abstract class SubscriptionModel {
 /// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
-  Subscription({
+  const Subscription({
     required String id,
   }) : super(
           id: id,
@@ -1143,4 +1192,8 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id,
       );
+
+  /// Override equatable class.
+  @override
+  List<Object> get props => <Object>[];
 }
