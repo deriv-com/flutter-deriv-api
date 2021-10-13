@@ -6,7 +6,6 @@ import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dar
 import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
 import 'package:flutter_deriv_api/api/response/proposal_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../available_contracts/available_contracts_bloc.dart';
 
