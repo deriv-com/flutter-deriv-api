@@ -107,7 +107,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// ScopesItemEnum mapper.
@@ -213,7 +213,7 @@ class ApiToken extends ApiTokenModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Tokens item model class.
 abstract class TokensItemModel extends Equatable {
@@ -315,5 +315,5 @@ class TokensItem extends TokensItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

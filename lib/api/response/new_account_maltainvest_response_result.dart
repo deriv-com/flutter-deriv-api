@@ -54,7 +54,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// New account maltainvest model class.
 abstract class NewAccountMaltainvestModel extends Equatable {
@@ -142,5 +142,5 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

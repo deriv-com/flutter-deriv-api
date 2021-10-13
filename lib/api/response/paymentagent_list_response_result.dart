@@ -80,7 +80,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Paymentagent list model class.
 abstract class PaymentagentListModel extends Equatable {
@@ -166,7 +166,7 @@ class PaymentagentList extends PaymentagentListModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// List item model class.
 abstract class ListItemModel extends Equatable {
@@ -332,5 +332,5 @@ class ListItem extends ListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

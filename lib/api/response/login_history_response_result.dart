@@ -90,7 +90,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Login history item model class.
 abstract class LoginHistoryItemModel extends Equatable {
@@ -167,5 +167,5 @@ class LoginHistoryItem extends LoginHistoryItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -192,7 +192,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Candles item model class.
 abstract class CandlesItemModel extends Equatable {
@@ -278,7 +278,7 @@ class CandlesItem extends CandlesItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// History model class.
 abstract class HistoryModel extends Equatable {
@@ -358,7 +358,7 @@ class History extends HistoryModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -404,5 +404,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

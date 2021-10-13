@@ -89,7 +89,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Residence list item model class.
 abstract class ResidenceListItemModel extends Equatable {
@@ -212,7 +212,7 @@ class ResidenceListItem extends ResidenceListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Identity model class.
 abstract class IdentityModel extends Equatable {
@@ -262,7 +262,7 @@ class Identity extends IdentityModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Services model class.
 abstract class ServicesModel extends Equatable {
@@ -322,7 +322,7 @@ class Services extends ServicesModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Idv model class.
 abstract class IdvModel extends Equatable {
@@ -396,7 +396,7 @@ class Idv extends IdvModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel extends Equatable {
@@ -453,7 +453,7 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Onfido model class.
 abstract class OnfidoModel extends Equatable {
@@ -522,7 +522,7 @@ class Onfido extends OnfidoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel
@@ -582,5 +582,5 @@ class DocumentsSupportedDocumentsSupportedProperty
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

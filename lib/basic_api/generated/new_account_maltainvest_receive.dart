@@ -64,5 +64,5 @@ class NewAccountMaltainvestReceive extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

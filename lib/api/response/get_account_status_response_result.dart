@@ -77,7 +77,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -378,7 +378,7 @@ class GetAccountStatus extends GetAccountStatusModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Currency config property model class.
 abstract class CurrencyConfigPropertyModel extends Equatable {
@@ -436,7 +436,7 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Authentication model class.
 abstract class AuthenticationModel extends Equatable {
@@ -533,7 +533,7 @@ class Authentication extends AuthenticationModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Attempts model class.
 abstract class AttemptsModel extends Equatable {
@@ -611,7 +611,7 @@ class Attempts extends AttemptsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// History item model class.
 abstract class HistoryItemModel extends Equatable {
@@ -701,7 +701,7 @@ class HistoryItem extends HistoryItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Document model class.
 abstract class DocumentModel extends Equatable {
@@ -762,7 +762,7 @@ class Document extends DocumentModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Identity model class.
 abstract class IdentityModel extends Equatable {
@@ -837,7 +837,7 @@ class Identity extends IdentityModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Services model class.
 abstract class ServicesModel extends Equatable {
@@ -909,7 +909,7 @@ class Services extends ServicesModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Idv model class.
 abstract class IdvModel extends Equatable {
@@ -1011,7 +1011,7 @@ class Idv extends IdvModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Manual model class.
 abstract class ManualModel extends Equatable {
@@ -1062,7 +1062,7 @@ class Manual extends ManualModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Onfido model class.
 abstract class OnfidoModel extends Equatable {
@@ -1219,5 +1219,5 @@ class Onfido extends OnfidoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

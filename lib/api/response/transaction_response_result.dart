@@ -146,7 +146,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// ActionEnum mapper.
@@ -416,7 +416,7 @@ class Transaction extends TransactionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -462,5 +462,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

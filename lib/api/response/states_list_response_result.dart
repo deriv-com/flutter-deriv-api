@@ -86,7 +86,7 @@ class StatesListResponse extends StatesListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// States list item model class.
 abstract class StatesListItemModel extends Equatable {
@@ -142,5 +142,5 @@ class StatesListItem extends StatesListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

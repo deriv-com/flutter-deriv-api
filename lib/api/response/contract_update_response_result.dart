@@ -79,7 +79,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contract update model class.
 abstract class ContractUpdateModel extends Equatable {
@@ -143,7 +143,7 @@ class ContractUpdate extends ContractUpdateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
@@ -219,8 +219,8 @@ class StopLoss extends StopLossModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props =>
-      <Object>[displayName!, orderAmount!, orderDate!, value!];
+  List<Object?> get props =>
+      <Object?>[displayName, orderAmount, orderDate, value];
 }
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
@@ -296,6 +296,6 @@ class TakeProfit extends TakeProfitModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props =>
-      <Object>[displayName!, orderAmount!, orderDate!, value!];
+  List<Object?> get props =>
+      <Object?>[displayName, orderAmount, orderDate, value];
 }

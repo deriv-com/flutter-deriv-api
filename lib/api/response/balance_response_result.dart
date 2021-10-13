@@ -158,7 +158,7 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -278,7 +278,7 @@ class Balance extends BalanceModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Accounts property model class.
 abstract class AccountsPropertyModel extends Equatable {
@@ -377,7 +377,7 @@ class AccountsProperty extends AccountsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Total model class.
 abstract class TotalModel extends Equatable {
@@ -465,7 +465,7 @@ class Total extends TotalModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Deriv model class.
 abstract class DerivModel extends Equatable {
@@ -521,7 +521,7 @@ class Deriv extends DerivModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Deriv demo model class.
 abstract class DerivDemoModel extends Equatable {
@@ -577,7 +577,7 @@ class DerivDemo extends DerivDemoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt5 model class.
 abstract class Mt5Model extends Equatable {
@@ -633,7 +633,7 @@ class Mt5 extends Mt5Model {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt5 demo model class.
 abstract class Mt5DemoModel extends Equatable {
@@ -689,7 +689,7 @@ class Mt5Demo extends Mt5DemoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -735,5 +735,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

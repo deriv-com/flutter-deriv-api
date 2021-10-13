@@ -90,5 +90,5 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

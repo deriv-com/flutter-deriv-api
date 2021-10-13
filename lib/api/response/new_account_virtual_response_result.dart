@@ -80,7 +80,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -194,5 +194,5 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

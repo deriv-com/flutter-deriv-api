@@ -54,7 +54,7 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Landing company details model class.
 abstract class LandingCompanyDetailsModel extends Equatable {
@@ -267,7 +267,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Currency config model class.
 abstract class CurrencyConfigModel extends Equatable {
@@ -365,7 +365,7 @@ class CurrencyConfig extends CurrencyConfigModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Market model class.
 abstract class MarketModel extends Equatable {
@@ -415,7 +415,7 @@ class Market extends MarketModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Currency model class.
 abstract class CurrencyModel extends Equatable {
@@ -471,5 +471,5 @@ class Currency extends CurrencyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

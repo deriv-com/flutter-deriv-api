@@ -94,7 +94,7 @@ class JsonSchemaParser {
 
             /// Override equatable class.
               @override
-              List<Object> get props => ${_getEquatableFields(className)};
+              List<Object?> get props => ${_getEquatableFields(className)};
           }
 
           ${_generateEnums()}
@@ -374,18 +374,18 @@ class JsonSchemaParser {
   static String _getEquatableFields(String classFullName) {
     switch (classFullName) {
       case 'Proposal':
-        return '<Object>[id,askPrice,commission!,dateExpiry!,multiplier!,cancellation!,limitOrder!]';
+        return '<Object?>[id,askPrice,commission,dateExpiry,multiplier,cancellation,limitOrder]';
       case 'LimitOrder':
-        return '<Object>[stopLoss!,stopOut!,takeProfit!]';
+        return '<Object?>[stopLoss,stopOut,takeProfit]';
       case 'StopLoss':
-        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+        return '<Object?>[displayName,orderAmount,orderDate,value]';
       case 'StopOut':
-        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+        return '<Object?>[displayName,orderAmount,orderDate,value]';
       case 'TakeProfit':
-        return '<Object>[displayName!,orderAmount!,orderDate!,value!]';
+        return '<Object?>[displayName,orderAmount,orderDate,value]';
 
       default:
-        return '<Object>[]';
+        return '<Object?>[]';
     }
   }
 

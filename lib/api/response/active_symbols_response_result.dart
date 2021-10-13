@@ -89,7 +89,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel extends Equatable {
@@ -307,5 +307,5 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -53,7 +53,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Economic calendar model class.
 abstract class EconomicCalendarModel extends Equatable {
@@ -112,7 +112,7 @@ class EconomicCalendar extends EconomicCalendarModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Events item model class.
 abstract class EventsItemModel extends Equatable {
@@ -228,7 +228,7 @@ class EventsItem extends EventsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Actual model class.
 abstract class ActualModel extends Equatable {
@@ -274,7 +274,7 @@ class Actual extends ActualModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Forecast model class.
 abstract class ForecastModel extends Equatable {
@@ -320,7 +320,7 @@ class Forecast extends ForecastModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Previous model class.
 abstract class PreviousModel extends Equatable {
@@ -366,5 +366,5 @@ class Previous extends PreviousModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -83,7 +83,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel extends Equatable {
@@ -256,5 +256,5 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

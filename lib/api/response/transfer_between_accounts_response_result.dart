@@ -142,7 +142,7 @@ class TransferBetweenAccountsResponse
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -302,5 +302,5 @@ class AccountsItem extends AccountsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

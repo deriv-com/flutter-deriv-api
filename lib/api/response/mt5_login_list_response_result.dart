@@ -88,7 +88,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -407,7 +407,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Server info model class.
 abstract class ServerInfoModel extends Equatable {
@@ -482,7 +482,7 @@ class ServerInfo extends ServerInfoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Geolocation model class.
 abstract class GeolocationModel extends Equatable {
@@ -548,5 +548,5 @@ class Geolocation extends GeolocationModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

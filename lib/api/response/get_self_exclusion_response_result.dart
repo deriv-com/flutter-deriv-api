@@ -136,7 +136,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Get self exclusion model class.
 abstract class GetSelfExclusionModel extends Equatable {
@@ -313,5 +313,5 @@ class GetSelfExclusion extends GetSelfExclusionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

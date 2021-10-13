@@ -81,7 +81,7 @@ class ContractsForResponse extends ContractsForResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contracts for model class.
 abstract class ContractsForModel extends Equatable {
@@ -186,7 +186,7 @@ class ContractsFor extends ContractsForModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Available item model class.
 abstract class AvailableItemModel extends Equatable {
@@ -555,7 +555,7 @@ class AvailableItem extends AvailableItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Forward starting options item model class.
 abstract class ForwardStartingOptionsItemModel extends Equatable {
@@ -644,5 +644,5 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

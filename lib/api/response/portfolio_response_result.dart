@@ -77,7 +77,7 @@ class PortfolioResponse extends PortfolioResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Portfolio model class.
 abstract class PortfolioModel extends Equatable {
@@ -131,7 +131,7 @@ class Portfolio extends PortfolioModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contracts item model class.
 abstract class ContractsItemModel extends Equatable {
@@ -297,5 +297,5 @@ class ContractsItem extends ContractsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

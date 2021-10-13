@@ -186,7 +186,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -890,7 +890,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Audit details model class.
 abstract class AuditDetailsModel extends Equatable {
@@ -992,7 +992,7 @@ class AuditDetails extends AuditDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// All ticks item model class.
 abstract class AllTicksItemModel extends Equatable {
@@ -1078,7 +1078,7 @@ class AllTicksItem extends AllTicksItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contract end item model class.
 abstract class ContractEndItemModel extends Equatable {
@@ -1165,7 +1165,7 @@ class ContractEndItem extends ContractEndItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contract start item model class.
 abstract class ContractStartItemModel extends Equatable {
@@ -1252,7 +1252,7 @@ class ContractStartItem extends ContractStartItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
@@ -1308,7 +1308,7 @@ class Cancellation extends CancellationModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
@@ -1386,7 +1386,7 @@ class LimitOrder extends LimitOrderModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[stopLoss!, stopOut!, takeProfit!];
+  List<Object?> get props => <Object?>[stopLoss, stopOut, takeProfit];
 }
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
@@ -1462,8 +1462,8 @@ class StopLoss extends StopLossModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props =>
-      <Object>[displayName!, orderAmount!, orderDate!, value!];
+  List<Object?> get props =>
+      <Object?>[displayName, orderAmount, orderDate, value];
 }
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
@@ -1539,8 +1539,8 @@ class StopOut extends StopOutModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props =>
-      <Object>[displayName!, orderAmount!, orderDate!, value!];
+  List<Object?> get props =>
+      <Object?>[displayName, orderAmount, orderDate, value];
 }
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
@@ -1616,8 +1616,8 @@ class TakeProfit extends TakeProfitModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props =>
-      <Object>[displayName!, orderAmount!, orderDate!, value!];
+  List<Object?> get props =>
+      <Object?>[displayName, orderAmount, orderDate, value];
 }
 /// Tick stream item model class.
 abstract class TickStreamItemModel extends Equatable {
@@ -1683,7 +1683,7 @@ class TickStreamItem extends TickStreamItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Transaction ids model class.
 abstract class TransactionIdsModel extends Equatable {
@@ -1739,7 +1739,7 @@ class TransactionIds extends TransactionIdsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -1785,5 +1785,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

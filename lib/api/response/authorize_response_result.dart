@@ -80,7 +80,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -376,7 +376,7 @@ class Authorize extends AuthorizeModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Account list item model class.
 abstract class AccountListItemModel extends Equatable {
@@ -513,7 +513,7 @@ class AccountListItem extends AccountListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trading model class.
 abstract class TradingModel extends Equatable {
@@ -571,7 +571,7 @@ class Trading extends TradingModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Linked to item model class.
 abstract class LinkedToItemModel extends Equatable {
@@ -647,7 +647,7 @@ class LinkedToItem extends LinkedToItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Wallet model class.
 abstract class WalletModel extends Equatable {
@@ -745,7 +745,7 @@ class Wallet extends WalletModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Wallet linked to item model class.
 abstract class WalletLinkedToItemModel extends Equatable {
@@ -827,7 +827,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel extends Equatable {
@@ -874,7 +874,7 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Authorize trading model class.
 abstract class AuthorizeTradingModel extends Equatable {
@@ -933,7 +933,7 @@ class AuthorizeTrading extends AuthorizeTradingModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trading linked to item model class.
 abstract class TradingLinkedToItemModel extends Equatable {
@@ -1010,7 +1010,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Authorize wallet model class.
 abstract class AuthorizeWalletModel extends Equatable {
@@ -1109,7 +1109,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Wallet linked to item2 model class.
 abstract class WalletLinkedToItem2Model extends Equatable {
@@ -1191,5 +1191,5 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

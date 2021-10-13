@@ -164,7 +164,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -357,7 +357,7 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Api call limits model class.
 abstract class ApiCallLimitsModel extends Equatable {
@@ -440,7 +440,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel extends Equatable {
@@ -497,7 +497,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Max requestes general model class.
 abstract class MaxRequestesGeneralModel extends Equatable {
@@ -564,7 +564,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel extends Equatable {
@@ -631,7 +631,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Max requests pricing model class.
 abstract class MaxRequestsPricingModel extends Equatable {
@@ -698,7 +698,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Crypto config property model class.
 abstract class CryptoConfigPropertyModel extends Equatable {
@@ -745,7 +745,7 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel extends Equatable {
@@ -866,7 +866,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel extends Equatable {
@@ -947,7 +947,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Limits model class.
 abstract class LimitsModel extends Equatable {
@@ -1003,7 +1003,7 @@ class Limits extends LimitsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// P2p config model class.
 abstract class P2pConfigModel extends Equatable {
@@ -1149,7 +1149,7 @@ class P2pConfig extends P2pConfigModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -1195,5 +1195,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

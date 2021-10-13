@@ -107,5 +107,5 @@ class P2pAdvertUpdateRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

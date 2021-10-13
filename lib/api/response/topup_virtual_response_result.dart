@@ -82,7 +82,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Topup virtual model class.
 abstract class TopupVirtualModel extends Equatable {
@@ -138,5 +138,5 @@ class TopupVirtual extends TopupVirtualModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

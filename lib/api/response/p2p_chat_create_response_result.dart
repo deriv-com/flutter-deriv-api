@@ -80,7 +80,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// P2p chat create model class.
 abstract class P2pChatCreateModel extends Equatable {
@@ -136,5 +136,5 @@ class P2pChatCreate extends P2pChatCreateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

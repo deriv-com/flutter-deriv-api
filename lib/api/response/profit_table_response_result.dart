@@ -77,7 +77,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Profit table model class.
 abstract class ProfitTableModel extends Equatable {
@@ -145,7 +145,7 @@ class ProfitTable extends ProfitTableModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel extends Equatable {
@@ -292,5 +292,5 @@ class TransactionsItem extends TransactionsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

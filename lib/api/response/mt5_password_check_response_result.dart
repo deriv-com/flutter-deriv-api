@@ -75,5 +75,5 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

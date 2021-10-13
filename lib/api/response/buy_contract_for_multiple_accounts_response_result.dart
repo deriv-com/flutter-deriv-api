@@ -58,7 +58,7 @@ class BuyContractForMultipleAccountsResponse
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Buy contract for multiple accounts model class.
 abstract class BuyContractForMultipleAccountsModel extends Equatable {
@@ -114,5 +114,5 @@ class BuyContractForMultipleAccounts
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

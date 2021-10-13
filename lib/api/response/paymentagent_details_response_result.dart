@@ -53,7 +53,7 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Paymentagent details model class.
 abstract class PaymentagentDetailsModel extends Equatable {
@@ -264,5 +264,5 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

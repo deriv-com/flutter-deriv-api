@@ -80,7 +80,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// App register model class.
 abstract class AppRegisterModel extends Equatable {
@@ -238,5 +238,5 @@ class AppRegister extends AppRegisterModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

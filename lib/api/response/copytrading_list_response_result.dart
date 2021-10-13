@@ -81,7 +81,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Copytrading list model class.
 abstract class CopytradingListModel extends Equatable {
@@ -155,7 +155,7 @@ class CopytradingList extends CopytradingListModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Copiers item model class.
 abstract class CopiersItemModel extends Equatable {
@@ -201,7 +201,7 @@ class CopiersItem extends CopiersItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Traders item model class.
 abstract class TradersItemModel extends Equatable {
@@ -321,5 +321,5 @@ class TradersItem extends TradersItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

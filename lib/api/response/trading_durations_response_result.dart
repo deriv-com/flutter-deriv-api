@@ -89,7 +89,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trading durations item model class.
 abstract class TradingDurationsItemModel extends Equatable {
@@ -176,7 +176,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Data item model class.
 abstract class DataItemModel extends Equatable {
@@ -282,7 +282,7 @@ class DataItem extends DataItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Market model class.
 abstract class MarketModel extends Equatable {
@@ -338,7 +338,7 @@ class Market extends MarketModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Submarket model class.
 abstract class SubmarketModel extends Equatable {
@@ -394,7 +394,7 @@ class Submarket extends SubmarketModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Symbol item model class.
 abstract class SymbolItemModel extends Equatable {
@@ -450,7 +450,7 @@ class SymbolItem extends SymbolItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trade durations item model class.
 abstract class TradeDurationsItemModel extends Equatable {
@@ -523,7 +523,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Durations item model class.
 abstract class DurationsItemModel extends Equatable {
@@ -599,7 +599,7 @@ class DurationsItem extends DurationsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trade type model class.
 abstract class TradeTypeModel extends Equatable {
@@ -655,7 +655,7 @@ class TradeType extends TradeTypeModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trading durations item market model class.
 abstract class TradingDurationsItemMarketModel extends Equatable {
@@ -712,7 +712,7 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Trading durations item submarket model class.
 abstract class TradingDurationsItemSubmarketModel extends Equatable {
@@ -769,5 +769,5 @@ class TradingDurationsItemSubmarket extends TradingDurationsItemSubmarketModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

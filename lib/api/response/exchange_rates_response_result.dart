@@ -82,7 +82,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Exchange rates model class.
 abstract class ExchangeRatesModel extends Equatable {
@@ -155,5 +155,5 @@ class ExchangeRates extends ExchangeRatesModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

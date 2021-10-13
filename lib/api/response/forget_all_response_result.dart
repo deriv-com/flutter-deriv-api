@@ -88,5 +88,5 @@ class ForgetAllResponse extends ForgetAllResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

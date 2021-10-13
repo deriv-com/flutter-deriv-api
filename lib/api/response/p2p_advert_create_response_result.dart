@@ -80,7 +80,7 @@ class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -515,7 +515,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel extends Equatable {
@@ -602,7 +602,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
@@ -684,7 +684,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
 abstract class FieldsPropertyModel extends Equatable {
@@ -762,5 +762,5 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

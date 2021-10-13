@@ -79,7 +79,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// App markup details model class.
 abstract class AppMarkupDetailsModel extends Equatable {
@@ -138,7 +138,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel extends Equatable {
@@ -275,5 +275,5 @@ class TransactionsItem extends TransactionsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

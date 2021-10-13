@@ -53,7 +53,7 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -123,5 +123,5 @@ class P2pOrderCancel extends P2pOrderCancelModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

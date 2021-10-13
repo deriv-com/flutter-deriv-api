@@ -80,7 +80,7 @@ class PingResponse extends PingResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// PingEnum mapper.

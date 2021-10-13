@@ -56,7 +56,7 @@ class P2pAdvertiserRelationsResponse
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser relations model class.
 abstract class P2pAdvertiserRelationsModel extends Equatable {
@@ -130,7 +130,7 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Blocked advertisers item model class.
 abstract class BlockedAdvertisersItemModel extends Equatable {
@@ -197,7 +197,7 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Favourite advertisers item model class.
 abstract class FavouriteAdvertisersItemModel extends Equatable {
@@ -264,5 +264,5 @@ class FavouriteAdvertisersItem extends FavouriteAdvertisersItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

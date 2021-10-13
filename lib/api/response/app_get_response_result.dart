@@ -187,7 +187,7 @@ class AppGetResponse extends AppGetResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// App get model class.
 abstract class AppGetModel extends Equatable {
@@ -345,5 +345,5 @@ class AppGet extends AppGetModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

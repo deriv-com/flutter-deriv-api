@@ -86,7 +86,7 @@ class SetFinancialAssessmentResponse
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Set financial assessment model class.
 abstract class SetFinancialAssessmentModel extends Equatable {
@@ -164,5 +164,5 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

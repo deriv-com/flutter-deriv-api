@@ -76,5 +76,5 @@ class P2pOrderInfoRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[id!];
+  List<Object?> get props => <Object?>[id];
 }

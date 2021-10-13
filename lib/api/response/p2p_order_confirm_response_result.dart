@@ -53,7 +53,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -128,5 +128,5 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

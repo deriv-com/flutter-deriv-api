@@ -88,7 +88,7 @@ class AppListResponse extends AppListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// App list item model class.
 abstract class AppListItemModel extends Equatable {
@@ -246,5 +246,5 @@ class AppListItem extends AppListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

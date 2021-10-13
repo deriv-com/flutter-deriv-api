@@ -154,7 +154,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -270,7 +270,7 @@ class P2pOrderList extends P2pOrderListModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// List item model class.
 abstract class ListItemModel extends Equatable {
@@ -561,7 +561,7 @@ class ListItem extends ListItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Advert details model class.
 abstract class AdvertDetailsModel extends Equatable {
@@ -639,7 +639,7 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel extends Equatable {
@@ -726,7 +726,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Dispute details model class.
 abstract class DisputeDetailsModel extends Equatable {
@@ -782,7 +782,7 @@ class DisputeDetails extends DisputeDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Client details model class.
 abstract class ClientDetailsModel extends Equatable {
@@ -868,7 +868,7 @@ class ClientDetails extends ClientDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -914,5 +914,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -90,7 +90,7 @@ class CashierResponse extends CashierResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// ActionEnum mapper.
@@ -177,7 +177,7 @@ class CashierObject extends CashierObjectModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Deposit model class.
 abstract class DepositModel extends Equatable {
@@ -223,5 +223,5 @@ class Deposit extends DepositModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

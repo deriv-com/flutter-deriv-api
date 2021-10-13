@@ -75,7 +75,7 @@ class CancelResponse extends CancelResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Cancel model class.
 abstract class CancelModel extends Equatable {
@@ -161,5 +161,5 @@ class Cancel extends CancelModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

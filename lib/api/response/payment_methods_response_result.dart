@@ -86,7 +86,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Payment methods item model class.
 abstract class PaymentMethodsItemModel extends Equatable {
@@ -283,7 +283,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel extends Equatable {
@@ -340,7 +340,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel extends Equatable {
@@ -397,5 +397,5 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

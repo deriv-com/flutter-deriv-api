@@ -77,5 +77,5 @@ class TimeResponse extends TimeResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

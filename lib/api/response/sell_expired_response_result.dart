@@ -53,7 +53,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Sell expired model class.
 abstract class SellExpiredModel extends Equatable {
@@ -99,5 +99,5 @@ class SellExpired extends SellExpiredModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

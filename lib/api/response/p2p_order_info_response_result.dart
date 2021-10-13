@@ -212,7 +212,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -576,7 +576,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Advert details model class.
 abstract class AdvertDetailsModel extends Equatable {
@@ -654,7 +654,7 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel extends Equatable {
@@ -741,7 +741,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Client details model class.
 abstract class ClientDetailsModel extends Equatable {
@@ -827,7 +827,7 @@ class ClientDetails extends ClientDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Dispute details model class.
 abstract class DisputeDetailsModel extends Equatable {
@@ -883,7 +883,7 @@ class DisputeDetails extends DisputeDetailsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
@@ -965,7 +965,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
 abstract class FieldsPropertyModel extends Equatable {
@@ -1044,7 +1044,7 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -1090,5 +1090,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

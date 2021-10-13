@@ -80,7 +80,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel extends Equatable {
@@ -458,5 +458,5 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

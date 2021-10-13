@@ -123,7 +123,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel extends Equatable {
@@ -441,7 +441,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
@@ -487,5 +487,5 @@ class Subscription extends SubscriptionModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

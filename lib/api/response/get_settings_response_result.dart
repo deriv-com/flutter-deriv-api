@@ -133,7 +133,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Get settings model class.
 abstract class GetSettingsModel extends Equatable {
@@ -489,7 +489,7 @@ class GetSettings extends GetSettingsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Feature flag model class.
 abstract class FeatureFlagModel extends Equatable {
@@ -535,5 +535,5 @@ class FeatureFlag extends FeatureFlagModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

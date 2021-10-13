@@ -90,7 +90,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel extends Equatable {
@@ -177,5 +177,5 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

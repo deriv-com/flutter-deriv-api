@@ -80,7 +80,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -414,5 +414,5 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

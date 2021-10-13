@@ -88,7 +88,7 @@ class TradingServersResponse extends TradingServersResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -306,7 +306,7 @@ class TradingServersItem extends TradingServersItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Geolocation model class.
 abstract class GeolocationModel extends Equatable {
@@ -372,5 +372,5 @@ class Geolocation extends GeolocationModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

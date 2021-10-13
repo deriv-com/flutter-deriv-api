@@ -84,7 +84,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Reality check model class.
 abstract class RealityCheckModel extends Equatable {
@@ -210,5 +210,5 @@ class RealityCheck extends RealityCheckModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -89,7 +89,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Oauth apps item model class.
 abstract class OauthAppsItemModel extends Equatable {
@@ -184,5 +184,5 @@ class OauthAppsItem extends OauthAppsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

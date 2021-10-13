@@ -78,7 +78,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// App update model class.
 abstract class AppUpdateModel extends Equatable {
@@ -236,5 +236,5 @@ class AppUpdate extends AppUpdateModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

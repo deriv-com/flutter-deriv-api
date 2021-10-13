@@ -77,7 +77,7 @@ class StatementResponse extends StatementResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// ActionTypeEnum mapper.
@@ -189,7 +189,7 @@ class Statement extends StatementModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel extends Equatable {
@@ -398,7 +398,7 @@ class TransactionsItem extends TransactionsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Fees model class.
 abstract class FeesModel extends Equatable {
@@ -474,7 +474,7 @@ class Fees extends FeesModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// From model class.
 abstract class FromModel extends Equatable {
@@ -520,7 +520,7 @@ class From extends FromModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// To model class.
 abstract class ToModel extends Equatable {
@@ -566,5 +566,5 @@ class To extends ToModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

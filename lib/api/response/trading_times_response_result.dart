@@ -80,7 +80,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 
 /// TradingDaysItemEnum mapper.
@@ -170,7 +170,7 @@ class TradingTimes extends TradingTimesModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Markets item model class.
 abstract class MarketsItemModel extends Equatable {
@@ -238,7 +238,7 @@ class MarketsItem extends MarketsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Submarkets item model class.
 abstract class SubmarketsItemModel extends Equatable {
@@ -306,7 +306,7 @@ class SubmarketsItem extends SubmarketsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Symbols item model class.
 abstract class SymbolsItemModel extends Equatable {
@@ -420,5 +420,5 @@ class SymbolsItem extends SymbolsItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

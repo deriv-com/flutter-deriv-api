@@ -53,7 +53,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Document upload model class.
 abstract class DocumentUploadModel extends Equatable {
@@ -150,5 +150,5 @@ class DocumentUpload extends DocumentUploadModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

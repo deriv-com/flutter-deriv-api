@@ -80,7 +80,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Get limits model class.
 abstract class GetLimitsModel extends Equatable {
@@ -282,7 +282,7 @@ class GetLimits extends GetLimitsModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel extends Equatable {
@@ -359,7 +359,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Payout per symbol model class.
 abstract class PayoutPerSymbolModel extends Equatable {
@@ -419,7 +419,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Non atm model class.
 abstract class NonAtmModel extends Equatable {
@@ -475,5 +475,5 @@ class NonAtm extends NonAtmModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

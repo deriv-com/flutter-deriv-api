@@ -102,7 +102,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Landing company model class.
 abstract class LandingCompanyModel extends Equatable {
@@ -449,7 +449,7 @@ class LandingCompany extends LandingCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade financial company model class.
 abstract class DxtradeFinancialCompanyModel extends Equatable {
@@ -500,7 +500,7 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Standard model class.
 abstract class StandardModel extends Equatable {
@@ -708,7 +708,7 @@ class Standard extends StandardModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade gaming company model class.
 abstract class DxtradeGamingCompanyModel extends Equatable {
@@ -759,7 +759,7 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade gaming company standard model class.
 abstract class DxtradeGamingCompanyStandardModel extends Equatable {
@@ -968,7 +968,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Financial company model class.
 abstract class FinancialCompanyModel extends Equatable {
@@ -1177,7 +1177,7 @@ class FinancialCompany extends FinancialCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Gaming company model class.
 abstract class GamingCompanyModel extends Equatable {
@@ -1385,7 +1385,7 @@ class GamingCompany extends GamingCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt financial company model class.
 abstract class MtFinancialCompanyModel extends Equatable {
@@ -1464,7 +1464,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Financial model class.
 abstract class FinancialModel extends Equatable {
@@ -1672,7 +1672,7 @@ class Financial extends FinancialModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Financial stp model class.
 abstract class FinancialStpModel extends Equatable {
@@ -1880,7 +1880,7 @@ class FinancialStp extends FinancialStpModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Swap free model class.
 abstract class SwapFreeModel extends Equatable {
@@ -2088,7 +2088,7 @@ class SwapFree extends SwapFreeModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt gaming company model class.
 abstract class MtGamingCompanyModel extends Equatable {
@@ -2153,7 +2153,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt gaming company financial model class.
 abstract class MtGamingCompanyFinancialModel extends Equatable {
@@ -2362,7 +2362,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Mt gaming company swap free model class.
 abstract class MtGamingCompanySwapFreeModel extends Equatable {
@@ -2571,5 +2571,5 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -98,7 +98,7 @@ class SellResponse extends SellResponseModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
 /// Sell model class.
 abstract class SellModel extends Equatable {
@@ -184,5 +184,5 @@ class Sell extends SellModel {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
