@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_single_quotes
-import 'package:equatable/equatable.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';    
 
+import 'package:equatable/equatable.dart';
+
+import 'package:flutter_deriv_api/helpers/helpers.dart';    
 /// Trading platform investor password reset response model class.
 abstract class TradingPlatformInvestorPasswordResetResponseModel
     extends Equatable {

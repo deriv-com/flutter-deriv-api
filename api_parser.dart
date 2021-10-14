@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:build/build.dart';
+import 'package:recase/recase.dart';
+
 import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
 import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
-import 'package:recase/recase.dart';
 
 Builder apiParser(final BuilderOptions _) => APIParser();
 
@@ -21,12 +22,11 @@ class APIParser extends Builder {
           (path.split('/').last.split('_')..removeLast()).join('_');
       final String className = '${ReCase(fileBaseName).pascalCase}Response';
 
-      final List<SchemaModel> rootChildren =
-          JsonSchemaParser.getClassTypesFor(JsonSchemaParser.preProcessModels(
-        json.decode(
-          File(path).readAsStringSync(),
+      final List<SchemaModel> rootChildren = JsonSchemaParser.getClassTypesFor(
+        JsonSchemaParser.preProcessModels(
+          json.decode(File(path).readAsStringSync()),
         ),
-      ));
+      );
 
       final String leftPartPath =
           (path.split('.').first.split('/')..removeLast()).join('/');
@@ -34,13 +34,16 @@ class APIParser extends Builder {
 
       final File methodsFile =
           File('$leftPartPath/methods/${rightPartPath}_methods.json');
+
       if (methodsFile.existsSync()) {
         methodsJSON = json.decode(methodsFile.readAsStringSync());
       }
 
       final List<StringBuffer> source = JsonSchemaParser().getClasses(
         SchemaModel.newModelWithChildren(
-            children: rootChildren, className: className),
+          children: rootChildren,
+          className: className,
+        ),
         methodsString: methodsJSON?['methods'] ?? '',
         isRoot: true,
       );
@@ -51,19 +54,17 @@ class APIParser extends Builder {
             "// TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.\n import 'package:flutter_deriv_api/helpers/helpers.dart';",
       );
 
-      result = _addLinterSilencers(source: result);
+      result = _addLinterSilencers(result);
 
       final File output =
           File('lib/api/response/${fileBaseName}_response_result.dart');
 
-      if (!output.existsSync()) {
-        output.createSync(recursive: true);
-      } else {
-        output.writeAsStringSync('');
-      }
+      !output.existsSync()
+          ? output.createSync(recursive: true)
+          : output.writeAsStringSync('');
 
       for (final StringBuffer item in result) {
-        output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
+        output.writeAsStringSync('$item', mode: FileMode.append);
       }
 
       JsonSchemaParser.classNamesArray.clear();
@@ -85,17 +86,16 @@ List<StringBuffer> _addImports({
   required String imports,
 }) {
   final String extraImports =
-      source.isNotEmpty ? "import 'package:equatable/equatable.dart';\n" : '';
+      source.isNotEmpty ? "import 'package:equatable/equatable.dart';\n\n" : '';
 
-  final StringBuffer baseImports = StringBuffer('$extraImports$imports')
-    ..write('\n\n');
+  final StringBuffer baseImports = StringBuffer('$extraImports$imports\n');
 
   return <StringBuffer>[baseImports, ...source];
 }
 
-List<StringBuffer> _addLinterSilencers({required List<StringBuffer> source}) {
+List<StringBuffer> _addLinterSilencers(List<StringBuffer> source) {
   final StringBuffer silencers =
-      StringBuffer('// ignore_for_file: prefer_single_quotes\n');
+      StringBuffer('// ignore_for_file: prefer_single_quotes\n\n');
 
   return <StringBuffer>[silencers, ...source];
 }

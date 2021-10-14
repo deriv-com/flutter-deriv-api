@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_single_quotes
+
 import 'package:equatable/equatable.dart';
+
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -20,7 +22,6 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-
 
 /// P2p order info response model class.
 abstract class P2pOrderInfoResponseModel extends Equatable {

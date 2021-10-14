@@ -1,7 +1,8 @@
 import 'package:dart_style/dart_style.dart';
+import 'package:recase/recase.dart';
+
 import 'package:flutter_deriv_api/helpers/enum_helper.dart';
 import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
-import 'package:recase/recase.dart';
 
 /// [JsonSchemaParser] is a utility class for extracting main and nested classes from JSON schema contents.
 /// for using this utility first you should call `preProcessModels()` method and pass decoded JSON schema to it,
@@ -101,7 +102,7 @@ class JsonSchemaParser {
         ''',
       );
 
-    return DartFormatter().format(result.toString());
+    return DartFormatter().format('$result');
   }
 
   /// Pass decoded JSON schema to this method for getting list of objects.
@@ -119,25 +120,28 @@ class JsonSchemaParser {
             in schemaProperties.entries) {
           final List<dynamic>? requiredFields = schema['required'];
           final SchemaModel? processed = _processEntry(
-            entry,
+            entry: entry,
             parentModel: parentModel,
             isRequired: requiredFields?.contains(entry.key) ?? false,
           );
+
           if (processed != null) {
             if (processed.schemaType == cashierMultiType) {
               models.addAll(processed.multiTypes);
               continue;
             }
+
             models.add(processed);
           }
         }
       }
     }
+
     return models;
   }
 
-  static SchemaModel? _processEntry(
-    MapEntry<String, dynamic> entry, {
+  static SchemaModel? _processEntry({
+    required MapEntry<String, dynamic> entry,
     required bool isRequired,
     SchemaModel? parentModel,
   }) {
@@ -168,23 +172,26 @@ class JsonSchemaParser {
     if (entry.value['enum'] != null) {
       if (type == 'string') {
         theModel.enumValues = List<String>.from(
-          entry.value['enum'].map(
-            (dynamic x) => x.toString(),
-          ),
+          entry.value['enum'].map((dynamic enumValue) => '$enumValue'),
         );
       }
     }
 
     if (theModel.schemaType == limitsMultiType) {
       return _processEntry(
-        MapEntry<String, dynamic>(
-            theModel.schemaTitle, entry.value['oneOf'][0]),
+        entry: MapEntry<String, dynamic>(
+          theModel.schemaTitle,
+          entry.value['oneOf'].first,
+        ),
         isRequired: true,
       );
     } else if (theModel.schemaType == cashierMultiType) {
       for (final Map<String, dynamic> item in entry.value['oneOf']) {
         final SchemaModel? entry = _processEntry(
-          MapEntry<String, dynamic>('${schemaTitle}_${item['type']}', item),
+          entry: MapEntry<String, dynamic>(
+            '${schemaTitle}_${item['type']}',
+            item,
+          ),
           isRequired: false,
         );
 
@@ -197,6 +204,7 @@ class JsonSchemaParser {
     if (theModel.schemaType == objectType) {
       final List<SchemaModel> children =
           preProcessModels(entry.value, parentModel: theModel);
+
       for (final SchemaModel child in children) {
         child.parent = theModel;
       }
@@ -207,7 +215,7 @@ class JsonSchemaParser {
       final MapEntry<String, dynamic> typeEntry = MapEntry<String, dynamic>(
           '${entry.key}_property', typeMap.entries.first.value);
       final SchemaModel? childrenType =
-          _processEntry(typeEntry, isRequired: true);
+          _processEntry(entry: typeEntry, isRequired: true);
 
       if (childrenType != null) {
         childrenType.parent = theModel;
@@ -218,7 +226,7 @@ class JsonSchemaParser {
 
       theModel.schemaArrType = arrChildEntry != null
           ? _processEntry(
-              MapEntry<String, dynamic>(
+              entry: MapEntry<String, dynamic>(
                 '${schemaTitle}Item',
                 arrChildEntry,
               ),
@@ -247,19 +255,27 @@ class JsonSchemaParser {
     }
 
     if (model.isEnum) {
-      if (enumModels.any(
-        (SchemaModel oldEnum) => _isEnumsEqual(lhs: oldEnum, rhs: model),
-      )) {
+      final bool isDuplicateEnum = enumModels.any(
+        (SchemaModel oldEnum) =>
+            _isEnumsEqual(oldEnum: oldEnum, newEnum: model),
+      );
+
+      if (isDuplicateEnum) {
         return model.classType!;
       }
-      if (enumModels.any((SchemaModel previousEnumModel) =>
-          previousEnumModel.schemaTitle == model.schemaTitle)) {
+
+      final bool isDuplicateSchemaName = enumModels.any(
+        (SchemaModel previousEnumModel) =>
+            previousEnumModel.schemaTitle == model.schemaTitle,
+      );
+
+      if (isDuplicateSchemaName) {
         enumModels.add(model);
 
         final String? parentName = model.parent?.className;
 
         return parentName == null
-            ? '${model.enumName}2'
+            ? '${model.enumName}2' // TODO(mohammad): find better solution for duplicate name.
             : '$parentName${model.enumName}';
       }
 
@@ -307,21 +323,25 @@ class JsonSchemaParser {
   }
 
   static bool _isEnumsEqual({
-    required SchemaModel lhs,
-    required SchemaModel rhs,
+    required SchemaModel oldEnum,
+    required SchemaModel newEnum,
   }) {
-    if (lhs.schemaTitle != rhs.schemaTitle) {
+    if (oldEnum.schemaTitle != newEnum.schemaTitle) {
       return false;
     }
-    if (lhs.enumValues!.length == rhs.enumValues!.length) {
-      for (int i = 0; i < lhs.enumValues!.length; i++) {
-        if (lhs.enumValues![i] != rhs.enumValues![i]) {
+
+    if (oldEnum.enumValues!.length == newEnum.enumValues!.length) {
+      for (int i = 0; i < oldEnum.enumValues!.length; i++) {
+        if (oldEnum.enumValues![i] != newEnum.enumValues![i]) {
           return false;
         }
       }
-      rhs.classType = lhs.classType;
+
+      newEnum.classType = oldEnum.classType;
+
       return true;
     }
+
     return false;
   }
 
@@ -352,6 +372,7 @@ class JsonSchemaParser {
     }).join('\n');
     result.write(enumString);
     JsonSchemaParser.enumModels.clear();
+
     return result;
   }
 
@@ -363,18 +384,17 @@ class JsonSchemaParser {
     final bool descriptionHasInSeconds =
         model.description?.toLowerCase().contains('in seconds') ?? false;
 
-    if ((descriptionHasEpoch || titleHasDate || titleHasTime) &&
-        !descriptionHasInSeconds) {
-      return true;
-    }
+    final bool isDateTime =
+        (descriptionHasEpoch || titleHasDate || titleHasTime) &&
+            !descriptionHasInSeconds;
 
-    return false;
+    return isDateTime;
   }
 
   static String _getEquatableFields(String classFullName) {
     switch (classFullName) {
       case 'Proposal':
-        return '<Object?>[id,askPrice, commission, dateExpiry, multiplier, cancellation, limitOrder]';
+        return '<Object?>[id, askPrice, commission, dateExpiry, multiplier, cancellation, limitOrder]';
       case 'LimitOrder':
         return '<Object?>[stopLoss, stopOut, takeProfit]';
       case 'StopLoss':
@@ -415,9 +435,7 @@ class JsonSchemaParser {
         continue;
       }
 
-      getClasses(
-        theModel.isArray ? theModel.schemaArrType! : theModel,
-      );
+      getClasses(theModel.isArray ? theModel.schemaArrType! : theModel);
     }
 
     return _result;
@@ -428,6 +446,7 @@ class JsonSchemaParser {
       model.className = model.parent?.className == null
           ? '${ReCase(model.schemaTitle).pascalCase}${classNamesArray.length}'
           : '${model.parent?.className}${ReCase(model.schemaTitle).pascalCase}';
+
       if (classNamesArray.contains(model.className)) {
         // Rare situation where new generated name already exists.
         model.className = '${model.className}2';
@@ -438,12 +457,13 @@ class JsonSchemaParser {
   }
 
   static String _getSchemaType(MapEntry<String, dynamic> entry) {
-    String? type;
+    String? schemaType;
+
     // Check if there are multiple types for this entry.
     if (entry.value['type'] is List) {
       final List<dynamic> types = entry.value['type'];
       final bool isNullable =
-          types.where((dynamic e) => e == 'null').isNotEmpty;
+          types.where((dynamic type) => type == 'null').isNotEmpty;
 
       if (isNullable) {
         entry.value['isNullable'] = true;
@@ -451,8 +471,8 @@ class JsonSchemaParser {
 
       // Check if its just nullable
       if (types.length == 2 && isNullable) {
-        type = types.firstWhere(
-          (dynamic e) => e != 'null',
+        schemaType = types.firstWhere(
+          (dynamic type) => type != 'null',
           orElse: () => 'string',
         );
       } else {
@@ -460,27 +480,29 @@ class JsonSchemaParser {
         // if provided types are both number and integer , we apply number for the type of entity,
         // else case, type is dynamic.
         if (types
-            .where((dynamic e) => e == 'integer' && e == 'number')
+            .where((dynamic type) => type == 'integer' && type == 'number')
             .isNotEmpty) {
-          type = 'number';
+          schemaType = 'number';
         } else if (types
-            .where((dynamic e) => e == 'number' && e == 'string')
+            .where((dynamic type) => type == 'number' && type == 'string')
             .isNotEmpty) {
-          type = 'number';
+          schemaType = 'number';
         } else {
-          type = dynamicType;
+          schemaType = dynamicType;
         }
       }
     } else {
-      type = entry.value['type'];
+      schemaType = entry.value['type'];
+
       // Check if it has patternProperties.
-      if (type == objectType && entry.value['patternProperties'] != null) {
-        type = patternObjectType;
+      if (schemaType == objectType &&
+          entry.value['patternProperties'] != null) {
+        schemaType = patternObjectType;
       }
 
       // Check if its Multi Type.
-      if (type == null && entry.value['oneOf'] != null) {
-        // hard code
+      if (schemaType == null && entry.value['oneOf'] != null) {
+        // hard coded.
         if (entry.key == 'limits') {
           return limitsMultiType;
         } else if (entry.key == 'cashier') {
@@ -488,13 +510,14 @@ class JsonSchemaParser {
         }
       }
     }
-    if (type == objectType && entry.value['properties'] == null) {
+
+    if (schemaType == objectType && entry.value['properties'] == null) {
       // This is where the provided entry is [object] but doesn't have [properties],
       // Assume this case as Map<String,dynamic> at the end.
-      type = objectUnknownType;
+      schemaType = objectUnknownType;
     }
 
-    return type ?? objectUnknownType;
+    return schemaType ?? objectUnknownType;
   }
 
   static bool _isBoolean(dynamic entry) {

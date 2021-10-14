@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_single_quotes
+
 import 'package:equatable/equatable.dart';
+
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api_token_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api_token_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-
 
 /// Api token response model class.
 abstract class ApiTokenResponseModel extends Equatable {
