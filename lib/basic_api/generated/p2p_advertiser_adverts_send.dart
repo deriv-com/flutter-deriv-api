@@ -31,10 +31,10 @@ class P2pAdvertiserAdvertsRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] Used for paging.
+  /// [Optional] Used for paging. This value will also apply to subsription responses.
   final int? limit;
 
-  /// [Optional] Used for paging.
+  /// [Optional] Used for paging. This value will also apply to subsription responses.
   final int? offset;
 
   /// Must be `true`

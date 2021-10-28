@@ -15,7 +15,7 @@ class AppUpdateRequest extends Request {
     this.googleplay,
     this.homepage,
     required this.name,
-    required this.redirectUri,
+    this.redirectUri,
     required this.scopes,
     this.verificationUri,
     Map<String, dynamic>? passthrough,
@@ -66,7 +66,7 @@ class AppUpdateRequest extends Request {
   /// Application name.
   final String? name;
 
-  /// The URL to redirect to after a successful login.
+  /// [Optional] The URL to redirect to after a successful login. Required if charging markup percentage.
   final String? redirectUri;
 
   /// Change scopes will revoke all user's grants and log them out.

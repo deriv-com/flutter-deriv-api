@@ -35,16 +35,16 @@ class IdentityVerificationDocumentAddRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// The unique identification number on the provided document.
+  /// The identification number of the document.
   final String? documentNumber;
 
-  /// Type of the document provided by the user, e.g. national_id, passport, etc (obtained from `residence_list` call).
+  /// The type of the document based on provided `issuing_country` (can obtained from `residence_list` call).
   final String? documentType;
 
   /// Must be `true`
   final bool? identityVerificationDocumentAdd;
 
-  /// 2-letter country code (obtained from `residence_list` call).
+  /// 2-letter country code (can obtained from `residence_list` call).
   final String? issuingCountry;
 
   /// Converts this instance to JSON
