@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "P2P Advertiser Payment Methods (request)",
+  "description": "Manage or list P2P advertiser payment methods.",
+  "beta": 1,
+  "hidden": 1,
+  "type": "object",
+  "auth_required": 1,
+  "auth_scopes": ["payments"],
+  "additionalProperties": false,
+  "required": ["p2p_advertiser_payment_methods"],
+  "properties": {
+    "p2p_advertiser_payment_methods": {
+      "description": "Must be 1",
+      "type": "integer",
+      "enum": [1]
+    },
+    "create": {
+      "description": "Contains new payment method entries.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 2,
+        "required": ["method"],
+        "properties": {
+          "method": {
+            "description": "Payment method identifer.",
+            "type": "string",
+            "pattern": "^[a-z0-9_]{1,30}$"
+          }
+        },
+        "maxProperties": 100,
+        "patternProperties": {
+          "^[a-z0-9_]{1,30}$": {
+            "description": "Payment method field value.",
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      },
+      "maxItems": 100,
+      "minItems": 1
+    },
+    "delete": {
+      "description": "Contains payment methods to delete.",
+      "type": "array",
+      "items": {
+        "description": "Advertiser payment method ID.",
+        "type": "number"
+      },
+      "maxItems": 100,
+      "minItems": 1
+    },
+    "update": {
+      "description": "Contains payment methods to update.",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "patternProperties": {
+        "^[0-9]{1,8}$": {
+          "description": "Advertiser payment method ID.",
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "maxProperties": 100,
+          "patternProperties": {
+            "^[a-z0-9_]{1,30}$": {
+              "description": "Payment field to value to update.",
+              "type": "string",
+              "maxLength": 300
+            }
+          }
+        }
+      }
+    },
+    "passthrough": {
+      "description": "[Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.",
+      "type": "object"
+    },
+    "req_id": {
+      "description": "[Optional] Used to map request to response.",
+      "type": "integer"
+    }
+  }
+}
