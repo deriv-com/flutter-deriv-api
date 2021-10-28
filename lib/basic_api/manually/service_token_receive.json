@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Service Token (response)",
+  "description": "A message with tokens and data for requested services",
+  "type": "object",
+  "required": ["echo_req", "msg_type"],
+  "properties": {
+    "service_token": {
+      "description": "Service specific tokens and data.",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "banxa": {
+          "description": "Banxa order data.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token": {
+              "description": "Created order id reference token.",
+              "type": "string"
+            },
+            "url": {
+              "description": "Banxa order checkout url.",
+              "type": "string"
+            },
+            "url_iframe": {
+              "description": "Banxa order checkout iframe url.",
+              "type": "string"
+            }
+          }
+        },
+        "dxtrade": {
+          "description": "Deriv X data.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token": {
+              "description": "Deriv X login token.",
+              "type": "string"
+            }
+          }
+        },
+        "onfido": {
+          "description": "Onfido data.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token": {
+              "description": "Onfido token.",
+              "type": "string"
+            }
+          }
+        },
+        "sendbird": {
+          "description": "Sendbird data.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "app_id": {
+              "description": "Sendbird application ID.",
+              "type": "string"
+            },
+            "expiry_time": {
+              "description": "The epoch time in which the token will be expired. Note: the token could be expired sooner than this, due to different reasons.",
+              "type": "integer"
+            },
+            "token": {
+              "description": "Sendbird token.",
+              "type": "string"
+            }
+          }
+        },
+        "wyre": {
+          "description": "Wyre reservation data.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token": {
+              "description": "Wyre reservation id token",
+              "type": "string"
+            },
+            "url": {
+              "description": "Wyre reservation URL",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "echo_req": {
+      "description": "Echo of the request made.",
+      "type": "object"
+    },
+    "msg_type": {
+      "description": "Action name of the request made.",
+      "type": "string",
+      "enum": ["service_token"]
+    },
+    "req_id": {
+      "description": "Optional field sent in request to map to response, present only when request contains `req_id`.",
+      "type": "integer"
+    }
+  }
+}
