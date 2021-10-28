@@ -128,6 +128,8 @@ export "p2p_order_info_receive.dart";
 export "p2p_order_info_send.dart";
 export "p2p_order_list_receive.dart";
 export "p2p_order_list_send.dart";
+export "p2p_payment_methods_receive.dart";
+export "p2p_payment_methods_send.dart";
 export "payment_methods_receive.dart";
 export "payment_methods_send.dart";
 export "paymentagent_create_receive.dart";
