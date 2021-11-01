@@ -59,6 +59,7 @@ import '../generated/p2p_advert_update_receive.dart';
 import '../generated/p2p_advertiser_adverts_receive.dart';
 import '../generated/p2p_advertiser_create_receive.dart';
 import '../generated/p2p_advertiser_info_receive.dart';
+import '../generated/p2p_advertiser_payment_methods_receive.dart';
 import '../generated/p2p_advertiser_relations_receive.dart';
 import '../generated/p2p_advertiser_update_receive.dart';
 import '../generated/p2p_chat_create_receive.dart';
@@ -68,6 +69,7 @@ import '../generated/p2p_order_create_receive.dart';
 import '../generated/p2p_order_dispute_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
+import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
@@ -226,6 +228,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pAdvertiserCreateResponse.fromJson(responseMap);
     case 'p2p_advertiser_info':
       return P2pAdvertiserInfoResponse.fromJson(responseMap);
+    case 'p2p_advertiser_payment_methods':
+      return P2pAdvertiserPaymentMethodsResponse.fromJson(responseMap);
     case 'p2p_advertiser_relations':
       return P2pAdvertiserRelationsResponse.fromJson(responseMap);
     case 'p2p_advertiser_update':
@@ -244,6 +248,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderInfoResponse.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListResponse.fromJson(responseMap);
+    case 'p2p_payment_methods':
+      return P2pPaymentMethodsResponse.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsResponse.fromJson(responseMap);
     case 'paymentagent_create':
