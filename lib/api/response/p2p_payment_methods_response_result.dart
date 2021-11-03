@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p payment methods response model class.
 abstract class P2pPaymentMethodsResponseModel extends Equatable {
