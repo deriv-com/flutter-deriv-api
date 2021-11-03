@@ -59,14 +59,17 @@ import '../generated/p2p_advert_update_receive.dart';
 import '../generated/p2p_advertiser_adverts_receive.dart';
 import '../generated/p2p_advertiser_create_receive.dart';
 import '../generated/p2p_advertiser_info_receive.dart';
+import '../generated/p2p_advertiser_payment_methods_receive.dart';
 import '../generated/p2p_advertiser_relations_receive.dart';
 import '../generated/p2p_advertiser_update_receive.dart';
 import '../generated/p2p_chat_create_receive.dart';
 import '../generated/p2p_order_cancel_receive.dart';
 import '../generated/p2p_order_confirm_receive.dart';
 import '../generated/p2p_order_create_receive.dart';
+import '../generated/p2p_order_dispute_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
+import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
@@ -80,11 +83,13 @@ import '../generated/profit_table_receive.dart';
 import '../generated/proposal_open_contract_receive.dart';
 import '../generated/proposal_receive.dart';
 import '../generated/reality_check_receive.dart';
+import '../generated/reset_password_receive.dart';
 import '../generated/residence_list_receive.dart';
 import '../generated/revoke_oauth_app_receive.dart';
 import '../generated/sell_contract_for_multiple_accounts_receive.dart';
 import '../generated/sell_expired_receive.dart';
 import '../generated/sell_receive.dart';
+import '../generated/service_token_receive.dart';
 import '../generated/set_account_currency_receive.dart';
 import '../generated/set_financial_assessment_receive.dart';
 import '../generated/set_self_exclusion_receive.dart';
@@ -105,7 +110,6 @@ import '../generated/transaction_receive.dart';
 import '../generated/transfer_between_accounts_receive.dart';
 import '../generated/verify_email_receive.dart';
 import '../generated/website_status_receive.dart';
-import '../manually/reset_password_receive.dart';
 import '../response.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -224,6 +228,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pAdvertiserCreateReceive.fromJson(responseMap);
     case 'p2p_advertiser_info':
       return P2pAdvertiserInfoReceive.fromJson(responseMap);
+    case 'p2p_advertiser_payment_methods':
+      return P2pAdvertiserPaymentMethodsReceive.fromJson(responseMap);
     case 'p2p_advertiser_relations':
       return P2pAdvertiserRelationsReceive.fromJson(responseMap);
     case 'p2p_advertiser_update':
@@ -236,10 +242,14 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderConfirmReceive.fromJson(responseMap);
     case 'p2p_order_create':
       return P2pOrderCreateReceive.fromJson(responseMap);
+    case 'p2p_order_dispute':
+      return P2pOrderDisputeReceive.fromJson(responseMap);
     case 'p2p_order_info':
       return P2pOrderInfoReceive.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListReceive.fromJson(responseMap);
+    case 'p2p_payment_methods':
+      return P2pPaymentMethodsReceive.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsReceive.fromJson(responseMap);
     case 'paymentagent_create':
@@ -266,6 +276,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ProposalReceive.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckReceive.fromJson(responseMap);
+    case 'reset_password':
+      return ResetPasswordReceive.fromJson(responseMap);
     case 'residence_list':
       return ResidenceListReceive.fromJson(responseMap);
     case 'revoke_oauth_app':
@@ -276,6 +288,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return SellExpiredReceive.fromJson(responseMap);
     case 'sell':
       return SellReceive.fromJson(responseMap);
+    case 'service_token':
+      return ServiceTokenReceive.fromJson(responseMap);
     case 'set_account_currency':
       return SetAccountCurrencyReceive.fromJson(responseMap);
     case 'set_financial_assessment':
@@ -316,8 +330,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return VerifyEmailReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
-    case 'reset_password':
-      return ResetPasswordResponse.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);

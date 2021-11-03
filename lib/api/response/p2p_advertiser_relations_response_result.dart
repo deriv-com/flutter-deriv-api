@@ -2,8 +2,8 @@
 
 import 'package:equatable/equatable.dart';
 
-// TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.
- import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// P2p advertiser relations response model class.
 abstract class P2pAdvertiserRelationsResponseModel extends Equatable {
   /// Initializes P2p advertiser relations response model class .

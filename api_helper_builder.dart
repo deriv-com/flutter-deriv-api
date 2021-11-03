@@ -19,7 +19,6 @@ class APIHelperBuilder extends Builder {
   Future<void> build(BuildStep buildStep) async {
     try {
       generatedResponses.sort();
-      _addManualClasses();
 
       await buildStep.writeAsString(
         buildStep.inputId.changeExtension('.helper.dart'),
@@ -52,15 +51,5 @@ class APIHelperBuilder extends Builder {
         ..severe('Stack trace $stack');
       return;
     }
-  }
-
-  void _addManualClasses() {
-    generatedResponses.add(
-      GeneratedResponseJson(
-          msgType: 'reset_password',
-          fileName: 'reset_password_receive',
-          fullClassName: 'ResetPasswordResponse',
-          isManual: true),
-    );
   }
 }

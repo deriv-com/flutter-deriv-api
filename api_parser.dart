@@ -35,9 +35,14 @@ class APIParser extends Builder {
       final File methodsFile =
           File('$leftPartPath/methods/${rightPartPath}_methods.json');
 
-      if (methodsFile.existsSync()) {
-        methodsJSON = json.decode(methodsFile.readAsStringSync());
+      if (!methodsFile.existsSync()) {
+        methodsFile
+          ..createSync()
+          ..writeAsStringSync(
+              '{\n"methods": "",\n"imports": "import \'package:flutter_deriv_api/helpers/helpers.dart\';\\n"\n}');
       }
+
+      methodsJSON = json.decode(methodsFile.readAsStringSync());
 
       final List<StringBuffer> source = JsonSchemaParser().getClasses(
         SchemaModel.newModelWithChildren(
@@ -48,11 +53,8 @@ class APIParser extends Builder {
         isRoot: true,
       );
 
-      List<StringBuffer> result = _addImports(
-        source: source,
-        imports: methodsJSON?['imports'] ??
-            "// TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.\n import 'package:flutter_deriv_api/helpers/helpers.dart';",
-      );
+      List<StringBuffer> result =
+          _addImports(source: source, imports: methodsJSON?['imports']);
 
       result = _addLinterSilencers(result);
 
