@@ -77,5 +77,5 @@ class ProposalOpenContractRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[contractId!];
+  List<Object?> get props => <Object?>[contractId];
 }

@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:build/build.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:json_schema2/json_schema2.dart';
 import 'package:recase/recase.dart';
-import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
@@ -35,7 +35,7 @@ class APIBuilder extends Builder {
 
   static const Map<String, String> schemaTypeMap = <String, String>{
     'send': 'Request',
-    'receive': 'Response',
+    'receive': 'Receive',
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{
@@ -134,7 +134,7 @@ class APIBuilder extends Builder {
               
               /// Override equatable class.
               @override
-              List<Object> get props => ${_getEquatableFields(classFullName, properties)};
+              List<Object?> get props => ${_getEquatableFields(classFullName, properties)};
             }
           ''',
         ),
@@ -247,14 +247,17 @@ class APIBuilder extends Builder {
                   ? 'bool'
                   : property.type?.toString();
 
-  static bool _isBoolean(String key, JsonSchema property) =>
-      key == 'subscribe' ||
-      property.description!.contains('Must be `1`') ||
-      property.description!.contains('Must be 1') ||
-      property.type?.toString() == 'integer' &&
-          property.enumValues?.length == 2 &&
-          property.enumValues!.first == 0 &&
-          property.enumValues!.last == 1;
+  static bool _isBoolean(String key, JsonSchema property) {
+    final List<dynamic> enumValues = property.enumValues ?? <dynamic>[];
+    
+    return key == 'subscribe' ||
+        property.description!.contains('Must be `1`') ||
+        property.description!.contains('Must be 1') ||
+        property.type?.toString() == 'integer' &&
+            enumValues.length == 2 &&
+            enumValues.contains(0) &&
+            enumValues.contains(1);
+  }
 
   static StringBuffer _getFromJsonMethod(
     String classFullName,
@@ -443,15 +446,15 @@ class APIBuilder extends Builder {
   ) {
     switch (classFullName) {
       case 'TicksRequest':
-        return '<Object>[ticks!]';
+        return '<Object?>[ticks]';
       case 'ProposalOpenContractRequest':
-        return '<Object>[contractId!]';
+        return '<Object?>[contractId]';
       case 'P2pOrderInfoRequest':
       case 'P2pAdvertiserInfoRequest':
-        return '<Object>[id!]';
+        return '<Object?>[id]';
 
       default:
-        return '<Object>[]';
+        return '<Object?>[]';
     }
   }
 }

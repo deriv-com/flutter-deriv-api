@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Economic calendar response class.
-class EconomicCalendarResponse extends Response {
-  /// Initialize EconomicCalendarResponse.
-  const EconomicCalendarResponse({
+/// Economic calendar receive class.
+class EconomicCalendarReceive extends Response {
+  /// Initialize EconomicCalendarReceive.
+  const EconomicCalendarReceive({
     this.economicCalendar,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class EconomicCalendarResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory EconomicCalendarResponse.fromJson(Map<String, dynamic> json) =>
-      EconomicCalendarResponse(
+  factory EconomicCalendarReceive.fromJson(Map<String, dynamic> json) =>
+      EconomicCalendarReceive(
         economicCalendar: json['economic_calendar'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class EconomicCalendarResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  EconomicCalendarResponse copyWith({
+  EconomicCalendarReceive copyWith({
     Map<String, dynamic>? economicCalendar,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      EconomicCalendarResponse(
+      EconomicCalendarReceive(
         economicCalendar: economicCalendar ?? this.economicCalendar,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class EconomicCalendarResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

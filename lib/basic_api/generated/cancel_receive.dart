@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Cancel response class.
-class CancelResponse extends Response {
-  /// Initialize CancelResponse.
-  const CancelResponse({
+/// Cancel receive class.
+class CancelReceive extends Response {
+  /// Initialize CancelReceive.
+  const CancelReceive({
     this.cancel,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,7 +21,7 @@ class CancelResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory CancelResponse.fromJson(Map<String, dynamic> json) => CancelResponse(
+  factory CancelReceive.fromJson(Map<String, dynamic> json) => CancelReceive(
         cancel: json['cancel'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +44,14 @@ class CancelResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CancelResponse copyWith({
+  CancelReceive copyWith({
     Map<String, dynamic>? cancel,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CancelResponse(
+      CancelReceive(
         cancel: cancel ?? this.cancel,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -61,5 +61,5 @@ class CancelResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

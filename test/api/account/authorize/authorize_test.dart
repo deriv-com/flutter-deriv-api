@@ -1,100 +1,95 @@
-import 'package:flutter_deriv_api/api/account/models/account_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_deriv_api/api/account/authorize/authorize.dart';
-import 'package:flutter_deriv_api/api/account/authorize/login_history.dart';
-import 'package:flutter_deriv_api/api/account/authorize/logout.dart';
-import 'package:flutter_deriv_api/api/account/models/local_currency_model.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
+import 'package:flutter_deriv_api/api/response/login_history_response_result.dart';
+import 'package:flutter_deriv_api/api/response/logout_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
+  //DateTime.tryParse('2020-01-11'),
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {
-      final Authorize authorize = await Authorize.authorize(
+      final AuthorizeResponse authorize =
+          await AuthorizeResponse.authorizeMethod(
         const AuthorizeRequest(
           authorize: 'sample_token_334da73d',
-          addToLoginHistory: 1,
+          addToLoginHistory: true,
         ),
       );
 
-      final List<AccountModel?> accounts = authorize.accountList!;
-      final List<LocalCurrencyModel?> localCurrencies =
-          authorize.localCurrencies!;
-      final AccountModel firstAccount = accounts.first!;
-      final AccountModel secondAccount = accounts[1]!;
-      final LocalCurrencyModel firstLocalCurrency = localCurrencies.first!;
-      final LocalCurrencyModel secondLocalCurrency = localCurrencies[1]!;
+      final List<AccountListItem>? accounts = authorize.authorize?.accountList;
+      final AccountListItem? firstAccount = accounts?.first;
+      final AccountListItem? secondAccount = accounts?[1];
 
-      expect(accounts.length, 2);
+      final Map<String, LocalCurrenciesProperty>? localCurrencies =
+          authorize.authorize?.localCurrencies;
 
-      expect(firstAccount.currency, 'USD');
+      expect(accounts?.length, 2);
+
+      expect(firstAccount?.currency, 'USD');
       expect(
-        accounts[1]!.excludedUntil,
-        DateTime.fromMillisecondsSinceEpoch(1587486726000),
+        firstAccount?.excludedUntil,
+        DateTime.fromMillisecondsSinceEpoch(1587486726000, isUtc: true),
       );
-      expect(firstAccount.isDisabled, false);
-      expect(firstAccount.isVirtual, false);
-      expect(firstAccount.landingCompanyName, 'svg');
-      expect(firstAccount.loginId, 'CR90000028');
+      expect(firstAccount?.isDisabled, false);
+      expect(firstAccount?.isVirtual, false);
+      expect(firstAccount?.landingCompanyName, 'svg');
+      expect(firstAccount?.loginid, 'CR90000028');
 
-      expect(secondAccount.currency, 'USD');
+      expect(secondAccount?.currency, 'USD');
       expect(
-        secondAccount.excludedUntil,
-        DateTime.fromMillisecondsSinceEpoch(1587486726000),
+        secondAccount?.excludedUntil,
+        DateTime.fromMillisecondsSinceEpoch(1587486726000, isUtc: true),
       );
-      expect(secondAccount.isDisabled, false);
-      expect(secondAccount.isVirtual, true);
-      expect(secondAccount.landingCompanyName, 'virtual');
-      expect(secondAccount.loginId, 'VRTC90000028');
+      expect(secondAccount?.isDisabled, false);
+      expect(secondAccount?.isVirtual, true);
+      expect(secondAccount?.landingCompanyName, 'virtual');
+      expect(secondAccount?.loginid, 'VRTC90000028');
 
-      expect(localCurrencies.length, 2);
+      expect(localCurrencies?.entries.length, 2);
 
-      expect(firstLocalCurrency.currencyCode, 'ZAR');
-      expect(firstLocalCurrency.fractionalDigits, 2);
+      expect(localCurrencies?.keys.first, 'ZAR');
+      expect(localCurrencies?.values.first.fractionalDigits, 2);
 
-      expect(secondLocalCurrency.currencyCode, 'USD');
-      expect(secondLocalCurrency.fractionalDigits, 3);
+      expect(localCurrencies?.keys.last, 'USD');
+      expect(localCurrencies?.values.last.fractionalDigits, 3);
 
-      expect(authorize.balance, 10000);
-      expect(authorize.country, 'za');
-      expect(authorize.currency, 'USD');
-      expect(authorize.email, 'test@site.com');
-      expect(authorize.fullName, 'Ms QA script testSTX');
-      expect(authorize.isVirtual, false);
-      expect(authorize.landingCompanyFullName, 'Binary (SVG) Ltd.');
-      expect(authorize.landingCompanyName, 'svg');
-      expect(authorize.loginId, 'CR90000028');
-      expect(authorize.scopes!.length, 4);
-      expect(authorize.upgradeableLandingCompanies!.length, 1);
-      expect(authorize.userId, 29);
+      expect(authorize.authorize?.balance, 10000);
+      expect(authorize.authorize?.country, 'za');
+      expect(authorize.authorize?.currency, 'USD');
+      expect(authorize.authorize?.email, 'test@site.com');
+      expect(authorize.authorize?.fullname, 'Ms QA script testSTX');
+      expect(authorize.authorize?.isVirtual, false);
+      expect(authorize.authorize?.landingCompanyFullname, 'Binary (SVG) Ltd.');
+      expect(authorize.authorize?.landingCompanyName, 'svg');
+      expect(authorize.authorize?.loginid, 'CR90000028');
+      expect(authorize.authorize?.scopes?.length, 4);
+      expect(authorize.authorize?.upgradeableLandingCompanies?.length, 1);
+      expect(authorize.authorize?.userId, 29);
     });
 
     test('Logout Test', () async {
-      final Logout logout = await Logout.logout();
+      final LogoutResponse logout = await LogoutResponse.logoutMethod();
 
-      expect(logout.succeeded, true);
+      expect(logout.logout, 1);
     });
 
     test('Login History Test', () async {
-      final List<LoginHistory?>? loginHistories =
-          await LoginHistory.fetchHistory();
+      final LoginHistoryResponse loginHistories =
+          await LoginHistoryResponse.fetchHistory();
 
-      final LoginHistory firstHistory = loginHistories!.first!;
+      expect(loginHistories.loginHistory?.length, 2);
 
-      expect(loginHistories.length, 2);
-
-      expect(firstHistory.action, LoginAction.login);
+      expect(loginHistories.loginHistory?.first.action, 'login');
       expect(
-        firstHistory.environment,
+        loginHistories.loginHistory?.first.environment,
         '27-Apr-20 10:44:02GMT IP=x.x.x.x IP_COUNTRY=x User_AGENT=Mozilla/5.0 (Linux; Android 9; AOSP on IA Emulator Build/PSR1.180720.117) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36 LANG=EN',
       );
-      expect(firstHistory.status, true);
-      expect(firstHistory.time, getDateTime(1587984243));
+      expect(loginHistories.loginHistory?.first.status, true);
+      expect(loginHistories.loginHistory?.first.time, getDateTime(1587984243));
     });
   });
 }

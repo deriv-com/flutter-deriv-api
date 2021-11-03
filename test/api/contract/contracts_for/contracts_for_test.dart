@@ -1,18 +1,14 @@
-import 'package:flutter_deriv_api/api/contract/models/forward_starting_option_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
-import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Contracts For Test', () async {
-    final ContractsForSymbol contractsFor =
-        await ContractsForSymbol.fetchContractsForSymbol(
+    final ContractsForResponse contractsFor =
+        await ContractsForResponse.fetchContractsForSymbol(
       const ContractsForRequest(
           contractsFor: 'R_50',
           currency: 'USD',
@@ -20,22 +16,20 @@ void main() {
           productType: 'basic'),
     );
 
-    final AvailableContractModel? firstContract =
-        contractsFor.availableContracts!.first;
-    final ForwardStartingOptionModel first =
-        firstContract!.forwardStartingOptions!.first!;
-    final ForwardStartingOptionModel last =
-        firstContract.forwardStartingOptions!.last!;
+    final AvailableItem firstContract =
+        contractsFor.contractsFor!.available.first;
 
     expect(firstContract.barriers, 0);
     expect(firstContract.maxContractDuration, '1d');
     expect(
-      first.close,
-      getDateTime(1586303999),
+      firstContract.forwardStartingOptions?.first.close,
+      //getDateTime(1586303999),
+      '1586303999'
     );
     expect(
-      last.open,
-      getDateTime(1586390400),
+      firstContract.forwardStartingOptions?.last.open,
+      '1586390400'
+     // getDateTime(1586390400),
     );
   });
 }

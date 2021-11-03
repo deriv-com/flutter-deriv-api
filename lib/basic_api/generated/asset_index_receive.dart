@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Asset index response class.
-class AssetIndexResponse extends Response {
-  /// Initialize AssetIndexResponse.
-  const AssetIndexResponse({
+/// Asset index receive class.
+class AssetIndexReceive extends Response {
+  /// Initialize AssetIndexReceive.
+  const AssetIndexReceive({
     this.assetIndex,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class AssetIndexResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
-      AssetIndexResponse(
+  factory AssetIndexReceive.fromJson(Map<String, dynamic> json) =>
+      AssetIndexReceive(
         assetIndex: json['asset_index'] as List<dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class AssetIndexResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AssetIndexResponse copyWith({
+  AssetIndexReceive copyWith({
     List<dynamic>? assetIndex,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AssetIndexResponse(
+      AssetIndexReceive(
         assetIndex: assetIndex ?? this.assetIndex,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class AssetIndexResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

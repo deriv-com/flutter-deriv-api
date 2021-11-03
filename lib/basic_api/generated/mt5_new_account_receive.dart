@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Mt5 new account response class.
-class Mt5NewAccountResponse extends Response {
-  /// Initialize Mt5NewAccountResponse.
-  const Mt5NewAccountResponse({
+/// Mt5 new account receive class.
+class Mt5NewAccountReceive extends Response {
+  /// Initialize Mt5NewAccountReceive.
+  const Mt5NewAccountReceive({
     this.mt5NewAccount,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class Mt5NewAccountResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5NewAccountResponse(
+  factory Mt5NewAccountReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5NewAccountReceive(
         mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class Mt5NewAccountResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5NewAccountResponse copyWith({
+  Mt5NewAccountReceive copyWith({
     Map<String, dynamic>? mt5NewAccount,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5NewAccountResponse(
+      Mt5NewAccountReceive(
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class Mt5NewAccountResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

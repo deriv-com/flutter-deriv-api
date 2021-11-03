@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// New account maltainvest response class.
-class NewAccountMaltainvestResponse extends Response {
-  /// Initialize NewAccountMaltainvestResponse.
-  const NewAccountMaltainvestResponse({
+/// New account maltainvest receive class.
+class NewAccountMaltainvestReceive extends Response {
+  /// Initialize NewAccountMaltainvestReceive.
+  const NewAccountMaltainvestReceive({
     this.newAccountMaltainvest,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class NewAccountMaltainvestResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
-      NewAccountMaltainvestResponse(
+  factory NewAccountMaltainvestReceive.fromJson(Map<String, dynamic> json) =>
+      NewAccountMaltainvestReceive(
         newAccountMaltainvest:
             json['new_account_maltainvest'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +46,14 @@ class NewAccountMaltainvestResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountMaltainvestResponse copyWith({
+  NewAccountMaltainvestReceive copyWith({
     Map<String, dynamic>? newAccountMaltainvest,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      NewAccountMaltainvestResponse(
+      NewAccountMaltainvestReceive(
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,
         echoReq: echoReq ?? this.echoReq,
@@ -64,5 +64,5 @@ class NewAccountMaltainvestResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

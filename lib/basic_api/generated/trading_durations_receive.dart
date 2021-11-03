@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Trading durations response class.
-class TradingDurationsResponse extends Response {
-  /// Initialize TradingDurationsResponse.
-  const TradingDurationsResponse({
+/// Trading durations receive class.
+class TradingDurationsReceive extends Response {
+  /// Initialize TradingDurationsReceive.
+  const TradingDurationsReceive({
     this.tradingDurations,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class TradingDurationsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
-      TradingDurationsResponse(
+  factory TradingDurationsReceive.fromJson(Map<String, dynamic> json) =>
+      TradingDurationsReceive(
         tradingDurations: (json['trading_durations'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +48,14 @@ class TradingDurationsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingDurationsResponse copyWith({
+  TradingDurationsReceive copyWith({
     List<Map<String, dynamic>>? tradingDurations,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingDurationsResponse(
+      TradingDurationsReceive(
         tradingDurations: tradingDurations ?? this.tradingDurations,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -65,5 +65,5 @@ class TradingDurationsResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

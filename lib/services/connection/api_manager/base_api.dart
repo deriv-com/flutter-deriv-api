@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
@@ -40,10 +40,10 @@ abstract class BaseAPI {
   });
 
   /// Unsubscribe with a specific [subscriptionId]
-  Future<ForgetResponse> unsubscribe({required String? subscriptionId});
+  Future<ForgetReceive> unsubscribe({required String subscriptionId});
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<ForgetAllResponse?> unsubscribeAll({required ForgetStreamType method});
+  Future<ForgetAllReceive> unsubscribeAll({required ForgetStreamType method});
 
   /// Disconnects from API
   Future<void> disconnect();

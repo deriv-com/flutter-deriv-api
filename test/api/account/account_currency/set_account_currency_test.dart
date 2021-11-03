@@ -1,18 +1,19 @@
-import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/account/account_currency/set_account_currency.dart';
+
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/set_account_currency_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/set_account_currency_send.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Set Account Currency Test', () async {
-    final SetAccountCurrency setAccountCurrency =
-        await SetAccountCurrency.setCurrency(
+    final SetAccountCurrencyResponse setAccountCurrency =
+        await SetAccountCurrencyResponse.setCurrency(
       const SetAccountCurrencyRequest(setAccountCurrency: 'USD'),
     );
 
-    expect(setAccountCurrency.succeeded, true);
+    expect(setAccountCurrency.setAccountCurrency, true);
   });
 }

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Topup virtual response class.
-class TopupVirtualResponse extends Response {
-  /// Initialize TopupVirtualResponse.
-  const TopupVirtualResponse({
+/// Topup virtual receive class.
+class TopupVirtualReceive extends Response {
+  /// Initialize TopupVirtualReceive.
+  const TopupVirtualReceive({
     this.topupVirtual,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class TopupVirtualResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
-      TopupVirtualResponse(
+  factory TopupVirtualReceive.fromJson(Map<String, dynamic> json) =>
+      TopupVirtualReceive(
         topupVirtual: json['topup_virtual'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class TopupVirtualResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TopupVirtualResponse copyWith({
+  TopupVirtualReceive copyWith({
     Map<String, dynamic>? topupVirtual,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TopupVirtualResponse(
+      TopupVirtualReceive(
         topupVirtual: topupVirtual ?? this.topupVirtual,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class TopupVirtualResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

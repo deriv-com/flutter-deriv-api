@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Mt5 login list response class.
-class Mt5LoginListResponse extends Response {
-  /// Initialize Mt5LoginListResponse.
-  const Mt5LoginListResponse({
+/// Mt5 login list receive class.
+class Mt5LoginListReceive extends Response {
+  /// Initialize Mt5LoginListReceive.
+  const Mt5LoginListReceive({
     this.mt5LoginList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class Mt5LoginListResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5LoginListResponse(
+  factory Mt5LoginListReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5LoginListReceive(
         mt5LoginList: (json['mt5_login_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +48,14 @@ class Mt5LoginListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5LoginListResponse copyWith({
+  Mt5LoginListReceive copyWith({
     List<Map<String, dynamic>>? mt5LoginList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5LoginListResponse(
+      Mt5LoginListReceive(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -65,5 +65,5 @@ class Mt5LoginListResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

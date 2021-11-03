@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p payment methods response class.
-class P2pPaymentMethodsResponse extends Response {
-  /// Initialize P2pPaymentMethodsResponse.
-  const P2pPaymentMethodsResponse({
+/// P2p payment methods receive class.
+class P2pPaymentMethodsReceive extends Response {
+  /// Initialize P2pPaymentMethodsReceive.
+  const P2pPaymentMethodsReceive({
     this.p2pPaymentMethods,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class P2pPaymentMethodsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pPaymentMethodsResponse.fromJson(Map<String, dynamic> json) =>
-      P2pPaymentMethodsResponse(
+  factory P2pPaymentMethodsReceive.fromJson(Map<String, dynamic> json) =>
+      P2pPaymentMethodsReceive(
         p2pPaymentMethods: json['p2p_payment_methods'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class P2pPaymentMethodsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pPaymentMethodsResponse copyWith({
+  P2pPaymentMethodsReceive copyWith({
     Map<String, dynamic>? p2pPaymentMethods,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pPaymentMethodsResponse(
+      P2pPaymentMethodsReceive(
         p2pPaymentMethods: p2pPaymentMethods ?? this.p2pPaymentMethods,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class P2pPaymentMethodsResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

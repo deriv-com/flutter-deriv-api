@@ -1,6 +1,7 @@
 analyzer:
   exclude:
     - lib/basic_api/generated/api.dart
+    
 
   strong-mode:
     implicit-dynamic: false

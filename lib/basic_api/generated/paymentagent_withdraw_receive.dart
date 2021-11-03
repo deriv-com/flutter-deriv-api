@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Paymentagent withdraw response class.
-class PaymentagentWithdrawResponse extends Response {
-  /// Initialize PaymentagentWithdrawResponse.
-  const PaymentagentWithdrawResponse({
+/// Paymentagent withdraw receive class.
+class PaymentagentWithdrawReceive extends Response {
+  /// Initialize PaymentagentWithdrawReceive.
+  const PaymentagentWithdrawReceive({
     this.paymentagentName,
     this.paymentagentWithdraw,
     this.transactionId,
@@ -23,8 +23,8 @@ class PaymentagentWithdrawResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
-      PaymentagentWithdrawResponse(
+  factory PaymentagentWithdrawReceive.fromJson(Map<String, dynamic> json) =>
+      PaymentagentWithdrawReceive(
         paymentagentName: json['paymentagent_name'] as String?,
         paymentagentWithdraw: json['paymentagent_withdraw'] as int?,
         transactionId: json['transaction_id'] as int?,
@@ -57,7 +57,7 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentWithdrawResponse copyWith({
+  PaymentagentWithdrawReceive copyWith({
     String? paymentagentName,
     int? paymentagentWithdraw,
     int? transactionId,
@@ -66,7 +66,7 @@ class PaymentagentWithdrawResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      PaymentagentWithdrawResponse(
+      PaymentagentWithdrawReceive(
         paymentagentName: paymentagentName ?? this.paymentagentName,
         paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,
         transactionId: transactionId ?? this.transactionId,
@@ -78,5 +78,5 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

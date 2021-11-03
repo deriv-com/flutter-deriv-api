@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Document upload response class.
-class DocumentUploadResponse extends Response {
-  /// Initialize DocumentUploadResponse.
-  const DocumentUploadResponse({
+/// Document upload receive class.
+class DocumentUploadReceive extends Response {
+  /// Initialize DocumentUploadReceive.
+  const DocumentUploadReceive({
     this.documentUpload,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class DocumentUploadResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>
-      DocumentUploadResponse(
+  factory DocumentUploadReceive.fromJson(Map<String, dynamic> json) =>
+      DocumentUploadReceive(
         documentUpload: json['document_upload'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class DocumentUploadResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  DocumentUploadResponse copyWith({
+  DocumentUploadReceive copyWith({
     Map<String, dynamic>? documentUpload,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      DocumentUploadResponse(
+      DocumentUploadReceive(
         documentUpload: documentUpload ?? this.documentUpload,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class DocumentUploadResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// App get response class.
-class AppGetResponse extends Response {
-  /// Initialize AppGetResponse.
-  const AppGetResponse({
+/// App get receive class.
+class AppGetReceive extends Response {
+  /// Initialize AppGetReceive.
+  const AppGetReceive({
     this.appGet,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,7 +21,7 @@ class AppGetResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AppGetResponse.fromJson(Map<String, dynamic> json) => AppGetResponse(
+  factory AppGetReceive.fromJson(Map<String, dynamic> json) => AppGetReceive(
         appGet: json['app_get'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +44,14 @@ class AppGetResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppGetResponse copyWith({
+  AppGetReceive copyWith({
     Map<String, dynamic>? appGet,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AppGetResponse(
+      AppGetReceive(
         appGet: appGet ?? this.appGet,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -61,5 +61,5 @@ class AppGetResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

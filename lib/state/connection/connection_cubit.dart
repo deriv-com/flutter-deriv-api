@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/common/ping/ping.dart';
+import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/connection_service.dart';
@@ -120,10 +120,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   Future<bool> _ping() async {
     try {
-      final Ping response =
-          await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      final PingResponse response = await PingResponse.pingMethod()
+          .timeout(Duration(seconds: _pingTimeout));
 
-      if (!response.succeeded!) {
+      if (response.ping == null) {
         return false;
       }
     } on Exception catch (_) {

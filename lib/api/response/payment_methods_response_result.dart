@@ -1,0 +1,402 @@
+// ignore_for_file: prefer_single_quotes
+
+import 'package:equatable/equatable.dart';
+
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/payment_methods_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/payment_methods_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
+/// Payment methods response model class.
+abstract class PaymentMethodsResponseModel extends Equatable {
+  /// Initializes Payment methods response model class .
+  const PaymentMethodsResponseModel({
+    this.paymentMethods,
+  });
+
+  /// Available payment methods for a given country. Note: if a user is logged in, the residence country will be considered.
+  final List<PaymentMethodsItem>? paymentMethods;
+}
+
+/// Payment methods response class.
+class PaymentMethodsResponse extends PaymentMethodsResponseModel {
+  /// Initializes Payment methods response class.
+  const PaymentMethodsResponse({
+    List<PaymentMethodsItem>? paymentMethods,
+  }) : super(
+          paymentMethods: paymentMethods,
+        );
+
+  /// Creates an instance from JSON.
+  factory PaymentMethodsResponse.fromJson(
+    dynamic paymentMethodsJson,
+  ) =>
+      PaymentMethodsResponse(
+        paymentMethods: paymentMethodsJson == null
+            ? null
+            : List<PaymentMethodsItem>.from(
+                paymentMethodsJson?.map(
+                  (dynamic item) => PaymentMethodsItem.fromJson(item),
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (paymentMethods != null) {
+      resultMap['payment_methods'] = paymentMethods!
+          .map<dynamic>(
+            (PaymentMethodsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Get List of available payment methods for a given country.
+  ///
+  /// For parameters information refer to [PaymentMethodsRequest].
+  /// Throws an [PaymentException] if API response contains an error
+  static Future<PaymentMethodsResponse> updateApplication(
+      PaymentMethodsRequest request) async {
+    final PaymentMethodsReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          PaymentException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return PaymentMethodsResponse.fromJson(response.paymentMethods);
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PaymentMethodsResponse copyWith({
+    List<PaymentMethodsItem>? paymentMethods,
+  }) =>
+      PaymentMethodsResponse(
+        paymentMethods: paymentMethods ?? this.paymentMethods,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Payment methods item model class.
+abstract class PaymentMethodsItemModel extends Equatable {
+  /// Initializes Payment methods item model class .
+  const PaymentMethodsItemModel({
+    required this.withdrawalTime,
+    required this.withdrawLimits,
+    required this.typeDisplayName,
+    required this.type,
+    required this.supportedCurrencies,
+    required this.signupLink,
+    required this.predefinedAmounts,
+    required this.paymentProcessor,
+    required this.id,
+    required this.displayName,
+    required this.description,
+    required this.depositTime,
+    required this.depositLimits,
+  });
+
+  /// How much time takes a withdrawal to be processed.
+  final String withdrawalTime;
+
+  /// Withdrawal limits per currency.
+  final Map<String, WithdrawLimitsProperty> withdrawLimits;
+
+  /// A printable description for type of payment method.
+  final String typeDisplayName;
+
+  /// Type of Payment Method.
+  final String type;
+
+  /// Currencies supported for this payment method.
+  final List<String> supportedCurrencies;
+
+  /// Sign up link for this payment method.
+  final String signupLink;
+
+  /// A list of predefined amounts for withdraw or deposit.
+  final List<int> predefinedAmounts;
+
+  /// Payment processor for this payment method.
+  final String paymentProcessor;
+
+  /// Unique identifier for the payment method.
+  final String id;
+
+  /// Common name for the payment method.
+  final String displayName;
+
+  /// Short description explaining the payment method.
+  final String description;
+
+  /// How much time it takes for a deposit to be processed.
+  final String depositTime;
+
+  /// The min and max values for deposits.
+  final Map<String, DepositLimitsProperty> depositLimits;
+}
+
+/// Payment methods item class.
+class PaymentMethodsItem extends PaymentMethodsItemModel {
+  /// Initializes Payment methods item class.
+  const PaymentMethodsItem({
+    required Map<String, DepositLimitsProperty> depositLimits,
+    required String depositTime,
+    required String description,
+    required String displayName,
+    required String id,
+    required String paymentProcessor,
+    required List<int> predefinedAmounts,
+    required String signupLink,
+    required List<String> supportedCurrencies,
+    required String type,
+    required String typeDisplayName,
+    required Map<String, WithdrawLimitsProperty> withdrawLimits,
+    required String withdrawalTime,
+  }) : super(
+          depositLimits: depositLimits,
+          depositTime: depositTime,
+          description: description,
+          displayName: displayName,
+          id: id,
+          paymentProcessor: paymentProcessor,
+          predefinedAmounts: predefinedAmounts,
+          signupLink: signupLink,
+          supportedCurrencies: supportedCurrencies,
+          type: type,
+          typeDisplayName: typeDisplayName,
+          withdrawLimits: withdrawLimits,
+          withdrawalTime: withdrawalTime,
+        );
+
+  /// Creates an instance from JSON.
+  factory PaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodsItem(
+        depositLimits: Map<String, DepositLimitsProperty>.fromEntries(
+            json['deposit_limits']
+                .entries
+                .map<MapEntry<String, DepositLimitsProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, DepositLimitsProperty>(entry.key,
+                            DepositLimitsProperty.fromJson(entry.value)))),
+        depositTime: json['deposit_time'],
+        description: json['description'],
+        displayName: json['display_name'],
+        id: json['id'],
+        paymentProcessor: json['payment_processor'],
+        predefinedAmounts: List<int>.from(
+          json['predefined_amounts'].map(
+            (dynamic item) => item,
+          ),
+        ),
+        signupLink: json['signup_link'],
+        supportedCurrencies: List<String>.from(
+          json['supported_currencies'].map(
+            (dynamic item) => item,
+          ),
+        ),
+        type: json['type'],
+        typeDisplayName: json['type_display_name'],
+        withdrawLimits: Map<String, WithdrawLimitsProperty>.fromEntries(
+            json['withdraw_limits']
+                .entries
+                .map<MapEntry<String, WithdrawLimitsProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, WithdrawLimitsProperty>(entry.key,
+                            WithdrawLimitsProperty.fromJson(entry.value)))),
+        withdrawalTime: json['withdrawal_time'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['deposit_limits'] = depositLimits;
+    resultMap['deposit_time'] = depositTime;
+    resultMap['description'] = description;
+    resultMap['display_name'] = displayName;
+    resultMap['id'] = id;
+    resultMap['payment_processor'] = paymentProcessor;
+    resultMap['predefined_amounts'] = predefinedAmounts
+        .map<dynamic>(
+          (int item) => item,
+        )
+        .toList();
+
+    resultMap['signup_link'] = signupLink;
+    resultMap['supported_currencies'] = supportedCurrencies
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
+    resultMap['type'] = type;
+    resultMap['type_display_name'] = typeDisplayName;
+    resultMap['withdraw_limits'] = withdrawLimits;
+    resultMap['withdrawal_time'] = withdrawalTime;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PaymentMethodsItem copyWith({
+    required Map<String, DepositLimitsProperty> depositLimits,
+    required String depositTime,
+    required String description,
+    required String displayName,
+    required String id,
+    required String paymentProcessor,
+    required List<int> predefinedAmounts,
+    required String signupLink,
+    required List<String> supportedCurrencies,
+    required String type,
+    required String typeDisplayName,
+    required Map<String, WithdrawLimitsProperty> withdrawLimits,
+    required String withdrawalTime,
+  }) =>
+      PaymentMethodsItem(
+        depositLimits: depositLimits,
+        depositTime: depositTime,
+        description: description,
+        displayName: displayName,
+        id: id,
+        paymentProcessor: paymentProcessor,
+        predefinedAmounts: predefinedAmounts,
+        signupLink: signupLink,
+        supportedCurrencies: supportedCurrencies,
+        type: type,
+        typeDisplayName: typeDisplayName,
+        withdrawLimits: withdrawLimits,
+        withdrawalTime: withdrawalTime,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Deposit limits property model class.
+abstract class DepositLimitsPropertyModel extends Equatable {
+  /// Initializes Deposit limits property model class .
+  const DepositLimitsPropertyModel({
+    required this.min,
+    required this.max,
+  });
+
+  /// Minimum amount for deposit for this currency.
+  final int min;
+
+  /// Maximum amount for deposits for this currency.
+  final int max;
+}
+
+/// Deposit limits property class.
+class DepositLimitsProperty extends DepositLimitsPropertyModel {
+  /// Initializes Deposit limits property class.
+  const DepositLimitsProperty({
+    required int max,
+    required int min,
+  }) : super(
+          max: max,
+          min: min,
+        );
+
+  /// Creates an instance from JSON.
+  factory DepositLimitsProperty.fromJson(Map<String, dynamic> json) =>
+      DepositLimitsProperty(
+        max: json['max'],
+        min: json['min'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['max'] = max;
+    resultMap['min'] = min;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  DepositLimitsProperty copyWith({
+    required int max,
+    required int min,
+  }) =>
+      DepositLimitsProperty(
+        max: max,
+        min: min,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Withdraw limits property model class.
+abstract class WithdrawLimitsPropertyModel extends Equatable {
+  /// Initializes Withdraw limits property model class .
+  const WithdrawLimitsPropertyModel({
+    required this.min,
+    required this.max,
+  });
+
+  /// Minimum amount for withdrawals in this currency.
+  final int min;
+
+  /// Maximum amount for wihdrawals in this currency.
+  final int max;
+}
+
+/// Withdraw limits property class.
+class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
+  /// Initializes Withdraw limits property class.
+  const WithdrawLimitsProperty({
+    required int max,
+    required int min,
+  }) : super(
+          max: max,
+          min: min,
+        );
+
+  /// Creates an instance from JSON.
+  factory WithdrawLimitsProperty.fromJson(Map<String, dynamic> json) =>
+      WithdrawLimitsProperty(
+        max: json['max'],
+        min: json['min'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['max'] = max;
+    resultMap['min'] = min;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  WithdrawLimitsProperty copyWith({
+    required int max,
+    required int min,
+  }) =>
+      WithdrawLimitsProperty(
+        max: max,
+        min: min,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}

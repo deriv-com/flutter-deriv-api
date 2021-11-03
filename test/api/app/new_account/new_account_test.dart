@@ -1,17 +1,17 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/app/new_account/new_account_real.dart';
-import 'package:flutter_deriv_api/api/app/new_account/new_account_virtual.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/new_account_real_response_result.dart';
+import 'package:flutter_deriv_api/api/response/new_account_virtual_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/new_account_real_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_send.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('New Account Group ->', () {
     test('Open New Account Real Test', () async {
-      final NewAccountReal newAccountReal =
-          await NewAccountReal.openNewRealAccount(
+      final NewAccountRealResponse newAccountReal =
+          await NewAccountRealResponse.openNewRealAccount(
         const NewAccountRealRequest(
           accountOpeningReason: 'Speculative',
           accountTurnover: 'Less than \$25,000',
@@ -35,15 +35,16 @@ void main() {
         ),
       );
 
-      expect(newAccountReal.clientId, 'CR0000');
-      expect(newAccountReal.landingCompany, 'landing_company');
-      expect(newAccountReal.landingCompanyShort, 'landing_company_short');
-      expect(newAccountReal.oauthToken, 'sample_token');
+      expect(newAccountReal.newAccountReal?.clientId, 'CR0000');
+      expect(newAccountReal.newAccountReal?.landingCompany, 'landing_company');
+      expect(newAccountReal.newAccountReal?.landingCompanyShort,
+          'landing_company_short');
+      expect(newAccountReal.newAccountReal?.oauthToken, 'sample_token');
     });
 
     test('Open New Account Virtual Test', () async {
-      final NewAccountVirtual newAccountVirtual =
-          await NewAccountVirtual.openNewVirtualAccount(
+      final NewAccountVirtualResponse newAccountVirtual =
+          await NewAccountVirtualResponse.openNewVirtualAccount(
         const NewAccountVirtualRequest(
           clientPassword: 'Abc123de',
           residence: 'id',
@@ -52,11 +53,11 @@ void main() {
         ),
       );
 
-      expect(newAccountVirtual.balance, 250.0);
-      expect(newAccountVirtual.clientId, 'VRTC0000');
-      expect(newAccountVirtual.currency, 'USD');
-      expect(newAccountVirtual.email, 'test@email.com');
-      expect(newAccountVirtual.oauthToken, 'sample_token');
+      expect(newAccountVirtual.newAccountVirtual?.balance, 250.0);
+      expect(newAccountVirtual.newAccountVirtual?.clientId, 'VRTC0000');
+      expect(newAccountVirtual.newAccountVirtual?.currency, 'USD');
+      expect(newAccountVirtual.newAccountVirtual?.email, 'test@email.com');
+      expect(newAccountVirtual.newAccountVirtual?.oauthToken, 'sample_token');
     });
   });
 }

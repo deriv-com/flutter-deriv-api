@@ -117,219 +117,219 @@ import '../response.dart';
 Response getGeneratedResponse(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
     case 'active_symbols':
-      return ActiveSymbolsResponse.fromJson(responseMap);
+      return ActiveSymbolsReceive.fromJson(responseMap);
     case 'api_token':
-      return ApiTokenResponse.fromJson(responseMap);
+      return ApiTokenReceive.fromJson(responseMap);
     case 'app_delete':
-      return AppDeleteResponse.fromJson(responseMap);
+      return AppDeleteReceive.fromJson(responseMap);
     case 'app_get':
-      return AppGetResponse.fromJson(responseMap);
+      return AppGetReceive.fromJson(responseMap);
     case 'app_list':
-      return AppListResponse.fromJson(responseMap);
+      return AppListReceive.fromJson(responseMap);
     case 'app_markup_details':
-      return AppMarkupDetailsResponse.fromJson(responseMap);
+      return AppMarkupDetailsReceive.fromJson(responseMap);
     case 'app_register':
-      return AppRegisterResponse.fromJson(responseMap);
+      return AppRegisterReceive.fromJson(responseMap);
     case 'app_update':
-      return AppUpdateResponse.fromJson(responseMap);
+      return AppUpdateReceive.fromJson(responseMap);
     case 'asset_index':
-      return AssetIndexResponse.fromJson(responseMap);
+      return AssetIndexReceive.fromJson(responseMap);
     case 'authorize':
-      return AuthorizeResponse.fromJson(responseMap);
+      return AuthorizeReceive.fromJson(responseMap);
     case 'balance':
-      return BalanceResponse.fromJson(responseMap);
+      return BalanceReceive.fromJson(responseMap);
     case 'buy_contract_for_multiple_accounts':
-      return BuyContractForMultipleAccountsResponse.fromJson(responseMap);
+      return BuyContractForMultipleAccountsReceive.fromJson(responseMap);
     case 'buy':
-      return BuyResponse.fromJson(responseMap);
+      return BuyReceive.fromJson(responseMap);
     case 'cancel':
-      return CancelResponse.fromJson(responseMap);
+      return CancelReceive.fromJson(responseMap);
     case 'cashier':
-      return CashierResponse.fromJson(responseMap);
+      return CashierReceive.fromJson(responseMap);
     case 'contract_update_history':
-      return ContractUpdateHistoryResponse.fromJson(responseMap);
+      return ContractUpdateHistoryReceive.fromJson(responseMap);
     case 'contract_update':
-      return ContractUpdateResponse.fromJson(responseMap);
+      return ContractUpdateReceive.fromJson(responseMap);
     case 'contracts_for':
-      return ContractsForResponse.fromJson(responseMap);
+      return ContractsForReceive.fromJson(responseMap);
     case 'copy_start':
-      return CopyStartResponse.fromJson(responseMap);
+      return CopyStartReceive.fromJson(responseMap);
     case 'copy_stop':
-      return CopyStopResponse.fromJson(responseMap);
+      return CopyStopReceive.fromJson(responseMap);
     case 'copytrading_list':
-      return CopytradingListResponse.fromJson(responseMap);
+      return CopytradingListReceive.fromJson(responseMap);
     case 'copytrading_statistics':
-      return CopytradingStatisticsResponse.fromJson(responseMap);
+      return CopytradingStatisticsReceive.fromJson(responseMap);
     case 'document_upload':
-      return DocumentUploadResponse.fromJson(responseMap);
+      return DocumentUploadReceive.fromJson(responseMap);
     case 'economic_calendar':
-      return EconomicCalendarResponse.fromJson(responseMap);
+      return EconomicCalendarReceive.fromJson(responseMap);
     case 'exchange_rates':
-      return ExchangeRatesResponse.fromJson(responseMap);
+      return ExchangeRatesReceive.fromJson(responseMap);
     case 'forget_all':
-      return ForgetAllResponse.fromJson(responseMap);
+      return ForgetAllReceive.fromJson(responseMap);
     case 'forget':
-      return ForgetResponse.fromJson(responseMap);
+      return ForgetReceive.fromJson(responseMap);
     case 'get_account_status':
-      return GetAccountStatusResponse.fromJson(responseMap);
+      return GetAccountStatusReceive.fromJson(responseMap);
     case 'get_financial_assessment':
-      return GetFinancialAssessmentResponse.fromJson(responseMap);
+      return GetFinancialAssessmentReceive.fromJson(responseMap);
     case 'get_limits':
-      return GetLimitsResponse.fromJson(responseMap);
+      return GetLimitsReceive.fromJson(responseMap);
     case 'get_self_exclusion':
-      return GetSelfExclusionResponse.fromJson(responseMap);
+      return GetSelfExclusionReceive.fromJson(responseMap);
     case 'get_settings':
-      return GetSettingsResponse.fromJson(responseMap);
+      return GetSettingsReceive.fromJson(responseMap);
     case 'identity_verification_document_add':
-      return IdentityVerificationDocumentAddResponse.fromJson(responseMap);
+      return IdentityVerificationDocumentAddReceive.fromJson(responseMap);
     case 'landing_company_details':
-      return LandingCompanyDetailsResponse.fromJson(responseMap);
+      return LandingCompanyDetailsReceive.fromJson(responseMap);
     case 'landing_company':
-      return LandingCompanyResponse.fromJson(responseMap);
+      return LandingCompanyReceive.fromJson(responseMap);
     case 'login_history':
-      return LoginHistoryResponse.fromJson(responseMap);
+      return LoginHistoryReceive.fromJson(responseMap);
     case 'logout':
-      return LogoutResponse.fromJson(responseMap);
+      return LogoutReceive.fromJson(responseMap);
     case 'mt5_deposit':
-      return Mt5DepositResponse.fromJson(responseMap);
+      return Mt5DepositReceive.fromJson(responseMap);
     case 'mt5_get_settings':
-      return Mt5GetSettingsResponse.fromJson(responseMap);
+      return Mt5GetSettingsReceive.fromJson(responseMap);
     case 'mt5_login_list':
-      return Mt5LoginListResponse.fromJson(responseMap);
+      return Mt5LoginListReceive.fromJson(responseMap);
     case 'mt5_new_account':
-      return Mt5NewAccountResponse.fromJson(responseMap);
+      return Mt5NewAccountReceive.fromJson(responseMap);
     case 'mt5_password_change':
-      return Mt5PasswordChangeResponse.fromJson(responseMap);
+      return Mt5PasswordChangeReceive.fromJson(responseMap);
     case 'mt5_password_check':
-      return Mt5PasswordCheckResponse.fromJson(responseMap);
+      return Mt5PasswordCheckReceive.fromJson(responseMap);
     case 'mt5_password_reset':
-      return Mt5PasswordResetResponse.fromJson(responseMap);
+      return Mt5PasswordResetReceive.fromJson(responseMap);
     case 'mt5_withdrawal':
-      return Mt5WithdrawalResponse.fromJson(responseMap);
+      return Mt5WithdrawalReceive.fromJson(responseMap);
     case 'new_account_maltainvest':
-      return NewAccountMaltainvestResponse.fromJson(responseMap);
+      return NewAccountMaltainvestReceive.fromJson(responseMap);
     case 'new_account_real':
-      return NewAccountRealResponse.fromJson(responseMap);
+      return NewAccountRealReceive.fromJson(responseMap);
     case 'new_account_virtual':
-      return NewAccountVirtualResponse.fromJson(responseMap);
+      return NewAccountVirtualReceive.fromJson(responseMap);
     case 'oauth_apps':
-      return OauthAppsResponse.fromJson(responseMap);
+      return OauthAppsReceive.fromJson(responseMap);
     case 'p2p_advert_create':
-      return P2pAdvertCreateResponse.fromJson(responseMap);
+      return P2pAdvertCreateReceive.fromJson(responseMap);
     case 'p2p_advert_info':
-      return P2pAdvertInfoResponse.fromJson(responseMap);
+      return P2pAdvertInfoReceive.fromJson(responseMap);
     case 'p2p_advert_list':
-      return P2pAdvertListResponse.fromJson(responseMap);
+      return P2pAdvertListReceive.fromJson(responseMap);
     case 'p2p_advert_update':
-      return P2pAdvertUpdateResponse.fromJson(responseMap);
+      return P2pAdvertUpdateReceive.fromJson(responseMap);
     case 'p2p_advertiser_adverts':
-      return P2pAdvertiserAdvertsResponse.fromJson(responseMap);
+      return P2pAdvertiserAdvertsReceive.fromJson(responseMap);
     case 'p2p_advertiser_create':
-      return P2pAdvertiserCreateResponse.fromJson(responseMap);
+      return P2pAdvertiserCreateReceive.fromJson(responseMap);
     case 'p2p_advertiser_info':
-      return P2pAdvertiserInfoResponse.fromJson(responseMap);
+      return P2pAdvertiserInfoReceive.fromJson(responseMap);
     case 'p2p_advertiser_payment_methods':
-      return P2pAdvertiserPaymentMethodsResponse.fromJson(responseMap);
+      return P2pAdvertiserPaymentMethodsReceive.fromJson(responseMap);
     case 'p2p_advertiser_relations':
-      return P2pAdvertiserRelationsResponse.fromJson(responseMap);
+      return P2pAdvertiserRelationsReceive.fromJson(responseMap);
     case 'p2p_advertiser_update':
-      return P2pAdvertiserUpdateResponse.fromJson(responseMap);
+      return P2pAdvertiserUpdateReceive.fromJson(responseMap);
     case 'p2p_chat_create':
-      return P2pChatCreateResponse.fromJson(responseMap);
+      return P2pChatCreateReceive.fromJson(responseMap);
     case 'p2p_order_cancel':
-      return P2pOrderCancelResponse.fromJson(responseMap);
+      return P2pOrderCancelReceive.fromJson(responseMap);
     case 'p2p_order_confirm':
-      return P2pOrderConfirmResponse.fromJson(responseMap);
+      return P2pOrderConfirmReceive.fromJson(responseMap);
     case 'p2p_order_create':
-      return P2pOrderCreateResponse.fromJson(responseMap);
+      return P2pOrderCreateReceive.fromJson(responseMap);
     case 'p2p_order_dispute':
-      return P2pOrderDisputeResponse.fromJson(responseMap);
+      return P2pOrderDisputeReceive.fromJson(responseMap);
     case 'p2p_order_info':
-      return P2pOrderInfoResponse.fromJson(responseMap);
+      return P2pOrderInfoReceive.fromJson(responseMap);
     case 'p2p_order_list':
-      return P2pOrderListResponse.fromJson(responseMap);
+      return P2pOrderListReceive.fromJson(responseMap);
     case 'p2p_payment_methods':
-      return P2pPaymentMethodsResponse.fromJson(responseMap);
+      return P2pPaymentMethodsReceive.fromJson(responseMap);
     case 'payment_methods':
-      return PaymentMethodsResponse.fromJson(responseMap);
+      return PaymentMethodsReceive.fromJson(responseMap);
     case 'paymentagent_create':
-      return PaymentagentCreateResponse.fromJson(responseMap);
+      return PaymentagentCreateReceive.fromJson(responseMap);
     case 'paymentagent_details':
-      return PaymentagentDetailsResponse.fromJson(responseMap);
+      return PaymentagentDetailsReceive.fromJson(responseMap);
     case 'paymentagent_list':
-      return PaymentagentListResponse.fromJson(responseMap);
+      return PaymentagentListReceive.fromJson(responseMap);
     case 'paymentagent_transfer':
-      return PaymentagentTransferResponse.fromJson(responseMap);
+      return PaymentagentTransferReceive.fromJson(responseMap);
     case 'paymentagent_withdraw':
-      return PaymentagentWithdrawResponse.fromJson(responseMap);
+      return PaymentagentWithdrawReceive.fromJson(responseMap);
     case 'payout_currencies':
-      return PayoutCurrenciesResponse.fromJson(responseMap);
+      return PayoutCurrenciesReceive.fromJson(responseMap);
     case 'ping':
-      return PingResponse.fromJson(responseMap);
+      return PingReceive.fromJson(responseMap);
     case 'portfolio':
-      return PortfolioResponse.fromJson(responseMap);
+      return PortfolioReceive.fromJson(responseMap);
     case 'profit_table':
-      return ProfitTableResponse.fromJson(responseMap);
+      return ProfitTableReceive.fromJson(responseMap);
     case 'proposal_open_contract':
-      return ProposalOpenContractResponse.fromJson(responseMap);
+      return ProposalOpenContractReceive.fromJson(responseMap);
     case 'proposal':
-      return ProposalResponse.fromJson(responseMap);
+      return ProposalReceive.fromJson(responseMap);
     case 'reality_check':
-      return RealityCheckResponse.fromJson(responseMap);
+      return RealityCheckReceive.fromJson(responseMap);
     case 'reset_password':
-      return ResetPasswordResponse.fromJson(responseMap);
+      return ResetPasswordReceive.fromJson(responseMap);
     case 'residence_list':
-      return ResidenceListResponse.fromJson(responseMap);
+      return ResidenceListReceive.fromJson(responseMap);
     case 'revoke_oauth_app':
-      return RevokeOauthAppResponse.fromJson(responseMap);
+      return RevokeOauthAppReceive.fromJson(responseMap);
     case 'sell_contract_for_multiple_accounts':
-      return SellContractForMultipleAccountsResponse.fromJson(responseMap);
+      return SellContractForMultipleAccountsReceive.fromJson(responseMap);
     case 'sell_expired':
-      return SellExpiredResponse.fromJson(responseMap);
+      return SellExpiredReceive.fromJson(responseMap);
     case 'sell':
-      return SellResponse.fromJson(responseMap);
+      return SellReceive.fromJson(responseMap);
     case 'service_token':
-      return ServiceTokenResponse.fromJson(responseMap);
+      return ServiceTokenReceive.fromJson(responseMap);
     case 'set_account_currency':
-      return SetAccountCurrencyResponse.fromJson(responseMap);
+      return SetAccountCurrencyReceive.fromJson(responseMap);
     case 'set_financial_assessment':
-      return SetFinancialAssessmentResponse.fromJson(responseMap);
+      return SetFinancialAssessmentReceive.fromJson(responseMap);
     case 'set_self_exclusion':
-      return SetSelfExclusionResponse.fromJson(responseMap);
+      return SetSelfExclusionReceive.fromJson(responseMap);
     case 'set_settings':
-      return SetSettingsResponse.fromJson(responseMap);
+      return SetSettingsReceive.fromJson(responseMap);
     case 'statement':
-      return StatementResponse.fromJson(responseMap);
+      return StatementReceive.fromJson(responseMap);
     case 'states_list':
-      return StatesListResponse.fromJson(responseMap);
+      return StatesListReceive.fromJson(responseMap);
     case 'history':
-      return TicksHistoryResponse.fromJson(responseMap);
+      return TicksHistoryReceive.fromJson(responseMap);
     case 'tick':
-      return TicksResponse.fromJson(responseMap);
+      return TicksReceive.fromJson(responseMap);
     case 'time':
-      return TimeResponse.fromJson(responseMap);
+      return TimeReceive.fromJson(responseMap);
     case 'tnc_approval':
-      return TncApprovalResponse.fromJson(responseMap);
+      return TncApprovalReceive.fromJson(responseMap);
     case 'topup_virtual':
-      return TopupVirtualResponse.fromJson(responseMap);
+      return TopupVirtualReceive.fromJson(responseMap);
     case 'trading_durations':
-      return TradingDurationsResponse.fromJson(responseMap);
+      return TradingDurationsReceive.fromJson(responseMap);
     case 'trading_platform_investor_password_reset':
-      return TradingPlatformInvestorPasswordResetResponse.fromJson(responseMap);
+      return TradingPlatformInvestorPasswordResetReceive.fromJson(responseMap);
     case 'trading_platform_password_reset':
-      return TradingPlatformPasswordResetResponse.fromJson(responseMap);
+      return TradingPlatformPasswordResetReceive.fromJson(responseMap);
     case 'trading_servers':
-      return TradingServersResponse.fromJson(responseMap);
+      return TradingServersReceive.fromJson(responseMap);
     case 'trading_times':
-      return TradingTimesResponse.fromJson(responseMap);
+      return TradingTimesReceive.fromJson(responseMap);
     case 'transaction':
-      return TransactionResponse.fromJson(responseMap);
+      return TransactionReceive.fromJson(responseMap);
     case 'transfer_between_accounts':
-      return TransferBetweenAccountsResponse.fromJson(responseMap);
+      return TransferBetweenAccountsReceive.fromJson(responseMap);
     case 'verify_email':
-      return VerifyEmailResponse.fromJson(responseMap);
+      return VerifyEmailReceive.fromJson(responseMap);
     case 'website_status':
-      return WebsiteStatusResponse.fromJson(responseMap);
+      return WebsiteStatusReceive.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);

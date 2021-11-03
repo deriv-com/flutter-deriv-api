@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Ping response class.
-class PingResponse extends Response {
-  /// Initialize PingResponse.
-  const PingResponse({
+/// Ping receive class.
+class PingReceive extends Response {
+  /// Initialize PingReceive.
+  const PingReceive({
     this.ping,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,7 +21,7 @@ class PingResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory PingResponse.fromJson(Map<String, dynamic> json) => PingResponse(
+  factory PingReceive.fromJson(Map<String, dynamic> json) => PingReceive(
         ping: json['ping'] as String?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +44,14 @@ class PingResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PingResponse copyWith({
+  PingReceive copyWith({
     String? ping,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      PingResponse(
+      PingReceive(
         ping: ping ?? this.ping,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -61,5 +61,5 @@ class PingResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

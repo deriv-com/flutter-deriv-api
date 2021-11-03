@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
@@ -17,7 +17,6 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
-
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -147,13 +146,13 @@ class BinaryAPI extends BaseAPI {
       );
 
   @override
-  Future<ForgetResponse> unsubscribe({required String? subscriptionId}) =>
+  Future<ForgetReceive> unsubscribe({required String subscriptionId}) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
       );
 
   @override
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     required ForgetStreamType method,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))

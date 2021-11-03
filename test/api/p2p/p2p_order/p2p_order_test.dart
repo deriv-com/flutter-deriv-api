@@ -1,26 +1,31 @@
-import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
-import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order_list.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/p2p_order_cancel_response_result.dart'
+    as order_cancel;
+import 'package:flutter_deriv_api/api/response/p2p_order_confirm_response_result.dart'
+    as order_confirm;
+import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart'
+    as order_create;
+import 'package:flutter_deriv_api/api/response/p2p_order_info_response_result.dart'
+    as order_info;
+import 'package:flutter_deriv_api/api/response/p2p_order_list_response_result.dart'
+    as order_list;
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('P2P Order Group ->', () {
     test('Create Order Test', () async {
-      final P2POrder order = await P2POrder.create(
+      final order_create.P2pOrderCreateResponse orderResponse =
+          await order_create.P2pOrderCreateResponse.create(
         const P2pOrderCreateRequest(
-          advertId: '8',
-          amount: 50.0,
-          paymentMethodIds: <int>[],
-        ),
+            advertId: '8', amount: 50.0, paymentMethodIds: <int>[]),
       );
+
+      final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate!;
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
@@ -36,25 +41,26 @@ void main() {
       expect(order.priceDisplay, '675000.00');
       expect(order.rate, 13500.0);
       expect(order.rateDisplay, '13500.00');
-      expect(order.status, OrderStatusType.pending);
-      expect(order.type, OrderType.buy);
+      expect(order.status, order_create.StatusEnum.pending);
+      expect(order.type, order_create.TypeEnum.buy);
 
-      final P2PAdvertModel? advert = order.advertDetails;
-      expect(advert!.description, 'Please contact via whatsapp 1234');
+      final order_create.AdvertDetails advert = order.advertDetails;
+      expect(advert.description, 'Please contact via whatsapp 1234');
       expect(advert.id, '6');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(advert.type, TransactionType.sell);
+      expect(advert.paymentMethod, 'bank_transfer');
+      expect(advert.type, order_create.TypeEnum.sell);
 
-      final P2PAdvertiserModel? advertiser = order.advertiserDetails;
-      expect(advertiser!.id, '2');
+      final order_create.AdvertiserDetails advertiser = order.advertiserDetails;
+      expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
     test('Fetch Order List Test', () async {
-      final P2POrderList orderList = await P2POrderList.fetchOrderList();
-      final P2POrder? firstOrder = orderList.list?.first;
+      final order_list.P2pOrderListResponse orderList =
+          await order_list.P2pOrderListResponse.fetchOrderList();
+      final order_list.ListItem firstOrder = orderList.p2pOrderList!.list.first;
 
-      expect(firstOrder!.accountCurrency, 'USD');
+      expect(firstOrder.accountCurrency, 'USD');
       expect(firstOrder.amount, 50.0);
       expect(firstOrder.amountDisplay, '50.00');
       expect(firstOrder.contactInfo, 'Please contact via whatsapp 1234');
@@ -68,24 +74,28 @@ void main() {
       expect(firstOrder.priceDisplay, '675000.00');
       expect(firstOrder.rate, 13500.0);
       expect(firstOrder.rateDisplay, '13500.00');
-      expect(firstOrder.status, OrderStatusType.pending);
-      expect(firstOrder.type, OrderType.buy);
+      expect(firstOrder.status, order_list.StatusEnum.pending);
+      expect(firstOrder.type, order_list.TypeEnum.buy);
 
-      final P2PAdvertModel? advert = firstOrder.advertDetails;
-      expect(advert!.description, 'Please contact via whatsapp 1234');
+      final order_list.AdvertDetails advert = firstOrder.advertDetails;
+      expect(advert.description, 'Please contact via whatsapp 1234');
       expect(advert.id, '6');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(advert.type, TransactionType.sell);
+      expect(advert.paymentMethod, 'bank_transfer');
+      expect(advert.type, order_list.TypeEnum.sell);
 
-      final P2PAdvertiserModel? advertiser = firstOrder.advertiserDetails;
-      expect(advertiser!.id, '2');
+      final order_list.AdvertiserDetails advertiser =
+          firstOrder.advertiserDetails;
+      expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
     test('Fetch Order Information Test', () async {
-      final P2POrder order = await P2POrder.fetchOrder(
+      final order_info.P2pOrderInfoResponse orderResponse =
+          await order_info.P2pOrderInfoResponse.fetchOrder(
         const P2pOrderInfoRequest(id: '108'),
       );
+
+      final order_info.P2pOrderInfo order = orderResponse.p2pOrderInfo!;
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
@@ -101,48 +111,57 @@ void main() {
       expect(order.priceDisplay, '675000.00');
       expect(order.rate, 13500.0);
       expect(order.rateDisplay, '13500.00');
-      expect(order.status, OrderStatusType.pending);
-      expect(order.type, OrderType.buy);
+      expect(order.status, order_info.StatusEnum.pending);
+      expect(order.type, order_info.TypeEnum.buy);
 
-      final P2PAdvertModel? advert = order.advertDetails;
-      expect(advert!.description, 'Please contact via whatsapp 1234');
+      final order_info.AdvertDetails advert = order.advertDetails;
+      expect(advert.description, 'Please contact via whatsapp 1234');
       expect(advert.id, '6');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(advert.type, TransactionType.sell);
+      expect(advert.paymentMethod, 'bank_transfer');
+      expect(advert.type, order_info.TypeEnum.sell);
 
-      final P2PAdvertiserModel? advertiser = order.advertiserDetails;
-      expect(advertiser!.id, '2');
+      final order_info.AdvertiserDetails advertiser = order.advertiserDetails;
+      expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
     test('Order Confirm Test', () async {
-      final P2POrder order = await P2POrder.fetchOrder(
+      final order_info.P2pOrderInfoResponse order =
+          await order_info.P2pOrderInfoResponse.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
-      final P2POrder confirmedOrder = await order.confirm();
+      final order_confirm.P2pOrderConfirmResponse confirmedOrder =
+          await order.confirm();
 
-      expect(confirmedOrder.status, OrderStatusType.buyerConfirmed);
+      expect(confirmedOrder.p2pOrderConfirm?.status,
+          order_confirm.StatusEnum.buyerConfirmed);
     });
 
     test('Cancel Order Test', () async {
-      final P2POrder order = await P2POrder.fetchOrder(
+      final order_info.P2pOrderInfoResponse order =
+          await order_info.P2pOrderInfoResponse.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
-      final P2POrder cancelledOrder = await order.cancel();
+      final order_cancel.P2pOrderCancelResponse cancelledOrder =
+          await order.cancel();
 
-      expect(cancelledOrder.status, OrderStatusType.cancelled);
+      expect(cancelledOrder.p2pOrderCancel?.status,
+          order_cancel.StatusEnum.cancelled);
     });
 
     test('Create and Subscribe to Order Test', () {
-      P2POrder.createAndSubscribe(const P2pOrderCreateRequest(
+      order_create.P2pOrderCreateResponse.createAndSubscribe(
+          const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
         paymentMethodIds: <int>[],
       )).listen(expectAsync1(
-        (P2POrder? order) {
-          expect(order!.accountCurrency, 'USD');
+        (order_create.P2pOrderCreateResponse? orderResponse) {
+          final order_create.P2pOrderCreate order =
+              orderResponse!.p2pOrderCreate!;
+          expect(order.accountCurrency, 'USD');
           expect(order.amount, 50.0);
           expect(order.amountDisplay, '50.00');
           expect(order.contactInfo, 'Please contact via whatsapp 1234');
@@ -156,21 +175,22 @@ void main() {
           expect(order.priceDisplay, '675000.00');
           expect(order.rate, 13500.0);
           expect(order.rateDisplay, '13500.00');
-          expect(order.status, OrderStatusType.pending);
-          expect(order.type, OrderType.buy);
+          expect(order.status, order_create.StatusEnum.pending);
+          expect(order.type, order_create.TypeEnum.buy);
 
-          final P2PAdvertModel? advert = order.advertDetails;
-          expect(advert!.description, 'Please contact via whatsapp 1234');
+          final order_create.AdvertDetails advert = order.advertDetails;
+          expect(advert.description, 'Please contact via whatsapp 1234');
           expect(advert.id, '6');
-          expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-          expect(advert.type, TransactionType.sell);
+          expect(advert.paymentMethod, 'bank_transfer');
+          expect(advert.type, order_create.TypeEnum.sell);
 
-          final P2PAdvertiserModel? advertiser = order.advertiserDetails;
-          expect(advertiser!.id, '2');
+          final order_create.AdvertiserDetails advertiser =
+              order.advertiserDetails;
+          expect(advertiser.id, '2');
           expect(advertiser.name, 'advertiser CR90000018');
 
           expect(
-            order.subscriptionInformation!.id,
+            orderResponse.subscription?.id,
             '857cfc96-1014-66ce-9c49-0a4dbd22857a',
           );
         },
@@ -178,11 +198,12 @@ void main() {
     });
 
     test('Fetch Order List and Subscribe Test', () {
-      P2POrderList.subscribeOrderList().listen(expectAsync1(
-        (P2POrderList? orderList) {
-          final P2POrder? firstOrder = orderList!.list!.first;
+      order_list.P2pOrderListResponse.subscribeOrderList().listen(expectAsync1(
+        (order_list.P2pOrderListResponse? orderList) {
+          final order_list.ListItem firstOrder =
+              orderList!.p2pOrderList!.list.first;
 
-          expect(firstOrder!.accountCurrency, 'USD');
+          expect(firstOrder.accountCurrency, 'USD');
           expect(firstOrder.amount, 50.0);
           expect(firstOrder.amountDisplay, '50.00');
           expect(firstOrder.contactInfo, 'Please contact via whatsapp 1234');
@@ -196,21 +217,22 @@ void main() {
           expect(firstOrder.priceDisplay, '675000.00');
           expect(firstOrder.rate, 13500.0);
           expect(firstOrder.rateDisplay, '13500.00');
-          expect(firstOrder.status, OrderStatusType.pending);
-          expect(firstOrder.type, OrderType.buy);
+          expect(firstOrder.status, order_list.StatusEnum.pending);
+          expect(firstOrder.type, order_list.TypeEnum.buy);
 
-          final P2PAdvertModel? advert = firstOrder.advertDetails;
-          expect(advert!.description, 'Please contact via whatsapp 1234');
+          final order_list.AdvertDetails advert = firstOrder.advertDetails;
+          expect(advert.description, 'Please contact via whatsapp 1234');
           expect(advert.id, '6');
-          expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-          expect(advert.type, TransactionType.sell);
+          expect(advert.paymentMethod, 'bank_transfer');
+          expect(advert.type, order_list.TypeEnum.sell);
 
-          final P2PAdvertiserModel? advertiser = firstOrder.advertiserDetails;
-          expect(advertiser!.id, '2');
+          final order_list.AdvertiserDetails advertiser =
+              firstOrder.advertiserDetails;
+          expect(advertiser.id, '2');
           expect(advertiser.name, 'advertiser CR90000018');
 
           expect(
-            orderList.subscriptionInformation!.id,
+            orderList.subscription?.id,
             '857cfc96-1014-66ce-9c49-0a4dbd22857a',
           );
         },
@@ -218,10 +240,12 @@ void main() {
     });
 
     test('Order Info Subscription Test', () {
-      P2POrder.subscribeOrder(const P2pOrderInfoRequest(id: '107'))
+      order_info.P2pOrderInfoResponse.subscribeOrder(
+              const P2pOrderInfoRequest(id: '107'))
           .listen(expectAsync1(
-        (P2POrder? order) {
-          expect(order!.accountCurrency, 'USD');
+        (order_info.P2pOrderInfoResponse? orderResponse) {
+          final order_info.P2pOrderInfo order = orderResponse!.p2pOrderInfo!;
+          expect(order.accountCurrency, 'USD');
           expect(order.amount, 50.0);
           expect(order.amountDisplay, '50.00');
           expect(order.contactInfo, 'Please contact via whatsapp 1234');
@@ -235,21 +259,22 @@ void main() {
           expect(order.priceDisplay, '675000.00');
           expect(order.rate, 13500.0);
           expect(order.rateDisplay, '13500.00');
-          expect(order.status, OrderStatusType.pending);
-          expect(order.type, OrderType.buy);
+          expect(order.status, order_info.StatusEnum.pending);
+          expect(order.type, order_info.TypeEnum.buy);
 
-          final P2PAdvertModel? advert = order.advertDetails;
-          expect(advert!.description, 'Please contact via whatsapp 1234');
+          final order_info.AdvertDetails advert = order.advertDetails;
+          expect(advert.description, 'Please contact via whatsapp 1234');
           expect(advert.id, '6');
-          expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-          expect(advert.type, TransactionType.sell);
+          expect(advert.paymentMethod, 'bank_transfer');
+          expect(advert.type, order_info.TypeEnum.sell);
 
-          final P2PAdvertiserModel? advertiser = order.advertiserDetails;
-          expect(advertiser!.id, '2');
+          final order_info.AdvertiserDetails advertiser =
+              order.advertiserDetails;
+          expect(advertiser.id, '2');
           expect(advertiser.name, 'advertiser CR90000018');
 
           expect(
-            order.subscriptionInformation!.id,
+            orderResponse.subscription?.id,
             '857cfc96-1014-66ce-9c49-0a4dbd22857a',
           );
         },

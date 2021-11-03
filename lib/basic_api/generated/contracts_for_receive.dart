@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Contracts for response class.
-class ContractsForResponse extends Response {
-  /// Initialize ContractsForResponse.
-  const ContractsForResponse({
+/// Contracts for receive class.
+class ContractsForReceive extends Response {
+  /// Initialize ContractsForReceive.
+  const ContractsForReceive({
     this.contractsFor,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class ContractsForResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
-      ContractsForResponse(
+  factory ContractsForReceive.fromJson(Map<String, dynamic> json) =>
+      ContractsForReceive(
         contractsFor: json['contracts_for'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class ContractsForResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractsForResponse copyWith({
+  ContractsForReceive copyWith({
     Map<String, dynamic>? contractsFor,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ContractsForResponse(
+      ContractsForReceive(
         contractsFor: contractsFor ?? this.contractsFor,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class ContractsForResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Buy contract for multiple accounts response class.
-class BuyContractForMultipleAccountsResponse extends Response {
-  /// Initialize BuyContractForMultipleAccountsResponse.
-  const BuyContractForMultipleAccountsResponse({
+/// Buy contract for multiple accounts receive class.
+class BuyContractForMultipleAccountsReceive extends Response {
+  /// Initialize BuyContractForMultipleAccountsReceive.
+  const BuyContractForMultipleAccountsReceive({
     this.buyContractForMultipleAccounts,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,9 +21,9 @@ class BuyContractForMultipleAccountsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory BuyContractForMultipleAccountsResponse.fromJson(
+  factory BuyContractForMultipleAccountsReceive.fromJson(
           Map<String, dynamic> json) =>
-      BuyContractForMultipleAccountsResponse(
+      BuyContractForMultipleAccountsReceive(
         buyContractForMultipleAccounts:
             json['buy_contract_for_multiple_accounts'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +47,14 @@ class BuyContractForMultipleAccountsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  BuyContractForMultipleAccountsResponse copyWith({
+  BuyContractForMultipleAccountsReceive copyWith({
     Map<String, dynamic>? buyContractForMultipleAccounts,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      BuyContractForMultipleAccountsResponse(
+      BuyContractForMultipleAccountsReceive(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
             this.buyContractForMultipleAccounts,
         echoReq: echoReq ?? this.echoReq,
@@ -65,5 +65,5 @@ class BuyContractForMultipleAccountsResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

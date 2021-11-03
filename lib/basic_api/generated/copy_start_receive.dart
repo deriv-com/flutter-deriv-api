@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Copy start response class.
-class CopyStartResponse extends Response {
-  /// Initialize CopyStartResponse.
-  const CopyStartResponse({
+/// Copy start receive class.
+class CopyStartReceive extends Response {
+  /// Initialize CopyStartReceive.
+  const CopyStartReceive({
     this.copyStart,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class CopyStartResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
-      CopyStartResponse(
+  factory CopyStartReceive.fromJson(Map<String, dynamic> json) =>
+      CopyStartReceive(
         copyStart: json['copy_start'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class CopyStartResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopyStartResponse copyWith({
+  CopyStartReceive copyWith({
     int? copyStart,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CopyStartResponse(
+      CopyStartReceive(
         copyStart: copyStart ?? this.copyStart,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class CopyStartResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

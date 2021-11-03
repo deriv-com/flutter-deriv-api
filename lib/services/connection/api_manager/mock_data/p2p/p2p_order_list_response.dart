@@ -16,8 +16,19 @@ const String p2pOrderListResponse = '''{
         },
         "advertiser_details": {
           "id": "2",
-          "name": "advertiser CR90000018"
+          "name": "advertiser CR90000018",
+          "loginid":"CR90000006"
         },
+        "client_details":{
+         "id":"5",
+         "loginid":"CR90000006",
+         "name":"client CR90000006"
+      },
+
+      "dispute_details":{
+         "dispute_reason":null,
+         "disputer_loginid":null
+      },
         "amount": 50,
         "amount_display": "50.00",
         "chat_channel_url": "",

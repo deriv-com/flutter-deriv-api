@@ -1,59 +1,50 @@
-import 'package:flutter_deriv_api/api/common/models/transfer_fee_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/common/models/transfer_account_limitation_model.dart';
-import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config_model.dart';
-import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
-import 'package:flutter_deriv_api/api/common/website_status/website_status.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/website_status_response_result.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Website Status Test', () async {
-    final WebsiteStatus websiteStatus =
-        await WebsiteStatus.fetchWebsiteStatus();
+    final WebsiteStatusResponse websiteStatusResponse =
+        await WebsiteStatusResponse.fetchWebsiteStatus();
 
-    expect(websiteStatus.clientsCountry, 'us');
+    final WebsiteStatus websiteStatus = websiteStatusResponse.websiteStatus!;
+
+    expect(websiteStatus.clientsCountry, 'de');
     expect(websiteStatus.termsConditionsVersion, 'Version 48 2019-05-10');
-    expect(websiteStatus.currencyConfig!.length, 2);
-    expect(websiteStatus.supportedLanguages!.length, 4);
-    expect(websiteStatus.supportedLanguages!.first, 'EN');
-    expect(websiteStatus.siteStatus, SiteStatus.up);
+    expect(websiteStatus.currenciesConfig.length, 18);
+    expect(websiteStatus.supportedLanguages?.length, 13);
+    expect(websiteStatus.supportedLanguages?.first, 'EN');
+    expect(websiteStatus.siteStatus, SiteStatusEnum.up);
 
-    final List<WebsiteStatusCurrencyConfigModel?> currencyConfigs =
-        websiteStatus.currencyConfig!;
+    final Map<String, CurrenciesConfigProperty> currencyConfigs =
+        websiteStatus.currenciesConfig;
 
-    expect(currencyConfigs.length, 2);
+    expect(currencyConfigs.length, 18);
 
-    final WebsiteStatusCurrencyConfigModel aud = currencyConfigs.first!;
+    final MapEntry<String, CurrenciesConfigProperty> aud =
+        currencyConfigs.entries.first;
 
-    expect(aud.name, 'Australian Dollar');
-    expect(aud.code, 'USD');
-    expect(aud.isSuspended, false);
-    expect(aud.stakeDefault, 10.0);
-    expect(aud.type, CurrencyType.fiat);
-    expect(aud.fractionalDigits, 2);
+    expect(aud.key, 'AUD');
+    expect(aud.value.isSuspended, 0.0);
+    expect(aud.value.stakeDefault, 10.0);
+    expect(aud.value.type, TypeEnum.fiat);
+    expect(aud.value.fractionalDigits, 2);
 
-    final TransferAccountLimitationModel audLimitations =
-        aud.transferBetweenAccounts!;
+    final TransferBetweenAccounts audLimitations =
+        aud.value.transferBetweenAccounts;
 
-    final List<TransferFeeModel?> fees = audLimitations.fees!;
-    final TransferFeeModel firstFee = fees.first!;
+    expect(audLimitations.limits.min, 1.33);
+    expect(audLimitations.fees.length, 17);
+    expect(audLimitations.fees.entries.first.key, 'BTC');
+    expect(audLimitations.fees.entries.first.value, 2.0);
 
-    expect(audLimitations.limits!.min, 1.53);
-    expect(fees.length, 3);
-    expect(firstFee.code, 'BTC');
-    expect(firstFee.value, 2.0);
+    final Map<String, CryptoConfigProperty> cryptoConfig =
+        websiteStatus.cryptoConfig;
 
-    final List<WebsiteStatusCryptoConfigModel?> cryptoConfig =
-        websiteStatus.cryptoConfig!;
-    final WebsiteStatusCryptoConfigModel firstCryptoConfig =
-        cryptoConfig.first!;
-
-    expect(cryptoConfig.length, 2);
-    expect(firstCryptoConfig.code, 'BTC');
-    expect(firstCryptoConfig.minimumWithdrawal, 0.00299415);
+    expect(cryptoConfig.length, 14);
+    expect(cryptoConfig.entries.first.key, 'BTC');
+    expect(cryptoConfig.entries.first.value.minimumWithdrawal, 0.00074296);
   });
 }

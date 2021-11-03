@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Balance response class.
-class BalanceResponse extends Response {
-  /// Initialize BalanceResponse.
-  const BalanceResponse({
+/// Balance receive class.
+class BalanceReceive extends Response {
+  /// Initialize BalanceReceive.
+  const BalanceReceive({
     this.balance,
     this.subscription,
     Map<String, dynamic>? echoReq,
@@ -22,8 +22,7 @@ class BalanceResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
-      BalanceResponse(
+  factory BalanceReceive.fromJson(Map<String, dynamic> json) => BalanceReceive(
         balance: json['balance'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +50,7 @@ class BalanceResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  BalanceResponse copyWith({
+  BalanceReceive copyWith({
     Map<String, dynamic>? balance,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -59,7 +58,7 @@ class BalanceResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      BalanceResponse(
+      BalanceReceive(
         balance: balance ?? this.balance,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,
@@ -70,5 +69,5 @@ class BalanceResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

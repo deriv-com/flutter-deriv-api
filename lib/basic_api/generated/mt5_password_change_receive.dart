@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Mt5 password change response class.
-class Mt5PasswordChangeResponse extends Response {
-  /// Initialize Mt5PasswordChangeResponse.
-  const Mt5PasswordChangeResponse({
+/// Mt5 password change receive class.
+class Mt5PasswordChangeReceive extends Response {
+  /// Initialize Mt5PasswordChangeReceive.
+  const Mt5PasswordChangeReceive({
     this.mt5PasswordChange,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class Mt5PasswordChangeResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5PasswordChangeResponse(
+  factory Mt5PasswordChangeReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5PasswordChangeReceive(
         mt5PasswordChange: json['mt5_password_change'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class Mt5PasswordChangeResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5PasswordChangeResponse copyWith({
+  Mt5PasswordChangeReceive copyWith({
     int? mt5PasswordChange,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5PasswordChangeResponse(
+      Mt5PasswordChangeReceive(
         mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class Mt5PasswordChangeResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

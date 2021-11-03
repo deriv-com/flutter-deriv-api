@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Paymentagent list response class.
-class PaymentagentListResponse extends Response {
-  /// Initialize PaymentagentListResponse.
-  const PaymentagentListResponse({
+/// Paymentagent list receive class.
+class PaymentagentListReceive extends Response {
+  /// Initialize PaymentagentListReceive.
+  const PaymentagentListReceive({
     this.paymentagentList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class PaymentagentListResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
-      PaymentagentListResponse(
+  factory PaymentagentListReceive.fromJson(Map<String, dynamic> json) =>
+      PaymentagentListReceive(
         paymentagentList: json['paymentagent_list'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class PaymentagentListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentListResponse copyWith({
+  PaymentagentListReceive copyWith({
     Map<String, dynamic>? paymentagentList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      PaymentagentListResponse(
+      PaymentagentListReceive(
         paymentagentList: paymentagentList ?? this.paymentagentList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -62,5 +62,5 @@ class PaymentagentListResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -1,31 +1,26 @@
-import 'package:flutter_deriv_api/api/account/models/portfolio_contract_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_deriv_api/api/account/portfolio/portfolio.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/portfolio_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/portfolio_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Portfolio Test', () async {
-    final Portfolio portfolio = await Portfolio.fetchPortfolio(
-      const PortfolioRequest(contractType: <String>['MULTUP']),
+    final PortfolioResponse portfolio = await PortfolioResponse.fetchPortfolio(
+      const PortfolioRequest(contractType: <String>[]),
     );
 
-    final PortfolioContractModel firstContract = portfolio.contracts!.first!;
-
-    expect(firstContract.currency, 'USD');
-    expect(firstContract.payout, 10.88);
-    expect(firstContract.symbol, '1HZ50V');
-    expect(firstContract.transactionId, 160058875308);
-    expect(firstContract.contractId, 98350591008);
-    expect(firstContract.contractType, ContractType.multUp);
-    expect(firstContract.purchaseTime, getDateTime(1587634074));
-    expect(firstContract.expiryTime, getDateTime(1587761700));
-    expect(firstContract.expiryTime, getDateTime(1587761700));
-    expect(firstContract.buyPrice, 10.52);
+    expect(portfolio.portfolio?.contracts.first.currency, 'USD');
+    expect(portfolio.portfolio?.contracts.first.payout, 10.88);
+    expect(portfolio.portfolio?.contracts.first.symbol, '1HZ50V');
+    expect(portfolio.portfolio?.contracts.first.transactionId, 160058875308);
+    expect(portfolio.portfolio?.contracts.first.contractId, 98350591008);
+    expect(portfolio.portfolio?.contracts.first.contractType, 'MULTUP');
+    expect(portfolio.portfolio?.contracts.first.purchaseTime, getDateTime(1587634074));
+    expect(portfolio.portfolio?.contracts.first.expiryTime, getDateTime(1587761700));
+    expect(portfolio.portfolio?.contracts.first.expiryTime, getDateTime(1587761700));
+    expect(portfolio.portfolio?.contracts.first.buyPrice, 10.52);
   });
 }

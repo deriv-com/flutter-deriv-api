@@ -25,7 +25,7 @@ const String p2pAdvertUpdateResponse = '''
     "created_time": 1589279547,
     "description": "advert information",
     "id": "25",
-    "is_active": 1,
+    "is_active": 0,
     "local_currency": "ZAR",
     "max_order_amount": 50,
     "max_order_amount_display": "50.00",

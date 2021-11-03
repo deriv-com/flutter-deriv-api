@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Logout response class.
-class LogoutResponse extends Response {
-  /// Initialize LogoutResponse.
-  const LogoutResponse({
+/// Logout receive class.
+class LogoutReceive extends Response {
+  /// Initialize LogoutReceive.
+  const LogoutReceive({
     this.logout,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,7 +21,7 @@ class LogoutResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory LogoutResponse.fromJson(Map<String, dynamic> json) => LogoutResponse(
+  factory LogoutReceive.fromJson(Map<String, dynamic> json) => LogoutReceive(
         logout: json['logout'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +44,14 @@ class LogoutResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  LogoutResponse copyWith({
+  LogoutReceive copyWith({
     int? logout,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      LogoutResponse(
+      LogoutReceive(
         logout: logout ?? this.logout,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -61,5 +61,5 @@ class LogoutResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// States list response class.
-class StatesListResponse extends Response {
-  /// Initialize StatesListResponse.
-  const StatesListResponse({
+/// States list receive class.
+class StatesListReceive extends Response {
+  /// Initialize StatesListReceive.
+  const StatesListReceive({
     this.statesList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class StatesListResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
-      StatesListResponse(
+  factory StatesListReceive.fromJson(Map<String, dynamic> json) =>
+      StatesListReceive(
         statesList: (json['states_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +48,14 @@ class StatesListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  StatesListResponse copyWith({
+  StatesListReceive copyWith({
     List<Map<String, dynamic>>? statesList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      StatesListResponse(
+      StatesListReceive(
         statesList: statesList ?? this.statesList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -65,5 +65,5 @@ class StatesListResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

@@ -1,6 +1,10 @@
 targets:
   $default:
     builders:
+      flutter_deriv_api|apiParser:
+        enabled: true
+        generate_for:
+        - lib/basic_api/generated/*_receive.json
       flutter_deriv_api|api:
         enabled: true
         generate_for:
@@ -9,6 +13,19 @@ targets:
       flutter_deriv_api|apiHelper:
         enabled: true
 builders:
+  apiParser:
+    import: './api_parser.dart'
+    builder_factories: ["apiParser"]
+    auto_apply: root_package
+    build_extensions: {".json": ["_result.dart"]}
+    is_optional: False
+    build_to: source
+    runs_before:
+      - flutter_deriv_api|api
+    defaults:
+      generate_for:
+        include:
+          - lib/basic_api/generated/*_receive.json
   api:
     import: './api_builder.dart'
     builder_factories: ["apiBuilder"]

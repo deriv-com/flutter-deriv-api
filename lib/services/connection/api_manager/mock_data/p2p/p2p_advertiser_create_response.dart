@@ -6,6 +6,11 @@ const String p2pAdvertiserCreateResponse = '''
   },
   "msg_type": "p2p_advertiser_create",
   "p2p_advertiser_create": {
+    "buy_orders_count" : 1,
+    "cancels_remaining" : 1,
+    "sell_orders_count" : 1,
+    "favourited" : 1,
+    "total_orders_count" : 1,
     "chat_token": "invalid_token_for_test_2ea8d690e2e98582",
     "chat_user_id": "p2p_CR_1589256468",
     "contact_info": "contract information",

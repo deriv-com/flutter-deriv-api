@@ -65,13 +65,13 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  '${state.selectedSymbol!.marketDisplayName}',
+                                  '${state.selectedSymbol.marketDisplayName}',
                                   style: const TextStyle(fontSize: 18),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 12),
                                 Text(
-                                  '${state.selectedSymbol!.displayName}',
+                                  '${state.selectedSymbol.displayName}',
                                   style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),

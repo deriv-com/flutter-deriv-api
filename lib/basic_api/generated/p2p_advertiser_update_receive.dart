@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p advertiser update response class.
-class P2pAdvertiserUpdateResponse extends Response {
-  /// Initialize P2pAdvertiserUpdateResponse.
-  const P2pAdvertiserUpdateResponse({
+/// P2p advertiser update receive class.
+class P2pAdvertiserUpdateReceive extends Response {
+  /// Initialize P2pAdvertiserUpdateReceive.
+  const P2pAdvertiserUpdateReceive({
     this.p2pAdvertiserUpdate,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class P2pAdvertiserUpdateResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserUpdateResponse.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserUpdateResponse(
+  factory P2pAdvertiserUpdateReceive.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserUpdateReceive(
         p2pAdvertiserUpdate:
             json['p2p_advertiser_update'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +46,14 @@ class P2pAdvertiserUpdateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserUpdateResponse copyWith({
+  P2pAdvertiserUpdateReceive copyWith({
     Map<String, dynamic>? p2pAdvertiserUpdate,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pAdvertiserUpdateResponse(
+      P2pAdvertiserUpdateReceive(
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
@@ -63,5 +63,5 @@ class P2pAdvertiserUpdateResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

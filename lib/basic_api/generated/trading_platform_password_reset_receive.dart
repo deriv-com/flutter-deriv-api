@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Trading platform password reset response class.
-class TradingPlatformPasswordResetResponse extends Response {
-  /// Initialize TradingPlatformPasswordResetResponse.
-  const TradingPlatformPasswordResetResponse({
+/// Trading platform password reset receive class.
+class TradingPlatformPasswordResetReceive extends Response {
+  /// Initialize TradingPlatformPasswordResetReceive.
+  const TradingPlatformPasswordResetReceive({
     this.tradingPlatformPasswordReset,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,9 +21,9 @@ class TradingPlatformPasswordResetResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformPasswordResetResponse.fromJson(
+  factory TradingPlatformPasswordResetReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformPasswordResetResponse(
+      TradingPlatformPasswordResetReceive(
         tradingPlatformPasswordReset:
             json['trading_platform_password_reset'] == null
                 ? null
@@ -53,14 +53,14 @@ class TradingPlatformPasswordResetResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformPasswordResetResponse copyWith({
+  TradingPlatformPasswordResetReceive copyWith({
     bool? tradingPlatformPasswordReset,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformPasswordResetResponse(
+      TradingPlatformPasswordResetReceive(
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,
         echoReq: echoReq ?? this.echoReq,
@@ -71,5 +71,5 @@ class TradingPlatformPasswordResetResponse extends Response {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }

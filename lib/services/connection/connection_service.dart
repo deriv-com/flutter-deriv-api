@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
-
 import 'package:flutter_deriv_api/state/connection/connection_cubit.dart';
 
 /// A class to check the connectivity of the device to the Internet.
