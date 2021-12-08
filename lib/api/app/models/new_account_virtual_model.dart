@@ -9,9 +9,11 @@ abstract class NewAccountVirtualModel extends NewAccountBaseModel {
     this.currency,
     this.email,
     String? oauthToken,
+    String? refreshToken,
   }) : super(
           clientId: clientId,
           oauthToken: oauthToken,
+          refreshToken: refreshToken,
         );
 
   /// Account balance
