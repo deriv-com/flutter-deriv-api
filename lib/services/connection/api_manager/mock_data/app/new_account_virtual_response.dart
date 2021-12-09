@@ -12,7 +12,8 @@ const String newAccountVirtualResponse = '''
     "client_id": "VRTC0000",
     "currency": "USD",
     "email": "test@email.com",
-    "oauth_token": "sample_token"
+    "oauth_token": "sample_token",
+    "refresh_token": "refresh_token"
   },
   "msg_type": "new_account_virtual"
 }

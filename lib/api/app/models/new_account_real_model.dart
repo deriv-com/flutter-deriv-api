@@ -8,9 +8,11 @@ abstract class NewAccountRealModel extends NewAccountBaseModel {
     this.landingCompany,
     this.landingCompanyShort,
     String? oauthToken,
+    String? refreshToken,
   }) : super(
           clientId: clientId,
           oauthToken: oauthToken,
+          refreshToken: refreshToken,
         );
 
   /// Landing company full name

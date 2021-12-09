@@ -39,6 +39,7 @@ void main() {
       expect(newAccountReal.landingCompany, 'landing_company');
       expect(newAccountReal.landingCompanyShort, 'landing_company_short');
       expect(newAccountReal.oauthToken, 'sample_token');
+      expect(newAccountReal.refreshToken, 'refresh_token');
     });
 
     test('Open New Account Virtual Test', () async {
@@ -57,6 +58,7 @@ void main() {
       expect(newAccountVirtual.currency, 'USD');
       expect(newAccountVirtual.email, 'test@email.com');
       expect(newAccountVirtual.oauthToken, 'sample_token');
+      expect(newAccountVirtual.refreshToken, 'refresh_token');
     });
   });
 }
