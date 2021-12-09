@@ -15,12 +15,14 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     String? currency,
     String? email,
     String? oauthToken,
+    String? refreshToken,
   }) : super(
           balance: balance,
           clientId: clientId,
           currency: currency,
           email: email,
           oauthToken: oauthToken,
+          refreshToken: refreshToken,
         );
 
   /// Generates an instance from JSON
@@ -31,6 +33,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         currency: json['currency'],
         email: json['email'],
         oauthToken: json['oauth_token'],
+        refreshToken: json['refresh_token'],
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
@@ -42,6 +45,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     String? currency,
     String? email,
     String? oauthToken,
+    String? refreshToken,
   }) =>
       NewAccountVirtual(
         balance: balance ?? this.balance,
@@ -49,6 +53,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         currency: currency ?? this.currency,
         email: email ?? this.email,
         oauthToken: oauthToken ?? this.oauthToken,
+        refreshToken: refreshToken ?? this.refreshToken,
       );
 
   /// Opens a new virtual account.

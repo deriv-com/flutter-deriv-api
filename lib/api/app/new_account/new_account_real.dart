@@ -14,11 +14,13 @@ class NewAccountReal extends NewAccountRealModel {
     String? landingCompany,
     String? landingCompanyShort,
     String? oauthToken,
+    String? refreshToken,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
           landingCompanyShort: landingCompanyShort,
           oauthToken: oauthToken,
+          refreshToken: refreshToken,
         );
 
   /// Generates an instance from JSON
@@ -27,6 +29,7 @@ class NewAccountReal extends NewAccountRealModel {
         landingCompany: json['landing_company'],
         landingCompanyShort: json['landing_company_short'],
         oauthToken: json['oauth_token'],
+        refreshToken: json['refresh_token'],
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
@@ -37,12 +40,14 @@ class NewAccountReal extends NewAccountRealModel {
     String? landingCompany,
     String? landingCompanyShort,
     String? oauthToken,
+    String? refreshToken,
   }) =>
       NewAccountReal(
         clientId: clientId ?? this.clientId,
         landingCompany: landingCompany ?? this.landingCompany,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         oauthToken: oauthToken ?? this.oauthToken,
+        refreshToken: refreshToken ?? this.refreshToken,
       );
 
   /// Opens a new real account.
