@@ -94,6 +94,7 @@ void main() {
           maxOrderAmount: 15,
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
+          paymentMethodNames: <String>['bank_transfer'],
           rate: 4.25,
           paymentMethodIds: <int>[],
         ),

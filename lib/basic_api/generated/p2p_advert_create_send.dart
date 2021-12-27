@@ -16,8 +16,9 @@ class P2pAdvertCreateRequest extends Request {
     required this.minOrderAmount,
     this.p2pAdvertCreate = true,
     this.paymentInfo,
-    required this.paymentMethod,
+    this.paymentMethod,
     required this.paymentMethodIds,
+    required this.paymentMethodNames,
     required this.rate,
     required this.type,
     Map<String, dynamic>? passthrough,
@@ -45,6 +46,9 @@ class P2pAdvertCreateRequest extends Request {
         paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
             ?.map<int>((dynamic item) => item as int)
             .toList(),
+        paymentMethodNames: (json['payment_method_names'] as List<dynamic>?)
+            ?.map<String>((dynamic item) => item as String)
+            .toList(),
         rate: json['rate'] as num?,
         type: json['type'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -54,7 +58,7 @@ class P2pAdvertCreateRequest extends Request {
   /// The total amount of the advert, in advertiser's account currency.
   final num? amount;
 
-  /// [Optional] Advertiser contact information. Only applicable for 'sell adverts'.
+  /// [Optional] Advertiser contact information.
   final String? contactInfo;
 
   /// [Optional] General information about the advert.
@@ -63,28 +67,31 @@ class P2pAdvertCreateRequest extends Request {
   /// [Optional] Local currency for this advert. If not provided, will use the currency of client's residence by default.
   final String? localCurrency;
 
-  /// Maximum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than or equal to total `amount` of the advert.
+  /// Maximum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be more than or equal to `min_order_amount`
   final num? maxOrderAmount;
 
-  /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than `max_order_amount`.
+  /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than or equal to `max_order_amount`.
   final num? minOrderAmount;
 
   /// Must be `true`
   final bool? p2pAdvertCreate;
 
-  /// [Optional] Payment instructions. Only applicable for 'sell adverts'.
+  /// [Optional] Payment instructions.
   final String? paymentInfo;
 
-  /// Supported payment methods. Separate multiple values with a comma, maximum 3.
+  /// [Optional] Payment method name (deprecated).
   final String? paymentMethod;
 
-  /// IDs of payment methods, only applicable for sell ads.
+  /// IDs of previously saved payment methods as returned from p2p_advertiser_payment_methods, only applicable for sell ads.
   final List<int>? paymentMethodIds;
+
+  /// Payment method identifiers as returned from p2p_payment_methods, only applicable for buy ads.
+  final List<String>? paymentMethodNames;
 
   /// Conversion rate from advertiser's account currency to `local_currency`.
   final num? rate;
 
-  /// Whether this is a buy or a sell.
+  /// The advertisement represents the intention to perform this action on your Deriv account funds.
   final String? type;
 
   /// Converts this instance to JSON
@@ -104,6 +111,7 @@ class P2pAdvertCreateRequest extends Request {
         'payment_info': paymentInfo,
         'payment_method': paymentMethod,
         'payment_method_ids': paymentMethodIds,
+        'payment_method_names': paymentMethodNames,
         'rate': rate,
         'type': type,
         'passthrough': passthrough,
@@ -123,6 +131,7 @@ class P2pAdvertCreateRequest extends Request {
     String? paymentInfo,
     String? paymentMethod,
     List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
     num? rate,
     String? type,
     Map<String, dynamic>? passthrough,
@@ -139,6 +148,7 @@ class P2pAdvertCreateRequest extends Request {
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         rate: rate ?? this.rate,
         type: type ?? this.type,
         passthrough: passthrough ?? this.passthrough,
@@ -147,5 +157,5 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 }
