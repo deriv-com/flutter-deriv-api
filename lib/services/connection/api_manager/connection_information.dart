@@ -1,7 +1,6 @@
-
-/// Connection information class
+/// Connection information for a single connection.
 class ConnectionInformation {
-  /// Initializes
+  /// Initializes a new instance of the [ConnectionInformation] class.
   ConnectionInformation({
     required this.appId,
     required this.brand,
@@ -9,15 +8,15 @@ class ConnectionInformation {
     this.language = 'en',
   });
 
-  /// Application id
+  /// Application id.
   final String appId;
 
-  /// Application brand
+  /// Application brand.
   final String brand;
 
-  /// API endpoint
+  /// API endpoint.
   final String endpoint;
 
-  /// API language
+  /// API language.
   final String language;
 }
