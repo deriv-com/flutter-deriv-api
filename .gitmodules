@@ -1,4 +1,4 @@
-[submodule "websockets"]
-	path = websockets
-	url = https://github.com/binary-com/websockets.git
-	branch = gh-pages
+[submodule "binary-websocket-api"]
+	path = binary-websocket-api
+	url = https://github.com/regentmarkets/binary-websocket-api.git
+	branch = master
