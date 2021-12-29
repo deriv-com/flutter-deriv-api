@@ -62,5 +62,5 @@ class TicksRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[ticks!];
+  List<Object?> get props => <Object?>[ticks];
 }
