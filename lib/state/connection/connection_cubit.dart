@@ -61,9 +61,15 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   static ConnectionInformation? _connectionInformation;
 
-  /// Connection information of WebSocket (endpoint, brand, appId).
+  /// Gets connection information of WebSocket (endpoint, brand, appId).
   static ConnectionInformation? get connectionInformation =>
       _connectionInformation;
+
+  /// Gets endpoint of WebSocket.
+  static String? get endpoint => _connectionInformation?.endpoint;
+
+  /// Gets app id of WebSocket.
+  static String? get appId => _connectionInformation?.appId;
 
   /// Connects to the web socket.
   ///
