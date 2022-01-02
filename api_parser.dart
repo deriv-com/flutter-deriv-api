@@ -27,7 +27,6 @@ class APIParser extends Builder {
           json.decode(File(path).readAsStringSync()),
         ),
       );
-print('getClassTypesFor done');
       final String leftPartPath =
           (path.split('.').first.split('/')..removeLast()).join('/');
       final String rightPartPath = path.split('.').first.split('/').last;
