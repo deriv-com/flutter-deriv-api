@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -212,6 +212,7 @@ abstract class WebsiteStatusModel extends Equatable {
     required this.apiCallLimits,
     this.clientsCountry,
     this.message,
+    this.paymentAgents,
     this.siteStatus,
     this.supportedLanguages,
     this.termsConditionsVersion,
@@ -235,6 +236,9 @@ abstract class WebsiteStatusModel extends Equatable {
   /// Text for site status banner, contains problem description. shown only if set by the system.
   final String? message;
 
+  /// Payments Agents system settings.
+  final PaymentAgents? paymentAgents;
+
   /// The current status of the website.
   final SiteStatusEnum? siteStatus;
 
@@ -255,6 +259,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     required P2pConfig p2pConfig,
     String? clientsCountry,
     String? message,
+    PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
     String? termsConditionsVersion,
@@ -265,6 +270,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           p2pConfig: p2pConfig,
           clientsCountry: clientsCountry,
           message: message,
+          paymentAgents: paymentAgents,
           siteStatus: siteStatus,
           supportedLanguages: supportedLanguages,
           termsConditionsVersion: termsConditionsVersion,
@@ -290,6 +296,9 @@ class WebsiteStatus extends WebsiteStatusModel {
         p2pConfig: P2pConfig.fromJson(json['p2p_config']),
         clientsCountry: json['clients_country'],
         message: json['message'],
+        paymentAgents: json['payment_agents'] == null
+            ? null
+            : PaymentAgents.fromJson(json['payment_agents']),
         siteStatus: json['site_status'] == null
             ? null
             : siteStatusEnumMapper[json['site_status']],
@@ -315,6 +324,9 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     resultMap['clients_country'] = clientsCountry;
     resultMap['message'] = message;
+    if (paymentAgents != null) {
+      resultMap['payment_agents'] = paymentAgents!.toJson();
+    }
     resultMap['site_status'] = siteStatusEnumMapper.entries
         .firstWhere((MapEntry<String, SiteStatusEnum> entry) =>
             entry.value == siteStatus)
@@ -339,6 +351,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     required P2pConfig p2pConfig,
     String? clientsCountry,
     String? message,
+    PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
     String? termsConditionsVersion,
@@ -350,6 +363,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         p2pConfig: p2pConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         message: message ?? this.message,
+        paymentAgents: paymentAgents ?? this.paymentAgents,
         siteStatus: siteStatus ?? this.siteStatus,
         supportedLanguages: supportedLanguages ?? this.supportedLanguages,
         termsConditionsVersion:
@@ -1010,6 +1024,7 @@ class Limits extends LimitsModel {
 abstract class P2pConfigModel extends Equatable {
   /// Initializes P2p config model class .
   const P2pConfigModel({
+    required this.paymentMethodsEnabled,
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
@@ -1022,6 +1037,9 @@ abstract class P2pConfigModel extends Equatable {
     required this.advertsActiveLimit,
     this.advertsArchivePeriod,
   });
+
+  /// Indicates if the payment methods feature is enabled.
+  final bool paymentMethodsEnabled;
 
   /// Time allowed for order payment, in minutes after order creation.
   final int orderPaymentPeriod;
@@ -1071,6 +1089,7 @@ class P2pConfig extends P2pConfigModel {
     required double maximumOrderAmount,
     required int orderDailyLimit,
     required int orderPaymentPeriod,
+    required bool paymentMethodsEnabled,
     int? advertsArchivePeriod,
   }) : super(
           advertsActiveLimit: advertsActiveLimit,
@@ -1083,6 +1102,7 @@ class P2pConfig extends P2pConfigModel {
           maximumOrderAmount: maximumOrderAmount,
           orderDailyLimit: orderDailyLimit,
           orderPaymentPeriod: orderPaymentPeriod,
+          paymentMethodsEnabled: paymentMethodsEnabled,
           advertsArchivePeriod: advertsArchivePeriod,
         );
 
@@ -1098,6 +1118,7 @@ class P2pConfig extends P2pConfigModel {
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
         orderPaymentPeriod: json['order_payment_period'],
+        paymentMethodsEnabled: getBool(json['payment_methods_enabled'])!,
         advertsArchivePeriod: json['adverts_archive_period'],
       );
 
@@ -1115,6 +1136,7 @@ class P2pConfig extends P2pConfigModel {
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
     resultMap['order_payment_period'] = orderPaymentPeriod;
+    resultMap['payment_methods_enabled'] = paymentMethodsEnabled;
     resultMap['adverts_archive_period'] = advertsArchivePeriod;
 
     return resultMap;
@@ -1132,6 +1154,7 @@ class P2pConfig extends P2pConfigModel {
     required double maximumOrderAmount,
     required int orderDailyLimit,
     required int orderPaymentPeriod,
+    required bool paymentMethodsEnabled,
     int? advertsArchivePeriod,
   }) =>
       P2pConfig(
@@ -1145,7 +1168,58 @@ class P2pConfig extends P2pConfigModel {
         maximumOrderAmount: maximumOrderAmount,
         orderDailyLimit: orderDailyLimit,
         orderPaymentPeriod: orderPaymentPeriod,
+        paymentMethodsEnabled: paymentMethodsEnabled,
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Payment agents model class.
+abstract class PaymentAgentsModel extends Equatable {
+  /// Initializes Payment agents model class .
+  const PaymentAgentsModel({
+    required this.initialDepositPerCountry,
+  });
+
+  /// Initial deposit requirement per country.
+  final Map<String, double> initialDepositPerCountry;
+}
+
+/// Payment agents class.
+class PaymentAgents extends PaymentAgentsModel {
+  /// Initializes Payment agents class.
+  const PaymentAgents({
+    required Map<String, double> initialDepositPerCountry,
+  }) : super(
+          initialDepositPerCountry: initialDepositPerCountry,
+        );
+
+  /// Creates an instance from JSON.
+  factory PaymentAgents.fromJson(Map<String, dynamic> json) => PaymentAgents(
+        initialDepositPerCountry: Map<String, double>.fromEntries(json[
+                'initial_deposit_per_country']
+            .entries
+            .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
+                MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['initial_deposit_per_country'] = initialDepositPerCountry;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PaymentAgents copyWith({
+    required Map<String, double> initialDepositPerCountry,
+  }) =>
+      PaymentAgents(
+        initialDepositPerCountry: initialDepositPerCountry,
       );
 
   /// Override equatable class.

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -245,6 +245,27 @@ enum FieldsPropertyTypeEnum {
 
   /// memo.
   memo,
+}
+
+/// PaymentMethodDetailsPropertyTypeEnum mapper.
+final Map<String, PaymentMethodDetailsPropertyTypeEnum>
+    paymentMethodDetailsPropertyTypeEnumMapper =
+    <String, PaymentMethodDetailsPropertyTypeEnum>{
+  "bank": PaymentMethodDetailsPropertyTypeEnum.bank,
+  "ewallet": PaymentMethodDetailsPropertyTypeEnum.ewallet,
+  "other": PaymentMethodDetailsPropertyTypeEnum.other,
+};
+
+/// Type Enum.
+enum PaymentMethodDetailsPropertyTypeEnum {
+  /// bank.
+  bank,
+
+  /// ewallet.
+  ewallet,
+
+  /// other.
+  other,
 }
 
 /// StatusEnum mapper.
@@ -890,11 +911,15 @@ class DisputeDetails extends DisputeDetailsModel {
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
   const PaymentMethodDetailsPropertyModel({
+    required this.type,
     required this.method,
     required this.isEnabled,
     required this.fields,
     this.displayName,
   });
+
+  /// Payment method type.
+  final PaymentMethodDetailsPropertyTypeEnum type;
 
   /// Payment method identifier.
   final String method;
@@ -916,11 +941,13 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
+          type: type,
           displayName: displayName,
         );
 
@@ -935,6 +962,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
                         entry.key, FieldsProperty.fromJson(entry.value)))),
         isEnabled: getBool(json['is_enabled'])!,
         method: json['method'],
+        type: paymentMethodDetailsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
       );
 
@@ -945,6 +973,11 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     resultMap['fields'] = fields;
     resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
+    resultMap['type'] = paymentMethodDetailsPropertyTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, PaymentMethodDetailsPropertyTypeEnum> entry) =>
+                entry.value == type)
+        .key;
     resultMap['display_name'] = displayName;
 
     return resultMap;
@@ -955,12 +988,14 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
         fields: fields,
         isEnabled: isEnabled,
         method: method,
+        type: type,
         displayName: displayName ?? this.displayName,
       );
 

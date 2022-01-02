@@ -656,6 +656,7 @@ const String websiteStatusResponse = '''{
       "maximum_advert_amount": 3000,
       "maximum_order_amount": 1000,
       "order_daily_limit": 200,
+      "payment_methods_enabled" : true,
       "disabled" : 1,
       "order_payment_period": 120
     },

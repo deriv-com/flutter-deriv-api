@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -201,6 +201,7 @@ abstract class ListItemModel extends Equatable {
     required this.amountDisplay,
     required this.amount,
     required this.advertiserDetails,
+    required this.activeOrders,
     required this.accountCurrency,
     this.daysUntilArchive,
     this.paymentMethod,
@@ -291,13 +292,16 @@ abstract class ListItemModel extends Equatable {
   /// Details of the advertiser for this advert.
   final AdvertiserDetails advertiserDetails;
 
+  /// The number of active orders against this advert.
+  final int activeOrders;
+
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String accountCurrency;
 
   /// Days until automatic inactivation of this ad, if no activity occurs.
   final int? daysUntilArchive;
 
-  /// Supported payment methods. Comma separated list of identifiers.
+  /// Payment method name (deprecated).
   final String? paymentMethod;
 
   /// Names of supported payment methods.
@@ -309,6 +313,7 @@ class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
     required String accountCurrency,
+    required int activeOrders,
     required AdvertiserDetails advertiserDetails,
     required double amount,
     required String amountDisplay,
@@ -342,6 +347,7 @@ class ListItem extends ListItemModel {
     List<String>? paymentMethodNames,
   }) : super(
           accountCurrency: accountCurrency,
+          activeOrders: activeOrders,
           advertiserDetails: advertiserDetails,
           amount: amount,
           amountDisplay: amountDisplay,
@@ -378,6 +384,7 @@ class ListItem extends ListItemModel {
   /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
         accountCurrency: json['account_currency'],
+        activeOrders: json['active_orders'],
         advertiserDetails:
             AdvertiserDetails.fromJson(json['advertiser_details']),
         amount: getDouble(json['amount'])!,
@@ -424,6 +431,7 @@ class ListItem extends ListItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_currency'] = accountCurrency;
+    resultMap['active_orders'] = activeOrders;
     resultMap['advertiser_details'] = advertiserDetails.toJson();
 
     resultMap['amount'] = amount;
@@ -474,6 +482,7 @@ class ListItem extends ListItemModel {
   /// Creates a copy of instance with given parameters.
   ListItem copyWith({
     required String accountCurrency,
+    required int activeOrders,
     required AdvertiserDetails advertiserDetails,
     required double amount,
     required String amountDisplay,
@@ -508,6 +517,7 @@ class ListItem extends ListItemModel {
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
+        activeOrders: activeOrders,
         advertiserDetails: advertiserDetails,
         amount: amount,
         amountDisplay: amountDisplay,

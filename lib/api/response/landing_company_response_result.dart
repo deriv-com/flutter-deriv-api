@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -519,6 +519,7 @@ abstract class StandardModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -556,6 +557,9 @@ abstract class StandardModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Standard class.
@@ -574,6 +578,7 @@ class Standard extends StandardModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -587,6 +592,7 @@ class Standard extends StandardModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -628,6 +634,7 @@ class Standard extends StandardModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -671,6 +678,7 @@ class Standard extends StandardModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -689,6 +697,7 @@ class Standard extends StandardModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       Standard(
         address: address ?? this.address,
@@ -705,6 +714,8 @@ class Standard extends StandardModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -778,6 +789,7 @@ abstract class DxtradeGamingCompanyStandardModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -815,6 +827,9 @@ abstract class DxtradeGamingCompanyStandardModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Dxtrade gaming company standard class.
@@ -833,6 +848,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -846,6 +862,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -888,6 +905,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -931,6 +949,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -949,6 +968,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       DxtradeGamingCompanyStandard(
         address: address ?? this.address,
@@ -965,6 +985,8 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -987,6 +1009,7 @@ abstract class FinancialCompanyModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -1024,6 +1047,9 @@ abstract class FinancialCompanyModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Financial company class.
@@ -1042,6 +1068,7 @@ class FinancialCompany extends FinancialCompanyModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -1055,6 +1082,7 @@ class FinancialCompany extends FinancialCompanyModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -1097,6 +1125,7 @@ class FinancialCompany extends FinancialCompanyModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -1140,6 +1169,7 @@ class FinancialCompany extends FinancialCompanyModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -1158,6 +1188,7 @@ class FinancialCompany extends FinancialCompanyModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       FinancialCompany(
         address: address ?? this.address,
@@ -1174,6 +1205,8 @@ class FinancialCompany extends FinancialCompanyModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -1196,6 +1229,7 @@ abstract class GamingCompanyModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -1233,6 +1267,9 @@ abstract class GamingCompanyModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Gaming company class.
@@ -1251,6 +1288,7 @@ class GamingCompany extends GamingCompanyModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -1264,6 +1302,7 @@ class GamingCompany extends GamingCompanyModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -1305,6 +1344,7 @@ class GamingCompany extends GamingCompanyModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -1348,6 +1388,7 @@ class GamingCompany extends GamingCompanyModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -1366,6 +1407,7 @@ class GamingCompany extends GamingCompanyModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       GamingCompany(
         address: address ?? this.address,
@@ -1382,6 +1424,8 @@ class GamingCompany extends GamingCompanyModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -1483,6 +1527,7 @@ abstract class FinancialModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -1520,6 +1565,9 @@ abstract class FinancialModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Financial class.
@@ -1538,6 +1586,7 @@ class Financial extends FinancialModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -1551,6 +1600,7 @@ class Financial extends FinancialModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -1592,6 +1642,7 @@ class Financial extends FinancialModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -1635,6 +1686,7 @@ class Financial extends FinancialModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -1653,6 +1705,7 @@ class Financial extends FinancialModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       Financial(
         address: address ?? this.address,
@@ -1669,6 +1722,8 @@ class Financial extends FinancialModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -1691,6 +1746,7 @@ abstract class FinancialStpModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -1728,6 +1784,9 @@ abstract class FinancialStpModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Financial stp class.
@@ -1746,6 +1805,7 @@ class FinancialStp extends FinancialStpModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -1759,6 +1819,7 @@ class FinancialStp extends FinancialStpModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -1800,6 +1861,7 @@ class FinancialStp extends FinancialStpModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -1843,6 +1905,7 @@ class FinancialStp extends FinancialStpModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -1861,6 +1924,7 @@ class FinancialStp extends FinancialStpModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       FinancialStp(
         address: address ?? this.address,
@@ -1877,6 +1941,8 @@ class FinancialStp extends FinancialStpModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -1899,6 +1965,7 @@ abstract class SwapFreeModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -1936,6 +2003,9 @@ abstract class SwapFreeModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Swap free class.
@@ -1954,6 +2024,7 @@ class SwapFree extends SwapFreeModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -1967,6 +2038,7 @@ class SwapFree extends SwapFreeModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -2008,6 +2080,7 @@ class SwapFree extends SwapFreeModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -2051,6 +2124,7 @@ class SwapFree extends SwapFreeModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -2069,6 +2143,7 @@ class SwapFree extends SwapFreeModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       SwapFree(
         address: address ?? this.address,
@@ -2085,6 +2160,8 @@ class SwapFree extends SwapFreeModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -2172,6 +2249,7 @@ abstract class MtGamingCompanyFinancialModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -2209,6 +2287,9 @@ abstract class MtGamingCompanyFinancialModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Mt gaming company financial class.
@@ -2227,6 +2308,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -2240,6 +2322,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -2282,6 +2365,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -2325,6 +2409,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -2343,6 +2428,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       MtGamingCompanyFinancial(
         address: address ?? this.address,
@@ -2359,6 +2445,8 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.
@@ -2381,6 +2469,7 @@ abstract class MtGamingCompanySwapFreeModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address
@@ -2418,6 +2507,9 @@ abstract class MtGamingCompanySwapFreeModel extends Equatable {
 
   /// Landing Company short code
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Mt gaming company swap free class.
@@ -2436,6 +2528,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -2449,6 +2542,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -2491,6 +2585,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -2534,6 +2629,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -2552,6 +2648,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       MtGamingCompanySwapFree(
         address: address ?? this.address,
@@ -2568,6 +2665,8 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.

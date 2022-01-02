@@ -26,6 +26,7 @@ const String p2pAdvertCreateResponse = '''
     "description": "advert information",
     "id": "25",
     "is_active": 1,
+    "active_orders" : 2,
     "is_visible": 1,
     "local_currency": "ZAR",
     "min_order_amount_limit" : 1,

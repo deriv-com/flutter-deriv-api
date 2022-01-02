@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -82,15 +82,40 @@ enum TypeEnum {
   /// memo.
   memo,
 }
+
+/// P2pAdvertiserPaymentMethodsPropertyTypeEnum mapper.
+final Map<String, P2pAdvertiserPaymentMethodsPropertyTypeEnum>
+    p2pAdvertiserPaymentMethodsPropertyTypeEnumMapper =
+    <String, P2pAdvertiserPaymentMethodsPropertyTypeEnum>{
+  "bank": P2pAdvertiserPaymentMethodsPropertyTypeEnum.bank,
+  "ewallet": P2pAdvertiserPaymentMethodsPropertyTypeEnum.ewallet,
+  "other": P2pAdvertiserPaymentMethodsPropertyTypeEnum.other,
+};
+
+/// Type Enum.
+enum P2pAdvertiserPaymentMethodsPropertyTypeEnum {
+  /// bank.
+  bank,
+
+  /// ewallet.
+  ewallet,
+
+  /// other.
+  other,
+}
 /// P2p advertiser payment methods property model class.
 abstract class P2pAdvertiserPaymentMethodsPropertyModel extends Equatable {
   /// Initializes P2p advertiser payment methods property model class .
   const P2pAdvertiserPaymentMethodsPropertyModel({
+    required this.type,
     required this.method,
     required this.isEnabled,
     required this.fields,
     this.displayName,
   });
+
+  /// Payment method type.
+  final P2pAdvertiserPaymentMethodsPropertyTypeEnum type;
 
   /// Payment method identifier.
   final String method;
@@ -113,11 +138,13 @@ class P2pAdvertiserPaymentMethodsProperty
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required P2pAdvertiserPaymentMethodsPropertyTypeEnum type,
     String? displayName,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
+          type: type,
           displayName: displayName,
         );
 
@@ -133,6 +160,7 @@ class P2pAdvertiserPaymentMethodsProperty
                         entry.key, FieldsProperty.fromJson(entry.value)))),
         isEnabled: getBool(json['is_enabled'])!,
         method: json['method'],
+        type: p2pAdvertiserPaymentMethodsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
       );
 
@@ -143,6 +171,13 @@ class P2pAdvertiserPaymentMethodsProperty
     resultMap['fields'] = fields;
     resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
+    resultMap['type'] = p2pAdvertiserPaymentMethodsPropertyTypeEnumMapper
+        .entries
+        .firstWhere(
+            (MapEntry<String, P2pAdvertiserPaymentMethodsPropertyTypeEnum>
+                    entry) =>
+                entry.value == type)
+        .key;
     resultMap['display_name'] = displayName;
 
     return resultMap;
@@ -153,12 +188,14 @@ class P2pAdvertiserPaymentMethodsProperty
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required P2pAdvertiserPaymentMethodsPropertyTypeEnum type,
     String? displayName,
   }) =>
       P2pAdvertiserPaymentMethodsProperty(
         fields: fields,
         isEnabled: isEnabled,
         method: method,
+        type: type,
         displayName: displayName ?? this.displayName,
       );
 

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -188,6 +188,27 @@ enum TypeEnum {
   memo,
 }
 
+/// PaymentMethodDetailsPropertyTypeEnum mapper.
+final Map<String, PaymentMethodDetailsPropertyTypeEnum>
+    paymentMethodDetailsPropertyTypeEnumMapper =
+    <String, PaymentMethodDetailsPropertyTypeEnum>{
+  "bank": PaymentMethodDetailsPropertyTypeEnum.bank,
+  "ewallet": PaymentMethodDetailsPropertyTypeEnum.ewallet,
+  "other": PaymentMethodDetailsPropertyTypeEnum.other,
+};
+
+/// Type Enum.
+enum PaymentMethodDetailsPropertyTypeEnum {
+  /// bank.
+  bank,
+
+  /// ewallet.
+  ewallet,
+
+  /// other.
+  other,
+}
+
 /// P2pAdvertInfoTypeEnum mapper.
 final Map<String, P2pAdvertInfoTypeEnum> p2pAdvertInfoTypeEnumMapper =
     <String, P2pAdvertInfoTypeEnum>{
@@ -208,6 +229,7 @@ abstract class P2pAdvertInfoModel extends Equatable {
   /// Initializes P2p advert info model class .
   const P2pAdvertInfoModel({
     this.accountCurrency,
+    this.activeOrders,
     this.advertiserDetails,
     this.amount,
     this.amountDisplay,
@@ -245,6 +267,9 @@ abstract class P2pAdvertInfoModel extends Equatable {
 
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String? accountCurrency;
+
+  /// The number of active orders against this advert.
+  final int? activeOrders;
 
   /// Details of the advertiser for this advert.
   final AdvertiserDetails? advertiserDetails;
@@ -315,10 +340,10 @@ abstract class P2pAdvertInfoModel extends Equatable {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list of identifiers.
+  /// Payment method name (deprecated).
   final String? paymentMethod;
 
-  /// Details of available payment methods.
+  /// Details of available payment methods (sell adverts only).
   final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
 
   /// Names of supported payment methods.
@@ -351,6 +376,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
   /// Initializes P2p advert info class.
   const P2pAdvertInfo({
     String? accountCurrency,
+    int? activeOrders,
     AdvertiserDetails? advertiserDetails,
     double? amount,
     String? amountDisplay,
@@ -386,6 +412,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     P2pAdvertInfoTypeEnum? type,
   }) : super(
           accountCurrency: accountCurrency,
+          activeOrders: activeOrders,
           advertiserDetails: advertiserDetails,
           amount: amount,
           amountDisplay: amountDisplay,
@@ -424,6 +451,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
   /// Creates an instance from JSON.
   factory P2pAdvertInfo.fromJson(Map<String, dynamic> json) => P2pAdvertInfo(
         accountCurrency: json['account_currency'],
+        activeOrders: json['active_orders'],
         advertiserDetails: json['advertiser_details'] == null
             ? null
             : AdvertiserDetails.fromJson(json['advertiser_details']),
@@ -486,6 +514,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_currency'] = accountCurrency;
+    resultMap['active_orders'] = activeOrders;
     if (advertiserDetails != null) {
       resultMap['advertiser_details'] = advertiserDetails!.toJson();
     }
@@ -540,6 +569,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
   /// Creates a copy of instance with given parameters.
   P2pAdvertInfo copyWith({
     String? accountCurrency,
+    int? activeOrders,
     AdvertiserDetails? advertiserDetails,
     double? amount,
     String? amountDisplay,
@@ -576,6 +606,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
   }) =>
       P2pAdvertInfo(
         accountCurrency: accountCurrency ?? this.accountCurrency,
+        activeOrders: activeOrders ?? this.activeOrders,
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
@@ -731,11 +762,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
   const PaymentMethodDetailsPropertyModel({
+    required this.type,
     required this.method,
     required this.isEnabled,
     required this.fields,
     this.displayName,
   });
+
+  /// Payment method type.
+  final PaymentMethodDetailsPropertyTypeEnum type;
 
   /// Payment method identifier.
   final String method;
@@ -757,11 +792,13 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
+          type: type,
           displayName: displayName,
         );
 
@@ -776,6 +813,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
                         entry.key, FieldsProperty.fromJson(entry.value)))),
         isEnabled: getBool(json['is_enabled'])!,
         method: json['method'],
+        type: paymentMethodDetailsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
       );
 
@@ -786,6 +824,11 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     resultMap['fields'] = fields;
     resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
+    resultMap['type'] = paymentMethodDetailsPropertyTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, PaymentMethodDetailsPropertyTypeEnum> entry) =>
+                entry.value == type)
+        .key;
     resultMap['display_name'] = displayName;
 
     return resultMap;
@@ -796,12 +839,14 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
         fields: fields,
         isEnabled: isEnabled,
         method: method,
+        type: type,
         displayName: displayName ?? this.displayName,
       );
 

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -107,6 +107,7 @@ abstract class NewAccountVirtualModel extends Equatable {
     required this.currency,
     required this.clientId,
     required this.balance,
+    this.refreshToken,
     this.type,
   });
 
@@ -125,6 +126,9 @@ abstract class NewAccountVirtualModel extends Equatable {
   /// Account balance
   final double balance;
 
+  /// Refresh token to perform PTA, only for the first ever created account
+  final String? refreshToken;
+
   /// Account type
   final TypeEnum? type;
 }
@@ -138,6 +142,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     required String currency,
     required String email,
     required String oauthToken,
+    String? refreshToken,
     TypeEnum? type,
   }) : super(
           balance: balance,
@@ -145,6 +150,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
           currency: currency,
           email: email,
           oauthToken: oauthToken,
+          refreshToken: refreshToken,
           type: type,
         );
 
@@ -156,6 +162,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         currency: json['currency'],
         email: json['email'],
         oauthToken: json['oauth_token'],
+        refreshToken: json['refresh_token'],
         type: json['type'] == null ? null : typeEnumMapper[json['type']],
       );
 
@@ -168,6 +175,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     resultMap['currency'] = currency;
     resultMap['email'] = email;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['refresh_token'] = refreshToken;
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
@@ -182,6 +190,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     required String currency,
     required String email,
     required String oauthToken,
+    String? refreshToken,
     TypeEnum? type,
   }) =>
       NewAccountVirtual(
@@ -190,6 +199,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         currency: currency,
         email: email,
         oauthToken: oauthToken,
+        refreshToken: refreshToken ?? this.refreshToken,
         type: type ?? this.type,
       );
 

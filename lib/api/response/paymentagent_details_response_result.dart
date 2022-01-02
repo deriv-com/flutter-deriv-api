@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -67,12 +67,12 @@ abstract class PaymentagentDetailsModel extends Equatable {
     this.currencyCode,
     this.email,
     this.information,
-    this.isAuthenticated,
     this.isListed,
     this.maxWithdrawal,
     this.minWithdrawal,
     this.paymentAgentName,
     this.phone,
+    this.status,
     this.supportedPaymentMethods,
     this.targetCountry,
     this.url,
@@ -99,9 +99,6 @@ abstract class PaymentagentDetailsModel extends Equatable {
   /// Information about payment agent and their proposed service.
   final String? information;
 
-  /// Indicates if client is authenticated by Deriv.
-  final bool? isAuthenticated;
-
   /// Wether or not the client should be listed among available agents in the FE.
   final bool? isListed;
 
@@ -116,6 +113,9 @@ abstract class PaymentagentDetailsModel extends Equatable {
 
   /// Payment agent's phone number with country code.
   final String? phone;
+
+  /// Indicates the status of the Payment Agent.
+  final Map<String, dynamic>? status;
 
   /// A list of supported payment methods.
   final List<String>? supportedPaymentMethods;
@@ -138,12 +138,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     String? currencyCode,
     String? email,
     String? information,
-    bool? isAuthenticated,
     bool? isListed,
     double? maxWithdrawal,
     double? minWithdrawal,
     String? paymentAgentName,
     String? phone,
+    Map<String, dynamic>? status,
     List<String>? supportedPaymentMethods,
     String? targetCountry,
     String? url,
@@ -155,12 +155,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
           currencyCode: currencyCode,
           email: email,
           information: information,
-          isAuthenticated: isAuthenticated,
           isListed: isListed,
           maxWithdrawal: maxWithdrawal,
           minWithdrawal: minWithdrawal,
           paymentAgentName: paymentAgentName,
           phone: phone,
+          status: status,
           supportedPaymentMethods: supportedPaymentMethods,
           targetCountry: targetCountry,
           url: url,
@@ -176,12 +176,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         currencyCode: json['currency_code'],
         email: json['email'],
         information: json['information'],
-        isAuthenticated: getBool(json['is_authenticated']),
         isListed: getBool(json['is_listed']),
         maxWithdrawal: getDouble(json['max_withdrawal']),
         minWithdrawal: getDouble(json['min_withdrawal']),
         paymentAgentName: json['payment_agent_name'],
         phone: json['phone'],
+        status: json['status'],
         supportedPaymentMethods: json['supported_payment_methods'] == null
             ? null
             : List<String>.from(
@@ -204,12 +204,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     resultMap['currency_code'] = currencyCode;
     resultMap['email'] = email;
     resultMap['information'] = information;
-    resultMap['is_authenticated'] = isAuthenticated;
     resultMap['is_listed'] = isListed;
     resultMap['max_withdrawal'] = maxWithdrawal;
     resultMap['min_withdrawal'] = minWithdrawal;
     resultMap['payment_agent_name'] = paymentAgentName;
     resultMap['phone'] = phone;
+    resultMap['status'] = status;
     if (supportedPaymentMethods != null) {
       resultMap['supported_payment_methods'] = supportedPaymentMethods!
           .map<dynamic>(
@@ -232,12 +232,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     String? currencyCode,
     String? email,
     String? information,
-    bool? isAuthenticated,
     bool? isListed,
     double? maxWithdrawal,
     double? minWithdrawal,
     String? paymentAgentName,
     String? phone,
+    Map<String, dynamic>? status,
     List<String>? supportedPaymentMethods,
     String? targetCountry,
     String? url,
@@ -251,12 +251,12 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         currencyCode: currencyCode ?? this.currencyCode,
         email: email ?? this.email,
         information: information ?? this.information,
-        isAuthenticated: isAuthenticated ?? this.isAuthenticated,
         isListed: isListed ?? this.isListed,
         maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
         paymentAgentName: paymentAgentName ?? this.paymentAgentName,
         phone: phone ?? this.phone,
+        status: status ?? this.status,
         supportedPaymentMethods:
             supportedPaymentMethods ?? this.supportedPaymentMethods,
         targetCountry: targetCountry ?? this.targetCountry,

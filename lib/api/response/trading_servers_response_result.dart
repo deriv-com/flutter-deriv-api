@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -313,10 +313,14 @@ class TradingServersItem extends TradingServersItemModel {
 abstract class GeolocationModel extends Equatable {
   /// Initializes Geolocation model class .
   const GeolocationModel({
+    this.group,
     this.location,
     this.region,
     this.sequence,
   });
+
+  /// Internal server grouping.
+  final String? group;
 
   /// Geolocation country or place where server is located.
   final String? location;
@@ -332,10 +336,12 @@ abstract class GeolocationModel extends Equatable {
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
   const Geolocation({
+    String? group,
     String? location,
     String? region,
     int? sequence,
   }) : super(
+          group: group,
           location: location,
           region: region,
           sequence: sequence,
@@ -343,6 +349,7 @@ class Geolocation extends GeolocationModel {
 
   /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(
+        group: json['group'],
         location: json['location'],
         region: json['region'],
         sequence: json['sequence'],
@@ -352,6 +359,7 @@ class Geolocation extends GeolocationModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['group'] = group;
     resultMap['location'] = location;
     resultMap['region'] = region;
     resultMap['sequence'] = sequence;
@@ -361,11 +369,13 @@ class Geolocation extends GeolocationModel {
 
   /// Creates a copy of instance with given parameters.
   Geolocation copyWith({
+    String? group,
     String? location,
     String? region,
     int? sequence,
   }) =>
       Geolocation(
+        group: group ?? this.group,
         location: location ?? this.location,
         region: region ?? this.region,
         sequence: sequence ?? this.sequence,

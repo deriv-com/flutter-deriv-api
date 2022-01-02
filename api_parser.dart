@@ -27,7 +27,7 @@ class APIParser extends Builder {
           json.decode(File(path).readAsStringSync()),
         ),
       );
-
+print('getClassTypesFor done');
       final String leftPartPath =
           (path.split('.').first.split('/')..removeLast()).join('/');
       final String rightPartPath = path.split('.').first.split('/').last;
@@ -97,7 +97,7 @@ List<StringBuffer> _addImports({
 
 List<StringBuffer> _addLinterSilencers(List<StringBuffer> source) {
   final StringBuffer silencers =
-      StringBuffer('// ignore_for_file: prefer_single_quotes\n\n');
+      StringBuffer('// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import\n\n');
 
   return <StringBuffer>[silencers, ...source];
 }
