@@ -1,2 +1,2 @@
 # flutter-deriv-api
-Flutter/Dart API for binary.com websockets API
+Flutter/Dart API for deriv.com websockets API
