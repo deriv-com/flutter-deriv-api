@@ -59,10 +59,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   BaseAPI? _api;
   Timer? _connectivityTimer;
 
-  ConnectionInformation? _connectionInformation;
+  static late ConnectionInformation _connectionInformation;
 
-  /// Connection information of WebSocket (endpoint, brand, appId).
-  ConnectionInformation? get connectionInformation => _connectionInformation;
+  /// Gets connection information of WebSocket (endpoint, brand, appId).
+  static ConnectionInformation get connectionInformation =>
+      _connectionInformation;
+
+  /// Gets endpoint of websocket.
+  static String get endpoint => _connectionInformation.endpoint;
+
+  /// Gets app id of websocket.
+  static String get appId => _connectionInformation.appId;
 
   /// Connects to the web socket.
   ///

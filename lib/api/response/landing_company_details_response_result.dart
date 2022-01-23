@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -73,6 +73,7 @@ abstract class LandingCompanyDetailsModel extends Equatable {
     this.name,
     this.requirements,
     this.shortcode,
+    this.supportProfessionalClient,
   });
 
   /// Landing Company address.
@@ -110,6 +111,9 @@ abstract class LandingCompanyDetailsModel extends Equatable {
 
   /// Landing Company shortcode.
   final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
 }
 
 /// Landing company details class.
@@ -128,6 +132,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) : super(
           address: address,
           changeableFields: changeableFields,
@@ -141,6 +146,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
           name: name,
           requirements: requirements,
           shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
         );
 
   /// Creates an instance from JSON.
@@ -185,6 +191,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         name: json['name'],
         requirements: json['requirements'],
         shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
       );
 
   /// Converts an instance to JSON.
@@ -230,6 +237,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     resultMap['name'] = name;
     resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
 
     return resultMap;
   }
@@ -248,6 +256,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     String? name,
     Map<String, dynamic>? requirements,
     String? shortcode,
+    bool? supportProfessionalClient,
   }) =>
       LandingCompanyDetails(
         address: address ?? this.address,
@@ -264,6 +273,8 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
       );
 
   /// Override equatable class.

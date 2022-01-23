@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -191,6 +191,7 @@ abstract class ListItemModel extends Equatable {
     required this.counterpartyType,
     required this.advertiserDetails,
     required this.accountCurrency,
+    this.activeOrders,
     this.amount,
     this.amountDisplay,
     this.contactInfo,
@@ -263,6 +264,9 @@ abstract class ListItemModel extends Equatable {
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String accountCurrency;
 
+  /// The number of active orders against this advert.
+  final int? activeOrders;
+
   /// The total amount specified in advert, in `account_currency`. It is only visible to the advert owner.
   final double? amount;
 
@@ -290,7 +294,7 @@ abstract class ListItemModel extends Equatable {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list of identifiers.
+  /// Payment method name (deprecated).
   final String? paymentMethod;
 
   /// Names of supported payment methods.
@@ -326,6 +330,7 @@ class ListItem extends ListItemModel {
     required double rate,
     required String rateDisplay,
     required TypeEnum type,
+    int? activeOrders,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
@@ -359,6 +364,7 @@ class ListItem extends ListItemModel {
           rate: rate,
           rateDisplay: rateDisplay,
           type: type,
+          activeOrders: activeOrders,
           amount: amount,
           amountDisplay: amountDisplay,
           contactInfo: contactInfo,
@@ -397,6 +403,7 @@ class ListItem extends ListItemModel {
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
         type: typeEnumMapper[json['type']]!,
+        activeOrders: json['active_orders'],
         amount: getDouble(json['amount']),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
@@ -447,6 +454,7 @@ class ListItem extends ListItemModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['active_orders'] = activeOrders;
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
     resultMap['contact_info'] = contactInfo;
@@ -491,6 +499,7 @@ class ListItem extends ListItemModel {
     required double rate,
     required String rateDisplay,
     required TypeEnum type,
+    int? activeOrders,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
@@ -525,6 +534,7 @@ class ListItem extends ListItemModel {
         rate: rate,
         rateDisplay: rateDisplay,
         type: type,
+        activeOrders: activeOrders ?? this.activeOrders,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
         contactInfo: contactInfo ?? this.contactInfo,

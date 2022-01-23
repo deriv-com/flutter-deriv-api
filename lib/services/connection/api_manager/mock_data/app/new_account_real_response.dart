@@ -27,7 +27,8 @@ const String newAccountRealResponse = '''
     "client_id": "CR0000",
     "landing_company": "landing_company",
     "landing_company_short": "landing_company_short",
-    "oauth_token": "sample_token"
+    "oauth_token": "sample_token",
+    "refresh_token": "refresh_token"
   },
   "msg_type": "new_account_real"
 }

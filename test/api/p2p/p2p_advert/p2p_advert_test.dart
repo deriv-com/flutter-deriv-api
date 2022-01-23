@@ -107,6 +107,7 @@ void main() {
           maxOrderAmount: 15,
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
+          paymentMethodNames: <String>['bank_transfer'],
           rate: 4.25,
           paymentMethodIds: <int>[],
         ),
@@ -278,7 +279,8 @@ void main() {
       expect(deactivatedAdvert.rateDisplay, '2.70');
       expect(deactivatedAdvert.remainingAmount, 50);
       expect(deactivatedAdvert.remainingAmountDisplay, '50.00');
-      expect(deactivatedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
+      expect(
+          deactivatedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
     });
 
     test('Delete Advert Test', () async {

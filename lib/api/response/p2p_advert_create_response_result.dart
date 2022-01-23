@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -115,6 +115,27 @@ enum TypeEnum {
   memo,
 }
 
+/// PaymentMethodDetailsPropertyTypeEnum mapper.
+final Map<String, PaymentMethodDetailsPropertyTypeEnum>
+    paymentMethodDetailsPropertyTypeEnumMapper =
+    <String, PaymentMethodDetailsPropertyTypeEnum>{
+  "bank": PaymentMethodDetailsPropertyTypeEnum.bank,
+  "ewallet": PaymentMethodDetailsPropertyTypeEnum.ewallet,
+  "other": PaymentMethodDetailsPropertyTypeEnum.other,
+};
+
+/// Type Enum.
+enum PaymentMethodDetailsPropertyTypeEnum {
+  /// bank.
+  bank,
+
+  /// ewallet.
+  ewallet,
+
+  /// other.
+  other,
+}
+
 /// P2pAdvertCreateTypeEnum mapper.
 final Map<String, P2pAdvertCreateTypeEnum> p2pAdvertCreateTypeEnumMapper =
     <String, P2pAdvertCreateTypeEnum>{
@@ -160,6 +181,7 @@ abstract class P2pAdvertCreateModel extends Equatable {
     required this.amountDisplay,
     required this.amount,
     required this.advertiserDetails,
+    required this.activeOrders,
     required this.accountCurrency,
     this.contactInfo,
     this.paymentInfo,
@@ -168,7 +190,7 @@ abstract class P2pAdvertCreateModel extends Equatable {
     this.paymentMethodNames,
   });
 
-  /// Whether this is a buy or a sell.
+  /// The type of advertisement in relation to the advertiser's Deriv account.
   final P2pAdvertCreateTypeEnum type;
 
   /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places.
@@ -246,6 +268,9 @@ abstract class P2pAdvertCreateModel extends Equatable {
   /// Details of the advertiser for this advert.
   final AdvertiserDetails advertiserDetails;
 
+  /// The number of active orders against this advert.
+  final int activeOrders;
+
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String accountCurrency;
 
@@ -255,10 +280,10 @@ abstract class P2pAdvertCreateModel extends Equatable {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list.
+  /// Payment method name (deprecated).
   final String? paymentMethod;
 
-  /// Details of available payment methods.
+  /// Details of available payment methods (sell adverts only).
   final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
 
   /// Names of supported payment methods.
@@ -270,6 +295,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
   /// Initializes P2p advert create class.
   const P2pAdvertCreate({
     required String accountCurrency,
+    required int activeOrders,
     required AdvertiserDetails advertiserDetails,
     required double amount,
     required String amountDisplay,
@@ -303,6 +329,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     List<String>? paymentMethodNames,
   }) : super(
           accountCurrency: accountCurrency,
+          activeOrders: activeOrders,
           advertiserDetails: advertiserDetails,
           amount: amount,
           amountDisplay: amountDisplay,
@@ -340,6 +367,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
   factory P2pAdvertCreate.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreate(
         accountCurrency: json['account_currency'],
+        activeOrders: json['active_orders'],
         advertiserDetails:
             AdvertiserDetails.fromJson(json['advertiser_details']),
         amount: getDouble(json['amount'])!,
@@ -396,6 +424,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_currency'] = accountCurrency;
+    resultMap['active_orders'] = activeOrders;
     resultMap['advertiser_details'] = advertiserDetails.toJson();
 
     resultMap['amount'] = amount;
@@ -447,6 +476,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
   /// Creates a copy of instance with given parameters.
   P2pAdvertCreate copyWith({
     required String accountCurrency,
+    required int activeOrders,
     required AdvertiserDetails advertiserDetails,
     required double amount,
     required String amountDisplay,
@@ -481,6 +511,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
   }) =>
       P2pAdvertCreate(
         accountCurrency: accountCurrency,
+        activeOrders: activeOrders,
         advertiserDetails: advertiserDetails,
         amount: amount,
         amountDisplay: amountDisplay,
@@ -609,11 +640,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
   const PaymentMethodDetailsPropertyModel({
+    required this.type,
     required this.method,
     required this.isEnabled,
     required this.fields,
     this.displayName,
   });
+
+  /// Payment method type.
+  final PaymentMethodDetailsPropertyTypeEnum type;
 
   /// Payment method identifier.
   final String method;
@@ -635,11 +670,13 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
+          type: type,
           displayName: displayName,
         );
 
@@ -654,6 +691,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
                         entry.key, FieldsProperty.fromJson(entry.value)))),
         isEnabled: getBool(json['is_enabled'])!,
         method: json['method'],
+        type: paymentMethodDetailsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
       );
 
@@ -664,6 +702,11 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     resultMap['fields'] = fields;
     resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
+    resultMap['type'] = paymentMethodDetailsPropertyTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, PaymentMethodDetailsPropertyTypeEnum> entry) =>
+                entry.value == type)
+        .key;
     resultMap['display_name'] = displayName;
 
     return resultMap;
@@ -674,12 +717,14 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required Map<String, FieldsProperty> fields,
     required bool isEnabled,
     required String method,
+    required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
         fields: fields,
         isEnabled: isEnabled,
         method: method,
+        type: type,
         displayName: displayName ?? this.displayName,
       );
 

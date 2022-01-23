@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes
+// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
 
@@ -74,13 +74,38 @@ enum TypeEnum {
   /// memo.
   memo,
 }
+
+/// P2pPaymentMethodsPropertyTypeEnum mapper.
+final Map<String, P2pPaymentMethodsPropertyTypeEnum>
+    p2pPaymentMethodsPropertyTypeEnumMapper =
+    <String, P2pPaymentMethodsPropertyTypeEnum>{
+  "bank": P2pPaymentMethodsPropertyTypeEnum.bank,
+  "ewallet": P2pPaymentMethodsPropertyTypeEnum.ewallet,
+  "other": P2pPaymentMethodsPropertyTypeEnum.other,
+};
+
+/// Type Enum.
+enum P2pPaymentMethodsPropertyTypeEnum {
+  /// bank.
+  bank,
+
+  /// ewallet.
+  ewallet,
+
+  /// other.
+  other,
+}
 /// P2p payment methods property model class.
 abstract class P2pPaymentMethodsPropertyModel extends Equatable {
   /// Initializes P2p payment methods property model class .
   const P2pPaymentMethodsPropertyModel({
+    required this.type,
     required this.fields,
     required this.displayName,
   });
+
+  /// Payment method type.
+  final P2pPaymentMethodsPropertyTypeEnum type;
 
   /// Payment method field definitions.
   final Map<String, FieldsProperty> fields;
@@ -95,9 +120,11 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
   const P2pPaymentMethodsProperty({
     required String displayName,
     required Map<String, FieldsProperty> fields,
+    required P2pPaymentMethodsPropertyTypeEnum type,
   }) : super(
           displayName: displayName,
           fields: fields,
+          type: type,
         );
 
   /// Creates an instance from JSON.
@@ -110,6 +137,7 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
                 (MapEntry<String, dynamic> entry) =>
                     MapEntry<String, FieldsProperty>(
                         entry.key, FieldsProperty.fromJson(entry.value)))),
+        type: p2pPaymentMethodsPropertyTypeEnumMapper[json['type']]!,
       );
 
   /// Converts an instance to JSON.
@@ -118,6 +146,11 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
 
     resultMap['display_name'] = displayName;
     resultMap['fields'] = fields;
+    resultMap['type'] = p2pPaymentMethodsPropertyTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, P2pPaymentMethodsPropertyTypeEnum> entry) =>
+                entry.value == type)
+        .key;
 
     return resultMap;
   }
@@ -126,10 +159,12 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
   P2pPaymentMethodsProperty copyWith({
     required String displayName,
     required Map<String, FieldsProperty> fields,
+    required P2pPaymentMethodsPropertyTypeEnum type,
   }) =>
       P2pPaymentMethodsProperty(
         displayName: displayName,
         fields: fields,
+        type: type,
       );
 
   /// Override equatable class.

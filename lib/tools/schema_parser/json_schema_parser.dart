@@ -147,7 +147,7 @@ class JsonSchemaParser {
   }) {
     final String schemaTitle = entry.key;
     final String type = _getSchemaType(entry);
-    final String description = entry.value['description'];
+    final String? description = entry.value['description'];
     final bool isBoolean = _isBoolean(entry);
 
     if (_ignoredParameters.contains(schemaTitle.toLowerCase())) {

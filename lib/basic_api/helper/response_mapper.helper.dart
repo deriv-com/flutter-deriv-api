@@ -3,7 +3,11 @@
 // uses collected `msg_type`s from the 1st step to create a helper
 // function that maps the `msg_type`s to equivalent Response objects
 
+import '../generated/account_closure_receive.dart';
+import '../generated/account_security_receive.dart';
+import '../generated/account_statistics_receive.dart';
 import '../generated/active_symbols_receive.dart';
+import '../generated/affiliate_account_add_receive.dart';
 import '../generated/api_token_receive.dart';
 import '../generated/app_delete_receive.dart';
 import '../generated/app_get_receive.dart';
@@ -17,7 +21,10 @@ import '../generated/balance_receive.dart';
 import '../generated/buy_contract_for_multiple_accounts_receive.dart';
 import '../generated/buy_receive.dart';
 import '../generated/cancel_receive.dart';
+import '../generated/cashier_payments_receive.dart';
 import '../generated/cashier_receive.dart';
+import '../generated/cashier_withdrawal_cancel_receive.dart';
+import '../generated/change_password_receive.dart';
 import '../generated/contract_update_history_receive.dart';
 import '../generated/contract_update_receive.dart';
 import '../generated/contracts_for_receive.dart';
@@ -25,6 +32,7 @@ import '../generated/copy_start_receive.dart';
 import '../generated/copy_stop_receive.dart';
 import '../generated/copytrading_list_receive.dart';
 import '../generated/copytrading_statistics_receive.dart';
+import '../generated/crypto_config_receive.dart';
 import '../generated/document_upload_receive.dart';
 import '../generated/economic_calendar_receive.dart';
 import '../generated/exchange_rates_receive.dart';
@@ -38,6 +46,7 @@ import '../generated/get_settings_receive.dart';
 import '../generated/identity_verification_document_add_receive.dart';
 import '../generated/landing_company_details_receive.dart';
 import '../generated/landing_company_receive.dart';
+import '../generated/link_wallet_receive.dart';
 import '../generated/login_history_receive.dart';
 import '../generated/logout_receive.dart';
 import '../generated/mt5_deposit_receive.dart';
@@ -51,6 +60,8 @@ import '../generated/mt5_withdrawal_receive.dart';
 import '../generated/new_account_maltainvest_receive.dart';
 import '../generated/new_account_real_receive.dart';
 import '../generated/new_account_virtual_receive.dart';
+import '../generated/new_account_wallet_receive.dart';
+import '../generated/notification_event_receive.dart';
 import '../generated/oauth_apps_receive.dart';
 import '../generated/p2p_advert_create_receive.dart';
 import '../generated/p2p_advert_info_receive.dart';
@@ -83,6 +94,7 @@ import '../generated/profit_table_receive.dart';
 import '../generated/proposal_open_contract_receive.dart';
 import '../generated/proposal_receive.dart';
 import '../generated/reality_check_receive.dart';
+import '../generated/request_report_receive.dart';
 import '../generated/reset_password_receive.dart';
 import '../generated/residence_list_receive.dart';
 import '../generated/revoke_oauth_app_receive.dart';
@@ -102,8 +114,14 @@ import '../generated/time_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
+import '../generated/trading_platform_accounts_receive.dart';
+import '../generated/trading_platform_deposit_receive.dart';
+import '../generated/trading_platform_investor_password_change_receive.dart';
 import '../generated/trading_platform_investor_password_reset_receive.dart';
+import '../generated/trading_platform_new_account_receive.dart';
+import '../generated/trading_platform_password_change_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
+import '../generated/trading_platform_withdrawal_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
 import '../generated/transaction_receive.dart';
@@ -116,8 +134,16 @@ import '../response.dart';
 /// [responseMap]'s 'msg_type'
 Response getGeneratedResponse(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
+    case 'account_closure':
+      return AccountClosureReceive.fromJson(responseMap);
+    case 'account_security':
+      return AccountSecurityReceive.fromJson(responseMap);
+    case 'account_statistics':
+      return AccountStatisticsReceive.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsReceive.fromJson(responseMap);
+    case 'affiliate_account_add':
+      return AffiliateAccountAddReceive.fromJson(responseMap);
     case 'api_token':
       return ApiTokenReceive.fromJson(responseMap);
     case 'app_delete':
@@ -144,8 +170,14 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return BuyReceive.fromJson(responseMap);
     case 'cancel':
       return CancelReceive.fromJson(responseMap);
+    case 'cashier_payments':
+      return CashierPaymentsReceive.fromJson(responseMap);
     case 'cashier':
       return CashierReceive.fromJson(responseMap);
+    case 'cashier_withdrawal_cancel':
+      return CashierWithdrawalCancelReceive.fromJson(responseMap);
+    case 'change_password':
+      return ChangePasswordReceive.fromJson(responseMap);
     case 'contract_update_history':
       return ContractUpdateHistoryReceive.fromJson(responseMap);
     case 'contract_update':
@@ -160,6 +192,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return CopytradingListReceive.fromJson(responseMap);
     case 'copytrading_statistics':
       return CopytradingStatisticsReceive.fromJson(responseMap);
+    case 'crypto_config':
+      return CryptoConfigReceive.fromJson(responseMap);
     case 'document_upload':
       return DocumentUploadReceive.fromJson(responseMap);
     case 'economic_calendar':
@@ -186,6 +220,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return LandingCompanyDetailsReceive.fromJson(responseMap);
     case 'landing_company':
       return LandingCompanyReceive.fromJson(responseMap);
+    case 'link_wallet':
+      return LinkWalletReceive.fromJson(responseMap);
     case 'login_history':
       return LoginHistoryReceive.fromJson(responseMap);
     case 'logout':
@@ -212,6 +248,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return NewAccountRealReceive.fromJson(responseMap);
     case 'new_account_virtual':
       return NewAccountVirtualReceive.fromJson(responseMap);
+    case 'new_account_wallet':
+      return NewAccountWalletReceive.fromJson(responseMap);
+    case 'notification_event':
+      return NotificationEventReceive.fromJson(responseMap);
     case 'oauth_apps':
       return OauthAppsReceive.fromJson(responseMap);
     case 'p2p_advert_create':
@@ -276,6 +316,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ProposalReceive.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckReceive.fromJson(responseMap);
+    case 'request_report':
+      return RequestReportReceive.fromJson(responseMap);
     case 'reset_password':
       return ResetPasswordReceive.fromJson(responseMap);
     case 'residence_list':
@@ -314,10 +356,22 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TopupVirtualReceive.fromJson(responseMap);
     case 'trading_durations':
       return TradingDurationsReceive.fromJson(responseMap);
+    case 'trading_platform_accounts':
+      return TradingPlatformAccountsReceive.fromJson(responseMap);
+    case 'trading_platform_deposit':
+      return TradingPlatformDepositReceive.fromJson(responseMap);
+    case 'trading_platform_investor_password_change':
+      return TradingPlatformInvestorPasswordChangeReceive.fromJson(responseMap);
     case 'trading_platform_investor_password_reset':
       return TradingPlatformInvestorPasswordResetReceive.fromJson(responseMap);
+    case 'trading_platform_new_account':
+      return TradingPlatformNewAccountReceive.fromJson(responseMap);
+    case 'trading_platform_password_change':
+      return TradingPlatformPasswordChangeReceive.fromJson(responseMap);
     case 'trading_platform_password_reset':
       return TradingPlatformPasswordResetReceive.fromJson(responseMap);
+    case 'trading_platform_withdrawal':
+      return TradingPlatformWithdrawalReceive.fromJson(responseMap);
     case 'trading_servers':
       return TradingServersReceive.fromJson(responseMap);
     case 'trading_times':
