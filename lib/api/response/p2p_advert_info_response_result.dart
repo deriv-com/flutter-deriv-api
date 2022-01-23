@@ -657,6 +657,7 @@ abstract class AdvertiserDetailsModel extends Equatable {
   const AdvertiserDetailsModel({
     required this.name,
     required this.id,
+    required this.completedOrdersCount,
     this.firstName,
     this.isBlocked,
     this.isFavourite,
@@ -669,6 +670,9 @@ abstract class AdvertiserDetailsModel extends Equatable {
 
   /// The advertiser's unique identifier.
   final String id;
+
+  /// The total number of orders completed in the past 30 days.
+  final int completedOrdersCount;
 
   /// The advertiser's first name.
   final String? firstName;
@@ -690,6 +694,7 @@ abstract class AdvertiserDetailsModel extends Equatable {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
+    required int completedOrdersCount,
     required String id,
     required String name,
     String? firstName,
@@ -698,6 +703,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     String? lastName,
     double? totalCompletionRate,
   }) : super(
+          completedOrdersCount: completedOrdersCount,
           id: id,
           name: name,
           firstName: firstName,
@@ -710,6 +716,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
+        completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         name: json['name'],
         firstName: json['first_name'],
@@ -723,6 +730,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
@@ -736,6 +744,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
+    required int completedOrdersCount,
     required String id,
     required String name,
     String? firstName,
@@ -745,6 +754,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     double? totalCompletionRate,
   }) =>
       AdvertiserDetails(
+        completedOrdersCount: completedOrdersCount,
         id: id,
         name: name,
         firstName: firstName ?? this.firstName,
