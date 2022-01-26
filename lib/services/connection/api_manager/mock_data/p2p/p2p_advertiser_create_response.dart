@@ -20,7 +20,16 @@ const String p2pAdvertiserCreateResponse = '''
     "is_approved": 1,
     "is_listed": 0,
     "name": "John Doe",
-    "payment_info": "payment information"
+    "payment_info": "payment information",
+    "buy_orders_amount": "0.00",
+    "sell_orders_amount": "0.00",
+    "total_turnover": "0.00",
+    "balance_available": 0.00,
+    "partner_count": 1,
+    "cancels_remaining": 10,
+    "basic_verification": 0,
+    "full_verification": 0,
+    "show_name": 1
   },
   "subscription": {
     "id": "4b0ef5f5-a3cd-7a01-01cb-871f0b504143"

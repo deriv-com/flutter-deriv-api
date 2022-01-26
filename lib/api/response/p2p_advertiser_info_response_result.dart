@@ -173,20 +173,27 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
 abstract class P2pAdvertiserInfoModel extends Equatable {
   /// Initializes P2p advertiser info model class .
   const P2pAdvertiserInfoModel({
+    required this.totalTurnover,
     required this.totalOrdersCount,
     required this.sellOrdersCount,
+    required this.sellOrdersAmount,
+    required this.partnerCount,
     required this.name,
     required this.isListed,
     required this.isApproved,
     required this.id,
     required this.fullVerification,
     required this.favourited,
+    required this.defaultAdvertDescription,
     required this.createdTime,
     required this.buyOrdersCount,
+    required this.buyOrdersAmount,
     required this.basicVerification,
+    this.advertRates,
     this.balanceAvailable,
     this.blockedUntil,
     this.buyCompletionRate,
+    this.buyTimeAvg,
     this.cancelTimeAvg,
     this.cancelsRemaining,
     this.chatToken,
@@ -196,7 +203,6 @@ abstract class P2pAdvertiserInfoModel extends Equatable {
     this.dailyBuyLimit,
     this.dailySell,
     this.dailySellLimit,
-    this.defaultAdvertDescription,
     this.firstName,
     this.isBlocked,
     this.isFavourite,
@@ -211,11 +217,20 @@ abstract class P2pAdvertiserInfoModel extends Equatable {
     this.totalCompletionRate,
   });
 
+  /// Total order volume since advertiser registration.
+  final String totalTurnover;
+
   /// The total number of orders completed since advertiser registration.
   final int totalOrdersCount;
 
   /// The number of sell order orders completed within the past 30 days.
   final int sellOrdersCount;
+
+  /// Sell order volume in the past 30 days.
+  final String sellOrdersAmount;
+
+  /// Number of different users the advertiser has traded with since registration.
+  final int partnerCount;
 
   /// The advertiser's displayed name.
   final String name;
@@ -235,14 +250,23 @@ abstract class P2pAdvertiserInfoModel extends Equatable {
   /// Number of other users who have favourited this advertiser.
   final int favourited;
 
+  /// Default description that can be used every time an advert is created.
+  final String defaultAdvertDescription;
+
   /// The epoch time that the client became an advertiser.
   final DateTime createdTime;
 
   /// The number of buy order completed within the past 30 days.
   final int buyOrdersCount;
 
+  /// Buy order volume in the past 30 days.
+  final String buyOrdersAmount;
+
   /// Boolean value: `true` or `false`, indicating whether the advertiser's identify has been verified.
   final bool basicVerification;
+
+  /// Average difference of advert rate compared to the market rate over the past 30 days.
+  final double? advertRates;
 
   /// Amount of funds available to sell on P2P. May be less than account balance according to deposit methods used.
   final double? balanceAvailable;
@@ -252,6 +276,9 @@ abstract class P2pAdvertiserInfoModel extends Equatable {
 
   /// The percentage of completed orders out of total orders as a buyer within the past 30 days.
   final double? buyCompletionRate;
+
+  /// The average time in seconds taken to make payment as a buyer within the past 30 days.
+  final int? buyTimeAvg;
 
   /// The average time in seconds taken to cancel orders as a buyer within the past 30 days.
   final int? cancelTimeAvg;
@@ -279,9 +306,6 @@ abstract class P2pAdvertiserInfoModel extends Equatable {
 
   /// Maximum allowed value of P2P sell transactions in a 24 hour period.
   final String? dailySellLimit;
-
-  /// Default description that can be used every time an advert is created.
-  final String? defaultAdvertDescription;
 
   /// The advertiser's first name.
   final String? firstName;
@@ -325,19 +349,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info class.
   const P2pAdvertiserInfo({
     required bool basicVerification,
+    required String buyOrdersAmount,
     required int buyOrdersCount,
     required DateTime createdTime,
+    required String defaultAdvertDescription,
     required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
     required String name,
+    required int partnerCount,
+    required String sellOrdersAmount,
     required int sellOrdersCount,
     required int totalOrdersCount,
+    required String totalTurnover,
+    double? advertRates,
     double? balanceAvailable,
     DateTime? blockedUntil,
     double? buyCompletionRate,
+    int? buyTimeAvg,
     int? cancelTimeAvg,
     int? cancelsRemaining,
     String? chatToken,
@@ -347,7 +378,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     String? dailyBuyLimit,
     String? dailySell,
     String? dailySellLimit,
-    String? defaultAdvertDescription,
     String? firstName,
     int? isBlocked,
     int? isFavourite,
@@ -362,19 +392,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     double? totalCompletionRate,
   }) : super(
           basicVerification: basicVerification,
+          buyOrdersAmount: buyOrdersAmount,
           buyOrdersCount: buyOrdersCount,
           createdTime: createdTime,
+          defaultAdvertDescription: defaultAdvertDescription,
           favourited: favourited,
           fullVerification: fullVerification,
           id: id,
           isApproved: isApproved,
           isListed: isListed,
           name: name,
+          partnerCount: partnerCount,
+          sellOrdersAmount: sellOrdersAmount,
           sellOrdersCount: sellOrdersCount,
           totalOrdersCount: totalOrdersCount,
+          totalTurnover: totalTurnover,
+          advertRates: advertRates,
           balanceAvailable: balanceAvailable,
           blockedUntil: blockedUntil,
           buyCompletionRate: buyCompletionRate,
+          buyTimeAvg: buyTimeAvg,
           cancelTimeAvg: cancelTimeAvg,
           cancelsRemaining: cancelsRemaining,
           chatToken: chatToken,
@@ -384,7 +421,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
           dailyBuyLimit: dailyBuyLimit,
           dailySell: dailySell,
           dailySellLimit: dailySellLimit,
-          defaultAdvertDescription: defaultAdvertDescription,
           firstName: firstName,
           isBlocked: isBlocked,
           isFavourite: isFavourite,
@@ -403,19 +439,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   factory P2pAdvertiserInfo.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserInfo(
         basicVerification: getBool(json['basic_verification'])!,
+        buyOrdersAmount: json['buy_orders_amount'],
         buyOrdersCount: json['buy_orders_count'],
         createdTime: getDateTime(json['created_time'])!,
+        defaultAdvertDescription: json['default_advert_description'],
         favourited: json['favourited'],
         fullVerification: getBool(json['full_verification'])!,
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
         isListed: getBool(json['is_listed'])!,
         name: json['name'],
+        partnerCount: json['partner_count'],
+        sellOrdersAmount: json['sell_orders_amount'],
         sellOrdersCount: json['sell_orders_count'],
         totalOrdersCount: json['total_orders_count'],
+        totalTurnover: json['total_turnover'],
+        advertRates: getDouble(json['advert_rates']),
         balanceAvailable: getDouble(json['balance_available']),
         blockedUntil: getDateTime(json['blocked_until']),
         buyCompletionRate: getDouble(json['buy_completion_rate']),
+        buyTimeAvg: json['buy_time_avg'],
         cancelTimeAvg: json['cancel_time_avg'],
         cancelsRemaining: json['cancels_remaining'],
         chatToken: json['chat_token'],
@@ -425,7 +468,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         dailyBuyLimit: json['daily_buy_limit'],
         dailySell: json['daily_sell'],
         dailySellLimit: json['daily_sell_limit'],
-        defaultAdvertDescription: json['default_advert_description'],
         firstName: json['first_name'],
         isBlocked: json['is_blocked'],
         isFavourite: json['is_favourite'],
@@ -445,19 +487,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['basic_verification'] = basicVerification;
+    resultMap['buy_orders_amount'] = buyOrdersAmount;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
+    resultMap['default_advert_description'] = defaultAdvertDescription;
     resultMap['favourited'] = favourited;
     resultMap['full_verification'] = fullVerification;
     resultMap['id'] = id;
     resultMap['is_approved'] = isApproved;
     resultMap['is_listed'] = isListed;
     resultMap['name'] = name;
+    resultMap['partner_count'] = partnerCount;
+    resultMap['sell_orders_amount'] = sellOrdersAmount;
     resultMap['sell_orders_count'] = sellOrdersCount;
     resultMap['total_orders_count'] = totalOrdersCount;
+    resultMap['total_turnover'] = totalTurnover;
+    resultMap['advert_rates'] = advertRates;
     resultMap['balance_available'] = balanceAvailable;
     resultMap['blocked_until'] = getSecondsSinceEpochDateTime(blockedUntil);
     resultMap['buy_completion_rate'] = buyCompletionRate;
+    resultMap['buy_time_avg'] = buyTimeAvg;
     resultMap['cancel_time_avg'] = cancelTimeAvg;
     resultMap['cancels_remaining'] = cancelsRemaining;
     resultMap['chat_token'] = chatToken;
@@ -467,7 +516,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     resultMap['daily_buy_limit'] = dailyBuyLimit;
     resultMap['daily_sell'] = dailySell;
     resultMap['daily_sell_limit'] = dailySellLimit;
-    resultMap['default_advert_description'] = defaultAdvertDescription;
     resultMap['first_name'] = firstName;
     resultMap['is_blocked'] = isBlocked;
     resultMap['is_favourite'] = isFavourite;
@@ -487,19 +535,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserInfo copyWith({
     required bool basicVerification,
+    required String buyOrdersAmount,
     required int buyOrdersCount,
     required DateTime createdTime,
+    required String defaultAdvertDescription,
     required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
     required String name,
+    required int partnerCount,
+    required String sellOrdersAmount,
     required int sellOrdersCount,
     required int totalOrdersCount,
+    required String totalTurnover,
+    double? advertRates,
     double? balanceAvailable,
     DateTime? blockedUntil,
     double? buyCompletionRate,
+    int? buyTimeAvg,
     int? cancelTimeAvg,
     int? cancelsRemaining,
     String? chatToken,
@@ -509,7 +564,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     String? dailyBuyLimit,
     String? dailySell,
     String? dailySellLimit,
-    String? defaultAdvertDescription,
     String? firstName,
     int? isBlocked,
     int? isFavourite,
@@ -525,19 +579,26 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   }) =>
       P2pAdvertiserInfo(
         basicVerification: basicVerification,
+        buyOrdersAmount: buyOrdersAmount,
         buyOrdersCount: buyOrdersCount,
         createdTime: createdTime,
+        defaultAdvertDescription: defaultAdvertDescription,
         favourited: favourited,
         fullVerification: fullVerification,
         id: id,
         isApproved: isApproved,
         isListed: isListed,
         name: name,
+        partnerCount: partnerCount,
+        sellOrdersAmount: sellOrdersAmount,
         sellOrdersCount: sellOrdersCount,
         totalOrdersCount: totalOrdersCount,
+        totalTurnover: totalTurnover,
+        advertRates: advertRates ?? this.advertRates,
         balanceAvailable: balanceAvailable ?? this.balanceAvailable,
         blockedUntil: blockedUntil ?? this.blockedUntil,
         buyCompletionRate: buyCompletionRate ?? this.buyCompletionRate,
+        buyTimeAvg: buyTimeAvg ?? this.buyTimeAvg,
         cancelTimeAvg: cancelTimeAvg ?? this.cancelTimeAvg,
         cancelsRemaining: cancelsRemaining ?? this.cancelsRemaining,
         chatToken: chatToken ?? this.chatToken,
@@ -547,8 +608,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         dailyBuyLimit: dailyBuyLimit ?? this.dailyBuyLimit,
         dailySell: dailySell ?? this.dailySell,
         dailySellLimit: dailySellLimit ?? this.dailySellLimit,
-        defaultAdvertDescription:
-            defaultAdvertDescription ?? this.defaultAdvertDescription,
         firstName: firstName ?? this.firstName,
         isBlocked: isBlocked ?? this.isBlocked,
         isFavourite: isFavourite ?? this.isFavourite,

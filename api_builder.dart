@@ -13,8 +13,7 @@ final List<GeneratedResponseJson> generatedResponses =
 
 /// A Code generator class responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
-/// objects suitable for marshalling and deserialization from our WebSockets
-/// API.
+/// objects suitable for marshalling and deserialization from our WebSockets API.
 class APIBuilder extends Builder {
   static const Map<String, String> typeMap = <String, String>{
     'integer': 'int',
@@ -63,10 +62,10 @@ class APIBuilder extends Builder {
 
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
-      // We keep our list of property keys in original form here so we can iterate over and map them
+      // We keep our list of property keys in original form here so we can iterate over and map them.
       final List<String> properties = schema.properties.keys.toList()..sort();
 
-      // Some minor chicanery here to find out which API method we're supposed to be processing
+      // Some minor chicanery here to find out which API method we're supposed to be processing.
       final Iterable<RegExpMatch> matches =
           RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
               .allMatches(buildStep.inputId.toString());
@@ -249,7 +248,7 @@ class APIBuilder extends Builder {
 
   static bool _isBoolean(String key, JsonSchema property) {
     final List<dynamic> enumValues = property.enumValues ?? <dynamic>[];
-    
+
     return key == 'subscribe' ||
         property.description!.contains('Must be `1`') ||
         property.description!.contains('Must be 1') ||

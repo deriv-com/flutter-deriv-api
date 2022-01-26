@@ -130,44 +130,62 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
 abstract class P2pAdvertiserCreateModel extends Equatable {
   /// Initializes P2p advertiser create model class .
   const P2pAdvertiserCreateModel({
+    required this.totalTurnover,
     required this.totalOrdersCount,
+    required this.showName,
     required this.sellOrdersCount,
+    required this.sellOrdersAmount,
     required this.paymentInfo,
+    required this.partnerCount,
     required this.name,
     required this.isListed,
     required this.isApproved,
     required this.id,
+    required this.fullVerification,
     required this.favourited,
+    required this.defaultAdvertDescription,
     required this.createdTime,
     required this.contactInfo,
     required this.chatUserId,
     required this.chatToken,
     required this.cancelsRemaining,
     required this.buyOrdersCount,
-    this.balanceAvailable,
-    this.basicVerification,
+    required this.buyOrdersAmount,
+    required this.basicVerification,
+    required this.balanceAvailable,
+    this.advertRates,
     this.buyCompletionRate,
+    this.buyTimeAvg,
     this.cancelTimeAvg,
     this.dailyBuy,
     this.dailyBuyLimit,
     this.dailySell,
     this.dailySellLimit,
-    this.defaultAdvertDescription,
-    this.fullVerification,
     this.releaseTimeAvg,
     this.sellCompletionRate,
-    this.showName,
     this.totalCompletionRate,
   });
+
+  /// Total order volume since advertiser registration.
+  final String totalTurnover;
 
   /// The total number of orders completed since advertiser registration.
   final int totalOrdersCount;
 
+  /// When `true`, the advertiser's real name will be displayed to other users on adverts and orders.
+  final bool showName;
+
   /// The number of sell order orders completed within the past 30 days.
   final int sellOrdersCount;
 
+  /// Sell order volume in the past 30 days.
+  final String sellOrdersAmount;
+
   /// Advertiser's payment information.
   final String paymentInfo;
+
+  /// Number of different users the advertiser has traded with since registration.
+  final int partnerCount;
 
   /// The advertiser's displayed name.
   final String name;
@@ -181,8 +199,14 @@ abstract class P2pAdvertiserCreateModel extends Equatable {
   /// The advertiser's identification number.
   final String id;
 
+  /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
+  final bool fullVerification;
+
   /// Number of other users who have favourited this advertiser.
   final int favourited;
+
+  /// Default description that can be used every time an advert is created.
+  final String defaultAdvertDescription;
 
   /// The epoch time that the client became an advertiser.
   final DateTime createdTime;
@@ -202,14 +226,23 @@ abstract class P2pAdvertiserCreateModel extends Equatable {
   /// The number of buy order completed within the past 30 days.
   final int buyOrdersCount;
 
-  /// Amount of funds available to sell on P2P. May be less than account balance according to deposit methods used.
-  final double? balanceAvailable;
+  /// Buy order volume in the past 30 days.
+  final String buyOrdersAmount;
 
   /// Boolean value: `true` or `false`, indicating whether the advertiser's identify has been verified.
-  final bool? basicVerification;
+  final bool basicVerification;
+
+  /// Amount of funds available to sell on P2P. May be less than account balance according to deposit methods used.
+  final double balanceAvailable;
+
+  /// Average difference of advert rate compared to the market rate over the past 30 days.
+  final double? advertRates;
 
   /// The percentage of completed orders out of total orders as a buyer within the past 30 days.
   final double? buyCompletionRate;
+
+  /// The average time in seconds taken to make payment as a buyer within the past 30 days.
+  final int? buyTimeAvg;
 
   /// The average time in seconds taken to cancel orders as a buyer within the past 30 days.
   final int? cancelTimeAvg;
@@ -226,20 +259,11 @@ abstract class P2pAdvertiserCreateModel extends Equatable {
   /// Maximum allowed value of P2P sell transactions in a 24 hour period.
   final String? dailySellLimit;
 
-  /// Default description that can be used every time an advert is created.
-  final String? defaultAdvertDescription;
-
-  /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
-  final bool? fullVerification;
-
   /// The average time in seconds taken to release funds as a seller within the past 30 days.
   final int? releaseTimeAvg;
 
   /// The percentage of completed orders out of total orders as a seller within the past 30 days.
   final double? sellCompletionRate;
-
-  /// When `true`, the advertiser's real name will be displayed to other users on adverts and orders.
-  final bool? showName;
 
   /// The percentage of completed orders out of all orders within the past 30 days.
   final double? totalCompletionRate;
@@ -249,95 +273,113 @@ abstract class P2pAdvertiserCreateModel extends Equatable {
 class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create class.
   const P2pAdvertiserCreate({
+    required double balanceAvailable,
+    required bool basicVerification,
+    required String buyOrdersAmount,
     required int buyOrdersCount,
     required int cancelsRemaining,
     required String chatToken,
     required String chatUserId,
     required String contactInfo,
     required DateTime createdTime,
+    required String defaultAdvertDescription,
     required int favourited,
+    required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
     required String name,
+    required int partnerCount,
     required String paymentInfo,
+    required String sellOrdersAmount,
     required int sellOrdersCount,
+    required bool showName,
     required int totalOrdersCount,
-    double? balanceAvailable,
-    bool? basicVerification,
+    required String totalTurnover,
+    double? advertRates,
     double? buyCompletionRate,
+    int? buyTimeAvg,
     int? cancelTimeAvg,
     String? dailyBuy,
     String? dailyBuyLimit,
     String? dailySell,
     String? dailySellLimit,
-    String? defaultAdvertDescription,
-    bool? fullVerification,
     int? releaseTimeAvg,
     double? sellCompletionRate,
-    bool? showName,
     double? totalCompletionRate,
   }) : super(
+          balanceAvailable: balanceAvailable,
+          basicVerification: basicVerification,
+          buyOrdersAmount: buyOrdersAmount,
           buyOrdersCount: buyOrdersCount,
           cancelsRemaining: cancelsRemaining,
           chatToken: chatToken,
           chatUserId: chatUserId,
           contactInfo: contactInfo,
           createdTime: createdTime,
+          defaultAdvertDescription: defaultAdvertDescription,
           favourited: favourited,
+          fullVerification: fullVerification,
           id: id,
           isApproved: isApproved,
           isListed: isListed,
           name: name,
+          partnerCount: partnerCount,
           paymentInfo: paymentInfo,
+          sellOrdersAmount: sellOrdersAmount,
           sellOrdersCount: sellOrdersCount,
+          showName: showName,
           totalOrdersCount: totalOrdersCount,
-          balanceAvailable: balanceAvailable,
-          basicVerification: basicVerification,
+          totalTurnover: totalTurnover,
+          advertRates: advertRates,
           buyCompletionRate: buyCompletionRate,
+          buyTimeAvg: buyTimeAvg,
           cancelTimeAvg: cancelTimeAvg,
           dailyBuy: dailyBuy,
           dailyBuyLimit: dailyBuyLimit,
           dailySell: dailySell,
           dailySellLimit: dailySellLimit,
-          defaultAdvertDescription: defaultAdvertDescription,
-          fullVerification: fullVerification,
           releaseTimeAvg: releaseTimeAvg,
           sellCompletionRate: sellCompletionRate,
-          showName: showName,
           totalCompletionRate: totalCompletionRate,
         );
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserCreate.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreate(
+        balanceAvailable: getDouble(json['balance_available'])!,
+        basicVerification: getBool(json['basic_verification'])!,
+        buyOrdersAmount: json['buy_orders_amount'],
         buyOrdersCount: json['buy_orders_count'],
         cancelsRemaining: json['cancels_remaining'],
         chatToken: json['chat_token'],
         chatUserId: json['chat_user_id'],
         contactInfo: json['contact_info'],
         createdTime: getDateTime(json['created_time'])!,
+        defaultAdvertDescription: json['default_advert_description'],
         favourited: json['favourited'],
+        fullVerification: getBool(json['full_verification'])!,
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
         isListed: getBool(json['is_listed'])!,
         name: json['name'],
+        partnerCount: json['partner_count'],
         paymentInfo: json['payment_info'],
+        sellOrdersAmount: json['sell_orders_amount'],
         sellOrdersCount: json['sell_orders_count'],
+        showName: getBool(json['show_name'])!,
         totalOrdersCount: json['total_orders_count'],
-        balanceAvailable: getDouble(json['balance_available']),
-        basicVerification: getBool(json['basic_verification']),
+        totalTurnover: json['total_turnover'],
+        advertRates: getDouble(json['advert_rates']),
         buyCompletionRate: getDouble(json['buy_completion_rate']),
+        buyTimeAvg: json['buy_time_avg'],
         cancelTimeAvg: json['cancel_time_avg'],
         dailyBuy: json['daily_buy'],
         dailyBuyLimit: json['daily_buy_limit'],
         dailySell: json['daily_sell'],
         dailySellLimit: json['daily_sell_limit'],
-        defaultAdvertDescription: json['default_advert_description'],
-        fullVerification: getBool(json['full_verification']),
         releaseTimeAvg: json['release_time_avg'],
         sellCompletionRate: getDouble(json['sell_completion_rate']),
-        showName: getBool(json['show_name']),
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
@@ -345,33 +387,39 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['balance_available'] = balanceAvailable;
+    resultMap['basic_verification'] = basicVerification;
+    resultMap['buy_orders_amount'] = buyOrdersAmount;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['cancels_remaining'] = cancelsRemaining;
     resultMap['chat_token'] = chatToken;
     resultMap['chat_user_id'] = chatUserId;
     resultMap['contact_info'] = contactInfo;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
+    resultMap['default_advert_description'] = defaultAdvertDescription;
     resultMap['favourited'] = favourited;
+    resultMap['full_verification'] = fullVerification;
     resultMap['id'] = id;
     resultMap['is_approved'] = isApproved;
     resultMap['is_listed'] = isListed;
     resultMap['name'] = name;
+    resultMap['partner_count'] = partnerCount;
     resultMap['payment_info'] = paymentInfo;
+    resultMap['sell_orders_amount'] = sellOrdersAmount;
     resultMap['sell_orders_count'] = sellOrdersCount;
+    resultMap['show_name'] = showName;
     resultMap['total_orders_count'] = totalOrdersCount;
-    resultMap['balance_available'] = balanceAvailable;
-    resultMap['basic_verification'] = basicVerification;
+    resultMap['total_turnover'] = totalTurnover;
+    resultMap['advert_rates'] = advertRates;
     resultMap['buy_completion_rate'] = buyCompletionRate;
+    resultMap['buy_time_avg'] = buyTimeAvg;
     resultMap['cancel_time_avg'] = cancelTimeAvg;
     resultMap['daily_buy'] = dailyBuy;
     resultMap['daily_buy_limit'] = dailyBuyLimit;
     resultMap['daily_sell'] = dailySell;
     resultMap['daily_sell_limit'] = dailySellLimit;
-    resultMap['default_advert_description'] = defaultAdvertDescription;
-    resultMap['full_verification'] = fullVerification;
     resultMap['release_time_avg'] = releaseTimeAvg;
     resultMap['sell_completion_rate'] = sellCompletionRate;
-    resultMap['show_name'] = showName;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
     return resultMap;
@@ -379,64 +427,75 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserCreate copyWith({
+    required double balanceAvailable,
+    required bool basicVerification,
+    required String buyOrdersAmount,
     required int buyOrdersCount,
     required int cancelsRemaining,
     required String chatToken,
     required String chatUserId,
     required String contactInfo,
     required DateTime createdTime,
+    required String defaultAdvertDescription,
     required int favourited,
+    required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
     required String name,
+    required int partnerCount,
     required String paymentInfo,
+    required String sellOrdersAmount,
     required int sellOrdersCount,
+    required bool showName,
     required int totalOrdersCount,
-    double? balanceAvailable,
-    bool? basicVerification,
+    required String totalTurnover,
+    double? advertRates,
     double? buyCompletionRate,
+    int? buyTimeAvg,
     int? cancelTimeAvg,
     String? dailyBuy,
     String? dailyBuyLimit,
     String? dailySell,
     String? dailySellLimit,
-    String? defaultAdvertDescription,
-    bool? fullVerification,
     int? releaseTimeAvg,
     double? sellCompletionRate,
-    bool? showName,
     double? totalCompletionRate,
   }) =>
       P2pAdvertiserCreate(
+        balanceAvailable: balanceAvailable,
+        basicVerification: basicVerification,
+        buyOrdersAmount: buyOrdersAmount,
         buyOrdersCount: buyOrdersCount,
         cancelsRemaining: cancelsRemaining,
         chatToken: chatToken,
         chatUserId: chatUserId,
         contactInfo: contactInfo,
         createdTime: createdTime,
+        defaultAdvertDescription: defaultAdvertDescription,
         favourited: favourited,
+        fullVerification: fullVerification,
         id: id,
         isApproved: isApproved,
         isListed: isListed,
         name: name,
+        partnerCount: partnerCount,
         paymentInfo: paymentInfo,
+        sellOrdersAmount: sellOrdersAmount,
         sellOrdersCount: sellOrdersCount,
+        showName: showName,
         totalOrdersCount: totalOrdersCount,
-        balanceAvailable: balanceAvailable ?? this.balanceAvailable,
-        basicVerification: basicVerification ?? this.basicVerification,
+        totalTurnover: totalTurnover,
+        advertRates: advertRates ?? this.advertRates,
         buyCompletionRate: buyCompletionRate ?? this.buyCompletionRate,
+        buyTimeAvg: buyTimeAvg ?? this.buyTimeAvg,
         cancelTimeAvg: cancelTimeAvg ?? this.cancelTimeAvg,
         dailyBuy: dailyBuy ?? this.dailyBuy,
         dailyBuyLimit: dailyBuyLimit ?? this.dailyBuyLimit,
         dailySell: dailySell ?? this.dailySell,
         dailySellLimit: dailySellLimit ?? this.dailySellLimit,
-        defaultAdvertDescription:
-            defaultAdvertDescription ?? this.defaultAdvertDescription,
-        fullVerification: fullVerification ?? this.fullVerification,
         releaseTimeAvg: releaseTimeAvg ?? this.releaseTimeAvg,
         sellCompletionRate: sellCompletionRate ?? this.sellCompletionRate,
-        showName: showName ?? this.showName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 
