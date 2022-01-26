@@ -16,6 +16,7 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
     case 'candles':
     case 'history':
       return TicksHistoryReceive.fromJson(responseMap);
+
     default:
       return getGeneratedResponse(responseMap);
   }

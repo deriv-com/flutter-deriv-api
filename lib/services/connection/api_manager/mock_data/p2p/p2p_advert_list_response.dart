@@ -12,7 +12,8 @@ const String p2pAdvertListResponse = '''
         "account_currency": "USD",
         "advertiser_details": {
           "id": "6",
-          "name": "advertiser CR90000018"
+          "name": "advertiser CR90000018",
+          "completed_orders_count": 0
         },
         "counterparty_type": "sell",
         "country": "za",
@@ -37,7 +38,8 @@ const String p2pAdvertListResponse = '''
         "account_currency": "USD",
         "advertiser_details": {
           "id": "7",
-          "name": "advertiser CR90000022"
+          "name": "advertiser CR90000022",
+          "completed_orders_count": 0
         },
         "counterparty_type": "sell",
         "country": "za",

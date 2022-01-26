@@ -1,3 +1,5 @@
+import 'package:flutter_test/flutter_test.dart';
+
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_create_response_result.dart'
     as advert_create;
@@ -13,7 +15,6 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dar
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
@@ -22,7 +23,8 @@ void main() {
     test('Fetch Advert Information Test', () async {
       final advert_info.P2pAdvertInfoResponse advertResponse =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoRequest(id: '21'));
+        const P2pAdvertInfoRequest(id: '21'),
+      );
 
       final advert_info.P2pAdvertInfo advert = advertResponse.p2pAdvertInfo!;
 
@@ -58,6 +60,7 @@ void main() {
           await advert_list.P2pAdvertListResponse.fetchAdvertList(
         const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
+
       final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList!.list;
 
       final advert_list.ListItem firstAdvert = adverts.first;
@@ -193,12 +196,15 @@ void main() {
     test('Activate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoRequest(id: '21'));
+        const P2pAdvertInfoRequest(id: '21'),
+      );
+
       final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.activate();
 
       final advert_update.P2pAdvertUpdate activatedAdvert =
           advertResponse.p2pAdvertUpdate!;
+
       expect(activatedAdvert.accountCurrency, 'USD');
 
       expect(activatedAdvert.advertiserDetails?.id, '3');
@@ -236,7 +242,8 @@ void main() {
     test('Deactivate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoRequest(id: '25'));
+        const P2pAdvertInfoRequest(id: '25'),
+      );
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.deactivate();
@@ -286,7 +293,9 @@ void main() {
     test('Delete Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoRequest(id: '25'));
+        const P2pAdvertInfoRequest(id: '25'),
+      );
+
       final advert_update.P2pAdvertUpdateResponse deletedAdvertResponse =
           await advert.delete();
 
@@ -330,7 +339,9 @@ void main() {
     test('Create Order From Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoRequest(id: '2'));
+        const P2pAdvertInfoRequest(id: '2'),
+      );
+
       final order_create.P2pOrderCreateResponse orderResponse =
           await advert.createOrder(amount: 50);
 

@@ -16,19 +16,19 @@ const String p2pOrderInfoResponse = '''{
     "advertiser_details": {
       "id": "2",
       "name": "advertiser CR90000018",
-      "loginid":"CR90000006"
-
+      "loginid": "CR90000006",
+      "completed_orders_count": 0
     },
-    "client_details":{
-         "id":"5",
-         "loginid":"CR90000006",
-         "name":"client CR90000006"
-      },
-
-      "dispute_details":{
-         "dispute_reason":null,
-         "disputer_loginid":null
-      },
+    "client_details": {
+      "id":"5",
+      "loginid": "CR90000006",
+      "name": "client CR90000006",
+      "completed_orders_count": 0
+    },
+    "dispute_details": {
+      "dispute_reason":null,
+      "disputer_loginid":null
+    },
     "amount": 50,
     "amount_display": "50.00",
     "chat_channel_url": "",

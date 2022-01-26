@@ -11,7 +11,8 @@ const String p2pAdvertiserAdvertsResponse = '''
         "account_currency": "USD",
         "advertiser_details": {
           "id": "1",
-          "name": "John Doe"
+          "name": "John Doe",
+          "completed_orders_count": 0
         },
         "amount": 10,
         "amount_display": "10.00",
@@ -49,7 +50,8 @@ const String p2pAdvertiserAdvertsResponse = '''
         "account_currency": "USD",
         "advertiser_details": {
           "id": "1",
-          "name": "John Doe"
+          "name": "John Doe",
+          "completed_orders_count": 0
         },
         "amount": 3000,
         "amount_display": "3000.00",
