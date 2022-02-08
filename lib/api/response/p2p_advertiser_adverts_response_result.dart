@@ -114,6 +114,50 @@ enum TypeEnum {
   /// sell.
   sell,
 }
+
+/// VisibilityStatusItemEnum mapper.
+final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
+    <String, VisibilityStatusItemEnum>{
+  "advert_inactive": VisibilityStatusItemEnum.advertInactive,
+  "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
+  "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
+  "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
+  "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
+  "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
+};
+
+/// VisibilityStatusItem Enum.
+enum VisibilityStatusItemEnum {
+  /// advert_inactive.
+  advertInactive,
+
+  /// advert_max_limit.
+  advertMaxLimit,
+
+  /// advert_min_limit.
+  advertMinLimit,
+
+  /// advert_remaining.
+  advertRemaining,
+
+  /// advertiser_ads_paused.
+  advertiserAdsPaused,
+
+  /// advertiser_approval.
+  advertiserApproval,
+
+  /// advertiser_balance.
+  advertiserBalance,
+
+  /// advertiser_daily_limit.
+  advertiserDailyLimit,
+
+  /// advertiser_temp_ban.
+  advertiserTempBan,
+}
 /// P2p advertiser adverts model class.
 abstract class P2pAdvertiserAdvertsModel extends Equatable {
   /// Initializes P2p advertiser adverts model class .
@@ -206,6 +250,7 @@ abstract class ListItemModel extends Equatable {
     this.daysUntilArchive,
     this.paymentMethod,
     this.paymentMethodNames,
+    this.visibilityStatus,
   });
 
   /// Whether this is a buy or a sell.
@@ -306,6 +351,18 @@ abstract class ListItemModel extends Equatable {
 
   /// Names of supported payment methods.
   final List<String>? paymentMethodNames;
+
+  /// Reasons why an advert is not visible. Possible values:
+  /// - `advert_inactive`: the advert is set inactive.
+  /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
+  /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
+  /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
+  /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
+  /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
+  /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
+  final List<VisibilityStatusItemEnum>? visibilityStatus;
 }
 
 /// List item class.
@@ -345,6 +402,7 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) : super(
           accountCurrency: accountCurrency,
           activeOrders: activeOrders,
@@ -379,6 +437,7 @@ class ListItem extends ListItemModel {
           daysUntilArchive: daysUntilArchive,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
+          visibilityStatus: visibilityStatus,
         );
 
   /// Creates an instance from JSON.
@@ -422,6 +481,15 @@ class ListItem extends ListItemModel {
             : List<String>.from(
                 json['payment_method_names']?.map(
                   (dynamic item) => item,
+                ),
+              ),
+        visibilityStatus: json['visibility_status'] == null
+            ? null
+            : List<VisibilityStatusItemEnum>.from(
+                json['visibility_status']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : visibilityStatusItemEnumMapper[item],
                 ),
               ),
       );
@@ -475,6 +543,18 @@ class ListItem extends ListItemModel {
           )
           .toList();
     }
+    if (visibilityStatus != null) {
+      resultMap['visibility_status'] = visibilityStatus!
+          .map<dynamic>(
+            (VisibilityStatusItemEnum item) => visibilityStatusItemEnumMapper
+                .entries
+                .firstWhere(
+                    (MapEntry<String, VisibilityStatusItemEnum> entry) =>
+                        entry.value == item)
+                .key,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -514,6 +594,7 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
@@ -549,6 +630,7 @@ class ListItem extends ListItemModel {
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 
   /// Override equatable class.

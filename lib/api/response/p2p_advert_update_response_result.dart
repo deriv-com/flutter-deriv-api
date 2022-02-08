@@ -151,6 +151,50 @@ enum P2pAdvertUpdateTypeEnum {
   /// sell.
   sell,
 }
+
+/// VisibilityStatusItemEnum mapper.
+final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
+    <String, VisibilityStatusItemEnum>{
+  "advert_inactive": VisibilityStatusItemEnum.advertInactive,
+  "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
+  "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
+  "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
+  "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
+  "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
+};
+
+/// VisibilityStatusItem Enum.
+enum VisibilityStatusItemEnum {
+  /// advert_inactive.
+  advertInactive,
+
+  /// advert_max_limit.
+  advertMaxLimit,
+
+  /// advert_min_limit.
+  advertMinLimit,
+
+  /// advert_remaining.
+  advertRemaining,
+
+  /// advertiser_ads_paused.
+  advertiserAdsPaused,
+
+  /// advertiser_approval.
+  advertiserApproval,
+
+  /// advertiser_balance.
+  advertiserBalance,
+
+  /// advertiser_daily_limit.
+  advertiserDailyLimit,
+
+  /// advertiser_temp_ban.
+  advertiserTempBan,
+}
 /// P2p advert update model class.
 abstract class P2pAdvertUpdateModel extends Equatable {
   /// Initializes P2p advert update model class .
@@ -190,6 +234,7 @@ abstract class P2pAdvertUpdateModel extends Equatable {
     this.remainingAmount,
     this.remainingAmountDisplay,
     this.type,
+    this.visibilityStatus,
   });
 
   /// The unique identifier for this advert.
@@ -296,6 +341,18 @@ abstract class P2pAdvertUpdateModel extends Equatable {
 
   /// Whether this is a buy or a sell.
   final P2pAdvertUpdateTypeEnum? type;
+
+  /// Reasons why an advert is not visible. Possible values:
+  /// - `advert_inactive`: the advert is set inactive.
+  /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
+  /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
+  /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
+  /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
+  /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
+  /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
+  final List<VisibilityStatusItemEnum>? visibilityStatus;
 }
 
 /// P2p advert update class.
@@ -337,6 +394,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     double? remainingAmount,
     String? remainingAmountDisplay,
     P2pAdvertUpdateTypeEnum? type,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) : super(
           id: id,
           accountCurrency: accountCurrency,
@@ -373,6 +431,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
           type: type,
+          visibilityStatus: visibilityStatus,
         );
 
   /// Creates an instance from JSON.
@@ -435,6 +494,15 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         type: json['type'] == null
             ? null
             : p2pAdvertUpdateTypeEnumMapper[json['type']],
+        visibilityStatus: json['visibility_status'] == null
+            ? null
+            : List<VisibilityStatusItemEnum>.from(
+                json['visibility_status']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : visibilityStatusItemEnumMapper[item],
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -490,6 +558,18 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         .firstWhere((MapEntry<String, P2pAdvertUpdateTypeEnum> entry) =>
             entry.value == type)
         .key;
+    if (visibilityStatus != null) {
+      resultMap['visibility_status'] = visibilityStatus!
+          .map<dynamic>(
+            (VisibilityStatusItemEnum item) => visibilityStatusItemEnumMapper
+                .entries
+                .firstWhere(
+                    (MapEntry<String, VisibilityStatusItemEnum> entry) =>
+                        entry.value == item)
+                .key,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -531,6 +611,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     double? remainingAmount,
     String? remainingAmountDisplay,
     P2pAdvertUpdateTypeEnum? type,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       P2pAdvertUpdate(
         id: id,
@@ -573,6 +654,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
         type: type ?? this.type,
+        visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 
   /// Override equatable class.
