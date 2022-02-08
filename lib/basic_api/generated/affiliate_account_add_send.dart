@@ -20,7 +20,6 @@ class AffiliateAccountAddRequest extends Request {
     this.affiliateToken,
     this.citizen,
     this.clientType,
-    this.currency,
     required this.dateOfBirth,
     required this.firstName,
     required this.lastName,
@@ -58,7 +57,6 @@ class AffiliateAccountAddRequest extends Request {
         affiliateToken: json['affiliate_token'] as String?,
         citizen: json['citizen'] as String?,
         clientType: json['client_type'] as String?,
-        currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
@@ -110,9 +108,6 @@ class AffiliateAccountAddRequest extends Request {
 
   /// [Optional] Indicates whether this is for a client requesting an account with professional status.
   final String? clientType;
-
-  /// [Optional] To set currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
-  final String? currency;
 
   /// Date of birth format: `yyyy-mm-dd`.
   final String? dateOfBirth;
@@ -169,7 +164,6 @@ class AffiliateAccountAddRequest extends Request {
         'affiliate_token': affiliateToken,
         'citizen': citizen,
         'client_type': clientType,
-        'currency': currency,
         'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
@@ -201,7 +195,6 @@ class AffiliateAccountAddRequest extends Request {
     String? affiliateToken,
     String? citizen,
     String? clientType,
-    String? currency,
     String? dateOfBirth,
     String? firstName,
     String? lastName,
@@ -230,7 +223,6 @@ class AffiliateAccountAddRequest extends Request {
         affiliateToken: affiliateToken ?? this.affiliateToken,
         citizen: citizen ?? this.citizen,
         clientType: clientType ?? this.clientType,
-        currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
