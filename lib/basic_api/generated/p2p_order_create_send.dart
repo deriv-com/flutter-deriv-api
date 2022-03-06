@@ -14,6 +14,7 @@ class P2pOrderCreateRequest extends Request {
     this.p2pOrderCreate = true,
     this.paymentInfo,
     required this.paymentMethodIds,
+    this.rate,
     this.subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -36,6 +37,7 @@ class P2pOrderCreateRequest extends Request {
         paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
             ?.map<int>((dynamic item) => item as int)
             .toList(),
+        rate: json['rate'] as num?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -59,6 +61,9 @@ class P2pOrderCreateRequest extends Request {
   /// IDs of payment methods, only applicable for sell orders.
   final List<int>? paymentMethodIds;
 
+  /// [Optional] Conversion rate from account currency to local currency, only applicable for floating rate adverts.
+  final num? rate;
+
   /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
   final bool? subscribe;
 
@@ -75,6 +80,7 @@ class P2pOrderCreateRequest extends Request {
                 : 0,
         'payment_info': paymentInfo,
         'payment_method_ids': paymentMethodIds,
+        'rate': rate,
         'subscribe': subscribe == null
             ? null
             : subscribe!
@@ -93,6 +99,7 @@ class P2pOrderCreateRequest extends Request {
     bool? p2pOrderCreate,
     String? paymentInfo,
     List<int>? paymentMethodIds,
+    num? rate,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -104,6 +111,7 @@ class P2pOrderCreateRequest extends Request {
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        rate: rate ?? this.rate,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

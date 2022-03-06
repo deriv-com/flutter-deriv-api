@@ -20,6 +20,7 @@ class P2pAdvertCreateRequest extends Request {
     required this.paymentMethodIds,
     required this.paymentMethodNames,
     required this.rate,
+    required this.rateType,
     required this.type,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -50,6 +51,7 @@ class P2pAdvertCreateRequest extends Request {
             ?.map<String>((dynamic item) => item as String)
             .toList(),
         rate: json['rate'] as num?,
+        rateType: json['rate_type'] as String?,
         type: json['type'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -88,8 +90,11 @@ class P2pAdvertCreateRequest extends Request {
   /// Payment method identifiers as returned from p2p_payment_methods, only applicable for buy ads.
   final List<String>? paymentMethodNames;
 
-  /// Conversion rate from advertiser's account currency to `local_currency`.
+  /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final num? rate;
+
+  /// Type of rate, fixed or floating.
+  final String? rateType;
 
   /// The advertisement represents the intention to perform this action on your Deriv account funds.
   final String? type;
@@ -113,6 +118,7 @@ class P2pAdvertCreateRequest extends Request {
         'payment_method_ids': paymentMethodIds,
         'payment_method_names': paymentMethodNames,
         'rate': rate,
+        'rate_type': rateType,
         'type': type,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -133,6 +139,7 @@ class P2pAdvertCreateRequest extends Request {
     List<int>? paymentMethodIds,
     List<String>? paymentMethodNames,
     num? rate,
+    String? rateType,
     String? type,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -150,6 +157,7 @@ class P2pAdvertCreateRequest extends Request {
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         rate: rate ?? this.rate,
+        rateType: rateType ?? this.rateType,
         type: type ?? this.type,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
