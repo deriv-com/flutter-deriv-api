@@ -40,6 +40,8 @@ export "cashier_receive.dart";
 export "cashier_send.dart";
 export "cashier_withdrawal_cancel_receive.dart";
 export "cashier_withdrawal_cancel_send.dart";
+export "change_email_receive.dart";
+export "change_email_send.dart";
 export "change_password_receive.dart";
 export "change_password_send.dart";
 export "contract_update_history_receive.dart";

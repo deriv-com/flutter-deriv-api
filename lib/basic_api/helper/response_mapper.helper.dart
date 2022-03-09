@@ -24,6 +24,7 @@ import '../generated/cancel_receive.dart';
 import '../generated/cashier_payments_receive.dart';
 import '../generated/cashier_receive.dart';
 import '../generated/cashier_withdrawal_cancel_receive.dart';
+import '../generated/change_email_receive.dart';
 import '../generated/change_password_receive.dart';
 import '../generated/contract_update_history_receive.dart';
 import '../generated/contract_update_receive.dart';
@@ -176,6 +177,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return CashierResponse.fromJson(responseMap);
     case 'cashier_withdrawal_cancel':
       return CashierWithdrawalCancelResponse.fromJson(responseMap);
+    case 'change_email':
+      return ChangeEmailResponse.fromJson(responseMap);
     case 'change_password':
       return ChangePasswordResponse.fromJson(responseMap);
     case 'contract_update_history':
