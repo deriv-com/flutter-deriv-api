@@ -10,6 +10,8 @@ class ExchangeRatesRequest extends Request {
   const ExchangeRatesRequest({
     required this.baseCurrency,
     this.exchangeRates = true,
+    this.subscribe,
+    this.targetCurrency,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -24,6 +26,8 @@ class ExchangeRatesRequest extends Request {
         baseCurrency: json['base_currency'] as String?,
         exchangeRates:
             json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        targetCurrency: json['target_currency'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -34,6 +38,12 @@ class ExchangeRatesRequest extends Request {
   /// Must be `true`
   final bool? exchangeRates;
 
+  /// [Optional] `true` - to initiate a realtime stream of exchange rates relative to base currency.
+  final bool? subscribe;
+
+  /// [Optional] Local currency
+  final String? targetCurrency;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -43,6 +53,12 @@ class ExchangeRatesRequest extends Request {
             : exchangeRates!
                 ? 1
                 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe!
+                ? 1
+                : 0,
+        'target_currency': targetCurrency,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -52,12 +68,16 @@ class ExchangeRatesRequest extends Request {
   ExchangeRatesRequest copyWith({
     String? baseCurrency,
     bool? exchangeRates,
+    bool? subscribe,
+    String? targetCurrency,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       ExchangeRatesRequest(
         baseCurrency: baseCurrency ?? this.baseCurrency,
         exchangeRates: exchangeRates ?? this.exchangeRates,
+        subscribe: subscribe ?? this.subscribe,
+        targetCurrency: targetCurrency ?? this.targetCurrency,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
