@@ -1,0 +1,76 @@
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_deriv_api/api/api_initializer.dart';
+import 'package:flutter_deriv_api/api/common/landing_company/landing_company.dart';
+import 'package:flutter_deriv_api/api/common/models/landing_company_detail_model.dart';
+import 'package:flutter_deriv_api/api/common/models/landing_company_fields_info_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+
+void main() {
+  setUpAll(() => APIInitializer().initialize(isMock: true));
+
+  group('Landing Company Group ->', () {
+    test('Fetch Landing Companies Test', () async {
+      final LandingCompany landingCompany =
+          await LandingCompany.fetchLandingCompanies(
+        const LandingCompanyRequest(landingCompany: 'CountryCode'),
+      );
+
+      expect(landingCompany.config!.taxDetailsRequired, true);
+      expect(landingCompany.minimumAge, 18);
+      expect(landingCompany.name, 'Indonesia');
+      expect(landingCompany.id, 'id');
+      expect(landingCompany.virtualCompany, 'virtual');
+
+      final LandingCompanyDetailModel financialCompany =
+          landingCompany.financialCompany!;
+
+      expect(financialCompany.hasRealityCheck, false);
+      expect(financialCompany.marketsCurrencies!.length, 2);
+      expect(financialCompany.legalAllowedContractCategories!.length, 12);
+      expect(financialCompany.legalDefaultCurrency, 'AUD');
+      expect(financialCompany.country, 'Saint Vincent and the Grenadines');
+      expect(financialCompany.legalDefaultCurrency, 'AUD');
+      expect(financialCompany.shortCode, 'svg');
+      expect(financialCompany.legalAllowedMarkets!.length, 2);
+      expect(financialCompany.legalAllowedMarkets!.first, 'commodities');
+
+      final LandingCompanyDetailModel mtFinancialAdvanced =
+          landingCompany.mtFinancialCompany!.advanced!;
+
+      expect(mtFinancialAdvanced.address!.length, 4);
+
+      expect(mtFinancialAdvanced.hasRealityCheck, false);
+      expect(mtFinancialAdvanced.marketsCurrencies!.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedContractCategories!.length, 1);
+      expect(mtFinancialAdvanced.legalDefaultCurrency, 'AUD');
+      expect(mtFinancialAdvanced.country, 'Malaysia');
+      expect(mtFinancialAdvanced.shortCode, 'labuan');
+      expect(mtFinancialAdvanced.legalAllowedMarkets!.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedMarkets!.first, 'forex');
+    });
+
+    test('Fetch Landing Company Details Test', () async {
+      final LandingCompanyDetailModel landingCompanyDetail =
+          await LandingCompany.fetchLandingCompanyDetails(
+        const LandingCompanyDetailsRequest(landingCompanyDetails: 'LC Code'),
+      );
+
+      expect(landingCompanyDetail.address!.length, 4);
+      expect(landingCompanyDetail.country, 'Sample country');
+      expect(landingCompanyDetail.legalDefaultCurrency, 'BTC');
+      expect(landingCompanyDetail.legalAllowedCurrencies!.length, 2);
+      expect(landingCompanyDetail.legalAllowedContractCategories!.length, 4);
+      expect(landingCompanyDetail.legalAllowedMarkets!.length, 2);
+
+      final List<LandingCompanyFieldsInfoModel?> changeableFields =
+          landingCompanyDetail.changeableFields!;
+      final LandingCompanyFieldsInfoModel firstChangeableField =
+          changeableFields.first!;
+
+      expect(changeableFields.length, 1);
+      expect(firstChangeableField.fields!.length, 6);
+      expect(firstChangeableField.fields!.first, 'salutation');
+    });
+  });
+}

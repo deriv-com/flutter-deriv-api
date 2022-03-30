@@ -1,0 +1,89 @@
+import 'package:collection/collection.dart' show IterableExtension;
+import 'package:recase/recase.dart';
+
+/// Enum case type
+enum EnumCase {
+  /// Snake case (e.g. snake_case)
+  snakeCase,
+
+  /// Param case (e.g. param-case)
+  paramCase,
+
+  /// Uppercase (e.g. uppercase)
+  upperCase,
+}
+
+/// Converts enum to string
+String getStringFromEnum<T>(
+  T value, {
+  EnumCase enumCase = EnumCase.snakeCase,
+}) {
+  if (value == null) {
+    return '';
+  }
+
+  final String item = value.toString().split('.')[1];
+
+  switch (enumCase) {
+    case EnumCase.snakeCase:
+      return ReCase(item).snakeCase;
+    case EnumCase.paramCase:
+      return ReCase(item).paramCase;
+    case EnumCase.upperCase:
+      return item.toUpperCase();
+
+    default:
+      return item;
+  }
+}
+
+/// Gets enum form a string
+T? getEnumFromString<T>({
+  required List<T> values,
+  required String? name,
+  EnumCase enumCase = EnumCase.snakeCase,
+}) =>
+    name == null || values.isEmpty
+        ? null
+        : values.firstWhereOrNull(
+            (T enumItem) {
+              final String item = enumItem.toString().split('.')[1];
+
+              switch (enumCase) {
+                case EnumCase.snakeCase:
+                  return ReCase(item).snakeCase.compareTo(name) == 0;
+                case EnumCase.paramCase:
+                  return ReCase(item).paramCase.compareTo(name) == 0;
+                case EnumCase.upperCase:
+                  return item.toUpperCase().compareTo(name) == 0;
+
+                default:
+                  return item.compareTo(name) == 0;
+              }
+            },
+          );
+
+/// Converts a list of enums to a string list
+List<String> getStringListFromEnums<T>(
+  List<T> values, {
+  EnumCase enumCase = EnumCase.snakeCase,
+}) =>
+    values
+        .map((T value) => getStringFromEnum(value, enumCase: enumCase))
+        .toList();
+
+/// Converts a list of strings to a enum list
+List<T?>? getEnumListFromStrings<T>({
+  required List<T> values,
+  required List<String?>? names,
+  EnumCase enumCase = EnumCase.snakeCase,
+}) =>
+    names == null || names.isEmpty
+        ? null
+        : names
+            .map((String? name) => getEnumFromString(
+                  values: values,
+                  name: name,
+                  enumCase: enumCase,
+                ))
+            .toList();

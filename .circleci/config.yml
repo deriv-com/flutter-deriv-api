@@ -1,16 +1,16 @@
 version: 2
 jobs:
-  build:    
+  build:
     docker:
-      - image: cirrusci/flutter:stable
+      - image: cirrusci/flutter:2.2.3
 
     steps:
       - checkout
       - run:
           name: Update submodules
           command: |
-              git submodule init
-              git submodule update --remote
+            git submodule init
+            git submodule update --remote
 
       - run:
           name: Run Flutter doctor
@@ -22,9 +22,9 @@ jobs:
 
       - restore_cache:
           keys:
-              - android-sdk-licenses
-              - gradle
-              - pub-cache
+            - android-sdk-licenses
+            - gradle
+            - pub-cache
 
       - run:
           name: pub get
@@ -38,45 +38,45 @@ jobs:
           name: Run the application tests
           command: flutter test --coverage
 
-      - run:
-          name: Upload coverage
-          command: |
-              bash <(curl -s https://codecov.io/bash)
+      # - run:
+      #     name: Upload coverage
+      #     command: |
+      #         bash <(curl -s https://codecov.io/bash)
 
       - run:
           name: Code analysis
           command: |
-              flutter pub global activate tuneup
-              flutter pub global run tuneup check
+            flutter pub global activate tuneup
+            flutter pub global run tuneup check
 
-      - run:
-          name: Check that the package is ready for publishing
-          command: flutter packages pub publish --dry-run
+      #   - run:
+      #       name: Check that the package is ready for publishing
+      #       command: flutter packages pub publish --dry-run
 
       - run:
           name: Check that the package is ready for publishing
           command: |
-              cd example && flutter build apk
+            cd example && flutter build apk
 
       - save_cache:
           key: android-sdk-licenses
           paths:
-              - /opt/android-sdk-linux/licenses
+            - /opt/android-sdk-linux/licenses
 
       - save_cache:
           key: pub-cache
           paths:
-              - /home/cirrus/.pub-cache
+            - /home/cirrus/.pub-cache
 
       - save_cache:
           key: gradle
           paths:
-              - ~/.gradle
+            - ~/.gradle
 
       - run:
           name: Copy APK
           command: |
-              sudo mkdir -p /artifacts && sudo chown "$(whoami)" /artifacts && cp example/build/app/outputs/apk/release/app-release.apk /artifacts/deriv-api-example.apk
+            sudo mkdir -p /artifacts && sudo chown "$(whoami)" /artifacts && cp example/build/app/outputs/apk/release/app-release.apk /artifacts/deriv-api-example.apk
 
       - store_artifacts:
           path: /artifacts

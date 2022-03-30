@@ -1,60 +1,43 @@
-part of 'connection_bloc.dart';
+part of 'connection_cubit.dart';
 
-/// Connection States
-@immutable
+/// Connection States.
 abstract class ConnectionState {}
 
-/// Initial state
-class InitialConnectionState extends ConnectionState {
+/// Connection initial state.
+class ConnectionInitialState extends ConnectionState {
   @override
-  String toString() => 'InitialConnectionState';
+  String toString() => 'ConnectionState: InitialConnectionState';
 }
 
-/// shows that we are in the process of connecting
-class Connecting extends ConnectionState {
-  /// Initializes
-  Connecting(this.api);
-
-  /// a reference of BinaryAPI
-  final BinaryAPI api;
+/// Shows that we are in the process of connecting.
+class ConnectionConnectingState extends ConnectionState {
+  /// Initializes connection connecting state
+  ConnectionConnectingState();
 
   @override
-  String toString() => 'ConnectionState(Connecting)';
+  String toString() => 'ConnectionState: Connecting...';
 }
 
-/// connected state
-class Connected extends ConnectionState {
-  /// Initializes
-  Connected(this.api, {this.serverTime})
-      : timeDifference =
-            serverTime != null ? serverTime - getCurrentLocalEpoch() : null;
-
-  /// a reference of BinaryAPI is currently connected
-  final BinaryAPI api;
-
-  /// fetched server time
-  final int serverTime;
-
-  /// difference between [serverTime] and the time of the device
-  final int timeDifference;
-
-  /// Creates copy of instance with given parameters
-  Connected copyWith({BinaryAPI api, int serverTime}) =>
-      Connected(api ?? this.api, serverTime: serverTime ?? this.serverTime);
-
+/// Connection connected state.
+class ConnectionConnectedState extends ConnectionState {
   @override
-  String toString() =>
-      'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
+  String toString() => 'ConnectionState: Connected';
 }
 
-/// Connection error state
-class ConnectionError extends ConnectionState {
-  /// Initializes with the this [error] message
-  ConnectionError(this.error);
+/// Connection disconnected state.
+class ConnectionDisconnectedState extends ConnectionState {
+  @override
+  String toString() => 'ConnectionState: Disconnected';
+}
 
-  /// An exception or message from the server
+/// Connection error state.
+class ConnectionErrorState extends ConnectionState {
+  /// Initializes with the this [error] message.
+  ConnectionErrorState(this.error);
+
+  /// An exception or message from the server.
   final String error;
 
   @override
-  String toString() => 'ConnectionState(Error)';
+  String toString() => 'ConnectionState: Error(error: $error)';
 }
