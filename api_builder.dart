@@ -1,29 +1,53 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:json_schema/json_schema.dart';
-import 'package:recase/recase.dart';
-
 import 'package:build/build.dart';
+import 'package:json_schema2/json_schema2.dart';
+import 'package:recase/recase.dart';
 import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
-/// This class is responsible for parsing the morass of JSON schema
+final List<GeneratedResponseJson> generatedResponses =
+    <GeneratedResponseJson>[];
+
+/// A Code generator class responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
-/// objects suitable for marshalling and deserialising from our websockets
+/// objects suitable for marshalling and deserialization from our WebSockets
 /// API.
 class APIBuilder extends Builder {
   static const Map<String, String> typeMap = <String, String>{
     'integer': 'int',
     'string': 'String',
     'number': 'num',
+    'bool': 'bool',
     'object': 'Map<String, dynamic>',
     'array': 'List<String>',
+    'undefined': 'dynamic',
+    'integer?': 'int?',
+    'string?': 'String?',
+    'number?': 'num?',
+    'bool?': 'bool?',
+    'object?': 'Map<String, dynamic>?',
+    'array?': 'List<String>?',
+    'undefined?': 'dynamic',
   };
+
   static const Map<String, String> schemaTypeMap = <String, String>{
     'send': 'Request',
     'receive': 'Response',
+  };
+
+  static const Map<String, String> requestCommonFields = <String, String>{
+    'passthrough': 'object?',
+    'req_id': 'integer?',
+  };
+
+  static const Map<String, String> responseCommonFields = <String, String>{
+    'echo_req': 'object?',
+    'error': 'object?',
+    'msg_type': 'string?',
+    'req_id': 'integer?',
   };
 
   @override
@@ -34,112 +58,418 @@ class APIBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
-      log.info('Reading ${buildStep.inputId} as JSON');
       final Map<dynamic, dynamic> schemaDefinition =
           jsonDecode(await buildStep.readAsString(buildStep.inputId));
 
-      log.info('Processing schema definition from ${buildStep.inputId}');
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
       // We keep our list of property keys in original form here so we can iterate over and map them
-      final List<String> props = schema.properties.keys.toList()..sort();
+      final List<String> properties = schema.properties.keys.toList()..sort();
 
-      // Instead of trying anything too fancy here, we just provide a simple conversion from original
-      // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
-      // mapping via "it's a string unless we have a better guess" heuristic.
-      final String attrList = props.map((String k) {
-        final String name = ReCase(k).camelCase;
-        final JsonSchema prop = schema.properties[k];
-        String type;
-        // Currently we don't handle multiple types, could
-        // treat those as `dynamic` but so far we don't have
-        // enough of them to care too much
-        if (prop.typeList?.isNotEmpty ?? false) {
-          // The `.type` values are objects, not strings,
-          // which leads to some confusing results when you
-          // try to compare them as strings or use them as
-          // map lookups... so we extract them out to separate
-          // variables instead.
-          if (prop.oneOf.isNotEmpty) {
-            type = 'dynamic';
-          } else {
-            final String schemaType = prop.type?.toString() ?? 'string';
-            if (schemaType == 'array') {
-              // Some types aren't specified - forget_all for example
-              final String itemType = prop.items?.type?.toString() ?? 'string';
-              type = 'List<${typeMap[itemType]}>';
-            } else {
-              type = typeMap[schemaType] ?? 'String';
-            }
-          }
-        } else {
-          log.warning(
-              'The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
-          type = 'String';
-        }
-        return '''/// ${prop.description}
-  ${type ?? "unknown"} ${name ?? "unknown"};
-''';
-      }).join('\n');
-
-      // Allow constructor parameters as well
-      final String namedParameters =
-          props.map((String k) => 'this.${ReCase(k).camelCase}').join(', ');
-
-      /* Some minor chicanery here to find out which API method we're supposed to be processing */
+      // Some minor chicanery here to find out which API method we're supposed to be processing
       final Iterable<RegExpMatch> matches =
           RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
               .allMatches(buildStep.inputId.toString());
+
       final RegExpMatch items = matches.elementAt(0);
+
       if (items.groupCount < 3) {
-        log.info(
-            'Had fewer groups than expected from $items - this is likely not a send/receive request');
         return;
       }
-      final String libName = items.group(1);
-      final String methodName = items.group(2);
-      final String schemaType = items.group(3);
+
+      final String methodName = items.group(2)!;
+      final String schemaType = items.group(3)!;
       final String className = ReCase(methodName).pascalCase;
 
-      log.info(
-          'Will write $className for $methodName as $schemaType under $libName');
-      final String fullClassName = className + schemaTypeMap[schemaType];
-      final String fileName = '${methodName}_${schemaType}';
+      final String classFullName = className + schemaTypeMap[schemaType]!;
+      final String fileName = '${methodName}_$schemaType';
+
+      if (schemaType == 'receive') {
+        final Map<String, dynamic> propertiesMap =
+            schemaDefinition['properties'];
+
+        if (propertiesMap.containsKey('msg_type')) {
+          final Map<String, dynamic> messageType = propertiesMap['msg_type'];
+
+          if (messageType.containsKey('enum')) {
+            generatedResponses.add(
+              GeneratedResponseJson(
+                msgType: messageType['enum'].first,
+                fileName: fileName,
+                fullClassName: classFullName,
+              ),
+            );
+          }
+        }
+      }
+
       await buildStep.writeAsString(
-          // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
-          // over-specific about where it lets you write things - you *can* navigate to parent
-          // directories, but it's not easy to support dynamic names that way without a lot of
-          // extra code.
-          // https://stackoverflow.com/questions/51188114/dart-build-runner-can-only-scan-read-write-files-in-the-web-directory
-          // AssetId(buildStep.inputId.package, 'lib/api/${className}${schemaTypeMap[schemaType]}.dart'),
-          buildStep.inputId.changeExtension('.dart'),
-          DartFormatter().format('''/// Autogenerated from ${buildStep.inputId}
-import 'dart:async';
-import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
+        // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
+        // over-specific about where it lets you write things - you *can* navigate to parent
+        // directories, but it's not easy to support dynamic names that way without a lot of
+        // extra code.
+        // https://stackoverflow.com/questions/51188114/dart-build-runner-can-only-scan-read-write-files-in-the-web-directory
+        // AssetId(buildStep.inputId.package, 'lib/api/${className}${schemaTypeMap[schemaType]}.dart'),
+        buildStep.inputId.changeExtension('.dart'),
+        DartFormatter().format(
+          '''
+            /// Generated automatically from ${buildStep.inputId}.
 
-part '${fileName}.g.dart';
+            // ignore_for_file: always_put_required_named_parameters_first
 
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ${fullClassName} {
-  ${fullClassName}({$namedParameters});
-  factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
-  Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
-
-  // Properties
-  ${attrList}
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
-}
-'''));
-    } on Exception catch (e, stack) {
-      log
-        ..severe('Failed to process ${buildStep.inputId} - $e')
-        ..severe('Stack trace $stack');
-      return;
+            import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
+            /// ${ReCase(classFullName).sentenceCase} class.
+            class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
+              /// Initialize $classFullName.
+              const $classFullName({
+                  ${_getConstructorParameters(methodName, schema, schemaType, properties)}
+                  ${_getSuperClassParameters(schemaType)},
+                }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
+              
+              ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
+              
+              ${_getProperties(schema, properties)}
+              ${_getToJsonMethod(schema, schemaType, properties)}
+              ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
+              
+              /// Override equatable class.
+              @override
+              List<Object?> get props => ${_getEquatableFields(classFullName, properties)};
+            }
+          ''',
+        ),
+      );
+    } on Exception catch (e) {
+      log.severe('Failed to process ${buildStep.inputId} - $e');
     }
   }
+
+  static String _getConstructorParameters(
+    String methodName,
+    JsonSchema schema,
+    String schemaType,
+    List<String> properties,
+  ) {
+    final Iterable<String> fields = properties.where((String key) =>
+        !(requestCommonFields.containsKey(key) ||
+            responseCommonFields.containsKey(key)));
+
+    final String result = fields.map(
+      (String key) {
+        final JsonSchema property = schema.properties[key]!;
+
+        if (property.typeList?.isNotEmpty ?? false) {
+          final bool isBool = _getPropertyRawType(key, property) == 'bool';
+
+          // Set method default value to `true`
+          if (schemaType == 'send' && key == methodName && isBool) {
+            return 'this.${ReCase(key).camelCase} = true';
+          }
+        }
+
+        return '${_isFieldRequired(key, schemaType, property) ? 'required ' : ''} this.${ReCase(key).camelCase}';
+      },
+    ).join(', ');
+    return fields.isEmpty ? result : '$result , ';
+  }
+
+  static String _getProperties(
+    JsonSchema schema,
+    List<String> properties,
+  ) =>
+      properties
+          .where((String key) => !(requestCommonFields.containsKey(key) ||
+              responseCommonFields.containsKey(key)))
+          .map(
+        (String key) {
+          final String name = ReCase(key).camelCase;
+          final JsonSchema property = schema.properties[key]!;
+          final String rawType = _getPropertyRawType(key, property);
+
+          return '''
+            /// ${_preparePropertyDescription(rawType == 'bool', property.description)}
+            final ${_getPropertyType(rawType)} $name;
+          ''';
+        },
+      ).join('\n');
+
+  static String _preparePropertyDescription(
+    bool isBoolean,
+    String? description,
+  ) =>
+      description == null
+          ? ''
+          : isBoolean
+              ? description
+                  .replaceAll('\n', '\n/// ')
+                  .replaceAllMapped(
+                    RegExp(r'`1`| 1| 1 '),
+                    (Match match) => match
+                        .group(0)!
+                        .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
+                  )
+                  .replaceAllMapped(
+                    RegExp(r'`0`| 0| 0 '),
+                    (Match match) => match
+                        .group(0)!
+                        .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
+                  )
+              : description.replaceAll('\n', '\n/// ');
+
+  static String _getPropertyRawType(String key, JsonSchema property) {
+    if (property.oneOf.isNotEmpty || property.anyOf.isNotEmpty) {
+      return 'dynamic';
+    } else {
+      final String? propertySchemaType = _getPropertySchemaType(key, property);
+
+      if (propertySchemaType == 'array') {
+        // Some types aren't specified - forget_all for example
+        final String itemType = property.items?.type?.toString() ?? 'undefined';
+
+        return 'List<${typeMap[itemType]}>';
+      } else {
+        return typeMap[propertySchemaType] ?? 'dynamic';
+      }
+    }
+  }
+
+  static String _getPropertyType(String type) =>
+      '$type${type == 'dynamic' ? '' : '?'}';
+
+  static String? _getPropertySchemaType(String key, JsonSchema property) =>
+      property.typeList?.length == 2
+          ? property.typeList!.first.toString() != 'null'
+              ? property.typeList!.first.toString()
+              : property.typeList!.last.toString()
+          : property.type?.toString() == null
+              ? 'undefined'
+              : _isBoolean(key, property)
+                  ? 'bool'
+                  : property.type?.toString();
+
+  static bool _isBoolean(String key, JsonSchema property) =>
+      key == 'subscribe' ||
+      property.description!.contains('Must be `1`') ||
+      property.description!.contains('Must be 1') ||
+      property.type?.toString() == 'integer' &&
+          property.enumValues?.length == 2 &&
+          property.enumValues!.first == 0 &&
+          property.enumValues!.last == 1;
+
+  static StringBuffer _getFromJsonMethod(
+    String classFullName,
+    JsonSchema schema,
+    String schemaType,
+    List<String> properties,
+  ) =>
+      StringBuffer(
+        '''
+          /// Creates an instance from JSON.
+          factory $classFullName.fromJson(Map<String, dynamic> json) => $classFullName(
+        ''',
+      )
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map((String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key]!;
+            final String rawType = _getPropertyRawType(key, property);
+            final String type = _getPropertyType(rawType);
+
+            if (rawType == 'bool') {
+              return '$name: json[\'$key\'] == null ? null : json[\'$key\'] == 1,';
+            } else if (rawType.contains('List')) {
+              final String arrayType = _getArrayType(rawType);
+
+              return arrayType == 'dynamic'
+                  ? '$name: json[\'$key\'] as $type,'
+                  : '''
+                      $name: (json['$key'] as List<dynamic>?)
+                        ?.map<$arrayType>((dynamic item) => item as $arrayType)
+                        .toList(),
+                    ''';
+            } else {
+              return '$name: json[\'$key\'] as $type,';
+            }
+          }).join(),
+        )
+        ..write('${_getFromJsonMethodCommonFields(schemaType == 'send')});');
+
+  static StringBuffer _getToJsonMethod(
+    JsonSchema schema,
+    String schemaType,
+    List<String> properties,
+  ) =>
+      StringBuffer(
+        '''
+          /// Converts this instance to JSON
+          @override
+          Map<String, dynamic> toJson() => <String, dynamic>{
+        ''',
+      )
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map((String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key]!;
+            final String rawType = _getPropertyRawType(key, property);
+
+            return '\'$key\': $name${rawType == 'bool' ? ' == null ? null : $name! ? 1 : 0' : ''},';
+          }).join(),
+        )
+        ..write('${_getToJsonMethodCommonFields(schemaType == 'send')}};');
+
+  static StringBuffer _getFromJsonMethodCommonFields(bool isRequest) =>
+      StringBuffer()
+        ..write(
+          (isRequest
+                  ? requestCommonFields.entries
+                  : responseCommonFields.entries)
+              .map<String>((MapEntry<String, String> entry) =>
+                  '${ReCase(entry.key).camelCase}: json[\'${entry.key}\'] as ${typeMap[entry.value]},')
+              .join(),
+        );
+
+  static StringBuffer _getToJsonMethodCommonFields(bool isRequest) =>
+      StringBuffer()
+        ..write(
+          (isRequest ? requestCommonFields.keys : responseCommonFields.keys)
+              .map((String key) => '\'$key\': ${ReCase(key).camelCase},')
+              .join(),
+        );
+
+  static String _getArrayType(String type) =>
+      type.substring(0, type.length - 1).replaceAll('List<', '');
+
+  static StringBuffer _getCopyWithMethod(
+    JsonSchema schema,
+    String schemaType,
+    String classFullName,
+    List<String> properties,
+  ) {
+    final Iterable<String> fields = properties.where((String key) =>
+        !(requestCommonFields.containsKey(key) ||
+            responseCommonFields.containsKey(key)));
+    return StringBuffer(
+      '''
+          /// Creates a copy of instance with given parameters
+            @override
+            $classFullName copyWith({
+        ''',
+    )
+      ..write(
+        fields.map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key]!;
+            final String rawType = _getPropertyRawType(key, property);
+
+            return '${_getPropertyType(rawType)} $name';
+          },
+        ).join(', '),
+      )
+      ..write(fields.isEmpty ? '' : ', ')
+      ..write('${_getSuperClassParameters(schemaType)},}) => $classFullName (')
+      ..write(
+        fields.map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
+            return '$name: $name ?? this.$name';
+          },
+        ).join(', '),
+      )
+      ..write(fields.isEmpty ? '' : ', ')
+      ..write('${_getSupperClassAssignments(schemaType)},);');
+  }
+
+  static String _getSuperClassParameters(String? schemaType) {
+    final Map<String, String> superClassFields =
+        _getSuperClassFields(schemaType);
+
+    return superClassFields.keys
+        .map((String key) =>
+            '${typeMap[superClassFields[key]!]} ${ReCase(key).camelCase}')
+        .join(', ');
+  }
+
+  static String _getSuperClassCallParameters(
+    String schemaType,
+    String methodName,
+  ) {
+    final StringBuffer superCallParameters = StringBuffer();
+
+    if (schemaType == 'send') {
+      superCallParameters.write('msgType: \'$methodName\',');
+    }
+
+    superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
+      (String key) {
+        final String parameterName = ReCase(key).camelCase;
+        return '$parameterName: $parameterName';
+      },
+    ).join(', '));
+
+    return superCallParameters.toString();
+  }
+
+  static String _getSupperClassAssignments(String schemaType) =>
+      _getSuperClassFields(schemaType).keys.map(
+        (String key) {
+          final String propertyName = ReCase(key).camelCase;
+          return '$propertyName: $propertyName ?? this.$propertyName';
+        },
+      ).join(', ');
+
+  static Map<String, String> _getSuperClassFields(String? schemaType) =>
+      schemaType == 'send' ? requestCommonFields : responseCommonFields;
+
+  static bool _isFieldRequired(
+    String key,
+    String schemaType,
+    JsonSchema property,
+  ) =>
+      schemaType == 'send' &&
+      key != 'subscribe' &&
+      property.typeList?.length == 1 &&
+      !property.description!.contains('[Optional]');
+
+  static String _getEquatableFields(
+    String classFullName,
+    List<String> properties,
+  ) {
+    switch (classFullName) {
+      case 'TicksRequest':
+        return '<Object?>[ticks]';
+      case 'ProposalOpenContractRequest':
+        return '<Object?>[contractId]';
+      case 'P2pOrderInfoRequest':
+      case 'P2pAdvertiserInfoRequest':
+        return '<Object?>[id]';
+
+      default:
+        return '<Object?>[]';
+    }
+  }
+}
+
+class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
+  GeneratedResponseJson({
+    this.msgType,
+    this.fileName,
+    this.fullClassName,
+    this.isManual = false,
+  });
+
+  final String? msgType;
+  final String? fileName;
+  final String? fullClassName;
+  final bool isManual;
+
+  @override
+  int compareTo(GeneratedResponseJson other) =>
+      fileName!.compareTo(other.fileName!);
 }
