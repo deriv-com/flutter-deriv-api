@@ -8,6 +8,7 @@ const String p2pAdvertiserInfoResponse = '''
   "p2p_advertiser_info": {
     "basic_verification" : 1,
     "favourited" : 1,
+    "buy_orders_amount" : "1",
     "buy_orders_count" : 1,
     "full_verification" : 1,
     "sell_orders_count" : 1,
@@ -21,7 +22,10 @@ const String p2pAdvertiserInfoResponse = '''
     "is_approved": 1,
     "is_listed": 0,
     "name": "John Doe",
-    "payment_info": "payment information"
+    "payment_info": "payment information",
+    "partner_count": 1,
+    "sell_orders_amount" : "",
+    "total_turnover" : ""
   },
   "subscription": {
     "id": "4b0ef5f5-a3cd-7a01-01cb-871f0b504143"

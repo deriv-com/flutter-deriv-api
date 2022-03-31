@@ -15,7 +15,8 @@ const String p2pAdvertUpdateResponse = '''
     "account_currency": "USD",
     "advertiser_details": {
       "id": "3",
-      "name": "za advertiser 1010"
+      "name": "za advertiser 1010",
+       "completed_orders_count" : 1
     },
     "amount": 100,
     "amount_display": "100.00",

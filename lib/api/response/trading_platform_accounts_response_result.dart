@@ -91,9 +91,9 @@ final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
   "labuan": LandingCompanyShortEnum.labuan,
   "malta": LandingCompanyShortEnum.malta,
   "maltainvest": LandingCompanyShortEnum.maltainvest,
-  "samoa": LandingCompanyShortEnum.samoa,
   "svg": LandingCompanyShortEnum.svg,
   "vanuatu": LandingCompanyShortEnum.vanuatu,
+  "seychelles": LandingCompanyShortEnum.seychelles,
 };
 
 /// LandingCompanyShort Enum.
@@ -110,14 +110,14 @@ enum LandingCompanyShortEnum {
   /// maltainvest.
   maltainvest,
 
-  /// samoa.
-  samoa,
-
   /// svg.
   svg,
 
   /// vanuatu.
   vanuatu,
+
+  /// seychelles.
+  seychelles,
 }
 
 /// MarketTypeEnum mapper.

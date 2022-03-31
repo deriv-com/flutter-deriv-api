@@ -94,7 +94,7 @@ void main() {
         advertiser.p2pAdvertiserCreate?.defaultAdvertDescription,
         'default advert description',
       );
-      expect(advertiser.p2pAdvertiserCreate?.id, '18');
+      expect(advertiser.p2pAdvertiserCreate?.id, '12');
       expect(advertiser.p2pAdvertiserCreate?.isApproved, true);
       expect(advertiser.p2pAdvertiserCreate?.isListed, false);
       expect(advertiser.p2pAdvertiserCreate?.name, 'John Doe');
@@ -126,7 +126,7 @@ void main() {
             advertiser?.p2pAdvertiserCreate?.defaultAdvertDescription,
             'default advert description',
           );
-          expect(advertiser?.p2pAdvertiserCreate?.id, '18');
+          expect(advertiser?.p2pAdvertiserCreate?.id, '12');
           expect(advertiser?.p2pAdvertiserCreate?.isApproved, true);
           expect(advertiser?.p2pAdvertiserCreate?.isListed, false);
           expect(advertiser?.p2pAdvertiserCreate?.name, 'John Doe');
@@ -163,9 +163,9 @@ void main() {
         advertiser.p2pAdvertiserUpdate?.defaultAdvertDescription,
         'default advert description',
       );
-      expect(advertiser.p2pAdvertiserUpdate?.id, '18');
+      expect(advertiser.p2pAdvertiserUpdate?.id, '12');
       expect(advertiser.p2pAdvertiserUpdate?.isApproved, true);
-      expect(advertiser.p2pAdvertiserUpdate?.isListed, true);
+      expect(advertiser.p2pAdvertiserUpdate?.isListed, false);
       expect(advertiser.p2pAdvertiserUpdate?.name, 'John Doe');
       expect(
           advertiser.p2pAdvertiserUpdate?.paymentInfo, 'payment information');

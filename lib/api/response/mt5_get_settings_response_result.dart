@@ -107,7 +107,6 @@ final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
   "labuan": LandingCompanyShortEnum.labuan,
   "malta": LandingCompanyShortEnum.malta,
   "maltainvest": LandingCompanyShortEnum.maltainvest,
-  "samoa": LandingCompanyShortEnum.samoa,
   "svg": LandingCompanyShortEnum.svg,
   "vanuatu": LandingCompanyShortEnum.vanuatu,
 };
@@ -125,9 +124,6 @@ enum LandingCompanyShortEnum {
 
   /// maltainvest.
   maltainvest,
-
-  /// samoa.
-  samoa,
 
   /// svg.
   svg,

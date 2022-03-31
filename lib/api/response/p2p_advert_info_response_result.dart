@@ -209,6 +209,21 @@ enum PaymentMethodDetailsPropertyTypeEnum {
   other,
 }
 
+/// RateTypeEnum mapper.
+final Map<String, RateTypeEnum> rateTypeEnumMapper = <String, RateTypeEnum>{
+  "fixed": RateTypeEnum.fixed,
+  "float": RateTypeEnum.float,
+};
+
+/// RateType Enum.
+enum RateTypeEnum {
+  /// fixed.
+  fixed,
+
+  /// float.
+  float,
+}
+
 /// P2pAdvertInfoTypeEnum mapper.
 final Map<String, P2pAdvertInfoTypeEnum> p2pAdvertInfoTypeEnumMapper =
     <String, P2pAdvertInfoTypeEnum>{
@@ -224,6 +239,51 @@ enum P2pAdvertInfoTypeEnum {
   /// sell.
   sell,
 }
+
+/// VisibilityStatusItemEnum mapper.
+final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
+    <String, VisibilityStatusItemEnum>{
+  "advert_inactive": VisibilityStatusItemEnum.advertInactive,
+  "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
+  "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
+  "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
+  "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
+  "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
+};
+
+/// VisibilityStatusItem Enum.
+enum VisibilityStatusItemEnum {
+  /// advert_inactive.
+  advertInactive,
+
+  /// advert_max_limit.
+  advertMaxLimit,
+
+  /// advert_min_limit.
+  advertMinLimit,
+
+  /// advert_remaining.
+  advertRemaining,
+
+  /// advertiser_ads_paused.
+  advertiserAdsPaused,
+
+  /// advertiser_approval.
+  advertiserApproval,
+
+  /// advertiser_balance.
+  advertiserBalance,
+
+  /// advertiser_daily_limit.
+  advertiserDailyLimit,
+
+  /// advertiser_temp_ban.
+  advertiserTempBan,
+}
+
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel extends Equatable {
   /// Initializes P2p advert info model class .
@@ -240,6 +300,8 @@ abstract class P2pAdvertInfoModel extends Equatable {
     this.daysUntilArchive,
     this.deleted,
     this.description,
+    this.effectiveRate,
+    this.effectiveRateDisplay,
     this.id,
     this.isActive,
     this.isVisible,
@@ -260,9 +322,11 @@ abstract class P2pAdvertInfoModel extends Equatable {
     this.priceDisplay,
     this.rate,
     this.rateDisplay,
+    this.rateType,
     this.remainingAmount,
     this.remainingAmountDisplay,
     this.type,
+    this.visibilityStatus,
   });
 
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
@@ -300,6 +364,12 @@ abstract class P2pAdvertInfoModel extends Equatable {
 
   /// General information about the advert.
   final String? description;
+
+  /// Conversion rate from account currency to local currency, using current market rate if applicable.
+  final double? effectiveRate;
+
+  /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
+  final String? effectiveRateDisplay;
 
   /// The unique identifier for this advert.
   final String? id;
@@ -355,11 +425,14 @@ abstract class P2pAdvertInfoModel extends Equatable {
   /// Cost of the advert in local currency, formatted to appropriate decimal places.
   final String? priceDisplay;
 
-  /// Conversion rate from account currency to local currency.
+  /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final double? rate;
 
-  /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
+  /// Conversion rate formatted to appropriate decimal places.
   final String? rateDisplay;
+
+  /// Type of rate, fixed or floating.
+  final RateTypeEnum? rateType;
 
   /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
   final double? remainingAmount;
@@ -369,6 +442,18 @@ abstract class P2pAdvertInfoModel extends Equatable {
 
   /// Whether this is a buy or a sell.
   final P2pAdvertInfoTypeEnum? type;
+
+  /// Reasons why an advert is not visible, only visible to the advert owner. Possible values:
+  /// - `advert_inactive`: the advert is set inactive.
+  /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
+  /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
+  /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
+  /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
+  /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
+  /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
+  final List<VisibilityStatusItemEnum>? visibilityStatus;
 }
 
 /// P2p advert info class.
@@ -387,6 +472,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     int? daysUntilArchive,
     int? deleted,
     String? description,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     String? id,
     bool? isActive,
     bool? isVisible,
@@ -407,9 +494,11 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     String? priceDisplay,
     double? rate,
     String? rateDisplay,
+    RateTypeEnum? rateType,
     double? remainingAmount,
     String? remainingAmountDisplay,
     P2pAdvertInfoTypeEnum? type,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) : super(
           accountCurrency: accountCurrency,
           activeOrders: activeOrders,
@@ -423,6 +512,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
           daysUntilArchive: daysUntilArchive,
           deleted: deleted,
           description: description,
+          effectiveRate: effectiveRate,
+          effectiveRateDisplay: effectiveRateDisplay,
           id: id,
           isActive: isActive,
           isVisible: isVisible,
@@ -443,9 +534,11 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
           priceDisplay: priceDisplay,
           rate: rate,
           rateDisplay: rateDisplay,
+          rateType: rateType,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
           type: type,
+          visibilityStatus: visibilityStatus,
         );
 
   /// Creates an instance from JSON.
@@ -466,6 +559,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         daysUntilArchive: json['days_until_archive'],
         deleted: json['deleted'],
         description: json['description'],
+        effectiveRate: getDouble(json['effective_rate']),
+        effectiveRateDisplay: json['effective_rate_display'],
         id: json['id'],
         isActive: getBool(json['is_active']),
         isVisible: getBool(json['is_visible']),
@@ -502,11 +597,23 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         priceDisplay: json['price_display'],
         rate: getDouble(json['rate']),
         rateDisplay: json['rate_display'],
+        rateType: json['rate_type'] == null
+            ? null
+            : rateTypeEnumMapper[json['rate_type']],
         remainingAmount: getDouble(json['remaining_amount']),
         remainingAmountDisplay: json['remaining_amount_display'],
         type: json['type'] == null
             ? null
             : p2pAdvertInfoTypeEnumMapper[json['type']],
+        visibilityStatus: json['visibility_status'] == null
+            ? null
+            : List<VisibilityStatusItemEnum>.from(
+                json['visibility_status']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : visibilityStatusItemEnumMapper[item],
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -530,6 +637,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     resultMap['days_until_archive'] = daysUntilArchive;
     resultMap['deleted'] = deleted;
     resultMap['description'] = description;
+    resultMap['effective_rate'] = effectiveRate;
+    resultMap['effective_rate_display'] = effectiveRateDisplay;
     resultMap['id'] = id;
     resultMap['is_active'] = isActive;
     resultMap['is_visible'] = isVisible;
@@ -556,12 +665,28 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
+    resultMap['rate_type'] = rateTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, RateTypeEnum> entry) => entry.value == rateType)
+        .key;
     resultMap['remaining_amount'] = remainingAmount;
     resultMap['remaining_amount_display'] = remainingAmountDisplay;
     resultMap['type'] = p2pAdvertInfoTypeEnumMapper.entries
         .firstWhere((MapEntry<String, P2pAdvertInfoTypeEnum> entry) =>
             entry.value == type)
         .key;
+    if (visibilityStatus != null) {
+      resultMap['visibility_status'] = visibilityStatus!
+          .map<dynamic>(
+            (VisibilityStatusItemEnum item) => visibilityStatusItemEnumMapper
+                .entries
+                .firstWhere(
+                    (MapEntry<String, VisibilityStatusItemEnum> entry) =>
+                        entry.value == item)
+                .key,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -580,6 +705,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     int? daysUntilArchive,
     int? deleted,
     String? description,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     String? id,
     bool? isActive,
     bool? isVisible,
@@ -600,9 +727,11 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     String? priceDisplay,
     double? rate,
     String? rateDisplay,
+    RateTypeEnum? rateType,
     double? remainingAmount,
     String? remainingAmountDisplay,
     P2pAdvertInfoTypeEnum? type,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       P2pAdvertInfo(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -617,6 +746,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         deleted: deleted ?? this.deleted,
         description: description ?? this.description,
+        effectiveRate: effectiveRate ?? this.effectiveRate,
+        effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
         id: id ?? this.id,
         isActive: isActive ?? this.isActive,
         isVisible: isVisible ?? this.isVisible,
@@ -641,16 +772,19 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         priceDisplay: priceDisplay ?? this.priceDisplay,
         rate: rate ?? this.rate,
         rateDisplay: rateDisplay ?? this.rateDisplay,
+        rateType: rateType ?? this.rateType,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
         type: type ?? this.type,
+        visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 
   /// Override equatable class.
   @override
   List<Object?> get props => <Object?>[];
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
@@ -768,6 +902,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   @override
   List<Object?> get props => <Object?>[];
 }
+
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
@@ -864,6 +999,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
   @override
   List<Object?> get props => <Object?>[];
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel extends Equatable {
   /// Initializes Fields property model class .
@@ -942,6 +1078,7 @@ class FieldsProperty extends FieldsPropertyModel {
   @override
   List<Object?> get props => <Object?>[];
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .

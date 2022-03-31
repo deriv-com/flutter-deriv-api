@@ -11,6 +11,7 @@ class ProposalRequest extends Request {
     this.amount,
     this.barrier,
     this.barrier2,
+    this.barrierRange,
     this.basis,
     required this.cancellation,
     required this.contractType,
@@ -41,6 +42,7 @@ class ProposalRequest extends Request {
         amount: json['amount'] as num?,
         barrier: json['barrier'] as String?,
         barrier2: json['barrier2'] as String?,
+        barrierRange: json['barrier_range'] as String?,
         basis: json['basis'] as String?,
         cancellation: json['cancellation'] as String?,
         contractType: json['contract_type'] as String?,
@@ -69,6 +71,9 @@ class ProposalRequest extends Request {
 
   /// [Optional] Low barrier for the contract (for contracts with two barriers). Contracts less than 24 hours in duration would need a relative barrier (barriers which need +/-), where entry spot would be adjusted accordingly with that amount to define a barrier, except for Synthetic Indices as they support both relative and absolute barriers. Not needed for lookbacks.
   final String? barrier2;
+
+  /// [Optional] Barrier range for callputspread.
+  final String? barrierRange;
 
   /// [Optional] Indicates type of the `amount`.
   final String? basis;
@@ -124,6 +129,7 @@ class ProposalRequest extends Request {
         'amount': amount,
         'barrier': barrier,
         'barrier2': barrier2,
+        'barrier_range': barrierRange,
         'basis': basis,
         'cancellation': cancellation,
         'contract_type': contractType,
@@ -158,6 +164,7 @@ class ProposalRequest extends Request {
     num? amount,
     String? barrier,
     String? barrier2,
+    String? barrierRange,
     String? basis,
     String? cancellation,
     String? contractType,
@@ -181,6 +188,7 @@ class ProposalRequest extends Request {
         amount: amount ?? this.amount,
         barrier: barrier ?? this.barrier,
         barrier2: barrier2 ?? this.barrier2,
+        barrierRange: barrierRange ?? this.barrierRange,
         basis: basis ?? this.basis,
         cancellation: cancellation ?? this.cancellation,
         contractType: contractType ?? this.contractType,

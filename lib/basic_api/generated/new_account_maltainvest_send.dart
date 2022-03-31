@@ -23,6 +23,7 @@ class NewAccountMaltainvestRequest extends Request {
     this.cfdTradingFrequency,
     this.citizen,
     this.clientType,
+    this.currency,
     required this.dateOfBirth,
     required this.educationLevel,
     required this.employmentIndustry,
@@ -77,6 +78,7 @@ class NewAccountMaltainvestRequest extends Request {
         cfdTradingFrequency: json['cfd_trading_frequency'] as String?,
         citizen: json['citizen'] as String?,
         clientType: json['client_type'] as String?,
+        currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
         educationLevel: json['education_level'] as String?,
         employmentIndustry: json['employment_industry'] as String?,
@@ -154,6 +156,9 @@ class NewAccountMaltainvestRequest extends Request {
 
   /// [Optional] Indicates whether this is for a client requesting an account with professional status.
   final String? clientType;
+
+  /// [Optional] To set currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
+  final String? currency;
 
   /// Date of birth format: yyyy-mm-dd.
   final String? dateOfBirth;
@@ -252,6 +257,7 @@ class NewAccountMaltainvestRequest extends Request {
         'cfd_trading_frequency': cfdTradingFrequency,
         'citizen': citizen,
         'client_type': clientType,
+        'currency': currency,
         'date_of_birth': dateOfBirth,
         'education_level': educationLevel,
         'employment_industry': employmentIndustry,
@@ -304,6 +310,7 @@ class NewAccountMaltainvestRequest extends Request {
     String? cfdTradingFrequency,
     String? citizen,
     String? clientType,
+    String? currency,
     String? dateOfBirth,
     String? educationLevel,
     String? employmentIndustry,
@@ -350,6 +357,7 @@ class NewAccountMaltainvestRequest extends Request {
         cfdTradingFrequency: cfdTradingFrequency ?? this.cfdTradingFrequency,
         citizen: citizen ?? this.citizen,
         clientType: clientType ?? this.clientType,
+        currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         educationLevel: educationLevel ?? this.educationLevel,
         employmentIndustry: employmentIndustry ?? this.employmentIndustry,

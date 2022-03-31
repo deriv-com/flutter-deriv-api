@@ -16,9 +16,9 @@ class PaymentagentCreateRequest extends Request {
     this.information,
     required this.paymentAgentName,
     this.paymentagentCreate = true,
-    required this.phone,
+    required this.phoneNumbers,
     required this.supportedPaymentMethods,
-    required this.url,
+    required this.urls,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -40,12 +40,19 @@ class PaymentagentCreateRequest extends Request {
         paymentagentCreate: json['paymentagent_create'] == null
             ? null
             : json['paymentagent_create'] == 1,
-        phone: json['phone'] as String?,
+        phoneNumbers: (json['phone_numbers'] as List<dynamic>?)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            .toList(),
         supportedPaymentMethods:
             (json['supported_payment_methods'] as List<dynamic>?)
-                ?.map<String>((dynamic item) => item as String)
+                ?.map<Map<String, dynamic>>(
+                    (dynamic item) => item as Map<String, dynamic>)
                 .toList(),
-        url: json['url'] as String?,
+        urls: (json['urls'] as List<dynamic>?)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            .toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -74,14 +81,14 @@ class PaymentagentCreateRequest extends Request {
   /// Must be `true`
   final bool? paymentagentCreate;
 
-  /// Payment agent's phone number with coutry code.
-  final String? phone;
+  /// Payment agent's phone number(s) with country code.
+  final List<Map<String, dynamic>>? phoneNumbers;
 
   /// A list of supported payment methods.
-  final List<String>? supportedPaymentMethods;
+  final List<Map<String, dynamic>>? supportedPaymentMethods;
 
-  /// The URL of payment agent's website.
-  final String? url;
+  /// The URL(s) of payment agent's website(s).
+  final List<Map<String, dynamic>>? urls;
 
   /// Converts this instance to JSON
   @override
@@ -98,9 +105,9 @@ class PaymentagentCreateRequest extends Request {
             : paymentagentCreate!
                 ? 1
                 : 0,
-        'phone': phone,
+        'phone_numbers': phoneNumbers,
         'supported_payment_methods': supportedPaymentMethods,
-        'url': url,
+        'urls': urls,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -116,9 +123,9 @@ class PaymentagentCreateRequest extends Request {
     String? information,
     String? paymentAgentName,
     bool? paymentagentCreate,
-    String? phone,
-    List<String>? supportedPaymentMethods,
-    String? url,
+    List<Map<String, dynamic>>? phoneNumbers,
+    List<Map<String, dynamic>>? supportedPaymentMethods,
+    List<Map<String, dynamic>>? urls,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -132,10 +139,10 @@ class PaymentagentCreateRequest extends Request {
         information: information ?? this.information,
         paymentAgentName: paymentAgentName ?? this.paymentAgentName,
         paymentagentCreate: paymentagentCreate ?? this.paymentagentCreate,
-        phone: phone ?? this.phone,
+        phoneNumbers: phoneNumbers ?? this.phoneNumbers,
         supportedPaymentMethods:
             supportedPaymentMethods ?? this.supportedPaymentMethods,
-        url: url ?? this.url,
+        urls: urls ?? this.urls,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

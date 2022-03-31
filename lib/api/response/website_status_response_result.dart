@@ -183,6 +183,46 @@ enum TypeEnum {
   crypto,
 }
 
+/// FixedRateAdvertsEnum mapper.
+final Map<String, FixedRateAdvertsEnum> fixedRateAdvertsEnumMapper =
+    <String, FixedRateAdvertsEnum>{
+  "disabled": FixedRateAdvertsEnum.disabled,
+  "enabled": FixedRateAdvertsEnum.enabled,
+  "list_only": FixedRateAdvertsEnum.listOnly,
+};
+
+/// FixedRateAdverts Enum.
+enum FixedRateAdvertsEnum {
+  /// disabled.
+  disabled,
+
+  /// enabled.
+  enabled,
+
+  /// list_only.
+  listOnly,
+}
+
+/// FloatRateAdvertsEnum mapper.
+final Map<String, FloatRateAdvertsEnum> floatRateAdvertsEnumMapper =
+    <String, FloatRateAdvertsEnum>{
+  "disabled": FloatRateAdvertsEnum.disabled,
+  "enabled": FloatRateAdvertsEnum.enabled,
+  "list_only": FloatRateAdvertsEnum.listOnly,
+};
+
+/// FloatRateAdverts Enum.
+enum FloatRateAdvertsEnum {
+  /// disabled.
+  disabled,
+
+  /// enabled.
+  enabled,
+
+  /// list_only.
+  listOnly,
+}
+
 /// SiteStatusEnum mapper.
 final Map<String, SiteStatusEnum> siteStatusEnumMapper =
     <String, SiteStatusEnum>{
@@ -206,20 +246,17 @@ enum SiteStatusEnum {
 abstract class WebsiteStatusModel extends Equatable {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
-    required this.p2pConfig,
     required this.currenciesConfig,
     required this.cryptoConfig,
     required this.apiCallLimits,
     this.clientsCountry,
     this.message,
+    this.p2pConfig,
     this.paymentAgents,
     this.siteStatus,
     this.supportedLanguages,
     this.termsConditionsVersion,
   });
-
-  /// Peer-to-peer payment system settings.
-  final P2pConfig p2pConfig;
 
   /// Available currencies and their information
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
@@ -235,6 +272,9 @@ abstract class WebsiteStatusModel extends Equatable {
 
   /// Text for site status banner, contains problem description. shown only if set by the system.
   final String? message;
+
+  /// Peer-to-peer payment system settings.
+  final P2pConfig? p2pConfig;
 
   /// Payments Agents system settings.
   final PaymentAgents? paymentAgents;
@@ -256,9 +296,9 @@ class WebsiteStatus extends WebsiteStatusModel {
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    required P2pConfig p2pConfig,
     String? clientsCountry,
     String? message,
+    P2pConfig? p2pConfig,
     PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
@@ -267,9 +307,9 @@ class WebsiteStatus extends WebsiteStatusModel {
           apiCallLimits: apiCallLimits,
           cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
-          p2pConfig: p2pConfig,
           clientsCountry: clientsCountry,
           message: message,
+          p2pConfig: p2pConfig,
           paymentAgents: paymentAgents,
           siteStatus: siteStatus,
           supportedLanguages: supportedLanguages,
@@ -293,9 +333,11 @@ class WebsiteStatus extends WebsiteStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrenciesConfigProperty>(entry.key,
                             CurrenciesConfigProperty.fromJson(entry.value)))),
-        p2pConfig: P2pConfig.fromJson(json['p2p_config']),
         clientsCountry: json['clients_country'],
         message: json['message'],
+        p2pConfig: json['p2p_config'] == null
+            ? null
+            : P2pConfig.fromJson(json['p2p_config']),
         paymentAgents: json['payment_agents'] == null
             ? null
             : PaymentAgents.fromJson(json['payment_agents']),
@@ -320,10 +362,11 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
-    resultMap['p2p_config'] = p2pConfig.toJson();
-
     resultMap['clients_country'] = clientsCountry;
     resultMap['message'] = message;
+    if (p2pConfig != null) {
+      resultMap['p2p_config'] = p2pConfig!.toJson();
+    }
     if (paymentAgents != null) {
       resultMap['payment_agents'] = paymentAgents!.toJson();
     }
@@ -348,9 +391,9 @@ class WebsiteStatus extends WebsiteStatusModel {
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    required P2pConfig p2pConfig,
     String? clientsCountry,
     String? message,
+    P2pConfig? p2pConfig,
     PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
@@ -360,9 +403,9 @@ class WebsiteStatus extends WebsiteStatusModel {
         apiCallLimits: apiCallLimits,
         cryptoConfig: cryptoConfig,
         currenciesConfig: currenciesConfig,
-        p2pConfig: p2pConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         message: message ?? this.message,
+        p2pConfig: p2pConfig ?? this.p2pConfig,
         paymentAgents: paymentAgents ?? this.paymentAgents,
         siteStatus: siteStatus ?? this.siteStatus,
         supportedLanguages: supportedLanguages ?? this.supportedLanguages,
@@ -1029,6 +1072,9 @@ abstract class P2pConfigModel extends Equatable {
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
+    required this.floatRateOffsetLimit,
+    required this.floatRateAdverts,
+    required this.fixedRateAdverts,
     required this.disabled,
     required this.cancellationLimit,
     required this.cancellationGracePeriod,
@@ -1036,6 +1082,7 @@ abstract class P2pConfigModel extends Equatable {
     required this.cancellationBlockDuration,
     required this.advertsActiveLimit,
     this.advertsArchivePeriod,
+    this.fixedRateAdvertsEndDate,
   });
 
   /// Indicates if the payment methods feature is enabled.
@@ -1052,6 +1099,15 @@ abstract class P2pConfigModel extends Equatable {
 
   /// Maximum amount of an advert, in USD.
   final double maximumAdvertAmount;
+
+  /// Maximum rate offset for floating rate adverts.
+  final double floatRateOffsetLimit;
+
+  /// Availability of floating rate adverts.
+  final FloatRateAdvertsEnum floatRateAdverts;
+
+  /// Availability of fixed rate adverts.
+  final FixedRateAdvertsEnum fixedRateAdverts;
 
   /// When `true`, the P2P service is unavailable.
   final bool disabled;
@@ -1073,6 +1129,9 @@ abstract class P2pConfigModel extends Equatable {
 
   /// Adverts will be deactivated if no activity occurs within this period, in days.
   final int? advertsArchivePeriod;
+
+  /// Date on which fixed rate adverts will be deactivated.
+  final String? fixedRateAdvertsEndDate;
 }
 
 /// P2p config class.
@@ -1085,12 +1144,16 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationGracePeriod,
     required int cancellationLimit,
     required bool disabled,
+    required FixedRateAdvertsEnum fixedRateAdverts,
+    required FloatRateAdvertsEnum floatRateAdverts,
+    required double floatRateOffsetLimit,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
     required int orderPaymentPeriod,
     required bool paymentMethodsEnabled,
     int? advertsArchivePeriod,
+    String? fixedRateAdvertsEndDate,
   }) : super(
           advertsActiveLimit: advertsActiveLimit,
           cancellationBlockDuration: cancellationBlockDuration,
@@ -1098,12 +1161,16 @@ class P2pConfig extends P2pConfigModel {
           cancellationGracePeriod: cancellationGracePeriod,
           cancellationLimit: cancellationLimit,
           disabled: disabled,
+          fixedRateAdverts: fixedRateAdverts,
+          floatRateAdverts: floatRateAdverts,
+          floatRateOffsetLimit: floatRateOffsetLimit,
           maximumAdvertAmount: maximumAdvertAmount,
           maximumOrderAmount: maximumOrderAmount,
           orderDailyLimit: orderDailyLimit,
           orderPaymentPeriod: orderPaymentPeriod,
           paymentMethodsEnabled: paymentMethodsEnabled,
           advertsArchivePeriod: advertsArchivePeriod,
+          fixedRateAdvertsEndDate: fixedRateAdvertsEndDate,
         );
 
   /// Creates an instance from JSON.
@@ -1114,12 +1181,18 @@ class P2pConfig extends P2pConfigModel {
         cancellationGracePeriod: json['cancellation_grace_period'],
         cancellationLimit: json['cancellation_limit'],
         disabled: getBool(json['disabled'])!,
+        fixedRateAdverts:
+            fixedRateAdvertsEnumMapper[json['fixed_rate_adverts']]!,
+        floatRateAdverts:
+            floatRateAdvertsEnumMapper[json['float_rate_adverts']]!,
+        floatRateOffsetLimit: getDouble(json['float_rate_offset_limit'])!,
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
         orderPaymentPeriod: json['order_payment_period'],
         paymentMethodsEnabled: getBool(json['payment_methods_enabled'])!,
         advertsArchivePeriod: json['adverts_archive_period'],
+        fixedRateAdvertsEndDate: json['fixed_rate_adverts_end_date'],
       );
 
   /// Converts an instance to JSON.
@@ -1132,12 +1205,22 @@ class P2pConfig extends P2pConfigModel {
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
     resultMap['cancellation_limit'] = cancellationLimit;
     resultMap['disabled'] = disabled;
+    resultMap['fixed_rate_adverts'] = fixedRateAdvertsEnumMapper.entries
+        .firstWhere((MapEntry<String, FixedRateAdvertsEnum> entry) =>
+            entry.value == fixedRateAdverts)
+        .key;
+    resultMap['float_rate_adverts'] = floatRateAdvertsEnumMapper.entries
+        .firstWhere((MapEntry<String, FloatRateAdvertsEnum> entry) =>
+            entry.value == floatRateAdverts)
+        .key;
+    resultMap['float_rate_offset_limit'] = floatRateOffsetLimit;
     resultMap['maximum_advert_amount'] = maximumAdvertAmount;
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
     resultMap['order_payment_period'] = orderPaymentPeriod;
     resultMap['payment_methods_enabled'] = paymentMethodsEnabled;
     resultMap['adverts_archive_period'] = advertsArchivePeriod;
+    resultMap['fixed_rate_adverts_end_date'] = fixedRateAdvertsEndDate;
 
     return resultMap;
   }
@@ -1150,12 +1233,16 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationGracePeriod,
     required int cancellationLimit,
     required bool disabled,
+    required FixedRateAdvertsEnum fixedRateAdverts,
+    required FloatRateAdvertsEnum floatRateAdverts,
+    required double floatRateOffsetLimit,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
     required int orderPaymentPeriod,
     required bool paymentMethodsEnabled,
     int? advertsArchivePeriod,
+    String? fixedRateAdvertsEndDate,
   }) =>
       P2pConfig(
         advertsActiveLimit: advertsActiveLimit,
@@ -1164,12 +1251,17 @@ class P2pConfig extends P2pConfigModel {
         cancellationGracePeriod: cancellationGracePeriod,
         cancellationLimit: cancellationLimit,
         disabled: disabled,
+        fixedRateAdverts: fixedRateAdverts,
+        floatRateAdverts: floatRateAdverts,
+        floatRateOffsetLimit: floatRateOffsetLimit,
         maximumAdvertAmount: maximumAdvertAmount,
         maximumOrderAmount: maximumOrderAmount,
         orderDailyLimit: orderDailyLimit,
         orderPaymentPeriod: orderPaymentPeriod,
         paymentMethodsEnabled: paymentMethodsEnabled,
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
+        fixedRateAdvertsEndDate:
+            fixedRateAdvertsEndDate ?? this.fixedRateAdvertsEndDate,
       );
 
   /// Override equatable class.

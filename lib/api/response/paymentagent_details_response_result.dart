@@ -71,11 +71,11 @@ abstract class PaymentagentDetailsModel extends Equatable {
     this.maxWithdrawal,
     this.minWithdrawal,
     this.paymentAgentName,
-    this.phone,
+    this.phoneNumbers,
     this.status,
     this.supportedPaymentMethods,
     this.targetCountry,
-    this.url,
+    this.urls,
   });
 
   /// Client's My Affiliate id, if exists.
@@ -111,20 +111,20 @@ abstract class PaymentagentDetailsModel extends Equatable {
   /// The name with which the payment agent is going to be identified.
   final String? paymentAgentName;
 
-  /// Payment agent's phone number with country code.
-  final String? phone;
+  /// Payment agent's phone number(s) with country code.
+  final List<PhoneNumbersItem>? phoneNumbers;
 
   /// Indicates the status of the Payment Agent.
   final Map<String, dynamic>? status;
 
   /// A list of supported payment methods.
-  final List<String>? supportedPaymentMethods;
+  final List<SupportedPaymentMethodsItem>? supportedPaymentMethods;
 
   /// Client's target country.
   final String? targetCountry;
 
-  /// The URL of payment agent's website.
-  final String? url;
+  /// The URL(s) of payment agent's website(s).
+  final List<UrlsItem>? urls;
 }
 
 /// Paymentagent details class.
@@ -142,11 +142,11 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     double? maxWithdrawal,
     double? minWithdrawal,
     String? paymentAgentName,
-    String? phone,
+    List<PhoneNumbersItem>? phoneNumbers,
     Map<String, dynamic>? status,
-    List<String>? supportedPaymentMethods,
+    List<SupportedPaymentMethodsItem>? supportedPaymentMethods,
     String? targetCountry,
-    String? url,
+    List<UrlsItem>? urls,
   }) : super(
           affiliateId: affiliateId,
           codeOfConductApproval: codeOfConductApproval,
@@ -159,11 +159,11 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
           maxWithdrawal: maxWithdrawal,
           minWithdrawal: minWithdrawal,
           paymentAgentName: paymentAgentName,
-          phone: phone,
+          phoneNumbers: phoneNumbers,
           status: status,
           supportedPaymentMethods: supportedPaymentMethods,
           targetCountry: targetCountry,
-          url: url,
+          urls: urls,
         );
 
   /// Creates an instance from JSON.
@@ -180,17 +180,29 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         maxWithdrawal: getDouble(json['max_withdrawal']),
         minWithdrawal: getDouble(json['min_withdrawal']),
         paymentAgentName: json['payment_agent_name'],
-        phone: json['phone'],
+        phoneNumbers: json['phone_numbers'] == null
+            ? null
+            : List<PhoneNumbersItem>.from(
+                json['phone_numbers']?.map(
+                  (dynamic item) => PhoneNumbersItem.fromJson(item),
+                ),
+              ),
         status: json['status'],
         supportedPaymentMethods: json['supported_payment_methods'] == null
             ? null
-            : List<String>.from(
+            : List<SupportedPaymentMethodsItem>.from(
                 json['supported_payment_methods']?.map(
-                  (dynamic item) => item,
+                  (dynamic item) => SupportedPaymentMethodsItem.fromJson(item),
                 ),
               ),
         targetCountry: json['target_country'],
-        url: json['url'],
+        urls: json['urls'] == null
+            ? null
+            : List<UrlsItem>.from(
+                json['urls']?.map(
+                  (dynamic item) => UrlsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -208,17 +220,29 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     resultMap['max_withdrawal'] = maxWithdrawal;
     resultMap['min_withdrawal'] = minWithdrawal;
     resultMap['payment_agent_name'] = paymentAgentName;
-    resultMap['phone'] = phone;
+    if (phoneNumbers != null) {
+      resultMap['phone_numbers'] = phoneNumbers!
+          .map<dynamic>(
+            (PhoneNumbersItem item) => item.toJson(),
+          )
+          .toList();
+    }
     resultMap['status'] = status;
     if (supportedPaymentMethods != null) {
       resultMap['supported_payment_methods'] = supportedPaymentMethods!
           .map<dynamic>(
-            (String item) => item,
+            (SupportedPaymentMethodsItem item) => item.toJson(),
           )
           .toList();
     }
     resultMap['target_country'] = targetCountry;
-    resultMap['url'] = url;
+    if (urls != null) {
+      resultMap['urls'] = urls!
+          .map<dynamic>(
+            (UrlsItem item) => item.toJson(),
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -236,11 +260,11 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     double? maxWithdrawal,
     double? minWithdrawal,
     String? paymentAgentName,
-    String? phone,
+    List<PhoneNumbersItem>? phoneNumbers,
     Map<String, dynamic>? status,
-    List<String>? supportedPaymentMethods,
+    List<SupportedPaymentMethodsItem>? supportedPaymentMethods,
     String? targetCountry,
-    String? url,
+    List<UrlsItem>? urls,
   }) =>
       PaymentagentDetails(
         affiliateId: affiliateId ?? this.affiliateId,
@@ -255,11 +279,151 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
         paymentAgentName: paymentAgentName ?? this.paymentAgentName,
-        phone: phone ?? this.phone,
+        phoneNumbers: phoneNumbers ?? this.phoneNumbers,
         status: status ?? this.status,
         supportedPaymentMethods:
             supportedPaymentMethods ?? this.supportedPaymentMethods,
         targetCountry: targetCountry ?? this.targetCountry,
+        urls: urls ?? this.urls,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Phone numbers item model class.
+abstract class PhoneNumbersItemModel extends Equatable {
+  /// Initializes Phone numbers item model class .
+  const PhoneNumbersItemModel({
+    this.phoneNumber,
+  });
+
+  /// A phone number.
+  final String? phoneNumber;
+}
+
+/// Phone numbers item class.
+class PhoneNumbersItem extends PhoneNumbersItemModel {
+  /// Initializes Phone numbers item class.
+  const PhoneNumbersItem({
+    String? phoneNumber,
+  }) : super(
+          phoneNumber: phoneNumber,
+        );
+
+  /// Creates an instance from JSON.
+  factory PhoneNumbersItem.fromJson(Map<String, dynamic> json) =>
+      PhoneNumbersItem(
+        phoneNumber: json['phone_number'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['phone_number'] = phoneNumber;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PhoneNumbersItem copyWith({
+    String? phoneNumber,
+  }) =>
+      PhoneNumbersItem(
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Supported payment methods item model class.
+abstract class SupportedPaymentMethodsItemModel extends Equatable {
+  /// Initializes Supported payment methods item model class .
+  const SupportedPaymentMethodsItemModel({
+    this.paymentMethod,
+  });
+
+  /// A payment method's name
+  final String? paymentMethod;
+}
+
+/// Supported payment methods item class.
+class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
+  /// Initializes Supported payment methods item class.
+  const SupportedPaymentMethodsItem({
+    String? paymentMethod,
+  }) : super(
+          paymentMethod: paymentMethod,
+        );
+
+  /// Creates an instance from JSON.
+  factory SupportedPaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
+      SupportedPaymentMethodsItem(
+        paymentMethod: json['payment_method'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['payment_method'] = paymentMethod;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  SupportedPaymentMethodsItem copyWith({
+    String? paymentMethod,
+  }) =>
+      SupportedPaymentMethodsItem(
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Urls item model class.
+abstract class UrlsItemModel extends Equatable {
+  /// Initializes Urls item model class .
+  const UrlsItemModel({
+    this.url,
+  });
+
+  /// A website url.
+  final String? url;
+}
+
+/// Urls item class.
+class UrlsItem extends UrlsItemModel {
+  /// Initializes Urls item class.
+  const UrlsItem({
+    String? url,
+  }) : super(
+          url: url,
+        );
+
+  /// Creates an instance from JSON.
+  factory UrlsItem.fromJson(Map<String, dynamic> json) => UrlsItem(
+        url: json['url'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['url'] = url;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  UrlsItem copyWith({
+    String? url,
+  }) =>
+      UrlsItem(
         url: url ?? this.url,
       );
 

@@ -136,6 +136,21 @@ enum PaymentMethodDetailsPropertyTypeEnum {
   other,
 }
 
+/// RateTypeEnum mapper.
+final Map<String, RateTypeEnum> rateTypeEnumMapper = <String, RateTypeEnum>{
+  "fixed": RateTypeEnum.fixed,
+  "float": RateTypeEnum.float,
+};
+
+/// RateType Enum.
+enum RateTypeEnum {
+  /// fixed.
+  fixed,
+
+  /// float.
+  float,
+}
+
 /// P2pAdvertCreateTypeEnum mapper.
 final Map<String, P2pAdvertCreateTypeEnum> p2pAdvertCreateTypeEnumMapper =
     <String, P2pAdvertCreateTypeEnum>{
@@ -151,6 +166,50 @@ enum P2pAdvertCreateTypeEnum {
   /// sell.
   sell,
 }
+
+/// VisibilityStatusItemEnum mapper.
+final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
+    <String, VisibilityStatusItemEnum>{
+  "advert_inactive": VisibilityStatusItemEnum.advertInactive,
+  "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
+  "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
+  "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
+  "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
+  "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
+};
+
+/// VisibilityStatusItem Enum.
+enum VisibilityStatusItemEnum {
+  /// advert_inactive.
+  advertInactive,
+
+  /// advert_max_limit.
+  advertMaxLimit,
+
+  /// advert_min_limit.
+  advertMinLimit,
+
+  /// advert_remaining.
+  advertRemaining,
+
+  /// advertiser_ads_paused.
+  advertiserAdsPaused,
+
+  /// advertiser_approval.
+  advertiserApproval,
+
+  /// advertiser_balance.
+  advertiserBalance,
+
+  /// advertiser_daily_limit.
+  advertiserDailyLimit,
+
+  /// advertiser_temp_ban.
+  advertiserTempBan,
+}
 /// P2p advert create model class.
 abstract class P2pAdvertCreateModel extends Equatable {
   /// Initializes P2p advert create model class .
@@ -158,10 +217,9 @@ abstract class P2pAdvertCreateModel extends Equatable {
     required this.type,
     required this.remainingAmountDisplay,
     required this.remainingAmount,
+    required this.rateType,
     required this.rateDisplay,
     required this.rate,
-    required this.priceDisplay,
-    required this.price,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
@@ -184,10 +242,15 @@ abstract class P2pAdvertCreateModel extends Equatable {
     required this.activeOrders,
     required this.accountCurrency,
     this.contactInfo,
+    this.effectiveRate,
+    this.effectiveRateDisplay,
     this.paymentInfo,
     this.paymentMethod,
     this.paymentMethodDetails,
     this.paymentMethodNames,
+    this.price,
+    this.priceDisplay,
+    this.visibilityStatus,
   });
 
   /// The type of advertisement in relation to the advertiser's Deriv account.
@@ -199,17 +262,14 @@ abstract class P2pAdvertCreateModel extends Equatable {
   /// Amount currently available for orders, in `account_currency`.
   final double remainingAmount;
 
-  /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
+  /// Type of rate, fixed or floating.
+  final RateTypeEnum rateType;
+
+  /// Conversion rate formatted to appropriate decimal places.
   final String rateDisplay;
 
-  /// Conversion rate from account currency to local currency.
+  /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final double rate;
-
-  /// Cost of the advert in local currency, formatted to appropriate decimal places.
-  final String priceDisplay;
-
-  /// Cost of the advert in local currency.
-  final double price;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -277,6 +337,12 @@ abstract class P2pAdvertCreateModel extends Equatable {
   /// Advertiser contact information. Only applicable for 'sell adverts'.
   final String? contactInfo;
 
+  /// Conversion rate from account currency to local currency, using current market rate if applicable.
+  final double? effectiveRate;
+
+  /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
+  final String? effectiveRateDisplay;
+
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
@@ -288,6 +354,24 @@ abstract class P2pAdvertCreateModel extends Equatable {
 
   /// Names of supported payment methods.
   final List<String>? paymentMethodNames;
+
+  /// Cost of the advert in local currency.
+  final double? price;
+
+  /// Cost of the advert in local currency, formatted to appropriate decimal places.
+  final String? priceDisplay;
+
+  /// Reasons why an advert is not visible. Possible values:
+  /// - `advert_inactive`: the advert is set inactive.
+  /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
+  /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
+  /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
+  /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
+  /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
+  /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
+  final List<VisibilityStatusItemEnum>? visibilityStatus;
 }
 
 /// P2p advert create class.
@@ -315,18 +399,22 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     required String minOrderAmountDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required double price,
-    required String priceDisplay,
     required double rate,
     required String rateDisplay,
+    required RateTypeEnum rateType,
     required double remainingAmount,
     required String remainingAmountDisplay,
     required P2pAdvertCreateTypeEnum type,
     String? contactInfo,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     String? paymentInfo,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     List<String>? paymentMethodNames,
+    double? price,
+    String? priceDisplay,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) : super(
           accountCurrency: accountCurrency,
           activeOrders: activeOrders,
@@ -349,18 +437,22 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
           minOrderAmountDisplay: minOrderAmountDisplay,
           minOrderAmountLimit: minOrderAmountLimit,
           minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          price: price,
-          priceDisplay: priceDisplay,
           rate: rate,
           rateDisplay: rateDisplay,
+          rateType: rateType,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
           type: type,
           contactInfo: contactInfo,
+          effectiveRate: effectiveRate,
+          effectiveRateDisplay: effectiveRateDisplay,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
           paymentMethodNames: paymentMethodNames,
+          price: price,
+          priceDisplay: priceDisplay,
+          visibilityStatus: visibilityStatus,
         );
 
   /// Creates an instance from JSON.
@@ -389,14 +481,15 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
-        price: getDouble(json['price'])!,
-        priceDisplay: json['price_display'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
+        rateType: rateTypeEnumMapper[json['rate_type']]!,
         remainingAmount: getDouble(json['remaining_amount'])!,
         remainingAmountDisplay: json['remaining_amount_display'],
         type: p2pAdvertCreateTypeEnumMapper[json['type']]!,
         contactInfo: json['contact_info'],
+        effectiveRate: getDouble(json['effective_rate']),
+        effectiveRateDisplay: json['effective_rate_display'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
@@ -415,6 +508,17 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
             : List<String>.from(
                 json['payment_method_names']?.map(
                   (dynamic item) => item,
+                ),
+              ),
+        price: getDouble(json['price']),
+        priceDisplay: json['price_display'],
+        visibilityStatus: json['visibility_status'] == null
+            ? null
+            : List<VisibilityStatusItemEnum>.from(
+                json['visibility_status']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : visibilityStatusItemEnumMapper[item],
                 ),
               ),
       );
@@ -448,10 +552,12 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
-    resultMap['price'] = price;
-    resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
+    resultMap['rate_type'] = rateTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, RateTypeEnum> entry) => entry.value == rateType)
+        .key;
     resultMap['remaining_amount'] = remainingAmount;
     resultMap['remaining_amount_display'] = remainingAmountDisplay;
     resultMap['type'] = p2pAdvertCreateTypeEnumMapper.entries
@@ -459,6 +565,8 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
             entry.value == type)
         .key;
     resultMap['contact_info'] = contactInfo;
+    resultMap['effective_rate'] = effectiveRate;
+    resultMap['effective_rate_display'] = effectiveRateDisplay;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
@@ -466,6 +574,20 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
       resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
             (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['price'] = price;
+    resultMap['price_display'] = priceDisplay;
+    if (visibilityStatus != null) {
+      resultMap['visibility_status'] = visibilityStatus!
+          .map<dynamic>(
+            (VisibilityStatusItemEnum item) => visibilityStatusItemEnumMapper
+                .entries
+                .firstWhere(
+                    (MapEntry<String, VisibilityStatusItemEnum> entry) =>
+                        entry.value == item)
+                .key,
           )
           .toList();
     }
@@ -496,18 +618,22 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     required String minOrderAmountDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required double price,
-    required String priceDisplay,
     required double rate,
     required String rateDisplay,
+    required RateTypeEnum rateType,
     required double remainingAmount,
     required String remainingAmountDisplay,
     required P2pAdvertCreateTypeEnum type,
     String? contactInfo,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     String? paymentInfo,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     List<String>? paymentMethodNames,
+    double? price,
+    String? priceDisplay,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       P2pAdvertCreate(
         accountCurrency: accountCurrency,
@@ -531,18 +657,22 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         minOrderAmountDisplay: minOrderAmountDisplay,
         minOrderAmountLimit: minOrderAmountLimit,
         minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-        price: price,
-        priceDisplay: priceDisplay,
         rate: rate,
         rateDisplay: rateDisplay,
+        rateType: rateType,
         remainingAmount: remainingAmount,
         remainingAmountDisplay: remainingAmountDisplay,
         type: type,
         contactInfo: contactInfo ?? this.contactInfo,
+        effectiveRate: effectiveRate ?? this.effectiveRate,
+        effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        price: price ?? this.price,
+        priceDisplay: priceDisplay ?? this.priceDisplay,
+        visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 
   /// Override equatable class.

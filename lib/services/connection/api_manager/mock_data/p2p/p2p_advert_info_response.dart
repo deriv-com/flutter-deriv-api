@@ -10,7 +10,8 @@ const String p2pAdvertInfoResponse = '''
     "account_currency": "USD",
     "advertiser_details": {
       "id": "2",
-      "name": "za advertiser 1010"
+      "name": "za advertiser 1010",
+      "completed_orders_count" : 1
     },
     "counterparty_type": "sell",
     "country": "za",

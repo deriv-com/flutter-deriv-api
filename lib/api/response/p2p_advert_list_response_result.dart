@@ -100,6 +100,21 @@ enum CounterpartyTypeEnum {
   sell,
 }
 
+/// RateTypeEnum mapper.
+final Map<String, RateTypeEnum> rateTypeEnumMapper = <String, RateTypeEnum>{
+  "fixed": RateTypeEnum.fixed,
+  "float": RateTypeEnum.float,
+};
+
+/// RateType Enum.
+enum RateTypeEnum {
+  /// fixed.
+  fixed,
+
+  /// float.
+  float,
+}
+
 /// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
   "buy": TypeEnum.buy,
@@ -113,6 +128,50 @@ enum TypeEnum {
 
   /// sell.
   sell,
+}
+
+/// VisibilityStatusItemEnum mapper.
+final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
+    <String, VisibilityStatusItemEnum>{
+  "advert_inactive": VisibilityStatusItemEnum.advertInactive,
+  "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
+  "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
+  "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
+  "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
+  "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
+};
+
+/// VisibilityStatusItem Enum.
+enum VisibilityStatusItemEnum {
+  /// advert_inactive.
+  advertInactive,
+
+  /// advert_max_limit.
+  advertMaxLimit,
+
+  /// advert_min_limit.
+  advertMinLimit,
+
+  /// advert_remaining.
+  advertRemaining,
+
+  /// advertiser_ads_paused.
+  advertiserAdsPaused,
+
+  /// advertiser_approval.
+  advertiserApproval,
+
+  /// advertiser_balance.
+  advertiserBalance,
+
+  /// advertiser_daily_limit.
+  advertiserDailyLimit,
+
+  /// advertiser_temp_ban.
+  advertiserTempBan,
 }
 /// P2p advert list model class.
 abstract class P2pAdvertListModel extends Equatable {
@@ -173,10 +232,9 @@ abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
   const ListItemModel({
     required this.type,
+    required this.rateType,
     required this.rateDisplay,
     required this.rate,
-    required this.priceDisplay,
-    required this.price,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.maxOrderAmountLimitDisplay,
@@ -196,6 +254,8 @@ abstract class ListItemModel extends Equatable {
     this.amountDisplay,
     this.contactInfo,
     this.daysUntilArchive,
+    this.effectiveRate,
+    this.effectiveRateDisplay,
     this.maxOrderAmount,
     this.maxOrderAmountDisplay,
     this.minOrderAmount,
@@ -203,24 +263,24 @@ abstract class ListItemModel extends Equatable {
     this.paymentInfo,
     this.paymentMethod,
     this.paymentMethodNames,
+    this.price,
+    this.priceDisplay,
     this.remainingAmount,
     this.remainingAmountDisplay,
+    this.visibilityStatus,
   });
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
 
-  /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
+  /// Type of rate, fixed or floating.
+  final RateTypeEnum rateType;
+
+  /// Conversion rate formatted to appropriate decimal places.
   final String rateDisplay;
 
-  /// Conversion rate from account currency to local currency.
+  /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final double rate;
-
-  /// Cost of the advert in local currency, formatted to appropriate decimal places.
-  final String priceDisplay;
-
-  /// Cost of the advert in local currency.
-  final double price;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -279,6 +339,12 @@ abstract class ListItemModel extends Equatable {
   /// Days until automatic inactivation of this ad, if no activity occurs.
   final int? daysUntilArchive;
 
+  /// Conversion rate from account currency to local currency, using current market rate if applicable.
+  final double? effectiveRate;
+
+  /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
+  final String? effectiveRateDisplay;
+
   /// Maximum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double? maxOrderAmount;
 
@@ -300,11 +366,29 @@ abstract class ListItemModel extends Equatable {
   /// Names of supported payment methods.
   final List<String>? paymentMethodNames;
 
+  /// Cost of the advert in local currency.
+  final double? price;
+
+  /// Cost of the advert in local currency, formatted to appropriate decimal places.
+  final String? priceDisplay;
+
   /// Amount currently available for orders, in `account_currency`. It is only visible to the advert owner.
   final double? remainingAmount;
 
   /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? remainingAmountDisplay;
+
+  /// Reasons why an advert is not visible, only visible to the advert owner. Possible values:
+  /// - `advert_inactive`: the advert is set inactive.
+  /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
+  /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
+  /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
+  /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
+  /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
+  /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
+  final List<VisibilityStatusItemEnum>? visibilityStatus;
 }
 
 /// List item class.
@@ -325,16 +409,17 @@ class ListItem extends ListItemModel {
     required String maxOrderAmountLimitDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required double price,
-    required String priceDisplay,
     required double rate,
     required String rateDisplay,
+    required RateTypeEnum rateType,
     required TypeEnum type,
     int? activeOrders,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
     int? daysUntilArchive,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     double? maxOrderAmount,
     String? maxOrderAmountDisplay,
     double? minOrderAmount,
@@ -342,8 +427,11 @@ class ListItem extends ListItemModel {
     String? paymentInfo,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    double? price,
+    String? priceDisplay,
     double? remainingAmount,
     String? remainingAmountDisplay,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
@@ -359,16 +447,17 @@ class ListItem extends ListItemModel {
           maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
           minOrderAmountLimit: minOrderAmountLimit,
           minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          price: price,
-          priceDisplay: priceDisplay,
           rate: rate,
           rateDisplay: rateDisplay,
+          rateType: rateType,
           type: type,
           activeOrders: activeOrders,
           amount: amount,
           amountDisplay: amountDisplay,
           contactInfo: contactInfo,
           daysUntilArchive: daysUntilArchive,
+          effectiveRate: effectiveRate,
+          effectiveRateDisplay: effectiveRateDisplay,
           maxOrderAmount: maxOrderAmount,
           maxOrderAmountDisplay: maxOrderAmountDisplay,
           minOrderAmount: minOrderAmount,
@@ -376,8 +465,11 @@ class ListItem extends ListItemModel {
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
+          price: price,
+          priceDisplay: priceDisplay,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
+          visibilityStatus: visibilityStatus,
         );
 
   /// Creates an instance from JSON.
@@ -398,16 +490,17 @@ class ListItem extends ListItemModel {
         maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
-        price: getDouble(json['price'])!,
-        priceDisplay: json['price_display'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
+        rateType: rateTypeEnumMapper[json['rate_type']]!,
         type: typeEnumMapper[json['type']]!,
         activeOrders: json['active_orders'],
         amount: getDouble(json['amount']),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
         daysUntilArchive: json['days_until_archive'],
+        effectiveRate: getDouble(json['effective_rate']),
+        effectiveRateDisplay: json['effective_rate_display'],
         maxOrderAmount: getDouble(json['max_order_amount']),
         maxOrderAmountDisplay: json['max_order_amount_display'],
         minOrderAmount: getDouble(json['min_order_amount']),
@@ -421,8 +514,19 @@ class ListItem extends ListItemModel {
                   (dynamic item) => item,
                 ),
               ),
+        price: getDouble(json['price']),
+        priceDisplay: json['price_display'],
         remainingAmount: getDouble(json['remaining_amount']),
         remainingAmountDisplay: json['remaining_amount_display'],
+        visibilityStatus: json['visibility_status'] == null
+            ? null
+            : List<VisibilityStatusItemEnum>.from(
+                json['visibility_status']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : visibilityStatusItemEnumMapper[item],
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -447,10 +551,12 @@ class ListItem extends ListItemModel {
     resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
-    resultMap['price'] = price;
-    resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
+    resultMap['rate_type'] = rateTypeEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, RateTypeEnum> entry) => entry.value == rateType)
+        .key;
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
@@ -459,6 +565,8 @@ class ListItem extends ListItemModel {
     resultMap['amount_display'] = amountDisplay;
     resultMap['contact_info'] = contactInfo;
     resultMap['days_until_archive'] = daysUntilArchive;
+    resultMap['effective_rate'] = effectiveRate;
+    resultMap['effective_rate_display'] = effectiveRateDisplay;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
     resultMap['min_order_amount'] = minOrderAmount;
@@ -472,8 +580,22 @@ class ListItem extends ListItemModel {
           )
           .toList();
     }
+    resultMap['price'] = price;
+    resultMap['price_display'] = priceDisplay;
     resultMap['remaining_amount'] = remainingAmount;
     resultMap['remaining_amount_display'] = remainingAmountDisplay;
+    if (visibilityStatus != null) {
+      resultMap['visibility_status'] = visibilityStatus!
+          .map<dynamic>(
+            (VisibilityStatusItemEnum item) => visibilityStatusItemEnumMapper
+                .entries
+                .firstWhere(
+                    (MapEntry<String, VisibilityStatusItemEnum> entry) =>
+                        entry.value == item)
+                .key,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -494,16 +616,17 @@ class ListItem extends ListItemModel {
     required String maxOrderAmountLimitDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required double price,
-    required String priceDisplay,
     required double rate,
     required String rateDisplay,
+    required RateTypeEnum rateType,
     required TypeEnum type,
     int? activeOrders,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
     int? daysUntilArchive,
+    double? effectiveRate,
+    String? effectiveRateDisplay,
     double? maxOrderAmount,
     String? maxOrderAmountDisplay,
     double? minOrderAmount,
@@ -511,8 +634,11 @@ class ListItem extends ListItemModel {
     String? paymentInfo,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    double? price,
+    String? priceDisplay,
     double? remainingAmount,
     String? remainingAmountDisplay,
+    List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
@@ -529,16 +655,17 @@ class ListItem extends ListItemModel {
         maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
         minOrderAmountLimit: minOrderAmountLimit,
         minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-        price: price,
-        priceDisplay: priceDisplay,
         rate: rate,
         rateDisplay: rateDisplay,
+        rateType: rateType,
         type: type,
         activeOrders: activeOrders ?? this.activeOrders,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
         contactInfo: contactInfo ?? this.contactInfo,
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
+        effectiveRate: effectiveRate ?? this.effectiveRate,
+        effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         maxOrderAmountDisplay:
             maxOrderAmountDisplay ?? this.maxOrderAmountDisplay,
@@ -548,9 +675,12 @@ class ListItem extends ListItemModel {
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        price: price ?? this.price,
+        priceDisplay: priceDisplay ?? this.priceDisplay,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
+        visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 
   /// Override equatable class.
