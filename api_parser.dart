@@ -16,10 +16,10 @@ class APIParser extends Builder {
   FutureOr<void> build(BuildStep buildStep) {
     try {
       final String path = buildStep.inputId.path;
-      Map<String, dynamic>? methodsJSON;
 
       final String fileBaseName =
           (path.split('/').last.split('_')..removeLast()).join('_');
+
       final String className = '${ReCase(fileBaseName).pascalCase}Response';
 
       final List<SchemaModel> rootChildren = JsonSchemaParser.getClassTypesFor(
@@ -41,19 +41,20 @@ class APIParser extends Builder {
               '{\n"methods": "",\n"imports": "import \'package:flutter_deriv_api/helpers/helpers.dart\';\\n"\n}');
       }
 
-      methodsJSON = json.decode(methodsFile.readAsStringSync());
+      final Map<String, dynamic> methodsJson =
+          json.decode(methodsFile.readAsStringSync());
 
       final List<StringBuffer> source = JsonSchemaParser().getClasses(
         SchemaModel.newModelWithChildren(
           children: rootChildren,
           className: className,
         ),
-        methodsString: methodsJSON?['methods'] ?? '',
+        methodsString: methodsJson['methods'] ?? '',
         isRoot: true,
       );
 
       List<StringBuffer> result =
-          _addImports(source: source, imports: methodsJSON?['imports']);
+          _addImports(source: source, imports: methodsJson['imports']);
 
       result = _addLinterSilencers(result);
 
@@ -95,8 +96,9 @@ List<StringBuffer> _addImports({
 }
 
 List<StringBuffer> _addLinterSilencers(List<StringBuffer> source) {
-  final StringBuffer silencers =
-      StringBuffer('// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import\n\n');
+  final StringBuffer silencers = StringBuffer(
+    '// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import\n\n',
+  );
 
   return <StringBuffer>[silencers, ...source];
 }

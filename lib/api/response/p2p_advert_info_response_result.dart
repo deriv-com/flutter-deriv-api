@@ -283,7 +283,6 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
-
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel extends Equatable {
   /// Initializes P2p advert info model class .
@@ -784,7 +783,6 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
   @override
   List<Object?> get props => <Object?>[];
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
@@ -902,7 +900,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   @override
   List<Object?> get props => <Object?>[];
 }
-
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel extends Equatable {
   /// Initializes Payment method details property model class .
@@ -999,7 +996,6 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
   @override
   List<Object?> get props => <Object?>[];
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel extends Equatable {
   /// Initializes Fields property model class .
@@ -1078,7 +1074,6 @@ class FieldsProperty extends FieldsPropertyModel {
   @override
   List<Object?> get props => <Object?>[];
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel extends Equatable {
   /// Initializes Subscription model class .
