@@ -40,6 +40,8 @@ import '../generated/exchange_rates_receive.dart';
 import '../generated/forget_all_receive.dart';
 import '../generated/forget_receive.dart';
 import '../generated/get_account_status_receive.dart';
+import '../generated/get_account_types_receive.dart';
+import '../generated/get_available_accounts_to_transfer_receive.dart';
 import '../generated/get_financial_assessment_receive.dart';
 import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
@@ -209,6 +211,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ForgetReceive.fromJson(responseMap);
     case 'get_account_status':
       return GetAccountStatusReceive.fromJson(responseMap);
+    case 'get_account_types':
+      return GetAccountTypesReceive.fromJson(responseMap);
+    case 'get_available_accounts_to_transfer':
+      return GetAvailableAccountsToTransferReceive.fromJson(responseMap);
     case 'get_financial_assessment':
       return GetFinancialAssessmentReceive.fromJson(responseMap);
     case 'get_limits':

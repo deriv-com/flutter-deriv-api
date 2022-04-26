@@ -179,10 +179,10 @@ abstract class LandingCompanyModel extends Equatable {
   /// Flag to indicate if mt5 age verification detail.
   final bool? mt5AgeVerification;
 
-  /// Landing Company for MT5 financial contracts (all except Synthetic Indices), currently divided into Financial STP, Financial (standard), and Swap-Free as subtypes.
+  /// Landing Company for MT5 financial contracts (all except Synthetic Indices), currently divided into Financial STP, Financial (standard) as subtypes.
   final MtFinancialCompany? mtFinancialCompany;
 
-  /// Landing Company for MT5 standard gaming contracts (Synthetic Indices), currently divided into Financial (standard), and Swap-Free as subtypes.
+  /// Landing Company for MT5 standard gaming contracts (Synthetic Indices), currently has Financial as subtype.
   final MtGamingCompany? mtGamingCompany;
 
   /// Country name
@@ -1438,7 +1438,6 @@ abstract class MtFinancialCompanyModel extends Equatable {
   const MtFinancialCompanyModel({
     this.financial,
     this.financialStp,
-    this.swapFree,
   });
 
   /// Contain details for landing company for financial subtype. The Financial account is suitable for a wide range of traders, both new and experienced. It gives you mid-range leverage and variable spreads that give you a great deal of flexibility for whatever position you wish to take in the market.
@@ -1446,9 +1445,6 @@ abstract class MtFinancialCompanyModel extends Equatable {
 
   /// Contain details for landing company for Financial STP subtype. The Financial STP account provides you with tight spreads, higher ticket size and offers a variety of FX pairs from majors to exotics. It is a straight through processing (STP) account with direct access to FX liquidity from various providers.
   final FinancialStp? financialStp;
-
-  /// Contains details for Landing Company for swap-free subtype. The Swap-Free account is suitable for a wide range of traders, both new and experienced. It gives you mid-range leverage and variable spreads that give you a great deal of flexibility for whatever position you wish to take in the market with zero swap fee.
-  final SwapFree? swapFree;
 }
 
 /// Mt financial company class.
@@ -1457,11 +1453,9 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
   const MtFinancialCompany({
     Financial? financial,
     FinancialStp? financialStp,
-    SwapFree? swapFree,
   }) : super(
           financial: financial,
           financialStp: financialStp,
-          swapFree: swapFree,
         );
 
   /// Creates an instance from JSON.
@@ -1473,9 +1467,6 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
         financialStp: json['financial_stp'] == null
             ? null
             : FinancialStp.fromJson(json['financial_stp']),
-        swapFree: json['swap_free'] == null
-            ? null
-            : SwapFree.fromJson(json['swap_free']),
       );
 
   /// Converts an instance to JSON.
@@ -1488,9 +1479,6 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
     if (financialStp != null) {
       resultMap['financial_stp'] = financialStp!.toJson();
     }
-    if (swapFree != null) {
-      resultMap['swap_free'] = swapFree!.toJson();
-    }
 
     return resultMap;
   }
@@ -1499,12 +1487,10 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
   MtFinancialCompany copyWith({
     Financial? financial,
     FinancialStp? financialStp,
-    SwapFree? swapFree,
   }) =>
       MtFinancialCompany(
         financial: financial ?? this.financial,
         financialStp: financialStp ?? this.financialStp,
-        swapFree: swapFree ?? this.swapFree,
       );
 
   /// Override equatable class.
@@ -1949,238 +1935,15 @@ class FinancialStp extends FinancialStpModel {
   @override
   List<Object?> get props => <Object?>[];
 }
-/// Swap free model class.
-abstract class SwapFreeModel extends Equatable {
-  /// Initializes Swap free model class .
-  const SwapFreeModel({
-    this.address,
-    this.changeableFields,
-    this.country,
-    this.currencyConfig,
-    this.hasRealityCheck,
-    this.legalAllowedContractCategories,
-    this.legalAllowedCurrencies,
-    this.legalAllowedMarkets,
-    this.legalDefaultCurrency,
-    this.name,
-    this.requirements,
-    this.shortcode,
-    this.supportProfessionalClient,
-  });
-
-  /// Landing Company address
-  final List<String>? address;
-
-  /// Special conditions for changing sensitive fields
-  final Map<String, dynamic>? changeableFields;
-
-  /// Landing Company country of incorporation
-  final String? country;
-
-  /// The configuration of each currency.
-  final Map<String, dynamic>? currencyConfig;
-
-  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
-  final bool? hasRealityCheck;
-
-  /// Allowed contract types for this Landing Company
-  final List<String>? legalAllowedContractCategories;
-
-  /// Allowed account currencies for this Landing Company
-  final List<String>? legalAllowedCurrencies;
-
-  /// Allowed markets for this Landing Company
-  final List<String>? legalAllowedMarkets;
-
-  /// Default account currency
-  final String? legalDefaultCurrency;
-
-  /// Landing Company legal name
-  final String? name;
-
-  /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
-
-  /// Landing Company short code
-  final String? shortcode;
-
-  /// Flag that indicates whether the landing company supports professional accounts or not
-  final bool? supportProfessionalClient;
-}
-
-/// Swap free class.
-class SwapFree extends SwapFreeModel {
-  /// Initializes Swap free class.
-  const SwapFree({
-    List<String>? address,
-    Map<String, dynamic>? changeableFields,
-    String? country,
-    Map<String, dynamic>? currencyConfig,
-    bool? hasRealityCheck,
-    List<String>? legalAllowedContractCategories,
-    List<String>? legalAllowedCurrencies,
-    List<String>? legalAllowedMarkets,
-    String? legalDefaultCurrency,
-    String? name,
-    Map<String, dynamic>? requirements,
-    String? shortcode,
-    bool? supportProfessionalClient,
-  }) : super(
-          address: address,
-          changeableFields: changeableFields,
-          country: country,
-          currencyConfig: currencyConfig,
-          hasRealityCheck: hasRealityCheck,
-          legalAllowedContractCategories: legalAllowedContractCategories,
-          legalAllowedCurrencies: legalAllowedCurrencies,
-          legalAllowedMarkets: legalAllowedMarkets,
-          legalDefaultCurrency: legalDefaultCurrency,
-          name: name,
-          requirements: requirements,
-          shortcode: shortcode,
-          supportProfessionalClient: supportProfessionalClient,
-        );
-
-  /// Creates an instance from JSON.
-  factory SwapFree.fromJson(Map<String, dynamic> json) => SwapFree(
-        address: json['address'] == null
-            ? null
-            : List<String>.from(
-                json['address']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        changeableFields: json['changeable_fields'],
-        country: json['country'],
-        currencyConfig: json['currency_config'],
-        hasRealityCheck: getBool(json['has_reality_check']),
-        legalAllowedContractCategories:
-            json['legal_allowed_contract_categories'] == null
-                ? null
-                : List<String>.from(
-                    json['legal_allowed_contract_categories']?.map(
-                      (dynamic item) => item,
-                    ),
-                  ),
-        legalAllowedCurrencies: json['legal_allowed_currencies'] == null
-            ? null
-            : List<String>.from(
-                json['legal_allowed_currencies']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        legalAllowedMarkets: json['legal_allowed_markets'] == null
-            ? null
-            : List<String>.from(
-                json['legal_allowed_markets']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        legalDefaultCurrency: json['legal_default_currency'],
-        name: json['name'],
-        requirements: json['requirements'],
-        shortcode: json['shortcode'],
-        supportProfessionalClient: getBool(json['support_professional_client']),
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    if (address != null) {
-      resultMap['address'] = address!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['changeable_fields'] = changeableFields;
-    resultMap['country'] = country;
-    resultMap['currency_config'] = currencyConfig;
-    resultMap['has_reality_check'] = hasRealityCheck;
-    if (legalAllowedContractCategories != null) {
-      resultMap['legal_allowed_contract_categories'] =
-          legalAllowedContractCategories!
-              .map<dynamic>(
-                (String item) => item,
-              )
-              .toList();
-    }
-    if (legalAllowedCurrencies != null) {
-      resultMap['legal_allowed_currencies'] = legalAllowedCurrencies!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    if (legalAllowedMarkets != null) {
-      resultMap['legal_allowed_markets'] = legalAllowedMarkets!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['legal_default_currency'] = legalDefaultCurrency;
-    resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
-    resultMap['shortcode'] = shortcode;
-    resultMap['support_professional_client'] = supportProfessionalClient;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  SwapFree copyWith({
-    List<String>? address,
-    Map<String, dynamic>? changeableFields,
-    String? country,
-    Map<String, dynamic>? currencyConfig,
-    bool? hasRealityCheck,
-    List<String>? legalAllowedContractCategories,
-    List<String>? legalAllowedCurrencies,
-    List<String>? legalAllowedMarkets,
-    String? legalDefaultCurrency,
-    String? name,
-    Map<String, dynamic>? requirements,
-    String? shortcode,
-    bool? supportProfessionalClient,
-  }) =>
-      SwapFree(
-        address: address ?? this.address,
-        changeableFields: changeableFields ?? this.changeableFields,
-        country: country ?? this.country,
-        currencyConfig: currencyConfig ?? this.currencyConfig,
-        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
-        legalAllowedContractCategories: legalAllowedContractCategories ??
-            this.legalAllowedContractCategories,
-        legalAllowedCurrencies:
-            legalAllowedCurrencies ?? this.legalAllowedCurrencies,
-        legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
-        legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
-        name: name ?? this.name,
-        requirements: requirements ?? this.requirements,
-        shortcode: shortcode ?? this.shortcode,
-        supportProfessionalClient:
-            supportProfessionalClient ?? this.supportProfessionalClient,
-      );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
-}
 /// Mt gaming company model class.
 abstract class MtGamingCompanyModel extends Equatable {
   /// Initializes Mt gaming company model class .
   const MtGamingCompanyModel({
     this.financial,
-    this.swapFree,
   });
 
   /// Landing Company for MT5 gaming contracts (Synthetic Indices)
   final MtGamingCompanyFinancial? financial;
-
-  /// Landing Company for MT5 swap free gaming contracts (Synthetic Indices)
-  final MtGamingCompanySwapFree? swapFree;
 }
 
 /// Mt gaming company class.
@@ -2188,10 +1951,8 @@ class MtGamingCompany extends MtGamingCompanyModel {
   /// Initializes Mt gaming company class.
   const MtGamingCompany({
     MtGamingCompanyFinancial? financial,
-    MtGamingCompanySwapFree? swapFree,
   }) : super(
           financial: financial,
-          swapFree: swapFree,
         );
 
   /// Creates an instance from JSON.
@@ -2200,9 +1961,6 @@ class MtGamingCompany extends MtGamingCompanyModel {
         financial: json['financial'] == null
             ? null
             : MtGamingCompanyFinancial.fromJson(json['financial']),
-        swapFree: json['swap_free'] == null
-            ? null
-            : MtGamingCompanySwapFree.fromJson(json['swap_free']),
       );
 
   /// Converts an instance to JSON.
@@ -2212,9 +1970,6 @@ class MtGamingCompany extends MtGamingCompanyModel {
     if (financial != null) {
       resultMap['financial'] = financial!.toJson();
     }
-    if (swapFree != null) {
-      resultMap['swap_free'] = swapFree!.toJson();
-    }
 
     return resultMap;
   }
@@ -2222,11 +1977,9 @@ class MtGamingCompany extends MtGamingCompanyModel {
   /// Creates a copy of instance with given parameters.
   MtGamingCompany copyWith({
     MtGamingCompanyFinancial? financial,
-    MtGamingCompanySwapFree? swapFree,
   }) =>
       MtGamingCompany(
         financial: financial ?? this.financial,
-        swapFree: swapFree ?? this.swapFree,
       );
 
   /// Override equatable class.
@@ -2431,226 +2184,6 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     bool? supportProfessionalClient,
   }) =>
       MtGamingCompanyFinancial(
-        address: address ?? this.address,
-        changeableFields: changeableFields ?? this.changeableFields,
-        country: country ?? this.country,
-        currencyConfig: currencyConfig ?? this.currencyConfig,
-        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
-        legalAllowedContractCategories: legalAllowedContractCategories ??
-            this.legalAllowedContractCategories,
-        legalAllowedCurrencies:
-            legalAllowedCurrencies ?? this.legalAllowedCurrencies,
-        legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
-        legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
-        name: name ?? this.name,
-        requirements: requirements ?? this.requirements,
-        shortcode: shortcode ?? this.shortcode,
-        supportProfessionalClient:
-            supportProfessionalClient ?? this.supportProfessionalClient,
-      );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
-}
-/// Mt gaming company swap free model class.
-abstract class MtGamingCompanySwapFreeModel extends Equatable {
-  /// Initializes Mt gaming company swap free model class .
-  const MtGamingCompanySwapFreeModel({
-    this.address,
-    this.changeableFields,
-    this.country,
-    this.currencyConfig,
-    this.hasRealityCheck,
-    this.legalAllowedContractCategories,
-    this.legalAllowedCurrencies,
-    this.legalAllowedMarkets,
-    this.legalDefaultCurrency,
-    this.name,
-    this.requirements,
-    this.shortcode,
-    this.supportProfessionalClient,
-  });
-
-  /// Landing Company address
-  final List<String>? address;
-
-  /// Special conditions for changing sensitive fields
-  final Map<String, dynamic>? changeableFields;
-
-  /// Landing Company country of incorporation
-  final String? country;
-
-  /// The configuration of each currency.
-  final Map<String, dynamic>? currencyConfig;
-
-  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
-  final bool? hasRealityCheck;
-
-  /// Allowed contract types
-  final List<String>? legalAllowedContractCategories;
-
-  /// Allowable currencies
-  final List<String>? legalAllowedCurrencies;
-
-  /// Allowable markets
-  final List<String>? legalAllowedMarkets;
-
-  /// Default account currency
-  final String? legalDefaultCurrency;
-
-  /// Landing Company legal name
-  final String? name;
-
-  /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
-
-  /// Landing Company short code
-  final String? shortcode;
-
-  /// Flag that indicates whether the landing company supports professional accounts or not
-  final bool? supportProfessionalClient;
-}
-
-/// Mt gaming company swap free class.
-class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
-  /// Initializes Mt gaming company swap free class.
-  const MtGamingCompanySwapFree({
-    List<String>? address,
-    Map<String, dynamic>? changeableFields,
-    String? country,
-    Map<String, dynamic>? currencyConfig,
-    bool? hasRealityCheck,
-    List<String>? legalAllowedContractCategories,
-    List<String>? legalAllowedCurrencies,
-    List<String>? legalAllowedMarkets,
-    String? legalDefaultCurrency,
-    String? name,
-    Map<String, dynamic>? requirements,
-    String? shortcode,
-    bool? supportProfessionalClient,
-  }) : super(
-          address: address,
-          changeableFields: changeableFields,
-          country: country,
-          currencyConfig: currencyConfig,
-          hasRealityCheck: hasRealityCheck,
-          legalAllowedContractCategories: legalAllowedContractCategories,
-          legalAllowedCurrencies: legalAllowedCurrencies,
-          legalAllowedMarkets: legalAllowedMarkets,
-          legalDefaultCurrency: legalDefaultCurrency,
-          name: name,
-          requirements: requirements,
-          shortcode: shortcode,
-          supportProfessionalClient: supportProfessionalClient,
-        );
-
-  /// Creates an instance from JSON.
-  factory MtGamingCompanySwapFree.fromJson(Map<String, dynamic> json) =>
-      MtGamingCompanySwapFree(
-        address: json['address'] == null
-            ? null
-            : List<String>.from(
-                json['address']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        changeableFields: json['changeable_fields'],
-        country: json['country'],
-        currencyConfig: json['currency_config'],
-        hasRealityCheck: getBool(json['has_reality_check']),
-        legalAllowedContractCategories:
-            json['legal_allowed_contract_categories'] == null
-                ? null
-                : List<String>.from(
-                    json['legal_allowed_contract_categories']?.map(
-                      (dynamic item) => item,
-                    ),
-                  ),
-        legalAllowedCurrencies: json['legal_allowed_currencies'] == null
-            ? null
-            : List<String>.from(
-                json['legal_allowed_currencies']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        legalAllowedMarkets: json['legal_allowed_markets'] == null
-            ? null
-            : List<String>.from(
-                json['legal_allowed_markets']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        legalDefaultCurrency: json['legal_default_currency'],
-        name: json['name'],
-        requirements: json['requirements'],
-        shortcode: json['shortcode'],
-        supportProfessionalClient: getBool(json['support_professional_client']),
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    if (address != null) {
-      resultMap['address'] = address!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['changeable_fields'] = changeableFields;
-    resultMap['country'] = country;
-    resultMap['currency_config'] = currencyConfig;
-    resultMap['has_reality_check'] = hasRealityCheck;
-    if (legalAllowedContractCategories != null) {
-      resultMap['legal_allowed_contract_categories'] =
-          legalAllowedContractCategories!
-              .map<dynamic>(
-                (String item) => item,
-              )
-              .toList();
-    }
-    if (legalAllowedCurrencies != null) {
-      resultMap['legal_allowed_currencies'] = legalAllowedCurrencies!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    if (legalAllowedMarkets != null) {
-      resultMap['legal_allowed_markets'] = legalAllowedMarkets!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['legal_default_currency'] = legalDefaultCurrency;
-    resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
-    resultMap['shortcode'] = shortcode;
-    resultMap['support_professional_client'] = supportProfessionalClient;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  MtGamingCompanySwapFree copyWith({
-    List<String>? address,
-    Map<String, dynamic>? changeableFields,
-    String? country,
-    Map<String, dynamic>? currencyConfig,
-    bool? hasRealityCheck,
-    List<String>? legalAllowedContractCategories,
-    List<String>? legalAllowedCurrencies,
-    List<String>? legalAllowedMarkets,
-    String? legalDefaultCurrency,
-    String? name,
-    Map<String, dynamic>? requirements,
-    String? shortcode,
-    bool? supportProfessionalClient,
-  }) =>
-      MtGamingCompanySwapFree(
         address: address ?? this.address,
         changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,

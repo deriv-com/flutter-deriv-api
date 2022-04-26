@@ -152,7 +152,6 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "financial": SubAccountTypeEnum.financial,
   "financial_stp": SubAccountTypeEnum.financialStp,
-  "swap_free": SubAccountTypeEnum.swapFree,
 };
 
 /// SubAccountType Enum.
@@ -162,9 +161,6 @@ enum SubAccountTypeEnum {
 
   /// financial_stp.
   financialStp,
-
-  /// swap_free.
-  swapFree,
 }
 /// Trading platform accounts item model class.
 abstract class TradingPlatformAccountsItemModel extends Equatable {

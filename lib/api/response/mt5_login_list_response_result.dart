@@ -185,7 +185,6 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "financial": SubAccountTypeEnum.financial,
   "financial_stp": SubAccountTypeEnum.financialStp,
-  "swap_free": SubAccountTypeEnum.swapFree,
 };
 
 /// SubAccountType Enum.
@@ -195,9 +194,6 @@ enum SubAccountTypeEnum {
 
   /// financial_stp.
   financialStp,
-
-  /// swap_free.
-  swapFree,
 }
 /// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel extends Equatable {

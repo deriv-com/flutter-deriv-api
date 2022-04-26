@@ -64,6 +64,7 @@ abstract class NewAccountWalletModel extends Equatable {
     required this.oauthToken,
     required this.landingCompany,
     required this.clientId,
+    this.currency,
     this.landingCompanyShort,
     this.landingCompanyShortcode,
   });
@@ -76,6 +77,9 @@ abstract class NewAccountWalletModel extends Equatable {
 
   /// Client ID of new real money account
   final String clientId;
+
+  /// Currency of an account
+  final String? currency;
 
   /// Landing company shortcode
   final String? landingCompanyShort;
@@ -91,12 +95,14 @@ class NewAccountWallet extends NewAccountWalletModel {
     required String clientId,
     required String landingCompany,
     required String oauthToken,
+    String? currency,
     String? landingCompanyShort,
     String? landingCompanyShortcode,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
           oauthToken: oauthToken,
+          currency: currency,
           landingCompanyShort: landingCompanyShort,
           landingCompanyShortcode: landingCompanyShortcode,
         );
@@ -107,6 +113,7 @@ class NewAccountWallet extends NewAccountWalletModel {
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
         oauthToken: json['oauth_token'],
+        currency: json['currency'],
         landingCompanyShort: json['landing_company_short'],
         landingCompanyShortcode: json['landing_company_shortcode'],
       );
@@ -118,6 +125,7 @@ class NewAccountWallet extends NewAccountWalletModel {
     resultMap['client_id'] = clientId;
     resultMap['landing_company'] = landingCompany;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['currency'] = currency;
     resultMap['landing_company_short'] = landingCompanyShort;
     resultMap['landing_company_shortcode'] = landingCompanyShortcode;
 
@@ -129,6 +137,7 @@ class NewAccountWallet extends NewAccountWalletModel {
     required String clientId,
     required String landingCompany,
     required String oauthToken,
+    String? currency,
     String? landingCompanyShort,
     String? landingCompanyShortcode,
   }) =>
@@ -136,6 +145,7 @@ class NewAccountWallet extends NewAccountWalletModel {
         clientId: clientId,
         landingCompany: landingCompany,
         oauthToken: oauthToken,
+        currency: currency ?? this.currency,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,

@@ -159,6 +159,22 @@ enum IdvStatusEnum {
   expired,
 }
 
+/// OwnershipStatusEnum mapper.
+final Map<String, OwnershipStatusEnum> ownershipStatusEnumMapper =
+    <String, OwnershipStatusEnum>{
+  "none": OwnershipStatusEnum.none,
+  "pending": OwnershipStatusEnum.pending,
+};
+
+/// Status Enum.
+enum OwnershipStatusEnum {
+  /// none.
+  none,
+
+  /// pending.
+  pending,
+}
+
 /// SocialIdentityProviderEnum mapper.
 final Map<String, SocialIdentityProviderEnum> socialIdentityProviderEnumMapper =
     <String, SocialIdentityProviderEnum>{
@@ -447,6 +463,7 @@ abstract class AuthenticationModel extends Equatable {
     this.attempts,
     this.document,
     this.identity,
+    this.ownership,
   });
 
   /// An array containing the list of required authentication.
@@ -460,6 +477,9 @@ abstract class AuthenticationModel extends Equatable {
 
   /// The authentication status for identity.
   final Identity? identity;
+
+  /// The current state of the proof of ownership.
+  final Ownership? ownership;
 }
 
 /// Authentication class.
@@ -470,11 +490,13 @@ class Authentication extends AuthenticationModel {
     Attempts? attempts,
     Document? document,
     Identity? identity,
+    Ownership? ownership,
   }) : super(
           needsVerification: needsVerification,
           attempts: attempts,
           document: document,
           identity: identity,
+          ownership: ownership,
         );
 
   /// Creates an instance from JSON.
@@ -493,6 +515,9 @@ class Authentication extends AuthenticationModel {
         identity: json['identity'] == null
             ? null
             : Identity.fromJson(json['identity']),
+        ownership: json['ownership'] == null
+            ? null
+            : Ownership.fromJson(json['ownership']),
       );
 
   /// Converts an instance to JSON.
@@ -514,6 +539,9 @@ class Authentication extends AuthenticationModel {
     if (identity != null) {
       resultMap['identity'] = identity!.toJson();
     }
+    if (ownership != null) {
+      resultMap['ownership'] = ownership!.toJson();
+    }
 
     return resultMap;
   }
@@ -524,12 +552,14 @@ class Authentication extends AuthenticationModel {
     Attempts? attempts,
     Document? document,
     Identity? identity,
+    Ownership? ownership,
   }) =>
       Authentication(
         needsVerification: needsVerification,
         attempts: attempts ?? this.attempts,
         document: document ?? this.document,
         identity: identity ?? this.identity,
+        ownership: ownership ?? this.ownership,
       );
 
   /// Override equatable class.
@@ -1216,6 +1246,156 @@ class Onfido extends OnfidoModel {
         reportedProperties: reportedProperties ?? this.reportedProperties,
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Ownership model class.
+abstract class OwnershipModel extends Equatable {
+  /// Initializes Ownership model class .
+  const OwnershipModel({
+    this.requests,
+    this.status,
+  });
+
+  /// The list of proof of ownership requests to fullfil
+  final List<RequestsItem>? requests;
+
+  /// This represents the current status of the proof of ownership
+  final OwnershipStatusEnum? status;
+}
+
+/// Ownership class.
+class Ownership extends OwnershipModel {
+  /// Initializes Ownership class.
+  const Ownership({
+    List<RequestsItem>? requests,
+    OwnershipStatusEnum? status,
+  }) : super(
+          requests: requests,
+          status: status,
+        );
+
+  /// Creates an instance from JSON.
+  factory Ownership.fromJson(Map<String, dynamic> json) => Ownership(
+        requests: json['requests'] == null
+            ? null
+            : List<RequestsItem>.from(
+                json['requests']?.map(
+                  (dynamic item) => RequestsItem.fromJson(item),
+                ),
+              ),
+        status: json['status'] == null
+            ? null
+            : ownershipStatusEnumMapper[json['status']],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (requests != null) {
+      resultMap['requests'] = requests!
+          .map<dynamic>(
+            (RequestsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    resultMap['status'] = ownershipStatusEnumMapper.entries
+        .firstWhere((MapEntry<String, OwnershipStatusEnum> entry) =>
+            entry.value == status)
+        .key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Ownership copyWith({
+    List<RequestsItem>? requests,
+    OwnershipStatusEnum? status,
+  }) =>
+      Ownership(
+        requests: requests ?? this.requests,
+        status: status ?? this.status,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Requests item model class.
+abstract class RequestsItemModel extends Equatable {
+  /// Initializes Requests item model class .
+  const RequestsItemModel({
+    this.creationTime,
+    this.id,
+    this.paymentMethod,
+    this.paymentMethodIdentifier,
+  });
+
+  /// The request timestamp of creation
+  final String? creationTime;
+
+  /// The identifier of the proof of ownership request
+  final double? id;
+
+  /// The display name of the payment method being requested
+  final String? paymentMethod;
+
+  /// The identifier of the payment method being requested
+  final String? paymentMethodIdentifier;
+}
+
+/// Requests item class.
+class RequestsItem extends RequestsItemModel {
+  /// Initializes Requests item class.
+  const RequestsItem({
+    String? creationTime,
+    double? id,
+    String? paymentMethod,
+    String? paymentMethodIdentifier,
+  }) : super(
+          creationTime: creationTime,
+          id: id,
+          paymentMethod: paymentMethod,
+          paymentMethodIdentifier: paymentMethodIdentifier,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequestsItem.fromJson(Map<String, dynamic> json) => RequestsItem(
+        creationTime: json['creation_time'],
+        id: getDouble(json['id']),
+        paymentMethod: json['payment_method'],
+        paymentMethodIdentifier: json['payment_method_identifier'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['creation_time'] = creationTime;
+    resultMap['id'] = id;
+    resultMap['payment_method'] = paymentMethod;
+    resultMap['payment_method_identifier'] = paymentMethodIdentifier;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequestsItem copyWith({
+    String? creationTime,
+    double? id,
+    String? paymentMethod,
+    String? paymentMethodIdentifier,
+  }) =>
+      RequestsItem(
+        creationTime: creationTime ?? this.creationTime,
+        id: id ?? this.id,
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+        paymentMethodIdentifier:
+            paymentMethodIdentifier ?? this.paymentMethodIdentifier,
       );
 
   /// Override equatable class.
