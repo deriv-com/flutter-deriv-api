@@ -40,6 +40,8 @@ import '../generated/exchange_rates_receive.dart';
 import '../generated/forget_all_receive.dart';
 import '../generated/forget_receive.dart';
 import '../generated/get_account_status_receive.dart';
+import '../generated/get_account_types_receive.dart';
+import '../generated/get_available_accounts_to_transfer_receive.dart';
 import '../generated/get_financial_assessment_receive.dart';
 import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
@@ -81,6 +83,7 @@ import '../generated/p2p_order_create_receive.dart';
 import '../generated/p2p_order_dispute_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
+import '../generated/p2p_order_review_receive.dart';
 import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
@@ -209,6 +212,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ForgetResponse.fromJson(responseMap);
     case 'get_account_status':
       return GetAccountStatusResponse.fromJson(responseMap);
+    case 'get_account_types':
+      return GetAccountTypesResponse.fromJson(responseMap);
+    case 'get_available_accounts_to_transfer':
+      return GetAvailableAccountsToTransferResponse.fromJson(responseMap);
     case 'get_financial_assessment':
       return GetFinancialAssessmentResponse.fromJson(responseMap);
     case 'get_limits':
@@ -291,6 +298,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderInfoResponse.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListResponse.fromJson(responseMap);
+    case 'p2p_order_review':
+      return P2pOrderReviewResponse.fromJson(responseMap);
     case 'p2p_payment_methods':
       return P2pPaymentMethodsResponse.fromJson(responseMap);
     case 'payment_methods':
