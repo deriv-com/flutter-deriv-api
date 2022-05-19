@@ -18,6 +18,7 @@ class DocumentUploadRequest extends Request {
     required this.fileSize,
     this.lifetimeValid,
     this.pageType,
+    this.proofOfOwnership,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -42,6 +43,7 @@ class DocumentUploadRequest extends Request {
         lifetimeValid:
             json['lifetime_valid'] == null ? null : json['lifetime_valid'] == 1,
         pageType: json['page_type'] as String?,
+        proofOfOwnership: json['proof_of_ownership'] as Map<String, dynamic>?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -76,6 +78,9 @@ class DocumentUploadRequest extends Request {
   /// [Optional] To determine document side
   final String? pageType;
 
+  /// [Optional] It contains info about the proof of ownership being uploaded (mandatory for proof_of_ownership document type)
+  final Map<String, dynamic>? proofOfOwnership;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -97,6 +102,7 @@ class DocumentUploadRequest extends Request {
                 ? 1
                 : 0,
         'page_type': pageType,
+        'proof_of_ownership': proofOfOwnership,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -114,6 +120,7 @@ class DocumentUploadRequest extends Request {
     int? fileSize,
     bool? lifetimeValid,
     String? pageType,
+    Map<String, dynamic>? proofOfOwnership,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -129,6 +136,7 @@ class DocumentUploadRequest extends Request {
         fileSize: fileSize ?? this.fileSize,
         lifetimeValid: lifetimeValid ?? this.lifetimeValid,
         pageType: pageType ?? this.pageType,
+        proofOfOwnership: proofOfOwnership ?? this.proofOfOwnership,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

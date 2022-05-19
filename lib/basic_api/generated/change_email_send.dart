@@ -37,7 +37,7 @@ class ChangeEmailRequest extends Request {
   /// Email address to be verified.
   final String? newEmail;
 
-  /// [Optional] New password (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address)
+  /// [Optional] New password (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). Mandatory if change_email is update and user has social login.
   final String? newPassword;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)

@@ -98,7 +98,7 @@ class Mt5NewAccountRequest extends Request {
   /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
   final String? mainPassword;
 
-  /// [Optional] To choose whether account is conventional or swap_free. Unavailable for financial_stp MT5_account_type
+  /// [Optional] To choose whether account is conventional or not. Unavailable for financial_stp MT5_account_type
   final String? mt5AccountCategory;
 
   /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products. If 'account_type' set to 'financial', setting 'mt5_account_type' is also required.
