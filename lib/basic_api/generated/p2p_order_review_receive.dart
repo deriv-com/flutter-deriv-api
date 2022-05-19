@@ -1,14 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/affiliate_account_add_receive.json.
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_review_receive.json.
 
 // ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Affiliate account add response class.
-class AffiliateAccountAddResponse extends Response {
-  /// Initialize AffiliateAccountAddResponse.
-  const AffiliateAccountAddResponse({
-    this.affiliateAccountAdd,
+/// P2p order review response class.
+class P2pOrderReviewResponse extends Response {
+  /// Initialize P2pOrderReviewResponse.
+  const P2pOrderReviewResponse({
+    this.p2pOrderReview,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
@@ -21,23 +21,22 @@ class AffiliateAccountAddResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AffiliateAccountAddResponse.fromJson(Map<String, dynamic> json) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd:
-            json['affiliate_account_add'] as Map<String, dynamic>?,
+  factory P2pOrderReviewResponse.fromJson(Map<String, dynamic> json) =>
+      P2pOrderReviewResponse(
+        p2pOrderReview: json['p2p_order_review'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
         reqId: json['req_id'] as int?,
       );
 
-  /// The information of the created affiliate user.
-  final Map<String, dynamic>? affiliateAccountAdd;
+  /// Details of the created order review.
+  final Map<String, dynamic>? p2pOrderReview;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'affiliate_account_add': affiliateAccountAdd,
+        'p2p_order_review': p2pOrderReview,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -46,15 +45,15 @@ class AffiliateAccountAddResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AffiliateAccountAddResponse copyWith({
-    Map<String, dynamic>? affiliateAccountAdd,
+  P2pOrderReviewResponse copyWith({
+    Map<String, dynamic>? p2pOrderReview,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
+      P2pOrderReviewResponse(
+        p2pOrderReview: p2pOrderReview ?? this.p2pOrderReview,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,
