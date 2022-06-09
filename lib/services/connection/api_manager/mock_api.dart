@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 
@@ -115,6 +116,7 @@ class MockAPI extends BaseAPI {
     ConnectionCallback? onDone,
     ConnectionCallback? onOpen,
     ConnectionCallback? onError,
+    bool printResponse = false,
   }) async =>
       true;
 
