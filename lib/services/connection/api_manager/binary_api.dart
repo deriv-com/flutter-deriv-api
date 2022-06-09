@@ -193,13 +193,11 @@ class BinaryAPI extends BaseAPI {
       }
 
       if (message.containsKey('req_id')) {
-        dev.log(
-          'have req_id in received message: ${message['req_id'].runtimeType.toString()}',
-        );
-
         final int requestId = message['req_id'];
 
-        dev.log('have request id: $requestId.');
+        if (printResponse) {
+          dev.log('have request id: $requestId.');
+        }
 
         if (_callManager?.contains(requestId) ?? false) {
           _callManager!.handleResponse(
@@ -212,9 +210,7 @@ class BinaryAPI extends BaseAPI {
             response: message,
           );
         } else {
-          dev.log(
-            'this has a request id, but does not match anything in our pending queue.',
-          );
+          dev.log('$requestId, does not match anything in our pending queue.');
         }
       } else {
         dev.log('no req_id, ignoring.');
