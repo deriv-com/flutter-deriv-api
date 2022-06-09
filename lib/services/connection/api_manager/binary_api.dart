@@ -55,6 +55,7 @@ class BinaryAPI extends BaseAPI {
     ConnectionCallback? onDone,
     ConnectionCallback? onOpen,
     ConnectionCallback? onError,
+    bool printResponse = false,
   }) async {
     _connected = false;
 
@@ -92,7 +93,7 @@ class BinaryAPI extends BaseAPI {
         onOpen?.call(uniqueKey);
 
         if (message != null) {
-          _handleResponse(message);
+          _handleResponse(message, printResponse: printResponse);
         }
       },
       onError: (Object error) {
@@ -173,7 +174,10 @@ class BinaryAPI extends BaseAPI {
 
   /// Handles responses that come from server, by using its reqId,
   /// and completes caller's Future or add the response to caller's stream if it was a subscription call.
-  void _handleResponse(Map<String, dynamic> response) {
+  void _handleResponse(
+    Map<String, dynamic> response, {
+    required bool printResponse,
+  }) {
     try {
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
@@ -184,7 +188,9 @@ class BinaryAPI extends BaseAPI {
         _connected = true;
       }
 
-      dev.log('api response: $message.');
+      if (printResponse) {
+        dev.log('api response: $message.');
+      }
 
       if (message.containsKey('req_id')) {
         dev.log(

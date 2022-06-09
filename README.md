@@ -26,6 +26,7 @@ api.connect(
     ),
     onDone: () async { ... },
     onOpen: () async { ... },
+    printResponse: true,
 );
 ```
 
