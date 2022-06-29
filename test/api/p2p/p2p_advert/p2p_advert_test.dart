@@ -108,11 +108,11 @@ void main() {
           type: 'buy',
           amount: 100,
           maxOrderAmount: 15,
+          rateType: 'fixed',
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
           paymentMethodNames: <String>['bank_transfer'],
           rate: 4.25,
-          rateType: '',
           paymentMethodIds: <int>[],
         ),
       );
