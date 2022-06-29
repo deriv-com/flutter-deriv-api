@@ -25,7 +25,10 @@ const String p2pAdvertiserInfoResponse = '''
     "payment_info": "payment information",
     "partner_count": 1,
     "sell_orders_amount" : "",
-    "total_turnover" : ""
+    "total_turnover" : "",
+    "is_online" : false,
+    "rating_count" : 0,
+    "blocked_by_count" : 0
   },
   "subscription": {
     "id": "4b0ef5f5-a3cd-7a01-01cb-871f0b504143"

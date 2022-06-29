@@ -12,7 +12,8 @@ const String p2pAdvertiserAdvertsResponse = '''
         "advertiser_details": {
           "id": "1",
           "name": "John Doe",
-          "completed_orders_count" : 1
+          "completed_orders_count" : 1,
+          "rating_count" : 0
         },
         "amount": 10,
         "amount_display": "10.00",
@@ -45,14 +46,18 @@ const String p2pAdvertiserAdvertsResponse = '''
         "remaining_amount": 15,
         "remaining_amount_display": "15.00",
         "type": "buy",
-        "rate_type" : "fixed"
+        "rate_type" : "fixed",
+        "rating_count" : 0,
+        "is_online" : false,
+        "blocked_by_count" : 0
       },
       {
         "account_currency": "USD",
         "advertiser_details": {
           "id": "1",
           "name": "John Doe",
-          "completed_orders_count" : 1
+          "completed_orders_count" : 1,
+          "rating_count" : 0
         },
         "amount": 3000,
         "amount_display": "3000.00",
@@ -83,7 +88,10 @@ const String p2pAdvertiserAdvertsResponse = '''
         "remaining_amount": 2990,
         "remaining_amount_display": "2990.00",
         "type": "sell",
-         "rate_type" : "fixed"
+         "rate_type" : "fixed",
+         "rating_count" : 0,
+         "is_online" : false,
+         "blocked_by_count" : 0
       }
     ]
   }

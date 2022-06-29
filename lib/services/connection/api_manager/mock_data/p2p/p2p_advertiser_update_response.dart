@@ -28,7 +28,10 @@ const String p2pAdvertiserUpdateResponse = '''
     "total_turnover" : "",
     "balance_available" : 1,
     "cancels_remaining" : 1,
-    "show_name" : true
+    "show_name" : true,
+    "is_online" : false,
+    "blocked_by_count" : 0,
+    "rating_count" : 0
   },
   "subscription": {
     "id": "4b0ef5f5-a3cd-7a01-01cb-871f0b504143"

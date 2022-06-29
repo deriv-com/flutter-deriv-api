@@ -45,7 +45,8 @@ const String p2pOrderListResponse = '''{
         "rate": 13500,
         "rate_display": "13500.00",
         "status": "pending",
-        "type": "buy"
+        "type": "buy",
+         "is_reviewable" : true
       }
     ]
   },

@@ -45,7 +45,8 @@ const String p2pOrderCreateResponse = '''{
     "rate": 13500,
     "rate_display": "13500.00",
     "status": "pending",
-    "type": "buy"
+    "type": "buy",
+    "is_reviewable" : true
   },
   "subscription": {
     "id": "857cfc96-1014-66ce-9c49-0a4dbd22857a"

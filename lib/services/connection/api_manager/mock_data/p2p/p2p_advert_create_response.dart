@@ -16,7 +16,8 @@ const String p2pAdvertCreateResponse = '''
     "advertiser_details": {
       "id": "3",
       "name": "za advertiser 1010",
-      "completed_orders_count" : 1
+      "completed_orders_count" : 1,
+      "rating_count" : 0
     },
     "amount": 100,
     "amount_display": "100.00",
@@ -47,7 +48,8 @@ const String p2pAdvertCreateResponse = '''
     "remaining_amount": 50,
     "remaining_amount_display":"50.00",
     "type": "sell",
-    "rate_type" : "fixed"
+    "rate_type" : "fixed",
+    "rating_count" : 0
   },
   "msg_type": "p2p_advert_create"
 }
