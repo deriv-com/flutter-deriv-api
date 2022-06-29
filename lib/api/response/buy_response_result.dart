@@ -265,26 +265,26 @@ class Buy extends BuyModel {
 
   /// Creates a copy of instance with given parameters.
   Buy copyWith({
-    required double balanceAfter,
-    required double buyPrice,
-    required int contractId,
-    required String longcode,
-    required double payout,
-    required DateTime purchaseTime,
-    required String shortcode,
-    required DateTime startTime,
-    required int transactionId,
+    double? balanceAfter,
+    double? buyPrice,
+    int? contractId,
+    String? longcode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? shortcode,
+    DateTime? startTime,
+    int? transactionId,
   }) =>
       Buy(
-        balanceAfter: balanceAfter,
-        buyPrice: buyPrice,
-        contractId: contractId,
-        longcode: longcode,
-        payout: payout,
-        purchaseTime: purchaseTime,
-        shortcode: shortcode,
-        startTime: startTime,
-        transactionId: transactionId,
+        balanceAfter: balanceAfter ?? this.balanceAfter,
+        buyPrice: buyPrice ?? this.buyPrice,
+        contractId: contractId ?? this.contractId,
+        longcode: longcode ?? this.longcode,
+        payout: payout ?? this.payout,
+        purchaseTime: purchaseTime ?? this.purchaseTime,
+        shortcode: shortcode ?? this.shortcode,
+        startTime: startTime ?? this.startTime,
+        transactionId: transactionId ?? this.transactionId,
       );
 
   /// Override equatable class.
@@ -327,10 +327,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

@@ -317,12 +317,12 @@ class CryptoItem extends CryptoItemModel {
 
   /// Creates a copy of instance with given parameters.
   CryptoItem copyWith({
-    required String addressHash,
-    required String addressUrl,
-    required String id,
-    required StatusCodeEnum statusCode,
-    required String statusMessage,
-    required TransactionTypeEnum transactionType,
+    String? addressHash,
+    String? addressUrl,
+    String? id,
+    StatusCodeEnum? statusCode,
+    String? statusMessage,
+    TransactionTypeEnum? transactionType,
     double? amount,
     bool? isValidToCancel,
     DateTime? submitDate,
@@ -330,12 +330,12 @@ class CryptoItem extends CryptoItemModel {
     String? transactionUrl,
   }) =>
       CryptoItem(
-        addressHash: addressHash,
-        addressUrl: addressUrl,
-        id: id,
-        statusCode: statusCode,
-        statusMessage: statusMessage,
-        transactionType: transactionType,
+        addressHash: addressHash ?? this.addressHash,
+        addressUrl: addressUrl ?? this.addressUrl,
+        id: id ?? this.id,
+        statusCode: statusCode ?? this.statusCode,
+        statusMessage: statusMessage ?? this.statusMessage,
+        transactionType: transactionType ?? this.transactionType,
         amount: amount ?? this.amount,
         isValidToCancel: isValidToCancel ?? this.isValidToCancel,
         submitDate: submitDate ?? this.submitDate,
@@ -383,10 +383,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

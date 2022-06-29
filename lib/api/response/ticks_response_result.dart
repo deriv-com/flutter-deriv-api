@@ -209,7 +209,7 @@ class Tick extends TickModel {
 
   /// Creates a copy of instance with given parameters.
   Tick copyWith({
-    required double pipSize,
+    double? pipSize,
     double? ask,
     double? bid,
     DateTime? epoch,
@@ -218,7 +218,7 @@ class Tick extends TickModel {
     String? symbol,
   }) =>
       Tick(
-        pipSize: pipSize,
+        pipSize: pipSize ?? this.pipSize,
         ask: ask ?? this.ask,
         bid: bid ?? this.bid,
         epoch: epoch ?? this.epoch,
@@ -267,10 +267,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

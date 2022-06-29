@@ -384,6 +384,7 @@ abstract class AccountListItemModel extends Equatable {
   /// Initializes Account list item model class .
   const AccountListItemModel({
     this.accountType,
+    this.createdAt,
     this.currency,
     this.excludedUntil,
     this.isDisabled,
@@ -396,6 +397,9 @@ abstract class AccountListItemModel extends Equatable {
 
   /// Account type.
   final AccountTypeEnum? accountType;
+
+  /// Creation time of the account as epoch.
+  final DateTime? createdAt;
 
   /// Currency of specified account.
   final String? currency;
@@ -427,6 +431,7 @@ class AccountListItem extends AccountListItemModel {
   /// Initializes Account list item class.
   const AccountListItem({
     AccountTypeEnum? accountType,
+    DateTime? createdAt,
     String? currency,
     DateTime? excludedUntil,
     bool? isDisabled,
@@ -437,6 +442,7 @@ class AccountListItem extends AccountListItemModel {
     Wallet? wallet,
   }) : super(
           accountType: accountType,
+          createdAt: createdAt,
           currency: currency,
           excludedUntil: excludedUntil,
           isDisabled: isDisabled,
@@ -453,6 +459,7 @@ class AccountListItem extends AccountListItemModel {
         accountType: json['account_type'] == null
             ? null
             : accountTypeEnumMapper[json['account_type']],
+        createdAt: getDateTime(json['created_at']),
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
         isDisabled: getBool(json['is_disabled']),
@@ -472,6 +479,7 @@ class AccountListItem extends AccountListItemModel {
         .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
             entry.value == accountType)
         .key;
+    resultMap['created_at'] = getSecondsSinceEpochDateTime(createdAt);
     resultMap['currency'] = currency;
     resultMap['excluded_until'] = getSecondsSinceEpochDateTime(excludedUntil);
     resultMap['is_disabled'] = isDisabled;
@@ -491,6 +499,7 @@ class AccountListItem extends AccountListItemModel {
   /// Creates a copy of instance with given parameters.
   AccountListItem copyWith({
     AccountTypeEnum? accountType,
+    DateTime? createdAt,
     String? currency,
     DateTime? excludedUntil,
     bool? isDisabled,
@@ -502,6 +511,7 @@ class AccountListItem extends AccountListItemModel {
   }) =>
       AccountListItem(
         accountType: accountType ?? this.accountType,
+        createdAt: createdAt ?? this.createdAt,
         currency: currency ?? this.currency,
         excludedUntil: excludedUntil ?? this.excludedUntil,
         isDisabled: isDisabled ?? this.isDisabled,
@@ -867,10 +877,10 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   LocalCurrenciesProperty copyWith({
-    required int fractionalDigits,
+    int? fractionalDigits,
   }) =>
       LocalCurrenciesProperty(
-        fractionalDigits: fractionalDigits,
+        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
       );
 
   /// Override equatable class.

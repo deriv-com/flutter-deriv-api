@@ -119,12 +119,12 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
 
   /// Creates a copy of instance with given parameters.
   P2pOrderConfirm copyWith({
-    required String id,
-    required StatusEnum status,
+    String? id,
+    StatusEnum? status,
   }) =>
       P2pOrderConfirm(
-        id: id,
-        status: status,
+        id: id ?? this.id,
+        status: status ?? this.status,
       );
 
   /// Override equatable class.

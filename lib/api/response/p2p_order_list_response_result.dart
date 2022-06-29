@@ -263,10 +263,10 @@ class P2pOrderList extends P2pOrderListModel {
 
   /// Creates a copy of instance with given parameters.
   P2pOrderList copyWith({
-    required List<ListItem> list,
+    List<ListItem>? list,
   }) =>
       P2pOrderList(
-        list: list,
+        list: list ?? this.list,
       );
 
   /// Override equatable class.
@@ -285,6 +285,7 @@ abstract class ListItemModel extends Equatable {
     required this.price,
     required this.paymentInfo,
     required this.localCurrency,
+    required this.isReviewable,
     required this.isIncoming,
     required this.id,
     required this.expiryTime,
@@ -300,6 +301,7 @@ abstract class ListItemModel extends Equatable {
     this.clientDetails,
     this.paymentMethod,
     this.paymentMethodNames,
+    this.reviewDetails,
   });
 
   /// Whether this is a buy or a sell.
@@ -325,6 +327,9 @@ abstract class ListItemModel extends Equatable {
 
   /// Local currency for this order.
   final String localCurrency;
+
+  /// `true` if a review can be given, otherwise `false`.
+  final bool isReviewable;
 
   /// `true` if the order is created for the advert of the current client, otherwise `false`.
   final bool isIncoming;
@@ -370,6 +375,9 @@ abstract class ListItemModel extends Equatable {
 
   /// Names of supported payment methods.
   final List<String>? paymentMethodNames;
+
+  /// Details of the review you gave for this order, if any.
+  final ReviewDetails? reviewDetails;
 }
 
 /// List item class.
@@ -388,6 +396,7 @@ class ListItem extends ListItemModel {
     required DateTime expiryTime,
     required String id,
     required bool isIncoming,
+    required bool isReviewable,
     required String localCurrency,
     required String paymentInfo,
     required double price,
@@ -399,6 +408,7 @@ class ListItem extends ListItemModel {
     ClientDetails? clientDetails,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    ReviewDetails? reviewDetails,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -412,6 +422,7 @@ class ListItem extends ListItemModel {
           expiryTime: expiryTime,
           id: id,
           isIncoming: isIncoming,
+          isReviewable: isReviewable,
           localCurrency: localCurrency,
           paymentInfo: paymentInfo,
           price: price,
@@ -423,6 +434,7 @@ class ListItem extends ListItemModel {
           clientDetails: clientDetails,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
+          reviewDetails: reviewDetails,
         );
 
   /// Creates an instance from JSON.
@@ -440,6 +452,7 @@ class ListItem extends ListItemModel {
         expiryTime: getDateTime(json['expiry_time'])!,
         id: json['id'],
         isIncoming: getBool(json['is_incoming'])!,
+        isReviewable: getBool(json['is_reviewable'])!,
         localCurrency: json['local_currency'],
         paymentInfo: json['payment_info'],
         price: getDouble(json['price'])!,
@@ -459,6 +472,9 @@ class ListItem extends ListItemModel {
                   (dynamic item) => item,
                 ),
               ),
+        reviewDetails: json['review_details'] == null
+            ? null
+            : ReviewDetails.fromJson(json['review_details']),
       );
 
   /// Converts an instance to JSON.
@@ -480,6 +496,7 @@ class ListItem extends ListItemModel {
     resultMap['expiry_time'] = getSecondsSinceEpochDateTime(expiryTime);
     resultMap['id'] = id;
     resultMap['is_incoming'] = isIncoming;
+    resultMap['is_reviewable'] = isReviewable;
     resultMap['local_currency'] = localCurrency;
     resultMap['payment_info'] = paymentInfo;
     resultMap['price'] = price;
@@ -504,60 +521,67 @@ class ListItem extends ListItemModel {
           )
           .toList();
     }
+    if (reviewDetails != null) {
+      resultMap['review_details'] = reviewDetails!.toJson();
+    }
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   ListItem copyWith({
-    required String accountCurrency,
-    required AdvertDetails advertDetails,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String chatChannelUrl,
-    required String contactInfo,
-    required DateTime createdTime,
-    required DisputeDetails disputeDetails,
-    required DateTime expiryTime,
-    required String id,
-    required bool isIncoming,
-    required String localCurrency,
-    required String paymentInfo,
-    required double price,
-    required String priceDisplay,
-    required double rate,
-    required String rateDisplay,
-    required StatusEnum status,
-    required TypeEnum type,
+    String? accountCurrency,
+    AdvertDetails? advertDetails,
+    AdvertiserDetails? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? chatChannelUrl,
+    String? contactInfo,
+    DateTime? createdTime,
+    DisputeDetails? disputeDetails,
+    DateTime? expiryTime,
+    String? id,
+    bool? isIncoming,
+    bool? isReviewable,
+    String? localCurrency,
+    String? paymentInfo,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    StatusEnum? status,
+    TypeEnum? type,
     ClientDetails? clientDetails,
     String? paymentMethod,
     List<String>? paymentMethodNames,
+    ReviewDetails? reviewDetails,
   }) =>
       ListItem(
-        accountCurrency: accountCurrency,
-        advertDetails: advertDetails,
-        advertiserDetails: advertiserDetails,
-        amount: amount,
-        amountDisplay: amountDisplay,
-        chatChannelUrl: chatChannelUrl,
-        contactInfo: contactInfo,
-        createdTime: createdTime,
-        disputeDetails: disputeDetails,
-        expiryTime: expiryTime,
-        id: id,
-        isIncoming: isIncoming,
-        localCurrency: localCurrency,
-        paymentInfo: paymentInfo,
-        price: price,
-        priceDisplay: priceDisplay,
-        rate: rate,
-        rateDisplay: rateDisplay,
-        status: status,
-        type: type,
+        accountCurrency: accountCurrency ?? this.accountCurrency,
+        advertDetails: advertDetails ?? this.advertDetails,
+        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
+        amount: amount ?? this.amount,
+        amountDisplay: amountDisplay ?? this.amountDisplay,
+        chatChannelUrl: chatChannelUrl ?? this.chatChannelUrl,
+        contactInfo: contactInfo ?? this.contactInfo,
+        createdTime: createdTime ?? this.createdTime,
+        disputeDetails: disputeDetails ?? this.disputeDetails,
+        expiryTime: expiryTime ?? this.expiryTime,
+        id: id ?? this.id,
+        isIncoming: isIncoming ?? this.isIncoming,
+        isReviewable: isReviewable ?? this.isReviewable,
+        localCurrency: localCurrency ?? this.localCurrency,
+        paymentInfo: paymentInfo ?? this.paymentInfo,
+        price: price ?? this.price,
+        priceDisplay: priceDisplay ?? this.priceDisplay,
+        rate: rate ?? this.rate,
+        rateDisplay: rateDisplay ?? this.rateDisplay,
+        status: status ?? this.status,
+        type: type ?? this.type,
         clientDetails: clientDetails ?? this.clientDetails,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        reviewDetails: reviewDetails ?? this.reviewDetails,
       );
 
   /// Override equatable class.
@@ -626,15 +650,15 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
-    required String description,
-    required String id,
-    required TypeEnum type,
+    String? description,
+    String? id,
+    TypeEnum? type,
     String? paymentMethod,
   }) =>
       AdvertDetails(
-        description: description,
-        id: id,
-        type: type,
+        description: description ?? this.description,
+        id: id ?? this.id,
+        type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 
@@ -650,6 +674,7 @@ abstract class AdvertiserDetailsModel extends Equatable {
     required this.loginid,
     required this.id,
     this.firstName,
+    this.isRecommended,
     this.lastName,
   });
 
@@ -665,6 +690,9 @@ abstract class AdvertiserDetailsModel extends Equatable {
   /// The advertiser's first name.
   final String? firstName;
 
+  /// Indicates that the advertiser was recommended in the most recent review by the current user.
+  final int? isRecommended;
+
   /// The advertiser's last name.
   final String? lastName;
 }
@@ -677,12 +705,14 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String loginid,
     required String name,
     String? firstName,
+    int? isRecommended,
     String? lastName,
   }) : super(
           id: id,
           loginid: loginid,
           name: name,
           firstName: firstName,
+          isRecommended: isRecommended,
           lastName: lastName,
         );
 
@@ -693,6 +723,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
+        isRecommended: json['is_recommended'],
         lastName: json['last_name'],
       );
 
@@ -704,6 +735,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
+    resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
 
     return resultMap;
@@ -711,17 +743,19 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
-    required String id,
-    required String loginid,
-    required String name,
+    String? id,
+    String? loginid,
+    String? name,
     String? firstName,
+    int? isRecommended,
     String? lastName,
   }) =>
       AdvertiserDetails(
-        id: id,
-        loginid: loginid,
-        name: name,
+        id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
+        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
+        isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
       );
 
@@ -793,6 +827,7 @@ abstract class ClientDetailsModel extends Equatable {
     required this.loginid,
     required this.id,
     this.firstName,
+    this.isRecommended,
     this.lastName,
   });
 
@@ -808,6 +843,9 @@ abstract class ClientDetailsModel extends Equatable {
   /// The client's first name.
   final String? firstName;
 
+  /// Indicates that the client was recommended in the most recent review by the current user.
+  final int? isRecommended;
+
   /// The client's last name.
   final String? lastName;
 }
@@ -820,12 +858,14 @@ class ClientDetails extends ClientDetailsModel {
     required String loginid,
     required String name,
     String? firstName,
+    int? isRecommended,
     String? lastName,
   }) : super(
           id: id,
           loginid: loginid,
           name: name,
           firstName: firstName,
+          isRecommended: isRecommended,
           lastName: lastName,
         );
 
@@ -835,6 +875,7 @@ class ClientDetails extends ClientDetailsModel {
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
+        isRecommended: json['is_recommended'],
         lastName: json['last_name'],
       );
 
@@ -846,6 +887,7 @@ class ClientDetails extends ClientDetailsModel {
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
+    resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
 
     return resultMap;
@@ -853,18 +895,86 @@ class ClientDetails extends ClientDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   ClientDetails copyWith({
-    required String id,
-    required String loginid,
-    required String name,
+    String? id,
+    String? loginid,
+    String? name,
     String? firstName,
+    int? isRecommended,
     String? lastName,
   }) =>
       ClientDetails(
-        id: id,
-        loginid: loginid,
-        name: name,
+        id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
+        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
+        isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Review details model class.
+abstract class ReviewDetailsModel extends Equatable {
+  /// Initializes Review details model class .
+  const ReviewDetailsModel({
+    required this.rating,
+    required this.createdTime,
+    this.recommended,
+  });
+
+  /// Rating for the transaction, 1 to 5.
+  final int rating;
+
+  /// The epoch time of the review.
+  final DateTime createdTime;
+
+  /// `1` if the advertiser is recommended, `0` if not recommended.
+  final int? recommended;
+}
+
+/// Review details class.
+class ReviewDetails extends ReviewDetailsModel {
+  /// Initializes Review details class.
+  const ReviewDetails({
+    required DateTime createdTime,
+    required int rating,
+    int? recommended,
+  }) : super(
+          createdTime: createdTime,
+          rating: rating,
+          recommended: recommended,
+        );
+
+  /// Creates an instance from JSON.
+  factory ReviewDetails.fromJson(Map<String, dynamic> json) => ReviewDetails(
+        createdTime: getDateTime(json['created_time'])!,
+        rating: json['rating'],
+        recommended: json['recommended'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
+    resultMap['rating'] = rating;
+    resultMap['recommended'] = recommended;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  ReviewDetails copyWith({
+    DateTime? createdTime,
+    int? rating,
+    int? recommended,
+  }) =>
+      ReviewDetails(
+        createdTime: createdTime ?? this.createdTime,
+        rating: rating ?? this.rating,
+        recommended: recommended ?? this.recommended,
       );
 
   /// Override equatable class.
@@ -907,10 +1017,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

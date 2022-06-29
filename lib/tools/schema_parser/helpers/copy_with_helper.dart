@@ -13,21 +13,16 @@ StringBuffer _generateCopyWith({
     );
 
   for (final SchemaModel model in children) {
-    final String typePostfix = model.classType == 'dynamic'
-        ? ''
-        : model.isRequired
-            ? ''
-            : '?';
+    final String typePostfix = model.classType == 'dynamic' ? '' : '?';
 
-    result.write(
-        '${model.isRequired ? 'required' : ''} ${model.classType}$typePostfix ${model.fieldName},');
+    result.write('${model.classType}$typePostfix ${model.fieldName},');
   }
 
   result.write('}) => $className(');
 
   for (final SchemaModel model in children) {
     result.write(
-        '${model.fieldName}: ${model.fieldName} ${model.isRequired ? '' : '?? this.${model.fieldName}'},');
+        '${model.fieldName}: ${model.fieldName} ?? this.${model.fieldName},');
   }
 
   result.write(');');

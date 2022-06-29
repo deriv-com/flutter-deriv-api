@@ -121,12 +121,12 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserRelations copyWith({
-    required List<BlockedAdvertisersItem> blockedAdvertisers,
-    required List<FavouriteAdvertisersItem> favouriteAdvertisers,
+    List<BlockedAdvertisersItem>? blockedAdvertisers,
+    List<FavouriteAdvertisersItem>? favouriteAdvertisers,
   }) =>
       P2pAdvertiserRelations(
-        blockedAdvertisers: blockedAdvertisers,
-        favouriteAdvertisers: favouriteAdvertisers,
+        blockedAdvertisers: blockedAdvertisers ?? this.blockedAdvertisers,
+        favouriteAdvertisers: favouriteAdvertisers ?? this.favouriteAdvertisers,
       );
 
   /// Override equatable class.

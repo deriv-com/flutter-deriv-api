@@ -163,10 +163,10 @@ class TradingTimes extends TradingTimesModel {
 
   /// Creates a copy of instance with given parameters.
   TradingTimes copyWith({
-    required List<MarketsItem> markets,
+    List<MarketsItem>? markets,
   }) =>
       TradingTimes(
-        markets: markets,
+        markets: markets ?? this.markets,
       );
 
   /// Override equatable class.
@@ -229,11 +229,11 @@ class MarketsItem extends MarketsItemModel {
 
   /// Creates a copy of instance with given parameters.
   MarketsItem copyWith({
-    required String name,
+    String? name,
     List<SubmarketsItem>? submarkets,
   }) =>
       MarketsItem(
-        name: name,
+        name: name ?? this.name,
         submarkets: submarkets ?? this.submarkets,
       );
 
@@ -297,11 +297,11 @@ class SubmarketsItem extends SubmarketsItemModel {
 
   /// Creates a copy of instance with given parameters.
   SubmarketsItem copyWith({
-    required String name,
+    String? name,
     List<SymbolsItem>? symbols,
   }) =>
       SubmarketsItem(
-        name: name,
+        name: name ?? this.name,
         symbols: symbols ?? this.symbols,
       );
 
@@ -405,15 +405,15 @@ class SymbolsItem extends SymbolsItemModel {
 
   /// Creates a copy of instance with given parameters.
   SymbolsItem copyWith({
-    required String name,
-    required String symbol,
+    String? name,
+    String? symbol,
     List<dynamic>? events,
     Map<String, dynamic>? times,
     List<TradingDaysItemEnum>? tradingDays,
   }) =>
       SymbolsItem(
-        name: name,
-        symbol: symbol,
+        name: name ?? this.name,
+        symbol: symbol ?? this.symbol,
         events: events ?? this.events,
         times: times ?? this.times,
         tradingDays: tradingDays ?? this.tradingDays,

@@ -157,11 +157,11 @@ class PaymentagentList extends PaymentagentListModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentagentList copyWith({
-    required List<ListItem> list,
+    List<ListItem>? list,
     List<List<String>>? availableCountries,
   }) =>
       PaymentagentList(
-        list: list,
+        list: list ?? this.list,
         availableCountries: availableCountries ?? this.availableCountries,
       );
 
@@ -173,110 +173,92 @@ class PaymentagentList extends PaymentagentListModel {
 abstract class ListItemModel extends Equatable {
   /// Initializes List item model class .
   const ListItemModel({
-    this.currencies,
-    this.depositCommission,
-    this.email,
-    this.furtherInformation,
+    required this.withdrawalCommission,
+    required this.urls,
+    required this.supportedPaymentMethods,
+    required this.summary,
+    required this.phoneNumbers,
+    required this.paymentagentLoginid,
+    required this.name,
+    required this.furtherInformation,
+    required this.email,
+    required this.depositCommission,
+    required this.currencies,
     this.maxWithdrawal,
     this.minWithdrawal,
-    this.name,
-    this.paymentagentLoginid,
-    this.phoneNumbers,
-    this.summary,
-    this.supportedBanks,
-    this.supportedPaymentMethods,
-    this.telephone,
-    this.url,
-    this.urls,
-    this.withdrawalCommission,
   });
 
-  /// Currencies that are accepted by this payment agent.
-  final String? currencies;
+  /// Commission amount applied on withdrawals made through this payment agent.
+  final String withdrawalCommission;
 
-  /// Commission amount applied on deposits made through this payment agent.
-  final String? depositCommission;
+  /// The URL(s) of payment agent's website(s).
+  final List<UrlsItem> urls;
 
-  /// Payment agent's email address.
-  final String? email;
+  /// A list of supported payment methods.
+  final List<SupportedPaymentMethodsItem> supportedPaymentMethods;
+
+  /// A summary about payment agent.
+  final String summary;
+
+  /// Payment agent's phone number(s) with country code.
+  final List<PhoneNumbersItem> phoneNumbers;
+
+  /// Payment agent's loginid.
+  final String paymentagentLoginid;
+
+  /// Payment agent's name.
+  final String name;
 
   /// More descriptions about this payment agent.
-  final String? furtherInformation;
+  final String furtherInformation;
+
+  /// Payment agent's email address.
+  final String email;
+
+  /// Commission amount applied on deposits made through this payment agent.
+  final String depositCommission;
+
+  /// Currencies that are accepted by this payment agent.
+  final String currencies;
 
   /// Maximum withdrawal allowed for transactions through this payment agent.
   final String? maxWithdrawal;
 
   /// Minimum withdrawal allowed for transactions through this payment agent.
   final String? minWithdrawal;
-
-  /// Payment agent's name.
-  final String? name;
-
-  /// Payment agent's loginid.
-  final String? paymentagentLoginid;
-
-  /// Payment agent's phone number(s) with country code.
-  final List<PhoneNumbersItem>? phoneNumbers;
-
-  /// A summary about payment agent.
-  final String? summary;
-
-  /// Comma separated list of supported banks. (deprecated; use `supported_payment_methods` instead)
-  final String? supportedBanks;
-
-  /// A list of supported payment methods.
-  final List<SupportedPaymentMethodsItem>? supportedPaymentMethods;
-
-  /// Payment agent's phone number with country code (deprecated; use `phone_numbers` instead)
-  final String? telephone;
-
-  /// Payment agent's website URL. (deprecated; use `urls` instead)
-  final String? url;
-
-  /// The URL(s) of payment agent's website(s).
-  final List<UrlsItem>? urls;
-
-  /// Commission amount applied on withdrawals made through this payment agent.
-  final String? withdrawalCommission;
 }
 
 /// List item class.
 class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
-    String? currencies,
-    String? depositCommission,
-    String? email,
-    String? furtherInformation,
+    required String currencies,
+    required String depositCommission,
+    required String email,
+    required String furtherInformation,
+    required String name,
+    required String paymentagentLoginid,
+    required List<PhoneNumbersItem> phoneNumbers,
+    required String summary,
+    required List<SupportedPaymentMethodsItem> supportedPaymentMethods,
+    required List<UrlsItem> urls,
+    required String withdrawalCommission,
     String? maxWithdrawal,
     String? minWithdrawal,
-    String? name,
-    String? paymentagentLoginid,
-    List<PhoneNumbersItem>? phoneNumbers,
-    String? summary,
-    String? supportedBanks,
-    List<SupportedPaymentMethodsItem>? supportedPaymentMethods,
-    String? telephone,
-    String? url,
-    List<UrlsItem>? urls,
-    String? withdrawalCommission,
   }) : super(
           currencies: currencies,
           depositCommission: depositCommission,
           email: email,
           furtherInformation: furtherInformation,
-          maxWithdrawal: maxWithdrawal,
-          minWithdrawal: minWithdrawal,
           name: name,
           paymentagentLoginid: paymentagentLoginid,
           phoneNumbers: phoneNumbers,
           summary: summary,
-          supportedBanks: supportedBanks,
           supportedPaymentMethods: supportedPaymentMethods,
-          telephone: telephone,
-          url: url,
           urls: urls,
           withdrawalCommission: withdrawalCommission,
+          maxWithdrawal: maxWithdrawal,
+          minWithdrawal: minWithdrawal,
         );
 
   /// Creates an instance from JSON.
@@ -285,36 +267,27 @@ class ListItem extends ListItemModel {
         depositCommission: json['deposit_commission'],
         email: json['email'],
         furtherInformation: json['further_information'],
-        maxWithdrawal: json['max_withdrawal'],
-        minWithdrawal: json['min_withdrawal'],
         name: json['name'],
         paymentagentLoginid: json['paymentagent_loginid'],
-        phoneNumbers: json['phone_numbers'] == null
-            ? null
-            : List<PhoneNumbersItem>.from(
-                json['phone_numbers']?.map(
-                  (dynamic item) => PhoneNumbersItem.fromJson(item),
-                ),
-              ),
+        phoneNumbers: List<PhoneNumbersItem>.from(
+          json['phone_numbers'].map(
+            (dynamic item) => PhoneNumbersItem.fromJson(item),
+          ),
+        ),
         summary: json['summary'],
-        supportedBanks: json['supported_banks'],
-        supportedPaymentMethods: json['supported_payment_methods'] == null
-            ? null
-            : List<SupportedPaymentMethodsItem>.from(
-                json['supported_payment_methods']?.map(
-                  (dynamic item) => SupportedPaymentMethodsItem.fromJson(item),
-                ),
-              ),
-        telephone: json['telephone'],
-        url: json['url'],
-        urls: json['urls'] == null
-            ? null
-            : List<UrlsItem>.from(
-                json['urls']?.map(
-                  (dynamic item) => UrlsItem.fromJson(item),
-                ),
-              ),
+        supportedPaymentMethods: List<SupportedPaymentMethodsItem>.from(
+          json['supported_payment_methods'].map(
+            (dynamic item) => SupportedPaymentMethodsItem.fromJson(item),
+          ),
+        ),
+        urls: List<UrlsItem>.from(
+          json['urls'].map(
+            (dynamic item) => UrlsItem.fromJson(item),
+          ),
+        ),
         withdrawalCommission: json['withdrawal_commission'],
+        maxWithdrawal: json['max_withdrawal'],
+        minWithdrawal: json['min_withdrawal'],
       );
 
   /// Converts an instance to JSON.
@@ -325,36 +298,30 @@ class ListItem extends ListItemModel {
     resultMap['deposit_commission'] = depositCommission;
     resultMap['email'] = email;
     resultMap['further_information'] = furtherInformation;
-    resultMap['max_withdrawal'] = maxWithdrawal;
-    resultMap['min_withdrawal'] = minWithdrawal;
     resultMap['name'] = name;
     resultMap['paymentagent_loginid'] = paymentagentLoginid;
-    if (phoneNumbers != null) {
-      resultMap['phone_numbers'] = phoneNumbers!
-          .map<dynamic>(
-            (PhoneNumbersItem item) => item.toJson(),
-          )
-          .toList();
-    }
+    resultMap['phone_numbers'] = phoneNumbers
+        .map<dynamic>(
+          (PhoneNumbersItem item) => item.toJson(),
+        )
+        .toList();
+
     resultMap['summary'] = summary;
-    resultMap['supported_banks'] = supportedBanks;
-    if (supportedPaymentMethods != null) {
-      resultMap['supported_payment_methods'] = supportedPaymentMethods!
-          .map<dynamic>(
-            (SupportedPaymentMethodsItem item) => item.toJson(),
-          )
-          .toList();
-    }
-    resultMap['telephone'] = telephone;
-    resultMap['url'] = url;
-    if (urls != null) {
-      resultMap['urls'] = urls!
-          .map<dynamic>(
-            (UrlsItem item) => item.toJson(),
-          )
-          .toList();
-    }
+    resultMap['supported_payment_methods'] = supportedPaymentMethods
+        .map<dynamic>(
+          (SupportedPaymentMethodsItem item) => item.toJson(),
+        )
+        .toList();
+
+    resultMap['urls'] = urls
+        .map<dynamic>(
+          (UrlsItem item) => item.toJson(),
+        )
+        .toList();
+
     resultMap['withdrawal_commission'] = withdrawalCommission;
+    resultMap['max_withdrawal'] = maxWithdrawal;
+    resultMap['min_withdrawal'] = minWithdrawal;
 
     return resultMap;
   }
@@ -365,37 +332,31 @@ class ListItem extends ListItemModel {
     String? depositCommission,
     String? email,
     String? furtherInformation,
-    String? maxWithdrawal,
-    String? minWithdrawal,
     String? name,
     String? paymentagentLoginid,
     List<PhoneNumbersItem>? phoneNumbers,
     String? summary,
-    String? supportedBanks,
     List<SupportedPaymentMethodsItem>? supportedPaymentMethods,
-    String? telephone,
-    String? url,
     List<UrlsItem>? urls,
     String? withdrawalCommission,
+    String? maxWithdrawal,
+    String? minWithdrawal,
   }) =>
       ListItem(
         currencies: currencies ?? this.currencies,
         depositCommission: depositCommission ?? this.depositCommission,
         email: email ?? this.email,
         furtherInformation: furtherInformation ?? this.furtherInformation,
-        maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
-        minWithdrawal: minWithdrawal ?? this.minWithdrawal,
         name: name ?? this.name,
         paymentagentLoginid: paymentagentLoginid ?? this.paymentagentLoginid,
         phoneNumbers: phoneNumbers ?? this.phoneNumbers,
         summary: summary ?? this.summary,
-        supportedBanks: supportedBanks ?? this.supportedBanks,
         supportedPaymentMethods:
             supportedPaymentMethods ?? this.supportedPaymentMethods,
-        telephone: telephone ?? this.telephone,
-        url: url ?? this.url,
         urls: urls ?? this.urls,
         withdrawalCommission: withdrawalCommission ?? this.withdrawalCommission,
+        maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
+        minWithdrawal: minWithdrawal ?? this.minWithdrawal,
       );
 
   /// Override equatable class.

@@ -261,17 +261,17 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters.
   Balance copyWith({
-    required double balance,
-    required String currency,
-    required String loginid,
+    double? balance,
+    String? currency,
+    String? loginid,
     Map<String, AccountsProperty>? accounts,
     String? id,
     Total? total,
   }) =>
       Balance(
-        balance: balance,
-        currency: currency,
-        loginid: loginid,
+        balance: balance ?? this.balance,
+        currency: currency ?? this.currency,
+        loginid: loginid ?? this.loginid,
         accounts: accounts ?? this.accounts,
         id: id ?? this.id,
         total: total ?? this.total,
@@ -360,20 +360,20 @@ class AccountsProperty extends AccountsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   AccountsProperty copyWith({
-    required double balance,
-    required double convertedAmount,
-    required String currency,
-    required bool demoAccount,
-    required bool status,
-    required TypeEnum type,
+    double? balance,
+    double? convertedAmount,
+    String? currency,
+    bool? demoAccount,
+    bool? status,
+    TypeEnum? type,
   }) =>
       AccountsProperty(
-        balance: balance,
-        convertedAmount: convertedAmount,
-        currency: currency,
-        demoAccount: demoAccount,
-        status: status,
-        type: type,
+        balance: balance ?? this.balance,
+        convertedAmount: convertedAmount ?? this.convertedAmount,
+        currency: currency ?? this.currency,
+        demoAccount: demoAccount ?? this.demoAccount,
+        status: status ?? this.status,
+        type: type ?? this.type,
       );
 
   /// Override equatable class.
@@ -512,12 +512,12 @@ class Deriv extends DerivModel {
 
   /// Creates a copy of instance with given parameters.
   Deriv copyWith({
-    required double amount,
-    required String currency,
+    double? amount,
+    String? currency,
   }) =>
       Deriv(
-        amount: amount,
-        currency: currency,
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
       );
 
   /// Override equatable class.
@@ -568,12 +568,12 @@ class DerivDemo extends DerivDemoModel {
 
   /// Creates a copy of instance with given parameters.
   DerivDemo copyWith({
-    required double amount,
-    required String currency,
+    double? amount,
+    String? currency,
   }) =>
       DerivDemo(
-        amount: amount,
-        currency: currency,
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
       );
 
   /// Override equatable class.
@@ -624,12 +624,12 @@ class Mt5 extends Mt5Model {
 
   /// Creates a copy of instance with given parameters.
   Mt5 copyWith({
-    required double amount,
-    required String currency,
+    double? amount,
+    String? currency,
   }) =>
       Mt5(
-        amount: amount,
-        currency: currency,
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
       );
 
   /// Override equatable class.
@@ -680,12 +680,12 @@ class Mt5Demo extends Mt5DemoModel {
 
   /// Creates a copy of instance with given parameters.
   Mt5Demo copyWith({
-    required double amount,
-    required String currency,
+    double? amount,
+    String? currency,
   }) =>
       Mt5Demo(
-        amount: amount,
-        currency: currency,
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
       );
 
   /// Override equatable class.
@@ -728,10 +728,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

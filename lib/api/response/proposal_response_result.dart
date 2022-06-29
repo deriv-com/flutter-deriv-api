@@ -327,14 +327,14 @@ class Proposal extends ProposalModel {
 
   /// Creates a copy of instance with given parameters.
   Proposal copyWith({
-    required double askPrice,
-    required DateTime dateStart,
-    required String displayValue,
-    required String id,
-    required String longcode,
-    required double payout,
-    required double spot,
-    required DateTime spotTime,
+    double? askPrice,
+    DateTime? dateStart,
+    String? displayValue,
+    String? id,
+    String? longcode,
+    double? payout,
+    double? spot,
+    DateTime? spotTime,
     Cancellation? cancellation,
     double? commission,
     DateTime? dateExpiry,
@@ -342,14 +342,14 @@ class Proposal extends ProposalModel {
     double? multiplier,
   }) =>
       Proposal(
-        askPrice: askPrice,
-        dateStart: dateStart,
-        displayValue: displayValue,
-        id: id,
-        longcode: longcode,
-        payout: payout,
-        spot: spot,
-        spotTime: spotTime,
+        askPrice: askPrice ?? this.askPrice,
+        dateStart: dateStart ?? this.dateStart,
+        displayValue: displayValue ?? this.displayValue,
+        id: id ?? this.id,
+        longcode: longcode ?? this.longcode,
+        payout: payout ?? this.payout,
+        spot: spot ?? this.spot,
+        spotTime: spotTime ?? this.spotTime,
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
         dateExpiry: dateExpiry ?? this.dateExpiry,
@@ -767,10 +767,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

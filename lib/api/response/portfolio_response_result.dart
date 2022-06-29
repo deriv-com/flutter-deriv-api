@@ -124,10 +124,10 @@ class Portfolio extends PortfolioModel {
 
   /// Creates a copy of instance with given parameters.
   Portfolio copyWith({
-    required List<ContractsItem> contracts,
+    List<ContractsItem>? contracts,
   }) =>
       Portfolio(
-        contracts: contracts,
+        contracts: contracts ?? this.contracts,
       );
 
   /// Override equatable class.

@@ -164,6 +164,7 @@ abstract class TradingPlatformNewAccountModel extends Equatable {
     this.balance,
     this.currency,
     this.displayBalance,
+    this.enabled,
     this.landingCompanyShort,
     this.login,
     this.marketType,
@@ -185,6 +186,9 @@ abstract class TradingPlatformNewAccountModel extends Equatable {
 
   /// Account balance, formatted to appropriate decimal places.
   final String? displayBalance;
+
+  /// Account enabled status
+  final int? enabled;
 
   /// Landing company shortcode of the Trading account.
   final LandingCompanyShortEnum? landingCompanyShort;
@@ -211,6 +215,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
     double? balance,
     String? currency,
     String? displayBalance,
+    int? enabled,
     LandingCompanyShortEnum? landingCompanyShort,
     String? login,
     MarketTypeEnum? marketType,
@@ -222,6 +227,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
           balance: balance,
           currency: currency,
           displayBalance: displayBalance,
+          enabled: enabled,
           landingCompanyShort: landingCompanyShort,
           login: login,
           marketType: marketType,
@@ -239,6 +245,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
         balance: getDouble(json['balance']),
         currency: json['currency'],
         displayBalance: json['display_balance'],
+        enabled: json['enabled'],
         landingCompanyShort: json['landing_company_short'] == null
             ? null
             : landingCompanyShortEnumMapper[json['landing_company_short']],
@@ -266,6 +273,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['display_balance'] = displayBalance;
+    resultMap['enabled'] = enabled;
     resultMap['landing_company_short'] = landingCompanyShortEnumMapper.entries
         .firstWhere((MapEntry<String, LandingCompanyShortEnum> entry) =>
             entry.value == landingCompanyShort)
@@ -294,6 +302,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
     double? balance,
     String? currency,
     String? displayBalance,
+    int? enabled,
     LandingCompanyShortEnum? landingCompanyShort,
     String? login,
     MarketTypeEnum? marketType,
@@ -306,6 +315,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         displayBalance: displayBalance ?? this.displayBalance,
+        enabled: enabled ?? this.enabled,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         login: login ?? this.login,
         marketType: marketType ?? this.marketType,

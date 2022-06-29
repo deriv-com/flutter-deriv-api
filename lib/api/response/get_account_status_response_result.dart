@@ -164,6 +164,8 @@ final Map<String, OwnershipStatusEnum> ownershipStatusEnumMapper =
     <String, OwnershipStatusEnum>{
   "none": OwnershipStatusEnum.none,
   "pending": OwnershipStatusEnum.pending,
+  "rejected": OwnershipStatusEnum.rejected,
+  "verified": OwnershipStatusEnum.verified,
 };
 
 /// Status Enum.
@@ -173,6 +175,12 @@ enum OwnershipStatusEnum {
 
   /// pending.
   pending,
+
+  /// rejected.
+  rejected,
+
+  /// verified.
+  verified,
 }
 
 /// SocialIdentityProviderEnum mapper.
@@ -231,6 +239,7 @@ abstract class GetAccountStatusModel extends Equatable {
   /// - `needs_affiliate_coc_approval`: user must approve the Affiliate's Code of Conduct Agreement.
   /// - `no_trading`: trading is disabled.
   /// - `no_withdrawal_or_trading`: client cannot trade or withdraw but can deposit.
+  /// - `p2p_blocked_for_pa`: p2p is blocked for the current payment agent client.
   /// - `pa_withdrawal_explicitly_allowed`: withdrawal through payment agent is allowed.
   /// - `password_reset_required`: this client must reset their password.
   /// - `professional`: this client has opted for a professional account.
@@ -372,20 +381,21 @@ class GetAccountStatus extends GetAccountStatusModel {
 
   /// Creates a copy of instance with given parameters.
   GetAccountStatus copyWith({
-    required Map<String, CurrencyConfigProperty> currencyConfig,
-    required bool promptClientToAuthenticate,
-    required String riskClassification,
-    required List<String> status,
+    Map<String, CurrencyConfigProperty>? currencyConfig,
+    bool? promptClientToAuthenticate,
+    String? riskClassification,
+    List<String>? status,
     Authentication? authentication,
     List<String>? cashierMissingFields,
     List<String>? cashierValidation,
     SocialIdentityProviderEnum? socialIdentityProvider,
   }) =>
       GetAccountStatus(
-        currencyConfig: currencyConfig,
-        promptClientToAuthenticate: promptClientToAuthenticate,
-        riskClassification: riskClassification,
-        status: status,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        promptClientToAuthenticate:
+            promptClientToAuthenticate ?? this.promptClientToAuthenticate,
+        riskClassification: riskClassification ?? this.riskClassification,
+        status: status ?? this.status,
         authentication: authentication ?? this.authentication,
         cashierMissingFields: cashierMissingFields ?? this.cashierMissingFields,
         cashierValidation: cashierValidation ?? this.cashierValidation,
@@ -548,14 +558,14 @@ class Authentication extends AuthenticationModel {
 
   /// Creates a copy of instance with given parameters.
   Authentication copyWith({
-    required List<String> needsVerification,
+    List<String>? needsVerification,
     Attempts? attempts,
     Document? document,
     Identity? identity,
     Ownership? ownership,
   }) =>
       Authentication(
-        needsVerification: needsVerification,
+        needsVerification: needsVerification ?? this.needsVerification,
         attempts: attempts ?? this.attempts,
         document: document ?? this.document,
         identity: identity ?? this.identity,

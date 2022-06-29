@@ -166,12 +166,12 @@ class CashierObject extends CashierObjectModel {
 
   /// Creates a copy of instance with given parameters.
   CashierObject copyWith({
-    required ActionEnum action,
+    ActionEnum? action,
     Deposit? deposit,
     Map<String, dynamic>? withdraw,
   }) =>
       CashierObject(
-        action: action,
+        action: action ?? this.action,
         deposit: deposit ?? this.deposit,
         withdraw: withdraw ?? this.withdraw,
       );
@@ -216,10 +216,10 @@ class Deposit extends DepositModel {
 
   /// Creates a copy of instance with given parameters.
   Deposit copyWith({
-    required String address,
+    String? address,
   }) =>
       Deposit(
-        address: address,
+        address: address ?? this.address,
       );
 
   /// Override equatable class.

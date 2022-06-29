@@ -146,12 +146,12 @@ class CopytradingList extends CopytradingListModel {
 
   /// Creates a copy of instance with given parameters.
   CopytradingList copyWith({
-    required List<CopiersItem> copiers,
-    required List<TradersItem> traders,
+    List<CopiersItem>? copiers,
+    List<TradersItem>? traders,
   }) =>
       CopytradingList(
-        copiers: copiers,
-        traders: traders,
+        copiers: copiers ?? this.copiers,
+        traders: traders ?? this.traders,
       );
 
   /// Override equatable class.
@@ -194,10 +194,10 @@ class CopiersItem extends CopiersItemModel {
 
   /// Creates a copy of instance with given parameters.
   CopiersItem copyWith({
-    required String loginid,
+    String? loginid,
   }) =>
       CopiersItem(
-        loginid: loginid,
+        loginid: loginid ?? this.loginid,
       );
 
   /// Override equatable class.

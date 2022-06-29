@@ -597,33 +597,33 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertCreate copyWith({
-    required String accountCurrency,
-    required int activeOrders,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required CounterpartyTypeEnum counterpartyType,
-    required String country,
-    required DateTime createdTime,
-    required String description,
-    required String id,
-    required bool isActive,
-    required bool isVisible,
-    required String localCurrency,
-    required double maxOrderAmount,
-    required String maxOrderAmountDisplay,
-    required double maxOrderAmountLimit,
-    required String maxOrderAmountLimitDisplay,
-    required double minOrderAmount,
-    required String minOrderAmountDisplay,
-    required double minOrderAmountLimit,
-    required String minOrderAmountLimitDisplay,
-    required double rate,
-    required String rateDisplay,
-    required RateTypeEnum rateType,
-    required double remainingAmount,
-    required String remainingAmountDisplay,
-    required P2pAdvertCreateTypeEnum type,
+    String? accountCurrency,
+    int? activeOrders,
+    AdvertiserDetails? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    CounterpartyTypeEnum? counterpartyType,
+    String? country,
+    DateTime? createdTime,
+    String? description,
+    String? id,
+    bool? isActive,
+    bool? isVisible,
+    String? localCurrency,
+    double? maxOrderAmount,
+    String? maxOrderAmountDisplay,
+    double? maxOrderAmountLimit,
+    String? maxOrderAmountLimitDisplay,
+    double? minOrderAmount,
+    String? minOrderAmountDisplay,
+    double? minOrderAmountLimit,
+    String? minOrderAmountLimitDisplay,
+    double? rate,
+    String? rateDisplay,
+    RateTypeEnum? rateType,
+    double? remainingAmount,
+    String? remainingAmountDisplay,
+    P2pAdvertCreateTypeEnum? type,
     String? contactInfo,
     double? effectiveRate,
     String? effectiveRateDisplay,
@@ -636,33 +636,38 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       P2pAdvertCreate(
-        accountCurrency: accountCurrency,
-        activeOrders: activeOrders,
-        advertiserDetails: advertiserDetails,
-        amount: amount,
-        amountDisplay: amountDisplay,
-        counterpartyType: counterpartyType,
-        country: country,
-        createdTime: createdTime,
-        description: description,
-        id: id,
-        isActive: isActive,
-        isVisible: isVisible,
-        localCurrency: localCurrency,
-        maxOrderAmount: maxOrderAmount,
-        maxOrderAmountDisplay: maxOrderAmountDisplay,
-        maxOrderAmountLimit: maxOrderAmountLimit,
-        maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
-        minOrderAmount: minOrderAmount,
-        minOrderAmountDisplay: minOrderAmountDisplay,
-        minOrderAmountLimit: minOrderAmountLimit,
-        minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-        rate: rate,
-        rateDisplay: rateDisplay,
-        rateType: rateType,
-        remainingAmount: remainingAmount,
-        remainingAmountDisplay: remainingAmountDisplay,
-        type: type,
+        accountCurrency: accountCurrency ?? this.accountCurrency,
+        activeOrders: activeOrders ?? this.activeOrders,
+        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
+        amount: amount ?? this.amount,
+        amountDisplay: amountDisplay ?? this.amountDisplay,
+        counterpartyType: counterpartyType ?? this.counterpartyType,
+        country: country ?? this.country,
+        createdTime: createdTime ?? this.createdTime,
+        description: description ?? this.description,
+        id: id ?? this.id,
+        isActive: isActive ?? this.isActive,
+        isVisible: isVisible ?? this.isVisible,
+        localCurrency: localCurrency ?? this.localCurrency,
+        maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
+        maxOrderAmountDisplay:
+            maxOrderAmountDisplay ?? this.maxOrderAmountDisplay,
+        maxOrderAmountLimit: maxOrderAmountLimit ?? this.maxOrderAmountLimit,
+        maxOrderAmountLimitDisplay:
+            maxOrderAmountLimitDisplay ?? this.maxOrderAmountLimitDisplay,
+        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+        minOrderAmountDisplay:
+            minOrderAmountDisplay ?? this.minOrderAmountDisplay,
+        minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
+        minOrderAmountLimitDisplay:
+            minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
+        rate: rate ?? this.rate,
+        rateDisplay: rateDisplay ?? this.rateDisplay,
+        rateType: rateType ?? this.rateType,
+        remainingAmount: remainingAmount ?? this.remainingAmount,
+        remainingAmountDisplay:
+            remainingAmountDisplay ?? this.remainingAmountDisplay,
+        type: type ?? this.type,
         contactInfo: contactInfo ?? this.contactInfo,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
@@ -683,13 +688,20 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
 abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
+    required this.ratingCount,
     required this.name,
     required this.id,
     required this.completedOrdersCount,
     this.firstName,
     this.lastName,
+    this.ratingAverage,
+    this.recommendedAverage,
+    this.recommendedCount,
     this.totalCompletionRate,
   });
+
+  /// Number of ratings given to the advertiser.
+  final int ratingCount;
 
   /// The advertiser's displayed name.
   final String name;
@@ -706,6 +718,15 @@ abstract class AdvertiserDetailsModel extends Equatable {
   /// The advertiser's last name.
   final String? lastName;
 
+  /// Average rating of the advertiser, range is 1-5.
+  final double? ratingAverage;
+
+  /// Percentage of users who have recommended the advertiser.
+  final double? recommendedAverage;
+
+  /// Number of times the advertiser has been recommended.
+  final int? recommendedCount;
+
   /// The percentage of successfully completed orders made by or placed against the advertiser within the past 30 days.
   final double? totalCompletionRate;
 }
@@ -717,15 +738,23 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required int completedOrdersCount,
     required String id,
     required String name,
+    required int ratingCount,
     String? firstName,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    int? recommendedCount,
     double? totalCompletionRate,
   }) : super(
           completedOrdersCount: completedOrdersCount,
           id: id,
           name: name,
+          ratingCount: ratingCount,
           firstName: firstName,
           lastName: lastName,
+          ratingAverage: ratingAverage,
+          recommendedAverage: recommendedAverage,
+          recommendedCount: recommendedCount,
           totalCompletionRate: totalCompletionRate,
         );
 
@@ -735,8 +764,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         name: json['name'],
+        ratingCount: json['rating_count'],
         firstName: json['first_name'],
         lastName: json['last_name'],
+        ratingAverage: getDouble(json['rating_average']),
+        recommendedAverage: getDouble(json['recommended_average']),
+        recommendedCount: json['recommended_count'],
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
@@ -747,8 +780,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['name'] = name;
+    resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
     resultMap['last_name'] = lastName;
+    resultMap['rating_average'] = ratingAverage;
+    resultMap['recommended_average'] = recommendedAverage;
+    resultMap['recommended_count'] = recommendedCount;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
     return resultMap;
@@ -756,19 +793,27 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
-    required int completedOrdersCount,
-    required String id,
-    required String name,
+    int? completedOrdersCount,
+    String? id,
+    String? name,
+    int? ratingCount,
     String? firstName,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    int? recommendedCount,
     double? totalCompletionRate,
   }) =>
       AdvertiserDetails(
-        completedOrdersCount: completedOrdersCount,
-        id: id,
-        name: name,
+        completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
+        id: id ?? this.id,
+        name: name ?? this.name,
+        ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        ratingAverage: ratingAverage ?? this.ratingAverage,
+        recommendedAverage: recommendedAverage ?? this.recommendedAverage,
+        recommendedCount: recommendedCount ?? this.recommendedCount,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 
@@ -854,17 +899,17 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentMethodDetailsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required PaymentMethodDetailsPropertyTypeEnum type,
+    Map<String, FieldsProperty>? fields,
+    bool? isEnabled,
+    String? method,
+    PaymentMethodDetailsPropertyTypeEnum? type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        type: type,
+        fields: fields ?? this.fields,
+        isEnabled: isEnabled ?? this.isEnabled,
+        method: method ?? this.method,
+        type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
 
@@ -934,16 +979,16 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
+    String? displayName,
+    int? required,
+    TypeEnum? type,
+    String? value,
   }) =>
       FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
+        displayName: displayName ?? this.displayName,
+        required: required ?? this.required,
+        type: type ?? this.type,
+        value: value ?? this.value,
       );
 
   /// Override equatable class.

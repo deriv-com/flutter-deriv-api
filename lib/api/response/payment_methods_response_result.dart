@@ -252,34 +252,34 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentMethodsItem copyWith({
-    required Map<String, DepositLimitsProperty> depositLimits,
-    required String depositTime,
-    required String description,
-    required String displayName,
-    required String id,
-    required String paymentProcessor,
-    required List<int> predefinedAmounts,
-    required String signupLink,
-    required List<String> supportedCurrencies,
-    required String type,
-    required String typeDisplayName,
-    required Map<String, WithdrawLimitsProperty> withdrawLimits,
-    required String withdrawalTime,
+    Map<String, DepositLimitsProperty>? depositLimits,
+    String? depositTime,
+    String? description,
+    String? displayName,
+    String? id,
+    String? paymentProcessor,
+    List<int>? predefinedAmounts,
+    String? signupLink,
+    List<String>? supportedCurrencies,
+    String? type,
+    String? typeDisplayName,
+    Map<String, WithdrawLimitsProperty>? withdrawLimits,
+    String? withdrawalTime,
   }) =>
       PaymentMethodsItem(
-        depositLimits: depositLimits,
-        depositTime: depositTime,
-        description: description,
-        displayName: displayName,
-        id: id,
-        paymentProcessor: paymentProcessor,
-        predefinedAmounts: predefinedAmounts,
-        signupLink: signupLink,
-        supportedCurrencies: supportedCurrencies,
-        type: type,
-        typeDisplayName: typeDisplayName,
-        withdrawLimits: withdrawLimits,
-        withdrawalTime: withdrawalTime,
+        depositLimits: depositLimits ?? this.depositLimits,
+        depositTime: depositTime ?? this.depositTime,
+        description: description ?? this.description,
+        displayName: displayName ?? this.displayName,
+        id: id ?? this.id,
+        paymentProcessor: paymentProcessor ?? this.paymentProcessor,
+        predefinedAmounts: predefinedAmounts ?? this.predefinedAmounts,
+        signupLink: signupLink ?? this.signupLink,
+        supportedCurrencies: supportedCurrencies ?? this.supportedCurrencies,
+        type: type ?? this.type,
+        typeDisplayName: typeDisplayName ?? this.typeDisplayName,
+        withdrawLimits: withdrawLimits ?? this.withdrawLimits,
+        withdrawalTime: withdrawalTime ?? this.withdrawalTime,
       );
 
   /// Override equatable class.
@@ -331,12 +331,12 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   DepositLimitsProperty copyWith({
-    required int max,
-    required int min,
+    int? max,
+    int? min,
   }) =>
       DepositLimitsProperty(
-        max: max,
-        min: min,
+        max: max ?? this.max,
+        min: min ?? this.min,
       );
 
   /// Override equatable class.
@@ -388,12 +388,12 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   WithdrawLimitsProperty copyWith({
-    required int max,
-    required int min,
+    int? max,
+    int? min,
   }) =>
       WithdrawLimitsProperty(
-        max: max,
-        min: min,
+        max: max ?? this.max,
+        min: min ?? this.min,
       );
 
   /// Override equatable class.

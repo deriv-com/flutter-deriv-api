@@ -185,17 +185,17 @@ class P2pAdvertiserPaymentMethodsProperty
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserPaymentMethodsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required P2pAdvertiserPaymentMethodsPropertyTypeEnum type,
+    Map<String, FieldsProperty>? fields,
+    bool? isEnabled,
+    String? method,
+    P2pAdvertiserPaymentMethodsPropertyTypeEnum? type,
     String? displayName,
   }) =>
       P2pAdvertiserPaymentMethodsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        type: type,
+        fields: fields ?? this.fields,
+        isEnabled: isEnabled ?? this.isEnabled,
+        method: method ?? this.method,
+        type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
 
@@ -265,16 +265,16 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
+    String? displayName,
+    int? required,
+    TypeEnum? type,
+    String? value,
   }) =>
       FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
+        displayName: displayName ?? this.displayName,
+        required: required ?? this.required,
+        type: type ?? this.type,
+        value: value ?? this.value,
       );
 
   /// Override equatable class.

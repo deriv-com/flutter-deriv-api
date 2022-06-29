@@ -787,15 +787,23 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
 abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
+    required this.ratingCount,
     required this.name,
     required this.id,
     required this.completedOrdersCount,
     this.firstName,
     this.isBlocked,
     this.isFavourite,
+    this.isRecommended,
     this.lastName,
+    this.ratingAverage,
+    this.recommendedAverage,
+    this.recommendedCount,
     this.totalCompletionRate,
   });
+
+  /// Number of ratings given to the advertiser.
+  final int ratingCount;
 
   /// The advertiser's displayed name.
   final String name;
@@ -810,13 +818,25 @@ abstract class AdvertiserDetailsModel extends Equatable {
   final String? firstName;
 
   /// Indicates that the advertiser is blocked by the current user.
-  final int? isBlocked;
+  final bool? isBlocked;
 
   /// Indicates that the advertiser is a favourite of the current user.
-  final int? isFavourite;
+  final bool? isFavourite;
+
+  /// Indicates that the advertiser was recommended in the most recent review by the current user.
+  final int? isRecommended;
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Average rating of the advertiser, range is 1-5.
+  final double? ratingAverage;
+
+  /// Percentage of users who have recommended the advertiser.
+  final double? recommendedAverage;
+
+  /// Number of times the advertiser has been recommended.
+  final int? recommendedCount;
 
   /// The percentage of successfully completed orders made by or placed against the advertiser within the past 30 days.
   final double? totalCompletionRate;
@@ -829,19 +849,29 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required int completedOrdersCount,
     required String id,
     required String name,
+    required int ratingCount,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
+    bool? isBlocked,
+    bool? isFavourite,
+    int? isRecommended,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    int? recommendedCount,
     double? totalCompletionRate,
   }) : super(
           completedOrdersCount: completedOrdersCount,
           id: id,
           name: name,
+          ratingCount: ratingCount,
           firstName: firstName,
           isBlocked: isBlocked,
           isFavourite: isFavourite,
+          isRecommended: isRecommended,
           lastName: lastName,
+          ratingAverage: ratingAverage,
+          recommendedAverage: recommendedAverage,
+          recommendedCount: recommendedCount,
           totalCompletionRate: totalCompletionRate,
         );
 
@@ -851,10 +881,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         name: json['name'],
+        ratingCount: json['rating_count'],
         firstName: json['first_name'],
-        isBlocked: json['is_blocked'],
-        isFavourite: json['is_favourite'],
+        isBlocked: getBool(json['is_blocked']),
+        isFavourite: getBool(json['is_favourite']),
+        isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        ratingAverage: getDouble(json['rating_average']),
+        recommendedAverage: getDouble(json['recommended_average']),
+        recommendedCount: json['recommended_count'],
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
@@ -865,10 +900,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['name'] = name;
+    resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
     resultMap['is_blocked'] = isBlocked;
     resultMap['is_favourite'] = isFavourite;
+    resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['rating_average'] = ratingAverage;
+    resultMap['recommended_average'] = recommendedAverage;
+    resultMap['recommended_count'] = recommendedCount;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
     return resultMap;
@@ -876,23 +916,33 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
-    required int completedOrdersCount,
-    required String id,
-    required String name,
+    int? completedOrdersCount,
+    String? id,
+    String? name,
+    int? ratingCount,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
+    bool? isBlocked,
+    bool? isFavourite,
+    int? isRecommended,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    int? recommendedCount,
     double? totalCompletionRate,
   }) =>
       AdvertiserDetails(
-        completedOrdersCount: completedOrdersCount,
-        id: id,
-        name: name,
+        completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
+        id: id ?? this.id,
+        name: name ?? this.name,
+        ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
         isBlocked: isBlocked ?? this.isBlocked,
         isFavourite: isFavourite ?? this.isFavourite,
+        isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        ratingAverage: ratingAverage ?? this.ratingAverage,
+        recommendedAverage: recommendedAverage ?? this.recommendedAverage,
+        recommendedCount: recommendedCount ?? this.recommendedCount,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 
@@ -978,17 +1028,17 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentMethodDetailsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required PaymentMethodDetailsPropertyTypeEnum type,
+    Map<String, FieldsProperty>? fields,
+    bool? isEnabled,
+    String? method,
+    PaymentMethodDetailsPropertyTypeEnum? type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        type: type,
+        fields: fields ?? this.fields,
+        isEnabled: isEnabled ?? this.isEnabled,
+        method: method ?? this.method,
+        type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
 
@@ -1058,16 +1108,16 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
+    String? displayName,
+    int? required,
+    TypeEnum? type,
+    String? value,
   }) =>
       FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
+        displayName: displayName ?? this.displayName,
+        required: required ?? this.required,
+        type: type ?? this.type,
+        value: value ?? this.value,
       );
 
   /// Override equatable class.
@@ -1110,10 +1160,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

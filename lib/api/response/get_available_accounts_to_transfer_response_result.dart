@@ -151,10 +151,10 @@ class GetAvailableAccountsToTransfer
 
   /// Creates a copy of instance with given parameters.
   GetAvailableAccountsToTransfer copyWith({
-    required List<AccountListItem> accountList,
+    List<AccountListItem>? accountList,
   }) =>
       GetAvailableAccountsToTransfer(
-        accountList: accountList,
+        accountList: accountList ?? this.accountList,
       );
 
   /// Override equatable class.
@@ -227,16 +227,16 @@ class AccountListItem extends AccountListItemModel {
 
   /// Creates a copy of instance with given parameters.
   AccountListItem copyWith({
-    required AccountTypeEnum accountType,
-    required String currency,
-    required String loginid,
-    required TypeEnum type,
+    AccountTypeEnum? accountType,
+    String? currency,
+    String? loginid,
+    TypeEnum? type,
   }) =>
       AccountListItem(
-        accountType: accountType,
-        currency: currency,
-        loginid: loginid,
-        type: type,
+        accountType: accountType ?? this.accountType,
+        currency: currency ?? this.currency,
+        loginid: loginid ?? this.loginid,
+        type: type ?? this.type,
       );
 
   /// Override equatable class.

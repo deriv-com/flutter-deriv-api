@@ -196,6 +196,7 @@ abstract class P2pOrderCreateModel extends Equatable {
     required this.price,
     required this.paymentInfo,
     required this.localCurrency,
+    required this.isReviewable,
     required this.isIncoming,
     required this.id,
     required this.expiryTime,
@@ -236,6 +237,9 @@ abstract class P2pOrderCreateModel extends Equatable {
 
   /// Local currency for this order.
   final String localCurrency;
+
+  /// `true` if a review can be given, otherwise `false`.
+  final bool isReviewable;
 
   /// `true` if the order is created for the advert of the current client, otherwise `false`.
   final bool isIncoming;
@@ -300,6 +304,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     required DateTime expiryTime,
     required String id,
     required bool isIncoming,
+    required bool isReviewable,
     required String localCurrency,
     required String paymentInfo,
     required double price,
@@ -324,6 +329,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
           expiryTime: expiryTime,
           id: id,
           isIncoming: isIncoming,
+          isReviewable: isReviewable,
           localCurrency: localCurrency,
           paymentInfo: paymentInfo,
           price: price,
@@ -352,6 +358,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         expiryTime: getDateTime(json['expiry_time'])!,
         id: json['id'],
         isIncoming: getBool(json['is_incoming'])!,
+        isReviewable: getBool(json['is_reviewable'])!,
         localCurrency: json['local_currency'],
         paymentInfo: json['payment_info'],
         price: getDouble(json['price'])!,
@@ -395,6 +402,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     resultMap['expiry_time'] = getSecondsSinceEpochDateTime(expiryTime);
     resultMap['id'] = id;
     resultMap['is_incoming'] = isIncoming;
+    resultMap['is_reviewable'] = isReviewable;
     resultMap['local_currency'] = localCurrency;
     resultMap['payment_info'] = paymentInfo;
     resultMap['price'] = price;
@@ -416,52 +424,54 @@ class P2pOrderCreate extends P2pOrderCreateModel {
 
   /// Creates a copy of instance with given parameters.
   P2pOrderCreate copyWith({
-    required String accountCurrency,
-    required AdvertDetails advertDetails,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String chatChannelUrl,
-    required ClientDetails clientDetails,
-    required String contactInfo,
-    required DateTime createdTime,
-    required DisputeDetails disputeDetails,
-    required DateTime expiryTime,
-    required String id,
-    required bool isIncoming,
-    required String localCurrency,
-    required String paymentInfo,
-    required double price,
-    required String priceDisplay,
-    required double rate,
-    required String rateDisplay,
-    required StatusEnum status,
-    required TypeEnum type,
+    String? accountCurrency,
+    AdvertDetails? advertDetails,
+    AdvertiserDetails? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? chatChannelUrl,
+    ClientDetails? clientDetails,
+    String? contactInfo,
+    DateTime? createdTime,
+    DisputeDetails? disputeDetails,
+    DateTime? expiryTime,
+    String? id,
+    bool? isIncoming,
+    bool? isReviewable,
+    String? localCurrency,
+    String? paymentInfo,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    StatusEnum? status,
+    TypeEnum? type,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) =>
       P2pOrderCreate(
-        accountCurrency: accountCurrency,
-        advertDetails: advertDetails,
-        advertiserDetails: advertiserDetails,
-        amount: amount,
-        amountDisplay: amountDisplay,
-        chatChannelUrl: chatChannelUrl,
-        clientDetails: clientDetails,
-        contactInfo: contactInfo,
-        createdTime: createdTime,
-        disputeDetails: disputeDetails,
-        expiryTime: expiryTime,
-        id: id,
-        isIncoming: isIncoming,
-        localCurrency: localCurrency,
-        paymentInfo: paymentInfo,
-        price: price,
-        priceDisplay: priceDisplay,
-        rate: rate,
-        rateDisplay: rateDisplay,
-        status: status,
-        type: type,
+        accountCurrency: accountCurrency ?? this.accountCurrency,
+        advertDetails: advertDetails ?? this.advertDetails,
+        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
+        amount: amount ?? this.amount,
+        amountDisplay: amountDisplay ?? this.amountDisplay,
+        chatChannelUrl: chatChannelUrl ?? this.chatChannelUrl,
+        clientDetails: clientDetails ?? this.clientDetails,
+        contactInfo: contactInfo ?? this.contactInfo,
+        createdTime: createdTime ?? this.createdTime,
+        disputeDetails: disputeDetails ?? this.disputeDetails,
+        expiryTime: expiryTime ?? this.expiryTime,
+        id: id ?? this.id,
+        isIncoming: isIncoming ?? this.isIncoming,
+        isReviewable: isReviewable ?? this.isReviewable,
+        localCurrency: localCurrency ?? this.localCurrency,
+        paymentInfo: paymentInfo ?? this.paymentInfo,
+        price: price ?? this.price,
+        priceDisplay: priceDisplay ?? this.priceDisplay,
+        rate: rate ?? this.rate,
+        rateDisplay: rateDisplay ?? this.rateDisplay,
+        status: status ?? this.status,
+        type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
       );
@@ -532,15 +542,15 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
-    required String description,
-    required String id,
-    required TypeEnum type,
+    String? description,
+    String? id,
+    TypeEnum? type,
     String? paymentMethod,
   }) =>
       AdvertDetails(
-        description: description,
-        id: id,
-        type: type,
+        description: description ?? this.description,
+        id: id ?? this.id,
+        type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 
@@ -617,16 +627,16 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
-    required String id,
-    required String loginid,
-    required String name,
+    String? id,
+    String? loginid,
+    String? name,
     String? firstName,
     String? lastName,
   }) =>
       AdvertiserDetails(
-        id: id,
-        loginid: loginid,
-        name: name,
+        id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
+        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
@@ -703,16 +713,16 @@ class ClientDetails extends ClientDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   ClientDetails copyWith({
-    required String id,
-    required String loginid,
-    required String name,
+    String? id,
+    String? loginid,
+    String? name,
     String? firstName,
     String? lastName,
   }) =>
       ClientDetails(
-        id: id,
-        loginid: loginid,
-        name: name,
+        id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
+        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
@@ -855,17 +865,17 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentMethodDetailsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required PaymentMethodDetailsPropertyTypeEnum type,
+    Map<String, FieldsProperty>? fields,
+    bool? isEnabled,
+    String? method,
+    PaymentMethodDetailsPropertyTypeEnum? type,
     String? displayName,
   }) =>
       PaymentMethodDetailsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        type: type,
+        fields: fields ?? this.fields,
+        isEnabled: isEnabled ?? this.isEnabled,
+        method: method ?? this.method,
+        type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
 
@@ -936,16 +946,16 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required FieldsPropertyTypeEnum type,
-    required String value,
+    String? displayName,
+    int? required,
+    FieldsPropertyTypeEnum? type,
+    String? value,
   }) =>
       FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
+        displayName: displayName ?? this.displayName,
+        required: required ?? this.required,
+        type: type ?? this.type,
+        value: value ?? this.value,
       );
 
   /// Override equatable class.
@@ -988,10 +998,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

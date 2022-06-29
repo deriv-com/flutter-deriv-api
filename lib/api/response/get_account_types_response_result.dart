@@ -161,12 +161,12 @@ class GetAccountTypes extends GetAccountTypesModel {
 
   /// Creates a copy of instance with given parameters.
   GetAccountTypes copyWith({
-    required Trading trading,
-    required Wallet wallet,
+    Trading? trading,
+    Wallet? wallet,
   }) =>
       GetAccountTypes(
-        trading: trading,
-        wallet: wallet,
+        trading: trading ?? this.trading,
+        wallet: wallet ?? this.wallet,
       );
 
   /// Override equatable class.
@@ -227,14 +227,14 @@ class Trading extends TradingModel {
 
   /// Creates a copy of instance with given parameters.
   Trading copyWith({
-    required Deriv deriv,
-    required Derivx derivx,
-    required Mt5 mt5,
+    Deriv? deriv,
+    Derivx? derivx,
+    Mt5? mt5,
   }) =>
       Trading(
-        deriv: deriv,
-        derivx: derivx,
-        mt5: mt5,
+        deriv: deriv ?? this.deriv,
+        derivx: derivx ?? this.derivx,
+        mt5: mt5 ?? this.mt5,
       );
 
   /// Override equatable class.
@@ -334,16 +334,18 @@ class Deriv extends DerivModel {
 
   /// Creates a copy of instance with given parameters.
   Deriv copyWith({
-    required List<dynamic> currenciesAvailable,
-    required bool linkableToDifferentCurrency,
-    required List<dynamic> linkableWalletCurrencies,
-    required List<LinkableWalletTypesItemEnum> linkableWalletTypes,
+    List<dynamic>? currenciesAvailable,
+    bool? linkableToDifferentCurrency,
+    List<dynamic>? linkableWalletCurrencies,
+    List<LinkableWalletTypesItemEnum>? linkableWalletTypes,
   }) =>
       Deriv(
-        currenciesAvailable: currenciesAvailable,
-        linkableToDifferentCurrency: linkableToDifferentCurrency,
-        linkableWalletCurrencies: linkableWalletCurrencies,
-        linkableWalletTypes: linkableWalletTypes,
+        currenciesAvailable: currenciesAvailable ?? this.currenciesAvailable,
+        linkableToDifferentCurrency:
+            linkableToDifferentCurrency ?? this.linkableToDifferentCurrency,
+        linkableWalletCurrencies:
+            linkableWalletCurrencies ?? this.linkableWalletCurrencies,
+        linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
 
   /// Override equatable class.
@@ -445,16 +447,18 @@ class Derivx extends DerivxModel {
 
   /// Creates a copy of instance with given parameters.
   Derivx copyWith({
-    required List<dynamic> currenciesAvailable,
-    required bool linkableToDifferentCurrency,
-    required List<dynamic> linkableWalletCurrencies,
-    required List<DerivxLinkableWalletTypesItemEnum> linkableWalletTypes,
+    List<dynamic>? currenciesAvailable,
+    bool? linkableToDifferentCurrency,
+    List<dynamic>? linkableWalletCurrencies,
+    List<DerivxLinkableWalletTypesItemEnum>? linkableWalletTypes,
   }) =>
       Derivx(
-        currenciesAvailable: currenciesAvailable,
-        linkableToDifferentCurrency: linkableToDifferentCurrency,
-        linkableWalletCurrencies: linkableWalletCurrencies,
-        linkableWalletTypes: linkableWalletTypes,
+        currenciesAvailable: currenciesAvailable ?? this.currenciesAvailable,
+        linkableToDifferentCurrency:
+            linkableToDifferentCurrency ?? this.linkableToDifferentCurrency,
+        linkableWalletCurrencies:
+            linkableWalletCurrencies ?? this.linkableWalletCurrencies,
+        linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
 
   /// Override equatable class.
@@ -555,16 +559,18 @@ class Mt5 extends Mt5Model {
 
   /// Creates a copy of instance with given parameters.
   Mt5 copyWith({
-    required List<dynamic> currenciesAvailable,
-    required bool linkableToDifferentCurrency,
-    required List<dynamic> linkableWalletCurrencies,
-    required List<Mt5LinkableWalletTypesItemEnum> linkableWalletTypes,
+    List<dynamic>? currenciesAvailable,
+    bool? linkableToDifferentCurrency,
+    List<dynamic>? linkableWalletCurrencies,
+    List<Mt5LinkableWalletTypesItemEnum>? linkableWalletTypes,
   }) =>
       Mt5(
-        currenciesAvailable: currenciesAvailable,
-        linkableToDifferentCurrency: linkableToDifferentCurrency,
-        linkableWalletCurrencies: linkableWalletCurrencies,
-        linkableWalletTypes: linkableWalletTypes,
+        currenciesAvailable: currenciesAvailable ?? this.currenciesAvailable,
+        linkableToDifferentCurrency:
+            linkableToDifferentCurrency ?? this.linkableToDifferentCurrency,
+        linkableWalletCurrencies:
+            linkableWalletCurrencies ?? this.linkableWalletCurrencies,
+        linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
 
   /// Override equatable class.
@@ -643,18 +649,18 @@ class Wallet extends WalletModel {
 
   /// Creates a copy of instance with given parameters.
   Wallet copyWith({
-    required Crypto crypto,
-    required Fiat fiat,
-    required P2p p2p,
-    required Pa pa,
-    required PaClient paClient,
+    Crypto? crypto,
+    Fiat? fiat,
+    P2p? p2p,
+    Pa? pa,
+    PaClient? paClient,
   }) =>
       Wallet(
-        crypto: crypto,
-        fiat: fiat,
-        p2p: p2p,
-        pa: pa,
-        paClient: paClient,
+        crypto: crypto ?? this.crypto,
+        fiat: fiat ?? this.fiat,
+        p2p: p2p ?? this.p2p,
+        pa: pa ?? this.pa,
+        paClient: paClient ?? this.paClient,
       );
 
   /// Override equatable class.
@@ -705,10 +711,10 @@ class Crypto extends CryptoModel {
 
   /// Creates a copy of instance with given parameters.
   Crypto copyWith({
-    required List<dynamic> currencies,
+    List<dynamic>? currencies,
   }) =>
       Crypto(
-        currencies: currencies,
+        currencies: currencies ?? this.currencies,
       );
 
   /// Override equatable class.
@@ -759,10 +765,10 @@ class Fiat extends FiatModel {
 
   /// Creates a copy of instance with given parameters.
   Fiat copyWith({
-    required List<dynamic> currencies,
+    List<dynamic>? currencies,
   }) =>
       Fiat(
-        currencies: currencies,
+        currencies: currencies ?? this.currencies,
       );
 
   /// Override equatable class.
@@ -813,10 +819,10 @@ class P2p extends P2pModel {
 
   /// Creates a copy of instance with given parameters.
   P2p copyWith({
-    required List<dynamic> currencies,
+    List<dynamic>? currencies,
   }) =>
       P2p(
-        currencies: currencies,
+        currencies: currencies ?? this.currencies,
       );
 
   /// Override equatable class.
@@ -867,10 +873,10 @@ class Pa extends PaModel {
 
   /// Creates a copy of instance with given parameters.
   Pa copyWith({
-    required List<dynamic> currencies,
+    List<dynamic>? currencies,
   }) =>
       Pa(
-        currencies: currencies,
+        currencies: currencies ?? this.currencies,
       );
 
   /// Override equatable class.
@@ -921,10 +927,10 @@ class PaClient extends PaClientModel {
 
   /// Creates a copy of instance with given parameters.
   PaClient copyWith({
-    required List<dynamic> currencies,
+    List<dynamic>? currencies,
   }) =>
       PaClient(
-        currencies: currencies,
+        currencies: currencies ?? this.currencies,
       );
 
   /// Override equatable class.

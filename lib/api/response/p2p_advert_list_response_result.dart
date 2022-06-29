@@ -217,10 +217,10 @@ class P2pAdvertList extends P2pAdvertListModel {
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertList copyWith({
-    required List<ListItem> list,
+    List<ListItem>? list,
   }) =>
       P2pAdvertList(
-        list: list,
+        list: list ?? this.list,
       );
 
   /// Override equatable class.
@@ -602,24 +602,24 @@ class ListItem extends ListItemModel {
 
   /// Creates a copy of instance with given parameters.
   ListItem copyWith({
-    required String accountCurrency,
-    required AdvertiserDetails advertiserDetails,
-    required CounterpartyTypeEnum counterpartyType,
-    required String country,
-    required DateTime createdTime,
-    required String description,
-    required String id,
-    required bool isActive,
-    required bool isVisible,
-    required String localCurrency,
-    required double maxOrderAmountLimit,
-    required String maxOrderAmountLimitDisplay,
-    required double minOrderAmountLimit,
-    required String minOrderAmountLimitDisplay,
-    required double rate,
-    required String rateDisplay,
-    required RateTypeEnum rateType,
-    required TypeEnum type,
+    String? accountCurrency,
+    AdvertiserDetails? advertiserDetails,
+    CounterpartyTypeEnum? counterpartyType,
+    String? country,
+    DateTime? createdTime,
+    String? description,
+    String? id,
+    bool? isActive,
+    bool? isVisible,
+    String? localCurrency,
+    double? maxOrderAmountLimit,
+    String? maxOrderAmountLimitDisplay,
+    double? minOrderAmountLimit,
+    String? minOrderAmountLimitDisplay,
+    double? rate,
+    String? rateDisplay,
+    RateTypeEnum? rateType,
+    TypeEnum? type,
     int? activeOrders,
     double? amount,
     String? amountDisplay,
@@ -641,24 +641,26 @@ class ListItem extends ListItemModel {
     List<VisibilityStatusItemEnum>? visibilityStatus,
   }) =>
       ListItem(
-        accountCurrency: accountCurrency,
-        advertiserDetails: advertiserDetails,
-        counterpartyType: counterpartyType,
-        country: country,
-        createdTime: createdTime,
-        description: description,
-        id: id,
-        isActive: isActive,
-        isVisible: isVisible,
-        localCurrency: localCurrency,
-        maxOrderAmountLimit: maxOrderAmountLimit,
-        maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
-        minOrderAmountLimit: minOrderAmountLimit,
-        minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-        rate: rate,
-        rateDisplay: rateDisplay,
-        rateType: rateType,
-        type: type,
+        accountCurrency: accountCurrency ?? this.accountCurrency,
+        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
+        counterpartyType: counterpartyType ?? this.counterpartyType,
+        country: country ?? this.country,
+        createdTime: createdTime ?? this.createdTime,
+        description: description ?? this.description,
+        id: id ?? this.id,
+        isActive: isActive ?? this.isActive,
+        isVisible: isVisible ?? this.isVisible,
+        localCurrency: localCurrency ?? this.localCurrency,
+        maxOrderAmountLimit: maxOrderAmountLimit ?? this.maxOrderAmountLimit,
+        maxOrderAmountLimitDisplay:
+            maxOrderAmountLimitDisplay ?? this.maxOrderAmountLimitDisplay,
+        minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
+        minOrderAmountLimitDisplay:
+            minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
+        rate: rate ?? this.rate,
+        rateDisplay: rateDisplay ?? this.rateDisplay,
+        rateType: rateType ?? this.rateType,
+        type: type ?? this.type,
         activeOrders: activeOrders ?? this.activeOrders,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
@@ -691,14 +693,23 @@ class ListItem extends ListItemModel {
 abstract class AdvertiserDetailsModel extends Equatable {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
+    required this.ratingCount,
     required this.name,
     required this.id,
     required this.completedOrdersCount,
     this.firstName,
+    this.isBlocked,
     this.isFavourite,
+    this.isRecommended,
     this.lastName,
+    this.ratingAverage,
+    this.recommendedAverage,
+    this.recommendedCount,
     this.totalCompletionRate,
   });
+
+  /// Number of ratings given to the advertiser.
+  final int ratingCount;
 
   /// The advertiser's displayed name.
   final String name;
@@ -712,11 +723,26 @@ abstract class AdvertiserDetailsModel extends Equatable {
   /// The advertiser's first name.
   final String? firstName;
 
+  /// Indicates that the advertiser is blocked by the current user.
+  final int? isBlocked;
+
   /// Indicates that the advertiser is a favourite.
-  final int? isFavourite;
+  final bool? isFavourite;
+
+  /// Indicates that the advertiser was recommended in the most recent review by the current user.
+  final int? isRecommended;
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Average rating of the advertiser, range is 1-5.
+  final double? ratingAverage;
+
+  /// Percentage of users who have recommended the advertiser.
+  final double? recommendedAverage;
+
+  /// Number of times the advertiser has been recommended.
+  final double? recommendedCount;
 
   /// The percentage of successfully completed orders made by or placed against the advertiser within the past 30 days.
   final double? totalCompletionRate;
@@ -729,17 +755,29 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required int completedOrdersCount,
     required String id,
     required String name,
+    required int ratingCount,
     String? firstName,
-    int? isFavourite,
+    int? isBlocked,
+    bool? isFavourite,
+    int? isRecommended,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    double? recommendedCount,
     double? totalCompletionRate,
   }) : super(
           completedOrdersCount: completedOrdersCount,
           id: id,
           name: name,
+          ratingCount: ratingCount,
           firstName: firstName,
+          isBlocked: isBlocked,
           isFavourite: isFavourite,
+          isRecommended: isRecommended,
           lastName: lastName,
+          ratingAverage: ratingAverage,
+          recommendedAverage: recommendedAverage,
+          recommendedCount: recommendedCount,
           totalCompletionRate: totalCompletionRate,
         );
 
@@ -749,9 +787,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         name: json['name'],
+        ratingCount: json['rating_count'],
         firstName: json['first_name'],
-        isFavourite: json['is_favourite'],
+        isBlocked: json['is_blocked'],
+        isFavourite: getBool(json['is_favourite']),
+        isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        ratingAverage: getDouble(json['rating_average']),
+        recommendedAverage: getDouble(json['recommended_average']),
+        recommendedCount: getDouble(json['recommended_count']),
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
@@ -762,9 +806,15 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['name'] = name;
+    resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
+    resultMap['is_blocked'] = isBlocked;
     resultMap['is_favourite'] = isFavourite;
+    resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['rating_average'] = ratingAverage;
+    resultMap['recommended_average'] = recommendedAverage;
+    resultMap['recommended_count'] = recommendedCount;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
     return resultMap;
@@ -772,21 +822,33 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
-    required int completedOrdersCount,
-    required String id,
-    required String name,
+    int? completedOrdersCount,
+    String? id,
+    String? name,
+    int? ratingCount,
     String? firstName,
-    int? isFavourite,
+    int? isBlocked,
+    bool? isFavourite,
+    int? isRecommended,
     String? lastName,
+    double? ratingAverage,
+    double? recommendedAverage,
+    double? recommendedCount,
     double? totalCompletionRate,
   }) =>
       AdvertiserDetails(
-        completedOrdersCount: completedOrdersCount,
-        id: id,
-        name: name,
+        completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
+        id: id ?? this.id,
+        name: name ?? this.name,
+        ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
+        isBlocked: isBlocked ?? this.isBlocked,
         isFavourite: isFavourite ?? this.isFavourite,
+        isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        ratingAverage: ratingAverage ?? this.ratingAverage,
+        recommendedAverage: recommendedAverage ?? this.recommendedAverage,
+        recommendedCount: recommendedCount ?? this.recommendedCount,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 
