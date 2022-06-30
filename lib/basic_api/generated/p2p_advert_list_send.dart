@@ -85,7 +85,7 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Search by supported payment methods.
   final List<String>? paymentMethod;
 
-  /// [Optional] How the results are sorted: best rate, or advertiser completion rate.
+  /// [Optional] How the results are sorted.
   final String? sortBy;
 
   /// [Optional] If set to `true`, ads that exceed this account's balance or turnover limits will not be shown.
