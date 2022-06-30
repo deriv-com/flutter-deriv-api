@@ -1,14 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/affiliate_account_add_receive.json.
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_platform_product_listing_receive.json.
 
 // ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Affiliate account add response class.
-class AffiliateAccountAddResponse extends Response {
-  /// Initialize AffiliateAccountAddResponse.
-  const AffiliateAccountAddResponse({
-    this.affiliateAccountAdd,
+/// Trading platform product listing response class.
+class TradingPlatformProductListingResponse extends Response {
+  /// Initialize TradingPlatformProductListingResponse.
+  const TradingPlatformProductListingResponse({
+    this.tradingPlatformProductListing,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
@@ -21,23 +21,24 @@ class AffiliateAccountAddResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AffiliateAccountAddResponse.fromJson(Map<String, dynamic> json) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd:
-            json['affiliate_account_add'] as Map<String, dynamic>?,
+  factory TradingPlatformProductListingResponse.fromJson(
+          Map<String, dynamic> json) =>
+      TradingPlatformProductListingResponse(
+        tradingPlatformProductListing:
+            json['trading_platform_product_listing'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
         reqId: json['req_id'] as int?,
       );
 
-  /// The information of the created affiliate user.
-  final Map<String, dynamic>? affiliateAccountAdd;
+  /// Containing Trading product objects.
+  final Map<String, dynamic>? tradingPlatformProductListing;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'affiliate_account_add': affiliateAccountAdd,
+        'trading_platform_product_listing': tradingPlatformProductListing,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -46,15 +47,16 @@ class AffiliateAccountAddResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AffiliateAccountAddResponse copyWith({
-    Map<String, dynamic>? affiliateAccountAdd,
+  TradingPlatformProductListingResponse copyWith({
+    Map<String, dynamic>? tradingPlatformProductListing,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
+      TradingPlatformProductListingResponse(
+        tradingPlatformProductListing:
+            tradingPlatformProductListing ?? this.tradingPlatformProductListing,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

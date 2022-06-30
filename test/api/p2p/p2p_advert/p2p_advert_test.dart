@@ -1,13 +1,12 @@
-import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
-import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
@@ -92,6 +91,7 @@ void main() {
           type: 'buy',
           amount: 100,
           maxOrderAmount: 15,
+          rateType: 'fixed',
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
           paymentMethodNames: <String>['bank_transfer'],

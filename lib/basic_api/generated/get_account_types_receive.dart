@@ -1,14 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/affiliate_account_add_receive.json.
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_types_receive.json.
 
 // ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Affiliate account add response class.
-class AffiliateAccountAddResponse extends Response {
-  /// Initialize AffiliateAccountAddResponse.
-  const AffiliateAccountAddResponse({
-    this.affiliateAccountAdd,
+/// Get account types response class.
+class GetAccountTypesResponse extends Response {
+  /// Initialize GetAccountTypesResponse.
+  const GetAccountTypesResponse({
+    this.getAccountTypes,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
@@ -21,23 +21,22 @@ class AffiliateAccountAddResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AffiliateAccountAddResponse.fromJson(Map<String, dynamic> json) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd:
-            json['affiliate_account_add'] as Map<String, dynamic>?,
+  factory GetAccountTypesResponse.fromJson(Map<String, dynamic> json) =>
+      GetAccountTypesResponse(
+        getAccountTypes: json['get_account_types'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
         reqId: json['req_id'] as int?,
       );
 
-  /// The information of the created affiliate user.
-  final Map<String, dynamic>? affiliateAccountAdd;
+  /// Returns accounts that are available to create or link to
+  final Map<String, dynamic>? getAccountTypes;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'affiliate_account_add': affiliateAccountAdd,
+        'get_account_types': getAccountTypes,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -46,15 +45,15 @@ class AffiliateAccountAddResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AffiliateAccountAddResponse copyWith({
-    Map<String, dynamic>? affiliateAccountAdd,
+  GetAccountTypesResponse copyWith({
+    Map<String, dynamic>? getAccountTypes,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AffiliateAccountAddResponse(
-        affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
+      GetAccountTypesResponse(
+        getAccountTypes: getAccountTypes ?? this.getAccountTypes,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

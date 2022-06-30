@@ -3,7 +3,6 @@ import 'package:flutter_deriv_api/api/contract/models/available_contract_model.d
 import 'package:flutter_deriv_api/api/contract/models/contracts_for_symbol_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
