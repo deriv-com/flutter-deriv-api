@@ -107,7 +107,6 @@ final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
   "labuan": LandingCompanyShortEnum.labuan,
   "malta": LandingCompanyShortEnum.malta,
   "maltainvest": LandingCompanyShortEnum.maltainvest,
-  "samoa": LandingCompanyShortEnum.samoa,
   "svg": LandingCompanyShortEnum.svg,
   "vanuatu": LandingCompanyShortEnum.vanuatu,
 };
@@ -125,9 +124,6 @@ enum LandingCompanyShortEnum {
 
   /// maltainvest.
   maltainvest,
-
-  /// samoa.
-  samoa,
 
   /// svg.
   svg,
@@ -157,7 +153,6 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "financial": SubAccountTypeEnum.financial,
   "financial_stp": SubAccountTypeEnum.financialStp,
-  "swap_free": SubAccountTypeEnum.swapFree,
 };
 
 /// SubAccountType Enum.
@@ -167,9 +162,6 @@ enum SubAccountTypeEnum {
 
   /// financial_stp.
   financialStp,
-
-  /// swap_free.
-  swapFree,
 }
 /// Mt5 get settings model class.
 abstract class Mt5GetSettingsModel extends Equatable {

@@ -21,6 +21,7 @@ class P2pAdvertUpdateRequest extends Request {
     this.paymentMethodIds,
     this.paymentMethodNames,
     this.rate,
+    this.rateType,
     this.remainingAmount,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -52,6 +53,7 @@ class P2pAdvertUpdateRequest extends Request {
             ?.map<String>((dynamic item) => item as String)
             .toList(),
         rate: json['rate'] as num?,
+        rateType: json['rate_type'] as String?,
         remainingAmount: json['remaining_amount'] as num?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -93,8 +95,11 @@ class P2pAdvertUpdateRequest extends Request {
   /// [Optional] Payment method identifiers as returned from p2p_payment_methods, only applicable for buy ads. Exisiting methods will be replaced.
   final List<String>? paymentMethodNames;
 
-  /// [Optional] Conversion rate from advertiser's account currency to `local_currency`.
+  /// [Optional] Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final num? rate;
+
+  /// [Optional] Type of rate, fixed or floating.
+  final String? rateType;
 
   /// [Optional] The total available amount of the advert, in advertiser's account currency.
   final num? remainingAmount;
@@ -127,6 +132,7 @@ class P2pAdvertUpdateRequest extends Request {
         'payment_method_ids': paymentMethodIds,
         'payment_method_names': paymentMethodNames,
         'rate': rate,
+        'rate_type': rateType,
         'remaining_amount': remainingAmount,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -148,6 +154,7 @@ class P2pAdvertUpdateRequest extends Request {
     List<int>? paymentMethodIds,
     List<String>? paymentMethodNames,
     num? rate,
+    String? rateType,
     num? remainingAmount,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -166,6 +173,7 @@ class P2pAdvertUpdateRequest extends Request {
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         rate: rate ?? this.rate,
+        rateType: rateType ?? this.rateType,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -207,16 +207,12 @@ enum AccountTypeEnum {
 final Map<String, Mt5AccountCategoryEnum> mt5AccountCategoryEnumMapper =
     <String, Mt5AccountCategoryEnum>{
   "conventional": Mt5AccountCategoryEnum.conventional,
-  "swap_free": Mt5AccountCategoryEnum.swapFree,
 };
 
 /// Mt5AccountCategory Enum.
 enum Mt5AccountCategoryEnum {
   /// conventional.
   conventional,
-
-  /// swap_free.
-  swapFree,
 }
 
 /// Mt5AccountTypeEnum mapper.

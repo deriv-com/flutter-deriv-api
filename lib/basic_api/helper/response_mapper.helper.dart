@@ -24,6 +24,7 @@ import '../generated/cancel_receive.dart';
 import '../generated/cashier_payments_receive.dart';
 import '../generated/cashier_receive.dart';
 import '../generated/cashier_withdrawal_cancel_receive.dart';
+import '../generated/change_email_receive.dart';
 import '../generated/change_password_receive.dart';
 import '../generated/contract_update_history_receive.dart';
 import '../generated/contract_update_receive.dart';
@@ -125,6 +126,7 @@ import '../generated/trading_platform_investor_password_reset_receive.dart';
 import '../generated/trading_platform_new_account_receive.dart';
 import '../generated/trading_platform_password_change_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
+import '../generated/trading_platform_product_listing_receive.dart';
 import '../generated/trading_platform_withdrawal_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
@@ -180,6 +182,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return CashierReceive.fromJson(responseMap);
     case 'cashier_withdrawal_cancel':
       return CashierWithdrawalCancelReceive.fromJson(responseMap);
+    case 'change_email':
+      return ChangeEmailReceive.fromJson(responseMap);
     case 'change_password':
       return ChangePasswordReceive.fromJson(responseMap);
     case 'contract_update_history':
@@ -210,6 +214,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ForgetReceive.fromJson(responseMap);
     case 'get_account_status':
       return GetAccountStatusReceive.fromJson(responseMap);
+    case 'get_account_types':
+      return GetAccountTypesReceive.fromJson(responseMap);
+    case 'get_available_accounts_to_transfer':
+      return GetAvailableAccountsToTransferReceive.fromJson(responseMap);
     case 'get_financial_assessment':
       return GetFinancialAssessmentReceive.fromJson(responseMap);
     case 'get_limits':
@@ -292,8 +300,12 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderInfoReceive.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListReceive.fromJson(responseMap);
+    case 'p2p_order_review':
+      return P2pOrderReviewReceive.fromJson(responseMap);
     case 'p2p_payment_methods':
       return P2pPaymentMethodsReceive.fromJson(responseMap);
+    case 'p2p_ping':
+      return P2pPingReceive.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsReceive.fromJson(responseMap);
     case 'paymentagent_create':
@@ -374,6 +386,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingPlatformPasswordChangeReceive.fromJson(responseMap);
     case 'trading_platform_password_reset':
       return TradingPlatformPasswordResetReceive.fromJson(responseMap);
+    case 'trading_platform_product_listing':
+      return TradingPlatformProductListingReceive.fromJson(responseMap);
     case 'trading_platform_withdrawal':
       return TradingPlatformWithdrawalReceive.fromJson(responseMap);
     case 'trading_servers':

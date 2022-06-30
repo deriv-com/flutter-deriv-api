@@ -658,7 +658,12 @@ const String websiteStatusResponse = '''{
       "order_daily_limit": 200,
       "payment_methods_enabled" : true,
       "disabled" : 1,
-      "order_payment_period": 120
+      "order_payment_period": 120,
+      "fixed_rate_adverts" : "disabled",
+      "float_rate_adverts" : "disabled",
+      "float_rate_offset_limit" : 0,
+      "fixed_rate_adverts_end_date" : "",
+      "supported_currencies" : []
     },
     "site_status": "up",
     "supported_languages": [

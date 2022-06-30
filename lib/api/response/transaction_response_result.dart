@@ -455,10 +455,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

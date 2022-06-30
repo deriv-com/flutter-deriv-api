@@ -38,9 +38,6 @@ void main() {
       expect(paymentAgents.first.name, 'Bider');
       expect(paymentAgents.first.paymentagentLoginid, 'CR90000073');
       expect(paymentAgents.first.summary, 'nothgin');
-      expect(paymentAgents.first.supportedBanks, 'DiamondBank');
-      expect(paymentAgents.first.telephone, '0123456789');
-      expect(paymentAgents.first.url, 'http://a.com');
       expect(paymentAgents.first.withdrawalCommission, '5');
     });
 

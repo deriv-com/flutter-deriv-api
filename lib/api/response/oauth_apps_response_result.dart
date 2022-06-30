@@ -169,17 +169,17 @@ class OauthAppsItem extends OauthAppsItemModel {
 
   /// Creates a copy of instance with given parameters.
   OauthAppsItem copyWith({
-    required int appId,
-    required double appMarkupPercentage,
-    required String name,
-    required List<String> scopes,
+    int? appId,
+    double? appMarkupPercentage,
+    String? name,
+    List<String>? scopes,
     String? lastUsed,
   }) =>
       OauthAppsItem(
-        appId: appId,
-        appMarkupPercentage: appMarkupPercentage,
-        name: name,
-        scopes: scopes,
+        appId: appId ?? this.appId,
+        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
+        name: name ?? this.name,
+        scopes: scopes ?? this.scopes,
         lastUsed: lastUsed ?? this.lastUsed,
       );
 

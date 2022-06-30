@@ -99,10 +99,10 @@ class CryptoConfig extends CryptoConfigModel {
 
   /// Creates a copy of instance with given parameters.
   CryptoConfig copyWith({
-    required Map<String, CurrenciesConfigProperty> currenciesConfig,
+    Map<String, CurrenciesConfigProperty>? currenciesConfig,
   }) =>
       CryptoConfig(
-        currenciesConfig: currenciesConfig,
+        currenciesConfig: currenciesConfig ?? this.currenciesConfig,
       );
 
   /// Override equatable class.

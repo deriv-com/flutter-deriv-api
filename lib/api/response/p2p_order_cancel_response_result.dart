@@ -114,12 +114,12 @@ class P2pOrderCancel extends P2pOrderCancelModel {
 
   /// Creates a copy of instance with given parameters.
   P2pOrderCancel copyWith({
-    required String id,
-    required StatusEnum status,
+    String? id,
+    StatusEnum? status,
   }) =>
       P2pOrderCancel(
-        id: id,
-        status: status,
+        id: id ?? this.id,
+        status: status ?? this.status,
       );
 
   /// Override equatable class.

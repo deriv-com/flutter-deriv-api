@@ -90,8 +90,11 @@ class P2pAdvertCreateRequest extends Request {
   /// Payment method identifiers as returned from p2p_payment_methods, only applicable for buy ads.
   final List<String>? paymentMethodNames;
 
-  /// Conversion rate from advertiser's account currency to `local_currency`.
+  /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final num? rate;
+
+  /// Type of rate, fixed or floating.
+  final String? rateType;
 
   /// The advertisement represents the intention to perform this action on your Deriv account funds.
   final String? type;

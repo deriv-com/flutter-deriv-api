@@ -157,14 +157,14 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   P2pPaymentMethodsProperty copyWith({
-    required String displayName,
-    required Map<String, FieldsProperty> fields,
-    required P2pPaymentMethodsPropertyTypeEnum type,
+    String? displayName,
+    Map<String, FieldsProperty>? fields,
+    P2pPaymentMethodsPropertyTypeEnum? type,
   }) =>
       P2pPaymentMethodsProperty(
-        displayName: displayName,
-        fields: fields,
-        type: type,
+        displayName: displayName ?? this.displayName,
+        fields: fields ?? this.fields,
+        type: type ?? this.type,
       );
 
   /// Override equatable class.
@@ -225,14 +225,14 @@ class FieldsProperty extends FieldsPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
+    String? displayName,
+    int? required,
+    TypeEnum? type,
   }) =>
       FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
+        displayName: displayName ?? this.displayName,
+        required: required ?? this.required,
+        type: type ?? this.type,
       );
 
   /// Override equatable class.

@@ -107,10 +107,10 @@ class BuyContractForMultipleAccounts
 
   /// Creates a copy of instance with given parameters.
   BuyContractForMultipleAccounts copyWith({
-    required List<Map<String, dynamic>> result,
+    List<Map<String, dynamic>>? result,
   }) =>
       BuyContractForMultipleAccounts(
-        result: result,
+        result: result ?? this.result,
       );
 
   /// Override equatable class.

@@ -15,10 +15,14 @@ abstract class ExchangeRatesResponseModel extends Equatable {
   /// Initializes Exchange rates response model class .
   const ExchangeRatesResponseModel({
     this.exchangeRates,
+    this.subscription,
   });
 
   /// Exchange rate values from base to all other currencies
   final ExchangeRates? exchangeRates;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Exchange rates response class.
@@ -26,18 +30,24 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
   const ExchangeRatesResponse({
     ExchangeRates? exchangeRates,
+    Subscription? subscription,
   }) : super(
           exchangeRates: exchangeRates,
+          subscription: subscription,
         );
 
   /// Creates an instance from JSON.
   factory ExchangeRatesResponse.fromJson(
     dynamic exchangeRatesJson,
+    dynamic subscriptionJson,
   ) =>
       ExchangeRatesResponse(
         exchangeRates: exchangeRatesJson == null
             ? null
             : ExchangeRates.fromJson(exchangeRatesJson),
+        subscription: subscriptionJson == null
+            ? null
+            : Subscription.fromJson(subscriptionJson),
       );
 
   /// Converts an instance to JSON.
@@ -46,6 +56,9 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
 
     if (exchangeRates != null) {
       resultMap['exchange_rates'] = exchangeRates!.toJson();
+    }
+    if (subscription != null) {
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
@@ -76,9 +89,11 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Creates a copy of instance with given parameters.
   ExchangeRatesResponse copyWith({
     ExchangeRates? exchangeRates,
+    Subscription? subscription,
   }) =>
       ExchangeRatesResponse(
         exchangeRates: exchangeRates ?? this.exchangeRates,
+        subscription: subscription ?? this.subscription,
       );
 
   /// Override equatable class.
@@ -152,6 +167,52 @@ class ExchangeRates extends ExchangeRatesModel {
         baseCurrency: baseCurrency ?? this.baseCurrency,
         date: date ?? this.date,
         rates: rates ?? this.rates,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Subscription model class.
+abstract class SubscriptionModel extends Equatable {
+  /// Initializes Subscription model class .
+  const SubscriptionModel({
+    required this.id,
+  });
+
+  /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
+  final String id;
+}
+
+/// Subscription class.
+class Subscription extends SubscriptionModel {
+  /// Initializes Subscription class.
+  const Subscription({
+    required String id,
+  }) : super(
+          id: id,
+        );
+
+  /// Creates an instance from JSON.
+  factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
+        id: json['id'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['id'] = id;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Subscription copyWith({
+    String? id,
+  }) =>
+      Subscription(
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

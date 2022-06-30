@@ -159,17 +159,17 @@ class NewAccountReal extends NewAccountRealModel {
 
   /// Creates a copy of instance with given parameters.
   NewAccountReal copyWith({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
+    String? clientId,
+    String? landingCompany,
+    String? oauthToken,
     String? currency,
     String? landingCompanyShort,
     String? landingCompanyShortcode,
   }) =>
       NewAccountReal(
-        clientId: clientId,
-        landingCompany: landingCompany,
-        oauthToken: oauthToken,
+        clientId: clientId ?? this.clientId,
+        landingCompany: landingCompany ?? this.landingCompany,
+        oauthToken: oauthToken ?? this.oauthToken,
         currency: currency ?? this.currency,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         landingCompanyShortcode:

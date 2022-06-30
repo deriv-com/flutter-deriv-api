@@ -126,16 +126,16 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
 
   /// Creates a copy of instance with given parameters.
   NewAccountMaltainvest copyWith({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
+    String? clientId,
+    String? landingCompany,
+    String? oauthToken,
     String? landingCompanyShort,
     String? landingCompanyShortcode,
   }) =>
       NewAccountMaltainvest(
-        clientId: clientId,
-        landingCompany: landingCompany,
-        oauthToken: oauthToken,
+        clientId: clientId ?? this.clientId,
+        landingCompany: landingCompany ?? this.landingCompany,
+        oauthToken: oauthToken ?? this.oauthToken,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,

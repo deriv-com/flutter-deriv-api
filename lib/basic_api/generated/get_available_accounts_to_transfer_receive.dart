@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Get available accounts to transfer response class.
-class GetAvailableAccountsToTransferResponse extends Response {
-  /// Initialize GetAvailableAccountsToTransferResponse.
-  const GetAvailableAccountsToTransferResponse({
+/// Get available accounts to transfer receive class.
+class GetAvailableAccountsToTransferReceive extends Response {
+  /// Initialize GetAvailableAccountsToTransferReceive.
+  const GetAvailableAccountsToTransferReceive({
     this.getAvailableAccountsToTransfer,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,9 +21,9 @@ class GetAvailableAccountsToTransferResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory GetAvailableAccountsToTransferResponse.fromJson(
+  factory GetAvailableAccountsToTransferReceive.fromJson(
           Map<String, dynamic> json) =>
-      GetAvailableAccountsToTransferResponse(
+      GetAvailableAccountsToTransferReceive(
         getAvailableAccountsToTransfer:
             json['get_available_accounts_to_transfer'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +47,14 @@ class GetAvailableAccountsToTransferResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetAvailableAccountsToTransferResponse copyWith({
+  GetAvailableAccountsToTransferReceive copyWith({
     Map<String, dynamic>? getAvailableAccountsToTransfer,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      GetAvailableAccountsToTransferResponse(
+      GetAvailableAccountsToTransferReceive(
         getAvailableAccountsToTransfer: getAvailableAccountsToTransfer ??
             this.getAvailableAccountsToTransfer,
         echoReq: echoReq ?? this.echoReq,

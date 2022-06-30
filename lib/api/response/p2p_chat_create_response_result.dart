@@ -127,12 +127,12 @@ class P2pChatCreate extends P2pChatCreateModel {
 
   /// Creates a copy of instance with given parameters.
   P2pChatCreate copyWith({
-    required String channelUrl,
-    required String orderId,
+    String? channelUrl,
+    String? orderId,
   }) =>
       P2pChatCreate(
-        channelUrl: channelUrl,
-        orderId: orderId,
+        channelUrl: channelUrl ?? this.channelUrl,
+        orderId: orderId ?? this.orderId,
       );
 
   /// Override equatable class.

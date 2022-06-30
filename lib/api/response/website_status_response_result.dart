@@ -183,6 +183,46 @@ enum TypeEnum {
   crypto,
 }
 
+/// FixedRateAdvertsEnum mapper.
+final Map<String, FixedRateAdvertsEnum> fixedRateAdvertsEnumMapper =
+    <String, FixedRateAdvertsEnum>{
+  "disabled": FixedRateAdvertsEnum.disabled,
+  "enabled": FixedRateAdvertsEnum.enabled,
+  "list_only": FixedRateAdvertsEnum.listOnly,
+};
+
+/// FixedRateAdverts Enum.
+enum FixedRateAdvertsEnum {
+  /// disabled.
+  disabled,
+
+  /// enabled.
+  enabled,
+
+  /// list_only.
+  listOnly,
+}
+
+/// FloatRateAdvertsEnum mapper.
+final Map<String, FloatRateAdvertsEnum> floatRateAdvertsEnumMapper =
+    <String, FloatRateAdvertsEnum>{
+  "disabled": FloatRateAdvertsEnum.disabled,
+  "enabled": FloatRateAdvertsEnum.enabled,
+  "list_only": FloatRateAdvertsEnum.listOnly,
+};
+
+/// FloatRateAdverts Enum.
+enum FloatRateAdvertsEnum {
+  /// disabled.
+  disabled,
+
+  /// enabled.
+  enabled,
+
+  /// list_only.
+  listOnly,
+}
+
 /// SiteStatusEnum mapper.
 final Map<String, SiteStatusEnum> siteStatusEnumMapper =
     <String, SiteStatusEnum>{
@@ -206,20 +246,18 @@ enum SiteStatusEnum {
 abstract class WebsiteStatusModel extends Equatable {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
-    required this.p2pConfig,
     required this.currenciesConfig,
     required this.cryptoConfig,
     required this.apiCallLimits,
     this.clientsCountry,
     this.message,
+    this.mt5Status,
+    this.p2pConfig,
     this.paymentAgents,
     this.siteStatus,
     this.supportedLanguages,
     this.termsConditionsVersion,
   });
-
-  /// Peer-to-peer payment system settings.
-  final P2pConfig p2pConfig;
 
   /// Available currencies and their information
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
@@ -235,6 +273,12 @@ abstract class WebsiteStatusModel extends Equatable {
 
   /// Text for site status banner, contains problem description. shown only if set by the system.
   final String? message;
+
+  /// Suspension status of MT5 API calls
+  final Mt5Status? mt5Status;
+
+  /// Peer-to-peer payment system settings.
+  final P2pConfig? p2pConfig;
 
   /// Payments Agents system settings.
   final PaymentAgents? paymentAgents;
@@ -256,9 +300,10 @@ class WebsiteStatus extends WebsiteStatusModel {
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    required P2pConfig p2pConfig,
     String? clientsCountry,
     String? message,
+    Mt5Status? mt5Status,
+    P2pConfig? p2pConfig,
     PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
@@ -267,9 +312,10 @@ class WebsiteStatus extends WebsiteStatusModel {
           apiCallLimits: apiCallLimits,
           cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
-          p2pConfig: p2pConfig,
           clientsCountry: clientsCountry,
           message: message,
+          mt5Status: mt5Status,
+          p2pConfig: p2pConfig,
           paymentAgents: paymentAgents,
           siteStatus: siteStatus,
           supportedLanguages: supportedLanguages,
@@ -293,9 +339,14 @@ class WebsiteStatus extends WebsiteStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrenciesConfigProperty>(entry.key,
                             CurrenciesConfigProperty.fromJson(entry.value)))),
-        p2pConfig: P2pConfig.fromJson(json['p2p_config']),
         clientsCountry: json['clients_country'],
         message: json['message'],
+        mt5Status: json['mt5_status'] == null
+            ? null
+            : Mt5Status.fromJson(json['mt5_status']),
+        p2pConfig: json['p2p_config'] == null
+            ? null
+            : P2pConfig.fromJson(json['p2p_config']),
         paymentAgents: json['payment_agents'] == null
             ? null
             : PaymentAgents.fromJson(json['payment_agents']),
@@ -320,10 +371,14 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
-    resultMap['p2p_config'] = p2pConfig.toJson();
-
     resultMap['clients_country'] = clientsCountry;
     resultMap['message'] = message;
+    if (mt5Status != null) {
+      resultMap['mt5_status'] = mt5Status!.toJson();
+    }
+    if (p2pConfig != null) {
+      resultMap['p2p_config'] = p2pConfig!.toJson();
+    }
     if (paymentAgents != null) {
       resultMap['payment_agents'] = paymentAgents!.toJson();
     }
@@ -345,24 +400,26 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   /// Creates a copy of instance with given parameters.
   WebsiteStatus copyWith({
-    required ApiCallLimits apiCallLimits,
-    required Map<String, CryptoConfigProperty> cryptoConfig,
-    required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    required P2pConfig p2pConfig,
+    ApiCallLimits? apiCallLimits,
+    Map<String, CryptoConfigProperty>? cryptoConfig,
+    Map<String, CurrenciesConfigProperty>? currenciesConfig,
     String? clientsCountry,
     String? message,
+    Mt5Status? mt5Status,
+    P2pConfig? p2pConfig,
     PaymentAgents? paymentAgents,
     SiteStatusEnum? siteStatus,
     List<String>? supportedLanguages,
     String? termsConditionsVersion,
   }) =>
       WebsiteStatus(
-        apiCallLimits: apiCallLimits,
-        cryptoConfig: cryptoConfig,
-        currenciesConfig: currenciesConfig,
-        p2pConfig: p2pConfig,
+        apiCallLimits: apiCallLimits ?? this.apiCallLimits,
+        cryptoConfig: cryptoConfig ?? this.cryptoConfig,
+        currenciesConfig: currenciesConfig ?? this.currenciesConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         message: message ?? this.message,
+        mt5Status: mt5Status ?? this.mt5Status,
+        p2pConfig: p2pConfig ?? this.p2pConfig,
         paymentAgents: paymentAgents ?? this.paymentAgents,
         siteStatus: siteStatus ?? this.siteStatus,
         supportedLanguages: supportedLanguages ?? this.supportedLanguages,
@@ -441,16 +498,17 @@ class ApiCallLimits extends ApiCallLimitsModel {
 
   /// Creates a copy of instance with given parameters.
   ApiCallLimits copyWith({
-    required MaxProposalSubscription maxProposalSubscription,
-    required MaxRequestesGeneral maxRequestesGeneral,
-    required MaxRequestsOutcome maxRequestsOutcome,
-    required MaxRequestsPricing maxRequestsPricing,
+    MaxProposalSubscription? maxProposalSubscription,
+    MaxRequestesGeneral? maxRequestesGeneral,
+    MaxRequestsOutcome? maxRequestsOutcome,
+    MaxRequestsPricing? maxRequestsPricing,
   }) =>
       ApiCallLimits(
-        maxProposalSubscription: maxProposalSubscription,
-        maxRequestesGeneral: maxRequestesGeneral,
-        maxRequestsOutcome: maxRequestsOutcome,
-        maxRequestsPricing: maxRequestsPricing,
+        maxProposalSubscription:
+            maxProposalSubscription ?? this.maxProposalSubscription,
+        maxRequestesGeneral: maxRequestesGeneral ?? this.maxRequestesGeneral,
+        maxRequestsOutcome: maxRequestsOutcome ?? this.maxRequestsOutcome,
+        maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
 
   /// Override equatable class.
@@ -502,12 +560,12 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   MaxProposalSubscription copyWith({
-    required String appliesTo,
-    required double max,
+    String? appliesTo,
+    double? max,
   }) =>
       MaxProposalSubscription(
-        appliesTo: appliesTo,
-        max: max,
+        appliesTo: appliesTo ?? this.appliesTo,
+        max: max ?? this.max,
       );
 
   /// Override equatable class.
@@ -567,14 +625,14 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
 
   /// Creates a copy of instance with given parameters.
   MaxRequestesGeneral copyWith({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
+    String? appliesTo,
+    double? hourly,
+    double? minutely,
   }) =>
       MaxRequestesGeneral(
-        appliesTo: appliesTo,
-        hourly: hourly,
-        minutely: minutely,
+        appliesTo: appliesTo ?? this.appliesTo,
+        hourly: hourly ?? this.hourly,
+        minutely: minutely ?? this.minutely,
       );
 
   /// Override equatable class.
@@ -634,14 +692,14 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
 
   /// Creates a copy of instance with given parameters.
   MaxRequestsOutcome copyWith({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
+    String? appliesTo,
+    double? hourly,
+    double? minutely,
   }) =>
       MaxRequestsOutcome(
-        appliesTo: appliesTo,
-        hourly: hourly,
-        minutely: minutely,
+        appliesTo: appliesTo ?? this.appliesTo,
+        hourly: hourly ?? this.hourly,
+        minutely: minutely ?? this.minutely,
       );
 
   /// Override equatable class.
@@ -701,14 +759,14 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
 
   /// Creates a copy of instance with given parameters.
   MaxRequestsPricing copyWith({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
+    String? appliesTo,
+    double? hourly,
+    double? minutely,
   }) =>
       MaxRequestsPricing(
-        appliesTo: appliesTo,
-        hourly: hourly,
-        minutely: minutely,
+        appliesTo: appliesTo ?? this.appliesTo,
+        hourly: hourly ?? this.hourly,
+        minutely: minutely ?? this.minutely,
       );
 
   /// Override equatable class.
@@ -752,10 +810,10 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   CryptoConfigProperty copyWith({
-    required double minimumWithdrawal,
+    double? minimumWithdrawal,
   }) =>
       CryptoConfigProperty(
-        minimumWithdrawal: minimumWithdrawal,
+        minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
 
   /// Override equatable class.
@@ -859,23 +917,25 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   CurrenciesConfigProperty copyWith({
-    required double fractionalDigits,
-    required double isDepositSuspended,
-    required double isSuspended,
-    required double isWithdrawalSuspended,
-    required double stakeDefault,
-    required TransferBetweenAccounts transferBetweenAccounts,
-    required TypeEnum type,
+    double? fractionalDigits,
+    double? isDepositSuspended,
+    double? isSuspended,
+    double? isWithdrawalSuspended,
+    double? stakeDefault,
+    TransferBetweenAccounts? transferBetweenAccounts,
+    TypeEnum? type,
     String? name,
   }) =>
       CurrenciesConfigProperty(
-        fractionalDigits: fractionalDigits,
-        isDepositSuspended: isDepositSuspended,
-        isSuspended: isSuspended,
-        isWithdrawalSuspended: isWithdrawalSuspended,
-        stakeDefault: stakeDefault,
-        transferBetweenAccounts: transferBetweenAccounts,
-        type: type,
+        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
+        isDepositSuspended: isDepositSuspended ?? this.isDepositSuspended,
+        isSuspended: isSuspended ?? this.isSuspended,
+        isWithdrawalSuspended:
+            isWithdrawalSuspended ?? this.isWithdrawalSuspended,
+        stakeDefault: stakeDefault ?? this.stakeDefault,
+        transferBetweenAccounts:
+            transferBetweenAccounts ?? this.transferBetweenAccounts,
+        type: type ?? this.type,
         name: name ?? this.name,
       );
 
@@ -948,14 +1008,14 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
   /// Creates a copy of instance with given parameters.
   TransferBetweenAccounts copyWith({
-    required Map<String, double> fees,
-    required Limits limits,
+    Map<String, double>? fees,
+    Limits? limits,
     Map<String, dynamic>? limitsDxtrade,
     Map<String, dynamic>? limitsMt5,
   }) =>
       TransferBetweenAccounts(
-        fees: fees,
-        limits: limits,
+        fees: fees ?? this.fees,
+        limits: limits ?? this.limits,
         limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
@@ -1008,12 +1068,92 @@ class Limits extends LimitsModel {
 
   /// Creates a copy of instance with given parameters.
   Limits copyWith({
-    required double min,
+    double? min,
     double? max,
   }) =>
       Limits(
-        min: min,
+        min: min ?? this.min,
         max: max ?? this.max,
+      );
+
+  /// Override equatable class.
+  @override
+  List<Object?> get props => <Object?>[];
+}
+/// Mt5 status model class.
+abstract class Mt5StatusModel extends Equatable {
+  /// Initializes Mt5 status model class .
+  const Mt5StatusModel({
+    this.demo,
+    this.real,
+  });
+
+  /// Suspension of MT5 API calls on demo servers.
+  final List<dynamic>? demo;
+
+  /// Suspension of MT5 API calls on real trading servers.
+  final List<dynamic>? real;
+}
+
+/// Mt5 status class.
+class Mt5Status extends Mt5StatusModel {
+  /// Initializes Mt5 status class.
+  const Mt5Status({
+    List<dynamic>? demo,
+    List<dynamic>? real,
+  }) : super(
+          demo: demo,
+          real: real,
+        );
+
+  /// Creates an instance from JSON.
+  factory Mt5Status.fromJson(Map<String, dynamic> json) => Mt5Status(
+        demo: json['demo'] == null
+            ? null
+            : List<dynamic>.from(
+                json['demo']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        real: json['real'] == null
+            ? null
+            : List<dynamic>.from(
+                json['real']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (demo != null) {
+      resultMap['demo'] = demo!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
+    if (real != null) {
+      resultMap['real'] = real!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Mt5Status copyWith({
+    List<dynamic>? demo,
+    List<dynamic>? real,
+  }) =>
+      Mt5Status(
+        demo: demo ?? this.demo,
+        real: real ?? this.real,
       );
 
   /// Override equatable class.
@@ -1024,11 +1164,15 @@ class Limits extends LimitsModel {
 abstract class P2pConfigModel extends Equatable {
   /// Initializes P2p config model class .
   const P2pConfigModel({
+    required this.supportedCurrencies,
     required this.paymentMethodsEnabled,
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
+    required this.floatRateOffsetLimit,
+    required this.floatRateAdverts,
+    required this.fixedRateAdverts,
     required this.disabled,
     required this.cancellationLimit,
     required this.cancellationGracePeriod,
@@ -1036,7 +1180,12 @@ abstract class P2pConfigModel extends Equatable {
     required this.cancellationBlockDuration,
     required this.advertsActiveLimit,
     this.advertsArchivePeriod,
+    this.fixedRateAdvertsEndDate,
+    this.overrideExchangeRate,
   });
+
+  /// List of currencies for which P2P is available
+  final List<String> supportedCurrencies;
 
   /// Indicates if the payment methods feature is enabled.
   final bool paymentMethodsEnabled;
@@ -1052,6 +1201,15 @@ abstract class P2pConfigModel extends Equatable {
 
   /// Maximum amount of an advert, in USD.
   final double maximumAdvertAmount;
+
+  /// Maximum rate offset for floating rate adverts.
+  final double floatRateOffsetLimit;
+
+  /// Availability of floating rate adverts.
+  final FloatRateAdvertsEnum floatRateAdverts;
+
+  /// Availability of fixed rate adverts.
+  final FixedRateAdvertsEnum fixedRateAdverts;
 
   /// When `true`, the P2P service is unavailable.
   final bool disabled;
@@ -1073,6 +1231,12 @@ abstract class P2pConfigModel extends Equatable {
 
   /// Adverts will be deactivated if no activity occurs within this period, in days.
   final int? advertsArchivePeriod;
+
+  /// Date on which fixed rate adverts will be deactivated.
+  final String? fixedRateAdvertsEndDate;
+
+  /// Local P2P exchange rate which should be used instead of those obtained from the `exchange_rates` call.
+  final String? overrideExchangeRate;
 }
 
 /// P2p config class.
@@ -1085,12 +1249,18 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationGracePeriod,
     required int cancellationLimit,
     required bool disabled,
+    required FixedRateAdvertsEnum fixedRateAdverts,
+    required FloatRateAdvertsEnum floatRateAdverts,
+    required double floatRateOffsetLimit,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
     required int orderPaymentPeriod,
     required bool paymentMethodsEnabled,
+    required List<String> supportedCurrencies,
     int? advertsArchivePeriod,
+    String? fixedRateAdvertsEndDate,
+    String? overrideExchangeRate,
   }) : super(
           advertsActiveLimit: advertsActiveLimit,
           cancellationBlockDuration: cancellationBlockDuration,
@@ -1098,12 +1268,18 @@ class P2pConfig extends P2pConfigModel {
           cancellationGracePeriod: cancellationGracePeriod,
           cancellationLimit: cancellationLimit,
           disabled: disabled,
+          fixedRateAdverts: fixedRateAdverts,
+          floatRateAdverts: floatRateAdverts,
+          floatRateOffsetLimit: floatRateOffsetLimit,
           maximumAdvertAmount: maximumAdvertAmount,
           maximumOrderAmount: maximumOrderAmount,
           orderDailyLimit: orderDailyLimit,
           orderPaymentPeriod: orderPaymentPeriod,
           paymentMethodsEnabled: paymentMethodsEnabled,
+          supportedCurrencies: supportedCurrencies,
           advertsArchivePeriod: advertsArchivePeriod,
+          fixedRateAdvertsEndDate: fixedRateAdvertsEndDate,
+          overrideExchangeRate: overrideExchangeRate,
         );
 
   /// Creates an instance from JSON.
@@ -1114,12 +1290,24 @@ class P2pConfig extends P2pConfigModel {
         cancellationGracePeriod: json['cancellation_grace_period'],
         cancellationLimit: json['cancellation_limit'],
         disabled: getBool(json['disabled'])!,
+        fixedRateAdverts:
+            fixedRateAdvertsEnumMapper[json['fixed_rate_adverts']]!,
+        floatRateAdverts:
+            floatRateAdvertsEnumMapper[json['float_rate_adverts']]!,
+        floatRateOffsetLimit: getDouble(json['float_rate_offset_limit'])!,
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
         orderPaymentPeriod: json['order_payment_period'],
         paymentMethodsEnabled: getBool(json['payment_methods_enabled'])!,
+        supportedCurrencies: List<String>.from(
+          json['supported_currencies'].map(
+            (dynamic item) => item,
+          ),
+        ),
         advertsArchivePeriod: json['adverts_archive_period'],
+        fixedRateAdvertsEndDate: json['fixed_rate_adverts_end_date'],
+        overrideExchangeRate: json['override_exchange_rate'],
       );
 
   /// Converts an instance to JSON.
@@ -1132,44 +1320,78 @@ class P2pConfig extends P2pConfigModel {
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
     resultMap['cancellation_limit'] = cancellationLimit;
     resultMap['disabled'] = disabled;
+    resultMap['fixed_rate_adverts'] = fixedRateAdvertsEnumMapper.entries
+        .firstWhere((MapEntry<String, FixedRateAdvertsEnum> entry) =>
+            entry.value == fixedRateAdverts)
+        .key;
+    resultMap['float_rate_adverts'] = floatRateAdvertsEnumMapper.entries
+        .firstWhere((MapEntry<String, FloatRateAdvertsEnum> entry) =>
+            entry.value == floatRateAdverts)
+        .key;
+    resultMap['float_rate_offset_limit'] = floatRateOffsetLimit;
     resultMap['maximum_advert_amount'] = maximumAdvertAmount;
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
     resultMap['order_payment_period'] = orderPaymentPeriod;
     resultMap['payment_methods_enabled'] = paymentMethodsEnabled;
+    resultMap['supported_currencies'] = supportedCurrencies
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
     resultMap['adverts_archive_period'] = advertsArchivePeriod;
+    resultMap['fixed_rate_adverts_end_date'] = fixedRateAdvertsEndDate;
+    resultMap['override_exchange_rate'] = overrideExchangeRate;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   P2pConfig copyWith({
-    required int advertsActiveLimit,
-    required int cancellationBlockDuration,
-    required int cancellationCountPeriod,
-    required int cancellationGracePeriod,
-    required int cancellationLimit,
-    required bool disabled,
-    required double maximumAdvertAmount,
-    required double maximumOrderAmount,
-    required int orderDailyLimit,
-    required int orderPaymentPeriod,
-    required bool paymentMethodsEnabled,
+    int? advertsActiveLimit,
+    int? cancellationBlockDuration,
+    int? cancellationCountPeriod,
+    int? cancellationGracePeriod,
+    int? cancellationLimit,
+    bool? disabled,
+    FixedRateAdvertsEnum? fixedRateAdverts,
+    FloatRateAdvertsEnum? floatRateAdverts,
+    double? floatRateOffsetLimit,
+    double? maximumAdvertAmount,
+    double? maximumOrderAmount,
+    int? orderDailyLimit,
+    int? orderPaymentPeriod,
+    bool? paymentMethodsEnabled,
+    List<String>? supportedCurrencies,
     int? advertsArchivePeriod,
+    String? fixedRateAdvertsEndDate,
+    String? overrideExchangeRate,
   }) =>
       P2pConfig(
-        advertsActiveLimit: advertsActiveLimit,
-        cancellationBlockDuration: cancellationBlockDuration,
-        cancellationCountPeriod: cancellationCountPeriod,
-        cancellationGracePeriod: cancellationGracePeriod,
-        cancellationLimit: cancellationLimit,
-        disabled: disabled,
-        maximumAdvertAmount: maximumAdvertAmount,
-        maximumOrderAmount: maximumOrderAmount,
-        orderDailyLimit: orderDailyLimit,
-        orderPaymentPeriod: orderPaymentPeriod,
-        paymentMethodsEnabled: paymentMethodsEnabled,
+        advertsActiveLimit: advertsActiveLimit ?? this.advertsActiveLimit,
+        cancellationBlockDuration:
+            cancellationBlockDuration ?? this.cancellationBlockDuration,
+        cancellationCountPeriod:
+            cancellationCountPeriod ?? this.cancellationCountPeriod,
+        cancellationGracePeriod:
+            cancellationGracePeriod ?? this.cancellationGracePeriod,
+        cancellationLimit: cancellationLimit ?? this.cancellationLimit,
+        disabled: disabled ?? this.disabled,
+        fixedRateAdverts: fixedRateAdverts ?? this.fixedRateAdverts,
+        floatRateAdverts: floatRateAdverts ?? this.floatRateAdverts,
+        floatRateOffsetLimit: floatRateOffsetLimit ?? this.floatRateOffsetLimit,
+        maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
+        maximumOrderAmount: maximumOrderAmount ?? this.maximumOrderAmount,
+        orderDailyLimit: orderDailyLimit ?? this.orderDailyLimit,
+        orderPaymentPeriod: orderPaymentPeriod ?? this.orderPaymentPeriod,
+        paymentMethodsEnabled:
+            paymentMethodsEnabled ?? this.paymentMethodsEnabled,
+        supportedCurrencies: supportedCurrencies ?? this.supportedCurrencies,
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
+        fixedRateAdvertsEndDate:
+            fixedRateAdvertsEndDate ?? this.fixedRateAdvertsEndDate,
+        overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 
   /// Override equatable class.
@@ -1216,10 +1438,11 @@ class PaymentAgents extends PaymentAgentsModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentAgents copyWith({
-    required Map<String, double> initialDepositPerCountry,
+    Map<String, double>? initialDepositPerCountry,
   }) =>
       PaymentAgents(
-        initialDepositPerCountry: initialDepositPerCountry,
+        initialDepositPerCountry:
+            initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
 
   /// Override equatable class.
@@ -1262,10 +1485,10 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters.
   Subscription copyWith({
-    required String id,
+    String? id,
   }) =>
       Subscription(
-        id: id,
+        id: id ?? this.id,
       );
 
   /// Override equatable class.

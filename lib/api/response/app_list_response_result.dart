@@ -219,10 +219,10 @@ class AppListItem extends AppListItemModel {
 
   /// Creates a copy of instance with given parameters.
   AppListItem copyWith({
-    required int appId,
-    required double appMarkupPercentage,
-    required String name,
-    required String redirectUri,
+    int? appId,
+    double? appMarkupPercentage,
+    String? name,
+    String? redirectUri,
     int? active,
     String? appstore,
     String? github,
@@ -232,10 +232,10 @@ class AppListItem extends AppListItemModel {
     String? verificationUri,
   }) =>
       AppListItem(
-        appId: appId,
-        appMarkupPercentage: appMarkupPercentage,
-        name: name,
-        redirectUri: redirectUri,
+        appId: appId ?? this.appId,
+        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
+        name: name ?? this.name,
+        redirectUri: redirectUri ?? this.redirectUri,
         active: active ?? this.active,
         appstore: appstore ?? this.appstore,
         github: github ?? this.github,

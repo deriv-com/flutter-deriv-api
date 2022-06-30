@@ -154,16 +154,16 @@ class LoginHistoryItem extends LoginHistoryItemModel {
 
   /// Creates a copy of instance with given parameters.
   LoginHistoryItem copyWith({
-    required String action,
-    required String environment,
-    required bool status,
-    required DateTime time,
+    String? action,
+    String? environment,
+    bool? status,
+    DateTime? time,
   }) =>
       LoginHistoryItem(
-        action: action,
-        environment: environment,
-        status: status,
-        time: time,
+        action: action ?? this.action,
+        environment: environment ?? this.environment,
+        status: status ?? this.status,
+        time: time ?? this.time,
       );
 
   /// Override equatable class.

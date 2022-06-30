@@ -185,20 +185,20 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
   /// Creates a copy of instance with given parameters.
   NewAccountVirtual copyWith({
-    required double balance,
-    required String clientId,
-    required String currency,
-    required String email,
-    required String oauthToken,
+    double? balance,
+    String? clientId,
+    String? currency,
+    String? email,
+    String? oauthToken,
     String? refreshToken,
     TypeEnum? type,
   }) =>
       NewAccountVirtual(
-        balance: balance,
-        clientId: clientId,
-        currency: currency,
-        email: email,
-        oauthToken: oauthToken,
+        balance: balance ?? this.balance,
+        clientId: clientId ?? this.clientId,
+        currency: currency ?? this.currency,
+        email: email ?? this.email,
+        oauthToken: oauthToken ?? this.oauthToken,
         refreshToken: refreshToken ?? this.refreshToken,
         type: type ?? this.type,
       );

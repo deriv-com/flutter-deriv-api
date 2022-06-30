@@ -120,12 +120,12 @@ class CashierWithdrawalCancel extends CashierWithdrawalCancelModel {
 
   /// Creates a copy of instance with given parameters.
   CashierWithdrawalCancel copyWith({
-    required String id,
-    required StatusCodeEnum statusCode,
+    String? id,
+    StatusCodeEnum? statusCode,
   }) =>
       CashierWithdrawalCancel(
-        id: id,
-        statusCode: statusCode,
+        id: id ?? this.id,
+        statusCode: statusCode ?? this.statusCode,
       );
 
   /// Override equatable class.

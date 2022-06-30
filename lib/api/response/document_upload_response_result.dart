@@ -132,16 +132,16 @@ class DocumentUpload extends DocumentUploadModel {
 
   /// Creates a copy of instance with given parameters.
   DocumentUpload copyWith({
-    required double callType,
-    required double uploadId,
+    double? callType,
+    double? uploadId,
     String? checksum,
     String? documentIssuingCountry,
     double? size,
     String? status,
   }) =>
       DocumentUpload(
-        callType: callType,
-        uploadId: uploadId,
+        callType: callType ?? this.callType,
+        uploadId: uploadId ?? this.uploadId,
         checksum: checksum ?? this.checksum,
         documentIssuingCountry:
             documentIssuingCountry ?? this.documentIssuingCountry,

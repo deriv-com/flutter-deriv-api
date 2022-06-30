@@ -11,7 +11,7 @@ abstract class AffiliateAccountAddResponseModel extends Equatable {
     this.affiliateAccountAdd,
   });
 
-  /// New real money account details
+  /// The information of the created affiliate user.
   final AffiliateAccountAdd? affiliateAccountAdd;
 }
 
@@ -61,84 +61,163 @@ class AffiliateAccountAddResponse extends AffiliateAccountAddResponseModel {
 abstract class AffiliateAccountAddModel extends Equatable {
   /// Initializes Affiliate account add model class .
   const AffiliateAccountAddModel({
-    required this.oauthToken,
-    required this.landingCompany,
-    required this.clientId,
-    this.currency,
-    this.landingCompanyShortcode,
+    required this.affiliateId,
+    this.addressCity,
+    this.addressLine1,
+    this.addressLine2,
+    this.addressPostcode,
+    this.addressState,
+    this.country,
+    this.firstName,
+    this.lastName,
+    this.nonPepDeclaration,
+    this.phone,
+    this.tncAccepted,
+    this.verificationCode,
   });
 
-  /// OAuth token for client's login session
-  final String oauthToken;
+  /// Affiliate ID from CellXperts for the created affiliate
+  final String affiliateId;
 
-  /// Landing company full name
-  final String landingCompany;
+  /// City name
+  final String? addressCity;
 
-  /// Client ID of the new affiliate account
-  final String clientId;
+  /// First line of address.
+  final String? addressLine1;
 
-  /// Currency of the new account
-  final String? currency;
+  /// Second line of address.
+  final String? addressLine2;
 
-  /// Landing company shortcode
-  final String? landingCompanyShortcode;
+  /// Postal code of the address.
+  final String? addressPostcode;
+
+  /// State / Region of the address.
+  final String? addressState;
+
+  /// Registered country of the created affiliate.
+  final String? country;
+
+  /// First name of the created affiliate.
+  final String? firstName;
+
+  /// Last name of the created affiliate
+  final String? lastName;
+
+  /// PEP declaration status of the created affiliate.
+  final bool? nonPepDeclaration;
+
+  /// Registered phone number of the created affiliate.
+  final String? phone;
+
+  /// Terms and conditions acceptance status of the created affiliate.
+  final bool? tncAccepted;
+
+  /// Email verification code (received from a `verify_email` call, which must be done first).
+  final String? verificationCode;
 }
 
 /// Affiliate account add class.
 class AffiliateAccountAdd extends AffiliateAccountAddModel {
   /// Initializes Affiliate account add class.
   const AffiliateAccountAdd({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
-    String? currency,
-    String? landingCompanyShortcode,
+    required String affiliateId,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    String? country,
+    String? firstName,
+    String? lastName,
+    bool? nonPepDeclaration,
+    String? phone,
+    bool? tncAccepted,
+    String? verificationCode,
   }) : super(
-          clientId: clientId,
-          landingCompany: landingCompany,
-          oauthToken: oauthToken,
-          currency: currency,
-          landingCompanyShortcode: landingCompanyShortcode,
+          affiliateId: affiliateId,
+          addressCity: addressCity,
+          addressLine1: addressLine1,
+          addressLine2: addressLine2,
+          addressPostcode: addressPostcode,
+          addressState: addressState,
+          country: country,
+          firstName: firstName,
+          lastName: lastName,
+          nonPepDeclaration: nonPepDeclaration,
+          phone: phone,
+          tncAccepted: tncAccepted,
+          verificationCode: verificationCode,
         );
 
   /// Creates an instance from JSON.
   factory AffiliateAccountAdd.fromJson(Map<String, dynamic> json) =>
       AffiliateAccountAdd(
-        clientId: json['client_id'],
-        landingCompany: json['landing_company'],
-        oauthToken: json['oauth_token'],
-        currency: json['currency'],
-        landingCompanyShortcode: json['landing_company_shortcode'],
+        affiliateId: json['affiliate_id'],
+        addressCity: json['address_city'],
+        addressLine1: json['address_line_1'],
+        addressLine2: json['address_line_2'],
+        addressPostcode: json['address_postcode'],
+        addressState: json['address_state'],
+        country: json['country'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
+        nonPepDeclaration: getBool(json['non_pep_declaration']),
+        phone: json['phone'],
+        tncAccepted: getBool(json['tnc_accepted']),
+        verificationCode: json['verification_code'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['client_id'] = clientId;
-    resultMap['landing_company'] = landingCompany;
-    resultMap['oauth_token'] = oauthToken;
-    resultMap['currency'] = currency;
-    resultMap['landing_company_shortcode'] = landingCompanyShortcode;
+    resultMap['affiliate_id'] = affiliateId;
+    resultMap['address_city'] = addressCity;
+    resultMap['address_line_1'] = addressLine1;
+    resultMap['address_line_2'] = addressLine2;
+    resultMap['address_postcode'] = addressPostcode;
+    resultMap['address_state'] = addressState;
+    resultMap['country'] = country;
+    resultMap['first_name'] = firstName;
+    resultMap['last_name'] = lastName;
+    resultMap['non_pep_declaration'] = nonPepDeclaration;
+    resultMap['phone'] = phone;
+    resultMap['tnc_accepted'] = tncAccepted;
+    resultMap['verification_code'] = verificationCode;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   AffiliateAccountAdd copyWith({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
-    String? currency,
-    String? landingCompanyShortcode,
+    String? affiliateId,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    String? country,
+    String? firstName,
+    String? lastName,
+    bool? nonPepDeclaration,
+    String? phone,
+    bool? tncAccepted,
+    String? verificationCode,
   }) =>
       AffiliateAccountAdd(
-        clientId: clientId,
-        landingCompany: landingCompany,
-        oauthToken: oauthToken,
-        currency: currency ?? this.currency,
-        landingCompanyShortcode:
-            landingCompanyShortcode ?? this.landingCompanyShortcode,
+        affiliateId: affiliateId ?? this.affiliateId,
+        addressCity: addressCity ?? this.addressCity,
+        addressLine1: addressLine1 ?? this.addressLine1,
+        addressLine2: addressLine2 ?? this.addressLine2,
+        addressPostcode: addressPostcode ?? this.addressPostcode,
+        addressState: addressState ?? this.addressState,
+        country: country ?? this.country,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
+        phone: phone ?? this.phone,
+        tncAccepted: tncAccepted ?? this.tncAccepted,
+        verificationCode: verificationCode ?? this.verificationCode,
       );
 
   /// Override equatable class.

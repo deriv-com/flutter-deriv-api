@@ -226,31 +226,34 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
 
   /// Creates a copy of instance with given parameters.
   CopytradingStatistics copyWith({
-    required DateTime activeSince,
-    required int avgDuration,
-    required double avgLoss,
-    required double avgProfit,
-    required double copiers,
-    required double last12monthsProfitableTrades,
-    required Map<String, double> monthlyProfitableTrades,
-    required double performanceProbability,
-    required int totalTrades,
-    required Map<String, double> tradesBreakdown,
-    required double tradesProfitable,
+    DateTime? activeSince,
+    int? avgDuration,
+    double? avgLoss,
+    double? avgProfit,
+    double? copiers,
+    double? last12monthsProfitableTrades,
+    Map<String, double>? monthlyProfitableTrades,
+    double? performanceProbability,
+    int? totalTrades,
+    Map<String, double>? tradesBreakdown,
+    double? tradesProfitable,
     Map<String, double>? yearlyProfitableTrades,
   }) =>
       CopytradingStatistics(
-        activeSince: activeSince,
-        avgDuration: avgDuration,
-        avgLoss: avgLoss,
-        avgProfit: avgProfit,
-        copiers: copiers,
-        last12monthsProfitableTrades: last12monthsProfitableTrades,
-        monthlyProfitableTrades: monthlyProfitableTrades,
-        performanceProbability: performanceProbability,
-        totalTrades: totalTrades,
-        tradesBreakdown: tradesBreakdown,
-        tradesProfitable: tradesProfitable,
+        activeSince: activeSince ?? this.activeSince,
+        avgDuration: avgDuration ?? this.avgDuration,
+        avgLoss: avgLoss ?? this.avgLoss,
+        avgProfit: avgProfit ?? this.avgProfit,
+        copiers: copiers ?? this.copiers,
+        last12monthsProfitableTrades:
+            last12monthsProfitableTrades ?? this.last12monthsProfitableTrades,
+        monthlyProfitableTrades:
+            monthlyProfitableTrades ?? this.monthlyProfitableTrades,
+        performanceProbability:
+            performanceProbability ?? this.performanceProbability,
+        totalTrades: totalTrades ?? this.totalTrades,
+        tradesBreakdown: tradesBreakdown ?? this.tradesBreakdown,
+        tradesProfitable: tradesProfitable ?? this.tradesProfitable,
         yearlyProfitableTrades:
             yearlyProfitableTrades ?? this.yearlyProfitableTrades,
       );
