@@ -21,7 +21,7 @@ class AffiliateAccountAddRequest extends Request {
     required this.password,
     required this.phone,
     required this.tncAccepted,
-    required this.username,
+    required this.verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -48,7 +48,7 @@ class AffiliateAccountAddRequest extends Request {
         password: json['password'] as String?,
         phone: json['phone'] as String?,
         tncAccepted: json['tnc_accepted'] as int?,
-        username: json['username'] as String?,
+        verificationCode: json['verification_code'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -92,8 +92,8 @@ class AffiliateAccountAddRequest extends Request {
   /// Indicates client has agreed to the terms and conditions.
   final int? tncAccepted;
 
-  /// Desired username for the affiliate account. Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  final String? username;
+  /// Email verification code (received from a `verify_email` call, which must be done first).
+  final String? verificationCode;
 
   /// Converts this instance to JSON
   @override
@@ -115,7 +115,7 @@ class AffiliateAccountAddRequest extends Request {
         'password': password,
         'phone': phone,
         'tnc_accepted': tncAccepted,
-        'username': username,
+        'verification_code': verificationCode,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -136,7 +136,7 @@ class AffiliateAccountAddRequest extends Request {
     String? password,
     String? phone,
     int? tncAccepted,
-    String? username,
+    String? verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -154,7 +154,7 @@ class AffiliateAccountAddRequest extends Request {
         password: password ?? this.password,
         phone: phone ?? this.phone,
         tncAccepted: tncAccepted ?? this.tncAccepted,
-        username: username ?? this.username,
+        verificationCode: verificationCode ?? this.verificationCode,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
