@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
-import 'package:flutter_deriv_api/services/connection/connection_service.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 part 'connection_state.dart';
@@ -26,16 +26,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     _connectionInformation = connectionInformation;
 
-    ConnectionService.instance.state.listen(
-      (bool state) {
-        if (state) {
-          connect();
-        } else {
-          emit(const ConnectionDisconnectedState());
-        }
-      },
-    );
-
+    _setupConnectivityListener();
     _startConnectivityTimer();
 
     connect();
@@ -110,7 +101,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     );
   }
 
-  // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds.
+  void _setupConnectivityListener() =>
+      Connectivity().onConnectivityChanged.listen(
+        (ConnectivityResult result) {
+          if (result == ConnectivityResult.none) {
+            emit(const ConnectionDisconnectedState());
+          } else {
+            connect();
+          }
+        },
+      );
+
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
