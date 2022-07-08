@@ -39,12 +39,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
   final int _pingTimeout = 5;
-  final int _pingMaxExceptionCount = 3;
   final int _connectivityCheckInterval = 5;
 
   final UniqueKey _uniqueKey = UniqueKey();
-
-  int _pingExceptionCount = 0;
 
   BaseAPI? _api;
   Timer? _connectivityTimer;
@@ -117,7 +114,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _connectivityTimer = Timer.periodic(
         Duration(seconds: _connectivityCheckInterval),
         (Timer timer) async {
-          final bool isOnline = await _checkPingConnection();
+          final bool isOnline = await _ping();
 
           if (!isOnline) {
             emit(const ConnectionDisconnectedState());
@@ -140,24 +137,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     } on Exception catch (_) {
       return false;
     }
-
-    return true;
-  }
-
-  Future<bool> _checkPingConnection() async {
-    final bool _pingSuccess = await _ping();
-
-    if (!_pingSuccess) {
-      if (_pingExceptionCount++ > _pingMaxExceptionCount) {
-        _pingExceptionCount = 0;
-
-        return false;
-      }
-
-      return true;
-    }
-
-    _pingExceptionCount = 0;
 
     return true;
   }
