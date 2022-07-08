@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,21 +19,19 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     this.isMock = false,
-  }) : super(ConnectionInitialState()) {
+  }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
 
     _api ??= Injector.getInjector().get<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 
-    ConnectionService().state.listen(
+    ConnectionService.instance.state.listen(
       (bool state) {
         if (state) {
           connect();
         } else {
-          if (state is! ConnectionDisconnectedState) {
-            emit(ConnectionDisconnectedState());
-          }
+          emit(const ConnectionDisconnectedState());
         }
       },
     );
@@ -79,7 +78,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     bool printResponse = false,
   }) async {
     if (state is! ConnectionConnectingState) {
-      emit(ConnectionConnectingState());
+      emit(const ConnectionConnectingState());
     }
 
     if (connectionInformation != null) {
@@ -95,17 +94,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
         if (_uniqueKey == uniqueKey) {
           await _api!.disconnect();
 
-          emit(ConnectionDisconnectedState());
+          emit(const ConnectionDisconnectedState());
         }
       },
       onOpen: (UniqueKey uniqueKey) {
         if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
-          emit(ConnectionConnectedState());
+          emit(const ConnectionConnectedState());
         }
       },
       onError: (UniqueKey uniqueKey) {
         if (_uniqueKey == uniqueKey) {
-          emit(ConnectionDisconnectedState());
+          emit(const ConnectionDisconnectedState());
         }
       },
     );
@@ -120,7 +119,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
           final bool isOnline = await _checkPingConnection();
 
           if (!isOnline) {
-            emit(ConnectionDisconnectedState());
+            emit(const ConnectionDisconnectedState());
           }
         },
       );
