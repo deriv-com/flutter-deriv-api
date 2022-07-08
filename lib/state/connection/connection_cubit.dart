@@ -26,7 +26,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     _connectionInformation = connectionInformation;
 
-    _setupConnectivityListener();
+    if (!isMock) {
+      _setupConnectivityListener();
+    }
+
     _startConnectivityTimer();
 
     connect();
