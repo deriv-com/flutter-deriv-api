@@ -84,7 +84,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _connectionInformation,
       printResponse: printResponse,
       onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey) {
+        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
           emit(const ConnectionConnectedState());
         }
       },
