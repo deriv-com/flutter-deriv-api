@@ -84,7 +84,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _connectionInformation,
       printResponse: printResponse,
       onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
+        if (_uniqueKey == uniqueKey) {
           emit(const ConnectionConnectedState());
         }
       },
@@ -106,13 +106,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
         (ConnectivityResult result) {
-          final bool isConnectedToInternet =
-              result == ConnectivityResult.wifi ||
-                  result == ConnectivityResult.mobile;
-
-          if (isConnectedToInternet && state is ConnectionConnectedState) {
+          if (result == ConnectivityResult.wifi ||
+              result == ConnectivityResult.mobile) {
             connect();
-          } else if (state is! ConnectionDisconnectedState) {
+          } else {
             emit(const ConnectionDisconnectedState());
           }
         },
@@ -125,7 +122,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
         (Timer timer) async {
           final bool isOnline = await _ping();
 
-          if (!isOnline && state is ConnectionConnectedState) {
+          if (!isOnline) {
             emit(const ConnectionDisconnectedState());
           }
         },
