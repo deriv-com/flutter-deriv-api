@@ -38,8 +38,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
-  static const Duration _callTimeOut = Duration(seconds: 10);
-
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
   final int _pingTimeout = 5;
   final int _connectivityCheckInterval = 5;
@@ -70,13 +68,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }) async {
     if (state is! ConnectionConnectingState) {
       emit(const ConnectionConnectingState());
+    } else {
+      return;
     }
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
     }
-
-    await _api!.disconnect().timeout(_callTimeOut);
 
     await _api!.connect(
       _connectionInformation,
@@ -104,10 +102,14 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
         (ConnectivityResult result) {
-          if (result == ConnectivityResult.none) {
-            emit(const ConnectionDisconnectedState());
-          } else {
+          final bool isConnectedToInternet =
+              result == ConnectivityResult.wifi ||
+                  result == ConnectivityResult.mobile;
+
+          if (isConnectedToInternet && state is ConnectionDisconnectedState) {
             connect();
+          } else {
+            emit(const ConnectionDisconnectedState());
           }
         },
       );
@@ -127,8 +129,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     }
   }
 
-  void _stopConnectivityTimer() => _connectivityTimer?.cancel();
-
   Future<bool> _ping() async {
     try {
       final Ping response =
@@ -146,7 +146,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   @override
   Future<void> close() {
-    _stopConnectivityTimer();
+    _connectivityTimer?.cancel();
 
     return super.close();
   }
