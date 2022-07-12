@@ -38,6 +38,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
+  static const Duration _callTimeOut = Duration(seconds: 10);
+
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
   final int _pingTimeout = 5;
   final int _connectivityCheckInterval = 5;
@@ -61,16 +63,18 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Connects to the web socket.
   ///
-  /// This function MUST NOT be called outside of this package.
+  /// This function `MUST NOT` be called outside of this package.
   Future<void> connect({
     ConnectionInformation? connectionInformation,
     bool printResponse = false,
   }) async {
-    if (state is! ConnectionConnectingState) {
-      emit(const ConnectionConnectingState());
-    } else {
+    if (state is ConnectionConnectingState) {
       return;
     }
+
+    emit(const ConnectionConnectingState());
+
+    await _api!.disconnect().timeout(_callTimeOut);
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -106,9 +110,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
               result == ConnectivityResult.wifi ||
                   result == ConnectivityResult.mobile;
 
-          if (isConnectedToInternet && state is ConnectionDisconnectedState) {
+          if (isConnectedToInternet && state is ConnectionConnectedState) {
             connect();
-          } else {
+          } else if (state is! ConnectionDisconnectedState) {
             emit(const ConnectionDisconnectedState());
           }
         },
@@ -121,7 +125,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
         (Timer timer) async {
           final bool isOnline = await _ping();
 
-          if (!isOnline) {
+          if (!isOnline && state is ConnectionConnectedState) {
             emit(const ConnectionDisconnectedState());
           }
         },
