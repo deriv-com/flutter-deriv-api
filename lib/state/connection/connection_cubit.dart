@@ -81,16 +81,16 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     await _api!.connect(
       _connectionInformation,
       printResponse: printResponse,
+      onOpen: (UniqueKey uniqueKey) {
+        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
+          emit(const ConnectionConnectedState());
+        }
+      },
       onDone: (UniqueKey uniqueKey) async {
         if (_uniqueKey == uniqueKey) {
           await _api!.disconnect();
 
           emit(const ConnectionDisconnectedState());
-        }
-      },
-      onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
-          emit(const ConnectionConnectedState());
         }
       },
       onError: (UniqueKey uniqueKey) {
