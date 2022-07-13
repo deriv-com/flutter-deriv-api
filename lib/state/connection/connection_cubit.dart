@@ -65,8 +65,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   static String get appId => _connectionInformation.appId;
 
   /// Connects to the web socket.
-  ///
-  /// This function `MUST NOT` be called outside of this package.
   Future<void> connect({ConnectionInformation? connectionInformation}) async {
     if (state is ConnectionConnectingState) {
       return;
