@@ -18,6 +18,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Initializes [ConnectionCubit].
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
+    this.printResponse = false,
     this.isMock = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
@@ -38,11 +39,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
-  static const Duration _callTimeOut = Duration(seconds: 10);
+  /// Prints API response to console.
+  final bool printResponse;
 
-  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
-  final int _pingTimeout = 5;
-  final int _connectivityCheckInterval = 5;
+  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
+  final Duration _pingTimeout = const Duration(seconds: 1);
+
+  final Duration _connectivityCheckInterval = const Duration(seconds: 5);
 
   final UniqueKey _uniqueKey = UniqueKey();
 
@@ -64,17 +67,14 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Connects to the web socket.
   ///
   /// This function `MUST NOT` be called outside of this package.
-  Future<void> connect({
-    ConnectionInformation? connectionInformation,
-    bool printResponse = false,
-  }) async {
+  Future<void> connect({ConnectionInformation? connectionInformation}) async {
     if (state is ConnectionConnectingState) {
       return;
     }
 
     emit(const ConnectionConnectingState());
 
-    await _api!.disconnect().timeout(_callTimeOut);
+    await _api!.disconnect();
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -84,7 +84,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _connectionInformation,
       printResponse: printResponse,
       onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
+        if (_uniqueKey == uniqueKey) {
           emit(const ConnectionConnectedState());
         }
       },
@@ -105,11 +105,18 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
-        (ConnectivityResult result) {
-          if (result == ConnectivityResult.wifi ||
-              result == ConnectivityResult.mobile) {
-            connect();
-          } else {
+        (ConnectivityResult result) async {
+          final bool isConnectedToNetwork =
+              result == ConnectivityResult.mobile ||
+                  result == ConnectivityResult.wifi;
+
+          if (isConnectedToNetwork) {
+            final bool isConnected = await _ping();
+
+            if (!isConnected) {
+              await connect();
+            }
+          } else if (result == ConnectivityResult.none) {
             emit(const ConnectionDisconnectedState());
           }
         },
@@ -118,7 +125,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
-        Duration(seconds: _connectivityCheckInterval),
+        _connectivityCheckInterval,
         (Timer timer) async {
           final bool isOnline = await _ping();
 
@@ -132,8 +139,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   Future<bool> _ping() async {
     try {
-      final Ping response =
-          await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      final Ping response = await Ping.ping().timeout(_pingTimeout);
 
       if (!response.succeeded!) {
         return false;
