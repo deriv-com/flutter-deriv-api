@@ -1,5 +1,7 @@
 import 'package:flutter_deriv_api/api/account/models/account_authentication_status_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_status_currency_config_model.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_status/account_status.dart';
@@ -7,7 +9,9 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   test('Account Status Test', () async {
     final AccountStatus accountStatus =

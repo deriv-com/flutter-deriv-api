@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
@@ -18,16 +19,19 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Initializes [ConnectionCubit].
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
+    BaseAPI? api,
     this.printResponse = false,
-    this.isMock = false,
   }) : super(const ConnectionInitialState()) {
-    APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
+    APIInitializer().initialize(
+      uniqueKey: _uniqueKey,
+      api: api ?? BinaryAPI(uniqueKey: _uniqueKey),
+    );
 
-    _api ??= Injector.getInjector().get<BaseAPI>();
+    _api = Injector.getInjector().get<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 
-    if (!isMock) {
+    if (_api is BinaryAPI) {
       _setupConnectivityListener();
     }
 
@@ -36,20 +40,18 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     connect();
   }
 
-  /// Creates mock connection, sets this to [true] for testing purposes
-  final bool isMock;
-
   /// Prints API response to console.
   final bool printResponse;
+
+  final UniqueKey _uniqueKey = UniqueKey();
+
+  late final BaseAPI? _api;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 1);
 
   final Duration _connectivityCheckInterval = const Duration(seconds: 5);
 
-  final UniqueKey _uniqueKey = UniqueKey();
-
-  BaseAPI? _api;
   Timer? _connectivityTimer;
 
   static late ConnectionInformation _connectionInformation;
