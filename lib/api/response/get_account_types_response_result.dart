@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Get account types response model class.
-abstract class GetAccountTypesResponseModel extends Equatable {
+abstract class GetAccountTypesResponseModel {
   /// Initializes Get account types response model class .
   const GetAccountTypesResponseModel({
     this.getAccountTypes,
@@ -52,10 +52,6 @@ class GetAccountTypesResponse extends GetAccountTypesResponseModel {
       GetAccountTypesResponse(
         getAccountTypes: getAccountTypes ?? this.getAccountTypes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// LinkableWalletTypesItemEnum mapper.
@@ -116,7 +112,7 @@ enum Mt5LinkableWalletTypesItemEnum {
   fiat,
 }
 /// Get account types model class.
-abstract class GetAccountTypesModel extends Equatable {
+abstract class GetAccountTypesModel {
   /// Initializes Get account types model class .
   const GetAccountTypesModel({
     required this.wallet,
@@ -168,13 +164,9 @@ class GetAccountTypes extends GetAccountTypesModel {
         trading: trading ?? this.trading,
         wallet: wallet ?? this.wallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Trading model class.
-abstract class TradingModel extends Equatable {
+abstract class TradingModel {
   /// Initializes Trading model class .
   const TradingModel({
     required this.mt5,
@@ -236,13 +228,9 @@ class Trading extends TradingModel {
         derivx: derivx ?? this.derivx,
         mt5: mt5 ?? this.mt5,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Deriv model class.
-abstract class DerivModel extends Equatable {
+abstract class DerivModel {
   /// Initializes Deriv model class .
   const DerivModel({
     required this.linkableWalletTypes,
@@ -347,13 +335,9 @@ class Deriv extends DerivModel {
             linkableWalletCurrencies ?? this.linkableWalletCurrencies,
         linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Derivx model class.
-abstract class DerivxModel extends Equatable {
+abstract class DerivxModel {
   /// Initializes Derivx model class .
   const DerivxModel({
     required this.linkableWalletTypes,
@@ -460,13 +444,9 @@ class Derivx extends DerivxModel {
             linkableWalletCurrencies ?? this.linkableWalletCurrencies,
         linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Mt5 model class.
-abstract class Mt5Model extends Equatable {
+abstract class Mt5Model {
   /// Initializes Mt5 model class .
   const Mt5Model({
     required this.linkableWalletTypes,
@@ -572,13 +552,9 @@ class Mt5 extends Mt5Model {
             linkableWalletCurrencies ?? this.linkableWalletCurrencies,
         linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Wallet model class.
-abstract class WalletModel extends Equatable {
+abstract class WalletModel {
   /// Initializes Wallet model class .
   const WalletModel({
     required this.paClient,
@@ -662,13 +638,9 @@ class Wallet extends WalletModel {
         pa: pa ?? this.pa,
         paClient: paClient ?? this.paClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Crypto model class.
-abstract class CryptoModel extends Equatable {
+abstract class CryptoModel {
   /// Initializes Crypto model class .
   const CryptoModel({
     required this.currencies,
@@ -716,13 +688,9 @@ class Crypto extends CryptoModel {
       Crypto(
         currencies: currencies ?? this.currencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Fiat model class.
-abstract class FiatModel extends Equatable {
+abstract class FiatModel {
   /// Initializes Fiat model class .
   const FiatModel({
     required this.currencies,
@@ -770,13 +738,9 @@ class Fiat extends FiatModel {
       Fiat(
         currencies: currencies ?? this.currencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p model class.
-abstract class P2pModel extends Equatable {
+abstract class P2pModel {
   /// Initializes P2p model class .
   const P2pModel({
     required this.currencies,
@@ -824,13 +788,9 @@ class P2p extends P2pModel {
       P2p(
         currencies: currencies ?? this.currencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Pa model class.
-abstract class PaModel extends Equatable {
+abstract class PaModel {
   /// Initializes Pa model class .
   const PaModel({
     required this.currencies,
@@ -878,13 +838,9 @@ class Pa extends PaModel {
       Pa(
         currencies: currencies ?? this.currencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Pa client model class.
-abstract class PaClientModel extends Equatable {
+abstract class PaClientModel {
   /// Initializes Pa client model class .
   const PaClientModel({
     required this.currencies,
@@ -932,8 +888,4 @@ class PaClient extends PaClientModel {
       PaClient(
         currencies: currencies ?? this.currencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

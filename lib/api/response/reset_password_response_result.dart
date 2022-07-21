@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Reset password response model class.
-abstract class ResetPasswordResponseModel extends Equatable {
+abstract class ResetPasswordResponseModel {
   /// Initializes Reset password response model class .
   const ResetPasswordResponseModel({
     this.resetPassword,
@@ -71,8 +71,4 @@ class ResetPasswordResponse extends ResetPasswordResponseModel {
       ResetPasswordResponse(
         resetPassword: resetPassword ?? this.resetPassword,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Trading platform deposit response model class.
-abstract class TradingPlatformDepositResponseModel extends Equatable {
+abstract class TradingPlatformDepositResponseModel {
   /// Initializes Trading platform deposit response model class .
   const TradingPlatformDepositResponseModel({
     this.tradingPlatformDeposit,
@@ -50,8 +50,4 @@ class TradingPlatformDepositResponse
         tradingPlatformDeposit:
             tradingPlatformDeposit ?? this.tradingPlatformDeposit,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

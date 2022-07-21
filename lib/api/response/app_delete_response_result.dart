@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App delete response model class.
-abstract class AppDeleteResponseModel extends Equatable {
+abstract class AppDeleteResponseModel {
   /// Initializes App delete response model class .
   const AppDeleteResponseModel({
     this.appDelete,
@@ -72,8 +72,4 @@ class AppDeleteResponse extends AppDeleteResponseModel {
       AppDeleteResponse(
         appDelete: appDelete ?? this.appDelete,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

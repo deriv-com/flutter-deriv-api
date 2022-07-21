@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// New account wallet response model class.
-abstract class NewAccountWalletResponseModel extends Equatable {
+abstract class NewAccountWalletResponseModel {
   /// Initializes New account wallet response model class .
   const NewAccountWalletResponseModel({
     this.newAccountWallet,
@@ -52,13 +52,9 @@ class NewAccountWalletResponse extends NewAccountWalletResponseModel {
       NewAccountWalletResponse(
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// New account wallet model class.
-abstract class NewAccountWalletModel extends Equatable {
+abstract class NewAccountWalletModel {
   /// Initializes New account wallet model class .
   const NewAccountWalletModel({
     required this.oauthToken,
@@ -150,8 +146,4 @@ class NewAccountWallet extends NewAccountWalletModel {
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

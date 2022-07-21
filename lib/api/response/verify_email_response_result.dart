@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Verify email response model class.
-abstract class VerifyEmailResponseModel extends Equatable {
+abstract class VerifyEmailResponseModel {
   /// Initializes Verify email response model class .
   const VerifyEmailResponseModel({
     this.verifyEmail,
@@ -75,8 +75,4 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
       VerifyEmailResponse(
         verifyEmail: verifyEmail ?? this.verifyEmail,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

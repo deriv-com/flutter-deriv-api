@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Contracts for response model class.
-abstract class ContractsForResponseModel extends Equatable {
+abstract class ContractsForResponseModel {
   /// Initializes Contracts for response model class .
   const ContractsForResponseModel({
     this.contractsFor,
@@ -79,13 +79,9 @@ class ContractsForResponse extends ContractsForResponseModel {
       ContractsForResponse(
         contractsFor: contractsFor ?? this.contractsFor,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Contracts for model class.
-abstract class ContractsForModel extends Equatable {
+abstract class ContractsForModel {
   /// Initializes Contracts for model class .
   const ContractsForModel({
     required this.available,
@@ -184,13 +180,9 @@ class ContractsFor extends ContractsForModel {
         open: open ?? this.open,
         spot: spot ?? this.spot,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Available item model class.
-abstract class AvailableItemModel extends Equatable {
+abstract class AvailableItemModel {
   /// Initializes Available item model class .
   const AvailableItemModel({
     required this.underlyingSymbol,
@@ -554,13 +546,9 @@ class AvailableItem extends AvailableItemModel {
         payoutLimit: payoutLimit ?? this.payoutLimit,
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Forward starting options item model class.
-abstract class ForwardStartingOptionsItemModel extends Equatable {
+abstract class ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item model class .
   const ForwardStartingOptionsItemModel({
     this.blackouts,
@@ -643,8 +631,4 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
         date: date ?? this.date,
         open: open ?? this.open,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

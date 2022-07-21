@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 login list response model class.
-abstract class Mt5LoginListResponseModel extends Equatable {
+abstract class Mt5LoginListResponseModel {
   /// Initializes Mt5 login list response model class .
   const Mt5LoginListResponseModel({
     this.mt5LoginList,
@@ -86,10 +86,6 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
       Mt5LoginListResponse(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -196,7 +192,7 @@ enum SubAccountTypeEnum {
   financialStp,
 }
 /// Mt5 login list item model class.
-abstract class Mt5LoginListItemModel extends Equatable {
+abstract class Mt5LoginListItemModel {
   /// Initializes Mt5 login list item model class .
   const Mt5LoginListItemModel({
     this.accountType,
@@ -401,13 +397,9 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         serverInfo: serverInfo ?? this.serverInfo,
         subAccountType: subAccountType ?? this.subAccountType,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Server info model class.
-abstract class ServerInfoModel extends Equatable {
+abstract class ServerInfoModel {
   /// Initializes Server info model class .
   const ServerInfoModel({
     this.environment,
@@ -476,13 +468,9 @@ class ServerInfo extends ServerInfoModel {
         geolocation: geolocation ?? this.geolocation,
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Geolocation model class.
-abstract class GeolocationModel extends Equatable {
+abstract class GeolocationModel {
   /// Initializes Geolocation model class .
   const GeolocationModel({
     this.group,
@@ -552,8 +540,4 @@ class Geolocation extends GeolocationModel {
         region: region ?? this.region,
         sequence: sequence ?? this.sequence,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

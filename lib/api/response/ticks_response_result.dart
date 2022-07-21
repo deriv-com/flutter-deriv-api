@@ -16,7 +16,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Ticks response model class.
-abstract class TicksResponseModel extends Equatable {
+abstract class TicksResponseModel {
   /// Initializes Ticks response model class .
   const TicksResponseModel({
     this.tick,
@@ -120,13 +120,9 @@ class TicksResponse extends TicksResponseModel {
         tick: tick ?? this.tick,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Tick model class.
-abstract class TickModel extends Equatable {
+abstract class TickModel {
   /// Initializes Tick model class .
   const TickModel({
     required this.pipSize,
@@ -226,13 +222,9 @@ class Tick extends TickModel {
         quote: quote ?? this.quote,
         symbol: symbol ?? this.symbol,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -272,8 +264,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

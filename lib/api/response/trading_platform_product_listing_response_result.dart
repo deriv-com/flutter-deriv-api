@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Trading platform product listing response model class.
-abstract class TradingPlatformProductListingResponseModel extends Equatable {
+abstract class TradingPlatformProductListingResponseModel {
   /// Initializes Trading platform product listing response model class .
   const TradingPlatformProductListingResponseModel({
     this.tradingPlatformProductListing,
@@ -63,13 +63,9 @@ class TradingPlatformProductListingResponse
         tradingPlatformProductListing:
             tradingPlatformProductListing ?? this.tradingPlatformProductListing,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Trading platform product listing property model class.
-abstract class TradingPlatformProductListingPropertyModel extends Equatable {
+abstract class TradingPlatformProductListingPropertyModel {
   /// Initializes Trading platform product listing property model class .
   const TradingPlatformProductListingPropertyModel({
     this.availableMarkets,
@@ -178,13 +174,9 @@ class TradingPlatformProductListingProperty
         name: name ?? this.name,
         productList: productList ?? this.productList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Product list item model class.
-abstract class ProductListItemModel extends Equatable {
+abstract class ProductListItemModel {
   /// Initializes Product list item model class .
   const ProductListItemModel({
     this.availableAccountTypes,
@@ -298,13 +290,9 @@ class ProductListItem extends ProductListItemModel {
         submarket: submarket ?? this.submarket,
         symbol: symbol ?? this.symbol,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Market model class.
-abstract class MarketModel extends Equatable {
+abstract class MarketModel {
   /// Initializes Market model class .
   const MarketModel({
     this.displayName,
@@ -354,13 +342,9 @@ class Market extends MarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Submarket model class.
-abstract class SubmarketModel extends Equatable {
+abstract class SubmarketModel {
   /// Initializes Submarket model class .
   const SubmarketModel({
     this.displayName,
@@ -410,13 +394,9 @@ class Submarket extends SubmarketModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Symbol model class.
-abstract class SymbolModel extends Equatable {
+abstract class SymbolModel {
   /// Initializes Symbol model class .
   const SymbolModel({
     this.displayName,
@@ -466,8 +446,4 @@ class Symbol extends SymbolModel {
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

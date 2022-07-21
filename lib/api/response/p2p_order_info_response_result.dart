@@ -24,7 +24,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p order info response model class.
-abstract class P2pOrderInfoResponseModel extends Equatable {
+abstract class P2pOrderInfoResponseModel {
   /// Initializes P2p order info response model class .
   const P2pOrderInfoResponseModel({
     this.p2pOrderInfo,
@@ -210,10 +210,6 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
         p2pOrderInfo: p2pOrderInfo ?? this.p2pOrderInfo,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -315,7 +311,7 @@ enum StatusEnum {
   disputeCompleted,
 }
 /// P2p order info model class.
-abstract class P2pOrderInfoModel extends Equatable {
+abstract class P2pOrderInfoModel {
   /// Initializes P2p order info model class .
   const P2pOrderInfoModel({
     required this.type,
@@ -340,6 +336,7 @@ abstract class P2pOrderInfoModel extends Equatable {
     required this.advertiserDetails,
     required this.advertDetails,
     required this.accountCurrency,
+    this.completionTime,
     this.paymentMethod,
     this.paymentMethodDetails,
     this.reviewDetails,
@@ -411,6 +408,9 @@ abstract class P2pOrderInfoModel extends Equatable {
   /// The currency of order.
   final String accountCurrency;
 
+  /// The epoch time of the order completion.
+  final DateTime? completionTime;
+
   /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
@@ -447,6 +447,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    DateTime? completionTime,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     ReviewDetails? reviewDetails,
@@ -473,6 +474,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          completionTime: completionTime,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
           reviewDetails: reviewDetails,
@@ -503,6 +505,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        completionTime: getDateTime(json['completion_time']),
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
@@ -555,6 +558,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['completion_time'] = getSecondsSinceEpochDateTime(completionTime);
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
     if (reviewDetails != null) {
@@ -588,6 +592,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    DateTime? completionTime,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     ReviewDetails? reviewDetails,
@@ -615,17 +620,14 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        completionTime: completionTime ?? this.completionTime,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
         reviewDetails: reviewDetails ?? this.reviewDetails,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advert details model class.
-abstract class AdvertDetailsModel extends Equatable {
+abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
   const AdvertDetailsModel({
     required this.type,
@@ -697,13 +699,9 @@ class AdvertDetails extends AdvertDetailsModel {
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel extends Equatable {
+abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.name,
@@ -794,13 +792,9 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Client details model class.
-abstract class ClientDetailsModel extends Equatable {
+abstract class ClientDetailsModel {
   /// Initializes Client details model class .
   const ClientDetailsModel({
     required this.name,
@@ -890,13 +884,9 @@ class ClientDetails extends ClientDetailsModel {
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dispute details model class.
-abstract class DisputeDetailsModel extends Equatable {
+abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
   const DisputeDetailsModel({
     this.disputeReason,
@@ -946,13 +936,9 @@ class DisputeDetails extends DisputeDetailsModel {
         disputeReason: disputeReason ?? this.disputeReason,
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Payment method details property model class.
-abstract class PaymentMethodDetailsPropertyModel extends Equatable {
+abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
   const PaymentMethodDetailsPropertyModel({
     required this.type,
@@ -1042,13 +1028,9 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
-abstract class FieldsPropertyModel extends Equatable {
+abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
   const FieldsPropertyModel({
     required this.value,
@@ -1121,13 +1103,9 @@ class FieldsProperty extends FieldsPropertyModel {
         type: type ?? this.type,
         value: value ?? this.value,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Review details model class.
-abstract class ReviewDetailsModel extends Equatable {
+abstract class ReviewDetailsModel {
   /// Initializes Review details model class .
   const ReviewDetailsModel({
     required this.rating,
@@ -1187,13 +1165,9 @@ class ReviewDetails extends ReviewDetailsModel {
         rating: rating ?? this.rating,
         recommended: recommended ?? this.recommended,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -1233,8 +1207,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

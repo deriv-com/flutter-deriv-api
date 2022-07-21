@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 password reset response model class.
-abstract class Mt5PasswordResetResponseModel extends Equatable {
+abstract class Mt5PasswordResetResponseModel {
   /// Initializes Mt5 password reset response model class .
   const Mt5PasswordResetResponseModel({
     this.mt5PasswordReset,
@@ -74,8 +74,4 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
       Mt5PasswordResetResponse(
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

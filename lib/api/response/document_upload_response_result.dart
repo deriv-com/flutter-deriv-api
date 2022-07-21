@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 /// Document upload response model class.
-abstract class DocumentUploadResponseModel extends Equatable {
+abstract class DocumentUploadResponseModel {
   /// Initializes Document upload response model class .
   const DocumentUploadResponseModel({
     this.documentUpload,
@@ -51,13 +51,9 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
       DocumentUploadResponse(
         documentUpload: documentUpload ?? this.documentUpload,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Document upload model class.
-abstract class DocumentUploadModel extends Equatable {
+abstract class DocumentUploadModel {
   /// Initializes Document upload model class .
   const DocumentUploadModel({
     required this.uploadId,
@@ -148,8 +144,4 @@ class DocumentUpload extends DocumentUploadModel {
         size: size ?? this.size,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

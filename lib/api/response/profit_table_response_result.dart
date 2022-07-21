@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 /// Profit table response model class.
-abstract class ProfitTableResponseModel extends Equatable {
+abstract class ProfitTableResponseModel {
   /// Initializes Profit table response model class .
   const ProfitTableResponseModel({
     this.profitTable,
@@ -75,13 +75,9 @@ class ProfitTableResponse extends ProfitTableResponseModel {
       ProfitTableResponse(
         profitTable: profitTable ?? this.profitTable,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Profit table model class.
-abstract class ProfitTableModel extends Equatable {
+abstract class ProfitTableModel {
   /// Initializes Profit table model class .
   const ProfitTableModel({
     this.count,
@@ -143,13 +139,9 @@ class ProfitTable extends ProfitTableModel {
         count: count ?? this.count,
         transactions: transactions ?? this.transactions,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Transactions item model class.
-abstract class TransactionsItemModel extends Equatable {
+abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
   const TransactionsItemModel({
     this.appId,
@@ -290,8 +282,4 @@ class TransactionsItem extends TransactionsItemModel {
         shortcode: shortcode ?? this.shortcode,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

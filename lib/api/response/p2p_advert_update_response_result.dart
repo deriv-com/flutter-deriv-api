@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p advert update response model class.
-abstract class P2pAdvertUpdateResponseModel extends Equatable {
+abstract class P2pAdvertUpdateResponseModel {
   /// Initializes P2p advert update response model class .
   const P2pAdvertUpdateResponseModel({
     this.p2pAdvertUpdate,
@@ -78,10 +78,6 @@ class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
       P2pAdvertUpdateResponse(
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -211,7 +207,7 @@ enum VisibilityStatusItemEnum {
   advertiserTempBan,
 }
 /// P2p advert update model class.
-abstract class P2pAdvertUpdateModel extends Equatable {
+abstract class P2pAdvertUpdateModel {
   /// Initializes P2p advert update model class .
   const P2pAdvertUpdateModel({
     required this.id,
@@ -706,13 +702,9 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         type: type ?? this.type,
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel extends Equatable {
+abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.ratingCount,
@@ -843,13 +835,9 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         recommendedCount: recommendedCount ?? this.recommendedCount,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Payment method details property model class.
-abstract class PaymentMethodDetailsPropertyModel extends Equatable {
+abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
   const PaymentMethodDetailsPropertyModel({
     required this.type,
@@ -939,13 +927,9 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
-abstract class FieldsPropertyModel extends Equatable {
+abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
   const FieldsPropertyModel({
     required this.value,
@@ -1017,8 +1001,4 @@ class FieldsProperty extends FieldsPropertyModel {
         type: type ?? this.type,
         value: value ?? this.value,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

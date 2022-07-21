@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Copy start response model class.
-abstract class CopyStartResponseModel extends Equatable {
+abstract class CopyStartResponseModel {
   /// Initializes Copy start response model class .
   const CopyStartResponseModel({
     this.copyStart,
@@ -72,8 +72,4 @@ class CopyStartResponse extends CopyStartResponseModel {
       CopyStartResponse(
         copyStart: copyStart ?? this.copyStart,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

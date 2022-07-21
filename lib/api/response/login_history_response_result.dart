@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Login history response model class.
-abstract class LoginHistoryResponseModel extends Equatable {
+abstract class LoginHistoryResponseModel {
   /// Initializes Login history response model class .
   const LoginHistoryResponseModel({
     this.loginHistory,
@@ -88,13 +88,9 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
       LoginHistoryResponse(
         loginHistory: loginHistory ?? this.loginHistory,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Login history item model class.
-abstract class LoginHistoryItemModel extends Equatable {
+abstract class LoginHistoryItemModel {
   /// Initializes Login history item model class .
   const LoginHistoryItemModel({
     required this.time,
@@ -165,8 +161,4 @@ class LoginHistoryItem extends LoginHistoryItemModel {
         status: status ?? this.status,
         time: time ?? this.time,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

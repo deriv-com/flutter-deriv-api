@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p advertiser payment methods response model class.
-abstract class P2pAdvertiserPaymentMethodsResponseModel extends Equatable {
+abstract class P2pAdvertiserPaymentMethodsResponseModel {
   /// Initializes P2p advertiser payment methods response model class .
   const P2pAdvertiserPaymentMethodsResponseModel({
     this.p2pAdvertiserPaymentMethods,
@@ -62,10 +62,6 @@ class P2pAdvertiserPaymentMethodsResponse
         p2pAdvertiserPaymentMethods:
             p2pAdvertiserPaymentMethods ?? this.p2pAdvertiserPaymentMethods,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -104,7 +100,7 @@ enum P2pAdvertiserPaymentMethodsPropertyTypeEnum {
   other,
 }
 /// P2p advertiser payment methods property model class.
-abstract class P2pAdvertiserPaymentMethodsPropertyModel extends Equatable {
+abstract class P2pAdvertiserPaymentMethodsPropertyModel {
   /// Initializes P2p advertiser payment methods property model class .
   const P2pAdvertiserPaymentMethodsPropertyModel({
     required this.type,
@@ -198,13 +194,9 @@ class P2pAdvertiserPaymentMethodsProperty
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
-abstract class FieldsPropertyModel extends Equatable {
+abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
   const FieldsPropertyModel({
     required this.value,
@@ -276,8 +268,4 @@ class FieldsProperty extends FieldsPropertyModel {
         type: type ?? this.type,
         value: value ?? this.value,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

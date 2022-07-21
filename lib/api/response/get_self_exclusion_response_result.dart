@@ -13,7 +13,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Get self exclusion response model class.
-abstract class GetSelfExclusionResponseModel extends Equatable {
+abstract class GetSelfExclusionResponseModel {
   /// Initializes Get self exclusion response model class .
   const GetSelfExclusionResponseModel({
     this.getSelfExclusion,
@@ -134,13 +134,9 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
       GetSelfExclusionResponse(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Get self exclusion model class.
-abstract class GetSelfExclusionModel extends Equatable {
+abstract class GetSelfExclusionModel {
   /// Initializes Get self exclusion model class .
   const GetSelfExclusionModel({
     this.excludeUntil,
@@ -311,8 +307,4 @@ class GetSelfExclusion extends GetSelfExclusionModel {
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
         timeoutUntil: timeoutUntil ?? this.timeoutUntil,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

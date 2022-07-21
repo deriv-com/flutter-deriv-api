@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App register response model class.
-abstract class AppRegisterResponseModel extends Equatable {
+abstract class AppRegisterResponseModel {
   /// Initializes App register response model class .
   const AppRegisterResponseModel({
     this.appRegister,
@@ -78,13 +78,9 @@ class AppRegisterResponse extends AppRegisterResponseModel {
       AppRegisterResponse(
         appRegister: appRegister ?? this.appRegister,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// App register model class.
-abstract class AppRegisterModel extends Equatable {
+abstract class AppRegisterModel {
   /// Initializes App register model class .
   const AppRegisterModel({
     required this.verificationUri,
@@ -236,8 +232,4 @@ class AppRegister extends AppRegisterModel {
         active: active ?? this.active,
         scopes: scopes ?? this.scopes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

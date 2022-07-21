@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// New account real response model class.
-abstract class NewAccountRealResponseModel extends Equatable {
+abstract class NewAccountRealResponseModel {
   /// Initializes New account real response model class .
   const NewAccountRealResponseModel({
     this.newAccountReal,
@@ -78,13 +78,9 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
       NewAccountRealResponse(
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// New account real model class.
-abstract class NewAccountRealModel extends Equatable {
+abstract class NewAccountRealModel {
   /// Initializes New account real model class .
   const NewAccountRealModel({
     required this.oauthToken,
@@ -175,8 +171,4 @@ class NewAccountReal extends NewAccountRealModel {
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

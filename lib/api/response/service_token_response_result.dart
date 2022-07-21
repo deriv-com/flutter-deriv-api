@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Service token response model class.
-abstract class ServiceTokenResponseModel extends Equatable {
+abstract class ServiceTokenResponseModel {
   /// Initializes Service token response model class .
   const ServiceTokenResponseModel({
     this.serviceToken,
@@ -52,13 +52,9 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
       ServiceTokenResponse(
         serviceToken: serviceToken ?? this.serviceToken,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Service token model class.
-abstract class ServiceTokenModel extends Equatable {
+abstract class ServiceTokenModel {
   /// Initializes Service token model class .
   const ServiceTokenModel({
     this.banxa,
@@ -151,13 +147,9 @@ class ServiceToken extends ServiceTokenModel {
         sendbird: sendbird ?? this.sendbird,
         wyre: wyre ?? this.wyre,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Banxa model class.
-abstract class BanxaModel extends Equatable {
+abstract class BanxaModel {
   /// Initializes Banxa model class .
   const BanxaModel({
     this.token,
@@ -217,13 +209,9 @@ class Banxa extends BanxaModel {
         url: url ?? this.url,
         urlIframe: urlIframe ?? this.urlIframe,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade model class.
-abstract class DxtradeModel extends Equatable {
+abstract class DxtradeModel {
   /// Initializes Dxtrade model class .
   const DxtradeModel({
     this.token,
@@ -263,13 +251,9 @@ class Dxtrade extends DxtradeModel {
       Dxtrade(
         token: token ?? this.token,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Onfido model class.
-abstract class OnfidoModel extends Equatable {
+abstract class OnfidoModel {
   /// Initializes Onfido model class .
   const OnfidoModel({
     this.token,
@@ -309,13 +293,9 @@ class Onfido extends OnfidoModel {
       Onfido(
         token: token ?? this.token,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Sendbird model class.
-abstract class SendbirdModel extends Equatable {
+abstract class SendbirdModel {
   /// Initializes Sendbird model class .
   const SendbirdModel({
     this.appId,
@@ -375,13 +355,9 @@ class Sendbird extends SendbirdModel {
         expiryTime: expiryTime ?? this.expiryTime,
         token: token ?? this.token,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Wyre model class.
-abstract class WyreModel extends Equatable {
+abstract class WyreModel {
   /// Initializes Wyre model class .
   const WyreModel({
     this.token,
@@ -431,8 +407,4 @@ class Wyre extends WyreModel {
         token: token ?? this.token,
         url: url ?? this.url,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// P2p order cancel response model class.
-abstract class P2pOrderCancelResponseModel extends Equatable {
+abstract class P2pOrderCancelResponseModel {
   /// Initializes P2p order cancel response model class .
   const P2pOrderCancelResponseModel({
     this.p2pOrderCancel,
@@ -51,10 +51,6 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
       P2pOrderCancelResponse(
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -68,7 +64,7 @@ enum StatusEnum {
   cancelled,
 }
 /// P2p order cancel model class.
-abstract class P2pOrderCancelModel extends Equatable {
+abstract class P2pOrderCancelModel {
   /// Initializes P2p order cancel model class .
   const P2pOrderCancelModel({
     required this.status,
@@ -121,8 +117,4 @@ class P2pOrderCancel extends P2pOrderCancelModel {
         id: id ?? this.id,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

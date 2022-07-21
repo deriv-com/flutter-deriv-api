@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Request report response model class.
-abstract class RequestReportResponseModel extends Equatable {
+abstract class RequestReportResponseModel {
   /// Initializes Request report response model class .
   const RequestReportResponseModel({
     this.requestReport,
@@ -52,13 +52,9 @@ class RequestReportResponse extends RequestReportResponseModel {
       RequestReportResponse(
         requestReport: requestReport ?? this.requestReport,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Request report model class.
-abstract class RequestReportModel extends Equatable {
+abstract class RequestReportModel {
   /// Initializes Request report model class .
   const RequestReportModel({
     this.reportStatus,
@@ -98,8 +94,4 @@ class RequestReport extends RequestReportModel {
       RequestReport(
         reportStatus: reportStatus ?? this.reportStatus,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

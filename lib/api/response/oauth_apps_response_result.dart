@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Oauth apps response model class.
-abstract class OauthAppsResponseModel extends Equatable {
+abstract class OauthAppsResponseModel {
   /// Initializes Oauth apps response model class .
   const OauthAppsResponseModel({
     this.oauthApps,
@@ -87,13 +87,9 @@ class OauthAppsResponse extends OauthAppsResponseModel {
       OauthAppsResponse(
         oauthApps: oauthApps ?? this.oauthApps,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Oauth apps item model class.
-abstract class OauthAppsItemModel extends Equatable {
+abstract class OauthAppsItemModel {
   /// Initializes Oauth apps item model class .
   const OauthAppsItemModel({
     required this.scopes,
@@ -182,8 +178,4 @@ class OauthAppsItem extends OauthAppsItemModel {
         scopes: scopes ?? this.scopes,
         lastUsed: lastUsed ?? this.lastUsed,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

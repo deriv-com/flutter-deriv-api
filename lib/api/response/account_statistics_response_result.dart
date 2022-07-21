@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Account statistics response model class.
-abstract class AccountStatisticsResponseModel extends Equatable {
+abstract class AccountStatisticsResponseModel {
   /// Initializes Account statistics response model class .
   const AccountStatisticsResponseModel({
     this.accountStatistics,
@@ -52,13 +52,9 @@ class AccountStatisticsResponse extends AccountStatisticsResponseModel {
       AccountStatisticsResponse(
         accountStatistics: accountStatistics ?? this.accountStatistics,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Account statistics model class.
-abstract class AccountStatisticsModel extends Equatable {
+abstract class AccountStatisticsModel {
   /// Initializes Account statistics model class .
   const AccountStatisticsModel({
     this.currency,
@@ -119,8 +115,4 @@ class AccountStatistics extends AccountStatisticsModel {
         totalDeposits: totalDeposits ?? this.totalDeposits,
         totalWithdrawals: totalWithdrawals ?? this.totalWithdrawals,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

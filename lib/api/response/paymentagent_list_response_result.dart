@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Paymentagent list response model class.
-abstract class PaymentagentListResponseModel extends Equatable {
+abstract class PaymentagentListResponseModel {
   /// Initializes Paymentagent list response model class .
   const PaymentagentListResponseModel({
     this.paymentagentList,
@@ -78,13 +78,9 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
       PaymentagentListResponse(
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Paymentagent list model class.
-abstract class PaymentagentListModel extends Equatable {
+abstract class PaymentagentListModel {
   /// Initializes Paymentagent list model class .
   const PaymentagentListModel({
     required this.list,
@@ -164,13 +160,9 @@ class PaymentagentList extends PaymentagentListModel {
         list: list ?? this.list,
         availableCountries: availableCountries ?? this.availableCountries,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// List item model class.
-abstract class ListItemModel extends Equatable {
+abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
     required this.withdrawalCommission,
@@ -358,13 +350,9 @@ class ListItem extends ListItemModel {
         maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Phone numbers item model class.
-abstract class PhoneNumbersItemModel extends Equatable {
+abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
   const PhoneNumbersItemModel({
     this.phoneNumber,
@@ -405,13 +393,9 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
       PhoneNumbersItem(
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Supported payment methods item model class.
-abstract class SupportedPaymentMethodsItemModel extends Equatable {
+abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
   const SupportedPaymentMethodsItemModel({
     this.paymentMethod,
@@ -452,13 +436,9 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
       SupportedPaymentMethodsItem(
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Urls item model class.
-abstract class UrlsItemModel extends Equatable {
+abstract class UrlsItemModel {
   /// Initializes Urls item model class .
   const UrlsItemModel({
     this.url,
@@ -498,8 +478,4 @@ class UrlsItem extends UrlsItemModel {
       UrlsItem(
         url: url ?? this.url,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

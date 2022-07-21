@@ -23,7 +23,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App get response model class.
-abstract class AppGetResponseModel extends Equatable {
+abstract class AppGetResponseModel {
   /// Initializes App get response model class .
   const AppGetResponseModel({
     this.appGet,
@@ -185,13 +185,9 @@ class AppGetResponse extends AppGetResponseModel {
       AppGetResponse(
         appGet: appGet ?? this.appGet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// App get model class.
-abstract class AppGetModel extends Equatable {
+abstract class AppGetModel {
   /// Initializes App get model class .
   const AppGetModel({
     required this.verificationUri,
@@ -343,8 +339,4 @@ class AppGet extends AppGetModel {
         active: active ?? this.active,
         scopes: scopes ?? this.scopes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p advertiser adverts response model class.
-abstract class P2pAdvertiserAdvertsResponseModel extends Equatable {
+abstract class P2pAdvertiserAdvertsResponseModel {
   /// Initializes P2p advertiser adverts response model class .
   const P2pAdvertiserAdvertsResponseModel({
     this.p2pAdvertiserAdverts,
@@ -78,10 +78,6 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
       P2pAdvertiserAdvertsResponse(
         p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// CounterpartyTypeEnum mapper.
@@ -174,7 +170,7 @@ enum VisibilityStatusItemEnum {
   advertiserTempBan,
 }
 /// P2p advertiser adverts model class.
-abstract class P2pAdvertiserAdvertsModel extends Equatable {
+abstract class P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts model class .
   const P2pAdvertiserAdvertsModel({
     required this.list,
@@ -223,13 +219,9 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
       P2pAdvertiserAdverts(
         list: list ?? this.list,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// List item model class.
-abstract class ListItemModel extends Equatable {
+abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
     required this.type,
@@ -685,13 +677,9 @@ class ListItem extends ListItemModel {
         priceDisplay: priceDisplay ?? this.priceDisplay,
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel extends Equatable {
+abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.ratingCount,
@@ -822,8 +810,4 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         recommendedCount: recommendedCount ?? this.recommendedCount,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

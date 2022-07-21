@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Cancel response model class.
-abstract class CancelResponseModel extends Equatable {
+abstract class CancelResponseModel {
   /// Initializes Cancel response model class .
   const CancelResponseModel({
     this.cancel,
@@ -73,13 +73,9 @@ class CancelResponse extends CancelResponseModel {
       CancelResponse(
         cancel: cancel ?? this.cancel,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Cancel model class.
-abstract class CancelModel extends Equatable {
+abstract class CancelModel {
   /// Initializes Cancel model class .
   const CancelModel({
     this.balanceAfter,
@@ -159,8 +155,4 @@ class Cancel extends CancelModel {
         soldFor: soldFor ?? this.soldFor,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

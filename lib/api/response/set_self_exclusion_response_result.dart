@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Set self exclusion response model class.
-abstract class SetSelfExclusionResponseModel extends Equatable {
+abstract class SetSelfExclusionResponseModel {
   /// Initializes Set self exclusion response model class .
   const SetSelfExclusionResponseModel({
     this.setSelfExclusion,
@@ -73,8 +73,4 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
       SetSelfExclusionResponse(
         setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

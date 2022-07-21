@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 /// Paymentagent details response model class.
-abstract class PaymentagentDetailsResponseModel extends Equatable {
+abstract class PaymentagentDetailsResponseModel {
   /// Initializes Paymentagent details response model class .
   const PaymentagentDetailsResponseModel({
     this.paymentagentDetails,
@@ -51,13 +51,9 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
       PaymentagentDetailsResponse(
         paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Paymentagent details model class.
-abstract class PaymentagentDetailsModel extends Equatable {
+abstract class PaymentagentDetailsModel {
   /// Initializes Paymentagent details model class .
   const PaymentagentDetailsModel({
     this.affiliateId,
@@ -286,13 +282,9 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         targetCountry: targetCountry ?? this.targetCountry,
         urls: urls ?? this.urls,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Phone numbers item model class.
-abstract class PhoneNumbersItemModel extends Equatable {
+abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
   const PhoneNumbersItemModel({
     this.phoneNumber,
@@ -333,13 +325,9 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
       PhoneNumbersItem(
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Supported payment methods item model class.
-abstract class SupportedPaymentMethodsItemModel extends Equatable {
+abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
   const SupportedPaymentMethodsItemModel({
     this.paymentMethod,
@@ -380,13 +368,9 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
       SupportedPaymentMethodsItem(
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Urls item model class.
-abstract class UrlsItemModel extends Equatable {
+abstract class UrlsItemModel {
   /// Initializes Urls item model class .
   const UrlsItemModel({
     this.url,
@@ -426,8 +410,4 @@ class UrlsItem extends UrlsItemModel {
       UrlsItem(
         url: url ?? this.url,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

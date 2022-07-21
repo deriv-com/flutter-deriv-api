@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Trading platform withdrawal response model class.
-abstract class TradingPlatformWithdrawalResponseModel extends Equatable {
+abstract class TradingPlatformWithdrawalResponseModel {
   /// Initializes Trading platform withdrawal response model class .
   const TradingPlatformWithdrawalResponseModel({
     this.tradingPlatformWithdrawal,
@@ -55,13 +55,9 @@ class TradingPlatformWithdrawalResponse
         tradingPlatformWithdrawal:
             tradingPlatformWithdrawal ?? this.tradingPlatformWithdrawal,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Trading platform withdrawal model class.
-abstract class TradingPlatformWithdrawalModel extends Equatable {
+abstract class TradingPlatformWithdrawalModel {
   /// Initializes Trading platform withdrawal model class .
   const TradingPlatformWithdrawalModel({
     this.transactionId,
@@ -102,8 +98,4 @@ class TradingPlatformWithdrawal extends TradingPlatformWithdrawalModel {
       TradingPlatformWithdrawal(
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

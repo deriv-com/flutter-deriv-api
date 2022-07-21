@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Authorize response model class.
-abstract class AuthorizeResponseModel extends Equatable {
+abstract class AuthorizeResponseModel {
   /// Initializes Authorize response model class .
   const AuthorizeResponseModel({
     this.authorize,
@@ -78,10 +78,6 @@ class AuthorizeResponse extends AuthorizeResponseModel {
       AuthorizeResponse(
         authorize: authorize ?? this.authorize,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -119,7 +115,7 @@ enum PlatformEnum {
   mt5,
 }
 /// Authorize model class.
-abstract class AuthorizeModel extends Equatable {
+abstract class AuthorizeModel {
   /// Initializes Authorize model class .
   const AuthorizeModel({
     this.accountList,
@@ -374,13 +370,9 @@ class Authorize extends AuthorizeModel {
         userId: userId ?? this.userId,
         wallet: wallet ?? this.wallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Account list item model class.
-abstract class AccountListItemModel extends Equatable {
+abstract class AccountListItemModel {
   /// Initializes Account list item model class .
   const AccountListItemModel({
     this.accountType,
@@ -521,13 +513,9 @@ class AccountListItem extends AccountListItemModel {
         trading: trading ?? this.trading,
         wallet: wallet ?? this.wallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Trading model class.
-abstract class TradingModel extends Equatable {
+abstract class TradingModel {
   /// Initializes Trading model class .
   const TradingModel({
     this.linkedTo,
@@ -579,13 +567,9 @@ class Trading extends TradingModel {
       Trading(
         linkedTo: linkedTo ?? this.linkedTo,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Linked to item model class.
-abstract class LinkedToItemModel extends Equatable {
+abstract class LinkedToItemModel {
   /// Initializes Linked to item model class .
   const LinkedToItemModel({
     this.accountId,
@@ -655,13 +639,9 @@ class LinkedToItem extends LinkedToItemModel {
         currency: currency ?? this.currency,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Wallet model class.
-abstract class WalletModel extends Equatable {
+abstract class WalletModel {
   /// Initializes Wallet model class .
   const WalletModel({
     this.accountId,
@@ -753,13 +733,9 @@ class Wallet extends WalletModel {
         linkedTo: linkedTo ?? this.linkedTo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Wallet linked to item model class.
-abstract class WalletLinkedToItemModel extends Equatable {
+abstract class WalletLinkedToItemModel {
   /// Initializes Wallet linked to item model class .
   const WalletLinkedToItemModel({
     this.accountId,
@@ -835,13 +811,9 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
         currency: currency ?? this.currency,
         platform: platform ?? this.platform,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Local currencies property model class.
-abstract class LocalCurrenciesPropertyModel extends Equatable {
+abstract class LocalCurrenciesPropertyModel {
   /// Initializes Local currencies property model class .
   const LocalCurrenciesPropertyModel({
     required this.fractionalDigits,
@@ -882,13 +854,9 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
       LocalCurrenciesProperty(
         fractionalDigits: fractionalDigits ?? this.fractionalDigits,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Authorize trading model class.
-abstract class AuthorizeTradingModel extends Equatable {
+abstract class AuthorizeTradingModel {
   /// Initializes Authorize trading model class .
   const AuthorizeTradingModel({
     this.linkedTo,
@@ -941,13 +909,9 @@ class AuthorizeTrading extends AuthorizeTradingModel {
       AuthorizeTrading(
         linkedTo: linkedTo ?? this.linkedTo,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Trading linked to item model class.
-abstract class TradingLinkedToItemModel extends Equatable {
+abstract class TradingLinkedToItemModel {
   /// Initializes Trading linked to item model class .
   const TradingLinkedToItemModel({
     this.accountId,
@@ -1018,13 +982,9 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
         currency: currency ?? this.currency,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Authorize wallet model class.
-abstract class AuthorizeWalletModel extends Equatable {
+abstract class AuthorizeWalletModel {
   /// Initializes Authorize wallet model class .
   const AuthorizeWalletModel({
     this.accountId,
@@ -1117,13 +1077,9 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         linkedTo: linkedTo ?? this.linkedTo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Wallet linked to item2 model class.
-abstract class WalletLinkedToItem2Model extends Equatable {
+abstract class WalletLinkedToItem2Model {
   /// Initializes Wallet linked to item2 model class .
   const WalletLinkedToItem2Model({
     this.accountId,
@@ -1199,8 +1155,4 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
         currency: currency ?? this.currency,
         platform: platform ?? this.platform,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

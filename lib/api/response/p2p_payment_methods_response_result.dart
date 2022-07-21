@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// P2p payment methods response model class.
-abstract class P2pPaymentMethodsResponseModel extends Equatable {
+abstract class P2pPaymentMethodsResponseModel {
   /// Initializes P2p payment methods response model class .
   const P2pPaymentMethodsResponseModel({
     this.p2pPaymentMethods,
@@ -54,10 +54,6 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
       P2pPaymentMethodsResponse(
         p2pPaymentMethods: p2pPaymentMethods ?? this.p2pPaymentMethods,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -96,7 +92,7 @@ enum P2pPaymentMethodsPropertyTypeEnum {
   other,
 }
 /// P2p payment methods property model class.
-abstract class P2pPaymentMethodsPropertyModel extends Equatable {
+abstract class P2pPaymentMethodsPropertyModel {
   /// Initializes P2p payment methods property model class .
   const P2pPaymentMethodsPropertyModel({
     required this.type,
@@ -166,13 +162,9 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
         fields: fields ?? this.fields,
         type: type ?? this.type,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Fields property model class.
-abstract class FieldsPropertyModel extends Equatable {
+abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
   const FieldsPropertyModel({
     required this.type,
@@ -234,8 +226,4 @@ class FieldsProperty extends FieldsPropertyModel {
         required: required ?? this.required,
         type: type ?? this.type,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -17,7 +17,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 /// Buy response model class.
-abstract class BuyResponseModel extends Equatable {
+abstract class BuyResponseModel {
   /// Initializes Buy response model class .
   const BuyResponseModel({
     this.buy,
@@ -160,13 +160,9 @@ class BuyResponse extends BuyResponseModel {
         buy: buy ?? this.buy,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Buy model class.
-abstract class BuyModel extends Equatable {
+abstract class BuyModel {
   /// Initializes Buy model class .
   const BuyModel({
     required this.transactionId,
@@ -286,13 +282,9 @@ class Buy extends BuyModel {
         startTime: startTime ?? this.startTime,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -332,8 +324,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

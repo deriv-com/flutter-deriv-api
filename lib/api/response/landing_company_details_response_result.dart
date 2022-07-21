@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 /// Landing company details response model class.
-abstract class LandingCompanyDetailsResponseModel extends Equatable {
+abstract class LandingCompanyDetailsResponseModel {
   /// Initializes Landing company details response model class .
   const LandingCompanyDetailsResponseModel({
     this.landingCompanyDetails,
@@ -52,13 +52,9 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Landing company details model class.
-abstract class LandingCompanyDetailsModel extends Equatable {
+abstract class LandingCompanyDetailsModel {
   /// Initializes Landing company details model class .
   const LandingCompanyDetailsModel({
     this.address,
@@ -276,13 +272,9 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Currency config model class.
-abstract class CurrencyConfigModel extends Equatable {
+abstract class CurrencyConfigModel {
   /// Initializes Currency config model class .
   const CurrencyConfigModel({
     this.basketIndex,
@@ -384,13 +376,9 @@ class CurrencyConfig extends CurrencyConfigModel {
         market: market ?? this.market,
         syntheticIndex: syntheticIndex ?? this.syntheticIndex,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Market model class.
-abstract class MarketModel extends Equatable {
+abstract class MarketModel {
   /// Initializes Market model class .
   const MarketModel({
     this.currency,
@@ -434,13 +422,9 @@ class Market extends MarketModel {
       Market(
         currency: currency ?? this.currency,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Currency model class.
-abstract class CurrencyModel extends Equatable {
+abstract class CurrencyModel {
   /// Initializes Currency model class .
   const CurrencyModel({
     this.maxPayout,
@@ -490,8 +474,4 @@ class Currency extends CurrencyModel {
         maxPayout: maxPayout ?? this.maxPayout,
         minStake: minStake ?? this.minStake,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

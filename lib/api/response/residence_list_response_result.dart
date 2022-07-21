@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Residence list response model class.
-abstract class ResidenceListResponseModel extends Equatable {
+abstract class ResidenceListResponseModel {
   /// Initializes Residence list response model class .
   const ResidenceListResponseModel({
     this.residenceList,
@@ -87,13 +87,9 @@ class ResidenceListResponse extends ResidenceListResponseModel {
       ResidenceListResponse(
         residenceList: residenceList ?? this.residenceList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Residence list item model class.
-abstract class ResidenceListItemModel extends Equatable {
+abstract class ResidenceListItemModel {
   /// Initializes Residence list item model class .
   const ResidenceListItemModel({
     this.disabled,
@@ -210,13 +206,9 @@ class ResidenceListItem extends ResidenceListItemModel {
         tinFormat: tinFormat ?? this.tinFormat,
         value: value ?? this.value,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Identity model class.
-abstract class IdentityModel extends Equatable {
+abstract class IdentityModel {
   /// Initializes Identity model class .
   const IdentityModel({
     this.services,
@@ -260,13 +252,9 @@ class Identity extends IdentityModel {
       Identity(
         services: services ?? this.services,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Services model class.
-abstract class ServicesModel extends Equatable {
+abstract class ServicesModel {
   /// Initializes Services model class .
   const ServicesModel({
     this.idv,
@@ -320,13 +308,9 @@ class Services extends ServicesModel {
         idv: idv ?? this.idv,
         onfido: onfido ?? this.onfido,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Idv model class.
-abstract class IdvModel extends Equatable {
+abstract class IdvModel {
   /// Initializes Idv model class .
   const IdvModel({
     this.documentsSupported,
@@ -394,13 +378,9 @@ class Idv extends IdvModel {
         hasVisualSample: hasVisualSample ?? this.hasVisualSample,
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Documents supported property model class.
-abstract class DocumentsSupportedPropertyModel extends Equatable {
+abstract class DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property model class .
   const DocumentsSupportedPropertyModel({
     this.displayName,
@@ -451,13 +431,9 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
         displayName: displayName ?? this.displayName,
         format: format ?? this.format,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Onfido model class.
-abstract class OnfidoModel extends Equatable {
+abstract class OnfidoModel {
   /// Initializes Onfido model class .
   const OnfidoModel({
     this.documentsSupported,
@@ -520,14 +496,9 @@ class Onfido extends OnfidoModel {
         documentsSupported: documentsSupported ?? this.documentsSupported,
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Documents supported documents supported property model class.
-abstract class DocumentsSupportedDocumentsSupportedPropertyModel
-    extends Equatable {
+abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property model class .
   const DocumentsSupportedDocumentsSupportedPropertyModel({
     this.displayName,
@@ -580,8 +551,4 @@ class DocumentsSupportedDocumentsSupportedProperty
         displayName: displayName ?? this.displayName,
         format: format ?? this.format,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

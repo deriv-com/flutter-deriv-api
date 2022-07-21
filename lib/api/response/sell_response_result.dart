@@ -15,7 +15,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Sell response model class.
-abstract class SellResponseModel extends Equatable {
+abstract class SellResponseModel {
   /// Initializes Sell response model class .
   const SellResponseModel({
     this.sell,
@@ -96,13 +96,9 @@ class SellResponse extends SellResponseModel {
       SellResponse(
         sell: sell ?? this.sell,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Sell model class.
-abstract class SellModel extends Equatable {
+abstract class SellModel {
   /// Initializes Sell model class .
   const SellModel({
     this.balanceAfter,
@@ -182,8 +178,4 @@ class Sell extends SellModel {
         soldFor: soldFor ?? this.soldFor,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

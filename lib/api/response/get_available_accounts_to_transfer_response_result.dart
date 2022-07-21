@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Get available accounts to transfer response model class.
-abstract class GetAvailableAccountsToTransferResponseModel extends Equatable {
+abstract class GetAvailableAccountsToTransferResponseModel {
   /// Initializes Get available accounts to transfer response model class .
   const GetAvailableAccountsToTransferResponseModel({
     this.getAvailableAccountsToTransfer,
@@ -57,10 +57,6 @@ class GetAvailableAccountsToTransferResponse
         getAvailableAccountsToTransfer: getAvailableAccountsToTransfer ??
             this.getAvailableAccountsToTransfer,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -106,7 +102,7 @@ enum TypeEnum {
   paClient,
 }
 /// Get available accounts to transfer model class.
-abstract class GetAvailableAccountsToTransferModel extends Equatable {
+abstract class GetAvailableAccountsToTransferModel {
   /// Initializes Get available accounts to transfer model class .
   const GetAvailableAccountsToTransferModel({
     required this.accountList,
@@ -156,13 +152,9 @@ class GetAvailableAccountsToTransfer
       GetAvailableAccountsToTransfer(
         accountList: accountList ?? this.accountList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Account list item model class.
-abstract class AccountListItemModel extends Equatable {
+abstract class AccountListItemModel {
   /// Initializes Account list item model class .
   const AccountListItemModel({
     required this.type,
@@ -238,8 +230,4 @@ class AccountListItem extends AccountListItemModel {
         loginid: loginid ?? this.loginid,
         type: type ?? this.type,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

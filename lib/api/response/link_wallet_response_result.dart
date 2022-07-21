@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Link wallet response model class.
-abstract class LinkWalletResponseModel extends Equatable {
+abstract class LinkWalletResponseModel {
   /// Initializes Link wallet response model class .
   const LinkWalletResponseModel({
     this.linkWallet,
@@ -48,8 +48,4 @@ class LinkWalletResponse extends LinkWalletResponseModel {
       LinkWalletResponse(
         linkWallet: linkWallet ?? this.linkWallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Paymentagent withdraw response model class.
-abstract class PaymentagentWithdrawResponseModel extends Equatable {
+abstract class PaymentagentWithdrawResponseModel {
   /// Initializes Paymentagent withdraw response model class .
   const PaymentagentWithdrawResponseModel({
     this.paymentagentWithdraw,
@@ -98,8 +98,4 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
         paymentagentName: paymentagentName ?? this.paymentagentName,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

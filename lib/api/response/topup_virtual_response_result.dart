@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Topup virtual response model class.
-abstract class TopupVirtualResponseModel extends Equatable {
+abstract class TopupVirtualResponseModel {
   /// Initializes Topup virtual response model class .
   const TopupVirtualResponseModel({
     this.topupVirtual,
@@ -80,13 +80,9 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
       TopupVirtualResponse(
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Topup virtual model class.
-abstract class TopupVirtualModel extends Equatable {
+abstract class TopupVirtualModel {
   /// Initializes Topup virtual model class .
   const TopupVirtualModel({
     this.amount,
@@ -136,8 +132,4 @@ class TopupVirtual extends TopupVirtualModel {
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

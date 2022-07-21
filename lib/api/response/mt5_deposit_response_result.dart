@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 deposit response model class.
-abstract class Mt5DepositResponseModel extends Equatable {
+abstract class Mt5DepositResponseModel {
   /// Initializes Mt5 deposit response model class .
   const Mt5DepositResponseModel({
     this.mt5Deposit,
@@ -86,8 +86,4 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

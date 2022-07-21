@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Trading platform new account response model class.
-abstract class TradingPlatformNewAccountResponseModel extends Equatable {
+abstract class TradingPlatformNewAccountResponseModel {
   /// Initializes Trading platform new account response model class .
   const TradingPlatformNewAccountResponseModel({
     this.tradingPlatformNewAccount,
@@ -55,10 +55,6 @@ class TradingPlatformNewAccountResponse
         tradingPlatformNewAccount:
             tradingPlatformNewAccount ?? this.tradingPlatformNewAccount,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -156,7 +152,7 @@ enum SubAccountTypeEnum {
   financialStp,
 }
 /// Trading platform new account model class.
-abstract class TradingPlatformNewAccountModel extends Equatable {
+abstract class TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account model class .
   const TradingPlatformNewAccountModel({
     this.accountId,
@@ -322,8 +318,4 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
         platform: platform ?? this.platform,
         subAccountType: subAccountType ?? this.subAccountType,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

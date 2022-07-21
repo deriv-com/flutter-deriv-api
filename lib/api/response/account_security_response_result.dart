@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Account security response model class.
-abstract class AccountSecurityResponseModel extends Equatable {
+abstract class AccountSecurityResponseModel {
   /// Initializes Account security response model class .
   const AccountSecurityResponseModel({
     this.accountSecurity,
@@ -52,13 +52,9 @@ class AccountSecurityResponse extends AccountSecurityResponseModel {
       AccountSecurityResponse(
         accountSecurity: accountSecurity ?? this.accountSecurity,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Account security model class.
-abstract class AccountSecurityModel extends Equatable {
+abstract class AccountSecurityModel {
   /// Initializes Account security model class .
   const AccountSecurityModel({
     this.totp,
@@ -101,13 +97,9 @@ class AccountSecurity extends AccountSecurityModel {
       AccountSecurity(
         totp: totp ?? this.totp,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Totp model class.
-abstract class TotpModel extends Equatable {
+abstract class TotpModel {
   /// Initializes Totp model class .
   const TotpModel({
     this.isEnabled,
@@ -157,8 +149,4 @@ class Totp extends TotpModel {
         isEnabled: isEnabled ?? this.isEnabled,
         secretKey: secretKey ?? this.secretKey,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// New account maltainvest response model class.
-abstract class NewAccountMaltainvestResponseModel extends Equatable {
+abstract class NewAccountMaltainvestResponseModel {
   /// Initializes New account maltainvest response model class .
   const NewAccountMaltainvestResponseModel({
     this.newAccountMaltainvest,
@@ -52,13 +52,9 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// New account maltainvest model class.
-abstract class NewAccountMaltainvestModel extends Equatable {
+abstract class NewAccountMaltainvestModel {
   /// Initializes New account maltainvest model class .
   const NewAccountMaltainvestModel({
     required this.oauthToken,
@@ -140,8 +136,4 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

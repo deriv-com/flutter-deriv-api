@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Set financial assessment response model class.
-abstract class SetFinancialAssessmentResponseModel extends Equatable {
+abstract class SetFinancialAssessmentResponseModel {
   /// Initializes Set financial assessment response model class .
   const SetFinancialAssessmentResponseModel({
     this.setFinancialAssessment,
@@ -84,13 +84,9 @@ class SetFinancialAssessmentResponse
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Set financial assessment model class.
-abstract class SetFinancialAssessmentModel extends Equatable {
+abstract class SetFinancialAssessmentModel {
   /// Initializes Set financial assessment model class .
   const SetFinancialAssessmentModel({
     this.cfdScore,
@@ -162,8 +158,4 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         totalScore: totalScore ?? this.totalScore,
         tradingScore: tradingScore ?? this.tradingScore,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Reality check response model class.
-abstract class RealityCheckResponseModel extends Equatable {
+abstract class RealityCheckResponseModel {
   /// Initializes Reality check response model class .
   const RealityCheckResponseModel({
     this.realityCheck,
@@ -82,13 +82,9 @@ class RealityCheckResponse extends RealityCheckResponseModel {
       RealityCheckResponse(
         realityCheck: realityCheck ?? this.realityCheck,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Reality check model class.
-abstract class RealityCheckModel extends Equatable {
+abstract class RealityCheckModel {
   /// Initializes Reality check model class .
   const RealityCheckModel({
     this.buyAmount,
@@ -208,8 +204,4 @@ class RealityCheck extends RealityCheckModel {
         sellCount: sellCount ?? this.sellCount,
         startTime: startTime ?? this.startTime,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

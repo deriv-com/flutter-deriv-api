@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Cashier withdrawal cancel response model class.
-abstract class CashierWithdrawalCancelResponseModel extends Equatable {
+abstract class CashierWithdrawalCancelResponseModel {
   /// Initializes Cashier withdrawal cancel response model class .
   const CashierWithdrawalCancelResponseModel({
     this.cashierWithdrawalCancel,
@@ -55,10 +55,6 @@ class CashierWithdrawalCancelResponse
         cashierWithdrawalCancel:
             cashierWithdrawalCancel ?? this.cashierWithdrawalCancel,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// StatusCodeEnum mapper.
@@ -73,7 +69,7 @@ enum StatusCodeEnum {
   cancelled,
 }
 /// Cashier withdrawal cancel model class.
-abstract class CashierWithdrawalCancelModel extends Equatable {
+abstract class CashierWithdrawalCancelModel {
   /// Initializes Cashier withdrawal cancel model class .
   const CashierWithdrawalCancelModel({
     required this.statusCode,
@@ -127,8 +123,4 @@ class CashierWithdrawalCancel extends CashierWithdrawalCancelModel {
         id: id ?? this.id,
         statusCode: statusCode ?? this.statusCode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

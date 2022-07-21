@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App update response model class.
-abstract class AppUpdateResponseModel extends Equatable {
+abstract class AppUpdateResponseModel {
   /// Initializes App update response model class .
   const AppUpdateResponseModel({
     this.appUpdate,
@@ -76,13 +76,9 @@ class AppUpdateResponse extends AppUpdateResponseModel {
       AppUpdateResponse(
         appUpdate: appUpdate ?? this.appUpdate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// App update model class.
-abstract class AppUpdateModel extends Equatable {
+abstract class AppUpdateModel {
   /// Initializes App update model class .
   const AppUpdateModel({
     this.active,
@@ -234,8 +230,4 @@ class AppUpdate extends AppUpdateModel {
         scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

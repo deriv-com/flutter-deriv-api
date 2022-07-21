@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// Sell contract for multiple accounts response model class.
-abstract class SellContractForMultipleAccountsResponseModel extends Equatable {
+abstract class SellContractForMultipleAccountsResponseModel {
   /// Initializes Sell contract for multiple accounts response model class .
   const SellContractForMultipleAccountsResponseModel({
     this.sellContractForMultipleAccounts,
@@ -56,13 +56,9 @@ class SellContractForMultipleAccountsResponse
         sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
             this.sellContractForMultipleAccounts,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Sell contract for multiple accounts model class.
-abstract class SellContractForMultipleAccountsModel extends Equatable {
+abstract class SellContractForMultipleAccountsModel {
   /// Initializes Sell contract for multiple accounts model class .
   const SellContractForMultipleAccountsModel({
     this.result,
@@ -116,8 +112,4 @@ class SellContractForMultipleAccounts
       SellContractForMultipleAccounts(
         result: result ?? this.result,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

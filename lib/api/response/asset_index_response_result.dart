@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Asset index response model class.
-abstract class AssetIndexResponseModel extends Equatable {
+abstract class AssetIndexResponseModel {
   /// Initializes Asset index response model class .
   const AssetIndexResponseModel({
     this.assetIndex,
@@ -88,8 +88,4 @@ class AssetIndexResponse extends AssetIndexResponseModel {
       AssetIndexResponse(
         assetIndex: assetIndex ?? this.assetIndex,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

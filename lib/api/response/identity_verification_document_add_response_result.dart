@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// Identity verification document add response model class.
-abstract class IdentityVerificationDocumentAddResponseModel extends Equatable {
+abstract class IdentityVerificationDocumentAddResponseModel {
   /// Initializes Identity verification document add response model class .
   const IdentityVerificationDocumentAddResponseModel({
     this.identityVerificationDocumentAdd,
@@ -50,8 +50,4 @@ class IdentityVerificationDocumentAddResponse
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??
             this.identityVerificationDocumentAdd,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

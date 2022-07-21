@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p advertiser update response model class.
-abstract class P2pAdvertiserUpdateResponseModel extends Equatable {
+abstract class P2pAdvertiserUpdateResponseModel {
   /// Initializes P2p advertiser update response model class .
   const P2pAdvertiserUpdateResponseModel({
     this.p2pAdvertiserUpdate,
@@ -78,13 +78,9 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
       P2pAdvertiserUpdateResponse(
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser update model class.
-abstract class P2pAdvertiserUpdateModel extends Equatable {
+abstract class P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update model class .
   const P2pAdvertiserUpdateModel({
     required this.totalTurnover,
@@ -607,8 +603,4 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

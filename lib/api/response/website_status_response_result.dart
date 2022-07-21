@@ -18,7 +18,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Website status response model class.
-abstract class WebsiteStatusResponseModel extends Equatable {
+abstract class WebsiteStatusResponseModel {
   /// Initializes Website status response model class .
   const WebsiteStatusResponseModel({
     this.websiteStatus,
@@ -162,10 +162,6 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
         websiteStatus: websiteStatus ?? this.websiteStatus,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -243,13 +239,14 @@ enum SiteStatusEnum {
   updating,
 }
 /// Website status model class.
-abstract class WebsiteStatusModel extends Equatable {
+abstract class WebsiteStatusModel {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
     required this.currenciesConfig,
     required this.cryptoConfig,
     required this.apiCallLimits,
     this.clientsCountry,
+    this.dxtradeStatus,
     this.message,
     this.mt5Status,
     this.p2pConfig,
@@ -270,6 +267,9 @@ abstract class WebsiteStatusModel extends Equatable {
 
   /// Country code of connected IP
   final String? clientsCountry;
+
+  /// Suspension status of Dxtrade/DerivX API calls
+  final DxtradeStatus? dxtradeStatus;
 
   /// Text for site status banner, contains problem description. shown only if set by the system.
   final String? message;
@@ -301,6 +301,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
     String? clientsCountry,
+    DxtradeStatus? dxtradeStatus,
     String? message,
     Mt5Status? mt5Status,
     P2pConfig? p2pConfig,
@@ -313,6 +314,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
           clientsCountry: clientsCountry,
+          dxtradeStatus: dxtradeStatus,
           message: message,
           mt5Status: mt5Status,
           p2pConfig: p2pConfig,
@@ -340,6 +342,9 @@ class WebsiteStatus extends WebsiteStatusModel {
                         MapEntry<String, CurrenciesConfigProperty>(entry.key,
                             CurrenciesConfigProperty.fromJson(entry.value)))),
         clientsCountry: json['clients_country'],
+        dxtradeStatus: json['dxtrade_status'] == null
+            ? null
+            : DxtradeStatus.fromJson(json['dxtrade_status']),
         message: json['message'],
         mt5Status: json['mt5_status'] == null
             ? null
@@ -372,6 +377,9 @@ class WebsiteStatus extends WebsiteStatusModel {
     resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
     resultMap['clients_country'] = clientsCountry;
+    if (dxtradeStatus != null) {
+      resultMap['dxtrade_status'] = dxtradeStatus!.toJson();
+    }
     resultMap['message'] = message;
     if (mt5Status != null) {
       resultMap['mt5_status'] = mt5Status!.toJson();
@@ -404,6 +412,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     Map<String, CryptoConfigProperty>? cryptoConfig,
     Map<String, CurrenciesConfigProperty>? currenciesConfig,
     String? clientsCountry,
+    DxtradeStatus? dxtradeStatus,
     String? message,
     Mt5Status? mt5Status,
     P2pConfig? p2pConfig,
@@ -417,6 +426,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
+        dxtradeStatus: dxtradeStatus ?? this.dxtradeStatus,
         message: message ?? this.message,
         mt5Status: mt5Status ?? this.mt5Status,
         p2pConfig: p2pConfig ?? this.p2pConfig,
@@ -426,13 +436,9 @@ class WebsiteStatus extends WebsiteStatusModel {
         termsConditionsVersion:
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Api call limits model class.
-abstract class ApiCallLimitsModel extends Equatable {
+abstract class ApiCallLimitsModel {
   /// Initializes Api call limits model class .
   const ApiCallLimitsModel({
     required this.maxRequestsPricing,
@@ -510,13 +516,9 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsOutcome: maxRequestsOutcome ?? this.maxRequestsOutcome,
         maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Max proposal subscription model class.
-abstract class MaxProposalSubscriptionModel extends Equatable {
+abstract class MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription model class .
   const MaxProposalSubscriptionModel({
     required this.max,
@@ -567,13 +569,9 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         appliesTo: appliesTo ?? this.appliesTo,
         max: max ?? this.max,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Max requestes general model class.
-abstract class MaxRequestesGeneralModel extends Equatable {
+abstract class MaxRequestesGeneralModel {
   /// Initializes Max requestes general model class .
   const MaxRequestesGeneralModel({
     required this.minutely,
@@ -634,13 +632,9 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         hourly: hourly ?? this.hourly,
         minutely: minutely ?? this.minutely,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Max requests outcome model class.
-abstract class MaxRequestsOutcomeModel extends Equatable {
+abstract class MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome model class .
   const MaxRequestsOutcomeModel({
     required this.minutely,
@@ -701,13 +695,9 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         hourly: hourly ?? this.hourly,
         minutely: minutely ?? this.minutely,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Max requests pricing model class.
-abstract class MaxRequestsPricingModel extends Equatable {
+abstract class MaxRequestsPricingModel {
   /// Initializes Max requests pricing model class .
   const MaxRequestsPricingModel({
     required this.minutely,
@@ -768,13 +758,9 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         hourly: hourly ?? this.hourly,
         minutely: minutely ?? this.minutely,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Crypto config property model class.
-abstract class CryptoConfigPropertyModel extends Equatable {
+abstract class CryptoConfigPropertyModel {
   /// Initializes Crypto config property model class .
   const CryptoConfigPropertyModel({
     required this.minimumWithdrawal,
@@ -815,13 +801,9 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
       CryptoConfigProperty(
         minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Currencies config property model class.
-abstract class CurrenciesConfigPropertyModel extends Equatable {
+abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
   const CurrenciesConfigPropertyModel({
     required this.type,
@@ -938,13 +920,9 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         type: type ?? this.type,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Transfer between accounts model class.
-abstract class TransferBetweenAccountsModel extends Equatable {
+abstract class TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts model class .
   const TransferBetweenAccountsModel({
     required this.limits,
@@ -1019,13 +997,9 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Limits model class.
-abstract class LimitsModel extends Equatable {
+abstract class LimitsModel {
   /// Initializes Limits model class .
   const LimitsModel({
     required this.min,
@@ -1075,13 +1049,71 @@ class Limits extends LimitsModel {
         min: min ?? this.min,
         max: max ?? this.max,
       );
+}
+/// Dxtrade status model class.
+abstract class DxtradeStatusModel {
+  /// Initializes Dxtrade status model class .
+  const DxtradeStatusModel({
+    this.all,
+    this.demo,
+    this.real,
+  });
 
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
+  /// Suspension of Dxtrade/DerivX API calls on all servers.
+  final int? all;
+
+  /// Suspension of Dxtrade/DerivX API calls on demo servers.
+  final int? demo;
+
+  /// Suspension of Dxtrade/DerivX API calls on real trading servers.
+  final int? real;
+}
+
+/// Dxtrade status class.
+class DxtradeStatus extends DxtradeStatusModel {
+  /// Initializes Dxtrade status class.
+  const DxtradeStatus({
+    int? all,
+    int? demo,
+    int? real,
+  }) : super(
+          all: all,
+          demo: demo,
+          real: real,
+        );
+
+  /// Creates an instance from JSON.
+  factory DxtradeStatus.fromJson(Map<String, dynamic> json) => DxtradeStatus(
+        all: json['all'],
+        demo: json['demo'],
+        real: json['real'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['all'] = all;
+    resultMap['demo'] = demo;
+    resultMap['real'] = real;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  DxtradeStatus copyWith({
+    int? all,
+    int? demo,
+    int? real,
+  }) =>
+      DxtradeStatus(
+        all: all ?? this.all,
+        demo: demo ?? this.demo,
+        real: real ?? this.real,
+      );
 }
 /// Mt5 status model class.
-abstract class Mt5StatusModel extends Equatable {
+abstract class Mt5StatusModel {
   /// Initializes Mt5 status model class .
   const Mt5StatusModel({
     this.demo,
@@ -1155,16 +1187,13 @@ class Mt5Status extends Mt5StatusModel {
         demo: demo ?? this.demo,
         real: real ?? this.real,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p config model class.
-abstract class P2pConfigModel extends Equatable {
+abstract class P2pConfigModel {
   /// Initializes P2p config model class .
   const P2pConfigModel({
     required this.supportedCurrencies,
+    required this.reviewPeriod,
     required this.paymentMethodsEnabled,
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
@@ -1186,6 +1215,9 @@ abstract class P2pConfigModel extends Equatable {
 
   /// List of currencies for which P2P is available
   final List<String> supportedCurrencies;
+
+  /// Time after successful order completion during which reviews can be created, in hours.
+  final double reviewPeriod;
 
   /// Indicates if the payment methods feature is enabled.
   final bool paymentMethodsEnabled;
@@ -1257,6 +1289,7 @@ class P2pConfig extends P2pConfigModel {
     required int orderDailyLimit,
     required int orderPaymentPeriod,
     required bool paymentMethodsEnabled,
+    required double reviewPeriod,
     required List<String> supportedCurrencies,
     int? advertsArchivePeriod,
     String? fixedRateAdvertsEndDate,
@@ -1276,6 +1309,7 @@ class P2pConfig extends P2pConfigModel {
           orderDailyLimit: orderDailyLimit,
           orderPaymentPeriod: orderPaymentPeriod,
           paymentMethodsEnabled: paymentMethodsEnabled,
+          reviewPeriod: reviewPeriod,
           supportedCurrencies: supportedCurrencies,
           advertsArchivePeriod: advertsArchivePeriod,
           fixedRateAdvertsEndDate: fixedRateAdvertsEndDate,
@@ -1300,6 +1334,7 @@ class P2pConfig extends P2pConfigModel {
         orderDailyLimit: json['order_daily_limit'],
         orderPaymentPeriod: json['order_payment_period'],
         paymentMethodsEnabled: getBool(json['payment_methods_enabled'])!,
+        reviewPeriod: getDouble(json['review_period'])!,
         supportedCurrencies: List<String>.from(
           json['supported_currencies'].map(
             (dynamic item) => item,
@@ -1334,6 +1369,7 @@ class P2pConfig extends P2pConfigModel {
     resultMap['order_daily_limit'] = orderDailyLimit;
     resultMap['order_payment_period'] = orderPaymentPeriod;
     resultMap['payment_methods_enabled'] = paymentMethodsEnabled;
+    resultMap['review_period'] = reviewPeriod;
     resultMap['supported_currencies'] = supportedCurrencies
         .map<dynamic>(
           (String item) => item,
@@ -1363,6 +1399,7 @@ class P2pConfig extends P2pConfigModel {
     int? orderDailyLimit,
     int? orderPaymentPeriod,
     bool? paymentMethodsEnabled,
+    double? reviewPeriod,
     List<String>? supportedCurrencies,
     int? advertsArchivePeriod,
     String? fixedRateAdvertsEndDate,
@@ -1387,19 +1424,16 @@ class P2pConfig extends P2pConfigModel {
         orderPaymentPeriod: orderPaymentPeriod ?? this.orderPaymentPeriod,
         paymentMethodsEnabled:
             paymentMethodsEnabled ?? this.paymentMethodsEnabled,
+        reviewPeriod: reviewPeriod ?? this.reviewPeriod,
         supportedCurrencies: supportedCurrencies ?? this.supportedCurrencies,
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
         fixedRateAdvertsEndDate:
             fixedRateAdvertsEndDate ?? this.fixedRateAdvertsEndDate,
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Payment agents model class.
-abstract class PaymentAgentsModel extends Equatable {
+abstract class PaymentAgentsModel {
   /// Initializes Payment agents model class .
   const PaymentAgentsModel({
     required this.initialDepositPerCountry,
@@ -1444,13 +1478,9 @@ class PaymentAgents extends PaymentAgentsModel {
         initialDepositPerCountry:
             initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -1490,8 +1520,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

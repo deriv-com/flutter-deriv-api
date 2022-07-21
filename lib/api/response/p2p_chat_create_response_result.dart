@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p chat create response model class.
-abstract class P2pChatCreateResponseModel extends Equatable {
+abstract class P2pChatCreateResponseModel {
   /// Initializes P2p chat create response model class .
   const P2pChatCreateResponseModel({
     this.p2pChatCreate,
@@ -78,13 +78,9 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
       P2pChatCreateResponse(
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p chat create model class.
-abstract class P2pChatCreateModel extends Equatable {
+abstract class P2pChatCreateModel {
   /// Initializes P2p chat create model class .
   const P2pChatCreateModel({
     required this.orderId,
@@ -134,8 +130,4 @@ class P2pChatCreate extends P2pChatCreateModel {
         channelUrl: channelUrl ?? this.channelUrl,
         orderId: orderId ?? this.orderId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
