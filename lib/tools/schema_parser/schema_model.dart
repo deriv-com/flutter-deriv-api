@@ -27,6 +27,7 @@ class SchemaModel extends Object {
       {required List<SchemaModel> children, required String className}) {
     final SchemaModel rootModel = SchemaModel()
       ..className = className
+      ..schemaTitle = ''
       ..children = children;
 
     for (final SchemaModel model in children) {
