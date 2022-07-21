@@ -664,7 +664,7 @@ const String websiteStatusResponse = '''{
       "float_rate_offset_limit" : 0,
       "fixed_rate_adverts_end_date" : "",
       "supported_currencies" : [],
-      "review_period" : 0,
+      "review_period" : 0
     },
     "site_status": "up",
     "supported_languages": [
