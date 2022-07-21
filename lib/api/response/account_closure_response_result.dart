@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Account closure response model class.
-abstract class AccountClosureResponseModel extends Equatable {
+abstract class AccountClosureResponseModel {
   /// Initializes Account closure response model class .
   const AccountClosureResponseModel({
     this.accountClosure,
@@ -48,8 +48,4 @@ class AccountClosureResponse extends AccountClosureResponseModel {
       AccountClosureResponse(
         accountClosure: accountClosure ?? this.accountClosure,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

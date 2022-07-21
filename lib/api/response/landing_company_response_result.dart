@@ -14,7 +14,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Landing company response model class.
-abstract class LandingCompanyResponseModel extends Equatable {
+abstract class LandingCompanyResponseModel {
   /// Initializes Landing company response model class .
   const LandingCompanyResponseModel({
     this.landingCompany,
@@ -100,13 +100,9 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
       LandingCompanyResponse(
         landingCompany: landingCompany ?? this.landingCompany,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Landing company model class.
-abstract class LandingCompanyModel extends Equatable {
+abstract class LandingCompanyModel {
   /// Initializes Landing company model class .
   const LandingCompanyModel({
     this.addressParseable,
@@ -117,7 +113,6 @@ abstract class LandingCompanyModel extends Equatable {
     this.forbiddenPostcodePattern,
     this.gamingCompany,
     this.gamstopCompany,
-    this.hasProveid,
     this.id,
     this.isIdvSupported,
     this.lcToOpenMfAccount,
@@ -160,9 +155,6 @@ abstract class LandingCompanyModel extends Equatable {
 
   /// Gamestop company details.
   final List<String>? gamstopCompany;
-
-  /// Flag to indicate if proveid is present or not
-  final bool? hasProveid;
 
   /// Country code
   final String? id;
@@ -228,7 +220,6 @@ class LandingCompany extends LandingCompanyModel {
     String? forbiddenPostcodePattern,
     GamingCompany? gamingCompany,
     List<String>? gamstopCompany,
-    bool? hasProveid,
     String? id,
     bool? isIdvSupported,
     String? lcToOpenMfAccount,
@@ -255,7 +246,6 @@ class LandingCompany extends LandingCompanyModel {
           forbiddenPostcodePattern: forbiddenPostcodePattern,
           gamingCompany: gamingCompany,
           gamstopCompany: gamstopCompany,
-          hasProveid: hasProveid,
           id: id,
           isIdvSupported: isIdvSupported,
           lcToOpenMfAccount: lcToOpenMfAccount,
@@ -301,7 +291,6 @@ class LandingCompany extends LandingCompanyModel {
                   (dynamic item) => item,
                 ),
               ),
-        hasProveid: getBool(json['has_proveid']),
         id: json['id'],
         isIdvSupported: getBool(json['is_idv_supported']),
         lcToOpenMfAccount: json['lc_to_open_mf_account'],
@@ -354,7 +343,6 @@ class LandingCompany extends LandingCompanyModel {
           )
           .toList();
     }
-    resultMap['has_proveid'] = hasProveid;
     resultMap['id'] = id;
     resultMap['is_idv_supported'] = isIdvSupported;
     resultMap['lc_to_open_mf_account'] = lcToOpenMfAccount;
@@ -392,7 +380,6 @@ class LandingCompany extends LandingCompanyModel {
     String? forbiddenPostcodePattern,
     GamingCompany? gamingCompany,
     List<String>? gamstopCompany,
-    bool? hasProveid,
     String? id,
     bool? isIdvSupported,
     String? lcToOpenMfAccount,
@@ -422,7 +409,6 @@ class LandingCompany extends LandingCompanyModel {
             forbiddenPostcodePattern ?? this.forbiddenPostcodePattern,
         gamingCompany: gamingCompany ?? this.gamingCompany,
         gamstopCompany: gamstopCompany ?? this.gamstopCompany,
-        hasProveid: hasProveid ?? this.hasProveid,
         id: id ?? this.id,
         isIdvSupported: isIdvSupported ?? this.isIdvSupported,
         lcToOpenMfAccount: lcToOpenMfAccount ?? this.lcToOpenMfAccount,
@@ -447,13 +433,9 @@ class LandingCompany extends LandingCompanyModel {
         ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
         virtualCompany: virtualCompany ?? this.virtualCompany,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade financial company model class.
-abstract class DxtradeFinancialCompanyModel extends Equatable {
+abstract class DxtradeFinancialCompanyModel {
   /// Initializes Dxtrade financial company model class .
   const DxtradeFinancialCompanyModel({
     this.standard,
@@ -498,13 +480,9 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
       DxtradeFinancialCompany(
         standard: standard ?? this.standard,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Standard model class.
-abstract class StandardModel extends Equatable {
+abstract class StandardModel {
   /// Initializes Standard model class .
   const StandardModel({
     this.address,
@@ -717,13 +695,9 @@ class Standard extends StandardModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade gaming company model class.
-abstract class DxtradeGamingCompanyModel extends Equatable {
+abstract class DxtradeGamingCompanyModel {
   /// Initializes Dxtrade gaming company model class .
   const DxtradeGamingCompanyModel({
     this.standard,
@@ -768,13 +742,9 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
       DxtradeGamingCompany(
         standard: standard ?? this.standard,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dxtrade gaming company standard model class.
-abstract class DxtradeGamingCompanyStandardModel extends Equatable {
+abstract class DxtradeGamingCompanyStandardModel {
   /// Initializes Dxtrade gaming company standard model class .
   const DxtradeGamingCompanyStandardModel({
     this.address,
@@ -988,13 +958,9 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Financial company model class.
-abstract class FinancialCompanyModel extends Equatable {
+abstract class FinancialCompanyModel {
   /// Initializes Financial company model class .
   const FinancialCompanyModel({
     this.address,
@@ -1208,13 +1174,9 @@ class FinancialCompany extends FinancialCompanyModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Gaming company model class.
-abstract class GamingCompanyModel extends Equatable {
+abstract class GamingCompanyModel {
   /// Initializes Gaming company model class .
   const GamingCompanyModel({
     this.address,
@@ -1427,13 +1389,9 @@ class GamingCompany extends GamingCompanyModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Mt financial company model class.
-abstract class MtFinancialCompanyModel extends Equatable {
+abstract class MtFinancialCompanyModel {
   /// Initializes Mt financial company model class .
   const MtFinancialCompanyModel({
     this.financial,
@@ -1492,13 +1450,9 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
         financial: financial ?? this.financial,
         financialStp: financialStp ?? this.financialStp,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Financial model class.
-abstract class FinancialModel extends Equatable {
+abstract class FinancialModel {
   /// Initializes Financial model class .
   const FinancialModel({
     this.address,
@@ -1711,13 +1665,9 @@ class Financial extends FinancialModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Financial stp model class.
-abstract class FinancialStpModel extends Equatable {
+abstract class FinancialStpModel {
   /// Initializes Financial stp model class .
   const FinancialStpModel({
     this.address,
@@ -1930,13 +1880,9 @@ class FinancialStp extends FinancialStpModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Mt gaming company model class.
-abstract class MtGamingCompanyModel extends Equatable {
+abstract class MtGamingCompanyModel {
   /// Initializes Mt gaming company model class .
   const MtGamingCompanyModel({
     this.financial,
@@ -1981,13 +1927,9 @@ class MtGamingCompany extends MtGamingCompanyModel {
       MtGamingCompany(
         financial: financial ?? this.financial,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Mt gaming company financial model class.
-abstract class MtGamingCompanyFinancialModel extends Equatable {
+abstract class MtGamingCompanyFinancialModel {
   /// Initializes Mt gaming company financial model class .
   const MtGamingCompanyFinancialModel({
     this.address,
@@ -2201,8 +2143,4 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Copytrading list response model class.
-abstract class CopytradingListResponseModel extends Equatable {
+abstract class CopytradingListResponseModel {
   /// Initializes Copytrading list response model class .
   const CopytradingListResponseModel({
     this.copytradingList,
@@ -79,13 +79,9 @@ class CopytradingListResponse extends CopytradingListResponseModel {
       CopytradingListResponse(
         copytradingList: copytradingList ?? this.copytradingList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Copytrading list model class.
-abstract class CopytradingListModel extends Equatable {
+abstract class CopytradingListModel {
   /// Initializes Copytrading list model class .
   const CopytradingListModel({
     required this.traders,
@@ -153,13 +149,9 @@ class CopytradingList extends CopytradingListModel {
         copiers: copiers ?? this.copiers,
         traders: traders ?? this.traders,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Copiers item model class.
-abstract class CopiersItemModel extends Equatable {
+abstract class CopiersItemModel {
   /// Initializes Copiers item model class .
   const CopiersItemModel({
     required this.loginid,
@@ -199,13 +191,9 @@ class CopiersItem extends CopiersItemModel {
       CopiersItem(
         loginid: loginid ?? this.loginid,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Traders item model class.
-abstract class TradersItemModel extends Equatable {
+abstract class TradersItemModel {
   /// Initializes Traders item model class .
   const TradersItemModel({
     this.assets,
@@ -319,8 +307,4 @@ class TradersItem extends TradersItemModel {
         token: token ?? this.token,
         tradeTypes: tradeTypes ?? this.tradeTypes,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

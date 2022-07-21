@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// P2p order confirm response model class.
-abstract class P2pOrderConfirmResponseModel extends Equatable {
+abstract class P2pOrderConfirmResponseModel {
   /// Initializes P2p order confirm response model class .
   const P2pOrderConfirmResponseModel({
     this.p2pOrderConfirm,
@@ -51,10 +51,6 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
       P2pOrderConfirmResponse(
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -72,7 +68,7 @@ enum StatusEnum {
   completed,
 }
 /// P2p order confirm model class.
-abstract class P2pOrderConfirmModel extends Equatable {
+abstract class P2pOrderConfirmModel {
   /// Initializes P2p order confirm model class .
   const P2pOrderConfirmModel({
     required this.status,
@@ -126,8 +122,4 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
         id: id ?? this.id,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

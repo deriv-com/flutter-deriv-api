@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Transfer between accounts response model class.
-abstract class TransferBetweenAccountsResponseModel extends Equatable {
+abstract class TransferBetweenAccountsResponseModel {
   /// Initializes Transfer between accounts response model class .
   const TransferBetweenAccountsResponseModel({
     this.transferBetweenAccounts,
@@ -140,10 +140,6 @@ class TransferBetweenAccountsResponse
         clientToLoginid: clientToLoginid ?? this.clientToLoginid,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -190,7 +186,7 @@ enum MarketTypeEnum {
   synthetic,
 }
 /// Accounts item model class.
-abstract class AccountsItemModel extends Equatable {
+abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
   const AccountsItemModel({
     this.accountType,
@@ -300,8 +296,4 @@ class AccountsItem extends AccountsItemModel {
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Set account currency response model class.
-abstract class SetAccountCurrencyResponseModel extends Equatable {
+abstract class SetAccountCurrencyResponseModel {
   /// Initializes Set account currency response model class .
   const SetAccountCurrencyResponseModel({
     this.setAccountCurrency,
@@ -76,8 +76,4 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
       SetAccountCurrencyResponse(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

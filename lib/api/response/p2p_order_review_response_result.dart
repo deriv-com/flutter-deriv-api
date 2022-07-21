@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p order review response model class.
-abstract class P2pOrderReviewResponseModel extends Equatable {
+abstract class P2pOrderReviewResponseModel {
   /// Initializes P2p order review response model class .
   const P2pOrderReviewResponseModel({
     this.p2pOrderReview,
@@ -52,13 +52,9 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
       P2pOrderReviewResponse(
         p2pOrderReview: p2pOrderReview ?? this.p2pOrderReview,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p order review model class.
-abstract class P2pOrderReviewModel extends Equatable {
+abstract class P2pOrderReviewModel {
   /// Initializes P2p order review model class .
   const P2pOrderReviewModel({
     required this.rating,
@@ -138,8 +134,4 @@ class P2pOrderReview extends P2pOrderReviewModel {
         rating: rating ?? this.rating,
         recommended: recommended ?? this.recommended,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

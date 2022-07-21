@@ -21,7 +21,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Proposal response model class.
-abstract class ProposalResponseModel extends Equatable {
+abstract class ProposalResponseModel {
   /// Initializes Proposal response model class .
   const ProposalResponseModel({
     this.proposal,
@@ -182,10 +182,6 @@ class ProposalResponse extends ProposalResponseModel {
         proposal: proposal ?? this.proposal,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Proposal model class.
 abstract class ProposalModel extends Equatable {
@@ -366,7 +362,7 @@ class Proposal extends ProposalModel {
         dateExpiry,
         multiplier,
         cancellation,
-        limitOrder
+        limitOrder,
       ];
 }
 /// Cancellation model class.
@@ -423,7 +419,10 @@ class Cancellation extends CancellationModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[askPrice, dateExpiry];
+  List<Object?> get props => <Object?>[
+        askPrice,
+        dateExpiry,
+      ];
 }
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
@@ -501,7 +500,11 @@ class LimitOrder extends LimitOrderModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[stopLoss, stopOut, takeProfit];
+  List<Object?> get props => <Object?>[
+        stopLoss,
+        stopOut,
+        takeProfit,
+      ];
 }
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
@@ -577,7 +580,10 @@ class StopLoss extends StopLossModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[displayName, orderAmount];
+  List<Object?> get props => <Object?>[
+        displayName,
+        orderAmount,
+      ];
 }
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
@@ -653,7 +659,10 @@ class StopOut extends StopOutModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[displayName, orderAmount];
+  List<Object?> get props => <Object?>[
+        displayName,
+        orderAmount,
+      ];
 }
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
@@ -729,10 +738,13 @@ class TakeProfit extends TakeProfitModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[displayName, orderAmount];
+  List<Object?> get props => <Object?>[
+        displayName,
+        orderAmount,
+      ];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -772,8 +784,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

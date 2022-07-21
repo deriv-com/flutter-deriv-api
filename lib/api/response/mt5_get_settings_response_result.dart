@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 get settings response model class.
-abstract class Mt5GetSettingsResponseModel extends Equatable {
+abstract class Mt5GetSettingsResponseModel {
   /// Initializes Mt5 get settings response model class .
   const Mt5GetSettingsResponseModel({
     this.mt5GetSettings,
@@ -78,10 +78,6 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
       Mt5GetSettingsResponse(
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -164,7 +160,7 @@ enum SubAccountTypeEnum {
   financialStp,
 }
 /// Mt5 get settings model class.
-abstract class Mt5GetSettingsModel extends Equatable {
+abstract class Mt5GetSettingsModel {
   /// Initializes Mt5 get settings model class .
   const Mt5GetSettingsModel({
     this.accountType,
@@ -404,8 +400,4 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         subAccountType: subAccountType ?? this.subAccountType,
         zipCode: zipCode ?? this.zipCode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

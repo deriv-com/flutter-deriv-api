@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Api token response model class.
-abstract class ApiTokenResponseModel extends Equatable {
+abstract class ApiTokenResponseModel {
   /// Initializes Api token response model class .
   const ApiTokenResponseModel({
     this.apiToken,
@@ -105,10 +105,6 @@ class ApiTokenResponse extends ApiTokenResponseModel {
       ApiTokenResponse(
         apiToken: apiToken ?? this.apiToken,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// ScopesItemEnum mapper.
@@ -139,7 +135,7 @@ enum ScopesItemEnum {
   admin,
 }
 /// Api token model class.
-abstract class ApiTokenModel extends Equatable {
+abstract class ApiTokenModel {
   /// Initializes Api token model class .
   const ApiTokenModel({
     this.deleteToken,
@@ -211,13 +207,9 @@ class ApiToken extends ApiTokenModel {
         newToken: newToken ?? this.newToken,
         tokens: tokens ?? this.tokens,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Tokens item model class.
-abstract class TokensItemModel extends Equatable {
+abstract class TokensItemModel {
   /// Initializes Tokens item model class .
   const TokensItemModel({
     this.displayName,
@@ -313,8 +305,4 @@ class TokensItem extends TokensItemModel {
         token: token ?? this.token,
         validForIp: validForIp ?? this.validForIp,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

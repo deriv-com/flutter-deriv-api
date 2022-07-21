@@ -13,7 +13,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p advertiser create response model class.
-abstract class P2pAdvertiserCreateResponseModel extends Equatable {
+abstract class P2pAdvertiserCreateResponseModel {
   /// Initializes P2p advertiser create response model class .
   const P2pAdvertiserCreateResponseModel({
     this.p2pAdvertiserCreate,
@@ -121,13 +121,9 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser create model class.
-abstract class P2pAdvertiserCreateModel extends Equatable {
+abstract class P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create model class .
   const P2pAdvertiserCreateModel({
     required this.totalTurnover,
@@ -570,13 +566,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -616,8 +608,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

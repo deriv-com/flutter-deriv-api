@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Cashier response model class.
-abstract class CashierResponseModel extends Equatable {
+abstract class CashierResponseModel {
   /// Initializes Cashier response model class .
   const CashierResponseModel({
     this.cashierString,
@@ -88,10 +88,6 @@ class CashierResponse extends CashierResponseModel {
         cashierString: cashierString ?? this.cashierString,
         cashierObject: cashierObject ?? this.cashierObject,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// ActionEnum mapper.
@@ -109,7 +105,7 @@ enum ActionEnum {
   withdraw,
 }
 /// Cashier object model class.
-abstract class CashierObjectModel extends Equatable {
+abstract class CashierObjectModel {
   /// Initializes Cashier object model class .
   const CashierObjectModel({
     required this.action,
@@ -175,13 +171,9 @@ class CashierObject extends CashierObjectModel {
         deposit: deposit ?? this.deposit,
         withdraw: withdraw ?? this.withdraw,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Deposit model class.
-abstract class DepositModel extends Equatable {
+abstract class DepositModel {
   /// Initializes Deposit model class .
   const DepositModel({
     required this.address,
@@ -221,8 +213,4 @@ class Deposit extends DepositModel {
       Deposit(
         address: address ?? this.address,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

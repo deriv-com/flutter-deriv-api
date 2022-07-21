@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Ping response model class.
-abstract class PingResponseModel extends Equatable {
+abstract class PingResponseModel {
   /// Initializes Ping response model class .
   const PingResponseModel({
     this.ping,
@@ -78,10 +78,6 @@ class PingResponse extends PingResponseModel {
       PingResponse(
         ping: ping ?? this.ping,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// PingEnum mapper.

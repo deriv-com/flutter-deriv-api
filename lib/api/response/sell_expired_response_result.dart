@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 
 /// Sell expired response model class.
-abstract class SellExpiredResponseModel extends Equatable {
+abstract class SellExpiredResponseModel {
   /// Initializes Sell expired response model class .
   const SellExpiredResponseModel({
     this.sellExpired,
@@ -51,13 +51,9 @@ class SellExpiredResponse extends SellExpiredResponseModel {
       SellExpiredResponse(
         sellExpired: sellExpired ?? this.sellExpired,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Sell expired model class.
-abstract class SellExpiredModel extends Equatable {
+abstract class SellExpiredModel {
   /// Initializes Sell expired model class .
   const SellExpiredModel({
     this.count,
@@ -97,8 +93,4 @@ class SellExpired extends SellExpiredModel {
       SellExpired(
         count: count ?? this.count,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

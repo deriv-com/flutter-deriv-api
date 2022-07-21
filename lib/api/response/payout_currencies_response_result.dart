@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Payout currencies response model class.
-abstract class PayoutCurrenciesResponseModel extends Equatable {
+abstract class PayoutCurrenciesResponseModel {
   /// Initializes Payout currencies response model class .
   const PayoutCurrenciesResponseModel({
     this.payoutCurrencies,
@@ -88,8 +88,4 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
       PayoutCurrenciesResponse(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

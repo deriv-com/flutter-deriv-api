@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App list response model class.
-abstract class AppListResponseModel extends Equatable {
+abstract class AppListResponseModel {
   /// Initializes App list response model class .
   const AppListResponseModel({
     this.appList,
@@ -86,13 +86,9 @@ class AppListResponse extends AppListResponseModel {
       AppListResponse(
         appList: appList ?? this.appList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// App list item model class.
-abstract class AppListItemModel extends Equatable {
+abstract class AppListItemModel {
   /// Initializes App list item model class .
   const AppListItemModel({
     required this.redirectUri,
@@ -244,8 +240,4 @@ class AppListItem extends AppListItemModel {
         scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Change email response model class.
-abstract class ChangeEmailResponseModel extends Equatable {
+abstract class ChangeEmailResponseModel {
   /// Initializes Change email response model class .
   const ChangeEmailResponseModel({
     this.changeEmail,
@@ -48,8 +48,4 @@ class ChangeEmailResponse extends ChangeEmailResponseModel {
       ChangeEmailResponse(
         changeEmail: changeEmail ?? this.changeEmail,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -14,7 +14,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Get settings response model class.
-abstract class GetSettingsResponseModel extends Equatable {
+abstract class GetSettingsResponseModel {
   /// Initializes Get settings response model class .
   const GetSettingsResponseModel({
     this.getSettings,
@@ -131,13 +131,9 @@ class GetSettingsResponse extends GetSettingsResponseModel {
       GetSettingsResponse(
         getSettings: getSettings ?? this.getSettings,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Get settings model class.
-abstract class GetSettingsModel extends Equatable {
+abstract class GetSettingsModel {
   /// Initializes Get settings model class .
   const GetSettingsModel({
     this.accountOpeningReason,
@@ -487,13 +483,9 @@ class GetSettings extends GetSettingsModel {
         taxResidence: taxResidence ?? this.taxResidence,
         userHash: userHash ?? this.userHash,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Feature flag model class.
-abstract class FeatureFlagModel extends Equatable {
+abstract class FeatureFlagModel {
   /// Initializes Feature flag model class .
   const FeatureFlagModel({
     this.wallet,
@@ -533,8 +525,4 @@ class FeatureFlag extends FeatureFlagModel {
       FeatureFlag(
         wallet: wallet ?? this.wallet,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

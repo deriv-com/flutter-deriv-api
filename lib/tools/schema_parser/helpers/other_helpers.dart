@@ -1,6 +1,6 @@
 part of '../schema_model.dart';
 
-StringBuffer _generateProperties({required SchemaModel model}) {
+StringBuffer _generateProperties(SchemaModel model) {
   final StringBuffer result = StringBuffer();
 
   for (final SchemaModel model in model.children) {

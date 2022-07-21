@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p ping response model class.
-abstract class P2pPingResponseModel extends Equatable {
+abstract class P2pPingResponseModel {
   /// Initializes P2p ping response model class .
   const P2pPingResponseModel({
     this.p2pPing,
@@ -51,10 +51,6 @@ class P2pPingResponse extends P2pPingResponseModel {
       P2pPingResponse(
         p2pPing: p2pPing ?? this.p2pPing,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// P2pPingEnum mapper.

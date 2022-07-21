@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// App markup details response model class.
-abstract class AppMarkupDetailsResponseModel extends Equatable {
+abstract class AppMarkupDetailsResponseModel {
   /// Initializes App markup details response model class .
   const AppMarkupDetailsResponseModel({
     this.appMarkupDetails,
@@ -77,13 +77,9 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
       AppMarkupDetailsResponse(
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// App markup details model class.
-abstract class AppMarkupDetailsModel extends Equatable {
+abstract class AppMarkupDetailsModel {
   /// Initializes App markup details model class .
   const AppMarkupDetailsModel({
     this.transactions,
@@ -136,13 +132,9 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
       AppMarkupDetails(
         transactions: transactions ?? this.transactions,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Transactions item model class.
-abstract class TransactionsItemModel extends Equatable {
+abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
   const TransactionsItemModel({
     this.appId,
@@ -273,8 +265,4 @@ class TransactionsItem extends TransactionsItemModel {
         transactionId: transactionId ?? this.transactionId,
         transactionTime: transactionTime ?? this.transactionTime,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

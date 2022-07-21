@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p advertiser relations response model class.
-abstract class P2pAdvertiserRelationsResponseModel extends Equatable {
+abstract class P2pAdvertiserRelationsResponseModel {
   /// Initializes P2p advertiser relations response model class .
   const P2pAdvertiserRelationsResponseModel({
     this.p2pAdvertiserRelations,
@@ -54,13 +54,9 @@ class P2pAdvertiserRelationsResponse
         p2pAdvertiserRelations:
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// P2p advertiser relations model class.
-abstract class P2pAdvertiserRelationsModel extends Equatable {
+abstract class P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations model class .
   const P2pAdvertiserRelationsModel({
     required this.favouriteAdvertisers,
@@ -128,13 +124,9 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
         blockedAdvertisers: blockedAdvertisers ?? this.blockedAdvertisers,
         favouriteAdvertisers: favouriteAdvertisers ?? this.favouriteAdvertisers,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Blocked advertisers item model class.
-abstract class BlockedAdvertisersItemModel extends Equatable {
+abstract class BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item model class .
   const BlockedAdvertisersItemModel({
     this.createdTime,
@@ -195,13 +187,9 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
         id: id ?? this.id,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Favourite advertisers item model class.
-abstract class FavouriteAdvertisersItemModel extends Equatable {
+abstract class FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item model class .
   const FavouriteAdvertisersItemModel({
     this.createdTime,
@@ -262,8 +250,4 @@ class FavouriteAdvertisersItem extends FavouriteAdvertisersItemModel {
         id: id ?? this.id,
         name: name ?? this.name,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

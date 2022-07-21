@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Get limits response model class.
-abstract class GetLimitsResponseModel extends Equatable {
+abstract class GetLimitsResponseModel {
   /// Initializes Get limits response model class .
   const GetLimitsResponseModel({
     this.getLimits,
@@ -78,13 +78,9 @@ class GetLimitsResponse extends GetLimitsResponseModel {
       GetLimitsResponse(
         getLimits: getLimits ?? this.getLimits,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Get limits model class.
-abstract class GetLimitsModel extends Equatable {
+abstract class GetLimitsModel {
   /// Initializes Get limits model class .
   const GetLimitsModel({
     this.accountBalance,
@@ -280,13 +276,9 @@ class GetLimits extends GetLimitsModel {
         withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary ??
             this.withdrawalSinceInceptionMonetary,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Market specific property item model class.
-abstract class MarketSpecificPropertyItemModel extends Equatable {
+abstract class MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item model class .
   const MarketSpecificPropertyItemModel({
     this.name,
@@ -357,13 +349,9 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         profileName: profileName ?? this.profileName,
         turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Payout per symbol model class.
-abstract class PayoutPerSymbolModel extends Equatable {
+abstract class PayoutPerSymbolModel {
   /// Initializes Payout per symbol model class .
   const PayoutPerSymbolModel({
     this.atm,
@@ -417,13 +405,9 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
         atm: atm ?? this.atm,
         nonAtm: nonAtm ?? this.nonAtm,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Non atm model class.
-abstract class NonAtmModel extends Equatable {
+abstract class NonAtmModel {
   /// Initializes Non atm model class .
   const NonAtmModel({
     this.lessThanSevenDays,
@@ -473,8 +457,4 @@ class NonAtm extends NonAtmModel {
         lessThanSevenDays: lessThanSevenDays ?? this.lessThanSevenDays,
         moreThanSevenDays: moreThanSevenDays ?? this.moreThanSevenDays,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

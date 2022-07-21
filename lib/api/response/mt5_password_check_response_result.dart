@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 password check response model class.
-abstract class Mt5PasswordCheckResponseModel extends Equatable {
+abstract class Mt5PasswordCheckResponseModel {
   /// Initializes Mt5 password check response model class .
   const Mt5PasswordCheckResponseModel({
     this.mt5PasswordCheck,
@@ -73,8 +73,4 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
       Mt5PasswordCheckResponse(
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

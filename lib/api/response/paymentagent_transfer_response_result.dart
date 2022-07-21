@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Paymentagent transfer response model class.
-abstract class PaymentagentTransferResponseModel extends Equatable {
+abstract class PaymentagentTransferResponseModel {
   /// Initializes Paymentagent transfer response model class .
   const PaymentagentTransferResponseModel({
     this.paymentagentTransfer,
@@ -113,8 +113,4 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
         clientToLoginid: clientToLoginid ?? this.clientToLoginid,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

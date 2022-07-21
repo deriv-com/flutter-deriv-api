@@ -4,8 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';    
 /// Trading platform investor password reset response model class.
-abstract class TradingPlatformInvestorPasswordResetResponseModel
-    extends Equatable {
+abstract class TradingPlatformInvestorPasswordResetResponseModel {
   /// Initializes Trading platform investor password reset response model class .
   const TradingPlatformInvestorPasswordResetResponseModel({
     this.tradingPlatformPasswordReset,
@@ -50,8 +49,4 @@ class TradingPlatformInvestorPasswordResetResponse
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

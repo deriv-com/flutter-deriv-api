@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// States list response model class.
-abstract class StatesListResponseModel extends Equatable {
+abstract class StatesListResponseModel {
   /// Initializes States list response model class .
   const StatesListResponseModel({
     this.statesList,
@@ -84,13 +84,9 @@ class StatesListResponse extends StatesListResponseModel {
       StatesListResponse(
         statesList: statesList ?? this.statesList,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// States list item model class.
-abstract class StatesListItemModel extends Equatable {
+abstract class StatesListItemModel {
   /// Initializes States list item model class .
   const StatesListItemModel({
     this.text,
@@ -140,8 +136,4 @@ class StatesListItem extends StatesListItemModel {
         text: text ?? this.text,
         value: value ?? this.value,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

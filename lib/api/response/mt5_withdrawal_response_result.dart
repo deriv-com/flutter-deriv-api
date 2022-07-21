@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Mt5 withdrawal response model class.
-abstract class Mt5WithdrawalResponseModel extends Equatable {
+abstract class Mt5WithdrawalResponseModel {
   /// Initializes Mt5 withdrawal response model class .
   const Mt5WithdrawalResponseModel({
     this.mt5Withdrawal,
@@ -88,8 +88,4 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Notification event response model class.
-abstract class NotificationEventResponseModel extends Equatable {
+abstract class NotificationEventResponseModel {
   /// Initializes Notification event response model class .
   const NotificationEventResponseModel({
     this.notificationEvent,
@@ -48,8 +48,4 @@ class NotificationEventResponse extends NotificationEventResponseModel {
       NotificationEventResponse(
         notificationEvent: notificationEvent ?? this.notificationEvent,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

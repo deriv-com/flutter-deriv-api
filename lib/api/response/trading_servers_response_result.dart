@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Trading servers response model class.
-abstract class TradingServersResponseModel extends Equatable {
+abstract class TradingServersResponseModel {
   /// Initializes Trading servers response model class .
   const TradingServersResponseModel({
     this.tradingServers,
@@ -86,10 +86,6 @@ class TradingServersResponse extends TradingServersResponseModel {
       TradingServersResponse(
         tradingServers: tradingServers ?? this.tradingServers,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// AccountTypeEnum mapper.
@@ -155,7 +151,7 @@ enum IdEnum {
   p02Ts02,
 }
 /// Trading servers item model class.
-abstract class TradingServersItemModel extends Equatable {
+abstract class TradingServersItemModel {
   /// Initializes Trading servers item model class .
   const TradingServersItemModel({
     this.accountType,
@@ -304,13 +300,9 @@ class TradingServersItem extends TradingServersItemModel {
         recommended: recommended ?? this.recommended,
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Geolocation model class.
-abstract class GeolocationModel extends Equatable {
+abstract class GeolocationModel {
   /// Initializes Geolocation model class .
   const GeolocationModel({
     this.group,
@@ -380,8 +372,4 @@ class Geolocation extends GeolocationModel {
         region: region ?? this.region,
         sequence: sequence ?? this.sequence,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

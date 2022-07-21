@@ -18,7 +18,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Transaction response model class.
-abstract class TransactionResponseModel extends Equatable {
+abstract class TransactionResponseModel {
   /// Initializes Transaction response model class .
   const TransactionResponseModel({
     this.transaction,
@@ -144,10 +144,6 @@ class TransactionResponse extends TransactionResponseModel {
         transaction: transaction ?? this.transaction,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// ActionEnum mapper.
@@ -189,7 +185,7 @@ enum ActionEnum {
   transfer,
 }
 /// Transaction model class.
-abstract class TransactionModel extends Equatable {
+abstract class TransactionModel {
   /// Initializes Transaction model class .
   const TransactionModel({
     this.action,
@@ -414,13 +410,9 @@ class Transaction extends TransactionModel {
         transactionId: transactionId ?? this.transactionId,
         transactionTime: transactionTime ?? this.transactionTime,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -460,8 +452,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

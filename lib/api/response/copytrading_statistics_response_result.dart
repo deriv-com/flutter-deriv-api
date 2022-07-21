@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Copytrading statistics response model class.
-abstract class CopytradingStatisticsResponseModel extends Equatable {
+abstract class CopytradingStatisticsResponseModel {
   /// Initializes Copytrading statistics response model class .
   const CopytradingStatisticsResponseModel({
     this.copytradingStatistics,
@@ -81,13 +81,9 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
         copytradingStatistics:
             copytradingStatistics ?? this.copytradingStatistics,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Copytrading statistics model class.
-abstract class CopytradingStatisticsModel extends Equatable {
+abstract class CopytradingStatisticsModel {
   /// Initializes Copytrading statistics model class .
   const CopytradingStatisticsModel({
     required this.tradesProfitable,
@@ -257,8 +253,4 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
         yearlyProfitableTrades:
             yearlyProfitableTrades ?? this.yearlyProfitableTrades,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

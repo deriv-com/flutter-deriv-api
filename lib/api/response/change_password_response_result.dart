@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Change password response model class.
-abstract class ChangePasswordResponseModel extends Equatable {
+abstract class ChangePasswordResponseModel {
   /// Initializes Change password response model class .
   const ChangePasswordResponseModel({
     this.changePassword,
@@ -48,8 +48,4 @@ class ChangePasswordResponse extends ChangePasswordResponseModel {
       ChangePasswordResponse(
         changePassword: changePassword ?? this.changePassword,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

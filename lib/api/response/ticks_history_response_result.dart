@@ -20,7 +20,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Ticks history response model class.
-abstract class TicksHistoryResponseModel extends Equatable {
+abstract class TicksHistoryResponseModel {
   /// Initializes Ticks history response model class .
   const TicksHistoryResponseModel({
     this.candles,
@@ -190,13 +190,9 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         pipSize: pipSize ?? this.pipSize,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Candles item model class.
-abstract class CandlesItemModel extends Equatable {
+abstract class CandlesItemModel {
   /// Initializes Candles item model class .
   const CandlesItemModel({
     this.close,
@@ -276,13 +272,9 @@ class CandlesItem extends CandlesItemModel {
         low: low ?? this.low,
         open: open ?? this.open,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// History model class.
-abstract class HistoryModel extends Equatable {
+abstract class HistoryModel {
   /// Initializes History model class .
   const HistoryModel({
     this.prices,
@@ -356,13 +348,9 @@ class History extends HistoryModel {
         prices: prices ?? this.prices,
         times: times ?? this.times,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -402,8 +390,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

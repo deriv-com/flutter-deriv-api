@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Payment methods response model class.
-abstract class PaymentMethodsResponseModel extends Equatable {
+abstract class PaymentMethodsResponseModel {
   /// Initializes Payment methods response model class .
   const PaymentMethodsResponseModel({
     this.paymentMethods,
@@ -84,13 +84,9 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
       PaymentMethodsResponse(
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Payment methods item model class.
-abstract class PaymentMethodsItemModel extends Equatable {
+abstract class PaymentMethodsItemModel {
   /// Initializes Payment methods item model class .
   const PaymentMethodsItemModel({
     required this.withdrawalTime,
@@ -281,13 +277,9 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawLimits: withdrawLimits ?? this.withdrawLimits,
         withdrawalTime: withdrawalTime ?? this.withdrawalTime,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Deposit limits property model class.
-abstract class DepositLimitsPropertyModel extends Equatable {
+abstract class DepositLimitsPropertyModel {
   /// Initializes Deposit limits property model class .
   const DepositLimitsPropertyModel({
     required this.min,
@@ -338,13 +330,9 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         max: max ?? this.max,
         min: min ?? this.min,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Withdraw limits property model class.
-abstract class WithdrawLimitsPropertyModel extends Equatable {
+abstract class WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property model class .
   const WithdrawLimitsPropertyModel({
     required this.min,
@@ -395,8 +383,4 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
         max: max ?? this.max,
         min: min ?? this.min,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

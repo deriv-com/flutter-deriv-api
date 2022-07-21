@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// P2p order dispute response model class.
-abstract class P2pOrderDisputeResponseModel extends Equatable {
+abstract class P2pOrderDisputeResponseModel {
   /// Initializes P2p order dispute response model class .
   const P2pOrderDisputeResponseModel({
     this.p2pOrderDispute,
@@ -52,10 +52,6 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
       P2pOrderDisputeResponse(
         p2pOrderDispute: p2pOrderDispute ?? this.p2pOrderDispute,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -120,7 +116,7 @@ enum StatusEnum {
   disputeCompleted,
 }
 /// P2p order dispute model class.
-abstract class P2pOrderDisputeModel extends Equatable {
+abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
   const P2pOrderDisputeModel({
     required this.type,
@@ -381,13 +377,9 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         status: status ?? this.status,
         type: type ?? this.type,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advert details model class.
-abstract class AdvertDetailsModel extends Equatable {
+abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
   const AdvertDetailsModel({
     required this.type,
@@ -459,13 +451,9 @@ class AdvertDetails extends AdvertDetailsModel {
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel extends Equatable {
+abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.name,
@@ -546,13 +534,9 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Client details model class.
-abstract class ClientDetailsModel extends Equatable {
+abstract class ClientDetailsModel {
   /// Initializes Client details model class .
   const ClientDetailsModel({
     required this.name,
@@ -632,13 +616,9 @@ class ClientDetails extends ClientDetailsModel {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dispute details model class.
-abstract class DisputeDetailsModel extends Equatable {
+abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
   const DisputeDetailsModel({
     required this.disputerLoginid,
@@ -688,8 +668,4 @@ class DisputeDetails extends DisputeDetailsModel {
         disputeReason: disputeReason ?? this.disputeReason,
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

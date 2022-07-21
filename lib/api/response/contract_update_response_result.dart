@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Contract update response model class.
-abstract class ContractUpdateResponseModel extends Equatable {
+abstract class ContractUpdateResponseModel {
   /// Initializes Contract update response model class .
   const ContractUpdateResponseModel({
     this.contractUpdate,
@@ -77,13 +77,9 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
       ContractUpdateResponse(
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Contract update model class.
-abstract class ContractUpdateModel extends Equatable {
+abstract class ContractUpdateModel {
   /// Initializes Contract update model class .
   const ContractUpdateModel({
     this.stopLoss,
@@ -141,10 +137,6 @@ class ContractUpdate extends ContractUpdateModel {
         stopLoss: stopLoss ?? this.stopLoss,
         takeProfit: takeProfit ?? this.takeProfit,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
@@ -220,7 +212,10 @@ class StopLoss extends StopLossModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[displayName, orderAmount];
+  List<Object?> get props => <Object?>[
+        displayName,
+        orderAmount,
+      ];
 }
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
@@ -296,5 +291,8 @@ class TakeProfit extends TakeProfitModel {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[displayName, orderAmount];
+  List<Object?> get props => <Object?>[
+        displayName,
+        orderAmount,
+      ];
 }

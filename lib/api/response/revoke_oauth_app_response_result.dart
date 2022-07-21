@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Revoke oauth app response model class.
-abstract class RevokeOauthAppResponseModel extends Equatable {
+abstract class RevokeOauthAppResponseModel {
   /// Initializes Revoke oauth app response model class .
   const RevokeOauthAppResponseModel({
     this.revokeOauthApp,
@@ -74,8 +74,4 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
       RevokeOauthAppResponse(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Time response model class.
-abstract class TimeResponseModel extends Equatable {
+abstract class TimeResponseModel {
   /// Initializes Time response model class .
   const TimeResponseModel({
     this.time,
@@ -75,8 +75,4 @@ class TimeResponse extends TimeResponseModel {
       TimeResponse(
         time: time ?? this.time,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

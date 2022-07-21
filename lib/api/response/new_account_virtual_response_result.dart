@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// New account virtual response model class.
-abstract class NewAccountVirtualResponseModel extends Equatable {
+abstract class NewAccountVirtualResponseModel {
   /// Initializes New account virtual response model class .
   const NewAccountVirtualResponseModel({
     this.newAccountVirtual,
@@ -78,10 +78,6 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
       NewAccountVirtualResponse(
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -99,7 +95,7 @@ enum TypeEnum {
   wallet,
 }
 /// New account virtual model class.
-abstract class NewAccountVirtualModel extends Equatable {
+abstract class NewAccountVirtualModel {
   /// Initializes New account virtual model class .
   const NewAccountVirtualModel({
     required this.oauthToken,
@@ -202,8 +198,4 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         refreshToken: refreshToken ?? this.refreshToken,
         type: type ?? this.type,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

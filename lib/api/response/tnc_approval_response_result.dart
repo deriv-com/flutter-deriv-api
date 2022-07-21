@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Tnc approval response model class.
-abstract class TncApprovalResponseModel extends Equatable {
+abstract class TncApprovalResponseModel {
   /// Initializes Tnc approval response model class .
   const TncApprovalResponseModel({
     this.tncApproval,
@@ -74,8 +74,4 @@ class TncApprovalResponse extends TncApprovalResponseModel {
       TncApprovalResponse(
         tncApproval: tncApproval ?? this.tncApproval,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

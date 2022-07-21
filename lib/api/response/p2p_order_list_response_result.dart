@@ -17,7 +17,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p order list response model class.
-abstract class P2pOrderListResponseModel extends Equatable {
+abstract class P2pOrderListResponseModel {
   /// Initializes P2p order list response model class .
   const P2pOrderListResponseModel({
     this.p2pOrderList,
@@ -152,10 +152,6 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
         p2pOrderList: p2pOrderList ?? this.p2pOrderList,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// TypeEnum mapper.
@@ -220,7 +216,7 @@ enum StatusEnum {
   disputeCompleted,
 }
 /// P2p order list model class.
-abstract class P2pOrderListModel extends Equatable {
+abstract class P2pOrderListModel {
   /// Initializes P2p order list model class .
   const P2pOrderListModel({
     required this.list,
@@ -268,13 +264,9 @@ class P2pOrderList extends P2pOrderListModel {
       P2pOrderList(
         list: list ?? this.list,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// List item model class.
-abstract class ListItemModel extends Equatable {
+abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
     required this.type,
@@ -299,6 +291,7 @@ abstract class ListItemModel extends Equatable {
     required this.advertDetails,
     required this.accountCurrency,
     this.clientDetails,
+    this.completionTime,
     this.paymentMethod,
     this.paymentMethodNames,
     this.reviewDetails,
@@ -370,6 +363,9 @@ abstract class ListItemModel extends Equatable {
   /// Details of the client who created the order.
   final ClientDetails? clientDetails;
 
+  /// The epoch time of the order completion.
+  final DateTime? completionTime;
+
   /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
@@ -406,6 +402,7 @@ class ListItem extends ListItemModel {
     required StatusEnum status,
     required TypeEnum type,
     ClientDetails? clientDetails,
+    DateTime? completionTime,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
@@ -432,6 +429,7 @@ class ListItem extends ListItemModel {
           status: status,
           type: type,
           clientDetails: clientDetails,
+          completionTime: completionTime,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
           reviewDetails: reviewDetails,
@@ -464,6 +462,7 @@ class ListItem extends ListItemModel {
         clientDetails: json['client_details'] == null
             ? null
             : ClientDetails.fromJson(json['client_details']),
+        completionTime: getDateTime(json['completion_time']),
         paymentMethod: json['payment_method'],
         paymentMethodNames: json['payment_method_names'] == null
             ? null
@@ -513,6 +512,7 @@ class ListItem extends ListItemModel {
     if (clientDetails != null) {
       resultMap['client_details'] = clientDetails!.toJson();
     }
+    resultMap['completion_time'] = getSecondsSinceEpochDateTime(completionTime);
     resultMap['payment_method'] = paymentMethod;
     if (paymentMethodNames != null) {
       resultMap['payment_method_names'] = paymentMethodNames!
@@ -552,6 +552,7 @@ class ListItem extends ListItemModel {
     StatusEnum? status,
     TypeEnum? type,
     ClientDetails? clientDetails,
+    DateTime? completionTime,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
@@ -579,17 +580,14 @@ class ListItem extends ListItemModel {
         status: status ?? this.status,
         type: type ?? this.type,
         clientDetails: clientDetails ?? this.clientDetails,
+        completionTime: completionTime ?? this.completionTime,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         reviewDetails: reviewDetails ?? this.reviewDetails,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advert details model class.
-abstract class AdvertDetailsModel extends Equatable {
+abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
   const AdvertDetailsModel({
     required this.type,
@@ -661,13 +659,9 @@ class AdvertDetails extends AdvertDetailsModel {
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Advertiser details model class.
-abstract class AdvertiserDetailsModel extends Equatable {
+abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.name,
@@ -758,13 +752,9 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Dispute details model class.
-abstract class DisputeDetailsModel extends Equatable {
+abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
   const DisputeDetailsModel({
     this.disputeReason,
@@ -814,13 +804,9 @@ class DisputeDetails extends DisputeDetailsModel {
         disputeReason: disputeReason ?? this.disputeReason,
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Client details model class.
-abstract class ClientDetailsModel extends Equatable {
+abstract class ClientDetailsModel {
   /// Initializes Client details model class .
   const ClientDetailsModel({
     required this.name,
@@ -910,13 +896,9 @@ class ClientDetails extends ClientDetailsModel {
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Review details model class.
-abstract class ReviewDetailsModel extends Equatable {
+abstract class ReviewDetailsModel {
   /// Initializes Review details model class .
   const ReviewDetailsModel({
     required this.rating,
@@ -976,13 +958,9 @@ class ReviewDetails extends ReviewDetailsModel {
         rating: rating ?? this.rating,
         recommended: recommended ?? this.recommended,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -1022,8 +1000,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Exchange rates response model class.
-abstract class ExchangeRatesResponseModel extends Equatable {
+abstract class ExchangeRatesResponseModel {
   /// Initializes Exchange rates response model class .
   const ExchangeRatesResponseModel({
     this.exchangeRates,
@@ -95,13 +95,9 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         exchangeRates: exchangeRates ?? this.exchangeRates,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Exchange rates model class.
-abstract class ExchangeRatesModel extends Equatable {
+abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
   const ExchangeRatesModel({
     this.baseCurrency,
@@ -168,13 +164,9 @@ class ExchangeRates extends ExchangeRatesModel {
         date: date ?? this.date,
         rates: rates ?? this.rates,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -214,8 +206,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

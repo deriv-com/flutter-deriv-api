@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Portfolio response model class.
-abstract class PortfolioResponseModel extends Equatable {
+abstract class PortfolioResponseModel {
   /// Initializes Portfolio response model class .
   const PortfolioResponseModel({
     this.portfolio,
@@ -75,13 +75,9 @@ class PortfolioResponse extends PortfolioResponseModel {
       PortfolioResponse(
         portfolio: portfolio ?? this.portfolio,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Portfolio model class.
-abstract class PortfolioModel extends Equatable {
+abstract class PortfolioModel {
   /// Initializes Portfolio model class .
   const PortfolioModel({
     required this.contracts,
@@ -129,13 +125,9 @@ class Portfolio extends PortfolioModel {
       Portfolio(
         contracts: contracts ?? this.contracts,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Contracts item model class.
-abstract class ContractsItemModel extends Equatable {
+abstract class ContractsItemModel {
   /// Initializes Contracts item model class .
   const ContractsItemModel({
     this.appId,
@@ -295,8 +287,4 @@ class ContractsItem extends ContractsItemModel {
         symbol: symbol ?? this.symbol,
         transactionId: transactionId ?? this.transactionId,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

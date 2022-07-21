@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Crypto config response model class.
-abstract class CryptoConfigResponseModel extends Equatable {
+abstract class CryptoConfigResponseModel {
   /// Initializes Crypto config response model class .
   const CryptoConfigResponseModel({
     this.cryptoConfig,
@@ -52,13 +52,9 @@ class CryptoConfigResponse extends CryptoConfigResponseModel {
       CryptoConfigResponse(
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Crypto config model class.
-abstract class CryptoConfigModel extends Equatable {
+abstract class CryptoConfigModel {
   /// Initializes Crypto config model class .
   const CryptoConfigModel({
     required this.currenciesConfig,
@@ -104,13 +100,9 @@ class CryptoConfig extends CryptoConfigModel {
       CryptoConfig(
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Currencies config property model class.
-abstract class CurrenciesConfigPropertyModel extends Equatable {
+abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
   const CurrenciesConfigPropertyModel({
     this.minimumWithdrawal,
@@ -151,8 +143,4 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
       CurrenciesConfigProperty(
         minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

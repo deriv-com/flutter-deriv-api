@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Forget all response model class.
-abstract class ForgetAllResponseModel extends Equatable {
+abstract class ForgetAllResponseModel {
   /// Initializes Forget all response model class .
   const ForgetAllResponseModel({
     this.forgetAll,
@@ -86,8 +86,4 @@ class ForgetAllResponse extends ForgetAllResponseModel {
       ForgetAllResponse(
         forgetAll: forgetAll ?? this.forgetAll,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Get account status response model class.
-abstract class GetAccountStatusResponseModel extends Equatable {
+abstract class GetAccountStatusResponseModel {
   /// Initializes Get account status response model class .
   const GetAccountStatusResponseModel({
     this.getAccountStatus,
@@ -75,10 +75,6 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
       GetAccountStatusResponse(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// StatusEnum mapper.
@@ -159,6 +155,34 @@ enum IdvStatusEnum {
   expired,
 }
 
+/// IncomeStatusEnum mapper.
+final Map<String, IncomeStatusEnum> incomeStatusEnumMapper =
+    <String, IncomeStatusEnum>{
+  "none": IncomeStatusEnum.none,
+  "pending": IncomeStatusEnum.pending,
+  "rejected": IncomeStatusEnum.rejected,
+  "verified": IncomeStatusEnum.verified,
+  "locked": IncomeStatusEnum.locked,
+};
+
+/// Status Enum.
+enum IncomeStatusEnum {
+  /// none.
+  none,
+
+  /// pending.
+  pending,
+
+  /// rejected.
+  rejected,
+
+  /// verified.
+  verified,
+
+  /// locked.
+  locked,
+}
+
 /// OwnershipStatusEnum mapper.
 final Map<String, OwnershipStatusEnum> ownershipStatusEnumMapper =
     <String, OwnershipStatusEnum>{
@@ -203,7 +227,7 @@ enum SocialIdentityProviderEnum {
   apple,
 }
 /// Get account status model class.
-abstract class GetAccountStatusModel extends Equatable {
+abstract class GetAccountStatusModel {
   /// Initializes Get account status model class .
   const GetAccountStatusModel({
     required this.status,
@@ -245,8 +269,6 @@ abstract class GetAccountStatusModel extends Equatable {
   /// - `professional`: this client has opted for a professional account.
   /// - `professional_requested`: this client has requested for a professional account.
   /// - `professional_rejected`: this client's request for a professional account has been rejected.
-  /// - `proveid_pending`: this client's identity is being validated. Applies for MX account with GB residence only.
-  /// - `proveid_requested`: this client has made a request to have their identity be validated.
   /// - `social_signup`: this client is using social signup.
   /// - `trading_experience_not_complete`: client has not completed the trading experience questionnaire.
   /// - `ukgc_funds_protection`: client has acknowledged UKGC funds protection notice.
@@ -402,13 +424,9 @@ class GetAccountStatus extends GetAccountStatusModel {
         socialIdentityProvider:
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Currency config property model class.
-abstract class CurrencyConfigPropertyModel extends Equatable {
+abstract class CurrencyConfigPropertyModel {
   /// Initializes Currency config property model class .
   const CurrencyConfigPropertyModel({
     this.isDepositSuspended,
@@ -460,19 +478,16 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
         isWithdrawalSuspended:
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Authentication model class.
-abstract class AuthenticationModel extends Equatable {
+abstract class AuthenticationModel {
   /// Initializes Authentication model class .
   const AuthenticationModel({
     required this.needsVerification,
     this.attempts,
     this.document,
     this.identity,
+    this.income,
     this.ownership,
   });
 
@@ -488,6 +503,9 @@ abstract class AuthenticationModel extends Equatable {
   /// The authentication status for identity.
   final Identity? identity;
 
+  /// The authentication status for source of income document.
+  final Income? income;
+
   /// The current state of the proof of ownership.
   final Ownership? ownership;
 }
@@ -500,12 +518,14 @@ class Authentication extends AuthenticationModel {
     Attempts? attempts,
     Document? document,
     Identity? identity,
+    Income? income,
     Ownership? ownership,
   }) : super(
           needsVerification: needsVerification,
           attempts: attempts,
           document: document,
           identity: identity,
+          income: income,
           ownership: ownership,
         );
 
@@ -525,6 +545,7 @@ class Authentication extends AuthenticationModel {
         identity: json['identity'] == null
             ? null
             : Identity.fromJson(json['identity']),
+        income: json['income'] == null ? null : Income.fromJson(json['income']),
         ownership: json['ownership'] == null
             ? null
             : Ownership.fromJson(json['ownership']),
@@ -549,6 +570,9 @@ class Authentication extends AuthenticationModel {
     if (identity != null) {
       resultMap['identity'] = identity!.toJson();
     }
+    if (income != null) {
+      resultMap['income'] = income!.toJson();
+    }
     if (ownership != null) {
       resultMap['ownership'] = ownership!.toJson();
     }
@@ -562,6 +586,7 @@ class Authentication extends AuthenticationModel {
     Attempts? attempts,
     Document? document,
     Identity? identity,
+    Income? income,
     Ownership? ownership,
   }) =>
       Authentication(
@@ -569,15 +594,12 @@ class Authentication extends AuthenticationModel {
         attempts: attempts ?? this.attempts,
         document: document ?? this.document,
         identity: identity ?? this.identity,
+        income: income ?? this.income,
         ownership: ownership ?? this.ownership,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Attempts model class.
-abstract class AttemptsModel extends Equatable {
+abstract class AttemptsModel {
   /// Initializes Attempts model class .
   const AttemptsModel({
     this.count,
@@ -649,13 +671,9 @@ class Attempts extends AttemptsModel {
         history: history ?? this.history,
         latest: latest ?? this.latest,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// History item model class.
-abstract class HistoryItemModel extends Equatable {
+abstract class HistoryItemModel {
   /// Initializes History item model class .
   const HistoryItemModel({
     this.countryCode,
@@ -739,13 +757,9 @@ class HistoryItem extends HistoryItemModel {
         status: status ?? this.status,
         timestamp: timestamp ?? this.timestamp,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Document model class.
-abstract class DocumentModel extends Equatable {
+abstract class DocumentModel {
   /// Initializes Document model class .
   const DocumentModel({
     this.expiryDate,
@@ -800,13 +814,9 @@ class Document extends DocumentModel {
         expiryDate: expiryDate ?? this.expiryDate,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Identity model class.
-abstract class IdentityModel extends Equatable {
+abstract class IdentityModel {
   /// Initializes Identity model class .
   const IdentityModel({
     this.expiryDate,
@@ -875,13 +885,9 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Services model class.
-abstract class ServicesModel extends Equatable {
+abstract class ServicesModel {
   /// Initializes Services model class .
   const ServicesModel({
     this.idv,
@@ -947,13 +953,9 @@ class Services extends ServicesModel {
         manual: manual ?? this.manual,
         onfido: onfido ?? this.onfido,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Idv model class.
-abstract class IdvModel extends Equatable {
+abstract class IdvModel {
   /// Initializes Idv model class .
   const IdvModel({
     this.expiryDate,
@@ -1049,13 +1051,9 @@ class Idv extends IdvModel {
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Manual model class.
-abstract class ManualModel extends Equatable {
+abstract class ManualModel {
   /// Initializes Manual model class .
   const ManualModel({
     this.status,
@@ -1100,13 +1098,9 @@ class Manual extends ManualModel {
       Manual(
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Onfido model class.
-abstract class OnfidoModel extends Equatable {
+abstract class OnfidoModel {
   /// Initializes Onfido model class .
   const OnfidoModel({
     this.countryCode,
@@ -1257,13 +1251,66 @@ class Onfido extends OnfidoModel {
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
+}
+/// Income model class.
+abstract class IncomeModel {
+  /// Initializes Income model class .
+  const IncomeModel({
+    this.expiryDate,
+    this.status,
+  });
 
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
+  /// Epoch of the source of income document expiry date.
+  final DateTime? expiryDate;
+
+  /// Current status of the proof of income document submitted for authentication.
+  final IncomeStatusEnum? status;
+}
+
+/// Income class.
+class Income extends IncomeModel {
+  /// Initializes Income class.
+  const Income({
+    DateTime? expiryDate,
+    IncomeStatusEnum? status,
+  }) : super(
+          expiryDate: expiryDate,
+          status: status,
+        );
+
+  /// Creates an instance from JSON.
+  factory Income.fromJson(Map<String, dynamic> json) => Income(
+        expiryDate: getDateTime(json['expiry_date']),
+        status: json['status'] == null
+            ? null
+            : incomeStatusEnumMapper[json['status']],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
+    resultMap['status'] = incomeStatusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, IncomeStatusEnum> entry) => entry.value == status)
+        .key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Income copyWith({
+    DateTime? expiryDate,
+    IncomeStatusEnum? status,
+  }) =>
+      Income(
+        expiryDate: expiryDate ?? this.expiryDate,
+        status: status ?? this.status,
+      );
 }
 /// Ownership model class.
-abstract class OwnershipModel extends Equatable {
+abstract class OwnershipModel {
   /// Initializes Ownership model class .
   const OwnershipModel({
     this.requests,
@@ -1330,13 +1377,9 @@ class Ownership extends OwnershipModel {
         requests: requests ?? this.requests,
         status: status ?? this.status,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Requests item model class.
-abstract class RequestsItemModel extends Equatable {
+abstract class RequestsItemModel {
   /// Initializes Requests item model class .
   const RequestsItemModel({
     this.creationTime,
@@ -1407,8 +1450,4 @@ class RequestsItem extends RequestsItemModel {
         paymentMethodIdentifier:
             paymentMethodIdentifier ?? this.paymentMethodIdentifier,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

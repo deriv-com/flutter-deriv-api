@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Affiliate account add response model class.
-abstract class AffiliateAccountAddResponseModel extends Equatable {
+abstract class AffiliateAccountAddResponseModel {
   /// Initializes Affiliate account add response model class .
   const AffiliateAccountAddResponseModel({
     this.affiliateAccountAdd,
@@ -52,13 +52,9 @@ class AffiliateAccountAddResponse extends AffiliateAccountAddResponseModel {
       AffiliateAccountAddResponse(
         affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Affiliate account add model class.
-abstract class AffiliateAccountAddModel extends Equatable {
+abstract class AffiliateAccountAddModel {
   /// Initializes Affiliate account add model class .
   const AffiliateAccountAddModel({
     required this.affiliateId,
@@ -219,8 +215,4 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
         tncAccepted: tncAccepted ?? this.tncAccepted,
         verificationCode: verificationCode ?? this.verificationCode,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

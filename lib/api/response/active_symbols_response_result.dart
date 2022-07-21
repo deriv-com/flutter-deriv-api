@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Active symbols response model class.
-abstract class ActiveSymbolsResponseModel extends Equatable {
+abstract class ActiveSymbolsResponseModel {
   /// Initializes Active symbols response model class .
   const ActiveSymbolsResponseModel({
     this.activeSymbols,
@@ -87,13 +87,9 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
       ActiveSymbolsResponse(
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Active symbols item model class.
-abstract class ActiveSymbolsItemModel extends Equatable {
+abstract class ActiveSymbolsItemModel {
   /// Initializes Active symbols item model class .
   const ActiveSymbolsItemModel({
     required this.symbolType,
@@ -305,8 +301,4 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         spotAge: spotAge ?? this.spotAge,
         spotTime: spotTime ?? this.spotTime,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }

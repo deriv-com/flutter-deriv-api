@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Cashier payments response model class.
-abstract class CashierPaymentsResponseModel extends Equatable {
+abstract class CashierPaymentsResponseModel {
   /// Initializes Cashier payments response model class .
   const CashierPaymentsResponseModel({
     this.cashierPayments,
@@ -67,10 +67,6 @@ class CashierPaymentsResponse extends CashierPaymentsResponseModel {
         cashierPayments: cashierPayments ?? this.cashierPayments,
         subscription: subscription ?? this.subscription,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 
 /// StatusCodeEnum mapper.
@@ -137,7 +133,7 @@ enum TransactionTypeEnum {
   withdrawal,
 }
 /// Cashier payments model class.
-abstract class CashierPaymentsModel extends Equatable {
+abstract class CashierPaymentsModel {
   /// Initializes Cashier payments model class .
   const CashierPaymentsModel({
     this.crypto,
@@ -190,13 +186,9 @@ class CashierPayments extends CashierPaymentsModel {
       CashierPayments(
         crypto: crypto ?? this.crypto,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Crypto item model class.
-abstract class CryptoItemModel extends Equatable {
+abstract class CryptoItemModel {
   /// Initializes Crypto item model class .
   const CryptoItemModel({
     required this.transactionType,
@@ -342,13 +334,9 @@ class CryptoItem extends CryptoItemModel {
         transactionHash: transactionHash ?? this.transactionHash,
         transactionUrl: transactionUrl ?? this.transactionUrl,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
 /// Subscription model class.
-abstract class SubscriptionModel extends Equatable {
+abstract class SubscriptionModel {
   /// Initializes Subscription model class .
   const SubscriptionModel({
     required this.id,
@@ -388,8 +376,4 @@ class Subscription extends SubscriptionModel {
       Subscription(
         id: id ?? this.id,
       );
-
-  /// Override equatable class.
-  @override
-  List<Object?> get props => <Object?>[];
 }
