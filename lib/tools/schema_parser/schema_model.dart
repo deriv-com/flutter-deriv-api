@@ -6,6 +6,8 @@ part 'helpers/to_json_helper.dart';
 part 'helpers/copy_with_helper.dart';
 part 'helpers/constructor_helper.dart';
 part 'helpers/other_helpers.dart';
+part 'helpers/equatable_helper.dart';
+part 'helpers/deceleration_helper.dart';
 
 /// Represents dynamic type. mostly used for unknown types.
 const String dynamicType = 'dynamic';
@@ -91,13 +93,19 @@ class SchemaModel extends Object {
 
   /// Gets String of FromJson function for this model.
   StringBuffer getFromJson({bool isRoot = false}) =>
-      _generateFromJson(model: this, isRoot: isRoot);
+      _generateFromJson(this, isRoot: isRoot);
 
   /// Gets String of ToJson function for this model.
-  StringBuffer getToJson() => _generateToJson(model: this);
+  StringBuffer getToJson() => _generateToJson(this);
 
   /// Gets String of copyWith function for this model.
-  StringBuffer getCopyWith() => _generateCopyWith(model: this);
+  StringBuffer getCopyWith() => _generateCopyWith(this);
+
+  /// Gets String of equatable probs override for this model.
+  StringBuffer getEquatableProbs() => _generateEquatableProps(this);
+
+  /// Gets String of deceleration for this model.
+  StringBuffer getDeceleration() => _generateDeceleration(this);
 
   /// Gets String of constructor function for this model.
   StringBuffer getConstructor({
@@ -105,13 +113,13 @@ class SchemaModel extends Object {
     bool isSubclass = true,
   }) =>
       _generateConstructor(
-        model: this,
+        this,
         className: className,
         isSubclass: isSubclass,
       );
 
   /// Gets String of properties for this model.
-  StringBuffer getProperties() => _generateProperties(model: this);
+  StringBuffer getProperties() => _generateProperties(this);
 
   @override
   String toString() => '''

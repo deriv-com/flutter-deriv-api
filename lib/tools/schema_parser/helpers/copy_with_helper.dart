@@ -1,8 +1,6 @@
 part of '../schema_model.dart';
 
-StringBuffer _generateCopyWith({
-  required SchemaModel model,
-}) {
+StringBuffer _generateCopyWith(SchemaModel model) {
   final String className = model.className;
   final List<SchemaModel> children = model.children;
   final StringBuffer result = StringBuffer()

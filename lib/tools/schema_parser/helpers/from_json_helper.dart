@@ -1,7 +1,7 @@
 part of '../schema_model.dart';
 
-StringBuffer _generateFromJson({
-  required SchemaModel model,
+StringBuffer _generateFromJson(
+  SchemaModel model, {
   bool isRoot = false,
 }) {
   final String className = model.className;

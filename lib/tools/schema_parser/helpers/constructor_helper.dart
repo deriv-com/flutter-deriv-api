@@ -1,8 +1,8 @@
 part of '../schema_model.dart';
 
-StringBuffer _generateConstructor({
+StringBuffer _generateConstructor(
+  SchemaModel model, {
   required String className,
-  required SchemaModel model,
   bool isSubclass = true,
 }) {
   final List<SchemaModel> children = model.children;

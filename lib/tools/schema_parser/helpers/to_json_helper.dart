@@ -1,9 +1,7 @@
 part of '../schema_model.dart';
 
 // TODO(mohammad): use same pattern as fromJson (create _getToJsonFor function)
-StringBuffer _generateToJson({
-  required SchemaModel model,
-}) {
+StringBuffer _generateToJson(SchemaModel model) {
   final StringBuffer result = StringBuffer()
     ..write(
       '''
