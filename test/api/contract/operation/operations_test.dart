@@ -1,5 +1,7 @@
 import 'dart:developer' as dev;
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -17,7 +19,9 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Contract Operations Group ->', () {
     test('Fetch Price Proposal Test', () async {

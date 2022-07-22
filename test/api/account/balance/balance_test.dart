@@ -1,5 +1,7 @@
 import 'package:flutter_deriv_api/api/account/models/balance_active_account_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/balance/balance.dart';
@@ -8,7 +10,9 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Balance Group ->', () {
     test('Fetch Balance Test', () async {
@@ -17,7 +21,7 @@ void main() {
           account: 'all',
         ),
       );
-      
+
       final List<BalanceActiveAccountModel> accounts = balance.accounts!;
       final BalanceTotalModel total = balance.total!;
 

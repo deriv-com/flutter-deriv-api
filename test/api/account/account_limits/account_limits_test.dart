@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_limits/account_limits.dart';
@@ -5,7 +7,9 @@ import 'package:flutter_deriv_api/api/account/models/market_limit_model.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   test('Account Limits Test', () async {
     final AccountLimits accountLimits =

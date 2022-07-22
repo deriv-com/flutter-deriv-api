@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/models/statement_transaction.dart';
@@ -8,7 +10,9 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   test('Statement Test', () async {
     final Statement statement = await Statement.fetch(
@@ -22,7 +26,8 @@ void main() {
 
     expect(statement.transactions!.length, 1);
 
-    final StatementTransactionModel transaction = statement.transactions!.first!;
+    final StatementTransactionModel transaction =
+        statement.transactions!.first!;
 
     expect(transaction.actionType, TransactionActionType.deposit);
     expect(transaction.amount, -83.23);
