@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
@@ -8,10 +9,12 @@ void main() {
     late final ConnectionCubit connectionCubit;
 
     setUpAll(
-      () => connectionCubit = ConnectionCubit(
-        ConnectionInformation(appId: '', brand: '', endpoint: ''),
-        isMock: true,
-      ),
+      () {
+        connectionCubit = ConnectionCubit(
+          ConnectionInformation(appId: '', brand: '', endpoint: ''),
+          api: MockAPI(),
+        );
+      },
     );
 
     tearDownAll(() => connectionCubit.close());

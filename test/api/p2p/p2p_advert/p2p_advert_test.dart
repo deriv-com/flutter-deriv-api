@@ -6,10 +6,14 @@ import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('P2P Advert Group ->', () {
     test('Fetch Advert Information Test', () async {
