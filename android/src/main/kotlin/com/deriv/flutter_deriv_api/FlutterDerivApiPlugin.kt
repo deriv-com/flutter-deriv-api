@@ -16,6 +16,7 @@ class FlutterDerivApiPlugin: FlutterPlugin, MethodCallHandler {
     @JvmStatic
     fun registerWith(registrar: PluginRegistry.Registrar) {
       val instance = FlutterDerivApiPlugin()
+
       instance.setupChannel(registrar.messenger())
     }
   }
@@ -42,5 +43,4 @@ class FlutterDerivApiPlugin: FlutterPlugin, MethodCallHandler {
     channel = MethodChannel(messenger, CHANNEL_NAME)
     channel.setMethodCallHandler(this)
   }
-
 }

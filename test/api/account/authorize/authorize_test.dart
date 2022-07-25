@@ -4,11 +4,14 @@ import 'package:flutter_deriv_api/api/response/login_history_response_result.dar
 import 'package:flutter_deriv_api/api/response/logout_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
-  //DateTime.tryParse('2020-01-11'),
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {

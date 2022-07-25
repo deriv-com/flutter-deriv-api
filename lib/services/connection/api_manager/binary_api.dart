@@ -23,7 +23,8 @@ import 'package:web_socket_channel/status.dart' as status;
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes binary api.
-  BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
+  BinaryAPI({UniqueKey? uniqueKey})
+      : super(uniqueKey: uniqueKey ?? UniqueKey());
 
   static const Duration _wsConnectTimeOut = Duration(seconds: 10);
 

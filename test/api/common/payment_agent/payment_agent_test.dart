@@ -5,10 +5,14 @@ import 'package:flutter_deriv_api/api/response/paymentagent_withdraw_response_re
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_transfer_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_withdraw_send.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Payment Agent Group ->', () {
     test('Fetch Payment Agent List Test', () async {
