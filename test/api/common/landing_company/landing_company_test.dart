@@ -3,10 +3,14 @@ import 'package:flutter_deriv_api/api/response/landing_company_details_response_
 import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_send.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Landing Company Group ->', () {
     test('Fetch Landing Companies Test', () async {

@@ -3,11 +3,15 @@ import 'package:flutter_deriv_api/api/response/copy_start_response_result.dart';
 import 'package:flutter_deriv_api/api/response/copy_stop_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copy_start_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copy_stop_send.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector.getInjector().dispose());
 
   group('Copy Trading Group ->', () {
     test('Start Copy Trading Test', () async {

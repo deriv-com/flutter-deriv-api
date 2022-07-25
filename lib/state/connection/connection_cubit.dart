@@ -1,13 +1,15 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
-import 'package:flutter_deriv_api/services/connection/connection_service.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 part 'connection_state.dart';
@@ -17,46 +19,36 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Initializes [ConnectionCubit].
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
-    this.isMock = false,
-  }) : super(ConnectionInitialState()) {
-    APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
+    BaseAPI? api,
+    this.printResponse = false,
+  }) : super(const ConnectionInitialState()) {
+    APIInitializer().initialize(api: api ?? BinaryAPI(uniqueKey: _uniqueKey));
 
-    _api ??= Injector.getInjector().get<BaseAPI>();
+    _api = Injector.getInjector().get<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 
-    ConnectionService().state.listen(
-      (bool state) {
-        if (state) {
-          connect();
-        } else {
-          if (state is! ConnectionDisconnectedState) {
-            emit(ConnectionDisconnectedState());
-          }
-        }
-      },
-    );
+    if (_api is BinaryAPI) {
+      _setupConnectivityListener();
+    }
 
     _startConnectivityTimer();
 
     connect();
   }
 
-  /// Creates mock connection, sets this to [true] for testing purposes
-  final bool isMock;
-
-  static const Duration _callTimeOut = Duration(seconds: 10);
-
-  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
-  final int _pingTimeout = 5;
-  final int _pingMaxExceptionCount = 3;
-  final int _connectivityCheckInterval = 5;
+  /// Prints API response to console.
+  final bool printResponse;
 
   final UniqueKey _uniqueKey = UniqueKey();
 
-  int _pingExceptionCount = 0;
+  late final BaseAPI? _api;
 
-  BaseAPI? _api;
+  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
+  final Duration _pingTimeout = const Duration(seconds: 1);
+
+  final Duration _connectivityCheckInterval = const Duration(seconds: 5);
+
   Timer? _connectivityTimer;
 
   static late ConnectionInformation _connectionInformation;
@@ -72,67 +64,80 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   static String get appId => _connectionInformation.appId;
 
   /// Connects to the web socket.
-  ///
-  /// This function MUST NOT be called outside of this package.
-  Future<void> connect({
-    ConnectionInformation? connectionInformation,
-    bool printResponse = false,
-  }) async {
-    if (state is! ConnectionConnectingState) {
-      emit(ConnectionConnectingState());
+  Future<void> connect({ConnectionInformation? connectionInformation}) async {
+    if (state is ConnectionConnectingState) {
+      return;
     }
+
+    emit(const ConnectionConnectingState());
+
+    await _api!.disconnect();
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
     }
 
-    await _api!.disconnect().timeout(_callTimeOut);
-
     await _api!.connect(
       _connectionInformation,
       printResponse: printResponse,
+      onOpen: (UniqueKey uniqueKey) {
+        if (_uniqueKey == uniqueKey) {
+          emit(const ConnectionConnectedState());
+        }
+      },
       onDone: (UniqueKey uniqueKey) async {
         if (_uniqueKey == uniqueKey) {
           await _api!.disconnect();
 
-          emit(ConnectionDisconnectedState());
-        }
-      },
-      onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey && state is! ConnectionConnectedState) {
-          emit(ConnectionConnectedState());
+          emit(const ConnectionDisconnectedState());
         }
       },
       onError: (UniqueKey uniqueKey) {
         if (_uniqueKey == uniqueKey) {
-          emit(ConnectionDisconnectedState());
+          emit(const ConnectionDisconnectedState());
         }
       },
     );
   }
 
-  // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds.
+  void _setupConnectivityListener() =>
+      Connectivity().onConnectivityChanged.listen(
+        (ConnectivityResult result) async {
+          final bool isConnectedToNetwork =
+              result == ConnectivityResult.mobile ||
+                  result == ConnectivityResult.wifi;
+
+          if (isConnectedToNetwork) {
+            final bool isConnected = await _ping();
+
+            if (!isConnected) {
+              await connect();
+            }
+          } else if (result == ConnectivityResult.none) {
+            emit(const ConnectionDisconnectedState());
+          }
+        },
+      );
+
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
-        Duration(seconds: _connectivityCheckInterval),
+        _connectivityCheckInterval,
         (Timer timer) async {
-          final bool isOnline = await _checkPingConnection();
+          final bool isOnline = await _ping();
 
           if (!isOnline) {
-            emit(ConnectionDisconnectedState());
+            emit(const ConnectionDisconnectedState());
           }
         },
       );
     }
   }
 
-  void _stopConnectivityTimer() => _connectivityTimer?.cancel();
-
   Future<bool> _ping() async {
     try {
-      final PingResponse response = await PingResponse.pingMethod()
-          .timeout(Duration(seconds: _pingTimeout));
+      final PingResponse response =
+          await PingResponse.pingMethod().timeout(_pingTimeout);
 
       if (response.ping == null) {
         return false;
@@ -144,27 +149,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     return true;
   }
 
-  Future<bool> _checkPingConnection() async {
-    final bool _pingSuccess = await _ping();
-
-    if (!_pingSuccess) {
-      if (_pingExceptionCount++ > _pingMaxExceptionCount) {
-        _pingExceptionCount = 0;
-
-        return false;
-      }
-
-      return true;
-    }
-
-    _pingExceptionCount = 0;
-
-    return true;
-  }
-
   @override
   Future<void> close() {
-    _stopConnectivityTimer();
+    _connectivityTimer?.cancel();
 
     return super.close();
   }

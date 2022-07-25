@@ -13,7 +13,7 @@ typedef ConnectionCallback = void Function(UniqueKey uniqueKey);
 /// Base class for handling API connection and calling APIs.
 abstract class BaseAPI {
   /// Initializes base api.
-  BaseAPI(this.uniqueKey);
+  BaseAPI({required this.uniqueKey});
 
   /// A key to check the `onDone` function is called from the same instance.
   final UniqueKey uniqueKey;
