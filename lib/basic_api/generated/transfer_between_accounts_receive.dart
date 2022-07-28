@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Transfer between accounts response class.
-class TransferBetweenAccountsResponse extends Response {
-  /// Initialize TransferBetweenAccountsResponse.
-  const TransferBetweenAccountsResponse({
+/// Transfer between accounts receive class.
+class TransferBetweenAccountsReceive extends Response {
+  /// Initialize TransferBetweenAccountsReceive.
+  const TransferBetweenAccountsReceive({
     this.accounts,
     this.clientToFullName,
     this.clientToLoginid,
@@ -25,8 +25,8 @@ class TransferBetweenAccountsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
-      TransferBetweenAccountsResponse(
+  factory TransferBetweenAccountsReceive.fromJson(Map<String, dynamic> json) =>
+      TransferBetweenAccountsReceive(
         accounts: (json['accounts'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -78,7 +78,7 @@ class TransferBetweenAccountsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TransferBetweenAccountsResponse copyWith({
+  TransferBetweenAccountsReceive copyWith({
     List<Map<String, dynamic>>? accounts,
     String? clientToFullName,
     String? clientToLoginid,
@@ -89,7 +89,7 @@ class TransferBetweenAccountsResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      TransferBetweenAccountsResponse(
+      TransferBetweenAccountsReceive(
         accounts: accounts ?? this.accounts,
         clientToFullName: clientToFullName ?? this.clientToFullName,
         clientToLoginid: clientToLoginid ?? this.clientToLoginid,

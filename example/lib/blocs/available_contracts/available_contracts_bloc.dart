@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
-import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
-import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
-import 'package:flutter_deriv_api/api/contract/contracts_for/exceptions/contract_for_symbol_exception.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 import '../active_symbols/active_symbols_bloc.dart';
@@ -37,10 +36,10 @@ class AvailableContractsBloc
       yield AvailableContractsLoading();
 
       try {
-        final ContractsForSymbol contracts =
-            await _fetchAvailableContracts(event.activeSymbol!);
+        final ContractsForResponse contracts =
+            await _fetchAvailableContracts(event.activeSymbol);
 
-        yield AvailableContractsLoaded(contracts: contracts);
+        yield AvailableContractsLoaded(contracts: contracts.contractsFor!);
       } on ContractsForSymbolException catch (error) {
         yield AvailableContractsError(error.message);
       }
@@ -51,8 +50,7 @@ class AvailableContractsBloc
 
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,
-          selectedContract:
-              loadedState.contracts?.availableContracts?.elementAt(event.index),
+          selectedContract: loadedState.contracts.available[event.index],
         );
       } else {
         yield AvailableContractsLoading();
@@ -61,10 +59,10 @@ class AvailableContractsBloc
     }
   }
 
-  Future<ContractsForSymbol> _fetchAvailableContracts(
-    ActiveSymbol selectedSymbol,
+  Future<ContractsForResponse> _fetchAvailableContracts(
+    ActiveSymbolsItem? selectedSymbol,
   ) async =>
-      ContractsForSymbol.fetchContractsForSymbol(
-        ContractsForRequest(contractsFor: selectedSymbol.symbol),
-      );
+      ContractsForResponse.fetchContractsForSymbol(ContractsForRequest(
+        contractsFor: selectedSymbol?.symbol,
+      ));
 }

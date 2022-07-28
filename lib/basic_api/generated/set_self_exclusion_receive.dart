@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Set self exclusion response class.
-class SetSelfExclusionResponse extends Response {
-  /// Initialize SetSelfExclusionResponse.
-  const SetSelfExclusionResponse({
+/// Set self exclusion receive class.
+class SetSelfExclusionReceive extends Response {
+  /// Initialize SetSelfExclusionReceive.
+  const SetSelfExclusionReceive({
     this.setSelfExclusion,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class SetSelfExclusionResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
-      SetSelfExclusionResponse(
+  factory SetSelfExclusionReceive.fromJson(Map<String, dynamic> json) =>
+      SetSelfExclusionReceive(
         setSelfExclusion: json['set_self_exclusion'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class SetSelfExclusionResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetSelfExclusionResponse copyWith({
+  SetSelfExclusionReceive copyWith({
     int? setSelfExclusion,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      SetSelfExclusionResponse(
+      SetSelfExclusionReceive(
         setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

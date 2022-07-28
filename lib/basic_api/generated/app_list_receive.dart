@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// App list response class.
-class AppListResponse extends Response {
-  /// Initialize AppListResponse.
-  const AppListResponse({
+/// App list receive class.
+class AppListReceive extends Response {
+  /// Initialize AppListReceive.
+  const AppListReceive({
     this.appList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,7 @@ class AppListResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AppListResponse.fromJson(Map<String, dynamic> json) =>
-      AppListResponse(
+  factory AppListReceive.fromJson(Map<String, dynamic> json) => AppListReceive(
         appList: (json['app_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +47,14 @@ class AppListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppListResponse copyWith({
+  AppListReceive copyWith({
     List<Map<String, dynamic>>? appList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AppListResponse(
+      AppListReceive(
         appList: appList ?? this.appList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

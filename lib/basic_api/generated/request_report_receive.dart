@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Request report response class.
-class RequestReportResponse extends Response {
-  /// Initialize RequestReportResponse.
-  const RequestReportResponse({
+/// Request report receive class.
+class RequestReportReceive extends Response {
+  /// Initialize RequestReportReceive.
+  const RequestReportReceive({
     this.requestReport,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class RequestReportResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory RequestReportResponse.fromJson(Map<String, dynamic> json) =>
-      RequestReportResponse(
+  factory RequestReportReceive.fromJson(Map<String, dynamic> json) =>
+      RequestReportReceive(
         requestReport: json['request_report'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class RequestReportResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  RequestReportResponse copyWith({
+  RequestReportReceive copyWith({
     Map<String, dynamic>? requestReport,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      RequestReportResponse(
+      RequestReportReceive(
         requestReport: requestReport ?? this.requestReport,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

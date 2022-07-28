@@ -44,7 +44,8 @@ class NewAccountVirtualRequest extends Request {
         affiliateToken: json['affiliate_token'] as String?,
         clientPassword: json['client_password'] as String?,
         dateFirstContact: json['date_first_contact'] as String?,
-        emailConsent: json['email_consent'] as int?,
+        emailConsent:
+            json['email_consent'] == null ? null : json['email_consent'] == 1,
         gclidUrl: json['gclid_url'] as String?,
         newAccountVirtual: json['new_account_virtual'] == null
             ? null
@@ -78,8 +79,8 @@ class NewAccountVirtualRequest extends Request {
   /// [Optional] Date of first contact, format: `yyyy-mm-dd` in GMT timezone.
   final String? dateFirstContact;
 
-  /// [Optional] Boolean value: 1 or 0, indicating whether the client has given consent for marketing emails.
-  final int? emailConsent;
+  /// [Optional] Boolean value: `true` or `false`, indicating whether the client has given consent for marketing emails.
+  final bool? emailConsent;
 
   /// [Optional] Google Click Identifier to track source.
   final String? gclidUrl;
@@ -141,7 +142,11 @@ class NewAccountVirtualRequest extends Request {
         'affiliate_token': affiliateToken,
         'client_password': clientPassword,
         'date_first_contact': dateFirstContact,
-        'email_consent': emailConsent,
+        'email_consent': emailConsent == null
+            ? null
+            : emailConsent!
+                ? 1
+                : 0,
         'gclid_url': gclidUrl,
         'new_account_virtual': newAccountVirtual == null
             ? null
@@ -174,7 +179,7 @@ class NewAccountVirtualRequest extends Request {
     String? affiliateToken,
     String? clientPassword,
     String? dateFirstContact,
-    int? emailConsent,
+    bool? emailConsent,
     String? gclidUrl,
     bool? newAccountVirtual,
     String? residence,

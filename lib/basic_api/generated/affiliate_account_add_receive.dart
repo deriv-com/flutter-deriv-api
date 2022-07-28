@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Affiliate account add response class.
-class AffiliateAccountAddResponse extends Response {
-  /// Initialize AffiliateAccountAddResponse.
-  const AffiliateAccountAddResponse({
+/// Affiliate account add receive class.
+class AffiliateAccountAddReceive extends Response {
+  /// Initialize AffiliateAccountAddReceive.
+  const AffiliateAccountAddReceive({
     this.affiliateAccountAdd,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class AffiliateAccountAddResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AffiliateAccountAddResponse.fromJson(Map<String, dynamic> json) =>
-      AffiliateAccountAddResponse(
+  factory AffiliateAccountAddReceive.fromJson(Map<String, dynamic> json) =>
+      AffiliateAccountAddReceive(
         affiliateAccountAdd:
             json['affiliate_account_add'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +46,14 @@ class AffiliateAccountAddResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AffiliateAccountAddResponse copyWith({
+  AffiliateAccountAddReceive copyWith({
     Map<String, dynamic>? affiliateAccountAdd,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AffiliateAccountAddResponse(
+      AffiliateAccountAddReceive(
         affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

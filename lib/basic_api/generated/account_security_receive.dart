@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Account security response class.
-class AccountSecurityResponse extends Response {
-  /// Initialize AccountSecurityResponse.
-  const AccountSecurityResponse({
+/// Account security receive class.
+class AccountSecurityReceive extends Response {
+  /// Initialize AccountSecurityReceive.
+  const AccountSecurityReceive({
     this.accountSecurity,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class AccountSecurityResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>
-      AccountSecurityResponse(
+  factory AccountSecurityReceive.fromJson(Map<String, dynamic> json) =>
+      AccountSecurityReceive(
         accountSecurity: json['account_security'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class AccountSecurityResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AccountSecurityResponse copyWith({
+  AccountSecurityReceive copyWith({
     Map<String, dynamic>? accountSecurity,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AccountSecurityResponse(
+      AccountSecurityReceive(
         accountSecurity: accountSecurity ?? this.accountSecurity,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

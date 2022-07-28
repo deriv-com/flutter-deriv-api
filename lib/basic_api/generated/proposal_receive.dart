@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Proposal response class.
-class ProposalResponse extends Response {
-  /// Initialize ProposalResponse.
-  const ProposalResponse({
+/// Proposal receive class.
+class ProposalReceive extends Response {
+  /// Initialize ProposalReceive.
+  const ProposalReceive({
     this.proposal,
     this.subscription,
     Map<String, dynamic>? echoReq,
@@ -22,8 +22,8 @@ class ProposalResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
-      ProposalResponse(
+  factory ProposalReceive.fromJson(Map<String, dynamic> json) =>
+      ProposalReceive(
         proposal: json['proposal'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +51,7 @@ class ProposalResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProposalResponse copyWith({
+  ProposalReceive copyWith({
     Map<String, dynamic>? proposal,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -59,7 +59,7 @@ class ProposalResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      ProposalResponse(
+      ProposalReceive(
         proposal: proposal ?? this.proposal,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,

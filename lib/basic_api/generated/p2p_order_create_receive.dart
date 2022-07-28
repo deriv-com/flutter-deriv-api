@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p order create response class.
-class P2pOrderCreateResponse extends Response {
-  /// Initialize P2pOrderCreateResponse.
-  const P2pOrderCreateResponse({
+/// P2p order create receive class.
+class P2pOrderCreateReceive extends Response {
+  /// Initialize P2pOrderCreateReceive.
+  const P2pOrderCreateReceive({
     this.p2pOrderCreate,
     this.subscription,
     Map<String, dynamic>? echoReq,
@@ -22,8 +22,8 @@ class P2pOrderCreateResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateResponse(
+  factory P2pOrderCreateReceive.fromJson(Map<String, dynamic> json) =>
+      P2pOrderCreateReceive(
         p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +51,7 @@ class P2pOrderCreateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderCreateResponse copyWith({
+  P2pOrderCreateReceive copyWith({
     Map<String, dynamic>? p2pOrderCreate,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -59,7 +59,7 @@ class P2pOrderCreateResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      P2pOrderCreateResponse(
+      P2pOrderCreateReceive(
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,

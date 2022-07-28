@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Payment methods response class.
-class PaymentMethodsResponse extends Response {
-  /// Initialize PaymentMethodsResponse.
-  const PaymentMethodsResponse({
+/// Payment methods receive class.
+class PaymentMethodsReceive extends Response {
+  /// Initialize PaymentMethodsReceive.
+  const PaymentMethodsReceive({
     this.paymentMethods,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class PaymentMethodsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentMethodsResponse.fromJson(Map<String, dynamic> json) =>
-      PaymentMethodsResponse(
+  factory PaymentMethodsReceive.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodsReceive(
         paymentMethods: (json['payment_methods'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +48,14 @@ class PaymentMethodsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentMethodsResponse copyWith({
+  PaymentMethodsReceive copyWith({
     List<Map<String, dynamic>>? paymentMethods,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      PaymentMethodsResponse(
+      PaymentMethodsReceive(
         paymentMethods: paymentMethods ?? this.paymentMethods,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

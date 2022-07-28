@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_deriv_api/api/common/server_time/exceptions/server_time_exception.dart';
-import 'package:flutter_deriv_api/api/common/server_time/server_time.dart';
-import 'package:flutter_deriv_api/state/connection/connection_cubit.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/response/time_response_result.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/state/connection/connection_cubit.dart';
 
 part 'server_time_event.dart';
 part 'server_time_state.dart';
@@ -38,8 +37,8 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
     if (event is FetchServerTime) {
       if (_connectionCubit.state is ConnectionConnectedState) {
         try {
-          final ServerTime serverTime =
-              await ServerTime.fetchTime().timeout(const Duration(seconds: 30));
+          final TimeResponse serverTime = await TimeResponse.fetchTime()
+              .timeout(const Duration(seconds: 30));
 
           yield ServerTimeFetched(serverTime: serverTime.time);
         } on ServerTimeException catch (e) {

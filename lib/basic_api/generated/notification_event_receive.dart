@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Notification event response class.
-class NotificationEventResponse extends Response {
-  /// Initialize NotificationEventResponse.
-  const NotificationEventResponse({
+/// Notification event receive class.
+class NotificationEventReceive extends Response {
+  /// Initialize NotificationEventReceive.
+  const NotificationEventReceive({
     this.notificationEvent,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class NotificationEventResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory NotificationEventResponse.fromJson(Map<String, dynamic> json) =>
-      NotificationEventResponse(
+  factory NotificationEventReceive.fromJson(Map<String, dynamic> json) =>
+      NotificationEventReceive(
         notificationEvent: json['notification_event'] == null
             ? null
             : json['notification_event'] == 1,
@@ -51,14 +51,14 @@ class NotificationEventResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  NotificationEventResponse copyWith({
+  NotificationEventReceive copyWith({
     bool? notificationEvent,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      NotificationEventResponse(
+      NotificationEventReceive(
         notificationEvent: notificationEvent ?? this.notificationEvent,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

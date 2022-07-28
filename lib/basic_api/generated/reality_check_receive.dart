@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Reality check response class.
-class RealityCheckResponse extends Response {
-  /// Initialize RealityCheckResponse.
-  const RealityCheckResponse({
+/// Reality check receive class.
+class RealityCheckReceive extends Response {
+  /// Initialize RealityCheckReceive.
+  const RealityCheckReceive({
     this.realityCheck,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class RealityCheckResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
-      RealityCheckResponse(
+  factory RealityCheckReceive.fromJson(Map<String, dynamic> json) =>
+      RealityCheckReceive(
         realityCheck: json['reality_check'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class RealityCheckResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  RealityCheckResponse copyWith({
+  RealityCheckReceive copyWith({
     Map<String, dynamic>? realityCheck,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      RealityCheckResponse(
+      RealityCheckReceive(
         realityCheck: realityCheck ?? this.realityCheck,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

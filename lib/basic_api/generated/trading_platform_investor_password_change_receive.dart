@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Trading platform investor password change response class.
-class TradingPlatformInvestorPasswordChangeResponse extends Response {
-  /// Initialize TradingPlatformInvestorPasswordChangeResponse.
-  const TradingPlatformInvestorPasswordChangeResponse({
+/// Trading platform investor password change receive class.
+class TradingPlatformInvestorPasswordChangeReceive extends Response {
+  /// Initialize TradingPlatformInvestorPasswordChangeReceive.
+  const TradingPlatformInvestorPasswordChangeReceive({
     this.tradingPlatformPasswordChange,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,9 +21,9 @@ class TradingPlatformInvestorPasswordChangeResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformInvestorPasswordChangeResponse.fromJson(
+  factory TradingPlatformInvestorPasswordChangeReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformInvestorPasswordChangeResponse(
+      TradingPlatformInvestorPasswordChangeReceive(
         tradingPlatformPasswordChange:
             json['trading_platform_password_change'] == null
                 ? null
@@ -54,14 +54,14 @@ class TradingPlatformInvestorPasswordChangeResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformInvestorPasswordChangeResponse copyWith({
+  TradingPlatformInvestorPasswordChangeReceive copyWith({
     bool? tradingPlatformPasswordChange,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformInvestorPasswordChangeResponse(
+      TradingPlatformInvestorPasswordChangeReceive(
         tradingPlatformPasswordChange:
             tradingPlatformPasswordChange ?? this.tradingPlatformPasswordChange,
         echoReq: echoReq ?? this.echoReq,

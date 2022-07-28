@@ -30,7 +30,11 @@ const String paymentAgentListResponse = '''
         "supported_banks": "DiamondBank",
         "telephone": "0123456789",
         "url": "http://a.com",
-        "withdrawal_commission": "5"
+        "withdrawal_commission": "5",
+        "phone_numbers" : [],
+        "supported_payment_methods" : [],
+        "urls" : []
+        
       },
       {
         "currencies": "USD",
@@ -45,7 +49,10 @@ const String paymentAgentListResponse = '''
         "supported_banks": "Maybank",
         "telephone": "+15123456789",
         "url": "",
-        "withdrawal_commission": "0"
+        "withdrawal_commission": "0",
+        "phone_numbers" : [],
+         "supported_payment_methods" : [],
+        "urls" : []
       }
     ]
   }
