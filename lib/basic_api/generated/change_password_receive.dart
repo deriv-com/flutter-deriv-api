@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Change password response class.
-class ChangePasswordResponse extends Response {
-  /// Initialize ChangePasswordResponse.
-  const ChangePasswordResponse({
+/// Change password receive class.
+class ChangePasswordReceive extends Response {
+  /// Initialize ChangePasswordReceive.
+  const ChangePasswordReceive({
     this.changePassword,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class ChangePasswordResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory ChangePasswordResponse.fromJson(Map<String, dynamic> json) =>
-      ChangePasswordResponse(
+  factory ChangePasswordReceive.fromJson(Map<String, dynamic> json) =>
+      ChangePasswordReceive(
         changePassword: json['change_password'] == null
             ? null
             : json['change_password'] == 1,
@@ -51,14 +51,14 @@ class ChangePasswordResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ChangePasswordResponse copyWith({
+  ChangePasswordReceive copyWith({
     bool? changePassword,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ChangePasswordResponse(
+      ChangePasswordReceive(
         changePassword: changePassword ?? this.changePassword,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

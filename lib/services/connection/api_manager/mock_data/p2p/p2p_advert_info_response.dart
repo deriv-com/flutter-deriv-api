@@ -10,7 +10,9 @@ const String p2pAdvertInfoResponse = '''
     "account_currency": "USD",
     "advertiser_details": {
       "id": "2",
-      "name": "za advertiser 1010"
+      "name": "za advertiser 1010",
+      "completed_orders_count" : 1,
+      "rating_count" : 0
     },
     "counterparty_type": "sell",
     "country": "za",
@@ -28,7 +30,8 @@ const String p2pAdvertInfoResponse = '''
     "price_display": "2.30",
     "rate": 2.3,
     "rate_display": "2.30",
-    "type": "buy"
+    "type": "buy",
+    "rating_count" : 0
   }
 }
 ''';

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Account closure response class.
-class AccountClosureResponse extends Response {
-  /// Initialize AccountClosureResponse.
-  const AccountClosureResponse({
+/// Account closure receive class.
+class AccountClosureReceive extends Response {
+  /// Initialize AccountClosureReceive.
+  const AccountClosureReceive({
     this.accountClosure,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class AccountClosureResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory AccountClosureResponse.fromJson(Map<String, dynamic> json) =>
-      AccountClosureResponse(
+  factory AccountClosureReceive.fromJson(Map<String, dynamic> json) =>
+      AccountClosureReceive(
         accountClosure: json['account_closure'] == null
             ? null
             : json['account_closure'] == 1,
@@ -51,14 +51,14 @@ class AccountClosureResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AccountClosureResponse copyWith({
+  AccountClosureReceive copyWith({
     bool? accountClosure,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AccountClosureResponse(
+      AccountClosureReceive(
         accountClosure: accountClosure ?? this.accountClosure,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

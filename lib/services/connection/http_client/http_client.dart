@@ -1,8 +1,7 @@
 import 'dart:convert' as convert;
 
-import 'package:http/http.dart' as http;
-
 import 'package:flutter_deriv_api/services/connection/http_client/exceptions/http_client_exception.dart';
+import 'package:http/http.dart' as http;
 
 /// Singleton class for http requests.
 class HttpClient {

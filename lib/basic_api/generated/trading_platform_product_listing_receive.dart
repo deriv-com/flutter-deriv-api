@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Trading platform product listing response class.
-class TradingPlatformProductListingResponse extends Response {
-  /// Initialize TradingPlatformProductListingResponse.
-  const TradingPlatformProductListingResponse({
+/// Trading platform product listing receive class.
+class TradingPlatformProductListingReceive extends Response {
+  /// Initialize TradingPlatformProductListingReceive.
+  const TradingPlatformProductListingReceive({
     this.tradingPlatformProductListing,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,9 +21,9 @@ class TradingPlatformProductListingResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformProductListingResponse.fromJson(
+  factory TradingPlatformProductListingReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformProductListingResponse(
+      TradingPlatformProductListingReceive(
         tradingPlatformProductListing:
             json['trading_platform_product_listing'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +47,14 @@ class TradingPlatformProductListingResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformProductListingResponse copyWith({
+  TradingPlatformProductListingReceive copyWith({
     Map<String, dynamic>? tradingPlatformProductListing,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformProductListingResponse(
+      TradingPlatformProductListingReceive(
         tradingPlatformProductListing:
             tradingPlatformProductListing ?? this.tradingPlatformProductListing,
         echoReq: echoReq ?? this.echoReq,

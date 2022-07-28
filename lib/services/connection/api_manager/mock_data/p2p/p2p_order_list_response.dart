@@ -16,7 +16,19 @@ const String p2pOrderListResponse = '''{
         },
         "advertiser_details": {
           "id": "2",
-          "name": "advertiser CR90000018"
+          "name": "advertiser CR90000018",
+          "loginid": "CR90000006",
+          "completed_orders_count": 0
+        },
+        "client_details":{
+          "id":"5",
+          "loginid": "CR90000006",
+          "name": "client CR90000006",
+          "completed_orders_count": 0
+        },
+        "dispute_details":{
+          "dispute_reason": null,
+          "disputer_loginid": null
         },
         "amount": 50,
         "amount_display": "50.00",
@@ -33,7 +45,8 @@ const String p2pOrderListResponse = '''{
         "rate": 13500,
         "rate_display": "13500.00",
         "status": "pending",
-        "type": "buy"
+        "type": "buy",
+         "is_reviewable" : true
       }
     ]
   },

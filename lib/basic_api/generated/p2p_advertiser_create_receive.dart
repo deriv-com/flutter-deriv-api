@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p advertiser create response class.
-class P2pAdvertiserCreateResponse extends Response {
-  /// Initialize P2pAdvertiserCreateResponse.
-  const P2pAdvertiserCreateResponse({
+/// P2p advertiser create receive class.
+class P2pAdvertiserCreateReceive extends Response {
+  /// Initialize P2pAdvertiserCreateReceive.
+  const P2pAdvertiserCreateReceive({
     this.p2pAdvertiserCreate,
     this.subscription,
     Map<String, dynamic>? echoReq,
@@ -22,8 +22,8 @@ class P2pAdvertiserCreateResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserCreateResponse.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserCreateResponse(
+  factory P2pAdvertiserCreateReceive.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserCreateReceive(
         p2pAdvertiserCreate:
             json['p2p_advertiser_create'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
@@ -52,7 +52,7 @@ class P2pAdvertiserCreateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserCreateResponse copyWith({
+  P2pAdvertiserCreateReceive copyWith({
     Map<String, dynamic>? p2pAdvertiserCreate,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -60,7 +60,7 @@ class P2pAdvertiserCreateResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      P2pAdvertiserCreateResponse(
+      P2pAdvertiserCreateReceive(
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,

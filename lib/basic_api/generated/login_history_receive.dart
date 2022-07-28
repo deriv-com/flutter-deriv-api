@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Login history response class.
-class LoginHistoryResponse extends Response {
-  /// Initialize LoginHistoryResponse.
-  const LoginHistoryResponse({
+/// Login history receive class.
+class LoginHistoryReceive extends Response {
+  /// Initialize LoginHistoryReceive.
+  const LoginHistoryReceive({
     this.loginHistory,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class LoginHistoryResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
-      LoginHistoryResponse(
+  factory LoginHistoryReceive.fromJson(Map<String, dynamic> json) =>
+      LoginHistoryReceive(
         loginHistory: (json['login_history'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -48,14 +48,14 @@ class LoginHistoryResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  LoginHistoryResponse copyWith({
+  LoginHistoryReceive copyWith({
     List<Map<String, dynamic>>? loginHistory,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      LoginHistoryResponse(
+      LoginHistoryReceive(
         loginHistory: loginHistory ?? this.loginHistory,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

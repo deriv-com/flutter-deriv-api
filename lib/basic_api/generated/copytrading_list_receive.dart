@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Copytrading list response class.
-class CopytradingListResponse extends Response {
-  /// Initialize CopytradingListResponse.
-  const CopytradingListResponse({
+/// Copytrading list receive class.
+class CopytradingListReceive extends Response {
+  /// Initialize CopytradingListReceive.
+  const CopytradingListReceive({
     this.copytradingList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class CopytradingListResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory CopytradingListResponse.fromJson(Map<String, dynamic> json) =>
-      CopytradingListResponse(
+  factory CopytradingListReceive.fromJson(Map<String, dynamic> json) =>
+      CopytradingListReceive(
         copytradingList: json['copytrading_list'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class CopytradingListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopytradingListResponse copyWith({
+  CopytradingListReceive copyWith({
     Map<String, dynamic>? copytradingList,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CopytradingListResponse(
+      CopytradingListReceive(
         copytradingList: copytradingList ?? this.copytradingList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

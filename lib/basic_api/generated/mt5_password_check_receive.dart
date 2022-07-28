@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Mt5 password check response class.
-class Mt5PasswordCheckResponse extends Response {
-  /// Initialize Mt5PasswordCheckResponse.
-  const Mt5PasswordCheckResponse({
+/// Mt5 password check receive class.
+class Mt5PasswordCheckReceive extends Response {
+  /// Initialize Mt5PasswordCheckReceive.
+  const Mt5PasswordCheckReceive({
     this.mt5PasswordCheck,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class Mt5PasswordCheckResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5PasswordCheckResponse(
+  factory Mt5PasswordCheckReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5PasswordCheckReceive(
         mt5PasswordCheck: json['mt5_password_check'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class Mt5PasswordCheckResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5PasswordCheckResponse copyWith({
+  Mt5PasswordCheckReceive copyWith({
     int? mt5PasswordCheck,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5PasswordCheckResponse(
+      Mt5PasswordCheckReceive(
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

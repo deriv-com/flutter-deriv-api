@@ -12,7 +12,9 @@ const String p2pAdvertListResponse = '''
         "account_currency": "USD",
         "advertiser_details": {
           "id": "6",
-          "name": "advertiser CR90000018"
+          "name": "advertiser CR90000018",
+          "completed_orders_count" : 1,
+          "rating_count" : 0
         },
         "counterparty_type": "sell",
         "country": "za",
@@ -20,6 +22,7 @@ const String p2pAdvertListResponse = '''
         "description": "Please contact via whats app 1234",
         "id": "7",
         "is_active": 1,
+        "is_visible": 1,
         "local_currency": "ZAR",
         "max_order_amount_limit": 100,
         "max_order_amount_limit_display": "100.00",
@@ -30,13 +33,17 @@ const String p2pAdvertListResponse = '''
         "price_display": "14500.00",
         "rate": 14500,
         "rate_display": "14500.00",
-        "type": "buy"
+        "type": "buy",
+        "rate_type" : "fixed",
+        "rating_count" : 0
       },
       {
         "account_currency": "USD",
         "advertiser_details": {
           "id": "7",
-          "name": "advertiser CR90000022"
+          "name": "advertiser CR90000022",
+          "completed_orders_count" : 1,
+          "rating_count" : 0
         },
         "counterparty_type": "sell",
         "country": "za",
@@ -44,6 +51,7 @@ const String p2pAdvertListResponse = '''
         "description": "Please contact via whats app 1234",
         "id": "9",
         "is_active": 1,
+         "is_visible": 1,
         "local_currency": "ZAR",
         "max_order_amount_limit": 100,
         "max_order_amount_limit_display": "100.00",
@@ -54,7 +62,9 @@ const String p2pAdvertListResponse = '''
         "price_display": "14500.00",
         "rate": 14500,
         "rate_display": "14500.00",
-        "type": "buy"
+        "type": "buy",
+        "rate_type" : "fixed",
+        "rating_count" : 0
       }
     ]
   }

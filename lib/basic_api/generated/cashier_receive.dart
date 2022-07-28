@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Cashier response class.
-class CashierResponse extends Response {
-  /// Initialize CashierResponse.
-  const CashierResponse({
+/// Cashier receive class.
+class CashierReceive extends Response {
+  /// Initialize CashierReceive.
+  const CashierReceive({
     this.cashier,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,7 @@ class CashierResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory CashierResponse.fromJson(Map<String, dynamic> json) =>
-      CashierResponse(
+  factory CashierReceive.fromJson(Map<String, dynamic> json) => CashierReceive(
         cashier: json['cashier'] as dynamic,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -51,14 +50,14 @@ class CashierResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CashierResponse copyWith({
+  CashierReceive copyWith({
     dynamic cashier,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CashierResponse(
+      CashierReceive(
         cashier: cashier ?? this.cashier,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

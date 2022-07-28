@@ -2,10 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 
 import 'mock_data/account/api_token_response.dart';
 import 'mock_data/account/authorize_response.dart';
@@ -56,6 +56,7 @@ import 'mock_data/common/landing_company_response.dart';
 import 'mock_data/common/payment_agent_list_response.dart';
 import 'mock_data/common/payment_agent_transfer_response.dart';
 import 'mock_data/common/payment_agent_withdraw_response.dart';
+import 'mock_data/common/payment_methods_response.dart';
 import 'mock_data/common/payout_currencies_response.dart';
 import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/residence_list_response.dart';
@@ -135,14 +136,14 @@ class MockAPI extends BaseAPI {
       _getStreamResponse(request);
 
   @override
-  Future<ForgetResponse> unsubscribe({required String? subscriptionId}) async =>
-      const ForgetResponse(forget: true);
+  Future<ForgetReceive> unsubscribe({required String? subscriptionId}) async =>
+      const ForgetReceive(forget: true);
 
   @override
-  Future<ForgetAllResponse?> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     required ForgetStreamType method,
   }) async =>
-      null;
+      const ForgetAllReceive();
 
   @override
   Future<void> disconnect() async => true;
@@ -301,6 +302,8 @@ class MockAPI extends BaseAPI {
         return paymentAgentWithdrawResponse;
       case 'payout_currencies':
         return payoutCurrenciesResponse;
+      case 'payment_methods':
+        return paymentMethodsResponse;
       case 'ping':
         return pingResponse;
       case 'portfolio':

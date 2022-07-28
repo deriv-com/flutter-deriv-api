@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p advertiser relations response class.
-class P2pAdvertiserRelationsResponse extends Response {
-  /// Initialize P2pAdvertiserRelationsResponse.
-  const P2pAdvertiserRelationsResponse({
+/// P2p advertiser relations receive class.
+class P2pAdvertiserRelationsReceive extends Response {
+  /// Initialize P2pAdvertiserRelationsReceive.
+  const P2pAdvertiserRelationsReceive({
     this.p2pAdvertiserRelations,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class P2pAdvertiserRelationsResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserRelationsResponse.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserRelationsResponse(
+  factory P2pAdvertiserRelationsReceive.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserRelationsReceive(
         p2pAdvertiserRelations:
             json['p2p_advertiser_relations'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +46,14 @@ class P2pAdvertiserRelationsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserRelationsResponse copyWith({
+  P2pAdvertiserRelationsReceive copyWith({
     Map<String, dynamic>? p2pAdvertiserRelations,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pAdvertiserRelationsResponse(
+      P2pAdvertiserRelationsReceive(
         p2pAdvertiserRelations:
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
         echoReq: echoReq ?? this.echoReq,

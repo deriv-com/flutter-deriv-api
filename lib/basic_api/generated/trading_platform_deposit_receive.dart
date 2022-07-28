@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Trading platform deposit response class.
-class TradingPlatformDepositResponse extends Response {
-  /// Initialize TradingPlatformDepositResponse.
-  const TradingPlatformDepositResponse({
+/// Trading platform deposit receive class.
+class TradingPlatformDepositReceive extends Response {
+  /// Initialize TradingPlatformDepositReceive.
+  const TradingPlatformDepositReceive({
     this.tradingPlatformDeposit,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class TradingPlatformDepositResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformDepositResponse.fromJson(Map<String, dynamic> json) =>
-      TradingPlatformDepositResponse(
+  factory TradingPlatformDepositReceive.fromJson(Map<String, dynamic> json) =>
+      TradingPlatformDepositReceive(
         tradingPlatformDeposit: json['trading_platform_deposit'] as dynamic,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class TradingPlatformDepositResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformDepositResponse copyWith({
+  TradingPlatformDepositReceive copyWith({
     dynamic tradingPlatformDeposit,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformDepositResponse(
+      TradingPlatformDepositReceive(
         tradingPlatformDeposit:
             tradingPlatformDeposit ?? this.tradingPlatformDeposit,
         echoReq: echoReq ?? this.echoReq,

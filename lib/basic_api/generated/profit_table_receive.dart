@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Profit table response class.
-class ProfitTableResponse extends Response {
-  /// Initialize ProfitTableResponse.
-  const ProfitTableResponse({
+/// Profit table receive class.
+class ProfitTableReceive extends Response {
+  /// Initialize ProfitTableReceive.
+  const ProfitTableReceive({
     this.profitTable,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class ProfitTableResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
-      ProfitTableResponse(
+  factory ProfitTableReceive.fromJson(Map<String, dynamic> json) =>
+      ProfitTableReceive(
         profitTable: json['profit_table'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class ProfitTableResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProfitTableResponse copyWith({
+  ProfitTableReceive copyWith({
     Map<String, dynamic>? profitTable,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ProfitTableResponse(
+      ProfitTableReceive(
         profitTable: profitTable ?? this.profitTable,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -1,11 +1,12 @@
+import 'package:flutter_deriv_api/api/api_initializer.dart';
+import 'package:flutter_deriv_api/api/response/copy_start_response_result.dart';
+import 'package:flutter_deriv_api/api/response/copy_stop_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/copy_start_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/copy_stop_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/common/copy_trading/copy_trading_start.dart';
-import 'package:flutter_deriv_api/api/common/copy_trading/copy_trading_stop.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));
@@ -14,19 +15,19 @@ void main() {
 
   group('Copy Trading Group ->', () {
     test('Start Copy Trading Test', () async {
-      final CopyTradingStart copyTradingStart = await CopyTradingStart.start(
+      final CopyStartResponse copyTradingStart = await CopyStartResponse.start(
         const CopyStartRequest(copyStart: 'sample_token_3fe45f324ge'),
       );
 
-      expect(copyTradingStart.succeeded, true);
+      expect(copyTradingStart.copyStart, 1);
     });
 
     test('Stop Copy Trading Test', () async {
-      final CopyTradingStop copyTradingStop = await CopyTradingStop.stop(
+      final CopyStopResponse copyTradingStop = await CopyStopResponse.stop(
         const CopyStopRequest(copyStop: 'sample_token_3fe45f324ge'),
       );
 
-      expect(copyTradingStop.succeeded, true);
+      expect(copyTradingStop.copyStop, 1);
     });
   });
 }

@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// Crypto config response class.
-class CryptoConfigResponse extends Response {
-  /// Initialize CryptoConfigResponse.
-  const CryptoConfigResponse({
+/// Crypto config receive class.
+class CryptoConfigReceive extends Response {
+  /// Initialize CryptoConfigReceive.
+  const CryptoConfigReceive({
     this.cryptoConfig,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class CryptoConfigResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory CryptoConfigResponse.fromJson(Map<String, dynamic> json) =>
-      CryptoConfigResponse(
+  factory CryptoConfigReceive.fromJson(Map<String, dynamic> json) =>
+      CryptoConfigReceive(
         cryptoConfig: json['crypto_config'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class CryptoConfigResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CryptoConfigResponse copyWith({
+  CryptoConfigReceive copyWith({
     Map<String, dynamic>? cryptoConfig,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CryptoConfigResponse(
+      CryptoConfigReceive(
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

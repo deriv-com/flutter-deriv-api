@@ -4,10 +4,10 @@
 
 import '../response.dart';
 
-/// P2p order confirm response class.
-class P2pOrderConfirmResponse extends Response {
-  /// Initialize P2pOrderConfirmResponse.
-  const P2pOrderConfirmResponse({
+/// P2p order confirm receive class.
+class P2pOrderConfirmReceive extends Response {
+  /// Initialize P2pOrderConfirmReceive.
+  const P2pOrderConfirmReceive({
     this.p2pOrderConfirm,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -21,8 +21,8 @@ class P2pOrderConfirmResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
-      P2pOrderConfirmResponse(
+  factory P2pOrderConfirmReceive.fromJson(Map<String, dynamic> json) =>
+      P2pOrderConfirmReceive(
         p2pOrderConfirm: json['p2p_order_confirm'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +45,14 @@ class P2pOrderConfirmResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderConfirmResponse copyWith({
+  P2pOrderConfirmReceive copyWith({
     Map<String, dynamic>? p2pOrderConfirm,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pOrderConfirmResponse(
+      P2pOrderConfirmReceive(
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
