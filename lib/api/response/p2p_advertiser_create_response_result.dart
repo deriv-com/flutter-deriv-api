@@ -160,6 +160,9 @@ abstract class P2pAdvertiserCreateModel {
     this.dailySell,
     this.dailySellLimit,
     this.lastOnlineTime,
+    this.maxOrderAmount,
+    this.minBalance,
+    this.minOrderAmount,
     this.ratingAverage,
     this.recommendedAverage,
     this.recommendedCount,
@@ -271,6 +274,15 @@ abstract class P2pAdvertiserCreateModel {
   /// Epoch of the latest time the advertiser was online, up to 6 months.
   final DateTime? lastOnlineTime;
 
+  /// Maximum order amount for adverts.
+  final String? maxOrderAmount;
+
+  /// Sell ads will be hidden when your available balance or remaining daily sell limit falls beneath this value.
+  final String? minBalance;
+
+  /// Minimum order amount for adverts.
+  final String? minOrderAmount;
+
   /// Average rating of the advertiser, range is 1-5.
   final double? ratingAverage;
 
@@ -331,6 +343,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     String? dailySell,
     String? dailySellLimit,
     DateTime? lastOnlineTime,
+    String? maxOrderAmount,
+    String? minBalance,
+    String? minOrderAmount,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -373,6 +388,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
           dailySell: dailySell,
           dailySellLimit: dailySellLimit,
           lastOnlineTime: lastOnlineTime,
+          maxOrderAmount: maxOrderAmount,
+          minBalance: minBalance,
+          minOrderAmount: minOrderAmount,
           ratingAverage: ratingAverage,
           recommendedAverage: recommendedAverage,
           recommendedCount: recommendedCount,
@@ -419,6 +437,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         dailySell: json['daily_sell'],
         dailySellLimit: json['daily_sell_limit'],
         lastOnlineTime: getDateTime(json['last_online_time']),
+        maxOrderAmount: json['max_order_amount'],
+        minBalance: json['min_balance'],
+        minOrderAmount: json['min_order_amount'],
         ratingAverage: getDouble(json['rating_average']),
         recommendedAverage: getDouble(json['recommended_average']),
         recommendedCount: json['recommended_count'],
@@ -467,6 +488,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     resultMap['daily_sell_limit'] = dailySellLimit;
     resultMap['last_online_time'] =
         getSecondsSinceEpochDateTime(lastOnlineTime);
+    resultMap['max_order_amount'] = maxOrderAmount;
+    resultMap['min_balance'] = minBalance;
+    resultMap['min_order_amount'] = minOrderAmount;
     resultMap['rating_average'] = ratingAverage;
     resultMap['recommended_average'] = recommendedAverage;
     resultMap['recommended_count'] = recommendedCount;
@@ -514,6 +538,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     String? dailySell,
     String? dailySellLimit,
     DateTime? lastOnlineTime,
+    String? maxOrderAmount,
+    String? minBalance,
+    String? minOrderAmount,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -558,6 +585,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         dailySell: dailySell ?? this.dailySell,
         dailySellLimit: dailySellLimit ?? this.dailySellLimit,
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
+        maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
+        minBalance: minBalance ?? this.minBalance,
+        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
         ratingAverage: ratingAverage ?? this.ratingAverage,
         recommendedAverage: recommendedAverage ?? this.recommendedAverage,
         recommendedCount: recommendedCount ?? this.recommendedCount,
