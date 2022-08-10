@@ -232,6 +232,8 @@ export "trading_durations_receive.dart";
 export "trading_durations_send.dart";
 export "trading_platform_accounts_receive.dart";
 export "trading_platform_accounts_send.dart";
+export "trading_platform_available_accounts_receive.dart";
+export "trading_platform_available_accounts_send.dart";
 export "trading_platform_deposit_receive.dart";
 export "trading_platform_deposit_send.dart";
 export "trading_platform_investor_password_change_receive.dart";
