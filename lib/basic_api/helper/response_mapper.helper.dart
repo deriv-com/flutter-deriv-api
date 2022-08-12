@@ -85,7 +85,6 @@ import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
 import '../generated/p2p_order_review_receive.dart';
 import '../generated/p2p_payment_methods_receive.dart';
-import '../generated/p2p_ping_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
@@ -126,7 +125,6 @@ import '../generated/trading_platform_investor_password_reset_receive.dart';
 import '../generated/trading_platform_new_account_receive.dart';
 import '../generated/trading_platform_password_change_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
-import '../generated/trading_platform_product_listing_receive.dart';
 import '../generated/trading_platform_withdrawal_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
@@ -304,8 +302,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderReviewResponse.fromJson(responseMap);
     case 'p2p_payment_methods':
       return P2pPaymentMethodsResponse.fromJson(responseMap);
-    case 'p2p_ping':
-      return P2pPingResponse.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsResponse.fromJson(responseMap);
     case 'paymentagent_create':
@@ -387,8 +383,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingPlatformPasswordChangeResponse.fromJson(responseMap);
     case 'trading_platform_password_reset':
       return TradingPlatformPasswordResetResponse.fromJson(responseMap);
-    case 'trading_platform_product_listing':
-      return TradingPlatformProductListingResponse.fromJson(responseMap);
     case 'trading_platform_withdrawal':
       return TradingPlatformWithdrawalResponse.fromJson(responseMap);
     case 'trading_servers':
