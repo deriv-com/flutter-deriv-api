@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 
-import 'package:cross_connectivity/cross_connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,10 +111,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
-        (ConnectivityStatus status) async {
+        (ConnectivityResult result) async {
           final bool isConnectedToNetwork =
-              status == ConnectivityStatus.mobile ||
-                  status == ConnectivityStatus.wifi;
+              result == ConnectivityResult.mobile ||
+                  result == ConnectivityResult.wifi;
 
           if (isConnectedToNetwork) {
             final bool isConnected = await _ping();
@@ -122,7 +122,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
             if (!isConnected) {
               await connect();
             }
-          } else if (status == ConnectivityStatus.none) {
+          } else if (result == ConnectivityResult.none) {
             _reconnect();
           }
         },
