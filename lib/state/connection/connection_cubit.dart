@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
@@ -71,7 +72,15 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     emit(const ConnectionConnectingState());
 
-    await _api!.disconnect();
+    try {
+      await _api!.disconnect().timeout(const Duration(seconds: 1));
+    } on Exception catch (e) {
+      dev.log('Disconnect Exception: $e');
+
+      _reconnect();
+
+      return;
+    }
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -114,7 +123,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
               await connect();
             }
           } else if (result == ConnectivityResult.none) {
-            emit(const ConnectionDisconnectedState());
+            _reconnect();
           }
         },
       );
@@ -127,7 +136,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
           final bool isOnline = await _ping();
 
           if (!isOnline) {
-            emit(const ConnectionDisconnectedState());
+            _reconnect();
           }
         },
       );
@@ -147,6 +156,12 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     }
 
     return true;
+  }
+
+  void _reconnect() {
+    emit(const ConnectionDisconnectedState());
+
+    connect();
   }
 
   @override
