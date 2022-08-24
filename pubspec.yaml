@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
 
   build: ^2.3.0
+  connectivity_plus: ^2.3.5
   dart_style: ^2.2.1
   equatable: ^2.0.3
   flutter_bloc: ^7.0.0
@@ -26,7 +27,6 @@ dependencies:
   collection: ^1.15.0
   device_info: ^2.0.3
   package_info: ^2.0.2
-  cross_connectivity: ^3.0.5
 
 dev_dependencies:
   flutter_test:
