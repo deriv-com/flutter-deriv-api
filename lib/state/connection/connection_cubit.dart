@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:cross_connectivity/cross_connectivity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -118,8 +118,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
-        (ConnectivityResult result) async {
-          if (result == ConnectivityResult.none) {
+        (ConnectivityStatus status) async {
+          if (status == ConnectivityStatus.none) {
             reconnect();
           }
         },
