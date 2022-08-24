@@ -35,7 +35,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     _startConnectivityTimer();
 
-    connect();
+    _connect(_connectionInformation);
   }
 
   /// Prints API response to console.
@@ -64,8 +64,19 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
+  /// Reconnect to Websocket.
+  void reconnect({ConnectionInformation? connectionInformation}) {
+    emit(const ConnectionDisconnectedState());
+
+    if (connectionInformation != null) {
+      _connectionInformation = connectionInformation;
+    }
+
+    _connect(_connectionInformation);
+  }
+
   /// Connects to the web socket.
-  Future<void> connect({ConnectionInformation? connectionInformation}) async {
+  Future<void> _connect(ConnectionInformation connectionInformation) async {
     if (state is ConnectionConnectingState) {
       return;
     }
@@ -73,17 +84,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     emit(const ConnectionConnectingState());
 
     try {
-      await _api!.disconnect().timeout(const Duration(seconds: 1));
+      await _api!.disconnect().timeout(_pingTimeout);
     } on Exception catch (e) {
       dev.log('Disconnect Exception: $e');
 
-      _reconnect();
+      reconnect();
 
       return;
-    }
-
-    if (connectionInformation != null) {
-      _connectionInformation = connectionInformation;
     }
 
     await _api!.connect(
@@ -112,34 +119,16 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
         (ConnectivityStatus status) async {
-          final bool isConnectedToNetwork =
-              status == ConnectivityStatus.mobile ||
-                  status == ConnectivityStatus.wifi;
-
-          if (isConnectedToNetwork) {
-            final bool isConnected = await _ping();
-
-            if (!isConnected) {
-              await connect();
-            }
-          } else if (status == ConnectivityStatus.none) {
-            _reconnect();
+          if (status == ConnectivityStatus.none) {
+            reconnect();
           }
         },
       );
 
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
-      _connectivityTimer = Timer.periodic(
-        _connectivityCheckInterval,
-        (Timer timer) async {
-          final bool isOnline = await _ping();
-
-          if (!isOnline) {
-            _reconnect();
-          }
-        },
-      );
+      _connectivityTimer =
+          Timer.periodic(_connectivityCheckInterval, (Timer timer) => _ping());
     }
   }
 
@@ -148,20 +137,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       final PingResponse response =
           await PingResponse.pingMethod().timeout(_pingTimeout);
 
-      if (response.ping == null) {
-        return false;
-      }
+      return response.ping == PingEnum.pong;
     } on Exception catch (_) {
       return false;
     }
-
-    return true;
-  }
-
-  void _reconnect() {
-    emit(const ConnectionDisconnectedState());
-
-    connect();
   }
 
   @override
