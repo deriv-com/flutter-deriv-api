@@ -26,7 +26,7 @@ dependencies:
   collection: ^1.15.0
   device_info: ^2.0.3
   package_info: ^2.0.2
-  cross_connectivity: ^3.0.5
+  connectivity_plus: ^2.3.6+1
 
 dev_dependencies:
   flutter_test:

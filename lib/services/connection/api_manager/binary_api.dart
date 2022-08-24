@@ -4,6 +4,8 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:web_socket_channel/io.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -17,8 +19,6 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
@@ -27,9 +27,6 @@ class BinaryAPI extends BaseAPI {
       : super(uniqueKey: uniqueKey ?? UniqueKey());
 
   static const Duration _wsConnectTimeOut = Duration(seconds: 10);
-
-  /// Indicates current connection status - only set `true` once we have established SSL *and* web socket handshake steps.
-  bool _connected = false;
 
   /// Represents the active web socket connection.
   IOWebSocketChannel? _webSocketChannel;
@@ -57,8 +54,6 @@ class BinaryAPI extends BaseAPI {
     ConnectionCallback? onError,
     bool printResponse = false,
   }) async {
-    _connected = false;
-
     _resetCallManagers();
 
     final Uri uri = Uri(
@@ -88,8 +83,6 @@ class BinaryAPI extends BaseAPI {
             (Object? result) => jsonDecode(result.toString()))
         .listen(
       (Map<String, dynamic>? message) {
-        _connected = true;
-
         onOpen?.call(uniqueKey);
 
         if (message != null) {
@@ -103,8 +96,6 @@ class BinaryAPI extends BaseAPI {
       },
       onDone: () async {
         dev.log('web socket is closed.');
-
-        _connected = false;
 
         onDone?.call(uniqueKey);
       },
@@ -163,10 +154,7 @@ class BinaryAPI extends BaseAPI {
   @override
   Future<void> disconnect() async {
     await _webSocketListener?.cancel();
-
-    if (_connected) {
-      await _webSocketChannel?.sink.close(status.goingAway);
-    }
+    await _webSocketChannel?.sink.close();
 
     _webSocketListener = null;
     _webSocketChannel = null;
@@ -181,12 +169,6 @@ class BinaryAPI extends BaseAPI {
     try {
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
-
-      if (!_connected) {
-        dev.log('web socket is connected.');
-
-        _connected = true;
-      }
 
       if (printResponse) {
         dev.log('api response: $message.');

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 
-import 'package:cross_connectivity/cross_connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +33,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _setupConnectivityListener();
     }
 
-    _startConnectivityTimer();
+    _startKeepAliveTimer();
 
     _connect(_connectionInformation);
   }
@@ -65,14 +65,14 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   static String get appId => _connectionInformation.appId;
 
   /// Reconnect to Websocket.
-  void reconnect({ConnectionInformation? connectionInformation}) {
+  Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
     emit(const ConnectionDisconnectedState());
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
     }
 
-    _connect(_connectionInformation);
+    await _connect(_connectionInformation);
   }
 
   /// Connects to the web socket.
@@ -88,7 +88,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     } on Exception catch (e) {
       dev.log('Disconnect Exception: $e');
 
-      reconnect();
+      unawaited(reconnect());
 
       return;
     }
@@ -118,14 +118,24 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() =>
       Connectivity().onConnectivityChanged.listen(
-        (ConnectivityStatus status) async {
-          if (status == ConnectivityStatus.none) {
-            reconnect();
+        (ConnectivityResult status) async {
+          final bool isConnectedToNetwork =
+              status == ConnectivityResult.mobile ||
+                  status == ConnectivityResult.wifi;
+
+          if (isConnectedToNetwork) {
+            final bool isConnected = await _ping();
+
+            if (!isConnected) {
+              await reconnect();
+            }
+          } else if (status == ConnectivityResult.none) {
+            emit(const ConnectionDisconnectedState());
           }
         },
       );
 
-  void _startConnectivityTimer() {
+  void _startKeepAliveTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer =
           Timer.periodic(_connectivityCheckInterval, (Timer timer) => _ping());
