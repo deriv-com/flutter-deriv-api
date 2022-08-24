@@ -35,7 +35,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     _startConnectivityTimer();
 
-    _connect();
+    _connect(_connectionInformation);
   }
 
   /// Prints API response to console.
@@ -65,14 +65,18 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   static String get appId => _connectionInformation.appId;
 
   /// Reconnect to Websocket.
-  void reconnect() {
+  void reconnect({ConnectionInformation? connectionInformation}) {
     emit(const ConnectionDisconnectedState());
 
-    _connect();
+    if (connectionInformation != null) {
+      _connectionInformation = connectionInformation;
+    }
+
+    _connect(_connectionInformation);
   }
 
   /// Connects to the web socket.
-  Future<void> _connect({ConnectionInformation? connectionInformation}) async {
+  Future<void> _connect(ConnectionInformation connectionInformation) async {
     if (state is ConnectionConnectingState) {
       return;
     }
@@ -87,10 +91,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       reconnect();
 
       return;
-    }
-
-    if (connectionInformation != null) {
-      _connectionInformation = connectionInformation;
     }
 
     await _api!.connect(
