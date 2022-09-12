@@ -88,6 +88,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
+
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
   /// Initializes Active symbols item model class .
@@ -96,6 +97,8 @@ abstract class ActiveSymbolsItemModel {
     required this.symbol,
     required this.submarketDisplayName,
     required this.submarket,
+    required this.subgroupDisplayName,
+    required this.subgroup,
     required this.pip,
     required this.marketDisplayName,
     required this.market,
@@ -123,6 +126,12 @@ abstract class ActiveSymbolsItemModel {
 
   /// Submarket name.
   final String submarket;
+
+  /// Translated Subgroup name.
+  final String subgroupDisplayName;
+
+  /// Subgroup name.
+  final String subgroup;
 
   /// Pip size (i.e. minimum fluctuation amount).
   final double pip;
@@ -179,6 +188,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     required double pip,
     required String submarket,
     required String submarketDisplayName,
+    required String subgroup,
+    required String subgroupDisplayName,
     required String symbol,
     required String symbolType,
     bool? allowForwardStarting,
@@ -198,6 +209,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
           pip: pip,
           submarket: submarket,
           submarketDisplayName: submarketDisplayName,
+          subgroup: subgroup,
+          subgroupDisplayName: subgroupDisplayName,
           symbol: symbol,
           symbolType: symbolType,
           allowForwardStarting: allowForwardStarting,
@@ -221,6 +234,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         pip: getDouble(json['pip'])!,
         submarket: json['submarket'],
         submarketDisplayName: json['submarket_display_name'],
+        subgroup: json['subgroup'],
+        subgroupDisplayName: json['subgroup_display_name'],
         symbol: json['symbol'],
         symbolType: json['symbol_type'],
         allowForwardStarting: getBool(json['allow_forward_starting']),
@@ -245,6 +260,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     resultMap['pip'] = pip;
     resultMap['submarket'] = submarket;
     resultMap['submarket_display_name'] = submarketDisplayName;
+    resultMap['subgroup'] = subgroup;
+    resultMap['subgroup_display_name'] = subgroupDisplayName;
     resultMap['symbol'] = symbol;
     resultMap['symbol_type'] = symbolType;
     resultMap['allow_forward_starting'] = allowForwardStarting;
@@ -269,6 +286,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     double? pip,
     String? submarket,
     String? submarketDisplayName,
+    String? subgroup,
+    String? subgroupDisplayName,
     String? symbol,
     String? symbolType,
     bool? allowForwardStarting,
@@ -289,6 +308,8 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         pip: pip ?? this.pip,
         submarket: submarket ?? this.submarket,
         submarketDisplayName: submarketDisplayName ?? this.submarketDisplayName,
+        subgroup: subgroup ?? this.subgroup,
+        subgroupDisplayName: subgroupDisplayName ?? this.subgroupDisplayName,
         symbol: symbol ?? this.symbol,
         symbolType: symbolType ?? this.symbolType,
         allowForwardStarting: allowForwardStarting ?? this.allowForwardStarting,
