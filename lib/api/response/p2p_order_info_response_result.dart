@@ -314,6 +314,7 @@ enum StatusEnum {
 abstract class P2pOrderInfoModel {
   /// Initializes P2p order info model class .
   const P2pOrderInfoModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -341,6 +342,9 @@ abstract class P2pOrderInfoModel {
     this.paymentMethodDetails,
     this.reviewDetails,
   });
+
+  /// Indicates that an email has been sent to verify confirmation of the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -447,6 +451,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
     DateTime? completionTime,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
@@ -474,6 +479,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
           completionTime: completionTime,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
@@ -505,6 +511,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
         completionTime: getDateTime(json['completion_time']),
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
@@ -558,6 +565,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
     resultMap['completion_time'] = getSecondsSinceEpochDateTime(completionTime);
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
@@ -592,6 +600,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
     DateTime? completionTime,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
@@ -620,6 +629,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
         completionTime: completionTime ?? this.completionTime,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,

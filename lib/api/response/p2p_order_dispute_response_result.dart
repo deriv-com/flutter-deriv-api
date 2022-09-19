@@ -119,6 +119,7 @@ enum StatusEnum {
 abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
   const P2pOrderDisputeModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -142,6 +143,9 @@ abstract class P2pOrderDisputeModel {
     required this.advertDetails,
     required this.accountCurrency,
   });
+
+  /// Indicates that an email has been sent to verify confirmation of the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -236,6 +240,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -259,6 +264,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
         );
 
   /// Creates an instance from JSON.
@@ -287,6 +293,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
       );
 
   /// Converts an instance to JSON.
@@ -324,6 +331,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
 
     return resultMap;
   }
@@ -352,6 +360,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
   }) =>
       P2pOrderDispute(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -376,6 +385,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
       );
 }
 /// Advert details model class.
