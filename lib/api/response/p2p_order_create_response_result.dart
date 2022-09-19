@@ -184,6 +184,7 @@ enum StatusEnum {
 abstract class P2pOrderCreateModel {
   /// Initializes P2p order create model class .
   const P2pOrderCreateModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -209,6 +210,9 @@ abstract class P2pOrderCreateModel {
     this.paymentMethod,
     this.paymentMethodDetails,
   });
+
+  /// Indicates that an email has been sent to verify confirmation of the order.
+  final bool verificationPending;
 
   /// Type of the order.
   final TypeEnum type;
@@ -309,6 +313,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) : super(
@@ -334,6 +339,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
         );
@@ -363,6 +369,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
@@ -412,6 +419,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
 
@@ -442,6 +450,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) =>
@@ -468,6 +477,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
       );
