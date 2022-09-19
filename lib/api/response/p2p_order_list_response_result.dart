@@ -269,6 +269,7 @@ class P2pOrderList extends P2pOrderListModel {
 abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -296,6 +297,9 @@ abstract class ListItemModel {
     this.paymentMethodNames,
     this.reviewDetails,
   });
+
+  /// Indicates that an email has been sent to verify confirmation of the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -401,6 +405,7 @@ class ListItem extends ListItemModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
     String? paymentMethod,
@@ -428,6 +433,7 @@ class ListItem extends ListItemModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
           clientDetails: clientDetails,
           completionTime: completionTime,
           paymentMethod: paymentMethod,
@@ -459,6 +465,7 @@ class ListItem extends ListItemModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
         clientDetails: json['client_details'] == null
             ? null
             : ClientDetails.fromJson(json['client_details']),
@@ -509,6 +516,7 @@ class ListItem extends ListItemModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
     if (clientDetails != null) {
       resultMap['client_details'] = clientDetails!.toJson();
     }
@@ -551,6 +559,7 @@ class ListItem extends ListItemModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
     String? paymentMethod,
@@ -579,6 +588,7 @@ class ListItem extends ListItemModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
         clientDetails: clientDetails ?? this.clientDetails,
         completionTime: completionTime ?? this.completionTime,
         paymentMethod: paymentMethod ?? this.paymentMethod,
