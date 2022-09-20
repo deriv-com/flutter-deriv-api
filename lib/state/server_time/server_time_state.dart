@@ -1,4 +1,4 @@
-part of 'server_time_bloc.dart';
+part of 'server_time_cubit.dart';
 
 /// Server time base states.
 abstract class ServerTimeState {
@@ -17,19 +17,13 @@ class InitialServerTime extends ServerTimeState {
   String toString() => 'ServerTimeState: InitialServerTime';
 }
 
-/// Shows that we are in the process of fetching server time.
-class FetchingServerTime extends ServerTimeState {
-  @override
-  String toString() => 'ServerTimeState: FetchingServerTime';
-}
-
 /// Server time fetched state.
 class ServerTimeFetched extends ServerTimeState {
   /// Initializes server time fetched state.
   ServerTimeFetched({this.serverTime, int? timeDifference})
       : super(
-          timeDifference =
-              getSecondsSinceEpochDateTime(serverTime)! - getCurrentLocalEpoch(),
+          timeDifference = getSecondsSinceEpochDateTime(serverTime)! -
+              getCurrentLocalEpoch(),
         );
 
   /// Fetched server time.
