@@ -341,9 +341,12 @@ abstract class P2pOrderInfoModel {
     this.paymentMethod,
     this.paymentMethodDetails,
     this.reviewDetails,
+    this.verificationLockoutUntil,
+    this.verificationNextRequest,
+    this.verificationTokenExpiry,
   });
 
-  /// Indicates that an email has been sent to verify confirmation of the order.
+  /// Indicates that the seller in the process of confirming the order.
   final bool verificationPending;
 
   /// Whether this is a buy or a sell.
@@ -423,6 +426,15 @@ abstract class P2pOrderInfoModel {
 
   /// Details of the review you gave for this order, if any.
   final ReviewDetails? reviewDetails;
+
+  /// If blocked for too many failed verification attempts, the epoch time that the block will end.
+  final DateTime? verificationLockoutUntil;
+
+  /// If a verification request has already been made, the epoch time that another verification request can be made.
+  final DateTime? verificationNextRequest;
+
+  /// Epoch time that the current verification token will expire.
+  final DateTime? verificationTokenExpiry;
 }
 
 /// P2p order info class.
@@ -456,6 +468,9 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -484,6 +499,9 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
           reviewDetails: reviewDetails,
+          verificationLockoutUntil: verificationLockoutUntil,
+          verificationNextRequest: verificationNextRequest,
+          verificationTokenExpiry: verificationTokenExpiry,
         );
 
   /// Creates an instance from JSON.
@@ -528,6 +546,10 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         reviewDetails: json['review_details'] == null
             ? null
             : ReviewDetails.fromJson(json['review_details']),
+        verificationLockoutUntil:
+            getDateTime(json['verification_lockout_until']),
+        verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
   /// Converts an instance to JSON.
@@ -572,6 +594,12 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     if (reviewDetails != null) {
       resultMap['review_details'] = reviewDetails!.toJson();
     }
+    resultMap['verification_lockout_until'] =
+        getSecondsSinceEpochDateTime(verificationLockoutUntil);
+    resultMap['verification_next_request'] =
+        getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_token_expiry'] =
+        getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
     return resultMap;
   }
@@ -605,6 +633,9 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) =>
       P2pOrderInfo(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -634,6 +665,12 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
         reviewDetails: reviewDetails ?? this.reviewDetails,
+        verificationLockoutUntil:
+            verificationLockoutUntil ?? this.verificationLockoutUntil,
+        verificationNextRequest:
+            verificationNextRequest ?? this.verificationNextRequest,
+        verificationTokenExpiry:
+            verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
 /// Advert details model class.
