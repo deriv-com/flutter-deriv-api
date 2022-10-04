@@ -296,9 +296,12 @@ abstract class ListItemModel {
     this.paymentMethod,
     this.paymentMethodNames,
     this.reviewDetails,
+    this.verificationLockoutUntil,
+    this.verificationNextRequest,
+    this.verificationTokenExpiry,
   });
 
-  /// Indicates that an email has been sent to verify confirmation of the order.
+  /// Indicates that the seller in the process of confirming the order.
   final bool verificationPending;
 
   /// Whether this is a buy or a sell.
@@ -378,6 +381,15 @@ abstract class ListItemModel {
 
   /// Details of the review you gave for this order, if any.
   final ReviewDetails? reviewDetails;
+
+  /// If blocked for too many failed verification attempts, the epoch time that the block will end.
+  final DateTime? verificationLockoutUntil;
+
+  /// If a verification request has already been made, the epoch time that another verification request can be made.
+  final DateTime? verificationNextRequest;
+
+  /// Epoch time that the current verification token will expire.
+  final DateTime? verificationTokenExpiry;
 }
 
 /// List item class.
@@ -411,6 +423,9 @@ class ListItem extends ListItemModel {
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -439,6 +454,9 @@ class ListItem extends ListItemModel {
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
           reviewDetails: reviewDetails,
+          verificationLockoutUntil: verificationLockoutUntil,
+          verificationNextRequest: verificationNextRequest,
+          verificationTokenExpiry: verificationTokenExpiry,
         );
 
   /// Creates an instance from JSON.
@@ -481,6 +499,10 @@ class ListItem extends ListItemModel {
         reviewDetails: json['review_details'] == null
             ? null
             : ReviewDetails.fromJson(json['review_details']),
+        verificationLockoutUntil:
+            getDateTime(json['verification_lockout_until']),
+        verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
   /// Converts an instance to JSON.
@@ -532,6 +554,12 @@ class ListItem extends ListItemModel {
     if (reviewDetails != null) {
       resultMap['review_details'] = reviewDetails!.toJson();
     }
+    resultMap['verification_lockout_until'] =
+        getSecondsSinceEpochDateTime(verificationLockoutUntil);
+    resultMap['verification_next_request'] =
+        getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_token_expiry'] =
+        getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
     return resultMap;
   }
@@ -565,6 +593,9 @@ class ListItem extends ListItemModel {
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) =>
       ListItem(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -594,6 +625,12 @@ class ListItem extends ListItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         reviewDetails: reviewDetails ?? this.reviewDetails,
+        verificationLockoutUntil:
+            verificationLockoutUntil ?? this.verificationLockoutUntil,
+        verificationNextRequest:
+            verificationNextRequest ?? this.verificationNextRequest,
+        verificationTokenExpiry:
+            verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
 /// Advert details model class.
