@@ -71,15 +71,19 @@ enum StatusEnum {
 abstract class P2pOrderConfirmModel {
   /// Initializes P2p order confirm model class .
   const P2pOrderConfirmModel({
-    required this.status,
     required this.id,
+    this.dryRun,
+    this.status,
   });
-
-  /// The new status of the order.
-  final StatusEnum status;
 
   /// The unique identifier for the order.
   final String id;
+
+  /// The `dry_run` was successful.
+  final int? dryRun;
+
+  /// The new status of the order.
+  final StatusEnum? status;
 }
 
 /// P2p order confirm class.
@@ -87,9 +91,11 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Initializes P2p order confirm class.
   const P2pOrderConfirm({
     required String id,
-    required StatusEnum status,
+    int? dryRun,
+    StatusEnum? status,
   }) : super(
           id: id,
+          dryRun: dryRun,
           status: status,
         );
 
@@ -97,7 +103,9 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
   factory P2pOrderConfirm.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirm(
         id: json['id'],
-        status: statusEnumMapper[json['status']]!,
+        dryRun: json['dry_run'],
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']],
       );
 
   /// Converts an instance to JSON.
@@ -105,6 +113,7 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['dry_run'] = dryRun;
     resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
             (MapEntry<String, StatusEnum> entry) => entry.value == status)
@@ -116,10 +125,12 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Creates a copy of instance with given parameters.
   P2pOrderConfirm copyWith({
     String? id,
+    int? dryRun,
     StatusEnum? status,
   }) =>
       P2pOrderConfirm(
         id: id ?? this.id,
+        dryRun: dryRun ?? this.dryRun,
         status: status ?? this.status,
       );
 }
