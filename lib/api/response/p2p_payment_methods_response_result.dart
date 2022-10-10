@@ -3,6 +3,13 @@
 import 'package:equatable/equatable.dart';
 
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 /// P2p payment methods response model class.
 abstract class P2pPaymentMethodsResponseModel {
   /// Initializes P2p payment methods response model class .
@@ -45,6 +52,32 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
     resultMap['p2p_payment_methods'] = p2pPaymentMethods;
 
     return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// List all P2P payment methods.
+  Future<P2pPaymentMethodsResponse> fetch(
+    P2pPaymentMethodsRequest request,
+  ) async {
+    final P2pPaymentMethodsReceive response = await fetchRaw(request);
+
+    return P2pPaymentMethodsResponse.fromJson(response.p2pPaymentMethods);
+  }
+
+  /// Dispute a P2P order.
+  Future<P2pPaymentMethodsReceive> fetchRaw(
+    P2pPaymentMethodsRequest request,
+  ) async {
+    final P2pPaymentMethodsReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.

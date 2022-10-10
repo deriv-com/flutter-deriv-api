@@ -60,6 +60,18 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   static Future<P2pAdvertListResponse> fetchAdvertList(
     P2pAdvertListRequest request,
   ) async {
+    final P2pAdvertListReceive response = await fetchAdvertListRaw(request);
+
+    return P2pAdvertListResponse.fromJson(response.p2pAdvertList);
+  }
+
+  /// Returns available adverts.
+  ///
+  /// For parameters information refer to [P2pAdvertListRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
+  static Future<P2pAdvertListReceive> fetchAdvertListRaw(
+    P2pAdvertListRequest request,
+  ) async {
     final P2pAdvertListReceive response = await _api.call(request: request);
 
     checkException(
@@ -68,7 +80,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pAdvertListResponse.fromJson(response.p2pAdvertList);
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.

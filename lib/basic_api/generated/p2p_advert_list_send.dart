@@ -73,7 +73,7 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Used for paging.
   final int? limit;
 
-  /// [Optional] Currency to conduct payment transaction in. If not provided, only ads from country of residence will be returned.
+  /// [Optional] Currency to conduct payment transaction in, defaults to the main currency for the client's country.
   final String? localCurrency;
 
   /// [Optional] Used for paging.

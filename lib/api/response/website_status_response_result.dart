@@ -1199,11 +1199,9 @@ abstract class P2pConfigModel {
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
-    required this.localCurrencies,
     required this.floatRateOffsetLimit,
     required this.floatRateAdverts,
     required this.fixedRateAdverts,
-    required this.featureLevel,
     required this.disabled,
     required this.cancellationLimit,
     required this.cancellationGracePeriod,
@@ -1236,9 +1234,6 @@ abstract class P2pConfigModel {
   /// Maximum amount of an advert, in USD.
   final double maximumAdvertAmount;
 
-  /// Available local currencies for p2p_advert_list request.
-  final List<LocalCurrenciesItem> localCurrencies;
-
   /// Maximum rate offset for floating rate adverts.
   final double floatRateOffsetLimit;
 
@@ -1247,9 +1242,6 @@ abstract class P2pConfigModel {
 
   /// Availability of fixed rate adverts.
   final FixedRateAdvertsEnum fixedRateAdverts;
-
-  /// Indicates the availbility of certain backend features.
-  final int featureLevel;
 
   /// When `true`, the P2P service is unavailable.
   final bool disabled;
@@ -1289,11 +1281,9 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationGracePeriod,
     required int cancellationLimit,
     required bool disabled,
-    required int featureLevel,
     required FixedRateAdvertsEnum fixedRateAdverts,
     required FloatRateAdvertsEnum floatRateAdverts,
     required double floatRateOffsetLimit,
-    required List<LocalCurrenciesItem> localCurrencies,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
@@ -1311,11 +1301,9 @@ class P2pConfig extends P2pConfigModel {
           cancellationGracePeriod: cancellationGracePeriod,
           cancellationLimit: cancellationLimit,
           disabled: disabled,
-          featureLevel: featureLevel,
           fixedRateAdverts: fixedRateAdverts,
           floatRateAdverts: floatRateAdverts,
           floatRateOffsetLimit: floatRateOffsetLimit,
-          localCurrencies: localCurrencies,
           maximumAdvertAmount: maximumAdvertAmount,
           maximumOrderAmount: maximumOrderAmount,
           orderDailyLimit: orderDailyLimit,
@@ -1336,17 +1324,11 @@ class P2pConfig extends P2pConfigModel {
         cancellationGracePeriod: json['cancellation_grace_period'],
         cancellationLimit: json['cancellation_limit'],
         disabled: getBool(json['disabled'])!,
-        featureLevel: json['feature_level'],
         fixedRateAdverts:
             fixedRateAdvertsEnumMapper[json['fixed_rate_adverts']]!,
         floatRateAdverts:
             floatRateAdvertsEnumMapper[json['float_rate_adverts']]!,
         floatRateOffsetLimit: getDouble(json['float_rate_offset_limit'])!,
-        localCurrencies: List<LocalCurrenciesItem>.from(
-          json['local_currencies'].map(
-            (dynamic item) => LocalCurrenciesItem.fromJson(item),
-          ),
-        ),
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
@@ -1373,7 +1355,6 @@ class P2pConfig extends P2pConfigModel {
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
     resultMap['cancellation_limit'] = cancellationLimit;
     resultMap['disabled'] = disabled;
-    resultMap['feature_level'] = featureLevel;
     resultMap['fixed_rate_adverts'] = fixedRateAdvertsEnumMapper.entries
         .firstWhere((MapEntry<String, FixedRateAdvertsEnum> entry) =>
             entry.value == fixedRateAdverts)
@@ -1383,12 +1364,6 @@ class P2pConfig extends P2pConfigModel {
             entry.value == floatRateAdverts)
         .key;
     resultMap['float_rate_offset_limit'] = floatRateOffsetLimit;
-    resultMap['local_currencies'] = localCurrencies
-        .map<dynamic>(
-          (LocalCurrenciesItem item) => item.toJson(),
-        )
-        .toList();
-
     resultMap['maximum_advert_amount'] = maximumAdvertAmount;
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
@@ -1416,11 +1391,9 @@ class P2pConfig extends P2pConfigModel {
     int? cancellationGracePeriod,
     int? cancellationLimit,
     bool? disabled,
-    int? featureLevel,
     FixedRateAdvertsEnum? fixedRateAdverts,
     FloatRateAdvertsEnum? floatRateAdverts,
     double? floatRateOffsetLimit,
-    List<LocalCurrenciesItem>? localCurrencies,
     double? maximumAdvertAmount,
     double? maximumOrderAmount,
     int? orderDailyLimit,
@@ -1442,11 +1415,9 @@ class P2pConfig extends P2pConfigModel {
             cancellationGracePeriod ?? this.cancellationGracePeriod,
         cancellationLimit: cancellationLimit ?? this.cancellationLimit,
         disabled: disabled ?? this.disabled,
-        featureLevel: featureLevel ?? this.featureLevel,
         fixedRateAdverts: fixedRateAdverts ?? this.fixedRateAdverts,
         floatRateAdverts: floatRateAdverts ?? this.floatRateAdverts,
         floatRateOffsetLimit: floatRateOffsetLimit ?? this.floatRateOffsetLimit,
-        localCurrencies: localCurrencies ?? this.localCurrencies,
         maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
         maximumOrderAmount: maximumOrderAmount ?? this.maximumOrderAmount,
         orderDailyLimit: orderDailyLimit ?? this.orderDailyLimit,
@@ -1459,79 +1430,6 @@ class P2pConfig extends P2pConfigModel {
         fixedRateAdvertsEndDate:
             fixedRateAdvertsEndDate ?? this.fixedRateAdvertsEndDate,
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
-      );
-}
-/// Local currencies item model class.
-abstract class LocalCurrenciesItemModel {
-  /// Initializes Local currencies item model class .
-  const LocalCurrenciesItemModel({
-    required this.symbol,
-    required this.hasAdverts,
-    required this.displayName,
-    this.isDefault,
-  });
-
-  /// Local currency symbol
-  final String symbol;
-
-  /// Indicates that there are adverts available for this currency.
-  final bool hasAdverts;
-
-  /// Local currency name
-  final String displayName;
-
-  /// Indicates that this is local currency for the current country.
-  final int? isDefault;
-}
-
-/// Local currencies item class.
-class LocalCurrenciesItem extends LocalCurrenciesItemModel {
-  /// Initializes Local currencies item class.
-  const LocalCurrenciesItem({
-    required String displayName,
-    required bool hasAdverts,
-    required String symbol,
-    int? isDefault,
-  }) : super(
-          displayName: displayName,
-          hasAdverts: hasAdverts,
-          symbol: symbol,
-          isDefault: isDefault,
-        );
-
-  /// Creates an instance from JSON.
-  factory LocalCurrenciesItem.fromJson(Map<String, dynamic> json) =>
-      LocalCurrenciesItem(
-        displayName: json['display_name'],
-        hasAdverts: getBool(json['has_adverts'])!,
-        symbol: json['symbol'],
-        isDefault: json['is_default'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['display_name'] = displayName;
-    resultMap['has_adverts'] = hasAdverts;
-    resultMap['symbol'] = symbol;
-    resultMap['is_default'] = isDefault;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  LocalCurrenciesItem copyWith({
-    String? displayName,
-    bool? hasAdverts,
-    String? symbol,
-    int? isDefault,
-  }) =>
-      LocalCurrenciesItem(
-        displayName: displayName ?? this.displayName,
-        hasAdverts: hasAdverts ?? this.hasAdverts,
-        symbol: symbol ?? this.symbol,
-        isDefault: isDefault ?? this.isDefault,
       );
 }
 /// Payment agents model class.
