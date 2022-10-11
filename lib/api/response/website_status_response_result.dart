@@ -238,6 +238,7 @@ enum SiteStatusEnum {
   /// updating.
   updating,
 }
+
 /// Website status model class.
 abstract class WebsiteStatusModel {
   /// Initializes Website status model class .
@@ -437,6 +438,7 @@ class WebsiteStatus extends WebsiteStatusModel {
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
 }
+
 /// Api call limits model class.
 abstract class ApiCallLimitsModel {
   /// Initializes Api call limits model class .
@@ -517,6 +519,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
 }
+
 /// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription model class .
@@ -570,6 +573,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         max: max ?? this.max,
       );
 }
+
 /// Max requestes general model class.
 abstract class MaxRequestesGeneralModel {
   /// Initializes Max requestes general model class .
@@ -633,6 +637,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         minutely: minutely ?? this.minutely,
       );
 }
+
 /// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome model class .
@@ -696,6 +701,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         minutely: minutely ?? this.minutely,
       );
 }
+
 /// Max requests pricing model class.
 abstract class MaxRequestsPricingModel {
   /// Initializes Max requests pricing model class .
@@ -759,6 +765,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         minutely: minutely ?? this.minutely,
       );
 }
+
 /// Crypto config property model class.
 abstract class CryptoConfigPropertyModel {
   /// Initializes Crypto config property model class .
@@ -802,6 +809,7 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
         minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
 }
+
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
@@ -921,6 +929,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         name: name ?? this.name,
       );
 }
+
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts model class .
@@ -998,6 +1007,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
 }
+
 /// Limits model class.
 abstract class LimitsModel {
   /// Initializes Limits model class .
@@ -1050,6 +1060,7 @@ class Limits extends LimitsModel {
         max: max ?? this.max,
       );
 }
+
 /// Dxtrade status model class.
 abstract class DxtradeStatusModel {
   /// Initializes Dxtrade status model class .
@@ -1112,6 +1123,7 @@ class DxtradeStatus extends DxtradeStatusModel {
         real: real ?? this.real,
       );
 }
+
 /// Mt5 status model class.
 abstract class Mt5StatusModel {
   /// Initializes Mt5 status model class .
@@ -1188,6 +1200,7 @@ class Mt5Status extends Mt5StatusModel {
         real: real ?? this.real,
       );
 }
+
 /// P2p config model class.
 abstract class P2pConfigModel {
   /// Initializes P2p config model class .
@@ -1199,7 +1212,6 @@ abstract class P2pConfigModel {
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
-    required this.localCurrencies,
     required this.floatRateOffsetLimit,
     required this.floatRateAdverts,
     required this.fixedRateAdverts,
@@ -1210,6 +1222,7 @@ abstract class P2pConfigModel {
     required this.cancellationCountPeriod,
     required this.cancellationBlockDuration,
     required this.advertsActiveLimit,
+    this.localCurrencies,
     this.advertsArchivePeriod,
     this.fixedRateAdvertsEndDate,
     this.overrideExchangeRate,
@@ -1237,7 +1250,7 @@ abstract class P2pConfigModel {
   final double maximumAdvertAmount;
 
   /// Available local currencies for p2p_advert_list request.
-  final List<LocalCurrenciesItem> localCurrencies;
+  final List<LocalCurrenciesItem>? localCurrencies;
 
   /// Maximum rate offset for floating rate adverts.
   final double floatRateOffsetLimit;
@@ -1293,7 +1306,6 @@ class P2pConfig extends P2pConfigModel {
     required FixedRateAdvertsEnum fixedRateAdverts,
     required FloatRateAdvertsEnum floatRateAdverts,
     required double floatRateOffsetLimit,
-    required List<LocalCurrenciesItem> localCurrencies,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
@@ -1301,6 +1313,7 @@ class P2pConfig extends P2pConfigModel {
     required bool paymentMethodsEnabled,
     required double reviewPeriod,
     required List<String> supportedCurrencies,
+    List<LocalCurrenciesItem>? localCurrencies,
     int? advertsArchivePeriod,
     String? fixedRateAdvertsEndDate,
     String? overrideExchangeRate,
@@ -1342,11 +1355,13 @@ class P2pConfig extends P2pConfigModel {
         floatRateAdverts:
             floatRateAdvertsEnumMapper[json['float_rate_adverts']]!,
         floatRateOffsetLimit: getDouble(json['float_rate_offset_limit'])!,
-        localCurrencies: List<LocalCurrenciesItem>.from(
-          json['local_currencies'].map(
-            (dynamic item) => LocalCurrenciesItem.fromJson(item),
-          ),
-        ),
+        localCurrencies: json['local_currencies'] != null
+            ? List<LocalCurrenciesItem>.from(
+                json['local_currencies'].map(
+                  (dynamic item) => LocalCurrenciesItem.fromJson(item),
+                ),
+              )
+            : null,
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
@@ -1384,7 +1399,7 @@ class P2pConfig extends P2pConfigModel {
         .key;
     resultMap['float_rate_offset_limit'] = floatRateOffsetLimit;
     resultMap['local_currencies'] = localCurrencies
-        .map<dynamic>(
+        ?.map<dynamic>(
           (LocalCurrenciesItem item) => item.toJson(),
         )
         .toList();
@@ -1461,6 +1476,7 @@ class P2pConfig extends P2pConfigModel {
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 }
+
 /// Local currencies item model class.
 abstract class LocalCurrenciesItemModel {
   /// Initializes Local currencies item model class .
@@ -1534,6 +1550,7 @@ class LocalCurrenciesItem extends LocalCurrenciesItemModel {
         isDefault: isDefault ?? this.isDefault,
       );
 }
+
 /// Payment agents model class.
 abstract class PaymentAgentsModel {
   /// Initializes Payment agents model class .
@@ -1581,6 +1598,7 @@ class PaymentAgents extends PaymentAgentsModel {
             initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

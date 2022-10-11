@@ -180,11 +180,11 @@ enum StatusEnum {
   /// pending.
   pending,
 }
+
 /// P2p order create model class.
 abstract class P2pOrderCreateModel {
   /// Initializes P2p order create model class .
   const P2pOrderCreateModel({
-    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -207,12 +207,13 @@ abstract class P2pOrderCreateModel {
     required this.advertiserDetails,
     required this.advertDetails,
     required this.accountCurrency,
+    this.verificationPending,
     this.paymentMethod,
     this.paymentMethodDetails,
   });
 
   /// Indicates that an email has been sent to verify confirmation of the order.
-  final bool verificationPending;
+  final bool? verificationPending;
 
   /// Type of the order.
   final TypeEnum type;
@@ -313,7 +314,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
-    required bool verificationPending,
+    bool? verificationPending,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) : super(
@@ -369,7 +370,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
-        verificationPending: getBool(json['verification_pending'])!,
+        verificationPending: getBool(json['verification_pending']),
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
@@ -482,6 +483,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
       );
 }
+
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -556,6 +558,7 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -639,6 +642,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: lastName ?? this.lastName,
       );
 }
+
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -721,6 +725,7 @@ class ClientDetails extends ClientDetailsModel {
         lastName: lastName ?? this.lastName,
       );
 }
+
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
@@ -773,6 +778,7 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
+
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -865,6 +871,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         displayName: displayName ?? this.displayName,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -940,6 +947,7 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
