@@ -302,7 +302,7 @@ abstract class ListItemModel {
   });
 
   /// Indicates that the seller in the process of confirming the order.
-  final bool verificationPending;
+  final bool? verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -417,7 +417,7 @@ class ListItem extends ListItemModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
-    required bool verificationPending,
+    bool? verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
     String? paymentMethod,
@@ -483,7 +483,7 @@ class ListItem extends ListItemModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
-        verificationPending: getBool(json['verification_pending'])!,
+        verificationPending: getBool(json['verification_pending']),
         clientDetails: json['client_details'] == null
             ? null
             : ClientDetails.fromJson(json['client_details']),
