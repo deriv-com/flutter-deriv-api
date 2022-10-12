@@ -244,7 +244,6 @@ abstract class WebsiteStatusModel {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
     required this.currenciesConfig,
-    required this.cryptoConfig,
     required this.apiCallLimits,
     this.clientsCountry,
     this.dxtradeStatus,
@@ -259,9 +258,6 @@ abstract class WebsiteStatusModel {
 
   /// Available currencies and their information
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
-
-  /// Provides minimum withdrawal for all crypto currency in USD
-  final Map<String, CryptoConfigProperty> cryptoConfig;
 
   /// Maximum number of API calls during specified period of time.
   final ApiCallLimits apiCallLimits;
@@ -299,7 +295,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes Website status class.
   const WebsiteStatus({
     required ApiCallLimits apiCallLimits,
-    required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
     String? clientsCountry,
     DxtradeStatus? dxtradeStatus,
@@ -312,7 +307,6 @@ class WebsiteStatus extends WebsiteStatusModel {
     String? termsConditionsVersion,
   }) : super(
           apiCallLimits: apiCallLimits,
-          cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
           clientsCountry: clientsCountry,
           dxtradeStatus: dxtradeStatus,
@@ -328,13 +322,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Creates an instance from JSON.
   factory WebsiteStatus.fromJson(Map<String, dynamic> json) => WebsiteStatus(
         apiCallLimits: ApiCallLimits.fromJson(json['api_call_limits']),
-        cryptoConfig: Map<String, CryptoConfigProperty>.fromEntries(
-            json['crypto_config']
-                .entries
-                .map<MapEntry<String, CryptoConfigProperty>>(
-                    (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, CryptoConfigProperty>(entry.key,
-                            CryptoConfigProperty.fromJson(entry.value)))),
         currenciesConfig: Map<String, CurrenciesConfigProperty>.fromEntries(
             json['currencies_config']
                 .entries
@@ -375,7 +362,6 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     resultMap['api_call_limits'] = apiCallLimits.toJson();
 
-    resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
     resultMap['clients_country'] = clientsCountry;
     if (dxtradeStatus != null) {
@@ -410,7 +396,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Creates a copy of instance with given parameters.
   WebsiteStatus copyWith({
     ApiCallLimits? apiCallLimits,
-    Map<String, CryptoConfigProperty>? cryptoConfig,
     Map<String, CurrenciesConfigProperty>? currenciesConfig,
     String? clientsCountry,
     DxtradeStatus? dxtradeStatus,
@@ -424,7 +409,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   }) =>
       WebsiteStatus(
         apiCallLimits: apiCallLimits ?? this.apiCallLimits,
-        cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         dxtradeStatus: dxtradeStatus ?? this.dxtradeStatus,
@@ -763,50 +747,6 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         appliesTo: appliesTo ?? this.appliesTo,
         hourly: hourly ?? this.hourly,
         minutely: minutely ?? this.minutely,
-      );
-}
-
-/// Crypto config property model class.
-abstract class CryptoConfigPropertyModel {
-  /// Initializes Crypto config property model class .
-  const CryptoConfigPropertyModel({
-    required this.minimumWithdrawal,
-  });
-
-  /// Minimum withdrawal for the currency in USD.
-  final double minimumWithdrawal;
-}
-
-/// Crypto config property class.
-class CryptoConfigProperty extends CryptoConfigPropertyModel {
-  /// Initializes Crypto config property class.
-  const CryptoConfigProperty({
-    required double minimumWithdrawal,
-  }) : super(
-          minimumWithdrawal: minimumWithdrawal,
-        );
-
-  /// Creates an instance from JSON.
-  factory CryptoConfigProperty.fromJson(Map<String, dynamic> json) =>
-      CryptoConfigProperty(
-        minimumWithdrawal: getDouble(json['minimum_withdrawal'])!,
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['minimum_withdrawal'] = minimumWithdrawal;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  CryptoConfigProperty copyWith({
-    double? minimumWithdrawal,
-  }) =>
-      CryptoConfigProperty(
-        minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
 }
 
@@ -1212,6 +1152,7 @@ abstract class P2pConfigModel {
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
+    required this.localCurrencies,
     required this.floatRateOffsetLimit,
     required this.floatRateAdverts,
     required this.fixedRateAdverts,
@@ -1222,7 +1163,6 @@ abstract class P2pConfigModel {
     required this.cancellationCountPeriod,
     required this.cancellationBlockDuration,
     required this.advertsActiveLimit,
-    this.localCurrencies,
     this.advertsArchivePeriod,
     this.fixedRateAdvertsEndDate,
     this.overrideExchangeRate,

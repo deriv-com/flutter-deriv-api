@@ -43,12 +43,5 @@ void main() {
     expect(audLimitations.fees.length, 17);
     expect(audLimitations.fees.entries.first.key, 'BTC');
     expect(audLimitations.fees.entries.first.value, 2.0);
-
-    final Map<String, CryptoConfigProperty> cryptoConfig =
-        websiteStatus.cryptoConfig;
-
-    expect(cryptoConfig.length, 14);
-    expect(cryptoConfig.entries.first.key, 'BTC');
-    expect(cryptoConfig.entries.first.value.minimumWithdrawal, 0.00074296);
   });
 }
