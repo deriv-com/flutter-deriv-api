@@ -121,6 +121,7 @@ final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -130,6 +131,9 @@ enum MarketTypeEnum {
 
   /// synthetic.
   synthetic,
+
+  /// all.
+  all,
 }
 
 /// PlatformEnum mapper.
@@ -182,6 +186,7 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Trading platform accounts item model class.
 abstract class TradingPlatformAccountsItemModel {
   /// Initializes Trading platform accounts item model class .
@@ -424,6 +429,7 @@ class TradingPlatformAccountsItem extends TradingPlatformAccountsItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
+
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -495,6 +501,7 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .

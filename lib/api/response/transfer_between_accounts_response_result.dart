@@ -193,6 +193,7 @@ enum MarketTypeEnum {
   /// all.
   all,
 }
+
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
