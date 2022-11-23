@@ -2,7 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Trading platform new account response model class.
 abstract class TradingPlatformNewAccountResponseModel {
@@ -45,6 +49,30 @@ class TradingPlatformNewAccountResponse
     }
 
     return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Trading Platform: New Account (request).
+  ///
+  /// This call creates new Trading account, either demo or real money.
+  /// For parameters information refer to [TradingPlatformNewAccountRequest].
+  /// Throws a [DerivEZException] if API response contains an error
+  static Future<TradingPlatformNewAccountResponse> create(
+    TradingPlatformNewAccountRequest request,
+  ) async {
+    final TradingPlatformNewAccountReceive response =
+        await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          DerivEZException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return TradingPlatformNewAccountResponse.fromJson(
+      response.tradingPlatformNewAccount,
+    );
   }
 
   /// Creates a copy of instance with given parameters.
@@ -163,6 +191,7 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Trading platform new account model class.
 abstract class TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account model class .

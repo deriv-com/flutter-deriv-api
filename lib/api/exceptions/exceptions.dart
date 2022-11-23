@@ -17,6 +17,7 @@ export 'contract_exception.dart';
 export 'contract_for_symbol_exception.dart';
 export 'contract_operations_exception.dart';
 export 'copy_trading_exception.dart';
+export 'deriv_ez_exception.dart';
 export 'exchange_exception.dart';
 export 'financial_assessment_exception.dart';
 export 'forget_exception.dart';
