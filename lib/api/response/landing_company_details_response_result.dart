@@ -103,7 +103,7 @@ abstract class LandingCompanyDetailsModel {
   final String? name;
 
   /// Legal requirements for the given Landing Company.
-  final Map<String, dynamic>? requirements;
+  final Requirements? requirements;
 
   /// Landing Company shortcode.
   final String? shortcode;
@@ -126,7 +126,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    Requirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -185,7 +185,9 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : Requirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -231,7 +233,9 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -250,7 +254,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    Requirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -473,5 +477,240 @@ class Currency extends CurrencyModel {
       Currency(
         maxPayout: maxPayout ?? this.maxPayout,
         minStake: minStake ?? this.minStake,
+      );
+}
+/// Requirements model class.
+abstract class RequirementsModel {
+  /// Initializes Requirements model class .
+  const RequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final AfterFirstDeposit? afterFirstDeposit;
+
+  /// Compliance requirements
+  final Compliance? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Requirements class.
+class Requirements extends RequirementsModel {
+  /// Initializes Requirements class.
+  const Requirements({
+    AfterFirstDeposit? afterFirstDeposit,
+    Compliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory Requirements.fromJson(Map<String, dynamic> json) => Requirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : AfterFirstDeposit.fromJson(json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : Compliance.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Requirements copyWith({
+    AfterFirstDeposit? afterFirstDeposit,
+    Compliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      Requirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// After first deposit model class.
+abstract class AfterFirstDepositModel {
+  /// Initializes After first deposit model class .
+  const AfterFirstDepositModel({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// After first deposit class.
+class AfterFirstDeposit extends AfterFirstDepositModel {
+  /// Initializes After first deposit class.
+  const AfterFirstDeposit({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory AfterFirstDeposit.fromJson(Map<String, dynamic> json) =>
+      AfterFirstDeposit(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  AfterFirstDeposit copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      AfterFirstDeposit(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Compliance model class.
+abstract class ComplianceModel {
+  /// Initializes Compliance model class .
+  const ComplianceModel({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Compliance class.
+class Compliance extends ComplianceModel {
+  /// Initializes Compliance class.
+  const Compliance({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory Compliance.fromJson(Map<String, dynamic> json) => Compliance(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Compliance copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      Compliance(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }

@@ -120,6 +120,7 @@ import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
 import '../generated/trading_platform_accounts_receive.dart';
+import '../generated/trading_platform_available_accounts_receive.dart';
 import '../generated/trading_platform_deposit_receive.dart';
 import '../generated/trading_platform_investor_password_change_receive.dart';
 import '../generated/trading_platform_investor_password_reset_receive.dart';
@@ -374,6 +375,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingDurationsReceive.fromJson(responseMap);
     case 'trading_platform_accounts':
       return TradingPlatformAccountsReceive.fromJson(responseMap);
+    case 'trading_platform_available_accounts':
+      return TradingPlatformAvailableAccountsReceive.fromJson(responseMap);
     case 'trading_platform_deposit':
       return TradingPlatformDepositReceive.fromJson(responseMap);
     case 'trading_platform_investor_password_change':

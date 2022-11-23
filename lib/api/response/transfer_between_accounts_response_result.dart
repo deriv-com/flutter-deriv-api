@@ -149,6 +149,7 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "mt5": AccountTypeEnum.mt5,
   "wallet": AccountTypeEnum.wallet,
   "dxtrade": AccountTypeEnum.dxtrade,
+  "derivez": AccountTypeEnum.derivez,
   "binary": AccountTypeEnum.binary,
 };
 
@@ -166,6 +167,9 @@ enum AccountTypeEnum {
   /// dxtrade.
   dxtrade,
 
+  /// derivez.
+  derivez,
+
   /// binary.
   binary,
 }
@@ -175,6 +179,7 @@ final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -184,6 +189,9 @@ enum MarketTypeEnum {
 
   /// synthetic.
   synthetic,
+
+  /// all.
+  all,
 }
 /// Accounts item model class.
 abstract class AccountsItemModel {
@@ -193,9 +201,11 @@ abstract class AccountsItemModel {
     this.balance,
     this.currency,
     this.demoAccount,
+    this.derivezGroup,
     this.loginid,
     this.marketType,
     this.mt5Group,
+    this.status,
   });
 
   /// Type of the account. Please note that `binary` is deprecated and replaced by `trading`
@@ -210,6 +220,9 @@ abstract class AccountsItemModel {
   /// 0 for real accounts; `true` for virtual/demo accounts.
   final bool? demoAccount;
 
+  /// The group of derivez account.
+  final String? derivezGroup;
+
   /// Account identifier used for system transfers.
   final String? loginid;
 
@@ -218,6 +231,9 @@ abstract class AccountsItemModel {
 
   /// The group of mt5 account.
   final String? mt5Group;
+
+  /// The status of account.
+  final String? status;
 }
 
 /// Accounts item class.
@@ -228,17 +244,21 @@ class AccountsItem extends AccountsItemModel {
     String? balance,
     String? currency,
     bool? demoAccount,
+    String? derivezGroup,
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
+    String? status,
   }) : super(
           accountType: accountType,
           balance: balance,
           currency: currency,
           demoAccount: demoAccount,
+          derivezGroup: derivezGroup,
           loginid: loginid,
           marketType: marketType,
           mt5Group: mt5Group,
+          status: status,
         );
 
   /// Creates an instance from JSON.
@@ -249,11 +269,13 @@ class AccountsItem extends AccountsItemModel {
         balance: json['balance'],
         currency: json['currency'],
         demoAccount: getBool(json['demo_account']),
+        derivezGroup: json['derivez_group'],
         loginid: json['loginid'],
         marketType: json['market_type'] == null
             ? null
             : marketTypeEnumMapper[json['market_type']],
         mt5Group: json['mt5_group'],
+        status: json['status'],
       );
 
   /// Converts an instance to JSON.
@@ -267,12 +289,14 @@ class AccountsItem extends AccountsItemModel {
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['demo_account'] = demoAccount;
+    resultMap['derivez_group'] = derivezGroup;
     resultMap['loginid'] = loginid;
     resultMap['market_type'] = marketTypeEnumMapper.entries
         .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
             entry.value == marketType)
         .key;
     resultMap['mt5_group'] = mt5Group;
+    resultMap['status'] = status;
 
     return resultMap;
   }
@@ -283,17 +307,21 @@ class AccountsItem extends AccountsItemModel {
     String? balance,
     String? currency,
     bool? demoAccount,
+    String? derivezGroup,
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
+    String? status,
   }) =>
       AccountsItem(
         accountType: accountType ?? this.accountType,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         demoAccount: demoAccount ?? this.demoAccount,
+        derivezGroup: derivezGroup ?? this.derivezGroup,
         loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
+        status: status ?? this.status,
       );
 }
