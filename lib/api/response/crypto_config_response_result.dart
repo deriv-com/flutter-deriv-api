@@ -60,7 +60,7 @@ abstract class CryptoConfigModel {
     required this.currenciesConfig,
   });
 
-  /// Provides minimum withdrawal for all cryptocurrencies in USD
+  /// Currency configuration including limitiations for each crypto currency.
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
 }
 
@@ -105,8 +105,12 @@ class CryptoConfig extends CryptoConfigModel {
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
   const CurrenciesConfigPropertyModel({
+    this.minimumDeposit,
     this.minimumWithdrawal,
   });
+
+  /// Minimum deposit amount in corresponding cryptocurrency value.
+  final double? minimumDeposit;
 
   /// Minimum withdrawal for the cryptocurrency in USD.
   final double? minimumWithdrawal;
@@ -116,14 +120,17 @@ abstract class CurrenciesConfigPropertyModel {
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property class.
   const CurrenciesConfigProperty({
+    double? minimumDeposit,
     double? minimumWithdrawal,
   }) : super(
+          minimumDeposit: minimumDeposit,
           minimumWithdrawal: minimumWithdrawal,
         );
 
   /// Creates an instance from JSON.
   factory CurrenciesConfigProperty.fromJson(Map<String, dynamic> json) =>
       CurrenciesConfigProperty(
+        minimumDeposit: getDouble(json['minimum_deposit']),
         minimumWithdrawal: getDouble(json['minimum_withdrawal']),
       );
 
@@ -131,6 +138,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['minimum_deposit'] = minimumDeposit;
     resultMap['minimum_withdrawal'] = minimumWithdrawal;
 
     return resultMap;
@@ -138,9 +146,11 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
 
   /// Creates a copy of instance with given parameters.
   CurrenciesConfigProperty copyWith({
+    double? minimumDeposit,
     double? minimumWithdrawal,
   }) =>
       CurrenciesConfigProperty(
+        minimumDeposit: minimumDeposit ?? this.minimumDeposit,
         minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
 }

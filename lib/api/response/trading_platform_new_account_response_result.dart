@@ -114,6 +114,7 @@ final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -123,6 +124,9 @@ enum MarketTypeEnum {
 
   /// synthetic.
   synthetic,
+
+  /// all.
+  all,
 }
 
 /// PlatformEnum mapper.

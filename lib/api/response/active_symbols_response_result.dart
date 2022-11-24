@@ -96,11 +96,14 @@ abstract class ActiveSymbolsItemModel {
     required this.symbol,
     required this.submarketDisplayName,
     required this.submarket,
+    required this.subgroupDisplayName,
+    required this.subgroup,
     required this.pip,
     required this.marketDisplayName,
     required this.market,
     required this.isTradingSuspended,
     required this.exchangeIsOpen,
+    required this.displayOrder,
     required this.displayName,
     this.allowForwardStarting,
     this.delayAmount,
@@ -109,6 +112,7 @@ abstract class ActiveSymbolsItemModel {
     this.quotedCurrencySymbol,
     this.spot,
     this.spotAge,
+    this.spotPercentageChange,
     this.spotTime,
   });
 
@@ -124,6 +128,12 @@ abstract class ActiveSymbolsItemModel {
   /// Submarket name.
   final String submarket;
 
+  /// Translated subgroup name.
+  final String subgroupDisplayName;
+
+  /// Subgroup name.
+  final String subgroup;
+
   /// Pip size (i.e. minimum fluctuation amount).
   final double pip;
 
@@ -138,6 +148,9 @@ abstract class ActiveSymbolsItemModel {
 
   /// `true` if market is currently open, `false` if closed.
   final bool exchangeIsOpen;
+
+  /// Display order.
+  final int displayOrder;
 
   /// Display name.
   final String displayName;
@@ -163,6 +176,9 @@ abstract class ActiveSymbolsItemModel {
   /// Number of seconds elapsed since the last spot price. Only returned on `full` active symbols call.
   final String? spotAge;
 
+  /// Daily percentage for a symbol. Only returned on 'full' active symbols call.
+  final String? spotPercentageChange;
+
   /// Latest spot epoch time. Only returned on `full` active symbols call.
   final String? spotTime;
 }
@@ -172,11 +188,14 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   /// Initializes Active symbols item class.
   const ActiveSymbolsItem({
     required String displayName,
+    required int displayOrder,
     required bool exchangeIsOpen,
     required bool isTradingSuspended,
     required String market,
     required String marketDisplayName,
     required double pip,
+    required String subgroup,
+    required String subgroupDisplayName,
     required String submarket,
     required String submarketDisplayName,
     required String symbol,
@@ -188,14 +207,18 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     String? quotedCurrencySymbol,
     double? spot,
     String? spotAge,
+    String? spotPercentageChange,
     String? spotTime,
   }) : super(
           displayName: displayName,
+          displayOrder: displayOrder,
           exchangeIsOpen: exchangeIsOpen,
           isTradingSuspended: isTradingSuspended,
           market: market,
           marketDisplayName: marketDisplayName,
           pip: pip,
+          subgroup: subgroup,
+          subgroupDisplayName: subgroupDisplayName,
           submarket: submarket,
           submarketDisplayName: submarketDisplayName,
           symbol: symbol,
@@ -207,6 +230,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
           quotedCurrencySymbol: quotedCurrencySymbol,
           spot: spot,
           spotAge: spotAge,
+          spotPercentageChange: spotPercentageChange,
           spotTime: spotTime,
         );
 
@@ -214,11 +238,14 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   factory ActiveSymbolsItem.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsItem(
         displayName: json['display_name'],
+        displayOrder: json['display_order'],
         exchangeIsOpen: getBool(json['exchange_is_open'])!,
         isTradingSuspended: getBool(json['is_trading_suspended'])!,
         market: json['market'],
         marketDisplayName: json['market_display_name'],
         pip: getDouble(json['pip'])!,
+        subgroup: json['subgroup'],
+        subgroupDisplayName: json['subgroup_display_name'],
         submarket: json['submarket'],
         submarketDisplayName: json['submarket_display_name'],
         symbol: json['symbol'],
@@ -230,6 +257,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         quotedCurrencySymbol: json['quoted_currency_symbol'],
         spot: getDouble(json['spot']),
         spotAge: json['spot_age'],
+        spotPercentageChange: json['spot_percentage_change'],
         spotTime: json['spot_time'],
       );
 
@@ -238,11 +266,14 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['display_name'] = displayName;
+    resultMap['display_order'] = displayOrder;
     resultMap['exchange_is_open'] = exchangeIsOpen;
     resultMap['is_trading_suspended'] = isTradingSuspended;
     resultMap['market'] = market;
     resultMap['market_display_name'] = marketDisplayName;
     resultMap['pip'] = pip;
+    resultMap['subgroup'] = subgroup;
+    resultMap['subgroup_display_name'] = subgroupDisplayName;
     resultMap['submarket'] = submarket;
     resultMap['submarket_display_name'] = submarketDisplayName;
     resultMap['symbol'] = symbol;
@@ -254,6 +285,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     resultMap['quoted_currency_symbol'] = quotedCurrencySymbol;
     resultMap['spot'] = spot;
     resultMap['spot_age'] = spotAge;
+    resultMap['spot_percentage_change'] = spotPercentageChange;
     resultMap['spot_time'] = spotTime;
 
     return resultMap;
@@ -262,11 +294,14 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   /// Creates a copy of instance with given parameters.
   ActiveSymbolsItem copyWith({
     String? displayName,
+    int? displayOrder,
     bool? exchangeIsOpen,
     bool? isTradingSuspended,
     String? market,
     String? marketDisplayName,
     double? pip,
+    String? subgroup,
+    String? subgroupDisplayName,
     String? submarket,
     String? submarketDisplayName,
     String? symbol,
@@ -278,15 +313,19 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     String? quotedCurrencySymbol,
     double? spot,
     String? spotAge,
+    String? spotPercentageChange,
     String? spotTime,
   }) =>
       ActiveSymbolsItem(
         displayName: displayName ?? this.displayName,
+        displayOrder: displayOrder ?? this.displayOrder,
         exchangeIsOpen: exchangeIsOpen ?? this.exchangeIsOpen,
         isTradingSuspended: isTradingSuspended ?? this.isTradingSuspended,
         market: market ?? this.market,
         marketDisplayName: marketDisplayName ?? this.marketDisplayName,
         pip: pip ?? this.pip,
+        subgroup: subgroup ?? this.subgroup,
+        subgroupDisplayName: subgroupDisplayName ?? this.subgroupDisplayName,
         submarket: submarket ?? this.submarket,
         submarketDisplayName: submarketDisplayName ?? this.submarketDisplayName,
         symbol: symbol ?? this.symbol,
@@ -299,6 +338,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         quotedCurrencySymbol: quotedCurrencySymbol ?? this.quotedCurrencySymbol,
         spot: spot ?? this.spot,
         spotAge: spotAge ?? this.spotAge,
+        spotPercentageChange: spotPercentageChange ?? this.spotPercentageChange,
         spotTime: spotTime ?? this.spotTime,
       );
 }

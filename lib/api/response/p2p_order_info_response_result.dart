@@ -366,6 +366,7 @@ enum StatusEnum {
 abstract class P2pOrderInfoModel {
   /// Initializes P2p order info model class .
   const P2pOrderInfoModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -389,10 +390,18 @@ abstract class P2pOrderInfoModel {
     required this.advertDetails,
     required this.accountCurrency,
     this.completionTime,
+    this.isSeen,
     this.paymentMethod,
     this.paymentMethodDetails,
+    this.paymentMethodNames,
     this.reviewDetails,
+    this.verificationLockoutUntil,
+    this.verificationNextRequest,
+    this.verificationTokenExpiry,
   });
+
+  /// Indicates that the seller in the process of confirming the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -463,14 +472,29 @@ abstract class P2pOrderInfoModel {
   /// The epoch time of the order completion.
   final DateTime? completionTime;
 
+  /// `true` if the latest order changes have been seen by the current client, otherwise `false`.
+  final bool? isSeen;
+
   /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
   /// Details of available payment methods.
   final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
 
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
+
   /// Details of the review you gave for this order, if any.
   final ReviewDetails? reviewDetails;
+
+  /// If blocked for too many failed verification attempts, the epoch time that the block will end.
+  final DateTime? verificationLockoutUntil;
+
+  /// If a verification request has already been made, the epoch time that another verification request can be made.
+  final DateTime? verificationNextRequest;
+
+  /// Epoch time that the current verification token will expire.
+  final DateTime? verificationTokenExpiry;
 }
 
 /// P2p order info class.
@@ -499,10 +523,16 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
     DateTime? completionTime,
+    bool? isSeen,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -526,10 +556,16 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
           completionTime: completionTime,
+          isSeen: isSeen,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
+          paymentMethodNames: paymentMethodNames,
           reviewDetails: reviewDetails,
+          verificationLockoutUntil: verificationLockoutUntil,
+          verificationNextRequest: verificationNextRequest,
+          verificationTokenExpiry: verificationTokenExpiry,
         );
 
   /// Creates an instance from JSON.
@@ -557,7 +593,9 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
         completionTime: getDateTime(json['completion_time']),
+        isSeen: getBool(json['is_seen']),
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
@@ -570,9 +608,20 @@ class P2pOrderInfo extends P2pOrderInfoModel {
                                 entry.key,
                                 PaymentMethodDetailsProperty.fromJson(
                                     entry.value)))),
+        paymentMethodNames: json['payment_method_names'] == null
+            ? null
+            : List<String>.from(
+                json['payment_method_names']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         reviewDetails: json['review_details'] == null
             ? null
             : ReviewDetails.fromJson(json['review_details']),
+        verificationLockoutUntil:
+            getDateTime(json['verification_lockout_until']),
+        verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
   /// Converts an instance to JSON.
@@ -610,12 +659,27 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
     resultMap['completion_time'] = getSecondsSinceEpochDateTime(completionTime);
+    resultMap['is_seen'] = isSeen;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     if (reviewDetails != null) {
       resultMap['review_details'] = reviewDetails!.toJson();
     }
+    resultMap['verification_lockout_until'] =
+        getSecondsSinceEpochDateTime(verificationLockoutUntil);
+    resultMap['verification_next_request'] =
+        getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_token_expiry'] =
+        getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
     return resultMap;
   }
@@ -644,10 +708,16 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
     DateTime? completionTime,
+    bool? isSeen,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) =>
       P2pOrderInfo(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -672,10 +742,19 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
         completionTime: completionTime ?? this.completionTime,
+        isSeen: isSeen ?? this.isSeen,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         reviewDetails: reviewDetails ?? this.reviewDetails,
+        verificationLockoutUntil:
+            verificationLockoutUntil ?? this.verificationLockoutUntil,
+        verificationNextRequest:
+            verificationNextRequest ?? this.verificationNextRequest,
+        verificationTokenExpiry:
+            verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
 /// Advert details model class.
@@ -758,10 +837,12 @@ abstract class AdvertiserDetailsModel {
   const AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
+    required this.isOnline,
     required this.id,
     this.firstName,
     this.isRecommended,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The advertiser's displayed name.
@@ -769,6 +850,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's account identifier.
   final String loginid;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The advertiser's unique identifier.
   final String id;
@@ -781,6 +865,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Advertiser details class.
@@ -788,29 +875,35 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
     required String id,
+    required bool isOnline,
     required String loginid,
     required String name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
+          isOnline: isOnline,
           loginid: loginid,
           name: name,
           firstName: firstName,
           isRecommended: isRecommended,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
         isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -818,11 +911,14 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
     resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -830,19 +926,23 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     String? id,
+    bool? isOnline,
     String? loginid,
     String? name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       AdvertiserDetails(
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Client details model class.
@@ -853,8 +953,10 @@ abstract class ClientDetailsModel {
     required this.loginid,
     required this.id,
     this.firstName,
+    this.isOnline,
     this.isRecommended,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The client's displayed name.
@@ -869,11 +971,17 @@ abstract class ClientDetailsModel {
   /// The client's first name.
   final String? firstName;
 
+  /// Indicates if the advertiser is currently online.
+  final bool? isOnline;
+
   /// Indicates that the client was recommended in the most recent review by the current user.
   final int? isRecommended;
 
   /// The client's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Client details class.
@@ -884,15 +992,19 @@ class ClientDetails extends ClientDetailsModel {
     required String loginid,
     required String name,
     String? firstName,
+    bool? isOnline,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
           loginid: loginid,
           name: name,
           firstName: firstName,
+          isOnline: isOnline,
           isRecommended: isRecommended,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
@@ -901,8 +1013,10 @@ class ClientDetails extends ClientDetailsModel {
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
+        isOnline: getBool(json['is_online']),
         isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -913,8 +1027,11 @@ class ClientDetails extends ClientDetailsModel {
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
+    resultMap['is_online'] = isOnline;
     resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -925,16 +1042,20 @@ class ClientDetails extends ClientDetailsModel {
     String? loginid,
     String? name,
     String? firstName,
+    bool? isOnline,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       ClientDetails(
         id: id ?? this.id,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
+        isOnline: isOnline ?? this.isOnline,
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Dispute details model class.
@@ -998,6 +1119,8 @@ abstract class PaymentMethodDetailsPropertyModel {
     required this.isEnabled,
     required this.fields,
     this.displayName,
+    this.usedByAdverts,
+    this.usedByOrders,
   });
 
   /// Payment method type.
@@ -1014,6 +1137,12 @@ abstract class PaymentMethodDetailsPropertyModel {
 
   /// Display name of payment method.
   final String? displayName;
+
+  /// IDs of adverts that use this payment method.
+  final List<String>? usedByAdverts;
+
+  /// IDs of orders that use this payment method.
+  final List<String>? usedByOrders;
 }
 
 /// Payment method details property class.
@@ -1025,12 +1154,16 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required String method,
     required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
           type: type,
           displayName: displayName,
+          usedByAdverts: usedByAdverts,
+          usedByOrders: usedByOrders,
         );
 
   /// Creates an instance from JSON.
@@ -1046,6 +1179,20 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         method: json['method'],
         type: paymentMethodDetailsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
+        usedByAdverts: json['used_by_adverts'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_adverts']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        usedByOrders: json['used_by_orders'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_orders']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -1061,6 +1208,20 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
                 entry.value == type)
         .key;
     resultMap['display_name'] = displayName;
+    if (usedByAdverts != null) {
+      resultMap['used_by_adverts'] = usedByAdverts!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (usedByOrders != null) {
+      resultMap['used_by_orders'] = usedByOrders!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -1072,6 +1233,8 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     String? method,
     PaymentMethodDetailsPropertyTypeEnum? type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) =>
       PaymentMethodDetailsProperty(
         fields: fields ?? this.fields,
@@ -1079,6 +1242,8 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         method: method ?? this.method,
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
+        usedByAdverts: usedByAdverts ?? this.usedByAdverts,
+        usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
 /// Fields property model class.

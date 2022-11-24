@@ -140,6 +140,8 @@ abstract class P2pAdvertiserPaymentMethodsPropertyModel {
     required this.isEnabled,
     required this.fields,
     this.displayName,
+    this.usedByAdverts,
+    this.usedByOrders,
   });
 
   /// Payment method type.
@@ -156,6 +158,12 @@ abstract class P2pAdvertiserPaymentMethodsPropertyModel {
 
   /// Display name of payment method.
   final String? displayName;
+
+  /// IDs of adverts that use this payment method.
+  final List<String>? usedByAdverts;
+
+  /// IDs of orders that use this payment method.
+  final List<String>? usedByOrders;
 }
 
 /// P2p advertiser payment methods property class.
@@ -168,12 +176,16 @@ class P2pAdvertiserPaymentMethodsProperty
     required String method,
     required P2pAdvertiserPaymentMethodsPropertyTypeEnum type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
           type: type,
           displayName: displayName,
+          usedByAdverts: usedByAdverts,
+          usedByOrders: usedByOrders,
         );
 
   /// Creates an instance from JSON.
@@ -190,6 +202,20 @@ class P2pAdvertiserPaymentMethodsProperty
         method: json['method'],
         type: p2pAdvertiserPaymentMethodsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
+        usedByAdverts: json['used_by_adverts'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_adverts']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        usedByOrders: json['used_by_orders'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_orders']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -207,6 +233,20 @@ class P2pAdvertiserPaymentMethodsProperty
                 entry.value == type)
         .key;
     resultMap['display_name'] = displayName;
+    if (usedByAdverts != null) {
+      resultMap['used_by_adverts'] = usedByAdverts!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (usedByOrders != null) {
+      resultMap['used_by_orders'] = usedByOrders!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -218,6 +258,8 @@ class P2pAdvertiserPaymentMethodsProperty
     String? method,
     P2pAdvertiserPaymentMethodsPropertyTypeEnum? type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) =>
       P2pAdvertiserPaymentMethodsProperty(
         fields: fields ?? this.fields,
@@ -225,6 +267,8 @@ class P2pAdvertiserPaymentMethodsProperty
         method: method ?? this.method,
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
+        usedByAdverts: usedByAdverts ?? this.usedByAdverts,
+        usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
 /// Fields property model class.

@@ -696,10 +696,12 @@ abstract class AdvertiserDetailsModel {
   const AdvertiserDetailsModel({
     required this.ratingCount,
     required this.name,
+    required this.isOnline,
     required this.id,
     required this.completedOrdersCount,
     this.firstName,
     this.lastName,
+    this.lastOnlineTime,
     this.ratingAverage,
     this.recommendedAverage,
     this.recommendedCount,
@@ -712,6 +714,9 @@ abstract class AdvertiserDetailsModel {
   /// The advertiser's displayed name.
   final String name;
 
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
+
   /// The advertiser's unique identifier.
   final String id;
 
@@ -723,6 +728,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 
   /// Average rating of the advertiser, range is 1-5.
   final double? ratingAverage;
@@ -743,10 +751,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   const AdvertiserDetails({
     required int completedOrdersCount,
     required String id,
+    required bool isOnline,
     required String name,
     required int ratingCount,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -754,10 +764,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   }) : super(
           completedOrdersCount: completedOrdersCount,
           id: id,
+          isOnline: isOnline,
           name: name,
           ratingCount: ratingCount,
           firstName: firstName,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
           ratingAverage: ratingAverage,
           recommendedAverage: recommendedAverage,
           recommendedCount: recommendedCount,
@@ -769,10 +781,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
       AdvertiserDetails(
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         name: json['name'],
         ratingCount: json['rating_count'],
         firstName: json['first_name'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
         ratingAverage: getDouble(json['rating_average']),
         recommendedAverage: getDouble(json['recommended_average']),
         recommendedCount: json['recommended_count'],
@@ -785,10 +799,13 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['name'] = name;
     resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
     resultMap['rating_average'] = ratingAverage;
     resultMap['recommended_average'] = recommendedAverage;
     resultMap['recommended_count'] = recommendedCount;
@@ -801,10 +818,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   AdvertiserDetails copyWith({
     int? completedOrdersCount,
     String? id,
+    bool? isOnline,
     String? name,
     int? ratingCount,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -813,10 +832,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
       AdvertiserDetails(
         completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         name: name ?? this.name,
         ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
         ratingAverage: ratingAverage ?? this.ratingAverage,
         recommendedAverage: recommendedAverage ?? this.recommendedAverage,
         recommendedCount: recommendedCount ?? this.recommendedCount,

@@ -292,6 +292,7 @@ class P2pOrderList extends P2pOrderListModel {
 abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -315,10 +316,17 @@ abstract class ListItemModel {
     required this.accountCurrency,
     this.clientDetails,
     this.completionTime,
+    this.isSeen,
     this.paymentMethod,
     this.paymentMethodNames,
     this.reviewDetails,
+    this.verificationLockoutUntil,
+    this.verificationNextRequest,
+    this.verificationTokenExpiry,
   });
+
+  /// Indicates that the seller in the process of confirming the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -389,6 +397,9 @@ abstract class ListItemModel {
   /// The epoch time of the order completion.
   final DateTime? completionTime;
 
+  /// `true` if the latest order changes have been seen by the current client, otherwise `false`.
+  final bool? isSeen;
+
   /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
@@ -397,6 +408,15 @@ abstract class ListItemModel {
 
   /// Details of the review you gave for this order, if any.
   final ReviewDetails? reviewDetails;
+
+  /// If blocked for too many failed verification attempts, the epoch time that the block will end.
+  final DateTime? verificationLockoutUntil;
+
+  /// If a verification request has already been made, the epoch time that another verification request can be made.
+  final DateTime? verificationNextRequest;
+
+  /// Epoch time that the current verification token will expire.
+  final DateTime? verificationTokenExpiry;
 }
 
 /// List item class.
@@ -424,11 +444,16 @@ class ListItem extends ListItemModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
+    bool? isSeen,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -451,11 +476,16 @@ class ListItem extends ListItemModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
           clientDetails: clientDetails,
           completionTime: completionTime,
+          isSeen: isSeen,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
           reviewDetails: reviewDetails,
+          verificationLockoutUntil: verificationLockoutUntil,
+          verificationNextRequest: verificationNextRequest,
+          verificationTokenExpiry: verificationTokenExpiry,
         );
 
   /// Creates an instance from JSON.
@@ -482,10 +512,12 @@ class ListItem extends ListItemModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
         clientDetails: json['client_details'] == null
             ? null
             : ClientDetails.fromJson(json['client_details']),
         completionTime: getDateTime(json['completion_time']),
+        isSeen: getBool(json['is_seen']),
         paymentMethod: json['payment_method'],
         paymentMethodNames: json['payment_method_names'] == null
             ? null
@@ -497,6 +529,10 @@ class ListItem extends ListItemModel {
         reviewDetails: json['review_details'] == null
             ? null
             : ReviewDetails.fromJson(json['review_details']),
+        verificationLockoutUntil:
+            getDateTime(json['verification_lockout_until']),
+        verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
   /// Converts an instance to JSON.
@@ -532,10 +568,12 @@ class ListItem extends ListItemModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
     if (clientDetails != null) {
       resultMap['client_details'] = clientDetails!.toJson();
     }
     resultMap['completion_time'] = getSecondsSinceEpochDateTime(completionTime);
+    resultMap['is_seen'] = isSeen;
     resultMap['payment_method'] = paymentMethod;
     if (paymentMethodNames != null) {
       resultMap['payment_method_names'] = paymentMethodNames!
@@ -547,6 +585,12 @@ class ListItem extends ListItemModel {
     if (reviewDetails != null) {
       resultMap['review_details'] = reviewDetails!.toJson();
     }
+    resultMap['verification_lockout_until'] =
+        getSecondsSinceEpochDateTime(verificationLockoutUntil);
+    resultMap['verification_next_request'] =
+        getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_token_expiry'] =
+        getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
     return resultMap;
   }
@@ -574,11 +618,16 @@ class ListItem extends ListItemModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
+    bool? isSeen,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     ReviewDetails? reviewDetails,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) =>
       ListItem(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -602,11 +651,19 @@ class ListItem extends ListItemModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
         clientDetails: clientDetails ?? this.clientDetails,
         completionTime: completionTime ?? this.completionTime,
+        isSeen: isSeen ?? this.isSeen,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         reviewDetails: reviewDetails ?? this.reviewDetails,
+        verificationLockoutUntil:
+            verificationLockoutUntil ?? this.verificationLockoutUntil,
+        verificationNextRequest:
+            verificationNextRequest ?? this.verificationNextRequest,
+        verificationTokenExpiry:
+            verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
 /// Advert details model class.
@@ -689,10 +746,12 @@ abstract class AdvertiserDetailsModel {
   const AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
+    required this.isOnline,
     required this.id,
     this.firstName,
     this.isRecommended,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The advertiser's displayed name.
@@ -700,6 +759,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's account identifier.
   final String loginid;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The advertiser's unique identifier.
   final String id;
@@ -712,6 +774,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Advertiser details class.
@@ -719,29 +784,35 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
     required String id,
+    required bool isOnline,
     required String loginid,
     required String name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
+          isOnline: isOnline,
           loginid: loginid,
           name: name,
           firstName: firstName,
           isRecommended: isRecommended,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
         isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -749,11 +820,14 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
     resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -761,19 +835,23 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     String? id,
+    bool? isOnline,
     String? loginid,
     String? name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       AdvertiserDetails(
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Dispute details model class.
@@ -834,10 +912,12 @@ abstract class ClientDetailsModel {
   const ClientDetailsModel({
     required this.name,
     required this.loginid,
+    required this.isOnline,
     required this.id,
     this.firstName,
     this.isRecommended,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The client's displayed name.
@@ -845,6 +925,9 @@ abstract class ClientDetailsModel {
 
   /// The client's account identifier.
   final String loginid;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The client's unique P2P identifier.
   final String id;
@@ -857,6 +940,9 @@ abstract class ClientDetailsModel {
 
   /// The client's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Client details class.
@@ -864,28 +950,34 @@ class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
   const ClientDetails({
     required String id,
+    required bool isOnline,
     required String loginid,
     required String name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
+          isOnline: isOnline,
           loginid: loginid,
           name: name,
           firstName: firstName,
           isRecommended: isRecommended,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
         isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -893,11 +985,14 @@ class ClientDetails extends ClientDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
     resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -905,19 +1000,23 @@ class ClientDetails extends ClientDetailsModel {
   /// Creates a copy of instance with given parameters.
   ClientDetails copyWith({
     String? id,
+    bool? isOnline,
     String? loginid,
     String? name,
     String? firstName,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       ClientDetails(
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Review details model class.

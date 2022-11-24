@@ -152,6 +152,7 @@ enum StatusEnum {
 abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
   const P2pOrderDisputeModel({
+    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -160,6 +161,7 @@ abstract class P2pOrderDisputeModel {
     required this.price,
     required this.paymentInfo,
     required this.localCurrency,
+    required this.isSeen,
     required this.isReviewable,
     required this.isIncoming,
     required this.id,
@@ -174,7 +176,13 @@ abstract class P2pOrderDisputeModel {
     required this.advertiserDetails,
     required this.advertDetails,
     required this.accountCurrency,
+    this.verificationLockoutUntil,
+    this.verificationNextRequest,
+    this.verificationTokenExpiry,
   });
+
+  /// Indicates that the seller in the process of confirming the order.
+  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -199,6 +207,9 @@ abstract class P2pOrderDisputeModel {
 
   /// Local currency for this order.
   final String localCurrency;
+
+  /// `true` if the latest order changes have been seen by the current client, otherwise `false`.
+  final bool isSeen;
 
   /// `true` if a review can be given, otherwise `false`.
   final bool isReviewable;
@@ -241,6 +252,15 @@ abstract class P2pOrderDisputeModel {
 
   /// The currency of order.
   final String accountCurrency;
+
+  /// If blocked for too many failed verification attempts, the epoch time that the block will end.
+  final DateTime? verificationLockoutUntil;
+
+  /// If a verification request has already been made, the epoch time that another verification request can be made.
+  final DateTime? verificationNextRequest;
+
+  /// Epoch time that the current verification token will expire.
+  final DateTime? verificationTokenExpiry;
 }
 
 /// P2p order dispute class.
@@ -261,6 +281,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     required String id,
     required bool isIncoming,
     required bool isReviewable,
+    required bool isSeen,
     required String localCurrency,
     required String paymentInfo,
     required double price,
@@ -269,6 +290,10 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     required String rateDisplay,
     required StatusEnum status,
     required TypeEnum type,
+    required bool verificationPending,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -284,6 +309,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
           id: id,
           isIncoming: isIncoming,
           isReviewable: isReviewable,
+          isSeen: isSeen,
           localCurrency: localCurrency,
           paymentInfo: paymentInfo,
           price: price,
@@ -292,6 +318,10 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          verificationPending: verificationPending,
+          verificationLockoutUntil: verificationLockoutUntil,
+          verificationNextRequest: verificationNextRequest,
+          verificationTokenExpiry: verificationTokenExpiry,
         );
 
   /// Creates an instance from JSON.
@@ -312,6 +342,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         id: json['id'],
         isIncoming: getBool(json['is_incoming'])!,
         isReviewable: getBool(json['is_reviewable'])!,
+        isSeen: getBool(json['is_seen'])!,
         localCurrency: json['local_currency'],
         paymentInfo: json['payment_info'],
         price: getDouble(json['price'])!,
@@ -320,6 +351,11 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
+        verificationPending: getBool(json['verification_pending'])!,
+        verificationLockoutUntil:
+            getDateTime(json['verification_lockout_until']),
+        verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
   /// Converts an instance to JSON.
@@ -344,6 +380,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     resultMap['id'] = id;
     resultMap['is_incoming'] = isIncoming;
     resultMap['is_reviewable'] = isReviewable;
+    resultMap['is_seen'] = isSeen;
     resultMap['local_currency'] = localCurrency;
     resultMap['payment_info'] = paymentInfo;
     resultMap['price'] = price;
@@ -357,6 +394,13 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['verification_pending'] = verificationPending;
+    resultMap['verification_lockout_until'] =
+        getSecondsSinceEpochDateTime(verificationLockoutUntil);
+    resultMap['verification_next_request'] =
+        getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_token_expiry'] =
+        getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
     return resultMap;
   }
@@ -377,6 +421,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     String? id,
     bool? isIncoming,
     bool? isReviewable,
+    bool? isSeen,
     String? localCurrency,
     String? paymentInfo,
     double? price,
@@ -385,6 +430,10 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
+    bool? verificationPending,
+    DateTime? verificationLockoutUntil,
+    DateTime? verificationNextRequest,
+    DateTime? verificationTokenExpiry,
   }) =>
       P2pOrderDispute(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -401,6 +450,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         id: id ?? this.id,
         isIncoming: isIncoming ?? this.isIncoming,
         isReviewable: isReviewable ?? this.isReviewable,
+        isSeen: isSeen ?? this.isSeen,
         localCurrency: localCurrency ?? this.localCurrency,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         price: price ?? this.price,
@@ -409,6 +459,13 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        verificationPending: verificationPending ?? this.verificationPending,
+        verificationLockoutUntil:
+            verificationLockoutUntil ?? this.verificationLockoutUntil,
+        verificationNextRequest:
+            verificationNextRequest ?? this.verificationNextRequest,
+        verificationTokenExpiry:
+            verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
 /// Advert details model class.
@@ -491,9 +548,11 @@ abstract class AdvertiserDetailsModel {
   const AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
+    required this.isOnline,
     required this.id,
     this.firstName,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The advertiser's displayed name.
@@ -501,6 +560,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's account identifier.
   final String loginid;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The advertiser's unique identifier.
   final String id;
@@ -510,6 +572,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Advertiser details class.
@@ -517,26 +582,32 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
     required String id,
+    required bool isOnline,
     required String loginid,
     required String name,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
+          isOnline: isOnline,
           loginid: loginid,
           name: name,
           firstName: firstName,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -544,10 +615,13 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -555,17 +629,21 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     String? id,
+    bool? isOnline,
     String? loginid,
     String? name,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       AdvertiserDetails(
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Client details model class.
@@ -574,9 +652,11 @@ abstract class ClientDetailsModel {
   const ClientDetailsModel({
     required this.name,
     required this.loginid,
+    required this.isOnline,
     required this.id,
     this.firstName,
     this.lastName,
+    this.lastOnlineTime,
   });
 
   /// The client's displayed name.
@@ -584,6 +664,9 @@ abstract class ClientDetailsModel {
 
   /// The client's account identifier.
   final String loginid;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The client's unique P2P identifier.
   final String id;
@@ -593,6 +676,9 @@ abstract class ClientDetailsModel {
 
   /// The client's last name.
   final String? lastName;
+
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
 }
 
 /// Client details class.
@@ -600,25 +686,31 @@ class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
   const ClientDetails({
     required String id,
+    required bool isOnline,
     required String loginid,
     required String name,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) : super(
           id: id,
+          isOnline: isOnline,
           loginid: loginid,
           name: name,
           firstName: firstName,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
         );
 
   /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         loginid: json['loginid'],
         name: json['name'],
         firstName: json['first_name'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
       );
 
   /// Converts an instance to JSON.
@@ -626,10 +718,13 @@ class ClientDetails extends ClientDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
 
     return resultMap;
   }
@@ -637,17 +732,21 @@ class ClientDetails extends ClientDetailsModel {
   /// Creates a copy of instance with given parameters.
   ClientDetails copyWith({
     String? id,
+    bool? isOnline,
     String? loginid,
     String? name,
     String? firstName,
     String? lastName,
+    DateTime? lastOnlineTime,
   }) =>
       ClientDetails(
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
 /// Dispute details model class.
