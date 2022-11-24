@@ -427,8 +427,7 @@ class JsonSchemaParser {
 
       if (classNamesArray.contains(model.className)) {
         // Rare situation where new generated name already exists.
-        // model.className = '${model.className}${classNamesArray.length}';
-        model.className = '${model.className}2';
+        model.className = '${model.className}${classNamesArray.length}';
       }
     }
 
