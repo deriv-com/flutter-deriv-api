@@ -13,6 +13,7 @@ import '../generated/app_delete_receive.dart';
 import '../generated/app_get_receive.dart';
 import '../generated/app_list_receive.dart';
 import '../generated/app_markup_details_receive.dart';
+import '../generated/app_markup_statistics_receive.dart';
 import '../generated/app_register_receive.dart';
 import '../generated/app_update_receive.dart';
 import '../generated/asset_index_receive.dart';
@@ -133,6 +134,8 @@ import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
 import '../generated/transaction_receive.dart';
 import '../generated/transfer_between_accounts_receive.dart';
+import '../generated/unsubscribe_email_receive.dart';
+import '../generated/verify_email_cellxpert_receive.dart';
 import '../generated/verify_email_receive.dart';
 import '../generated/website_status_receive.dart';
 import '../response.dart';
@@ -161,6 +164,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AppListReceive.fromJson(responseMap);
     case 'app_markup_details':
       return AppMarkupDetailsReceive.fromJson(responseMap);
+    case 'app_markup_statistics':
+      return AppMarkupStatisticsReceive.fromJson(responseMap);
     case 'app_register':
       return AppRegisterReceive.fromJson(responseMap);
     case 'app_update':
@@ -401,6 +406,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TransactionReceive.fromJson(responseMap);
     case 'transfer_between_accounts':
       return TransferBetweenAccountsReceive.fromJson(responseMap);
+    case 'unsubscribe_email':
+      return UnsubscribeEmailReceive.fromJson(responseMap);
+    case 'verify_email_cellxpert':
+      return VerifyEmailCellxpertReceive.fromJson(responseMap);
     case 'verify_email':
       return VerifyEmailReceive.fromJson(responseMap);
     case 'website_status':

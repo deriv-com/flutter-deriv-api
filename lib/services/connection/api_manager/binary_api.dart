@@ -47,14 +47,20 @@ class BinaryAPI extends BaseAPI {
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
+  /// Indicates current connection status.
+  /// Only set `true` once we have established SSL and web socket handshake steps.
+  bool _connected = false;
+
   @override
   Future<void> connect(
     ConnectionInformation? connectionInformation, {
-    ConnectionCallback? onDone,
     ConnectionCallback? onOpen,
+    ConnectionCallback? onDone,
     ConnectionCallback? onError,
     bool printResponse = false,
   }) async {
+    _connected = false;
+
     _resetCallManagers();
 
     final Uri uri = Uri(
@@ -69,40 +75,45 @@ class BinaryAPI extends BaseAPI {
       },
     );
 
-    dev.log('connecting to $uri.');
+    dev.log('$runtimeType $uniqueKey connecting to $uri.');
 
     await _setUserAgent();
 
     // Initialize connection to web socket server.
     _webSocketChannel = IOWebSocketChannel.connect(
-      uri.toString(),
+      '$uri',
       pingInterval: _websocketConnectTimeOut,
     );
 
     _webSocketListener = _webSocketChannel?.stream
-        .map<Map<String, dynamic>?>(
-            (Object? result) => jsonDecode(result.toString()))
+        .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
+        _connected = true;
+
         onOpen?.call(uniqueKey);
 
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
         }
       },
-      onError: (Object error) {
-        dev.log('the web socket connection is closed: $error.');
-
-        onError?.call(uniqueKey);
-      },
       onDone: () async {
-        dev.log('web socket is closed.');
+        _connected = false;
+
+        dev.log('$runtimeType $uniqueKey web socket is closed.');
 
         onDone?.call(uniqueKey);
       },
+      onError: (Object error) {
+        dev.log(
+          '$runtimeType $uniqueKey the web socket connection is closed: $error.',
+        );
+
+        onError?.call(uniqueKey);
+      },
     );
 
-    dev.log('send initial message.');
+    dev.log('$runtimeType $uniqueKey send initial message.');
   }
 
   void _resetCallManagers() {
@@ -156,12 +167,15 @@ class BinaryAPI extends BaseAPI {
   Future<void> disconnect() async {
     try {
       await _webSocketListener?.cancel();
-      await _webSocketChannel?.sink.close().timeout(
-            _disconnectTimeOut,
-            onTimeout: () => throw TimeoutException('Could not close sink.'),
-          );
+
+      if (_connected) {
+        await _webSocketChannel?.sink.close().timeout(
+              _disconnectTimeOut,
+              onTimeout: () => throw TimeoutException('Could not close sink.'),
+            );
+      }
     } on Exception catch (e) {
-      dev.log('disconnect error', error: e);
+      dev.log('$runtimeType $uniqueKey disconnect error', error: e);
     } finally {
       _webSocketListener = null;
       _webSocketChannel = null;
@@ -175,18 +189,24 @@ class BinaryAPI extends BaseAPI {
     required bool printResponse,
   }) {
     try {
+      if (!_connected) {
+        _connected = true;
+
+        dev.log('$runtimeType $uniqueKey web socket is connected.');
+      }
+
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
       if (printResponse) {
-        dev.log('api response: $message.');
+        dev.log('$runtimeType $uniqueKey api response: $message.');
       }
 
       if (message.containsKey('req_id')) {
         final int requestId = message['req_id'];
 
         if (printResponse) {
-          dev.log('have request id: $requestId.');
+          dev.log('$runtimeType $uniqueKey have request id: $requestId.');
         }
 
         if (_callManager?.contains(requestId) ?? false) {
@@ -200,13 +220,18 @@ class BinaryAPI extends BaseAPI {
             response: message,
           );
         } else {
-          dev.log('$requestId, does not match anything in our pending queue.');
+          dev.log(
+            '$runtimeType $requestId, does not match anything in our pending queue.',
+          );
         }
       } else {
-        dev.log('no req_id, ignoring.');
+        dev.log('$runtimeType $uniqueKey no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      dev.log('failed to process $response - $e', error: e);
+      dev.log(
+        '$runtimeType $uniqueKey failed to process $response - $e',
+        error: e,
+      );
     }
   }
 

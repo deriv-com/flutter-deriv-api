@@ -281,7 +281,6 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
 abstract class CurrencyConfigModel {
   /// Initializes Currency config model class .
   const CurrencyConfigModel({
-    this.basketIndex,
     this.commodities,
     this.cryptocurrency,
     this.forex,
@@ -289,9 +288,6 @@ abstract class CurrencyConfigModel {
     this.market,
     this.syntheticIndex,
   });
-
-  /// Name of basket_index.
-  final Map<String, dynamic>? basketIndex;
 
   /// Name of commodities.
   final Map<String, dynamic>? commodities;
@@ -316,7 +312,6 @@ abstract class CurrencyConfigModel {
 class CurrencyConfig extends CurrencyConfigModel {
   /// Initializes Currency config class.
   const CurrencyConfig({
-    Map<String, dynamic>? basketIndex,
     Map<String, dynamic>? commodities,
     Map<String, dynamic>? cryptocurrency,
     Map<String, dynamic>? forex,
@@ -324,7 +319,6 @@ class CurrencyConfig extends CurrencyConfigModel {
     Market? market,
     Map<String, dynamic>? syntheticIndex,
   }) : super(
-          basketIndex: basketIndex,
           commodities: commodities,
           cryptocurrency: cryptocurrency,
           forex: forex,
@@ -335,7 +329,6 @@ class CurrencyConfig extends CurrencyConfigModel {
 
   /// Creates an instance from JSON.
   factory CurrencyConfig.fromJson(Map<String, dynamic> json) => CurrencyConfig(
-        basketIndex: json['basket_index'],
         commodities: json['commodities'],
         cryptocurrency: json['cryptocurrency'],
         forex: json['forex'],
@@ -348,7 +341,6 @@ class CurrencyConfig extends CurrencyConfigModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['basket_index'] = basketIndex;
     resultMap['commodities'] = commodities;
     resultMap['cryptocurrency'] = cryptocurrency;
     resultMap['forex'] = forex;
@@ -363,7 +355,6 @@ class CurrencyConfig extends CurrencyConfigModel {
 
   /// Creates a copy of instance with given parameters.
   CurrencyConfig copyWith({
-    Map<String, dynamic>? basketIndex,
     Map<String, dynamic>? commodities,
     Map<String, dynamic>? cryptocurrency,
     Map<String, dynamic>? forex,
@@ -372,7 +363,6 @@ class CurrencyConfig extends CurrencyConfigModel {
     Map<String, dynamic>? syntheticIndex,
   }) =>
       CurrencyConfig(
-        basketIndex: basketIndex ?? this.basketIndex,
         commodities: commodities ?? this.commodities,
         cryptocurrency: cryptocurrency ?? this.cryptocurrency,
         forex: forex ?? this.forex,

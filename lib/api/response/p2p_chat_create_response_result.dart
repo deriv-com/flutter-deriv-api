@@ -60,6 +60,18 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   static Future<P2pChatCreateResponse> createChat(
     P2pChatCreateRequest request,
   ) async {
+    final P2pChatCreateReceive response = await createChatRaw(request);
+
+    return P2pChatCreateResponse.fromJson(response.p2pChatCreate);
+  }
+
+  /// Creates a P2P (peer to peer) chat for the specified order.
+  ///
+  /// For parameters information refer to [P2pChatCreateRequest].
+  /// Throws a [P2PException] if API response contains an error
+  static Future<P2pChatCreateReceive> createChatRaw(
+    P2pChatCreateRequest request,
+  ) async {
     final P2pChatCreateReceive response = await _api.call(request: request);
 
     checkException(
@@ -68,7 +80,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
           P2PChatException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pChatCreateResponse.fromJson(response.p2pChatCreate);
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.

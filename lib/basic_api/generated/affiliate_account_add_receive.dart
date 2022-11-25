@@ -31,7 +31,7 @@ class AffiliateAccountAddReceive extends Response {
         reqId: json['req_id'] as int?,
       );
 
-  /// The information of the created affiliate user.
+  /// The information of the affiliate user trying to register.
   final Map<String, dynamic>? affiliateAccountAdd;
 
   /// Converts this instance to JSON

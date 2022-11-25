@@ -86,7 +86,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     try {
       await _api!.disconnect().timeout(_pingTimeout);
     } on Exception catch (e) {
-      dev.log('Disconnect Exception: $e');
+      dev.log('$runtimeType disconnect exception: $e', error: e);
 
       unawaited(reconnect());
 

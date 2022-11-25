@@ -165,6 +165,7 @@ abstract class GetSettingsModel {
     this.salutation,
     this.taxIdentificationNumber,
     this.taxResidence,
+    this.tradingHub,
     this.userHash,
   });
 
@@ -255,6 +256,9 @@ abstract class GetSettingsModel {
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account.
   final String? taxResidence;
 
+  /// Boolean value 1 or 0, indicating if client has enabled the Trading Hub dashboard
+  final int? tradingHub;
+
   /// Hash generated using user details to verify whether the user is legitimate for our customer support system.
   final String? userHash;
 }
@@ -292,6 +296,7 @@ class GetSettings extends GetSettingsModel {
     String? salutation,
     String? taxIdentificationNumber,
     String? taxResidence,
+    int? tradingHub,
     String? userHash,
   }) : super(
           accountOpeningReason: accountOpeningReason,
@@ -323,6 +328,7 @@ class GetSettings extends GetSettingsModel {
           salutation: salutation,
           taxIdentificationNumber: taxIdentificationNumber,
           taxResidence: taxResidence,
+          tradingHub: tradingHub,
           userHash: userHash,
         );
 
@@ -366,6 +372,7 @@ class GetSettings extends GetSettingsModel {
         salutation: json['salutation'],
         taxIdentificationNumber: json['tax_identification_number'],
         taxResidence: json['tax_residence'],
+        tradingHub: json['trading_hub'],
         userHash: json['user_hash'],
       );
 
@@ -410,6 +417,7 @@ class GetSettings extends GetSettingsModel {
     resultMap['salutation'] = salutation;
     resultMap['tax_identification_number'] = taxIdentificationNumber;
     resultMap['tax_residence'] = taxResidence;
+    resultMap['trading_hub'] = tradingHub;
     resultMap['user_hash'] = userHash;
 
     return resultMap;
@@ -446,6 +454,7 @@ class GetSettings extends GetSettingsModel {
     String? salutation,
     String? taxIdentificationNumber,
     String? taxResidence,
+    int? tradingHub,
     String? userHash,
   }) =>
       GetSettings(
@@ -481,6 +490,7 @@ class GetSettings extends GetSettingsModel {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tradingHub: tradingHub ?? this.tradingHub,
         userHash: userHash ?? this.userHash,
       );
 }
