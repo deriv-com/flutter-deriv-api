@@ -209,6 +209,7 @@ abstract class Mt5LoginListItemModel {
     this.name,
     this.server,
     this.serverInfo,
+    this.status,
     this.subAccountType,
   });
 
@@ -254,6 +255,9 @@ abstract class Mt5LoginListItemModel {
   /// Trade server information.
   final ServerInfo? serverInfo;
 
+  /// MT5 account status.
+  final String? status;
+
   /// Sub account type
   final SubAccountTypeEnum? subAccountType;
 }
@@ -276,6 +280,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
     String? name,
     String? server,
     ServerInfo? serverInfo,
+    String? status,
     SubAccountTypeEnum? subAccountType,
   }) : super(
           accountType: accountType,
@@ -292,6 +297,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
           name: name,
           server: server,
           serverInfo: serverInfo,
+          status: status,
           subAccountType: subAccountType,
         );
 
@@ -320,6 +326,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         serverInfo: json['server_info'] == null
             ? null
             : ServerInfo.fromJson(json['server_info']),
+        status: json['status'],
         subAccountType: json['sub_account_type'] == null
             ? null
             : subAccountTypeEnumMapper[json['sub_account_type']],
@@ -354,6 +361,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
     if (serverInfo != null) {
       resultMap['server_info'] = serverInfo!.toJson();
     }
+    resultMap['status'] = status;
     resultMap['sub_account_type'] = subAccountTypeEnumMapper.entries
         .firstWhere((MapEntry<String, SubAccountTypeEnum> entry) =>
             entry.value == subAccountType)
@@ -378,6 +386,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
     String? name,
     String? server,
     ServerInfo? serverInfo,
+    String? status,
     SubAccountTypeEnum? subAccountType,
   }) =>
       Mt5LoginListItem(
@@ -395,6 +404,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         name: name ?? this.name,
         server: server ?? this.server,
         serverInfo: serverInfo ?? this.serverInfo,
+        status: status ?? this.status,
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }

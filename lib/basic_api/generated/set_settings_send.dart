@@ -33,6 +33,7 @@ class SetSettingsRequest extends Request {
     this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
+    this.tradingHub,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -72,6 +73,8 @@ class SetSettingsRequest extends Request {
             json['set_settings'] == null ? null : json['set_settings'] == 1,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tradingHub:
+            json['trading_hub'] == null ? null : json['trading_hub'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -151,6 +154,9 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String? taxResidence;
 
+  /// [Optional] Enable/Disable Trading Hub dashboard
+  final bool? tradingHub;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -191,6 +197,11 @@ class SetSettingsRequest extends Request {
                 : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'trading_hub': tradingHub == null
+            ? null
+            : tradingHub!
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -223,6 +234,7 @@ class SetSettingsRequest extends Request {
     bool? setSettings,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tradingHub,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -254,6 +266,7 @@ class SetSettingsRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tradingHub: tradingHub ?? this.tradingHub,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

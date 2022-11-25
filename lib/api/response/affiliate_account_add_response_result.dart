@@ -11,7 +11,7 @@ abstract class AffiliateAccountAddResponseModel {
     this.affiliateAccountAdd,
   });
 
-  /// The information of the created affiliate user.
+  /// The information of the affiliate user trying to register.
   final AffiliateAccountAdd? affiliateAccountAdd;
 }
 
@@ -57,13 +57,15 @@ class AffiliateAccountAddResponse extends AffiliateAccountAddResponseModel {
 abstract class AffiliateAccountAddModel {
   /// Initializes Affiliate account add model class .
   const AffiliateAccountAddModel({
-    required this.affiliateId,
-    this.addressCity,
+    required this.real,
+    required this.demo,
     this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
+    this.affiliateId,
     this.country,
+    this.dateOfBirth,
     this.firstName,
     this.lastName,
     this.nonPepDeclaration,
@@ -72,11 +74,11 @@ abstract class AffiliateAccountAddModel {
     this.verificationCode,
   });
 
-  /// Affiliate ID from CellXperts for the created affiliate
-  final String affiliateId;
+  /// Real created account details
+  final Map<String, dynamic> real;
 
-  /// City name
-  final String? addressCity;
+  /// Demo(VRTC) created account details
+  final Map<String, dynamic> demo;
 
   /// First line of address.
   final String? addressLine1;
@@ -90,8 +92,14 @@ abstract class AffiliateAccountAddModel {
   /// State / Region of the address.
   final String? addressState;
 
+  /// Affiliate ID from CellXperts for the created affiliate
+  final String? affiliateId;
+
   /// Registered country of the created affiliate.
   final String? country;
+
+  /// Birth date of user trying to register
+  final String? dateOfBirth;
 
   /// First name of the created affiliate.
   final String? firstName;
@@ -116,13 +124,15 @@ abstract class AffiliateAccountAddModel {
 class AffiliateAccountAdd extends AffiliateAccountAddModel {
   /// Initializes Affiliate account add class.
   const AffiliateAccountAdd({
-    required String affiliateId,
-    String? addressCity,
+    required Map<String, dynamic> demo,
+    required Map<String, dynamic> real,
     String? addressLine1,
     String? addressLine2,
     String? addressPostcode,
     String? addressState,
+    String? affiliateId,
     String? country,
+    String? dateOfBirth,
     String? firstName,
     String? lastName,
     bool? nonPepDeclaration,
@@ -130,13 +140,15 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
     bool? tncAccepted,
     String? verificationCode,
   }) : super(
-          affiliateId: affiliateId,
-          addressCity: addressCity,
+          demo: demo,
+          real: real,
           addressLine1: addressLine1,
           addressLine2: addressLine2,
           addressPostcode: addressPostcode,
           addressState: addressState,
+          affiliateId: affiliateId,
           country: country,
+          dateOfBirth: dateOfBirth,
           firstName: firstName,
           lastName: lastName,
           nonPepDeclaration: nonPepDeclaration,
@@ -148,13 +160,15 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
   /// Creates an instance from JSON.
   factory AffiliateAccountAdd.fromJson(Map<String, dynamic> json) =>
       AffiliateAccountAdd(
-        affiliateId: json['affiliate_id'],
-        addressCity: json['address_city'],
+        demo: json['demo'],
+        real: json['real'],
         addressLine1: json['address_line_1'],
         addressLine2: json['address_line_2'],
         addressPostcode: json['address_postcode'],
         addressState: json['address_state'],
+        affiliateId: json['affiliate_id'],
         country: json['country'],
+        dateOfBirth: json['date_of_birth'],
         firstName: json['first_name'],
         lastName: json['last_name'],
         nonPepDeclaration: getBool(json['non_pep_declaration']),
@@ -167,13 +181,15 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['affiliate_id'] = affiliateId;
-    resultMap['address_city'] = addressCity;
+    resultMap['demo'] = demo;
+    resultMap['real'] = real;
     resultMap['address_line_1'] = addressLine1;
     resultMap['address_line_2'] = addressLine2;
     resultMap['address_postcode'] = addressPostcode;
     resultMap['address_state'] = addressState;
+    resultMap['affiliate_id'] = affiliateId;
     resultMap['country'] = country;
+    resultMap['date_of_birth'] = dateOfBirth;
     resultMap['first_name'] = firstName;
     resultMap['last_name'] = lastName;
     resultMap['non_pep_declaration'] = nonPepDeclaration;
@@ -186,13 +202,15 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
 
   /// Creates a copy of instance with given parameters.
   AffiliateAccountAdd copyWith({
-    String? affiliateId,
-    String? addressCity,
+    Map<String, dynamic>? demo,
+    Map<String, dynamic>? real,
     String? addressLine1,
     String? addressLine2,
     String? addressPostcode,
     String? addressState,
+    String? affiliateId,
     String? country,
+    String? dateOfBirth,
     String? firstName,
     String? lastName,
     bool? nonPepDeclaration,
@@ -201,13 +219,15 @@ class AffiliateAccountAdd extends AffiliateAccountAddModel {
     String? verificationCode,
   }) =>
       AffiliateAccountAdd(
-        affiliateId: affiliateId ?? this.affiliateId,
-        addressCity: addressCity ?? this.addressCity,
+        demo: demo ?? this.demo,
+        real: real ?? this.real,
         addressLine1: addressLine1 ?? this.addressLine1,
         addressLine2: addressLine2 ?? this.addressLine2,
         addressPostcode: addressPostcode ?? this.addressPostcode,
         addressState: addressState ?? this.addressState,
+        affiliateId: affiliateId ?? this.affiliateId,
         country: country ?? this.country,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,

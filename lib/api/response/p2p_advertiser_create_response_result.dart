@@ -73,6 +73,18 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   static Future<P2pAdvertiserCreateResponse> createAdvertiser(
     P2pAdvertiserCreateRequest request,
   ) async {
+    final P2pAdvertiserCreateReceive response =
+        await createAdvertiserRaw(request);
+
+    return P2pAdvertiserCreateResponse.fromJson(
+        response.p2pAdvertiserCreate, response.subscription);
+  }
+
+  /// Registers the client as a P2P (peer to peer) advertiser.
+  /// For parameters information refer to [P2pAdvertiserCreateRequest].
+  static Future<P2pAdvertiserCreateReceive> createAdvertiserRaw(
+    P2pAdvertiserCreateRequest request,
+  ) async {
     final P2pAdvertiserCreateReceive response = await _api.call(
       request: request.copyWith(subscribe: false),
     );
@@ -83,8 +95,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pAdvertiserCreateResponse.fromJson(
-        response.p2pAdvertiserCreate, response.subscription);
+    return response;
   }
 
   /// Registers the client as a P2P (peer to peer) advertiser.
@@ -93,9 +104,27 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
     P2pAdvertiserCreateRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
+      createAdvertiserAndSubscribeRaw(
+        request,
+        comparePredicate: comparePredicate,
+      ).map(
+        (P2pAdvertiserCreateReceive? response) => response != null
+            ? P2pAdvertiserCreateResponse.fromJson(
+                response.p2pAdvertiserCreate,
+                response.subscription,
+              )
+            : null,
+      );
+
+  /// Registers the client as a P2P (peer to peer) advertiser.
+  /// For parameters information refer to [P2pAdvertiserCreateRequest].
+  static Stream<P2pAdvertiserCreateReceive?> createAdvertiserAndSubscribeRaw(
+    P2pAdvertiserCreateRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
-          .map<P2pAdvertiserCreateResponse?>(
+          .map<P2pAdvertiserCreateReceive?>(
         (Response response) {
           checkException(
             response: response,
@@ -103,12 +132,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
                 P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
-          return response is P2pAdvertiserCreateReceive
-              ? P2pAdvertiserCreateResponse.fromJson(
-                  response.p2pAdvertiserCreate,
-                  response.subscription,
-                )
-              : null;
+          return response is P2pAdvertiserCreateReceive ? response : null;
         },
       );
 

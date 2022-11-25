@@ -60,6 +60,18 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
     P2pAdvertiserUpdateRequest request,
   ) async {
     final P2pAdvertiserUpdateReceive response =
+        await updateAdvertiserRaw(request);
+
+    return P2pAdvertiserUpdateResponse.fromJson(response.p2pAdvertiserUpdate);
+  }
+
+  /// Updates the information of the P2P (peer to peer) advertiser for the current account.
+  /// Can only be used by an approved P2P advertiser.
+  /// For parameters information refer to [P2pAdvertiserUpdateRequest].
+  static Future<P2pAdvertiserUpdateReceive> updateAdvertiserRaw(
+    P2pAdvertiserUpdateRequest request,
+  ) async {
+    final P2pAdvertiserUpdateReceive response =
         await _api.call(request: request);
 
     checkException(
@@ -68,7 +80,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pAdvertiserUpdateResponse.fromJson(response.p2pAdvertiserUpdate);
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.

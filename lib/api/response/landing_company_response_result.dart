@@ -107,6 +107,7 @@ abstract class LandingCompanyModel {
   const LandingCompanyModel({
     this.addressParseable,
     this.config,
+    this.dxtradeAllCompany,
     this.dxtradeFinancialCompany,
     this.dxtradeGamingCompany,
     this.financialCompany,
@@ -137,6 +138,9 @@ abstract class LandingCompanyModel {
 
   /// Config structure with document types ,taxRequired ,tin format details.
   final Map<String, dynamic>? config;
+
+  /// Available Deriv X all account types (Synthetic Indices and Financials).
+  final DxtradeAllCompany? dxtradeAllCompany;
 
   /// Available Deriv X financial account types (all except Synthetic Indices).
   final DxtradeFinancialCompany? dxtradeFinancialCompany;
@@ -214,6 +218,7 @@ class LandingCompany extends LandingCompanyModel {
   const LandingCompany({
     bool? addressParseable,
     Map<String, dynamic>? config,
+    DxtradeAllCompany? dxtradeAllCompany,
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
     FinancialCompany? financialCompany,
@@ -240,6 +245,7 @@ class LandingCompany extends LandingCompanyModel {
   }) : super(
           addressParseable: addressParseable,
           config: config,
+          dxtradeAllCompany: dxtradeAllCompany,
           dxtradeFinancialCompany: dxtradeFinancialCompany,
           dxtradeGamingCompany: dxtradeGamingCompany,
           financialCompany: financialCompany,
@@ -270,6 +276,9 @@ class LandingCompany extends LandingCompanyModel {
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
         addressParseable: getBool(json['address_parseable']),
         config: json['config'],
+        dxtradeAllCompany: json['dxtrade_all_company'] == null
+            ? null
+            : DxtradeAllCompany.fromJson(json['dxtrade_all_company']),
         dxtradeFinancialCompany: json['dxtrade_financial_company'] == null
             ? null
             : DxtradeFinancialCompany.fromJson(
@@ -322,6 +331,9 @@ class LandingCompany extends LandingCompanyModel {
 
     resultMap['address_parseable'] = addressParseable;
     resultMap['config'] = config;
+    if (dxtradeAllCompany != null) {
+      resultMap['dxtrade_all_company'] = dxtradeAllCompany!.toJson();
+    }
     if (dxtradeFinancialCompany != null) {
       resultMap['dxtrade_financial_company'] =
           dxtradeFinancialCompany!.toJson();
@@ -374,6 +386,7 @@ class LandingCompany extends LandingCompanyModel {
   LandingCompany copyWith({
     bool? addressParseable,
     Map<String, dynamic>? config,
+    DxtradeAllCompany? dxtradeAllCompany,
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
     FinancialCompany? financialCompany,
@@ -401,6 +414,7 @@ class LandingCompany extends LandingCompanyModel {
       LandingCompany(
         addressParseable: addressParseable ?? this.addressParseable,
         config: config ?? this.config,
+        dxtradeAllCompany: dxtradeAllCompany ?? this.dxtradeAllCompany,
         dxtradeFinancialCompany:
             dxtradeFinancialCompany ?? this.dxtradeFinancialCompany,
         dxtradeGamingCompany: dxtradeGamingCompany ?? this.dxtradeGamingCompany,
@@ -434,10 +448,10 @@ class LandingCompany extends LandingCompanyModel {
         virtualCompany: virtualCompany ?? this.virtualCompany,
       );
 }
-/// Dxtrade financial company model class.
-abstract class DxtradeFinancialCompanyModel {
-  /// Initializes Dxtrade financial company model class .
-  const DxtradeFinancialCompanyModel({
+/// Dxtrade all company model class.
+abstract class DxtradeAllCompanyModel {
+  /// Initializes Dxtrade all company model class .
+  const DxtradeAllCompanyModel({
     this.standard,
   });
 
@@ -445,18 +459,18 @@ abstract class DxtradeFinancialCompanyModel {
   final Standard? standard;
 }
 
-/// Dxtrade financial company class.
-class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
-  /// Initializes Dxtrade financial company class.
-  const DxtradeFinancialCompany({
+/// Dxtrade all company class.
+class DxtradeAllCompany extends DxtradeAllCompanyModel {
+  /// Initializes Dxtrade all company class.
+  const DxtradeAllCompany({
     Standard? standard,
   }) : super(
           standard: standard,
         );
 
   /// Creates an instance from JSON.
-  factory DxtradeFinancialCompany.fromJson(Map<String, dynamic> json) =>
-      DxtradeFinancialCompany(
+  factory DxtradeAllCompany.fromJson(Map<String, dynamic> json) =>
+      DxtradeAllCompany(
         standard: json['standard'] == null
             ? null
             : Standard.fromJson(json['standard']),
@@ -474,10 +488,10 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
   }
 
   /// Creates a copy of instance with given parameters.
-  DxtradeFinancialCompany copyWith({
+  DxtradeAllCompany copyWith({
     Standard? standard,
   }) =>
-      DxtradeFinancialCompany(
+      DxtradeAllCompany(
         standard: standard ?? this.standard,
       );
 }
@@ -531,7 +545,7 @@ abstract class StandardModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final Requirements? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -554,7 +568,7 @@ class Standard extends StandardModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    Requirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -610,7 +624,9 @@ class Standard extends StandardModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : Requirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -654,7 +670,9 @@ class Standard extends StandardModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -673,7 +691,7 @@ class Standard extends StandardModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    Requirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -694,6 +712,747 @@ class Standard extends StandardModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Requirements model class.
+abstract class RequirementsModel {
+  /// Initializes Requirements model class .
+  const RequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final AfterFirstDeposit? afterFirstDeposit;
+
+  /// Compliance requirements
+  final Compliance? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Requirements class.
+class Requirements extends RequirementsModel {
+  /// Initializes Requirements class.
+  const Requirements({
+    AfterFirstDeposit? afterFirstDeposit,
+    Compliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory Requirements.fromJson(Map<String, dynamic> json) => Requirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : AfterFirstDeposit.fromJson(json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : Compliance.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Requirements copyWith({
+    AfterFirstDeposit? afterFirstDeposit,
+    Compliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      Requirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// After first deposit model class.
+abstract class AfterFirstDepositModel {
+  /// Initializes After first deposit model class .
+  const AfterFirstDepositModel({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// After first deposit class.
+class AfterFirstDeposit extends AfterFirstDepositModel {
+  /// Initializes After first deposit class.
+  const AfterFirstDeposit({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory AfterFirstDeposit.fromJson(Map<String, dynamic> json) =>
+      AfterFirstDeposit(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  AfterFirstDeposit copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      AfterFirstDeposit(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Compliance model class.
+abstract class ComplianceModel {
+  /// Initializes Compliance model class .
+  const ComplianceModel({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Compliance class.
+class Compliance extends ComplianceModel {
+  /// Initializes Compliance class.
+  const Compliance({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory Compliance.fromJson(Map<String, dynamic> json) => Compliance(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Compliance copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      Compliance(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
+      );
+}
+/// Dxtrade financial company model class.
+abstract class DxtradeFinancialCompanyModel {
+  /// Initializes Dxtrade financial company model class .
+  const DxtradeFinancialCompanyModel({
+    this.standard,
+  });
+
+  /// Landing Company details.
+  final DxtradeFinancialCompanyStandard? standard;
+}
+
+/// Dxtrade financial company class.
+class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
+  /// Initializes Dxtrade financial company class.
+  const DxtradeFinancialCompany({
+    DxtradeFinancialCompanyStandard? standard,
+  }) : super(
+          standard: standard,
+        );
+
+  /// Creates an instance from JSON.
+  factory DxtradeFinancialCompany.fromJson(Map<String, dynamic> json) =>
+      DxtradeFinancialCompany(
+        standard: json['standard'] == null
+            ? null
+            : DxtradeFinancialCompanyStandard.fromJson(json['standard']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (standard != null) {
+      resultMap['standard'] = standard!.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  DxtradeFinancialCompany copyWith({
+    DxtradeFinancialCompanyStandard? standard,
+  }) =>
+      DxtradeFinancialCompany(
+        standard: standard ?? this.standard,
+      );
+}
+/// Dxtrade financial company standard model class.
+abstract class DxtradeFinancialCompanyStandardModel {
+  /// Initializes Dxtrade financial company standard model class .
+  const DxtradeFinancialCompanyStandardModel({
+    this.address,
+    this.changeableFields,
+    this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
+    this.legalAllowedContractCategories,
+    this.legalAllowedCurrencies,
+    this.legalAllowedMarkets,
+    this.legalDefaultCurrency,
+    this.name,
+    this.requirements,
+    this.shortcode,
+    this.supportProfessionalClient,
+  });
+
+  /// Landing Company address
+  final List<String>? address;
+
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
+  /// Landing Company country of incorporation
+  final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
+
+  /// Allowed contract types
+  final List<String>? legalAllowedContractCategories;
+
+  /// Allowable currencies
+  final List<String>? legalAllowedCurrencies;
+
+  /// Allowable markets
+  final List<String>? legalAllowedMarkets;
+
+  /// Default account currency
+  final String? legalDefaultCurrency;
+
+  /// Landing Company legal name
+  final String? name;
+
+  /// Legal requirements for the Landing Company
+  final StandardRequirements? requirements;
+
+  /// Landing Company short code
+  final String? shortcode;
+
+  /// Flag that indicates whether the landing company supports professional accounts or not
+  final bool? supportProfessionalClient;
+}
+
+/// Dxtrade financial company standard class.
+class DxtradeFinancialCompanyStandard
+    extends DxtradeFinancialCompanyStandardModel {
+  /// Initializes Dxtrade financial company standard class.
+  const DxtradeFinancialCompanyStandard({
+    List<String>? address,
+    Map<String, dynamic>? changeableFields,
+    String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
+    List<String>? legalAllowedContractCategories,
+    List<String>? legalAllowedCurrencies,
+    List<String>? legalAllowedMarkets,
+    String? legalDefaultCurrency,
+    String? name,
+    StandardRequirements? requirements,
+    String? shortcode,
+    bool? supportProfessionalClient,
+  }) : super(
+          address: address,
+          changeableFields: changeableFields,
+          country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
+          legalAllowedContractCategories: legalAllowedContractCategories,
+          legalAllowedCurrencies: legalAllowedCurrencies,
+          legalAllowedMarkets: legalAllowedMarkets,
+          legalDefaultCurrency: legalDefaultCurrency,
+          name: name,
+          requirements: requirements,
+          shortcode: shortcode,
+          supportProfessionalClient: supportProfessionalClient,
+        );
+
+  /// Creates an instance from JSON.
+  factory DxtradeFinancialCompanyStandard.fromJson(Map<String, dynamic> json) =>
+      DxtradeFinancialCompanyStandard(
+        address: json['address'] == null
+            ? null
+            : List<String>.from(
+                json['address']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        changeableFields: json['changeable_fields'],
+        country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
+        legalAllowedContractCategories:
+            json['legal_allowed_contract_categories'] == null
+                ? null
+                : List<String>.from(
+                    json['legal_allowed_contract_categories']?.map(
+                      (dynamic item) => item,
+                    ),
+                  ),
+        legalAllowedCurrencies: json['legal_allowed_currencies'] == null
+            ? null
+            : List<String>.from(
+                json['legal_allowed_currencies']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        legalAllowedMarkets: json['legal_allowed_markets'] == null
+            ? null
+            : List<String>.from(
+                json['legal_allowed_markets']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        legalDefaultCurrency: json['legal_default_currency'],
+        name: json['name'],
+        requirements: json['requirements'] == null
+            ? null
+            : StandardRequirements.fromJson(json['requirements']),
+        shortcode: json['shortcode'],
+        supportProfessionalClient: getBool(json['support_professional_client']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (address != null) {
+      resultMap['address'] = address!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['changeable_fields'] = changeableFields;
+    resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
+    if (legalAllowedContractCategories != null) {
+      resultMap['legal_allowed_contract_categories'] =
+          legalAllowedContractCategories!
+              .map<dynamic>(
+                (String item) => item,
+              )
+              .toList();
+    }
+    if (legalAllowedCurrencies != null) {
+      resultMap['legal_allowed_currencies'] = legalAllowedCurrencies!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (legalAllowedMarkets != null) {
+      resultMap['legal_allowed_markets'] = legalAllowedMarkets!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['legal_default_currency'] = legalDefaultCurrency;
+    resultMap['name'] = name;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
+    resultMap['shortcode'] = shortcode;
+    resultMap['support_professional_client'] = supportProfessionalClient;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  DxtradeFinancialCompanyStandard copyWith({
+    List<String>? address,
+    Map<String, dynamic>? changeableFields,
+    String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
+    List<String>? legalAllowedContractCategories,
+    List<String>? legalAllowedCurrencies,
+    List<String>? legalAllowedMarkets,
+    String? legalDefaultCurrency,
+    String? name,
+    StandardRequirements? requirements,
+    String? shortcode,
+    bool? supportProfessionalClient,
+  }) =>
+      DxtradeFinancialCompanyStandard(
+        address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
+        country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
+        legalAllowedContractCategories: legalAllowedContractCategories ??
+            this.legalAllowedContractCategories,
+        legalAllowedCurrencies:
+            legalAllowedCurrencies ?? this.legalAllowedCurrencies,
+        legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
+        legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
+        name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
+        shortcode: shortcode ?? this.shortcode,
+        supportProfessionalClient:
+            supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Standard requirements model class.
+abstract class StandardRequirementsModel {
+  /// Initializes Standard requirements model class .
+  const StandardRequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Standard requirements class.
+class StandardRequirements extends StandardRequirementsModel {
+  /// Initializes Standard requirements class.
+  const StandardRequirements({
+    RequirementsAfterFirstDeposit? afterFirstDeposit,
+    RequirementsCompliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory StandardRequirements.fromJson(Map<String, dynamic> json) =>
+      StandardRequirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  StandardRequirements copyWith({
+    RequirementsAfterFirstDeposit? afterFirstDeposit,
+    RequirementsCompliance? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      StandardRequirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit model class.
+abstract class RequirementsAfterFirstDepositModel {
+  /// Initializes Requirements after first deposit model class .
+  const RequirementsAfterFirstDepositModel({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit class.
+class RequirementsAfterFirstDeposit extends RequirementsAfterFirstDepositModel {
+  /// Initializes Requirements after first deposit class.
+  const RequirementsAfterFirstDeposit({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance model class.
+abstract class RequirementsComplianceModel {
+  /// Initializes Requirements compliance model class .
+  const RequirementsComplianceModel({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance class.
+class RequirementsCompliance extends RequirementsComplianceModel {
+  /// Initializes Requirements compliance class.
+  const RequirementsCompliance({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Dxtrade gaming company model class.
@@ -793,7 +1552,7 @@ abstract class DxtradeGamingCompanyStandardModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final StandardRequirements12? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -816,7 +1575,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    StandardRequirements12? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -873,7 +1632,9 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : StandardRequirements12.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -917,7 +1678,9 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -936,7 +1699,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    StandardRequirements12? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -957,6 +1720,245 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Standard requirements12 model class.
+abstract class StandardRequirements12Model {
+  /// Initializes Standard requirements12 model class .
+  const StandardRequirements12Model({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit10? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance11? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Standard requirements12 class.
+class StandardRequirements12 extends StandardRequirements12Model {
+  /// Initializes Standard requirements12 class.
+  const StandardRequirements12({
+    RequirementsAfterFirstDeposit10? afterFirstDeposit,
+    RequirementsCompliance11? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory StandardRequirements12.fromJson(Map<String, dynamic> json) =>
+      StandardRequirements12(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit10.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance11.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  StandardRequirements12 copyWith({
+    RequirementsAfterFirstDeposit10? afterFirstDeposit,
+    RequirementsCompliance11? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      StandardRequirements12(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit10 model class.
+abstract class RequirementsAfterFirstDeposit10Model {
+  /// Initializes Requirements after first deposit10 model class .
+  const RequirementsAfterFirstDeposit10Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit10 class.
+class RequirementsAfterFirstDeposit10
+    extends RequirementsAfterFirstDeposit10Model {
+  /// Initializes Requirements after first deposit10 class.
+  const RequirementsAfterFirstDeposit10({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit10.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit10(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit10 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit10(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance11 model class.
+abstract class RequirementsCompliance11Model {
+  /// Initializes Requirements compliance11 model class .
+  const RequirementsCompliance11Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance11 class.
+class RequirementsCompliance11 extends RequirementsCompliance11Model {
+  /// Initializes Requirements compliance11 class.
+  const RequirementsCompliance11({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance11.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance11(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance11 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance11(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Financial company model class.
@@ -1009,7 +2011,7 @@ abstract class FinancialCompanyModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final FinancialCompanyRequirements? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -1032,7 +2034,7 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialCompanyRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -1089,7 +2091,9 @@ class FinancialCompany extends FinancialCompanyModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : FinancialCompanyRequirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -1133,7 +2137,9 @@ class FinancialCompany extends FinancialCompanyModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -1152,7 +2158,7 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialCompanyRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -1173,6 +2179,245 @@ class FinancialCompany extends FinancialCompanyModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Financial company requirements model class.
+abstract class FinancialCompanyRequirementsModel {
+  /// Initializes Financial company requirements model class .
+  const FinancialCompanyRequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit15? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance16? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Financial company requirements class.
+class FinancialCompanyRequirements extends FinancialCompanyRequirementsModel {
+  /// Initializes Financial company requirements class.
+  const FinancialCompanyRequirements({
+    RequirementsAfterFirstDeposit15? afterFirstDeposit,
+    RequirementsCompliance16? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory FinancialCompanyRequirements.fromJson(Map<String, dynamic> json) =>
+      FinancialCompanyRequirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit15.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance16.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FinancialCompanyRequirements copyWith({
+    RequirementsAfterFirstDeposit15? afterFirstDeposit,
+    RequirementsCompliance16? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      FinancialCompanyRequirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit15 model class.
+abstract class RequirementsAfterFirstDeposit15Model {
+  /// Initializes Requirements after first deposit15 model class .
+  const RequirementsAfterFirstDeposit15Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit15 class.
+class RequirementsAfterFirstDeposit15
+    extends RequirementsAfterFirstDeposit15Model {
+  /// Initializes Requirements after first deposit15 class.
+  const RequirementsAfterFirstDeposit15({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit15.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit15(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit15 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit15(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance16 model class.
+abstract class RequirementsCompliance16Model {
+  /// Initializes Requirements compliance16 model class .
+  const RequirementsCompliance16Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance16 class.
+class RequirementsCompliance16 extends RequirementsCompliance16Model {
+  /// Initializes Requirements compliance16 class.
+  const RequirementsCompliance16({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance16.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance16(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance16 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance16(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Gaming company model class.
@@ -1225,7 +2470,7 @@ abstract class GamingCompanyModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final GamingCompanyRequirements? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -1248,7 +2493,7 @@ class GamingCompany extends GamingCompanyModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    GamingCompanyRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -1304,7 +2549,9 @@ class GamingCompany extends GamingCompanyModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : GamingCompanyRequirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -1348,7 +2595,9 @@ class GamingCompany extends GamingCompanyModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -1367,7 +2616,7 @@ class GamingCompany extends GamingCompanyModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    GamingCompanyRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -1388,6 +2637,245 @@ class GamingCompany extends GamingCompanyModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Gaming company requirements model class.
+abstract class GamingCompanyRequirementsModel {
+  /// Initializes Gaming company requirements model class .
+  const GamingCompanyRequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit19? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance20? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Gaming company requirements class.
+class GamingCompanyRequirements extends GamingCompanyRequirementsModel {
+  /// Initializes Gaming company requirements class.
+  const GamingCompanyRequirements({
+    RequirementsAfterFirstDeposit19? afterFirstDeposit,
+    RequirementsCompliance20? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory GamingCompanyRequirements.fromJson(Map<String, dynamic> json) =>
+      GamingCompanyRequirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit19.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance20.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  GamingCompanyRequirements copyWith({
+    RequirementsAfterFirstDeposit19? afterFirstDeposit,
+    RequirementsCompliance20? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      GamingCompanyRequirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit19 model class.
+abstract class RequirementsAfterFirstDeposit19Model {
+  /// Initializes Requirements after first deposit19 model class .
+  const RequirementsAfterFirstDeposit19Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit19 class.
+class RequirementsAfterFirstDeposit19
+    extends RequirementsAfterFirstDeposit19Model {
+  /// Initializes Requirements after first deposit19 class.
+  const RequirementsAfterFirstDeposit19({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit19.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit19(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit19 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit19(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance20 model class.
+abstract class RequirementsCompliance20Model {
+  /// Initializes Requirements compliance20 model class .
+  const RequirementsCompliance20Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance20 class.
+class RequirementsCompliance20 extends RequirementsCompliance20Model {
+  /// Initializes Requirements compliance20 class.
+  const RequirementsCompliance20({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance20.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance20(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance20 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance20(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Mt financial company model class.
@@ -1501,7 +2989,7 @@ abstract class FinancialModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final FinancialRequirements? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -1524,7 +3012,7 @@ class Financial extends FinancialModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -1580,7 +3068,9 @@ class Financial extends FinancialModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : FinancialRequirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -1624,7 +3114,9 @@ class Financial extends FinancialModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -1643,7 +3135,7 @@ class Financial extends FinancialModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -1664,6 +3156,245 @@ class Financial extends FinancialModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Financial requirements model class.
+abstract class FinancialRequirementsModel {
+  /// Initializes Financial requirements model class .
+  const FinancialRequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit23? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance24? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Financial requirements class.
+class FinancialRequirements extends FinancialRequirementsModel {
+  /// Initializes Financial requirements class.
+  const FinancialRequirements({
+    RequirementsAfterFirstDeposit23? afterFirstDeposit,
+    RequirementsCompliance24? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory FinancialRequirements.fromJson(Map<String, dynamic> json) =>
+      FinancialRequirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit23.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance24.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FinancialRequirements copyWith({
+    RequirementsAfterFirstDeposit23? afterFirstDeposit,
+    RequirementsCompliance24? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      FinancialRequirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit23 model class.
+abstract class RequirementsAfterFirstDeposit23Model {
+  /// Initializes Requirements after first deposit23 model class .
+  const RequirementsAfterFirstDeposit23Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit23 class.
+class RequirementsAfterFirstDeposit23
+    extends RequirementsAfterFirstDeposit23Model {
+  /// Initializes Requirements after first deposit23 class.
+  const RequirementsAfterFirstDeposit23({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit23.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit23(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit23 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit23(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance24 model class.
+abstract class RequirementsCompliance24Model {
+  /// Initializes Requirements compliance24 model class .
+  const RequirementsCompliance24Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance24 class.
+class RequirementsCompliance24 extends RequirementsCompliance24Model {
+  /// Initializes Requirements compliance24 class.
+  const RequirementsCompliance24({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance24.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance24(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance24 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance24(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Financial stp model class.
@@ -1716,7 +3447,7 @@ abstract class FinancialStpModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final FinancialStpRequirements? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -1739,7 +3470,7 @@ class FinancialStp extends FinancialStpModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialStpRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -1795,7 +3526,9 @@ class FinancialStp extends FinancialStpModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : FinancialStpRequirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -1839,7 +3572,9 @@ class FinancialStp extends FinancialStpModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -1858,7 +3593,7 @@ class FinancialStp extends FinancialStpModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialStpRequirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -1879,6 +3614,245 @@ class FinancialStp extends FinancialStpModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Financial stp requirements model class.
+abstract class FinancialStpRequirementsModel {
+  /// Initializes Financial stp requirements model class .
+  const FinancialStpRequirementsModel({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit27? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance28? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Financial stp requirements class.
+class FinancialStpRequirements extends FinancialStpRequirementsModel {
+  /// Initializes Financial stp requirements class.
+  const FinancialStpRequirements({
+    RequirementsAfterFirstDeposit27? afterFirstDeposit,
+    RequirementsCompliance28? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory FinancialStpRequirements.fromJson(Map<String, dynamic> json) =>
+      FinancialStpRequirements(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit27.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance28.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FinancialStpRequirements copyWith({
+    RequirementsAfterFirstDeposit27? afterFirstDeposit,
+    RequirementsCompliance28? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      FinancialStpRequirements(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit27 model class.
+abstract class RequirementsAfterFirstDeposit27Model {
+  /// Initializes Requirements after first deposit27 model class .
+  const RequirementsAfterFirstDeposit27Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit27 class.
+class RequirementsAfterFirstDeposit27
+    extends RequirementsAfterFirstDeposit27Model {
+  /// Initializes Requirements after first deposit27 class.
+  const RequirementsAfterFirstDeposit27({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit27.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit27(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit27 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit27(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance28 model class.
+abstract class RequirementsCompliance28Model {
+  /// Initializes Requirements compliance28 model class .
+  const RequirementsCompliance28Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance28 class.
+class RequirementsCompliance28 extends RequirementsCompliance28Model {
+  /// Initializes Requirements compliance28 class.
+  const RequirementsCompliance28({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance28.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance28(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance28 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance28(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }
 /// Mt gaming company model class.
@@ -1978,7 +3952,7 @@ abstract class MtGamingCompanyFinancialModel {
   final String? name;
 
   /// Legal requirements for the Landing Company
-  final Map<String, dynamic>? requirements;
+  final FinancialRequirements34? requirements;
 
   /// Landing Company short code
   final String? shortcode;
@@ -2001,7 +3975,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialRequirements34? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) : super(
@@ -2058,7 +4032,9 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : FinancialRequirements34.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
       );
@@ -2102,7 +4078,9 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
-    resultMap['requirements'] = requirements;
+    if (requirements != null) {
+      resultMap['requirements'] = requirements!.toJson();
+    }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
 
@@ -2121,7 +4099,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
-    Map<String, dynamic>? requirements,
+    FinancialRequirements34? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
   }) =>
@@ -2142,5 +4120,244 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+      );
+}
+/// Financial requirements34 model class.
+abstract class FinancialRequirements34Model {
+  /// Initializes Financial requirements34 model class .
+  const FinancialRequirements34Model({
+    this.afterFirstDeposit,
+    this.compliance,
+    this.signup,
+    this.withdrawal,
+  });
+
+  /// After first deposit requirements
+  final RequirementsAfterFirstDeposit32? afterFirstDeposit;
+
+  /// Compliance requirements
+  final RequirementsCompliance33? compliance;
+
+  /// Sign up requirements
+  final List<String>? signup;
+
+  /// Withdrawal requirements
+  final List<String>? withdrawal;
+}
+
+/// Financial requirements34 class.
+class FinancialRequirements34 extends FinancialRequirements34Model {
+  /// Initializes Financial requirements34 class.
+  const FinancialRequirements34({
+    RequirementsAfterFirstDeposit32? afterFirstDeposit,
+    RequirementsCompliance33? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) : super(
+          afterFirstDeposit: afterFirstDeposit,
+          compliance: compliance,
+          signup: signup,
+          withdrawal: withdrawal,
+        );
+
+  /// Creates an instance from JSON.
+  factory FinancialRequirements34.fromJson(Map<String, dynamic> json) =>
+      FinancialRequirements34(
+        afterFirstDeposit: json['after_first_deposit'] == null
+            ? null
+            : RequirementsAfterFirstDeposit32.fromJson(
+                json['after_first_deposit']),
+        compliance: json['compliance'] == null
+            ? null
+            : RequirementsCompliance33.fromJson(json['compliance']),
+        signup: json['signup'] == null
+            ? null
+            : List<String>.from(
+                json['signup']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        withdrawal: json['withdrawal'] == null
+            ? null
+            : List<String>.from(
+                json['withdrawal']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (afterFirstDeposit != null) {
+      resultMap['after_first_deposit'] = afterFirstDeposit!.toJson();
+    }
+    if (compliance != null) {
+      resultMap['compliance'] = compliance!.toJson();
+    }
+    if (signup != null) {
+      resultMap['signup'] = signup!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (withdrawal != null) {
+      resultMap['withdrawal'] = withdrawal!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FinancialRequirements34 copyWith({
+    RequirementsAfterFirstDeposit32? afterFirstDeposit,
+    RequirementsCompliance33? compliance,
+    List<String>? signup,
+    List<String>? withdrawal,
+  }) =>
+      FinancialRequirements34(
+        afterFirstDeposit: afterFirstDeposit ?? this.afterFirstDeposit,
+        compliance: compliance ?? this.compliance,
+        signup: signup ?? this.signup,
+        withdrawal: withdrawal ?? this.withdrawal,
+      );
+}
+/// Requirements after first deposit32 model class.
+abstract class RequirementsAfterFirstDeposit32Model {
+  /// Initializes Requirements after first deposit32 model class .
+  const RequirementsAfterFirstDeposit32Model({
+    this.financialAssessment,
+  });
+
+  /// Financial assessment requirements
+  final List<String>? financialAssessment;
+}
+
+/// Requirements after first deposit32 class.
+class RequirementsAfterFirstDeposit32
+    extends RequirementsAfterFirstDeposit32Model {
+  /// Initializes Requirements after first deposit32 class.
+  const RequirementsAfterFirstDeposit32({
+    List<String>? financialAssessment,
+  }) : super(
+          financialAssessment: financialAssessment,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsAfterFirstDeposit32.fromJson(Map<String, dynamic> json) =>
+      RequirementsAfterFirstDeposit32(
+        financialAssessment: json['financial_assessment'] == null
+            ? null
+            : List<String>.from(
+                json['financial_assessment']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (financialAssessment != null) {
+      resultMap['financial_assessment'] = financialAssessment!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsAfterFirstDeposit32 copyWith({
+    List<String>? financialAssessment,
+  }) =>
+      RequirementsAfterFirstDeposit32(
+        financialAssessment: financialAssessment ?? this.financialAssessment,
+      );
+}
+/// Requirements compliance33 model class.
+abstract class RequirementsCompliance33Model {
+  /// Initializes Requirements compliance33 model class .
+  const RequirementsCompliance33Model({
+    this.mt5,
+    this.taxInformation,
+  });
+
+  /// Compliance MT5 requirements
+  final List<String>? mt5;
+
+  /// Compliance tax information requirements
+  final List<String>? taxInformation;
+}
+
+/// Requirements compliance33 class.
+class RequirementsCompliance33 extends RequirementsCompliance33Model {
+  /// Initializes Requirements compliance33 class.
+  const RequirementsCompliance33({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) : super(
+          mt5: mt5,
+          taxInformation: taxInformation,
+        );
+
+  /// Creates an instance from JSON.
+  factory RequirementsCompliance33.fromJson(Map<String, dynamic> json) =>
+      RequirementsCompliance33(
+        mt5: json['mt5'] == null
+            ? null
+            : List<String>.from(
+                json['mt5']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        taxInformation: json['tax_information'] == null
+            ? null
+            : List<String>.from(
+                json['tax_information']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (mt5 != null) {
+      resultMap['mt5'] = mt5!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (taxInformation != null) {
+      resultMap['tax_information'] = taxInformation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  RequirementsCompliance33 copyWith({
+    List<String>? mt5,
+    List<String>? taxInformation,
+  }) =>
+      RequirementsCompliance33(
+        mt5: mt5 ?? this.mt5,
+        taxInformation: taxInformation ?? this.taxInformation,
       );
 }

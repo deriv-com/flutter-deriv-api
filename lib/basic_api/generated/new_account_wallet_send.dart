@@ -13,7 +13,7 @@ class NewAccountWalletRequest extends Request {
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
-    this.currency,
+    required this.currency,
     this.dateOfBirth,
     this.firstName,
     this.lastName,
@@ -66,7 +66,7 @@ class NewAccountWalletRequest extends Request {
   /// [Optional] Possible value receive from `states_list` call.
   final String? addressState;
 
-  /// [Optional] To set currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
+  /// To set currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   final String? currency;
 
   /// [Optional] Date of birth format: `yyyy-mm-dd`.

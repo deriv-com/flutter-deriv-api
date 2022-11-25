@@ -1004,7 +1004,7 @@ abstract class AuthorizeWalletModel {
   final String? currency;
 
   /// Details of the list of Trading accounts linked to the Wallet account.
-  final List<WalletLinkedToItem2>? linkedTo;
+  final List<WalletLinkedToItem8>? linkedTo;
 
   /// Wallet account payment method.
   final String? paymentMethod;
@@ -1017,7 +1017,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
     String? accountId,
     double? balance,
     String? currency,
-    List<WalletLinkedToItem2>? linkedTo,
+    List<WalletLinkedToItem8>? linkedTo,
     String? paymentMethod,
   }) : super(
           accountId: accountId,
@@ -1035,9 +1035,9 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         currency: json['currency'],
         linkedTo: json['linked_to'] == null
             ? null
-            : List<WalletLinkedToItem2>.from(
+            : List<WalletLinkedToItem8>.from(
                 json['linked_to']?.map(
-                  (dynamic item) => WalletLinkedToItem2.fromJson(item),
+                  (dynamic item) => WalletLinkedToItem8.fromJson(item),
                 ),
               ),
         paymentMethod: json['payment_method'],
@@ -1053,7 +1053,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
     if (linkedTo != null) {
       resultMap['linked_to'] = linkedTo!
           .map<dynamic>(
-            (WalletLinkedToItem2 item) => item.toJson(),
+            (WalletLinkedToItem8 item) => item.toJson(),
           )
           .toList();
     }
@@ -1067,7 +1067,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
     String? accountId,
     double? balance,
     String? currency,
-    List<WalletLinkedToItem2>? linkedTo,
+    List<WalletLinkedToItem8>? linkedTo,
     String? paymentMethod,
   }) =>
       AuthorizeWallet(
@@ -1078,10 +1078,10 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Wallet linked to item2 model class.
-abstract class WalletLinkedToItem2Model {
-  /// Initializes Wallet linked to item2 model class .
-  const WalletLinkedToItem2Model({
+/// Wallet linked to item8 model class.
+abstract class WalletLinkedToItem8Model {
+  /// Initializes Wallet linked to item8 model class .
+  const WalletLinkedToItem8Model({
     this.accountId,
     this.balance,
     this.currency,
@@ -1101,10 +1101,10 @@ abstract class WalletLinkedToItem2Model {
   final PlatformEnum? platform;
 }
 
-/// Wallet linked to item2 class.
-class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
-  /// Initializes Wallet linked to item2 class.
-  const WalletLinkedToItem2({
+/// Wallet linked to item8 class.
+class WalletLinkedToItem8 extends WalletLinkedToItem8Model {
+  /// Initializes Wallet linked to item8 class.
+  const WalletLinkedToItem8({
     String? accountId,
     String? balance,
     String? currency,
@@ -1117,8 +1117,8 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
         );
 
   /// Creates an instance from JSON.
-  factory WalletLinkedToItem2.fromJson(Map<String, dynamic> json) =>
-      WalletLinkedToItem2(
+  factory WalletLinkedToItem8.fromJson(Map<String, dynamic> json) =>
+      WalletLinkedToItem8(
         accountId: json['account_id'],
         balance: json['balance'],
         currency: json['currency'],
@@ -1143,13 +1143,13 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
   }
 
   /// Creates a copy of instance with given parameters.
-  WalletLinkedToItem2 copyWith({
+  WalletLinkedToItem8 copyWith({
     String? accountId,
     String? balance,
     String? currency,
     PlatformEnum? platform,
   }) =>
-      WalletLinkedToItem2(
+      WalletLinkedToItem8(
         accountId: accountId ?? this.accountId,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,

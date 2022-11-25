@@ -246,13 +246,11 @@ abstract class GetAccountStatusModel {
   /// - `age_verification`: client is age-verified.
   /// - `authenticated`: client is fully authenticated.
   /// - `cashier_locked`: cashier is locked.
-  /// - `closed`: client has closed the account.
   /// - `crs_tin_information`: client has updated tax related information.
   /// - `deposit_locked`: deposit is not allowed.
   /// - `disabled`: account is disabled.
   /// - `document_expired`: client's submitted proof-of-identity documents have expired.
   /// - `document_expiring_soon`: client's submitted proof-of-identity documents are expiring within a month.
-  /// - `duplicate_account`: this client's account has been marked as duplicate.
   /// - `dxtrade_password_not_set`: Deriv X password is not set.
   /// - `financial_assessment_not_complete`: client should complete their financial assessment.
   /// - `financial_information_not_complete`: client has not completed financial assessment.
@@ -274,6 +272,14 @@ abstract class GetAccountStatusModel {
   /// - `ukgc_funds_protection`: client has acknowledged UKGC funds protection notice.
   /// - `unwelcome`: client cannot deposit or buy contracts, but can withdraw or sell contracts.
   /// - `withdrawal_locked`: deposits allowed but withdrawals are not allowed.
+  /// - `deposit_attempt`: this prevent a client from changing the account currency after deposit attempt.
+  /// - `poi_name_mismatch`: client POI documents name mismatch.
+  /// - `allow_poa_resubmission`: the client can resubmit POA documents.
+  /// - `allow_poi_resubmission`: the client can resubmit POI documents.
+  /// - `shared_payment_method`: the client has been sharing payment methods.
+  /// - `personal_details_locked`: client is not allowed to edit personal profile details.
+  /// - `transfers_blocked`: it block any transfer between two accounts.
+  /// - `df_deposit_requires_poi`: the DF deposit will be blocked until the client gets age verified.
   final List<String> status;
 
   /// Client risk classification: `low`, `standard`, `high`.
@@ -1383,22 +1389,22 @@ abstract class RequestsItemModel {
   /// Initializes Requests item model class .
   const RequestsItemModel({
     this.creationTime,
+    this.documentsRequired,
     this.id,
     this.paymentMethod,
-    this.paymentMethodIdentifier,
   });
 
   /// The request timestamp of creation
   final String? creationTime;
+
+  /// Number of documents required to be uploaded for proof of ownership
+  final double? documentsRequired;
 
   /// The identifier of the proof of ownership request
   final double? id;
 
   /// The display name of the payment method being requested
   final String? paymentMethod;
-
-  /// The identifier of the payment method being requested
-  final String? paymentMethodIdentifier;
 }
 
 /// Requests item class.
@@ -1406,22 +1412,22 @@ class RequestsItem extends RequestsItemModel {
   /// Initializes Requests item class.
   const RequestsItem({
     String? creationTime,
+    double? documentsRequired,
     double? id,
     String? paymentMethod,
-    String? paymentMethodIdentifier,
   }) : super(
           creationTime: creationTime,
+          documentsRequired: documentsRequired,
           id: id,
           paymentMethod: paymentMethod,
-          paymentMethodIdentifier: paymentMethodIdentifier,
         );
 
   /// Creates an instance from JSON.
   factory RequestsItem.fromJson(Map<String, dynamic> json) => RequestsItem(
         creationTime: json['creation_time'],
+        documentsRequired: getDouble(json['documents_required']),
         id: getDouble(json['id']),
         paymentMethod: json['payment_method'],
-        paymentMethodIdentifier: json['payment_method_identifier'],
       );
 
   /// Converts an instance to JSON.
@@ -1429,9 +1435,9 @@ class RequestsItem extends RequestsItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['creation_time'] = creationTime;
+    resultMap['documents_required'] = documentsRequired;
     resultMap['id'] = id;
     resultMap['payment_method'] = paymentMethod;
-    resultMap['payment_method_identifier'] = paymentMethodIdentifier;
 
     return resultMap;
   }
@@ -1439,15 +1445,14 @@ class RequestsItem extends RequestsItemModel {
   /// Creates a copy of instance with given parameters.
   RequestsItem copyWith({
     String? creationTime,
+    double? documentsRequired,
     double? id,
     String? paymentMethod,
-    String? paymentMethodIdentifier,
   }) =>
       RequestsItem(
         creationTime: creationTime ?? this.creationTime,
+        documentsRequired: documentsRequired ?? this.documentsRequired,
         id: id ?? this.id,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIdentifier:
-            paymentMethodIdentifier ?? this.paymentMethodIdentifier,
       );
 }

@@ -281,13 +281,17 @@ class GetLimits extends GetLimitsModel {
 abstract class MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item model class .
   const MarketSpecificPropertyItemModel({
+    this.level,
     this.name,
     this.payoutLimit,
     this.profileName,
     this.turnoverLimit,
   });
 
-  /// The submarket display name.
+  /// The group the profile belong to.
+  final String? level;
+
+  /// The market or submarket display name.
   final String? name;
 
   /// The limit of payout for the submarket
@@ -304,11 +308,13 @@ abstract class MarketSpecificPropertyItemModel {
 class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item class.
   const MarketSpecificPropertyItem({
+    String? level,
     String? name,
     double? payoutLimit,
     String? profileName,
     double? turnoverLimit,
   }) : super(
+          level: level,
           name: name,
           payoutLimit: payoutLimit,
           profileName: profileName,
@@ -318,6 +324,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
   /// Creates an instance from JSON.
   factory MarketSpecificPropertyItem.fromJson(Map<String, dynamic> json) =>
       MarketSpecificPropertyItem(
+        level: json['level'],
         name: json['name'],
         payoutLimit: getDouble(json['payout_limit']),
         profileName: json['profile_name'],
@@ -328,6 +335,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['level'] = level;
     resultMap['name'] = name;
     resultMap['payout_limit'] = payoutLimit;
     resultMap['profile_name'] = profileName;
@@ -338,12 +346,14 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
 
   /// Creates a copy of instance with given parameters.
   MarketSpecificPropertyItem copyWith({
+    String? level,
     String? name,
     double? payoutLimit,
     String? profileName,
     double? turnoverLimit,
   }) =>
       MarketSpecificPropertyItem(
+        level: level ?? this.level,
         name: name ?? this.name,
         payoutLimit: payoutLimit ?? this.payoutLimit,
         profileName: profileName ?? this.profileName,
