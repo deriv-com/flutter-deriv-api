@@ -81,13 +81,12 @@ class BinaryAPI extends BaseAPI {
 
     // Initialize connection to web socket server.
     _webSocketChannel = IOWebSocketChannel.connect(
-      uri.toString(),
+      '$uri',
       pingInterval: _websocketConnectTimeOut,
     );
 
     _webSocketListener = _webSocketChannel?.stream
-        .map<Map<String, dynamic>?>(
-            (Object? result) => jsonDecode(result.toString()))
+        .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
         _connected = true;

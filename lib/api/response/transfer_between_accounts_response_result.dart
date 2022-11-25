@@ -175,6 +175,7 @@ final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -184,6 +185,9 @@ enum MarketTypeEnum {
 
   /// synthetic.
   synthetic,
+
+  /// all.
+  all,
 }
 /// Accounts item model class.
 abstract class AccountsItemModel {
@@ -196,6 +200,7 @@ abstract class AccountsItemModel {
     this.loginid,
     this.marketType,
     this.mt5Group,
+    this.status,
   });
 
   /// Type of the account. Please note that `binary` is deprecated and replaced by `trading`
@@ -218,6 +223,9 @@ abstract class AccountsItemModel {
 
   /// The group of mt5 account.
   final String? mt5Group;
+
+  /// The status of account.
+  final String? status;
 }
 
 /// Accounts item class.
@@ -231,6 +239,7 @@ class AccountsItem extends AccountsItemModel {
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
+    String? status,
   }) : super(
           accountType: accountType,
           balance: balance,
@@ -239,6 +248,7 @@ class AccountsItem extends AccountsItemModel {
           loginid: loginid,
           marketType: marketType,
           mt5Group: mt5Group,
+          status: status,
         );
 
   /// Creates an instance from JSON.
@@ -254,6 +264,7 @@ class AccountsItem extends AccountsItemModel {
             ? null
             : marketTypeEnumMapper[json['market_type']],
         mt5Group: json['mt5_group'],
+        status: json['status'],
       );
 
   /// Converts an instance to JSON.
@@ -273,6 +284,7 @@ class AccountsItem extends AccountsItemModel {
             entry.value == marketType)
         .key;
     resultMap['mt5_group'] = mt5Group;
+    resultMap['status'] = status;
 
     return resultMap;
   }
@@ -286,6 +298,7 @@ class AccountsItem extends AccountsItemModel {
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
+    String? status,
   }) =>
       AccountsItem(
         accountType: accountType ?? this.accountType,
@@ -295,5 +308,6 @@ class AccountsItem extends AccountsItemModel {
         loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
+        status: status ?? this.status,
       );
 }
