@@ -3,17 +3,20 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-
 /// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
   /// Initializes P2p advert info response model class .
@@ -77,6 +80,19 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   static Future<P2pAdvertInfoResponse> fetchAdvert(
     P2pAdvertInfoRequest request,
   ) async {
+    final P2pAdvertInfoReceive response = await fetchAdvertRaw(request);
+
+    return P2pAdvertInfoResponse.fromJson(
+        response.p2pAdvertInfo, response.subscription);
+  }
+
+  /// Retrieves information about a P2P (peer to peer) advert.
+  ///
+  /// For parameters information refer to [P2pAdvertInfoRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
+  static Future<P2pAdvertInfoReceive> fetchAdvertRaw(
+    P2pAdvertInfoRequest request,
+  ) async {
     final P2pAdvertInfoReceive response = await _api.call(request: request);
 
     checkException(
@@ -85,8 +101,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pAdvertInfoResponse.fromJson(
-        response.p2pAdvertInfo, response.subscription);
+    return response;
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
@@ -106,20 +121,54 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
         ),
       );
 
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// [delete] to permanently delete the advert
+  /// [isActive] to activate or deactivate the advert
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2pAdvertUpdateReceive> updateRaw({
+    bool? delete,
+    bool? isActive,
+  }) =>
+      P2pAdvertUpdateResponse.updateAdvertRaw(
+        P2pAdvertUpdateRequest(
+          id: p2pAdvertInfo?.id,
+          delete: delete ?? false,
+          isActive: isActive ?? p2pAdvertInfo?.isActive,
+        ),
+      );
+
   /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> delete() => update(delete: true);
+
+  /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2pAdvertUpdateReceive> deleteRaw() => updateRaw(delete: true);
 
   /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> activate() async => update(isActive: true);
 
+  /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2pAdvertUpdateReceive> activateRaw() async =>
+      updateRaw(isActive: true);
+
   /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> deactivate() async => update(isActive: false);
+
+  /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2pAdvertUpdateReceive> deactivateRaw() async =>
+      updateRaw(isActive: false);
 
   /// Creates order on this advert.
   ///
@@ -133,6 +182,27 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
     String? paymentInfo,
   }) =>
       P2pOrderCreateResponse.create(
+        P2pOrderCreateRequest(
+          advertId: p2pAdvertInfo?.id,
+          amount: amount,
+          contactInfo: contactInfo,
+          paymentInfo: paymentInfo,
+          paymentMethodIds: const <int>[],
+        ),
+      );
+
+  /// Creates order on this advert.
+  ///
+  /// [amount] is the amount of currency to be bought or sold.
+  /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
+  /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
+  /// Throws [P2POrderException] if API response contains an error.
+  Future<P2pOrderCreateReceive> createOrderRaw({
+    required double amount,
+    String? contactInfo,
+    String? paymentInfo,
+  }) =>
+      P2pOrderCreateResponse.createRaw(
         P2pOrderCreateRequest(
           advertId: p2pAdvertInfo?.id,
           amount: amount,
@@ -781,6 +851,7 @@ abstract class AdvertiserDetailsModel {
   const AdvertiserDetailsModel({
     required this.ratingCount,
     required this.name,
+    required this.isOnline,
     required this.id,
     required this.completedOrdersCount,
     this.firstName,
@@ -788,6 +859,7 @@ abstract class AdvertiserDetailsModel {
     this.isFavourite,
     this.isRecommended,
     this.lastName,
+    this.lastOnlineTime,
     this.ratingAverage,
     this.recommendedAverage,
     this.recommendedCount,
@@ -799,6 +871,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's displayed name.
   final String name;
+
+  /// Indicates if the advertiser is currently online.
+  final bool isOnline;
 
   /// The advertiser's unique identifier.
   final String id;
@@ -821,6 +896,9 @@ abstract class AdvertiserDetailsModel {
   /// The advertiser's last name.
   final String? lastName;
 
+  /// Epoch of the latest time the advertiser was online, up to 6 months.
+  final DateTime? lastOnlineTime;
+
   /// Average rating of the advertiser, range is 1-5.
   final double? ratingAverage;
 
@@ -840,6 +918,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   const AdvertiserDetails({
     required int completedOrdersCount,
     required String id,
+    required bool isOnline,
     required String name,
     required int ratingCount,
     String? firstName,
@@ -847,6 +926,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     bool? isFavourite,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -854,6 +934,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   }) : super(
           completedOrdersCount: completedOrdersCount,
           id: id,
+          isOnline: isOnline,
           name: name,
           ratingCount: ratingCount,
           firstName: firstName,
@@ -861,6 +942,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
           isFavourite: isFavourite,
           isRecommended: isRecommended,
           lastName: lastName,
+          lastOnlineTime: lastOnlineTime,
           ratingAverage: ratingAverage,
           recommendedAverage: recommendedAverage,
           recommendedCount: recommendedCount,
@@ -872,6 +954,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
       AdvertiserDetails(
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
+        isOnline: getBool(json['is_online'])!,
         name: json['name'],
         ratingCount: json['rating_count'],
         firstName: json['first_name'],
@@ -879,6 +962,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         isFavourite: getBool(json['is_favourite']),
         isRecommended: json['is_recommended'],
         lastName: json['last_name'],
+        lastOnlineTime: getDateTime(json['last_online_time']),
         ratingAverage: getDouble(json['rating_average']),
         recommendedAverage: getDouble(json['recommended_average']),
         recommendedCount: json['recommended_count'],
@@ -891,6 +975,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
+    resultMap['is_online'] = isOnline;
     resultMap['name'] = name;
     resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
@@ -898,6 +983,8 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['is_favourite'] = isFavourite;
     resultMap['is_recommended'] = isRecommended;
     resultMap['last_name'] = lastName;
+    resultMap['last_online_time'] =
+        getSecondsSinceEpochDateTime(lastOnlineTime);
     resultMap['rating_average'] = ratingAverage;
     resultMap['recommended_average'] = recommendedAverage;
     resultMap['recommended_count'] = recommendedCount;
@@ -910,6 +997,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
   AdvertiserDetails copyWith({
     int? completedOrdersCount,
     String? id,
+    bool? isOnline,
     String? name,
     int? ratingCount,
     String? firstName,
@@ -917,6 +1005,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     bool? isFavourite,
     int? isRecommended,
     String? lastName,
+    DateTime? lastOnlineTime,
     double? ratingAverage,
     double? recommendedAverage,
     int? recommendedCount,
@@ -925,6 +1014,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
       AdvertiserDetails(
         completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
         id: id ?? this.id,
+        isOnline: isOnline ?? this.isOnline,
         name: name ?? this.name,
         ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
@@ -932,6 +1022,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         isFavourite: isFavourite ?? this.isFavourite,
         isRecommended: isRecommended ?? this.isRecommended,
         lastName: lastName ?? this.lastName,
+        lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
         ratingAverage: ratingAverage ?? this.ratingAverage,
         recommendedAverage: recommendedAverage ?? this.recommendedAverage,
         recommendedCount: recommendedCount ?? this.recommendedCount,
@@ -947,6 +1038,8 @@ abstract class PaymentMethodDetailsPropertyModel {
     required this.isEnabled,
     required this.fields,
     this.displayName,
+    this.usedByAdverts,
+    this.usedByOrders,
   });
 
   /// Payment method type.
@@ -963,6 +1056,12 @@ abstract class PaymentMethodDetailsPropertyModel {
 
   /// Display name of payment method.
   final String? displayName;
+
+  /// IDs of adverts that use this payment method.
+  final List<String>? usedByAdverts;
+
+  /// IDs of orders that use this payment method.
+  final List<String>? usedByOrders;
 }
 
 /// Payment method details property class.
@@ -974,12 +1073,16 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     required String method,
     required PaymentMethodDetailsPropertyTypeEnum type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) : super(
           fields: fields,
           isEnabled: isEnabled,
           method: method,
           type: type,
           displayName: displayName,
+          usedByAdverts: usedByAdverts,
+          usedByOrders: usedByOrders,
         );
 
   /// Creates an instance from JSON.
@@ -995,6 +1098,20 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         method: json['method'],
         type: paymentMethodDetailsPropertyTypeEnumMapper[json['type']]!,
         displayName: json['display_name'],
+        usedByAdverts: json['used_by_adverts'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_adverts']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        usedByOrders: json['used_by_orders'] == null
+            ? null
+            : List<String>.from(
+                json['used_by_orders']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -1010,6 +1127,20 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
                 entry.value == type)
         .key;
     resultMap['display_name'] = displayName;
+    if (usedByAdverts != null) {
+      resultMap['used_by_adverts'] = usedByAdverts!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (usedByOrders != null) {
+      resultMap['used_by_orders'] = usedByOrders!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -1021,6 +1152,8 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
     String? method,
     PaymentMethodDetailsPropertyTypeEnum? type,
     String? displayName,
+    List<String>? usedByAdverts,
+    List<String>? usedByOrders,
   }) =>
       PaymentMethodDetailsProperty(
         fields: fields ?? this.fields,
@@ -1028,6 +1161,8 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         method: method ?? this.method,
         type: type ?? this.type,
         displayName: displayName ?? this.displayName,
+        usedByAdverts: usedByAdverts ?? this.usedByAdverts,
+        usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
 /// Fields property model class.

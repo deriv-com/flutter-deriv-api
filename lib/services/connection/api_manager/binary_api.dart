@@ -26,8 +26,7 @@ class BinaryAPI extends BaseAPI {
   BinaryAPI({UniqueKey? uniqueKey})
       : super(uniqueKey: uniqueKey ?? UniqueKey());
 
-  static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
 
   /// Represents the active web socket connection.
   IOWebSocketChannel? _webSocketChannel;
@@ -76,7 +75,7 @@ class BinaryAPI extends BaseAPI {
     // Initialize connection to web socket server.
     _webSocketChannel = IOWebSocketChannel.connect(
       uri.toString(),
-      pingInterval: _websocketConnectTimeOut,
+      pingInterval: _wsConnectTimeOut,
     );
 
     _webSocketListener = _webSocketChannel?.stream
@@ -154,18 +153,11 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<void> disconnect() async {
-    try {
-      await _webSocketListener?.cancel();
-      await _webSocketChannel?.sink.close().timeout(
-            _disconnectTimeOut,
-            onTimeout: () => throw TimeoutException('Could not close sink.'),
-          );
-    } on Exception catch (e) {
-      dev.log('disconnect error', error: e);
-    } finally {
-      _webSocketListener = null;
-      _webSocketChannel = null;
-    }
+    await _webSocketListener?.cancel();
+    await _webSocketChannel?.sink.close();
+
+    _webSocketListener = null;
+    _webSocketChannel = null;
   }
 
   /// Handles responses that come from server, by using its reqId,

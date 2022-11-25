@@ -649,7 +649,6 @@ const String websiteStatusResponse = '''{
     },
     "p2p_config": {
       "adverts_active_limit": 3,
-      "feature_level": 0,
       "cancellation_block_duration": 24,
       "cancellation_count_period": 24,
       "cancellation_grace_period": 15,

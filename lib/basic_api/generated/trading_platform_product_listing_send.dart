@@ -9,7 +9,7 @@ class TradingPlatformProductListingRequest extends Request {
   /// Initialize TradingPlatformProductListingRequest.
   const TradingPlatformProductListingRequest({
     this.appId,
-    this.countryCode,
+    required this.countryCode,
     this.tradingPlatformProductListing = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -38,7 +38,7 @@ class TradingPlatformProductListingRequest extends Request {
   /// [Optional] Specific application `app_id`.
   final List<int>? appId;
 
-  /// [Optional] Country of legal citizenship, 2-letter country code.
+  /// Country of legal citizenship, 2-letter country code.
   final String? countryCode;
 
   /// Must be `true`.

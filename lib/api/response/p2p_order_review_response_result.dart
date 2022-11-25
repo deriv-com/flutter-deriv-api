@@ -2,7 +2,13 @@
 
 import 'package:equatable/equatable.dart';
 
+
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p order review response model class.
 abstract class P2pOrderReviewResponseModel {
@@ -43,6 +49,32 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
     }
 
     return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Creates a review for the specified order.
+  Future<P2pOrderReviewResponse> reviewOrder(
+    P2pOrderReviewRequest request,
+  ) async {
+    final P2pOrderReviewReceive response = await reviewOrderRaw(request);
+
+    return P2pOrderReviewResponse.fromJson(response.p2pOrderReview);
+  }
+
+  /// Creates a review for the specified order.
+  Future<P2pOrderReviewReceive> reviewOrderRaw(
+    P2pOrderReviewRequest request,
+  ) async {
+    final P2pOrderReviewReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.

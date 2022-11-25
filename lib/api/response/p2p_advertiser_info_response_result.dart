@@ -80,18 +80,25 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
   static Future<P2pAdvertiserInfoResponse> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
   ) async {
+    final P2pAdvertiserInfoReceive response =
+        await fetchAdvertiserInformationRaw(request);
+
+    return P2pAdvertiserInfoResponse.fromJson(
+        response.p2pAdvertiserInfo, response.subscription);
+  }
+
+  /// Retrieves information about a P2P (peer to peer) advertiser.
+  ///
+  /// For parameters information refer to [P2pAdvertiserInfoRequest].
+  /// Throws a [P2PAdvertiserException] if API response contains an error
+  static Future<P2pAdvertiserInfoReceive> fetchAdvertiserInformationRaw(
+    P2pAdvertiserInfoRequest request,
+  ) async {
     final P2pAdvertiserInfoReceive response = await _api.call(
       request: request.copyWith(subscribe: false),
     );
 
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return P2pAdvertiserInfoResponse.fromJson(
-        response.p2pAdvertiserInfo, response.subscription);
+    return response;
   }
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
@@ -100,9 +107,27 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
     P2pAdvertiserInfoRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
+      subscribeAdvertiserInformationRaw(
+        request,
+        comparePredicate: comparePredicate,
+      ).map(
+        (P2pAdvertiserInfoReceive? response) => response != null
+            ? P2pAdvertiserInfoResponse.fromJson(
+                response.p2pAdvertiserInfo,
+                response.subscription,
+              )
+            : null,
+      );
+
+  /// Subscribes to information about a P2P (peer to peer) advertiser.
+  /// For parameters information refer to [P2pAdvertiserInfoRequest].
+  static Stream<P2pAdvertiserInfoReceive?> subscribeAdvertiserInformationRaw(
+    P2pAdvertiserInfoRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
-          .map<P2pAdvertiserInfoResponse?>(
+          .map<P2pAdvertiserInfoReceive?>(
         (Response response) {
           checkException(
             response: response,
@@ -110,12 +135,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
                 P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
-          return response is P2pAdvertiserInfoReceive
-              ? P2pAdvertiserInfoResponse.fromJson(
-                  response.p2pAdvertiserInfo,
-                  response.subscription,
-                )
-              : null;
+          return response is P2pAdvertiserInfoReceive ? response : null;
         },
       );
 

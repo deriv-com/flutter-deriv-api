@@ -2,6 +2,12 @@
 
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_cancel_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_cancel_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// P2p order cancel response model class.
 abstract class P2pOrderCancelResponseModel {
@@ -42,6 +48,32 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
     }
 
     return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Cancel a P2P order.
+  Future<P2pOrderCancelResponse> cancelOrder(
+    P2pOrderCancelRequest request,
+  ) async {
+    final P2pOrderCancelReceive response = await cancelOrderRaw(request);
+
+    return P2pOrderCancelResponse.fromJson(response.p2pOrderCancel);
+  }
+
+  /// Cancel a P2P order.
+  Future<P2pOrderCancelReceive> cancelOrderRaw(
+    P2pOrderCancelRequest request,
+  ) async {
+    final P2pOrderCancelReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return response;
   }
 
   /// Creates a copy of instance with given parameters.
