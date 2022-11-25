@@ -47,10 +47,6 @@ class BinaryAPI extends BaseAPI {
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
-  /// Indicates current connection status.
-  /// Only set `true` once we have established SSL and web socket handshake steps.
-  bool _connected = false;
-
   @override
   Future<void> connect(
     ConnectionInformation? connectionInformation, {
@@ -59,8 +55,6 @@ class BinaryAPI extends BaseAPI {
     ConnectionCallback? onError,
     bool printResponse = false,
   }) async {
-    _connected = false;
-
     _resetCallManagers();
 
     final Uri uri = Uri(
@@ -89,8 +83,6 @@ class BinaryAPI extends BaseAPI {
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
-        _connected = true;
-
         onOpen?.call(uniqueKey);
 
         if (message != null) {
@@ -98,8 +90,6 @@ class BinaryAPI extends BaseAPI {
         }
       },
       onDone: () async {
-        _connected = false;
-
         dev.log('$runtimeType $uniqueKey web socket is closed.');
 
         onDone?.call(uniqueKey);
@@ -168,13 +158,12 @@ class BinaryAPI extends BaseAPI {
     try {
       await _webSocketListener?.cancel();
 
-      if (_connected) {
-        await _webSocketChannel?.sink.close().timeout(
-              _disconnectTimeOut,
-              onTimeout: () => throw TimeoutException('Could not close sink.'),
-            );
-      }
-    } on Exception catch (e) {
+      await _webSocketChannel?.sink.close().timeout(
+            _disconnectTimeOut,
+            onTimeout: () => throw TimeoutException('Could not close sink.'),
+          );
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
       dev.log('$runtimeType $uniqueKey disconnect error', error: e);
     } finally {
       _webSocketListener = null;
@@ -189,11 +178,7 @@ class BinaryAPI extends BaseAPI {
     required bool printResponse,
   }) {
     try {
-      if (!_connected) {
-        _connected = true;
-
-        dev.log('$runtimeType $uniqueKey web socket is connected.');
-      }
+      dev.log('$runtimeType $uniqueKey web socket is connected.');
 
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
