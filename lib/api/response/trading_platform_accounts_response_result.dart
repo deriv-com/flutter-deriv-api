@@ -65,7 +65,7 @@ class TradingPlatformAccountsResponse
   /// Get list of Trading Platform accounts for client.
   /// For parameters information refer to [TradingPlatformAccountsRequest].
   /// Throws a [DerivEZException] if API response contains an error.
-  static Future<TradingPlatformAccountsResponse> create(
+  static Future<TradingPlatformAccountsResponse> getAccounts(
     TradingPlatformAccountsRequest request,
   ) async {
     final TradingPlatformNewAccountReceive response =
