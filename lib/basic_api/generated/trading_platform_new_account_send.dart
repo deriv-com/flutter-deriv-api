@@ -9,6 +9,7 @@ class TradingPlatformNewAccountRequest extends Request {
   /// Initialize TradingPlatformNewAccountRequest.
   const TradingPlatformNewAccountRequest({
     required this.accountType,
+    this.company,
     this.currency,
     this.dryRun,
     required this.marketType,
@@ -29,6 +30,7 @@ class TradingPlatformNewAccountRequest extends Request {
           Map<String, dynamic> json) =>
       TradingPlatformNewAccountRequest(
         accountType: json['account_type'] as String?,
+        company: json['company'] as String?,
         currency: json['currency'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         marketType: json['market_type'] as String?,
@@ -44,6 +46,9 @@ class TradingPlatformNewAccountRequest extends Request {
 
   /// Account type.
   final String? accountType;
+
+  /// [Optional] Name of the client's company (For DerivEZ only)
+  final String? company;
 
   /// [Optional] Trading account currency, the default value will be the qualified account currency.
   final String? currency;
@@ -70,6 +75,7 @@ class TradingPlatformNewAccountRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_type': accountType,
+        'company': company,
         'currency': currency,
         'dry_run': dryRun == null
             ? null
@@ -93,6 +99,7 @@ class TradingPlatformNewAccountRequest extends Request {
   @override
   TradingPlatformNewAccountRequest copyWith({
     String? accountType,
+    String? company,
     String? currency,
     bool? dryRun,
     String? marketType,
@@ -105,6 +112,7 @@ class TradingPlatformNewAccountRequest extends Request {
   }) =>
       TradingPlatformNewAccountRequest(
         accountType: accountType ?? this.accountType,
+        company: company ?? this.company,
         currency: currency ?? this.currency,
         dryRun: dryRun ?? this.dryRun,
         marketType: marketType ?? this.marketType,
