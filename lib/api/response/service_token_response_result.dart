@@ -2,7 +2,14 @@
 
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/trading_times_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/trading_times_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Service token response model class.
 abstract class ServiceTokenResponseModel {
@@ -45,6 +52,27 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
     return resultMap;
   }
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Service Token.
+  ///
+  /// Retrieves the authorization token for the specified service.
+  /// For parameters information refer to [ServiceTokenRequest].
+  /// Throws a [APITokenException] if API response contains an error.
+  static Future<ServiceTokenResponse> getServiceToken(
+    ServiceTokenRequest request,
+  ) async {
+    final ServiceTokenReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          APITokenException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return ServiceTokenResponse.fromJson(response.serviceToken);
+  }
+
   /// Creates a copy of instance with given parameters.
   ServiceTokenResponse copyWith({
     ServiceToken? serviceToken,
@@ -53,6 +81,7 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
         serviceToken: serviceToken ?? this.serviceToken,
       );
 }
+
 /// Service token model class.
 abstract class ServiceTokenModel {
   /// Initializes Service token model class .
@@ -148,6 +177,7 @@ class ServiceToken extends ServiceTokenModel {
         wyre: wyre ?? this.wyre,
       );
 }
+
 /// Banxa model class.
 abstract class BanxaModel {
   /// Initializes Banxa model class .
@@ -210,6 +240,7 @@ class Banxa extends BanxaModel {
         urlIframe: urlIframe ?? this.urlIframe,
       );
 }
+
 /// Dxtrade model class.
 abstract class DxtradeModel {
   /// Initializes Dxtrade model class .
@@ -252,6 +283,7 @@ class Dxtrade extends DxtradeModel {
         token: token ?? this.token,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -294,6 +326,7 @@ class Onfido extends OnfidoModel {
         token: token ?? this.token,
       );
 }
+
 /// Sendbird model class.
 abstract class SendbirdModel {
   /// Initializes Sendbird model class .
@@ -356,6 +389,7 @@ class Sendbird extends SendbirdModel {
         token: token ?? this.token,
       );
 }
+
 /// Wyre model class.
 abstract class WyreModel {
   /// Initializes Wyre model class .
