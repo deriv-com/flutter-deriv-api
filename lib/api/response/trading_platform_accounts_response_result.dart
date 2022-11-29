@@ -68,7 +68,7 @@ class TradingPlatformAccountsResponse
   static Future<TradingPlatformAccountsResponse> getAccounts(
     TradingPlatformAccountsRequest request,
   ) async {
-    final TradingPlatformNewAccountReceive response =
+    final TradingPlatformAccountsReceive response =
         await _api.call(request: request);
 
     checkException(
@@ -78,7 +78,7 @@ class TradingPlatformAccountsResponse
     );
 
     return TradingPlatformAccountsResponse.fromJson(
-      response.tradingPlatformNewAccount,
+      response.tradingPlatformAccounts,
     );
   }
 
