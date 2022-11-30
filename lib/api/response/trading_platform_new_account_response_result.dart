@@ -57,7 +57,7 @@ class TradingPlatformNewAccountResponse
   ///
   /// This call creates new Trading account, either demo or real money.
   /// For parameters information refer to [TradingPlatformNewAccountRequest].
-  /// Throws a [DerivEZException] if API response contains an error
+  /// Throws a [TradingPlatformException] if API response contains an error
   static Future<TradingPlatformNewAccountResponse> create(
     TradingPlatformNewAccountRequest request,
   ) async {
@@ -67,7 +67,7 @@ class TradingPlatformNewAccountResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          DerivEZException(baseExceptionModel: baseExceptionModel),
+          TradingPlatformException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingPlatformNewAccountResponse.fromJson(

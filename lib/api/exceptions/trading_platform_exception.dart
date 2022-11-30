@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 
 import 'account_exception.dart';
 
-/// Api token exception class.
-class DerivEZException extends AccountException {
-  /// Initializes [DerivEZException].
-  DerivEZException({
+/// Trading platform exception class.
+class TradingPlatformException extends AccountException {
+  /// Initializes [TradingPlatformException].
+  TradingPlatformException({
     BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -64,7 +64,7 @@ class TradingPlatformAccountsResponse
   ///
   /// Get list of Trading Platform accounts for client.
   /// For parameters information refer to [TradingPlatformAccountsRequest].
-  /// Throws a [DerivEZException] if API response contains an error.
+  /// Throws a [TradingPlatformException] if API response contains an error.
   static Future<TradingPlatformAccountsResponse> getAccounts(
     TradingPlatformAccountsRequest request,
   ) async {
@@ -74,7 +74,7 @@ class TradingPlatformAccountsResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          DerivEZException(baseExceptionModel: baseExceptionModel),
+          TradingPlatformException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingPlatformAccountsResponse.fromJson(
