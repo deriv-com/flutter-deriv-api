@@ -13,7 +13,8 @@ const String p2pAdvertiserAdvertsResponse = '''
           "id": "1",
           "name": "John Doe",
           "completed_orders_count" : 1,
-          "rating_count" : 0
+          "rating_count" : 0,
+          "is_online": true
         },
         "amount": 10,
         "amount_display": "10.00",
@@ -57,7 +58,8 @@ const String p2pAdvertiserAdvertsResponse = '''
           "id": "1",
           "name": "John Doe",
           "completed_orders_count" : 1,
-          "rating_count" : 0
+          "rating_count" : 0,
+          "is_online": true
         },
         "amount": 3000,
         "amount_display": "3000.00",
