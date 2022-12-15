@@ -89,6 +89,7 @@ abstract class ServiceTokenModel {
     this.banxa,
     this.dxtrade,
     this.onfido,
+    this.pandats,
     this.sendbird,
     this.wyre,
   });
@@ -101,6 +102,9 @@ abstract class ServiceTokenModel {
 
   /// Onfido data.
   final Onfido? onfido;
+
+  /// pandats data.
+  final Pandats? pandats;
 
   /// Sendbird data.
   final Sendbird? sendbird;
@@ -116,12 +120,14 @@ class ServiceToken extends ServiceTokenModel {
     Banxa? banxa,
     Dxtrade? dxtrade,
     Onfido? onfido,
+    Pandats? pandats,
     Sendbird? sendbird,
     Wyre? wyre,
   }) : super(
           banxa: banxa,
           dxtrade: dxtrade,
           onfido: onfido,
+          pandats: pandats,
           sendbird: sendbird,
           wyre: wyre,
         );
@@ -132,6 +138,8 @@ class ServiceToken extends ServiceTokenModel {
         dxtrade:
             json['dxtrade'] == null ? null : Dxtrade.fromJson(json['dxtrade']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
+        pandats:
+            json['pandats'] == null ? null : Pandats.fromJson(json['pandats']),
         sendbird: json['sendbird'] == null
             ? null
             : Sendbird.fromJson(json['sendbird']),
@@ -151,6 +159,9 @@ class ServiceToken extends ServiceTokenModel {
     if (onfido != null) {
       resultMap['onfido'] = onfido!.toJson();
     }
+    if (pandats != null) {
+      resultMap['pandats'] = pandats!.toJson();
+    }
     if (sendbird != null) {
       resultMap['sendbird'] = sendbird!.toJson();
     }
@@ -166,6 +177,7 @@ class ServiceToken extends ServiceTokenModel {
     Banxa? banxa,
     Dxtrade? dxtrade,
     Onfido? onfido,
+    Pandats? pandats,
     Sendbird? sendbird,
     Wyre? wyre,
   }) =>
@@ -173,6 +185,7 @@ class ServiceToken extends ServiceTokenModel {
         banxa: banxa ?? this.banxa,
         dxtrade: dxtrade ?? this.dxtrade,
         onfido: onfido ?? this.onfido,
+        pandats: pandats ?? this.pandats,
         sendbird: sendbird ?? this.sendbird,
         wyre: wyre ?? this.wyre,
       );
@@ -323,6 +336,49 @@ class Onfido extends OnfidoModel {
     String? token,
   }) =>
       Onfido(
+        token: token ?? this.token,
+      );
+}
+
+/// Pandats model class.
+abstract class PandatsModel {
+  /// Initializes Pandats model class .
+  const PandatsModel({
+    this.token,
+  });
+
+  /// Pandats token.
+  final String? token;
+}
+
+/// Pandats class.
+class Pandats extends PandatsModel {
+  /// Initializes Pandats class.
+  const Pandats({
+    String? token,
+  }) : super(
+          token: token,
+        );
+
+  /// Creates an instance from JSON.
+  factory Pandats.fromJson(Map<String, dynamic> json) => Pandats(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Pandats copyWith({
+    String? token,
+  }) =>
+      Pandats(
         token: token ?? this.token,
       );
 }
