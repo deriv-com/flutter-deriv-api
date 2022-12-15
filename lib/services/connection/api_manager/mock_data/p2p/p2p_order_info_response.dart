@@ -17,13 +17,15 @@ const String p2pOrderInfoResponse = '''{
       "id": "2",
       "name": "advertiser CR90000018",
       "loginid": "CR90000006",
-      "completed_orders_count": 0
+      "completed_orders_count": 0,
+      "is_online": true
     },
     "client_details": {
       "id":"5",
       "loginid": "CR90000006",
       "name": "client CR90000006",
-      "completed_orders_count": 0
+      "completed_orders_count": 0,
+      "is_online": true
     },
     "dispute_details": {
       "dispute_reason":null,
@@ -45,7 +47,9 @@ const String p2pOrderInfoResponse = '''{
     "rate_display": "13500.00",
     "status": "pending",
     "type": "buy",
-     "is_reviewable" : true
+    "is_reviewable" : true,
+    "verification_pending": true,
+    "is_seen" : true
   },
   "subscription": {
     "id": "857cfc96-1014-66ce-9c49-0a4dbd22857a"

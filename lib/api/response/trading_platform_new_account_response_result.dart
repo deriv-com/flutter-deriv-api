@@ -2,7 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Trading platform new account response model class.
 abstract class TradingPlatformNewAccountResponseModel {
@@ -47,6 +51,30 @@ class TradingPlatformNewAccountResponse
     return resultMap;
   }
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Trading Platform: New Account (request).
+  ///
+  /// This call creates new Trading account, either demo or real money.
+  /// For parameters information refer to [TradingPlatformNewAccountRequest].
+  /// Throws a [TradingPlatformException] if API response contains an error
+  static Future<TradingPlatformNewAccountResponse> create(
+    TradingPlatformNewAccountRequest request,
+  ) async {
+    final TradingPlatformNewAccountReceive response =
+        await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          TradingPlatformException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return TradingPlatformNewAccountResponse.fromJson(
+      response.tradingPlatformNewAccount,
+    );
+  }
+
   /// Creates a copy of instance with given parameters.
   TradingPlatformNewAccountResponse copyWith({
     TradingPlatformNewAccount? tradingPlatformNewAccount,
@@ -62,6 +90,7 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
     <String, AccountTypeEnum>{
   "demo": AccountTypeEnum.demo,
   "real": AccountTypeEnum.real,
+  "all": AccountTypeEnum.all,
 };
 
 /// AccountType Enum.
@@ -71,6 +100,9 @@ enum AccountTypeEnum {
 
   /// real.
   real,
+
+  /// all.
+  all,
 }
 
 /// LandingCompanyShortEnum mapper.
@@ -132,12 +164,16 @@ enum MarketTypeEnum {
 /// PlatformEnum mapper.
 final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
   "dxtrade": PlatformEnum.dxtrade,
+  "derivez": PlatformEnum.derivez,
 };
 
 /// Platform Enum.
 enum PlatformEnum {
   /// dxtrade.
   dxtrade,
+
+  /// derivez.
+  derivez,
 }
 
 /// SubAccountTypeEnum mapper.
@@ -155,12 +191,14 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Trading platform new account model class.
 abstract class TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account model class .
   const TradingPlatformNewAccountModel({
     this.accountId,
     this.accountType,
+    this.agent,
     this.balance,
     this.currency,
     this.displayBalance,
@@ -177,6 +215,9 @@ abstract class TradingPlatformNewAccountModel {
 
   /// Account type.
   final AccountTypeEnum? accountType;
+
+  /// Agent Details.
+  final String? agent;
 
   /// Balance of the Trading account.
   final double? balance;
@@ -212,6 +253,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
   const TradingPlatformNewAccount({
     String? accountId,
     AccountTypeEnum? accountType,
+    String? agent,
     double? balance,
     String? currency,
     String? displayBalance,
@@ -224,6 +266,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
   }) : super(
           accountId: accountId,
           accountType: accountType,
+          agent: agent,
           balance: balance,
           currency: currency,
           displayBalance: displayBalance,
@@ -242,6 +285,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
         accountType: json['account_type'] == null
             ? null
             : accountTypeEnumMapper[json['account_type']],
+        agent: json['agent'],
         balance: getDouble(json['balance']),
         currency: json['currency'],
         displayBalance: json['display_balance'],
@@ -270,6 +314,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
         .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
             entry.value == accountType)
         .key;
+    resultMap['agent'] = agent;
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['display_balance'] = displayBalance;
@@ -299,6 +344,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
   TradingPlatformNewAccount copyWith({
     String? accountId,
     AccountTypeEnum? accountType,
+    String? agent,
     double? balance,
     String? currency,
     String? displayBalance,
@@ -312,6 +358,7 @@ class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
       TradingPlatformNewAccount(
         accountId: accountId ?? this.accountId,
         accountType: accountType ?? this.accountType,
+        agent: agent ?? this.agent,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         displayBalance: displayBalance ?? this.displayBalance,

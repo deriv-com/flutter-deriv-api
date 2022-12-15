@@ -14,7 +14,8 @@ const String p2pAdvertListResponse = '''
           "id": "6",
           "name": "advertiser CR90000018",
           "completed_orders_count" : 1,
-          "rating_count" : 0
+          "rating_count" : 0,
+          "is_online": true
         },
         "counterparty_type": "sell",
         "country": "za",
@@ -43,7 +44,8 @@ const String p2pAdvertListResponse = '''
           "id": "7",
           "name": "advertiser CR90000022",
           "completed_orders_count" : 1,
-          "rating_count" : 0
+          "rating_count" : 0,
+          "is_online": true
         },
         "counterparty_type": "sell",
         "country": "za",

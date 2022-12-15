@@ -149,6 +149,7 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "mt5": AccountTypeEnum.mt5,
   "wallet": AccountTypeEnum.wallet,
   "dxtrade": AccountTypeEnum.dxtrade,
+  "derivez": AccountTypeEnum.derivez,
   "binary": AccountTypeEnum.binary,
 };
 
@@ -165,6 +166,9 @@ enum AccountTypeEnum {
 
   /// dxtrade.
   dxtrade,
+
+  /// derivez.
+  derivez,
 
   /// binary.
   binary,
@@ -189,6 +193,7 @@ enum MarketTypeEnum {
   /// all.
   all,
 }
+
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
@@ -197,6 +202,7 @@ abstract class AccountsItemModel {
     this.balance,
     this.currency,
     this.demoAccount,
+    this.derivezGroup,
     this.loginid,
     this.marketType,
     this.mt5Group,
@@ -214,6 +220,9 @@ abstract class AccountsItemModel {
 
   /// 0 for real accounts; `true` for virtual/demo accounts.
   final bool? demoAccount;
+
+  /// The group of derivez account.
+  final String? derivezGroup;
 
   /// Account identifier used for system transfers.
   final String? loginid;
@@ -236,6 +245,7 @@ class AccountsItem extends AccountsItemModel {
     String? balance,
     String? currency,
     bool? demoAccount,
+    String? derivezGroup,
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
@@ -245,6 +255,7 @@ class AccountsItem extends AccountsItemModel {
           balance: balance,
           currency: currency,
           demoAccount: demoAccount,
+          derivezGroup: derivezGroup,
           loginid: loginid,
           marketType: marketType,
           mt5Group: mt5Group,
@@ -259,6 +270,7 @@ class AccountsItem extends AccountsItemModel {
         balance: json['balance'],
         currency: json['currency'],
         demoAccount: getBool(json['demo_account']),
+        derivezGroup: json['derivez_group'],
         loginid: json['loginid'],
         marketType: json['market_type'] == null
             ? null
@@ -278,6 +290,7 @@ class AccountsItem extends AccountsItemModel {
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['demo_account'] = demoAccount;
+    resultMap['derivez_group'] = derivezGroup;
     resultMap['loginid'] = loginid;
     resultMap['market_type'] = marketTypeEnumMapper.entries
         .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
@@ -295,6 +308,7 @@ class AccountsItem extends AccountsItemModel {
     String? balance,
     String? currency,
     bool? demoAccount,
+    String? derivezGroup,
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
@@ -305,6 +319,7 @@ class AccountsItem extends AccountsItemModel {
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         demoAccount: demoAccount ?? this.demoAccount,
+        derivezGroup: derivezGroup ?? this.derivezGroup,
         loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,

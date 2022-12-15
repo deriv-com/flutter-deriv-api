@@ -2,7 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Trading platform accounts response model class.
 abstract class TradingPlatformAccountsResponseModel {
@@ -52,6 +56,30 @@ class TradingPlatformAccountsResponse
     }
 
     return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+
+  /// Trading Platform: Accounts List.
+  ///
+  /// Get list of Trading Platform accounts for client.
+  /// For parameters information refer to [TradingPlatformAccountsRequest].
+  /// Throws a [TradingPlatformException] if API response contains an error.
+  static Future<TradingPlatformAccountsResponse> getAccounts(
+    TradingPlatformAccountsRequest request,
+  ) async {
+    final TradingPlatformAccountsReceive response =
+        await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          TradingPlatformException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return TradingPlatformAccountsResponse.fromJson(
+      response.tradingPlatformAccounts,
+    );
   }
 
   /// Creates a copy of instance with given parameters.
@@ -186,6 +214,7 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Trading platform accounts item model class.
 abstract class TradingPlatformAccountsItemModel {
   /// Initializes Trading platform accounts item model class .
@@ -428,6 +457,7 @@ class TradingPlatformAccountsItem extends TradingPlatformAccountsItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
+
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -499,6 +529,7 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .
