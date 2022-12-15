@@ -90,7 +90,9 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     );
 
     return WebsiteStatusResponse.fromJson(
-        response.websiteStatus, response.subscription);
+      response.websiteStatus,
+      response.subscription,
+    );
   }
 
   /// Subscribes to website status
@@ -238,12 +240,12 @@ enum SiteStatusEnum {
   /// updating.
   updating,
 }
+
 /// Website status model class.
 abstract class WebsiteStatusModel {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
     required this.currenciesConfig,
-    required this.cryptoConfig,
     required this.apiCallLimits,
     this.clientsCountry,
     this.dxtradeStatus,
@@ -258,9 +260,6 @@ abstract class WebsiteStatusModel {
 
   /// Available currencies and their information
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
-
-  /// Provides minimum withdrawal for all crypto currency in USD
-  final Map<String, CryptoConfigProperty> cryptoConfig;
 
   /// Maximum number of API calls during specified period of time.
   final ApiCallLimits apiCallLimits;
@@ -298,7 +297,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes Website status class.
   const WebsiteStatus({
     required ApiCallLimits apiCallLimits,
-    required Map<String, CryptoConfigProperty> cryptoConfig,
     required Map<String, CurrenciesConfigProperty> currenciesConfig,
     String? clientsCountry,
     DxtradeStatus? dxtradeStatus,
@@ -311,7 +309,6 @@ class WebsiteStatus extends WebsiteStatusModel {
     String? termsConditionsVersion,
   }) : super(
           apiCallLimits: apiCallLimits,
-          cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
           clientsCountry: clientsCountry,
           dxtradeStatus: dxtradeStatus,
@@ -327,13 +324,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Creates an instance from JSON.
   factory WebsiteStatus.fromJson(Map<String, dynamic> json) => WebsiteStatus(
         apiCallLimits: ApiCallLimits.fromJson(json['api_call_limits']),
-        cryptoConfig: Map<String, CryptoConfigProperty>.fromEntries(
-            json['crypto_config']
-                .entries
-                .map<MapEntry<String, CryptoConfigProperty>>(
-                    (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, CryptoConfigProperty>(entry.key,
-                            CryptoConfigProperty.fromJson(entry.value)))),
         currenciesConfig: Map<String, CurrenciesConfigProperty>.fromEntries(
             json['currencies_config']
                 .entries
@@ -374,7 +364,6 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     resultMap['api_call_limits'] = apiCallLimits.toJson();
 
-    resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
     resultMap['clients_country'] = clientsCountry;
     if (dxtradeStatus != null) {
@@ -409,7 +398,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Creates a copy of instance with given parameters.
   WebsiteStatus copyWith({
     ApiCallLimits? apiCallLimits,
-    Map<String, CryptoConfigProperty>? cryptoConfig,
     Map<String, CurrenciesConfigProperty>? currenciesConfig,
     String? clientsCountry,
     DxtradeStatus? dxtradeStatus,
@@ -423,7 +411,6 @@ class WebsiteStatus extends WebsiteStatusModel {
   }) =>
       WebsiteStatus(
         apiCallLimits: apiCallLimits ?? this.apiCallLimits,
-        cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         dxtradeStatus: dxtradeStatus ?? this.dxtradeStatus,
@@ -437,6 +424,7 @@ class WebsiteStatus extends WebsiteStatusModel {
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
 }
+
 /// Api call limits model class.
 abstract class ApiCallLimitsModel {
   /// Initializes Api call limits model class .
@@ -517,6 +505,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
 }
+
 /// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription model class .
@@ -570,6 +559,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         max: max ?? this.max,
       );
 }
+
 /// Max requestes general model class.
 abstract class MaxRequestesGeneralModel {
   /// Initializes Max requestes general model class .
@@ -633,6 +623,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         minutely: minutely ?? this.minutely,
       );
 }
+
 /// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome model class .
@@ -696,6 +687,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         minutely: minutely ?? this.minutely,
       );
 }
+
 /// Max requests pricing model class.
 abstract class MaxRequestsPricingModel {
   /// Initializes Max requests pricing model class .
@@ -759,49 +751,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         minutely: minutely ?? this.minutely,
       );
 }
-/// Crypto config property model class.
-abstract class CryptoConfigPropertyModel {
-  /// Initializes Crypto config property model class .
-  const CryptoConfigPropertyModel({
-    required this.minimumWithdrawal,
-  });
 
-  /// Minimum withdrawal for the currency in USD.
-  final double minimumWithdrawal;
-}
-
-/// Crypto config property class.
-class CryptoConfigProperty extends CryptoConfigPropertyModel {
-  /// Initializes Crypto config property class.
-  const CryptoConfigProperty({
-    required double minimumWithdrawal,
-  }) : super(
-          minimumWithdrawal: minimumWithdrawal,
-        );
-
-  /// Creates an instance from JSON.
-  factory CryptoConfigProperty.fromJson(Map<String, dynamic> json) =>
-      CryptoConfigProperty(
-        minimumWithdrawal: getDouble(json['minimum_withdrawal'])!,
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['minimum_withdrawal'] = minimumWithdrawal;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  CryptoConfigProperty copyWith({
-    double? minimumWithdrawal,
-  }) =>
-      CryptoConfigProperty(
-        minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
-      );
-}
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
@@ -921,12 +871,14 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         name: name ?? this.name,
       );
 }
+
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts model class .
   const TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
+    this.limitsDerivez,
     this.limitsDxtrade,
     this.limitsMt5,
   });
@@ -936,6 +888,9 @@ abstract class TransferBetweenAccountsModel {
 
   /// The fee that applies for transfer between accounts with different types of currencies.
   final Map<String, double> fees;
+
+  /// Range of allowed amount for transfer between derivez accounts.
+  final Map<String, dynamic>? limitsDerivez;
 
   /// Range of allowed amount for transfer between dxtrade accounts.
   final Map<String, dynamic>? limitsDxtrade;
@@ -950,11 +905,13 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   const TransferBetweenAccounts({
     required Map<String, double> fees,
     required Limits limits,
+    Map<String, dynamic>? limitsDerivez,
     Map<String, dynamic>? limitsDxtrade,
     Map<String, dynamic>? limitsMt5,
   }) : super(
           fees: fees,
           limits: limits,
+          limitsDerivez: limitsDerivez,
           limitsDxtrade: limitsDxtrade,
           limitsMt5: limitsMt5,
         );
@@ -967,6 +924,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
             .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
                 MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
         limits: Limits.fromJson(json['limits']),
+        limitsDerivez: json['limits_derivez'],
         limitsDxtrade: json['limits_dxtrade'],
         limitsMt5: json['limits_mt5'],
       );
@@ -978,6 +936,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     resultMap['fees'] = fees;
     resultMap['limits'] = limits.toJson();
 
+    resultMap['limits_derivez'] = limitsDerivez;
     resultMap['limits_dxtrade'] = limitsDxtrade;
     resultMap['limits_mt5'] = limitsMt5;
 
@@ -988,16 +947,19 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   TransferBetweenAccounts copyWith({
     Map<String, double>? fees,
     Limits? limits,
+    Map<String, dynamic>? limitsDerivez,
     Map<String, dynamic>? limitsDxtrade,
     Map<String, dynamic>? limitsMt5,
   }) =>
       TransferBetweenAccounts(
         fees: fees ?? this.fees,
         limits: limits ?? this.limits,
+        limitsDerivez: limitsDerivez ?? this.limitsDerivez,
         limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
 }
+
 /// Limits model class.
 abstract class LimitsModel {
   /// Initializes Limits model class .
@@ -1050,6 +1012,7 @@ class Limits extends LimitsModel {
         max: max ?? this.max,
       );
 }
+
 /// Dxtrade status model class.
 abstract class DxtradeStatusModel {
   /// Initializes Dxtrade status model class .
@@ -1112,6 +1075,7 @@ class DxtradeStatus extends DxtradeStatusModel {
         real: real ?? this.real,
       );
 }
+
 /// Mt5 status model class.
 abstract class Mt5StatusModel {
   /// Initializes Mt5 status model class .
@@ -1188,6 +1152,7 @@ class Mt5Status extends Mt5StatusModel {
         real: real ?? this.real,
       );
 }
+
 /// P2p config model class.
 abstract class P2pConfigModel {
   /// Initializes P2p config model class .
@@ -1461,6 +1426,7 @@ class P2pConfig extends P2pConfigModel {
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 }
+
 /// Local currencies item model class.
 abstract class LocalCurrenciesItemModel {
   /// Initializes Local currencies item model class .
@@ -1534,6 +1500,7 @@ class LocalCurrenciesItem extends LocalCurrenciesItemModel {
         isDefault: isDefault ?? this.isDefault,
       );
 }
+
 /// Payment agents model class.
 abstract class PaymentAgentsModel {
   /// Initializes Payment agents model class .
@@ -1581,6 +1548,7 @@ class PaymentAgents extends PaymentAgentsModel {
             initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

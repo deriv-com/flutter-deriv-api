@@ -663,8 +663,21 @@ const String websiteStatusResponse = '''{
       "float_rate_adverts" : "disabled",
       "float_rate_offset_limit" : 0,
       "fixed_rate_adverts_end_date" : "",
+      "local_currencies":[
+        {
+            "display_name":"Antarctic Dollar",
+            "has_adverts":0,
+            "symbol":"AAD"
+        },
+        {
+            "display_name":"Zimbabwe Dollar",
+            "has_adverts":0,
+            "symbol":"ZWL"
+        }
+      ],
       "supported_currencies" : [],
-      "review_period" : 0
+      "review_period" : 0,
+      "feature_level" : 1
     },
     "site_status": "up",
     "supported_languages": [

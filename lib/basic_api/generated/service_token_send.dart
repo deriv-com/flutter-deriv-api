@@ -40,7 +40,7 @@ class ServiceTokenRequest extends Request {
   /// [Optional] The URL of the web page where the Web SDK will be used.
   final String? referrer;
 
-  /// Server (dxtrade only).
+  /// Server (dxtrade and derivez).
   final String? server;
 
   /// The service(s) to retrieve token(s) for.

@@ -45,6 +45,7 @@ export 'statement_exception.dart';
 export 'tick_exception.dart';
 export 'top_up_virtual_exception.dart';
 export 'trading_exception.dart';
+export 'trading_platform_exception.dart';
 export 'transactions_exception.dart';
 export 'transfer_exception.dart';
 export 'user_exception.dart';

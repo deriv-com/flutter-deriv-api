@@ -12,7 +12,8 @@ const String p2pAdvertInfoResponse = '''
       "id": "2",
       "name": "za advertiser 1010",
       "completed_orders_count" : 1,
-      "rating_count" : 0
+      "rating_count" : 0,
+      "is_online": true
     },
     "counterparty_type": "sell",
     "country": "za",
