@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/sell_expired_response_result.dart';
@@ -97,6 +96,7 @@ class SellResponse extends SellResponseModel {
         sell: sell ?? this.sell,
       );
 }
+
 /// Sell model class.
 abstract class SellModel {
   /// Initializes Sell model class .

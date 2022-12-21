@@ -76,7 +76,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
   /// Retrieves information about a P2P (peer to peer) advertiser.
   ///
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
-  /// Throws a [P2PAdvertiserException] if API response contains an error
+  /// Throws a [P2PAdvertiserException] if API response contains an error.
   static Future<P2pAdvertiserInfoResponse> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
   ) async {
@@ -90,7 +90,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
   /// Retrieves information about a P2P (peer to peer) advertiser.
   ///
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
-  /// Throws a [P2PAdvertiserException] if API response contains an error
+  /// Throws a [P2PAdvertiserException] if API response contains an error.
   static Future<P2pAdvertiserInfoReceive> fetchAdvertiserInformationRaw(
     P2pAdvertiserInfoRequest request,
   ) async {
@@ -111,12 +111,12 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         request,
         comparePredicate: comparePredicate,
       ).map(
-        (P2pAdvertiserInfoReceive? response) => response != null
-            ? P2pAdvertiserInfoResponse.fromJson(
+        (P2pAdvertiserInfoReceive? response) => response == null
+            ? null
+            : P2pAdvertiserInfoResponse.fromJson(
                 response.p2pAdvertiserInfo,
                 response.subscription,
-              )
-            : null,
+              ),
       );
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
@@ -141,7 +141,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
 
   /// Unsubscribes from P2P (peer to peer) advertiser information.
   ///
-  /// Throws a [P2PAdvertiserException] if API response contains an error
+  /// Throws a [P2PAdvertiserException] if API response contains an error.
   Future<ForgetResponse?> unsubscribeAdvertiser() async {
     if (subscription == null) {
       return null;
@@ -161,7 +161,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
 
   /// Unsubscribes all P2P (peer to peer) advertisers.
   ///
-  /// Throws a [P2PAdvertiserException] if API response contains an error
+  /// Throws a [P2PAdvertiserException] if API response contains an error.
   static Future<ForgetAllResponse> unsubscribeAllAdvertiser() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
@@ -185,6 +185,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// P2p advertiser info model class.
 abstract class P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info model class .
@@ -740,6 +741,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

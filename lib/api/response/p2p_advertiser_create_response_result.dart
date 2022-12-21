@@ -108,12 +108,12 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         request,
         comparePredicate: comparePredicate,
       ).map(
-        (P2pAdvertiserCreateReceive? response) => response != null
-            ? P2pAdvertiserCreateResponse.fromJson(
+        (P2pAdvertiserCreateReceive? response) => response == null
+            ? null
+            : P2pAdvertiserCreateResponse.fromJson(
                 response.p2pAdvertiserCreate,
                 response.subscription,
-              )
-            : null,
+              ),
       );
 
   /// Registers the client as a P2P (peer to peer) advertiser.
@@ -146,6 +146,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create model class .
@@ -621,6 +622,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
