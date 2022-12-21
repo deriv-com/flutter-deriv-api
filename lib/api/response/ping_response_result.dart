@@ -54,10 +54,8 @@ class PingResponse extends PingResponseModel {
   /// Requests the ping request to the server.
   ///
   /// Mostly used to test the connection or to keep it alive.
-  /// Throws a [PingException] if API response contains an error
-  static Future<PingResponse> pingMethod([
-    PingRequest? request,
-  ]) async {
+  /// Throws a [PingException] if API response contains an error.
+  static Future<PingReceive> pingMethodRaw([PingRequest? request]) async {
     final PingReceive response = await _api.call(
       request: request ?? const PingRequest(),
     );
@@ -67,6 +65,16 @@ class PingResponse extends PingResponseModel {
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PingException(baseExceptionModel: baseExceptionModel),
     );
+
+    return response;
+  }
+
+  /// Requests the ping request to the server.
+  ///
+  /// Mostly used to test the connection or to keep it alive.
+  /// Throws a [PingException] if API response contains an error.
+  static Future<PingResponse> pingMethod([PingRequest? request]) async {
+    final PingReceive response = await pingMethodRaw(request);
 
     return PingResponse.fromJson(response.ping);
   }

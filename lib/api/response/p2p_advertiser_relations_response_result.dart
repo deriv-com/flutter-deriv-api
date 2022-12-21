@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_relations_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_relations_send.dart';
@@ -56,17 +55,10 @@ class P2pAdvertiserRelationsResponse
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Updates and returns favourite and blocked advertisers of the current user.
-  Future<P2pAdvertiserRelationsResponse> fetch(
-    P2pAdvertiserRelationsRequest request,
-  ) async {
-    final P2pAdvertiserRelationsReceive response = await fetchRaw(request);
-
-    return P2pAdvertiserRelationsResponse.fromJson(
-        response.p2pAdvertiserRelations);
-  }
-
-  /// Updates and returns favourite and blocked advertisers of the current user.
-  Future<P2pAdvertiserRelationsReceive> fetchRaw(
+  ///
+  /// For parameters information refer to [P2pAdvertiserRelationsRequest].
+  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  static Future<P2pAdvertiserRelationsReceive> fetchRaw(
     P2pAdvertiserRelationsRequest request,
   ) async {
     final P2pAdvertiserRelationsReceive response =
@@ -81,6 +73,19 @@ class P2pAdvertiserRelationsResponse
     return response;
   }
 
+  /// Updates and returns favourite and blocked advertisers of the current user.
+  ///
+  /// For parameters information refer to [P2pAdvertiserRelationsRequest].
+  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  static Future<P2pAdvertiserRelationsResponse> fetch(
+    P2pAdvertiserRelationsRequest request,
+  ) async {
+    final P2pAdvertiserRelationsReceive response = await fetchRaw(request);
+
+    return P2pAdvertiserRelationsResponse.fromJson(
+        response.p2pAdvertiserRelations);
+  }
+
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserRelationsResponse copyWith({
     P2pAdvertiserRelations? p2pAdvertiserRelations,
@@ -90,6 +95,7 @@ class P2pAdvertiserRelationsResponse
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
       );
 }
+
 /// P2p advertiser relations model class.
 abstract class P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations model class .
@@ -160,6 +166,7 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
         favouriteAdvertisers: favouriteAdvertisers ?? this.favouriteAdvertisers,
       );
 }
+
 /// Blocked advertisers item model class.
 abstract class BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item model class .
@@ -223,6 +230,7 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Favourite advertisers item model class.
 abstract class FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item model class .

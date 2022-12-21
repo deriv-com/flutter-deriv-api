@@ -59,7 +59,7 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
   /// Retrieves the authorization token for the specified service.
   /// For parameters information refer to [ServiceTokenRequest].
   /// Throws a [APITokenException] if API response contains an error.
-  static Future<ServiceTokenResponse> getServiceToken(
+  static Future<ServiceTokenReceive> getServiceTokenRaw(
     ServiceTokenRequest request,
   ) async {
     final ServiceTokenReceive response = await _api.call(request: request);
@@ -69,6 +69,19 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           APITokenException(baseExceptionModel: baseExceptionModel),
     );
+
+    return response;
+  }
+
+  /// Service Token.
+  ///
+  /// Retrieves the authorization token for the specified service.
+  /// For parameters information refer to [ServiceTokenRequest].
+  /// Throws a [APITokenException] if API response contains an error.
+  static Future<ServiceTokenResponse> getServiceToken(
+    ServiceTokenRequest request,
+  ) async {
+    final ServiceTokenReceive response = await getServiceTokenRaw(request);
 
     return ServiceTokenResponse.fromJson(response.serviceToken);
   }
