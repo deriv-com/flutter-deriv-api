@@ -56,10 +56,11 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Gets user's settings (email, date of birth, address etc)
+  /// Gets user's settings (email, date of birth, address etc).
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error
-  static Future<GetSettingsResponse> fetchAccountSetting([
+  /// For parameters information refer to [GetSettingsRequest].
+  /// Throws an [AccountSettingsException] if API response contains an error.
+  static Future<GetSettingsReceive> fetchAccountSettingRaw([
     GetSettingsRequest? request,
   ]) async {
     final GetSettingsReceive response = await _api.call(
@@ -72,13 +73,14 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return GetSettingsResponse.fromJson(response.getSettings);
+    return response;
   }
 
-  /// Changes the user's settings with parameters specified as [SetSettingsRequest]
+  /// Gets user's settings (email, date of birth, address etc).
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error
-  static Future<SetSettingsResponse> changeAccountSetting(
+  /// For parameters information refer to [GetSettingsRequest].
+  /// Throws an [AccountSettingsException] if API response contains an error.
+  static Future<SetSettingsReceive> changeAccountSettingRaw(
     SetSettingsRequest request,
   ) async {
     final SetSettingsReceive response = await _api.call(request: request);
@@ -88,6 +90,28 @@ class GetSettingsResponse extends GetSettingsResponseModel {
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
+
+    return response;
+  }
+
+  /// Gets user's settings (email, date of birth, address etc).
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error.
+  static Future<GetSettingsResponse> fetchAccountSetting([
+    GetSettingsRequest? request,
+  ]) async {
+    final GetSettingsReceive response = await fetchAccountSettingRaw(request);
+
+    return GetSettingsResponse.fromJson(response.getSettings);
+  }
+
+  /// Changes the user's settings with parameters specified as [SetSettingsRequest].
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error.
+  static Future<SetSettingsResponse> changeAccountSetting(
+    SetSettingsRequest request,
+  ) async {
+    final SetSettingsReceive response = await changeAccountSettingRaw(request);
 
     return SetSettingsResponse(setSettings: response.setSettings ?? 0);
   }
@@ -132,6 +156,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
         getSettings: getSettings ?? this.getSettings,
       );
 }
+
 /// Get settings model class.
 abstract class GetSettingsModel {
   /// Initializes Get settings model class .
@@ -494,6 +519,7 @@ class GetSettings extends GetSettingsModel {
         userHash: userHash ?? this.userHash,
       );
 }
+
 /// Feature flag model class.
 abstract class FeatureFlagModel {
   /// Initializes Feature flag model class .

@@ -69,8 +69,8 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
-  /// Throws an [ExchangeException] if API response contains an error
-  static Future<ExchangeRates?> fetchExchangeRates(
+  /// Throws an [ExchangeException] if API response contains an error.
+  static Future<ExchangeRatesReceive?> fetchExchangeRatesRaw(
     ExchangeRatesRequest request,
   ) async {
     final ExchangeRatesReceive response = await _api.call(request: request);
@@ -81,9 +81,21 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
           ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 
-    return response.exchangeRates == null
+    return response;
+  }
+
+  /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
+  ///
+  /// For parameters information refer to [ExchangeRatesRequest].
+  /// Throws an [ExchangeException] if API response contains an error.
+  static Future<ExchangeRates?> fetchExchangeRates(
+    ExchangeRatesRequest request,
+  ) async {
+    final ExchangeRatesReceive? response = await fetchExchangeRatesRaw(request);
+
+    return response?.exchangeRates == null
         ? null
-        : ExchangeRates.fromJson(response.exchangeRates!);
+        : ExchangeRates.fromJson(response!.exchangeRates!);
   }
 
   /// Creates a copy of instance with given parameters.
@@ -96,6 +108,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
@@ -165,6 +178,7 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

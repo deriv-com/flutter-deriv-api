@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_send.dart';
@@ -53,17 +52,11 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Creates a review for the specified order.
-  Future<P2pOrderReviewResponse> reviewOrder(
-    P2pOrderReviewRequest request,
-  ) async {
-    final P2pOrderReviewReceive response = await reviewOrderRaw(request);
-
-    return P2pOrderReviewResponse.fromJson(response.p2pOrderReview);
-  }
-
-  /// Creates a review for the specified order.
-  Future<P2pOrderReviewReceive> reviewOrderRaw(
+  /// Cancel a P2P order review.
+  ///
+  /// For parameters information refer to [P2pOrderReviewReceive].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderReviewReceive> reviewOrderRaw(
     P2pOrderReviewRequest request,
   ) async {
     final P2pOrderReviewReceive response = await _api.call(request: request);
@@ -77,6 +70,18 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
     return response;
   }
 
+  /// Cancel a P2P order review.
+  ///
+  /// For parameters information refer to [P2pOrderReviewReceive].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderReviewResponse> reviewOrder(
+    P2pOrderReviewRequest request,
+  ) async {
+    final P2pOrderReviewReceive response = await reviewOrderRaw(request);
+
+    return P2pOrderReviewResponse.fromJson(response.p2pOrderReview);
+  }
+
   /// Creates a copy of instance with given parameters.
   P2pOrderReviewResponse copyWith({
     P2pOrderReview? p2pOrderReview,
@@ -85,6 +90,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
         p2pOrderReview: p2pOrderReview ?? this.p2pOrderReview,
       );
 }
+
 /// P2p order review model class.
 abstract class P2pOrderReviewModel {
   /// Initializes P2p order review model class .

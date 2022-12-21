@@ -52,19 +52,26 @@ class LogoutResponse extends LogoutResponseModel {
   /// Logs out from the web-socket's session.
   ///
   /// For parameters information refer to [LogoutRequest].
-  /// Throws an [AuthorizeException] if API response contains an error
-  static Future<LogoutResponse> logoutMethod([
-    LogoutRequest? request,
-  ]) async {
-    final LogoutReceive response = await _api.call(
-      request: request ?? const LogoutRequest(),
-    );
+  /// Throws an [AuthorizeException] if API response contains an error.
+  static Future<LogoutReceive> logoutMethodRaw([LogoutRequest? request]) async {
+    final LogoutReceive response =
+        await _api.call(request: request ?? const LogoutRequest());
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
+
+    return response;
+  }
+
+  /// Logs out from the web-socket's session.
+  ///
+  /// For parameters information refer to [LogoutRequest].
+  /// Throws an [AuthorizeException] if API response contains an error.
+  static Future<LogoutResponse> logoutMethod([LogoutRequest? request]) async {
+    final LogoutReceive response = await logoutMethodRaw(request);
 
     return LogoutResponse.fromJson(response.logout);
   }

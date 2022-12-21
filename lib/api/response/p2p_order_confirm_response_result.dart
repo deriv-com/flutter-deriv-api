@@ -52,17 +52,11 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Cancel a P2P order.
-  Future<P2pOrderConfirmResponse> confirmOrder(
-    P2pOrderConfirmRequest request,
-  ) async {
-    final P2pOrderConfirmReceive response = await confirmOrderRaw(request);
-
-    return P2pOrderConfirmResponse.fromJson(response.p2pOrderConfirm);
-  }
-
-  /// Cancel a P2P order.
-  Future<P2pOrderConfirmReceive> confirmOrderRaw(
+  /// Cancel a P2P order confirm.
+  ///
+  /// For parameters information refer to [P2pOrderConfirmRequest].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderConfirmReceive> confirmOrderRaw(
     P2pOrderConfirmRequest request,
   ) async {
     final P2pOrderConfirmReceive response = await _api.call(request: request);
@@ -70,10 +64,22 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
+  }
+
+  /// Cancel a P2P order confirm.
+  ///
+  /// For parameters information refer to [P2pOrderConfirmRequest].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderConfirmResponse> confirmOrder(
+    P2pOrderConfirmRequest request,
+  ) async {
+    final P2pOrderConfirmReceive response = await confirmOrderRaw(request);
+
+    return P2pOrderConfirmResponse.fromJson(response.p2pOrderConfirm);
   }
 
   /// Creates a copy of instance with given parameters.
@@ -99,6 +105,7 @@ enum StatusEnum {
   /// completed.
   completed,
 }
+
 /// P2p order confirm model class.
 abstract class P2pOrderConfirmModel {
   /// Initializes P2p order confirm model class .
