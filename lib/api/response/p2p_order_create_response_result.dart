@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
@@ -103,12 +102,12 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
         request,
         comparePredicate: comparePredicate,
       ).map(
-        (P2pOrderCreateReceive? response) => response != null
-            ? P2pOrderCreateResponse.fromJson(
+        (P2pOrderCreateReceive? response) => response == null
+            ? null
+            : P2pOrderCreateResponse.fromJson(
                 response.p2pOrderCreate,
                 response.subscription,
-              )
-            : null,
+              ),
       );
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
@@ -203,6 +202,7 @@ enum StatusEnum {
   /// pending.
   pending,
 }
+
 /// P2p order create model class.
 abstract class P2pOrderCreateModel {
   /// Initializes P2p order create model class .
@@ -515,6 +515,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
       );
 }
+
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -589,6 +590,7 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -693,6 +695,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -796,6 +799,7 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
@@ -848,6 +852,7 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
+
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -984,6 +989,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -1059,6 +1065,7 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

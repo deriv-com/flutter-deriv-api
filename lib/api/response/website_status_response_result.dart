@@ -96,13 +96,13 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Subscribes to website status.
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error.
-  static Stream<WebsiteStatusResponse?> subscribeWebsiteStatusRaw(
+  static Stream<WebsiteStatusReceive?> subscribeWebsiteStatusRaw(
     WebsiteStatusRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
-          .map<WebsiteStatusResponse?>(
+          .map<WebsiteStatusReceive?>(
         (Response response) {
           checkException(
             response: response,
@@ -110,9 +110,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
                 WebsiteStatusException(baseExceptionModel: baseExceptionModel),
           );
 
-          return response is WebsiteStatusResponse
-              ? response as WebsiteStatusResponse
-              : null;
+          return response is WebsiteStatusReceive ? response : null;
         },
       );
 
@@ -171,13 +169,16 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     WebsiteStatusRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      subscribeWebsiteStatusRaw(request).map(
-        (WebsiteStatusResponse? response) => response is WebsiteStatusResponse
-            ? WebsiteStatusResponse.fromJson(
+      subscribeWebsiteStatusRaw(
+        request,
+        comparePredicate: comparePredicate,
+      ).map(
+        (WebsiteStatusReceive? response) => response == null
+            ? null
+            : WebsiteStatusResponse.fromJson(
                 response.websiteStatus,
                 response.subscription,
-              )
-            : null,
+              ),
       );
 
   /// Unsubscribes from website status.
