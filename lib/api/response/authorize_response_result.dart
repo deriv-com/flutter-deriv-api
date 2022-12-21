@@ -55,9 +55,10 @@ class AuthorizeResponse extends AuthorizeResponseModel {
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///
   /// For parameters information refer to [AuthorizeRequest].
-  /// Throws an [AuthorizeException] if API response contains an error
-  static Future<AuthorizeResponse> authorizeMethod(
-      AuthorizeRequest request) async {
+  /// Throws an [AuthorizeException] if API response contains an error.
+  static Future<AuthorizeReceive> authorizeMethodRaw(
+    AuthorizeRequest request,
+  ) async {
     final AuthorizeReceive response = await _api.call(
       request: request,
     );
@@ -67,6 +68,18 @@ class AuthorizeResponse extends AuthorizeResponseModel {
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
+
+    return response;
+  }
+
+  /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
+  ///
+  /// For parameters information refer to [AuthorizeRequest].
+  /// Throws an [AuthorizeException] if API response contains an error.
+  static Future<AuthorizeResponse> authorizeMethod(
+    AuthorizeRequest request,
+  ) async {
+    final AuthorizeReceive response = await authorizeMethodRaw(request);
 
     return AuthorizeResponse.fromJson(response.authorize);
   }

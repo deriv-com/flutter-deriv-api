@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_dispute_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_dispute_send.dart';
@@ -54,17 +53,11 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Dispute a P2P order.
-  Future<P2pOrderDisputeResponse> disputeOrder(
-    P2pOrderDisputeRequest request,
-  ) async {
-    final P2pOrderDisputeReceive response = await disputeOrderRaw(request);
-
-    return P2pOrderDisputeResponse.fromJson(response.p2pOrderDispute);
-  }
-
-  /// Dispute a P2P order.
-  Future<P2pOrderDisputeReceive> disputeOrderRaw(
+  /// Cancel a P2P order dispute.
+  ///
+  /// For parameters information refer to [P2pOrderDisputeRequest].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderDisputeReceive> disputeOrderRaw(
     P2pOrderDisputeRequest request,
   ) async {
     final P2pOrderDisputeReceive response = await _api.call(request: request);
@@ -76,6 +69,18 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
     );
 
     return response;
+  }
+
+  /// Cancel a P2P order dispute.
+  ///
+  /// For parameters information refer to [P2pOrderDisputeRequest].
+  /// Throws an [P2POrderException] if API response contains an error.
+  static Future<P2pOrderDisputeResponse> disputeOrder(
+    P2pOrderDisputeRequest request,
+  ) async {
+    final P2pOrderDisputeReceive response = await disputeOrderRaw(request);
+
+    return P2pOrderDisputeResponse.fromJson(response.p2pOrderDispute);
   }
 
   /// Creates a copy of instance with given parameters.
@@ -148,6 +153,7 @@ enum StatusEnum {
   /// dispute-completed.
   disputeCompleted,
 }
+
 /// P2p order dispute model class.
 abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
@@ -468,6 +474,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
             verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
+
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -542,6 +549,7 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -646,6 +654,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -749,6 +758,7 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
