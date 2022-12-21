@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_send.dart';
@@ -124,6 +123,7 @@ enum P2pPaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
+
 /// P2p payment methods property model class.
 abstract class P2pPaymentMethodsPropertyModel {
   /// Initializes P2p payment methods property model class .
@@ -196,6 +196,7 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
         type: type ?? this.type,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .

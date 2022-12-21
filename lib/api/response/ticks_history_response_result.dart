@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/manually/ohlc_response.dart';
 import 'package:flutter_deriv_api/api/manually/ohlc_response_result.dart';
@@ -191,6 +190,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Candles item model class.
 abstract class CandlesItemModel {
   /// Initializes Candles item model class .
@@ -273,6 +273,7 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
+
 /// History model class.
 abstract class HistoryModel {
   /// Initializes History model class .
@@ -349,6 +350,7 @@ class History extends HistoryModel {
         times: times ?? this.times,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
