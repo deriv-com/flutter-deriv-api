@@ -56,7 +56,7 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// List all P2P payment methods.
-  Future<P2pPaymentMethodsResponse> fetch(
+  static Future<P2pPaymentMethodsResponse> fetch(
     P2pPaymentMethodsRequest request,
   ) async {
     final P2pPaymentMethodsReceive response = await fetchRaw(request);
@@ -65,7 +65,7 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
   }
 
   /// Dispute a P2P order.
-  Future<P2pPaymentMethodsReceive> fetchRaw(
+  static Future<P2pPaymentMethodsReceive> fetchRaw(
     P2pPaymentMethodsRequest request,
   ) async {
     final P2pPaymentMethodsReceive response = await _api.call(request: request);
