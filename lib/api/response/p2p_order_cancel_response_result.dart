@@ -53,16 +53,10 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Cancel a P2P order.
-  Future<P2pOrderCancelResponse> cancelOrder(
-    P2pOrderCancelRequest request,
-  ) async {
-    final P2pOrderCancelReceive response = await cancelOrderRaw(request);
-
-    return P2pOrderCancelResponse.fromJson(response.p2pOrderCancel);
-  }
-
-  /// Cancel a P2P order.
-  Future<P2pOrderCancelReceive> cancelOrderRaw(
+  ///
+  /// For parameters information refer to [P2pOrderCancelRequest].
+  /// Throws a [P2POrderException] if API response contains an error.
+  static Future<P2pOrderCancelReceive> cancelOrderRaw(
     P2pOrderCancelRequest request,
   ) async {
     final P2pOrderCancelReceive response = await _api.call(request: request);
@@ -70,10 +64,22 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
+  }
+
+  /// Cancel a P2P order.
+  ///
+  /// For parameters information refer to [P2pOrderCancelRequest].
+  /// Throws a [P2POrderException] if API response contains an error.
+  static Future<P2pOrderCancelResponse> cancelOrder(
+    P2pOrderCancelRequest request,
+  ) async {
+    final P2pOrderCancelReceive response = await cancelOrderRaw(request);
+
+    return P2pOrderCancelResponse.fromJson(response.p2pOrderCancel);
   }
 
   /// Creates a copy of instance with given parameters.
@@ -95,6 +101,7 @@ enum StatusEnum {
   /// cancelled.
   cancelled,
 }
+
 /// P2p order cancel model class.
 abstract class P2pOrderCancelModel {
   /// Initializes P2p order cancel model class .
