@@ -70,7 +70,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [ExchangeException] if API response contains an error.
-  static Future<ExchangeRatesReceive?> fetchExchangeRatesRaw(
+  static Future<ExchangeRatesReceive> fetchExchangeRatesRaw(
     ExchangeRatesRequest request,
   ) async {
     final ExchangeRatesReceive response = await _api.call(request: request);
@@ -88,14 +88,12 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [ExchangeException] if API response contains an error.
-  static Future<ExchangeRates?> fetchExchangeRates(
+  static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {
-    final ExchangeRatesReceive? response = await fetchExchangeRatesRaw(request);
+    final ExchangeRatesReceive response = await fetchExchangeRatesRaw(request);
 
-    return response?.exchangeRates == null
-        ? null
-        : ExchangeRates.fromJson(response!.exchangeRates!);
+    return ExchangeRates.fromJson(response.exchangeRates!);
   }
 
   /// Creates a copy of instance with given parameters.
