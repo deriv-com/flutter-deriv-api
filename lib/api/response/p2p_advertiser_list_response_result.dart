@@ -54,19 +54,7 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
   /// Returns P2P advertiser list.
   ///
   /// For parameters information refer to [P2pAdvertiserListRequest].
-  static Future<P2pAdvertiserListResponse> fetchAdvertiserAdverts(
-    P2pAdvertiserListRequest request,
-  ) async {
-    final P2pAdvertiserListReceive response =
-        await fetchAdvertiserAdvertsRaw(request);
-
-    return P2pAdvertiserListResponse.fromJson(response.p2pAdvertiserList);
-  }
-
-  /// Returns P2P advertiser list.
-  ///
-  /// For parameters information refer to [P2pAdvertiserListRequest].
-  static Future<P2pAdvertiserListReceive> fetchAdvertiserAdvertsRaw(
+  static Future<P2pAdvertiserListReceive> fetchAdvertiserListRaw(
     P2pAdvertiserListRequest request,
   ) async {
     final P2pAdvertiserListReceive response = await _api.call(request: request);
@@ -78,6 +66,18 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
     );
 
     return response;
+  }
+
+  /// Returns P2P advertiser list.
+  ///
+  /// For parameters information refer to [P2pAdvertiserListRequest].
+  static Future<P2pAdvertiserListResponse> fetchAdvertiserList(
+    P2pAdvertiserListRequest request,
+  ) async {
+    final P2pAdvertiserListReceive response =
+        await fetchAdvertiserListRaw(request);
+
+    return P2pAdvertiserListResponse.fromJson(response.p2pAdvertiserList);
   }
 
   /// Creates a copy of instance with given parameters.
