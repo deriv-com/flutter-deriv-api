@@ -190,7 +190,6 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Candles item model class.
 abstract class CandlesItemModel {
   /// Initializes Candles item model class .
@@ -273,7 +272,6 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
-
 /// History model class.
 abstract class HistoryModel {
   /// Initializes History model class .
@@ -350,7 +348,6 @@ class History extends HistoryModel {
         times: times ?? this.times,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
