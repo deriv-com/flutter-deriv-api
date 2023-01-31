@@ -249,6 +249,7 @@ abstract class ProposalOpenContractModel {
     this.exitTickDisplayValue,
     this.exitTickTime,
     this.expiryTime,
+    this.growthRate,
     this.highBarrier,
     this.id,
     this.isExpired,
@@ -276,6 +277,7 @@ abstract class ProposalOpenContractModel {
     this.shortcode,
     this.status,
     this.tickCount,
+    this.tickPassed,
     this.tickStream,
     this.transactionIds,
     this.underlying,
@@ -369,6 +371,9 @@ abstract class ProposalOpenContractModel {
   /// This is the expiry time.
   final DateTime? expiryTime;
 
+  /// [Only for accumulator] Growth rate of an accumulator contract.
+  final double? growthRate;
+
   /// High barrier of the contract (if any).
   final String? highBarrier;
 
@@ -450,6 +455,9 @@ abstract class ProposalOpenContractModel {
   /// Only for tick trades, number of ticks
   final int? tickCount;
 
+  /// [Only for accumulator] Number of ticks passed since entry_tick
+  final int? tickPassed;
+
   /// Tick stream from entry to end time.
   final List<TickStreamItem>? tickStream;
 
@@ -496,6 +504,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? exitTickDisplayValue,
     DateTime? exitTickTime,
     DateTime? expiryTime,
+    double? growthRate,
     String? highBarrier,
     String? id,
     bool? isExpired,
@@ -523,6 +532,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? shortcode,
     StatusEnum? status,
     int? tickCount,
+    int? tickPassed,
     List<TickStreamItem>? tickStream,
     TransactionIds? transactionIds,
     String? underlying,
@@ -557,6 +567,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
           exitTickDisplayValue: exitTickDisplayValue,
           exitTickTime: exitTickTime,
           expiryTime: expiryTime,
+          growthRate: growthRate,
           highBarrier: highBarrier,
           id: id,
           isExpired: isExpired,
@@ -584,6 +595,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
           shortcode: shortcode,
           status: status,
           tickCount: tickCount,
+          tickPassed: tickPassed,
           tickStream: tickStream,
           transactionIds: transactionIds,
           underlying: underlying,
@@ -626,6 +638,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         exitTickDisplayValue: json['exit_tick_display_value'],
         exitTickTime: getDateTime(json['exit_tick_time']),
         expiryTime: getDateTime(json['expiry_time']),
+        growthRate: getDouble(json['growth_rate']),
         highBarrier: json['high_barrier'],
         id: json['id'],
         isExpired: getBool(json['is_expired']),
@@ -656,6 +669,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         status:
             json['status'] == null ? null : statusEnumMapper[json['status']],
         tickCount: json['tick_count'],
+        tickPassed: json['tick_passed'],
         tickStream: json['tick_stream'] == null
             ? null
             : List<TickStreamItem>.from(
@@ -708,6 +722,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     resultMap['exit_tick_display_value'] = exitTickDisplayValue;
     resultMap['exit_tick_time'] = getSecondsSinceEpochDateTime(exitTickTime);
     resultMap['expiry_time'] = getSecondsSinceEpochDateTime(expiryTime);
+    resultMap['growth_rate'] = growthRate;
     resultMap['high_barrier'] = highBarrier;
     resultMap['id'] = id;
     resultMap['is_expired'] = isExpired;
@@ -740,6 +755,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
             (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
     resultMap['tick_count'] = tickCount;
+    resultMap['tick_passed'] = tickPassed;
     if (tickStream != null) {
       resultMap['tick_stream'] = tickStream!
           .map<dynamic>(
@@ -787,6 +803,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? exitTickDisplayValue,
     DateTime? exitTickTime,
     DateTime? expiryTime,
+    double? growthRate,
     String? highBarrier,
     String? id,
     bool? isExpired,
@@ -814,6 +831,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? shortcode,
     StatusEnum? status,
     int? tickCount,
+    int? tickPassed,
     List<TickStreamItem>? tickStream,
     TransactionIds? transactionIds,
     String? underlying,
@@ -852,6 +870,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         exitTickDisplayValue: exitTickDisplayValue ?? this.exitTickDisplayValue,
         exitTickTime: exitTickTime ?? this.exitTickTime,
         expiryTime: expiryTime ?? this.expiryTime,
+        growthRate: growthRate ?? this.growthRate,
         highBarrier: highBarrier ?? this.highBarrier,
         id: id ?? this.id,
         isExpired: isExpired ?? this.isExpired,
@@ -879,6 +898,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         shortcode: shortcode ?? this.shortcode,
         status: status ?? this.status,
         tickCount: tickCount ?? this.tickCount,
+        tickPassed: tickPassed ?? this.tickPassed,
         tickStream: tickStream ?? this.tickStream,
         transactionIds: transactionIds ?? this.transactionIds,
         underlying: underlying ?? this.underlying,
