@@ -201,10 +201,12 @@ abstract class AvailableItemModel {
     required this.barrierCategory,
     this.availableBarriers,
     this.barrier,
+    this.barrierChoices,
     this.cancellationRange,
     this.contractDisplay,
     this.expiredBarriers,
     this.forwardStartingOptions,
+    this.growthRateRange,
     this.highBarrier,
     this.lastDigitRange,
     this.lowBarrier,
@@ -261,6 +263,9 @@ abstract class AvailableItemModel {
   /// Barrier Details.
   final String? barrier;
 
+  /// [Only for Vanilla] Barrier Choices
+  final List<dynamic>? barrierChoices;
+
   /// Cancellation range
   final List<dynamic>? cancellationRange;
 
@@ -272,6 +277,9 @@ abstract class AvailableItemModel {
 
   /// Array of returned forward starting options
   final List<ForwardStartingOptionsItem>? forwardStartingOptions;
+
+  /// Growth rate range.
+  final List<dynamic>? growthRateRange;
 
   /// High barrier Details.
   final String? highBarrier;
@@ -312,10 +320,12 @@ class AvailableItem extends AvailableItemModel {
     required String underlyingSymbol,
     List<dynamic>? availableBarriers,
     String? barrier,
+    List<dynamic>? barrierChoices,
     List<dynamic>? cancellationRange,
     String? contractDisplay,
     List<dynamic>? expiredBarriers,
     List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    List<dynamic>? growthRateRange,
     String? highBarrier,
     List<dynamic>? lastDigitRange,
     String? lowBarrier,
@@ -339,10 +349,12 @@ class AvailableItem extends AvailableItemModel {
           underlyingSymbol: underlyingSymbol,
           availableBarriers: availableBarriers,
           barrier: barrier,
+          barrierChoices: barrierChoices,
           cancellationRange: cancellationRange,
           contractDisplay: contractDisplay,
           expiredBarriers: expiredBarriers,
           forwardStartingOptions: forwardStartingOptions,
+          growthRateRange: growthRateRange,
           highBarrier: highBarrier,
           lastDigitRange: lastDigitRange,
           lowBarrier: lowBarrier,
@@ -375,6 +387,13 @@ class AvailableItem extends AvailableItemModel {
                 ),
               ),
         barrier: json['barrier'],
+        barrierChoices: json['barrier_choices'] == null
+            ? null
+            : List<dynamic>.from(
+                json['barrier_choices']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         cancellationRange: json['cancellation_range'] == null
             ? null
             : List<dynamic>.from(
@@ -395,6 +414,13 @@ class AvailableItem extends AvailableItemModel {
             : List<ForwardStartingOptionsItem>.from(
                 json['forward_starting_options']?.map(
                   (dynamic item) => ForwardStartingOptionsItem.fromJson(item),
+                ),
+              ),
+        growthRateRange: json['growth_rate_range'] == null
+            ? null
+            : List<dynamic>.from(
+                json['growth_rate_range']?.map(
+                  (dynamic item) => item,
                 ),
               ),
         highBarrier: json['high_barrier'],
@@ -443,6 +469,13 @@ class AvailableItem extends AvailableItemModel {
           .toList();
     }
     resultMap['barrier'] = barrier;
+    if (barrierChoices != null) {
+      resultMap['barrier_choices'] = barrierChoices!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
     if (cancellationRange != null) {
       resultMap['cancellation_range'] = cancellationRange!
           .map<dynamic>(
@@ -462,6 +495,13 @@ class AvailableItem extends AvailableItemModel {
       resultMap['forward_starting_options'] = forwardStartingOptions!
           .map<dynamic>(
             (ForwardStartingOptionsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    if (growthRateRange != null) {
+      resultMap['growth_rate_range'] = growthRateRange!
+          .map<dynamic>(
+            (dynamic item) => item,
           )
           .toList();
     }
@@ -505,10 +545,12 @@ class AvailableItem extends AvailableItemModel {
     String? underlyingSymbol,
     List<dynamic>? availableBarriers,
     String? barrier,
+    List<dynamic>? barrierChoices,
     List<dynamic>? cancellationRange,
     String? contractDisplay,
     List<dynamic>? expiredBarriers,
     List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    List<dynamic>? growthRateRange,
     String? highBarrier,
     List<dynamic>? lastDigitRange,
     String? lowBarrier,
@@ -534,11 +576,13 @@ class AvailableItem extends AvailableItemModel {
         underlyingSymbol: underlyingSymbol ?? this.underlyingSymbol,
         availableBarriers: availableBarriers ?? this.availableBarriers,
         barrier: barrier ?? this.barrier,
+        barrierChoices: barrierChoices ?? this.barrierChoices,
         cancellationRange: cancellationRange ?? this.cancellationRange,
         contractDisplay: contractDisplay ?? this.contractDisplay,
         expiredBarriers: expiredBarriers ?? this.expiredBarriers,
         forwardStartingOptions:
             forwardStartingOptions ?? this.forwardStartingOptions,
+        growthRateRange: growthRateRange ?? this.growthRateRange,
         highBarrier: highBarrier ?? this.highBarrier,
         lastDigitRange: lastDigitRange ?? this.lastDigitRange,
         lowBarrier: lowBarrier ?? this.lowBarrier,

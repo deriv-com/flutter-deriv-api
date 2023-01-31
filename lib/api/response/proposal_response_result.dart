@@ -195,11 +195,16 @@ abstract class ProposalModel extends Equatable {
     required this.displayValue,
     required this.dateStart,
     required this.askPrice,
+    this.barrierChoices,
     this.cancellation,
     this.commission,
+    this.contractDetails,
     this.dateExpiry,
     this.limitOrder,
+    this.maxStake,
+    this.minStake,
     this.multiplier,
+    this.numberOfContracts,
   });
 
   /// The corresponding time of the spot value.
@@ -226,11 +231,17 @@ abstract class ProposalModel extends Equatable {
   /// The ask price.
   final double askPrice;
 
+  /// [Only for vanilla options] The choices of predefined strike price for client to choose
+  final List<dynamic>? barrierChoices;
+
   /// Contains information about contract cancellation option.
   final Cancellation? cancellation;
 
   /// Commission changed in percentage (%).
   final double? commission;
+
+  /// Contains contract information. (Only applicable for accumulator).
+  final ContractDetails? contractDetails;
 
   /// The end date of the contract.
   final DateTime? dateExpiry;
@@ -238,8 +249,17 @@ abstract class ProposalModel extends Equatable {
   /// Contains limit order information. (Only applicable for contract with limit order).
   final LimitOrder? limitOrder;
 
+  /// [Only for vanilla options] Maximum stakes allowed
+  final double? maxStake;
+
+  /// [Only for vanilla options] Minimum stakes allowed
+  final double? minStake;
+
   /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
   final double? multiplier;
+
+  /// [Only for vanilla options] The implied number of contracts
+  final double? numberOfContracts;
 }
 
 /// Proposal class.
@@ -254,11 +274,16 @@ class Proposal extends ProposalModel {
     required double payout,
     required double spot,
     required DateTime spotTime,
+    List<dynamic>? barrierChoices,
     Cancellation? cancellation,
     double? commission,
+    ContractDetails? contractDetails,
     DateTime? dateExpiry,
     LimitOrder? limitOrder,
+    double? maxStake,
+    double? minStake,
     double? multiplier,
+    double? numberOfContracts,
   }) : super(
           askPrice: askPrice,
           dateStart: dateStart,
@@ -268,11 +293,16 @@ class Proposal extends ProposalModel {
           payout: payout,
           spot: spot,
           spotTime: spotTime,
+          barrierChoices: barrierChoices,
           cancellation: cancellation,
           commission: commission,
+          contractDetails: contractDetails,
           dateExpiry: dateExpiry,
           limitOrder: limitOrder,
+          maxStake: maxStake,
+          minStake: minStake,
           multiplier: multiplier,
+          numberOfContracts: numberOfContracts,
         );
 
   /// Creates an instance from JSON.
@@ -285,15 +315,28 @@ class Proposal extends ProposalModel {
         payout: getDouble(json['payout'])!,
         spot: getDouble(json['spot'])!,
         spotTime: getDateTime(json['spot_time'])!,
+        barrierChoices: json['barrier_choices'] == null
+            ? null
+            : List<dynamic>.from(
+                json['barrier_choices']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         cancellation: json['cancellation'] == null
             ? null
             : Cancellation.fromJson(json['cancellation']),
         commission: getDouble(json['commission']),
+        contractDetails: json['contract_details'] == null
+            ? null
+            : ContractDetails.fromJson(json['contract_details']),
         dateExpiry: getDateTime(json['date_expiry']),
         limitOrder: json['limit_order'] == null
             ? null
             : LimitOrder.fromJson(json['limit_order']),
+        maxStake: getDouble(json['max_stake']),
+        minStake: getDouble(json['min_stake']),
         multiplier: getDouble(json['multiplier']),
+        numberOfContracts: getDouble(json['number_of_contracts']),
       );
 
   /// Converts an instance to JSON.
@@ -308,15 +351,28 @@ class Proposal extends ProposalModel {
     resultMap['payout'] = payout;
     resultMap['spot'] = spot;
     resultMap['spot_time'] = getSecondsSinceEpochDateTime(spotTime);
+    if (barrierChoices != null) {
+      resultMap['barrier_choices'] = barrierChoices!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
     if (cancellation != null) {
       resultMap['cancellation'] = cancellation!.toJson();
     }
     resultMap['commission'] = commission;
+    if (contractDetails != null) {
+      resultMap['contract_details'] = contractDetails!.toJson();
+    }
     resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
     if (limitOrder != null) {
       resultMap['limit_order'] = limitOrder!.toJson();
     }
+    resultMap['max_stake'] = maxStake;
+    resultMap['min_stake'] = minStake;
     resultMap['multiplier'] = multiplier;
+    resultMap['number_of_contracts'] = numberOfContracts;
 
     return resultMap;
   }
@@ -331,11 +387,16 @@ class Proposal extends ProposalModel {
     double? payout,
     double? spot,
     DateTime? spotTime,
+    List<dynamic>? barrierChoices,
     Cancellation? cancellation,
     double? commission,
+    ContractDetails? contractDetails,
     DateTime? dateExpiry,
     LimitOrder? limitOrder,
+    double? maxStake,
+    double? minStake,
     double? multiplier,
+    double? numberOfContracts,
   }) =>
       Proposal(
         askPrice: askPrice ?? this.askPrice,
@@ -346,11 +407,16 @@ class Proposal extends ProposalModel {
         payout: payout ?? this.payout,
         spot: spot ?? this.spot,
         spotTime: spotTime ?? this.spotTime,
+        barrierChoices: barrierChoices ?? this.barrierChoices,
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
+        contractDetails: contractDetails ?? this.contractDetails,
         dateExpiry: dateExpiry ?? this.dateExpiry,
         limitOrder: limitOrder ?? this.limitOrder,
+        maxStake: maxStake ?? this.maxStake,
+        minStake: minStake ?? this.minStake,
         multiplier: multiplier ?? this.multiplier,
+        numberOfContracts: numberOfContracts ?? this.numberOfContracts,
       );
 
   /// Override equatable class.
@@ -423,6 +489,121 @@ class Cancellation extends CancellationModel {
         askPrice,
         dateExpiry,
       ];
+}
+/// Contract details model class.
+abstract class ContractDetailsModel {
+  /// Initializes Contract details model class .
+  const ContractDetailsModel({
+    this.highBarrier,
+    this.lastTickEpoch,
+    this.lowBarrier,
+    this.maximumPayout,
+    this.maximumTicks,
+    this.tickSizeBarrier,
+    this.ticksStayedIn,
+  });
+
+  /// High barrier calculated based on current spot
+  final String? highBarrier;
+
+  /// Epoch of last tick considered for stat chart
+  final DateTime? lastTickEpoch;
+
+  /// Low barrier calculated based on current spot
+  final String? lowBarrier;
+
+  /// Maximum payout that user can get out of a contract, contract will close automatically if payout reaches this number
+  final double? maximumPayout;
+
+  /// Maximum duration that a contract can last, contract will close automatically after this number of ticks
+  final int? maximumTicks;
+
+  /// Tick size barrier for Accumulator contracts
+  final double? tickSizeBarrier;
+
+  /// An array of numbers  to build a stat chart - each number represents the duration that spot stayed between barries
+  final List<int>? ticksStayedIn;
+}
+
+/// Contract details class.
+class ContractDetails extends ContractDetailsModel {
+  /// Initializes Contract details class.
+  const ContractDetails({
+    String? highBarrier,
+    DateTime? lastTickEpoch,
+    String? lowBarrier,
+    double? maximumPayout,
+    int? maximumTicks,
+    double? tickSizeBarrier,
+    List<int>? ticksStayedIn,
+  }) : super(
+          highBarrier: highBarrier,
+          lastTickEpoch: lastTickEpoch,
+          lowBarrier: lowBarrier,
+          maximumPayout: maximumPayout,
+          maximumTicks: maximumTicks,
+          tickSizeBarrier: tickSizeBarrier,
+          ticksStayedIn: ticksStayedIn,
+        );
+
+  /// Creates an instance from JSON.
+  factory ContractDetails.fromJson(Map<String, dynamic> json) =>
+      ContractDetails(
+        highBarrier: json['high_barrier'],
+        lastTickEpoch: getDateTime(json['last_tick_epoch']),
+        lowBarrier: json['low_barrier'],
+        maximumPayout: getDouble(json['maximum_payout']),
+        maximumTicks: json['maximum_ticks'],
+        tickSizeBarrier: getDouble(json['tick_size_barrier']),
+        ticksStayedIn: json['ticks_stayed_in'] == null
+            ? null
+            : List<int>.from(
+                json['ticks_stayed_in']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['high_barrier'] = highBarrier;
+    resultMap['last_tick_epoch'] = getSecondsSinceEpochDateTime(lastTickEpoch);
+    resultMap['low_barrier'] = lowBarrier;
+    resultMap['maximum_payout'] = maximumPayout;
+    resultMap['maximum_ticks'] = maximumTicks;
+    resultMap['tick_size_barrier'] = tickSizeBarrier;
+    if (ticksStayedIn != null) {
+      resultMap['ticks_stayed_in'] = ticksStayedIn!
+          .map<dynamic>(
+            (int item) => item,
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  ContractDetails copyWith({
+    String? highBarrier,
+    DateTime? lastTickEpoch,
+    String? lowBarrier,
+    double? maximumPayout,
+    int? maximumTicks,
+    double? tickSizeBarrier,
+    List<int>? ticksStayedIn,
+  }) =>
+      ContractDetails(
+        highBarrier: highBarrier ?? this.highBarrier,
+        lastTickEpoch: lastTickEpoch ?? this.lastTickEpoch,
+        lowBarrier: lowBarrier ?? this.lowBarrier,
+        maximumPayout: maximumPayout ?? this.maximumPayout,
+        maximumTicks: maximumTicks ?? this.maximumTicks,
+        tickSizeBarrier: tickSizeBarrier ?? this.tickSizeBarrier,
+        ticksStayedIn: ticksStayedIn ?? this.ticksStayedIn,
+      );
 }
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
