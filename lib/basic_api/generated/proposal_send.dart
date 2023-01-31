@@ -20,6 +20,7 @@ class ProposalRequest extends Request {
     this.dateStart,
     this.duration,
     this.durationUnit,
+    this.growthRate,
     required this.limitOrder,
     this.multiplier,
     this.productType,
@@ -51,6 +52,7 @@ class ProposalRequest extends Request {
         dateStart: json['date_start'] as int?,
         duration: json['duration'] as int?,
         durationUnit: json['duration_unit'] as String?,
+        growthRate: json['growth_rate'] as num?,
         limitOrder: json['limit_order'] as Map<String, dynamic>?,
         multiplier: json['multiplier'] as num?,
         productType: json['product_type'] as String?,
@@ -99,7 +101,10 @@ class ProposalRequest extends Request {
   /// [Optional] Duration unit - `s`: seconds, `m`: minutes, `h`: hours, `d`: days, `t`: ticks.
   final String? durationUnit;
 
-  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN` contracts). Supported orders: `take_profit`, `stop_loss`.
+  /// [Optional] Growth rate of an accumulator contract.
+  final num? growthRate;
+
+  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN` and 'ACCU' contracts). Supported orders: `take_profit`, `stop_loss`.
   final Map<String, dynamic>? limitOrder;
 
   /// [Optional] The multiplier for non-binary options. E.g. lookbacks.
@@ -138,6 +143,7 @@ class ProposalRequest extends Request {
         'date_start': dateStart,
         'duration': duration,
         'duration_unit': durationUnit,
+        'growth_rate': growthRate,
         'limit_order': limitOrder,
         'multiplier': multiplier,
         'product_type': productType,
@@ -173,6 +179,7 @@ class ProposalRequest extends Request {
     int? dateStart,
     int? duration,
     String? durationUnit,
+    num? growthRate,
     Map<String, dynamic>? limitOrder,
     num? multiplier,
     String? productType,
@@ -197,6 +204,7 @@ class ProposalRequest extends Request {
         dateStart: dateStart ?? this.dateStart,
         duration: duration ?? this.duration,
         durationUnit: durationUnit ?? this.durationUnit,
+        growthRate: growthRate ?? this.growthRate,
         limitOrder: limitOrder ?? this.limitOrder,
         multiplier: multiplier ?? this.multiplier,
         productType: productType ?? this.productType,
