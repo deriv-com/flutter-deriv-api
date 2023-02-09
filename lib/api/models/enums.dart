@@ -356,7 +356,8 @@ enum ContractType {
   callSpread,
   putSpread,
   runHigh,
-  runLow
+  runLow,
+  accu,
 }
 
 /// Defines the type of the users account
