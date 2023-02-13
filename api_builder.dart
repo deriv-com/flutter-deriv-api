@@ -122,8 +122,8 @@ class APIBuilder extends Builder {
               /// Initialize $classFullName.
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)}
-                  ${_getSuperClassParameters(schemaType)},
-                }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
+                  ${_getSuperClassConstructorParameters(schemaType, methodName)},
+                });
               
               ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
               
@@ -388,7 +388,30 @@ class APIBuilder extends Builder {
       ..write('${_getSupperClassAssignments(schemaType)},);');
   }
 
-  static String _getSuperClassParameters(String? schemaType) {
+  // static String _getSuperClassParameters({
+  //   required String? schemaType,
+  //   String? methodName,
+  // }) {
+  //   final Map<String, String> superClassFields =
+  //       _getSuperClassFields(schemaType);
+
+  //   final StringBuffer superClassParameters = StringBuffer();
+
+  //   if (schemaType == 'send') {
+  //     superClassParameters.write('super.msgType = \'$methodName\',');
+  //   }
+
+  //   superClassParameters.write(superClassFields.keys.map((String key) {
+  //     final String parameterName = ReCase(key).camelCase;
+  //     return 'super.$parameterName';
+  //   }).join(', '));
+
+  //   return superClassParameters.toString();
+  // }
+
+  static String _getSuperClassParameters(
+    String schemaType,
+  ) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
 
@@ -398,25 +421,45 @@ class APIBuilder extends Builder {
         .join(', ');
   }
 
-  static String _getSuperClassCallParameters(
+  static String _getSuperClassConstructorParameters(
     String schemaType,
     String methodName,
   ) {
-    final StringBuffer superCallParameters = StringBuffer();
+    final Map<String, String> superClassFields =
+        _getSuperClassFields(schemaType);
+
+    final StringBuffer superClassParameters = StringBuffer();
 
     if (schemaType == 'send') {
-      superCallParameters.write('msgType: \'$methodName\',');
+      superClassParameters.write('super.msgType = \'$methodName\',');
     }
 
-    superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-      (String key) {
-        final String parameterName = ReCase(key).camelCase;
-        return '$parameterName: $parameterName';
-      },
-    ).join(', '));
+    superClassParameters.write(superClassFields.keys.map((String key) {
+      final String parameterName = ReCase(key).camelCase;
+      return 'super.$parameterName';
+    }).join(', '));
 
-    return superCallParameters.toString();
+    return superClassParameters.toString();
   }
+  // static String _getSuperClassCallParameters(
+  //   String schemaType,
+  //   String methodName,
+  // ) {
+  //   final StringBuffer superCallParameters = StringBuffer();
+
+  //   if (schemaType == 'send') {
+  //     superCallParameters.write('msgType: \'$methodName\',');
+  //   }
+
+  //   superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
+  //     (String key) {
+  //       final String parameterName = ReCase(key).camelCase;
+  //       return '$parameterName: $parameterName';
+  //     },
+  //   ).join(', '));
+
+  //   return superCallParameters.toString();
+  // }
 
   static String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(
