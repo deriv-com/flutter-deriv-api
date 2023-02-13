@@ -74,6 +74,7 @@ import '../generated/p2p_advert_update_receive.dart';
 import '../generated/p2p_advertiser_adverts_receive.dart';
 import '../generated/p2p_advertiser_create_receive.dart';
 import '../generated/p2p_advertiser_info_receive.dart';
+import '../generated/p2p_advertiser_list_receive.dart';
 import '../generated/p2p_advertiser_payment_methods_receive.dart';
 import '../generated/p2p_advertiser_relations_receive.dart';
 import '../generated/p2p_advertiser_update_receive.dart';
@@ -286,6 +287,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pAdvertiserCreateReceive.fromJson(responseMap);
     case 'p2p_advertiser_info':
       return P2pAdvertiserInfoReceive.fromJson(responseMap);
+    case 'p2p_advertiser_list':
+      return P2pAdvertiserListReceive.fromJson(responseMap);
     case 'p2p_advertiser_payment_methods':
       return P2pAdvertiserPaymentMethodsReceive.fromJson(responseMap);
     case 'p2p_advertiser_relations':
