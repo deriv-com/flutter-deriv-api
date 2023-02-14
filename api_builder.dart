@@ -388,37 +388,18 @@ class APIBuilder extends Builder {
       ..write('${_getSupperClassAssignments(schemaType)},);');
   }
 
-  // static String _getSuperClassParameters({
-  //   required String? schemaType,
-  //   String? methodName,
-  // }) {
-  //   final Map<String, String> superClassFields =
-  //       _getSuperClassFields(schemaType);
-
-  //   final StringBuffer superClassParameters = StringBuffer();
-
-  //   if (schemaType == 'send') {
-  //     superClassParameters.write('super.msgType = \'$methodName\',');
-  //   }
-
-  //   superClassParameters.write(superClassFields.keys.map((String key) {
-  //     final String parameterName = ReCase(key).camelCase;
-  //     return 'super.$parameterName';
-  //   }).join(', '));
-
-  //   return superClassParameters.toString();
-  // }
-
   static String _getSuperClassParameters(
     String schemaType,
   ) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
+    final Iterable<String> parameters = superClassFields.keys.map((String key) {
+      final String type = typeMap[superClassFields[key]!] ?? 'dynamic';
+      final String parameterName = ReCase(key).camelCase;
+      return '$type $parameterName';
+    });
 
-    return superClassFields.keys
-        .map((String key) =>
-            '${typeMap[superClassFields[key]!]} ${ReCase(key).camelCase}')
-        .join(', ');
+    return parameters.join(', ');
   }
 
   static String _getSuperClassConstructorParameters(
@@ -427,39 +408,20 @@ class APIBuilder extends Builder {
   ) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
-
     final StringBuffer superClassParameters = StringBuffer();
 
     if (schemaType == 'send') {
-      superClassParameters.write('super.msgType = \'$methodName\',');
+      superClassParameters.write('super.msgType = \'$methodName\', ');
     }
 
-    superClassParameters.write(superClassFields.keys.map((String key) {
+    final Iterable<String> parameters = superClassFields.keys.map((String key) {
       final String parameterName = ReCase(key).camelCase;
       return 'super.$parameterName';
-    }).join(', '));
+    });
 
+    superClassParameters.write(parameters.join(', '));
     return superClassParameters.toString();
   }
-  // static String _getSuperClassCallParameters(
-  //   String schemaType,
-  //   String methodName,
-  // ) {
-  //   final StringBuffer superCallParameters = StringBuffer();
-
-  //   if (schemaType == 'send') {
-  //     superCallParameters.write('msgType: \'$methodName\',');
-  //   }
-
-  //   superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-  //     (String key) {
-  //       final String parameterName = ReCase(key).camelCase;
-  //       return '$parameterName: $parameterName';
-  //     },
-  //   ).join(', '));
-
-  //   return superCallParameters.toString();
-  // }
 
   static String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(
