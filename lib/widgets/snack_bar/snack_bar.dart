@@ -51,7 +51,7 @@ class SnackBarNotification {
 
   /// shows appropriate snack bar based on the [position] specified
   void show() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (position == SnackBarPosition.bottom) {
         ScaffoldMessenger.of(context).showSnackBar(
           _buildSnackBar(),

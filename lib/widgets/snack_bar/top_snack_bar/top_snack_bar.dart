@@ -55,7 +55,7 @@ class TopSnackBar {
 
   /// Adds [_overlayEntry] to the Overlay
   void addToOverlay() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context)!.insert(_overlayEntry);
       snackController.addStatusListener((AnimationStatus status) {
         if (status == AnimationStatus.dismissed) {
