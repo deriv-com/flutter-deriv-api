@@ -1,0 +1,47 @@
+name: Flutter Analyze, Test, and Build
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - "*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa
+        with:
+          flutter-version: "3.10.2"
+          channel: stable
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      # do not fail if the analyze issue is info level
+      - name: 🕵️ Analyze
+        run: |
+          if flutter analyze 2>&1 | grep -q -E 'error:|warning:'; 
+          then exit 1
+          else exit 0
+          fi
+
+      - name: 🧪 Run Tests
+        run: flutter test
+
+      - name: Build Example app
+        working-directory: ./example
+        run: flutter build apk --target-platform android-arm

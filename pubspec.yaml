@@ -16,9 +16,8 @@ dependencies:
 
   deriv_dependency_injector:
     git:
-      url: git@github.com:regentmarkets/flutter-deriv-packages.git
-      path: packages/deriv_dependency_injector
-      ref: dev
+      url: https://github.com/deriv-com/deriv-dependency-injector.git
+      ref: master
 
   build: ^2.3.1
   dart_style: ^2.3.0
