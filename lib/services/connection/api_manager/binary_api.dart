@@ -112,8 +112,14 @@ class BinaryAPI extends BaseAPI {
   }
 
   @override
-  void addToChannel(Map<String, dynamic> request) =>
+  void addToChannel(Map<String, dynamic> request) {
+    try {
       _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      dev.log('$runtimeType $uniqueKey error while adding to channel: $e');
+    }
+  }
 
   @override
   Future<T> call<T>({required Request request}) async {
