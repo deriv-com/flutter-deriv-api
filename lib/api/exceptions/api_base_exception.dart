@@ -21,5 +21,6 @@ class APIBaseException implements Exception {
 
   @override
   String toString() =>
+      message ??
       '$runtimeType(code: ${baseExceptionModel!.code}, message: ${baseExceptionModel!.message})';
 }
