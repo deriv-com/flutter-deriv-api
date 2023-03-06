@@ -1,25 +1,32 @@
+import 'dart:developer' as dev;
+
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 
-/// Base exception class
+/// Base exception class for all API exceptions.
 class APIBaseException implements Exception {
   /// Initializes
   APIBaseException({
     required this.baseExceptionModel,
   });
 
-  /// Exception code
+  /// Exception code and message model from API response.
   final BaseExceptionModel? baseExceptionModel;
 
-  /// The exception's message
-  String? get message => baseExceptionModel!.message;
+  /// The exception's message (if any).
+  String? get message => baseExceptionModel?.message;
 
-  /// The exception's code
-  String? get code => baseExceptionModel!.code;
+  /// The exception's code (if any).
+  String? get code => baseExceptionModel?.code;
 
   /// The exception's details.
-  Map<String, dynamic>? get details => baseExceptionModel!.details;
+  Map<String, dynamic>? get details => baseExceptionModel?.details;
 
   @override
-  String toString() =>
-      '$runtimeType(code: ${baseExceptionModel!.code}, message: ${baseExceptionModel!.message})';
+  String toString() {
+    dev.log(
+      '$runtimeType(code: $code, message: $message)',
+    );
+
+    return message ?? '$runtimeType: API unknown error.';
+  }
 }
