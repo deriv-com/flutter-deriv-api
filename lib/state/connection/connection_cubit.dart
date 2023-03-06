@@ -46,7 +46,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   late final BaseAPI? _api;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
-  final Duration _pingTimeout = const Duration(seconds: 1);
+  final Duration _pingTimeout = const Duration(seconds: 5);
 
   final Duration _connectivityCheckInterval = const Duration(seconds: 5);
 
