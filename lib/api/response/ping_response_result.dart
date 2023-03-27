@@ -49,7 +49,7 @@ class PingResponse extends PingResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Requests the ping request to the server.
   ///

@@ -53,7 +53,7 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// List all P2P payment methods.
   static Future<P2pPaymentMethodsResponse> fetch(

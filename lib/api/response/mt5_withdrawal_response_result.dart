@@ -56,7 +56,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///

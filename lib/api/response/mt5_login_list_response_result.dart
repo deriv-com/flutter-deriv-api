@@ -59,7 +59,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the list of MT5 accounts for client.
   ///

@@ -51,7 +51,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Topes up the virtual-money's account balance becomes when it becomes low.
   ///

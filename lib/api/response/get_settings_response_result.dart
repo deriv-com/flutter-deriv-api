@@ -54,7 +54,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets user's settings (email, date of birth, address etc).
   ///

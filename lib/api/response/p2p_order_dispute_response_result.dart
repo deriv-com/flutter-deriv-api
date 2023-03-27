@@ -51,7 +51,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Cancel a P2P order dispute.
   ///

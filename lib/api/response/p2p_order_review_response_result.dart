@@ -50,7 +50,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Cancel a P2P order review.
   ///

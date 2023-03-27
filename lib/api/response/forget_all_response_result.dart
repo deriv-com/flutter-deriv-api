@@ -59,7 +59,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Immediately cancels the real-time streams of messages of given type.
   ///

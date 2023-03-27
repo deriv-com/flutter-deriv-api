@@ -10,6 +10,6 @@ void main() {
   tearDown(() => Injector().dispose());
 
   test('Base API Test', () {
-    expect(Injector().get<BaseAPI>() is MockAPI, true);
+    expect(Injector()<BaseAPI>() is MockAPI, true);
   });
 }

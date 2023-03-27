@@ -56,7 +56,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Allows deposit into MT5 account from binary account.
   ///

@@ -70,7 +70,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
   static Future<P2pOrderListResponse> fetchOrderList([

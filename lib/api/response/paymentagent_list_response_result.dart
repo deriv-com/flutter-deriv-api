@@ -51,7 +51,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Returns a list of Payment Agents for a given country for a given currency.
   ///

@@ -67,7 +67,7 @@ class TicksResponse extends TicksResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Subscribes to a tick for given [TickRequest]
   ///

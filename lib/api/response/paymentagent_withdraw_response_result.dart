@@ -65,7 +65,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Initiates a withdrawal to an approved payment agent.
   ///
