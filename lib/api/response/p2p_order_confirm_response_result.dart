@@ -50,7 +50,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Cancel a P2P order confirm.
   ///

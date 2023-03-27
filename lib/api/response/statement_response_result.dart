@@ -50,7 +50,7 @@ class StatementResponse extends StatementResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves a summary of account transactions, according to given search criteria.
   ///

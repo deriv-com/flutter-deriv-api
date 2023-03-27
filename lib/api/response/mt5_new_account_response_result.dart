@@ -64,7 +64,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Creates new MT5 user, either demo or real money user.
   ///

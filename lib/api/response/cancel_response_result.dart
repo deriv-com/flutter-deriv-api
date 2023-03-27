@@ -49,7 +49,7 @@ class CancelResponse extends CancelResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///

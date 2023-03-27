@@ -19,7 +19,7 @@ class TickHistorySubscription {
   /// The stream of the tick
   final Stream<TickBase?>? tickStream;
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Unsubscribes from tick history stream
   ///

@@ -61,7 +61,7 @@ class AppGetResponse extends AppGetResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the information of the OAuth application specified by [appId] in [request]
   ///

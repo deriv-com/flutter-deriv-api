@@ -51,7 +51,7 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Returns all P2P (peer to peer) adverts created by the authorized client.
   /// Can only be used by a registered P2P advertiser.

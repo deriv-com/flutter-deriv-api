@@ -50,7 +50,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///

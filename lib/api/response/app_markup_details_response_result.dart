@@ -50,7 +50,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieve details of app markup according to criteria specified.
   ///

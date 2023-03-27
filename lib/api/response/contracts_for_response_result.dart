@@ -51,7 +51,7 @@ class ContractsForResponse extends ContractsForResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets available contracts for given symbol in [ContractsForRequest]
   ///

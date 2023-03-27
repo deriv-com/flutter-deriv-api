@@ -66,7 +66,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Creates order with parameters specified in [P2pOrderCreateRequest]
   static Future<P2pOrderCreateResponse> create(

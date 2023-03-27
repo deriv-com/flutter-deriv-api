@@ -25,7 +25,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(api: api ?? BinaryAPI(uniqueKey: _uniqueKey));
 
-    _api = Injector().get<BaseAPI>();
+    _api = Injector()<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 

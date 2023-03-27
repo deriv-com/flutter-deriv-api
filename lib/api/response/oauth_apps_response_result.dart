@@ -59,7 +59,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets oauth application that used for the authorized account.
   ///

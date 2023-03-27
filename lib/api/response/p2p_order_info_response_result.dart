@@ -77,7 +77,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
   ///

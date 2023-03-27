@@ -51,7 +51,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets MT5 user account settings.
   ///
