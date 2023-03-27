@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/paymentagent_withdraw_rece
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_withdraw_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Paymentagent withdraw response model class.
 abstract class PaymentagentWithdrawResponseModel {
@@ -65,7 +65,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Initiates a withdrawal to an approved payment agent.
   ///

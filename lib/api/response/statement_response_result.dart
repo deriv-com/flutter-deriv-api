@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/statement_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/statement_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Statement response model class.
 abstract class StatementResponseModel {
@@ -50,7 +50,7 @@ class StatementResponse extends StatementResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Retrieves a summary of account transactions, according to given search criteria.
   ///
@@ -120,6 +120,7 @@ enum ActionTypeEnum {
   /// transfer.
   transfer,
 }
+
 /// Statement model class.
 abstract class StatementModel {
   /// Initializes Statement model class .
@@ -184,6 +185,7 @@ class Statement extends StatementModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -389,6 +391,7 @@ class TransactionsItem extends TransactionsItemModel {
         withdrawalDetails: withdrawalDetails ?? this.withdrawalDetails,
       );
 }
+
 /// Fees model class.
 abstract class FeesModel {
   /// Initializes Fees model class .
@@ -461,6 +464,7 @@ class Fees extends FeesModel {
         percentage: percentage ?? this.percentage,
       );
 }
+
 /// From model class.
 abstract class FromModel {
   /// Initializes From model class .
@@ -503,6 +507,7 @@ class From extends FromModel {
         loginid: loginid ?? this.loginid,
       );
 }
+
 /// To model class.
 abstract class ToModel {
   /// Initializes To model class .

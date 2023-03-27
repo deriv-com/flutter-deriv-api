@@ -11,13 +11,13 @@ import 'package:flutter_deriv_api/basic_api/generated/app_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_update_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/revoke_oauth_app_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));
 
-  tearDown(() => Injector.getInjector().dispose());
+  tearDown(() => Injector().dispose());
 
   group('Application Group ->', () {
     test('Fetch Application Details Test', () async {
@@ -68,7 +68,8 @@ void main() {
     });
 
     test('Fetch Markup Details Test', () async {
-      final AppMarkupDetailsResponse appMarkupDetails = await const AppGetResponse(
+      final AppMarkupDetailsResponse appMarkupDetails =
+          await const AppGetResponse(
         appGet: AppGet(
           appId: 1234,
           appstore: '',

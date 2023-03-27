@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/portfolio_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/portfolio_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Portfolio response model class.
 abstract class PortfolioResponseModel {
@@ -50,7 +50,7 @@ class PortfolioResponse extends PortfolioResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the portfolio fo logged-in account
   ///
@@ -76,6 +76,7 @@ class PortfolioResponse extends PortfolioResponseModel {
         portfolio: portfolio ?? this.portfolio,
       );
 }
+
 /// Portfolio model class.
 abstract class PortfolioModel {
   /// Initializes Portfolio model class .
@@ -126,6 +127,7 @@ class Portfolio extends PortfolioModel {
         contracts: contracts ?? this.contracts,
       );
 }
+
 /// Contracts item model class.
 abstract class ContractsItemModel {
   /// Initializes Contracts item model class .

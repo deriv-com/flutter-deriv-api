@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_adverts_rec
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_adverts_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p advertiser adverts response model class.
 abstract class P2pAdvertiserAdvertsResponseModel {
@@ -51,7 +51,7 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Returns all P2P (peer to peer) adverts created by the authorized client.
   /// Can only be used by a registered P2P advertiser.
@@ -181,6 +181,7 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advertiser adverts model class.
 abstract class P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts model class .
@@ -232,6 +233,7 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
         list: list ?? this.list,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -690,6 +692,7 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .

@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 part 'connection_state.dart';
 
@@ -25,7 +25,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(api: api ?? BinaryAPI(uniqueKey: _uniqueKey));
 
-    _api = Injector.getInjector().get<BaseAPI>();
+    _api = Injector().get<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 
@@ -46,7 +46,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   late final BaseAPI? _api;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
-  final Duration _pingTimeout = const Duration(seconds: 1);
+  final Duration _pingTimeout = const Duration(seconds: 5);
 
   final Duration _connectivityCheckInterval = const Duration(seconds: 5);
 

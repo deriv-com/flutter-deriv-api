@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/payment_methods_receive.da
 import 'package:flutter_deriv_api/basic_api/generated/payment_methods_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Payment methods response model class.
 abstract class PaymentMethodsResponseModel {
@@ -58,7 +58,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Get List of available payment methods for a given country.
   ///
@@ -85,6 +85,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
+
 /// Payment methods item model class.
 abstract class PaymentMethodsItemModel {
   /// Initializes Payment methods item model class .
@@ -278,6 +279,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawalTime: withdrawalTime ?? this.withdrawalTime,
       );
 }
+
 /// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel {
   /// Initializes Deposit limits property model class .
@@ -331,6 +333,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         min: min ?? this.min,
       );
 }
+
 /// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property model class .

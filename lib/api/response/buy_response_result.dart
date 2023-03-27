@@ -15,7 +15,8 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// Buy response model class.
 abstract class BuyResponseModel {
   /// Initializes Buy response model class .
@@ -68,7 +69,7 @@ class BuyResponse extends BuyResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   ///
@@ -161,6 +162,7 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Buy model class.
 abstract class BuyModel {
   /// Initializes Buy model class .
@@ -283,6 +285,7 @@ class Buy extends BuyModel {
         transactionId: transactionId ?? this.transactionId,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

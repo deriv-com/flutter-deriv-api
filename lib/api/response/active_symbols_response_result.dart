@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dar
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Active symbols response model class.
 abstract class ActiveSymbolsResponseModel {
@@ -58,7 +58,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the list of active symbols.
   ///
@@ -88,6 +88,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
+
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
   /// Initializes Active symbols item model class .

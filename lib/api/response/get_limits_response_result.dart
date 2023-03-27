@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/get_limits_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/get_limits_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Get limits response model class.
 abstract class GetLimitsResponseModel {
@@ -50,7 +50,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the trading and withdrawal limits for logged in account
   ///
@@ -79,6 +79,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
         getLimits: getLimits ?? this.getLimits,
       );
 }
+
 /// Get limits model class.
 abstract class GetLimitsModel {
   /// Initializes Get limits model class .
@@ -277,6 +278,7 @@ class GetLimits extends GetLimitsModel {
             this.withdrawalSinceInceptionMonetary,
       );
 }
+
 /// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item model class .
@@ -360,6 +362,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
 }
+
 /// Payout per symbol model class.
 abstract class PayoutPerSymbolModel {
   /// Initializes Payout per symbol model class .
@@ -416,6 +419,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
         nonAtm: nonAtm ?? this.nonAtm,
       );
 }
+
 /// Non atm model class.
 abstract class NonAtmModel {
   /// Initializes Non atm model class .

@@ -13,6 +13,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  deriv_dependency_injector:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_dependency_injector
+      ref: dev
+
   build: ^2.3.1
   dart_style: ^2.2.1
   equatable: ^2.0.3
