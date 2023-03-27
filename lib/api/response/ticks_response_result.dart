@@ -13,7 +13,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Ticks response model class.
 abstract class TicksResponseModel {
@@ -67,7 +67,7 @@ class TicksResponse extends TicksResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Subscribes to a tick for given [TickRequest]
   ///
@@ -121,6 +121,7 @@ class TicksResponse extends TicksResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Tick model class.
 abstract class TickModel {
   /// Initializes Tick model class .
@@ -223,6 +224,7 @@ class Tick extends TickModel {
         symbol: symbol ?? this.symbol,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

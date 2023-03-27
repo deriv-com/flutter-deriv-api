@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.da
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p advert list response model class.
 abstract class P2pAdvertListResponseModel {
@@ -51,7 +51,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Returns available adverts.
   ///
@@ -181,6 +181,7 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advert list model class.
 abstract class P2pAdvertListModel {
   /// Initializes P2p advert list model class .
@@ -231,6 +232,7 @@ class P2pAdvertList extends P2pAdvertListModel {
         list: list ?? this.list,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -689,6 +691,7 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .

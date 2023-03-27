@@ -14,7 +14,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p order list response model class.
 abstract class P2pOrderListResponseModel {
@@ -70,7 +70,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
   static Future<P2pOrderListResponse> fetchOrderList([

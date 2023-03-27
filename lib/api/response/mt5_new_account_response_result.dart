@@ -21,7 +21,7 @@ import 'package:flutter_deriv_api/basic_api/generated/mt5_password_reset_send.da
 import 'package:flutter_deriv_api/basic_api/generated/mt5_withdrawal_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Mt5 new account response model class.
 abstract class Mt5NewAccountResponseModel {
@@ -64,7 +64,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Creates new MT5 user, either demo or real money user.
   ///
@@ -226,6 +226,7 @@ enum Mt5AccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .

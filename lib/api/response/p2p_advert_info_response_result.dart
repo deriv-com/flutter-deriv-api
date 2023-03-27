@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_receiv
 import 'package:flutter_deriv_api/basic_api/generated/p2p_payment_methods_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart';
@@ -17,6 +17,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_receive.
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
+
 /// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
   /// Initializes P2p advert info response model class .
@@ -71,7 +72,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Retrieves information about a P2P (peer to peer) advert.
   ///
@@ -349,6 +350,7 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel {
   /// Initializes P2p advert info model class .
@@ -845,6 +847,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -1029,6 +1032,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
+
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -1165,6 +1169,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -1239,6 +1244,7 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

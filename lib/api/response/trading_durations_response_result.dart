@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/trading_durations_receive.
 import 'package:flutter_deriv_api/basic_api/generated/trading_durations_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Trading durations response model class.
 abstract class TradingDurationsResponseModel {
@@ -59,7 +59,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and trading duration boundaries.
   ///
@@ -88,6 +88,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
         tradingDurations: tradingDurations ?? this.tradingDurations,
       );
 }
+
 /// Trading durations item model class.
 abstract class TradingDurationsItemModel {
   /// Initializes Trading durations item model class .
@@ -171,6 +172,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
         submarket: submarket ?? this.submarket,
       );
 }
+
 /// Data item model class.
 abstract class DataItemModel {
   /// Initializes Data item model class .
@@ -273,6 +275,7 @@ class DataItem extends DataItemModel {
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
 }
+
 /// Market model class.
 abstract class MarketModel {
   /// Initializes Market model class .
@@ -325,6 +328,7 @@ class Market extends MarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Submarket model class.
 abstract class SubmarketModel {
   /// Initializes Submarket model class .
@@ -377,6 +381,7 @@ class Submarket extends SubmarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Symbol item model class.
 abstract class SymbolItemModel {
   /// Initializes Symbol item model class .
@@ -429,6 +434,7 @@ class SymbolItem extends SymbolItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Trade durations item model class.
 abstract class TradeDurationsItemModel {
   /// Initializes Trade durations item model class .
@@ -498,6 +504,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
         tradeType: tradeType ?? this.tradeType,
       );
 }
+
 /// Durations item model class.
 abstract class DurationsItemModel {
   /// Initializes Durations item model class .
@@ -570,6 +577,7 @@ class DurationsItem extends DurationsItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Trade type model class.
 abstract class TradeTypeModel {
   /// Initializes Trade type model class .
@@ -622,6 +630,7 @@ class TradeType extends TradeTypeModel {
         name: name ?? this.name,
       );
 }
+
 /// Trading durations item market model class.
 abstract class TradingDurationsItemMarketModel {
   /// Initializes Trading durations item market model class .
@@ -675,6 +684,7 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Trading durations item submarket model class.
 abstract class TradingDurationsItemSubmarketModel {
   /// Initializes Trading durations item submarket model class .

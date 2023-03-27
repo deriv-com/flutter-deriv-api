@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_receive.d
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_review_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p order review response model class.
 abstract class P2pOrderReviewResponseModel {
@@ -50,7 +50,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Cancel a P2P order review.
   ///

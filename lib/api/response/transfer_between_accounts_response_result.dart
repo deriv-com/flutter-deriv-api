@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/transfer_between_accounts_
 import 'package:flutter_deriv_api/basic_api/generated/transfer_between_accounts_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Transfer between accounts response model class.
 abstract class TransferBetweenAccountsResponseModel {
@@ -96,7 +96,7 @@ class TransferBetweenAccountsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// This call allows transfers between accounts held by a given user.
   ///
