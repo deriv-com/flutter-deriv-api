@@ -59,7 +59,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
   ///

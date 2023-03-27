@@ -59,7 +59,7 @@ class P2pAdvertiserPaymentMethodsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Manage or list P2P advertiser payment methods.
   ///

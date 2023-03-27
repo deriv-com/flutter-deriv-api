@@ -51,7 +51,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///

@@ -47,7 +47,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
   ///

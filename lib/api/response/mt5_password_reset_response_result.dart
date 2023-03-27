@@ -47,7 +47,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Resets the password of MT5 account.
   ///

@@ -52,7 +52,7 @@ class SetFinancialAssessmentResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Sets the financial assessment details based on the client's answers to
   /// analyze whether they possess the experience and knowledge to

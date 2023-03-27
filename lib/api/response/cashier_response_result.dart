@@ -62,7 +62,7 @@ class CashierResponse extends CashierResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierResponse> fetchInformation(

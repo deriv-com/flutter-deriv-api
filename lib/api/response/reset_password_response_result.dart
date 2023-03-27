@@ -46,14 +46,14 @@ class ResetPasswordResponse extends ResetPasswordResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI? _api = Injector().get<BaseAPI>();
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Reset the password of User.
   static Future<ResetPasswordResponse> reset(
     ResetPasswordRequest request,
   ) async {
     final ResetPasswordReceive? response =
-        await _api!.call<ResetPasswordReceive>(request: request);
+        await _api.call<ResetPasswordReceive>(request: request);
 
     checkException(
       response: response,

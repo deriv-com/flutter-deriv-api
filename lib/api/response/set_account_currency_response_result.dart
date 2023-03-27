@@ -47,7 +47,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Sets the currency of the account, this will be default currency for your account i.e currency for trading, deposit.
   ///
