@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/residence_list_receive.dar
 import 'package:flutter_deriv_api/basic_api/generated/residence_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Residence list response model class.
 abstract class ResidenceListResponseModel {
@@ -59,7 +59,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets Residence list for the given [ResidenceListRequest]
   ///
@@ -88,6 +88,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
         residenceList: residenceList ?? this.residenceList,
       );
 }
+
 /// Residence list item model class.
 abstract class ResidenceListItemModel {
   /// Initializes Residence list item model class .
@@ -207,6 +208,7 @@ class ResidenceListItem extends ResidenceListItemModel {
         value: value ?? this.value,
       );
 }
+
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -253,6 +255,7 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
       );
 }
+
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -309,6 +312,7 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
+
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
@@ -379,6 +383,7 @@ class Idv extends IdvModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
+
 /// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property model class .
@@ -432,6 +437,7 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
         format: format ?? this.format,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -497,6 +503,7 @@ class Onfido extends OnfidoModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
+
 /// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property model class .

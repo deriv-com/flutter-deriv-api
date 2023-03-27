@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/copytrading_statistics_rec
 import 'package:flutter_deriv_api/basic_api/generated/copytrading_statistics_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Copytrading statistics response model class.
 abstract class CopytradingStatisticsResponseModel {
@@ -51,7 +51,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the copy trading statistics for given `traderId` in [request]
   ///
@@ -82,6 +82,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
             copytradingStatistics ?? this.copytradingStatistics,
       );
 }
+
 /// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel {
   /// Initializes Copytrading statistics model class .

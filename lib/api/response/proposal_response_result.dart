@@ -18,7 +18,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Proposal response model class.
 abstract class ProposalResponseModel {
@@ -72,7 +72,7 @@ class ProposalResponse extends ProposalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the price proposal for contract
   ///
@@ -183,6 +183,7 @@ class ProposalResponse extends ProposalResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Proposal model class.
 abstract class ProposalModel extends Equatable {
   /// Initializes Proposal model class .
@@ -431,6 +432,7 @@ class Proposal extends ProposalModel {
         limitOrder,
       ];
 }
+
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
@@ -490,6 +492,7 @@ class Cancellation extends CancellationModel {
         dateExpiry,
       ];
 }
+
 /// Contract details model class.
 abstract class ContractDetailsModel {
   /// Initializes Contract details model class .
@@ -605,6 +608,7 @@ class ContractDetails extends ContractDetailsModel {
         ticksStayedIn: ticksStayedIn ?? this.ticksStayedIn,
       );
 }
+
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
@@ -687,6 +691,7 @@ class LimitOrder extends LimitOrderModel {
         takeProfit,
       ];
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -766,6 +771,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
@@ -845,6 +851,7 @@ class StopOut extends StopOutModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -924,6 +931,7 @@ class TakeProfit extends TakeProfitModel {
         orderAmount,
       ];
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

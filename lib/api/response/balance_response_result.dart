@@ -15,7 +15,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Balance response model class.
 abstract class BalanceResponseModel {
@@ -69,7 +69,7 @@ class BalanceResponse extends BalanceResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the balance of account
   ///
@@ -172,6 +172,7 @@ enum TypeEnum {
   /// deriv.
   deriv,
 }
+
 /// Balance model class.
 abstract class BalanceModel {
   /// Initializes Balance model class .
@@ -273,6 +274,7 @@ class Balance extends BalanceModel {
         total: total ?? this.total,
       );
 }
+
 /// Accounts property model class.
 abstract class AccountsPropertyModel {
   /// Initializes Accounts property model class .
@@ -368,6 +370,7 @@ class AccountsProperty extends AccountsPropertyModel {
         type: type ?? this.type,
       );
 }
+
 /// Total model class.
 abstract class TotalModel {
   /// Initializes Total model class .
@@ -452,6 +455,7 @@ class Total extends TotalModel {
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
 }
+
 /// Deriv model class.
 abstract class DerivModel {
   /// Initializes Deriv model class .
@@ -504,6 +508,7 @@ class Deriv extends DerivModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Deriv demo model class.
 abstract class DerivDemoModel {
   /// Initializes Deriv demo model class .
@@ -556,6 +561,7 @@ class DerivDemo extends DerivDemoModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Mt5 model class.
 abstract class Mt5Model {
   /// Initializes Mt5 model class .
@@ -608,6 +614,7 @@ class Mt5 extends Mt5Model {
         currency: currency ?? this.currency,
       );
 }
+
 /// Mt5 demo model class.
 abstract class Mt5DemoModel {
   /// Initializes Mt5 demo model class .
@@ -660,6 +667,7 @@ class Mt5Demo extends Mt5DemoModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/copytrading_list_receive.d
 import 'package:flutter_deriv_api/basic_api/generated/copytrading_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Copytrading list response model class.
 abstract class CopytradingListResponseModel {
@@ -51,7 +51,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the list of active copiers and/or traders for Copy Trading
   ///
@@ -80,6 +80,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
         copytradingList: copytradingList ?? this.copytradingList,
       );
 }
+
 /// Copytrading list model class.
 abstract class CopytradingListModel {
   /// Initializes Copytrading list model class .
@@ -150,6 +151,7 @@ class CopytradingList extends CopytradingListModel {
         traders: traders ?? this.traders,
       );
 }
+
 /// Copiers item model class.
 abstract class CopiersItemModel {
   /// Initializes Copiers item model class .
@@ -192,6 +194,7 @@ class CopiersItem extends CopiersItemModel {
         loginid: loginid ?? this.loginid,
       );
 }
+
 /// Traders item model class.
 abstract class TradersItemModel {
   /// Initializes Traders item model class .

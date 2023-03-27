@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/cancel_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/cancel_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Cancel response model class.
 abstract class CancelResponseModel {
@@ -49,7 +49,7 @@ class CancelResponse extends CancelResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
@@ -74,6 +74,7 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
+
 /// Cancel model class.
 abstract class CancelModel {
   /// Initializes Cancel model class .

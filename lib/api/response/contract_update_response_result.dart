@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/contract_update_receive.da
 import 'package:flutter_deriv_api/basic_api/generated/contract_update_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Contract update response model class.
 abstract class ContractUpdateResponseModel {
@@ -51,7 +51,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
@@ -78,6 +78,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
 }
+
 /// Contract update model class.
 abstract class ContractUpdateModel {
   /// Initializes Contract update model class .
@@ -138,6 +139,7 @@ class ContractUpdate extends ContractUpdateModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -217,6 +219,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
