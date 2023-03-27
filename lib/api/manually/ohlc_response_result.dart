@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 import 'tick_base.dart';
 
@@ -77,7 +77,7 @@ class OHLC extends TickBase {
   /// Open time
   final DateTime? openTime;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Unsubscribes all OHLC.
   ///

@@ -3,13 +3,13 @@ import 'package:flutter_deriv_api/api/response/get_self_exclusion_response_resul
 import 'package:flutter_deriv_api/basic_api/generated/set_self_exclusion_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));
 
-  tearDown(() => Injector.getInjector().dispose());
+  tearDown(() => Injector().dispose());
 
   group('Self Exclusive Group ->', () {
     test('Fetch Self Exclusive Test', () async {
@@ -29,11 +29,13 @@ void main() {
       expect(selfExclusive.getSelfExclusion?.maxOpenBets, 1000);
       expect(selfExclusive.getSelfExclusion?.maxTurnover, 1000);
       expect(selfExclusive.getSelfExclusion?.sessionDurationLimit, 3600);
-      expect(selfExclusive.getSelfExclusion?.timeoutUntil, getDateTime(1497357184));
+      expect(selfExclusive.getSelfExclusion?.timeoutUntil,
+          getDateTime(1497357184));
     });
 
     test('Set Self Exclusive Test', () async {
-      final bool? setSelfExclusion = await GetSelfExclusionResponse.setSelfExclusion(
+      final bool? setSelfExclusion =
+          await GetSelfExclusionResponse.setSelfExclusion(
         const SetSelfExclusionRequest(
           excludeUntil: '2020-01-01',
           max30dayDeposit: 700000,

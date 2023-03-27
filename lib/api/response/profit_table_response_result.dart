@@ -8,7 +8,8 @@ import 'package:flutter_deriv_api/basic_api/generated/profit_table_receive.dart'
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
   /// Initializes Profit table response model class .
@@ -50,7 +51,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Retrieves a summary of account Profit Table, according to given search criteria.
   ///
@@ -76,6 +77,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
         profitTable: profitTable ?? this.profitTable,
       );
 }
+
 /// Profit table model class.
 abstract class ProfitTableModel {
   /// Initializes Profit table model class .
@@ -140,6 +142,7 @@ class ProfitTable extends ProfitTableModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .

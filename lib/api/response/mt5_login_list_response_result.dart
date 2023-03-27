@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_receive.dar
 import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Mt5 login list response model class.
 abstract class Mt5LoginListResponseModel {
@@ -59,7 +59,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the list of MT5 accounts for client.
   ///
@@ -191,6 +191,7 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
+
 /// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel {
   /// Initializes Mt5 login list item model class .
@@ -408,6 +409,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
+
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -479,6 +481,7 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .

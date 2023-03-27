@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_order_dispute_send.dar
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p order dispute response model class.
 abstract class P2pOrderDisputeResponseModel {
@@ -51,7 +51,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Cancel a P2P order dispute.
   ///

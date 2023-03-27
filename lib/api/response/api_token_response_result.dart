@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/api_token_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api_token_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Api token response model class.
 abstract class ApiTokenResponseModel {
@@ -48,7 +48,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Creates an API tokens
   ///
@@ -134,6 +134,7 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
+
 /// Api token model class.
 abstract class ApiTokenModel {
   /// Initializes Api token model class .
@@ -208,6 +209,7 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
+
 /// Tokens item model class.
 abstract class TokensItemModel {
   /// Initializes Tokens item model class .

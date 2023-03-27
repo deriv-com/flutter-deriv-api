@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/set_account_currency_recei
 import 'package:flutter_deriv_api/basic_api/generated/set_account_currency_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Set account currency response model class.
 abstract class SetAccountCurrencyResponseModel {
@@ -47,7 +47,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Sets the currency of the account, this will be default currency for your account i.e currency for trading, deposit.
   ///
