@@ -59,7 +59,7 @@ class AppListResponse extends AppListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets all of the account's OAuth applications.
   ///

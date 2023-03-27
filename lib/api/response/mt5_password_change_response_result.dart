@@ -47,7 +47,7 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Changes the password of the MT5 account.
   ///

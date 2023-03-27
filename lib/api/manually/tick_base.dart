@@ -64,7 +64,7 @@ class TickBase extends TickBaseModel {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Unsubscribes from tick stream
   ///

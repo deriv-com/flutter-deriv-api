@@ -51,7 +51,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Receives a list of market opening times for a given date.
   ///

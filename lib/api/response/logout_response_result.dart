@@ -47,7 +47,7 @@ class LogoutResponse extends LogoutResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Logs out from the web-socket's session.
   ///

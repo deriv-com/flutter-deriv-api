@@ -59,7 +59,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves a summary of login history for user.
   ///

@@ -52,7 +52,7 @@ class P2pAdvertiserRelationsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Updates and returns favourite and blocked advertisers of the current user.
   ///

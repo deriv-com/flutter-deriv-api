@@ -64,7 +64,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
   ///

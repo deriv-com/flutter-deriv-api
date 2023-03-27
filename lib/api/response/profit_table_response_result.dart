@@ -51,7 +51,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves a summary of account Profit Table, according to given search criteria.
   ///

@@ -56,7 +56,7 @@ class Tick extends TickBase {
   /// Market value at the epoch
   final double? quote;
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Subscribes to a tick for given [TickRequest]
   ///

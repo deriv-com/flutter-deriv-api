@@ -47,7 +47,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Validates the main password for the MT5 user.
   ///
