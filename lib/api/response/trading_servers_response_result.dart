@@ -59,7 +59,7 @@ class TradingServersResponse extends TradingServersResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Get the list of servers for platform. Currently, only mt5 is supported
   ///

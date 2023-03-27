@@ -10,7 +10,7 @@ void main() {
   tearDown(() => Injector().dispose());
 
   test('Injector Test', () {
-    final BaseAPI? api = Injector().get<BaseAPI>();
+    final BaseAPI? api = Injector()<BaseAPI>();
 
     expect(api is MockAPI, true);
   });

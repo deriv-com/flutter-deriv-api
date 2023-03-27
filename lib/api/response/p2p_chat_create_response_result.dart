@@ -51,7 +51,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Creates a P2P (peer to peer) chat for the specified order.
   ///

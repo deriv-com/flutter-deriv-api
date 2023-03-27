@@ -59,7 +59,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Retrieves a list of available option payout currencies.
   ///

@@ -50,7 +50,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the trading and withdrawal limits for logged in account
   ///

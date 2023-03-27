@@ -47,7 +47,7 @@ class CopyStartResponse extends CopyStartResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Starts copy trader bets.
   ///

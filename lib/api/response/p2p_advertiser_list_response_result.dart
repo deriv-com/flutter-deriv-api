@@ -49,7 +49,7 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Returns P2P advertiser list.
   ///

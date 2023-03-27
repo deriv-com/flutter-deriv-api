@@ -50,7 +50,7 @@ class PortfolioResponse extends PortfolioResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the portfolio fo logged-in account
   ///

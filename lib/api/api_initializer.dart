@@ -5,7 +5,7 @@ import 'package:deriv_dependency_injector/dependency_injector.dart';
 class APIInitializer {
   /// Initialize injector
   Injector initialize({required BaseAPI api}) => Injector()
-    ..map<BaseAPI>(
+    ..register<BaseAPI>(
       factoryFunction: (_) => api,
       isSingleton: true,
     );

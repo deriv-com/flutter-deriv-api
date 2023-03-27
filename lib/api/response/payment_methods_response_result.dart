@@ -58,7 +58,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Get List of available payment methods for a given country.
   ///

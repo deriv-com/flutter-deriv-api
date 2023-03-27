@@ -59,7 +59,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
   ///

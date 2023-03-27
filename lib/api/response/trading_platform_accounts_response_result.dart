@@ -58,7 +58,7 @@ class TradingPlatformAccountsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Trading Platform: Accounts List.
   ///

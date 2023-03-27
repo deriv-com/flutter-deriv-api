@@ -51,7 +51,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the list of active copiers and/or traders for Copy Trading
   ///

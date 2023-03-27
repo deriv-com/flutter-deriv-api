@@ -53,7 +53,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Allows users to exclude themselves from the website for certain periods of time,
   /// or to set limits on their trading activities.

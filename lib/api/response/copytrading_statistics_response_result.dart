@@ -51,7 +51,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the copy trading statistics for given `traderId` in [request]
   ///

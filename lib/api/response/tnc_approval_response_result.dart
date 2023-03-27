@@ -47,7 +47,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Approve the latest version of terms and conditions.
   ///
