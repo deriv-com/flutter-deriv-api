@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/mt5_withdrawal_receive.dar
 import 'package:flutter_deriv_api/basic_api/generated/mt5_withdrawal_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Mt5 withdrawal response model class.
 abstract class Mt5WithdrawalResponseModel {
@@ -56,7 +56,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///

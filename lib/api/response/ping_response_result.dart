@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/ping_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Ping response model class.
 abstract class PingResponseModel {
@@ -49,7 +49,7 @@ class PingResponse extends PingResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Requests the ping request to the server.
   ///

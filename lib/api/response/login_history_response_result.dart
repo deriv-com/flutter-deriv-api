@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/login_history_receive.dart
 import 'package:flutter_deriv_api/basic_api/generated/login_history_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Login history response model class.
 abstract class LoginHistoryResponseModel {
@@ -59,7 +59,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Retrieves a summary of login history for user.
   ///
@@ -89,6 +89,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
         loginHistory: loginHistory ?? this.loginHistory,
       );
 }
+
 /// Login history item model class.
 abstract class LoginHistoryItemModel {
   /// Initializes Login history item model class .

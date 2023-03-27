@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Spot price updates for a given symbol
 abstract class TickBaseModel extends APIBaseModel {
@@ -64,7 +64,7 @@ class TickBase extends TickBaseModel {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Unsubscribes from tick stream
   ///

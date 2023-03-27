@@ -4,13 +4,13 @@ import 'package:flutter_deriv_api/api/response/new_account_virtual_response_resu
 import 'package:flutter_deriv_api/basic_api/generated/new_account_real_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));
 
-  tearDown(() => Injector.getInjector().dispose());
+  tearDown(() => Injector().dispose());
 
   group('New Account Group ->', () {
     test('Open New Account Real Test', () async {

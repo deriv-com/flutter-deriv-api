@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/cashier_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/cashier_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Cashier response model class.
 abstract class CashierResponseModel {
@@ -62,7 +62,7 @@ class CashierResponse extends CashierResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierResponse> fetchInformation(
@@ -104,6 +104,7 @@ enum ActionEnum {
   /// withdraw.
   withdraw,
 }
+
 /// Cashier object model class.
 abstract class CashierObjectModel {
   /// Initializes Cashier object model class .
@@ -172,6 +173,7 @@ class CashierObject extends CashierObjectModel {
         withdraw: withdraw ?? this.withdraw,
       );
 }
+
 /// Deposit model class.
 abstract class DepositModel {
   /// Initializes Deposit model class .

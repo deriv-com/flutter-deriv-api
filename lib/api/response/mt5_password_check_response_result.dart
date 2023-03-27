@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/mt5_password_check_receive
 import 'package:flutter_deriv_api/basic_api/generated/mt5_password_check_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Mt5 password check response model class.
 abstract class Mt5PasswordCheckResponseModel {
@@ -47,7 +47,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Validates the main password for the MT5 user.
   ///

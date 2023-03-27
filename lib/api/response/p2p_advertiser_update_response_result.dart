@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_update_rece
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_update_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// P2p advertiser update response model class.
 abstract class P2pAdvertiserUpdateResponseModel {
@@ -51,7 +51,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Updates the information of the P2P (peer to peer) advertiser for the current account.
   /// Can only be used by an approved P2P advertiser.
@@ -91,6 +91,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
 }
+
 /// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update model class .

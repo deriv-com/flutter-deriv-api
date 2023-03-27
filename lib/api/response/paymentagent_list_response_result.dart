@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/paymentagent_list_receive.
 import 'package:flutter_deriv_api/basic_api/generated/paymentagent_list_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Paymentagent list response model class.
 abstract class PaymentagentListResponseModel {
@@ -51,7 +51,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
+  static final BaseAPI _api = Injector().get<BaseAPI>()!;
 
   /// Returns a list of Payment Agents for a given country for a given currency.
   ///
@@ -79,6 +79,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
 }
+
 /// Paymentagent list model class.
 abstract class PaymentagentListModel {
   /// Initializes Paymentagent list model class .
@@ -161,6 +162,7 @@ class PaymentagentList extends PaymentagentListModel {
         availableCountries: availableCountries ?? this.availableCountries,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -351,6 +353,7 @@ class ListItem extends ListItemModel {
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
       );
 }
+
 /// Phone numbers item model class.
 abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
@@ -394,6 +397,7 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
 }
+
 /// Supported payment methods item model class.
 abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
@@ -437,6 +441,7 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Urls item model class.
 abstract class UrlsItemModel {
   /// Initializes Urls item model class .
