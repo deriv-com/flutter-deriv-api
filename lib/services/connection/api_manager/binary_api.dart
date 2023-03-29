@@ -23,7 +23,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
-  BinaryAPI({UniqueKey? uniqueKey, bool enableDebug = true})
+  BinaryAPI({UniqueKey? uniqueKey, bool enableDebug = false})
       : super(uniqueKey: uniqueKey ?? UniqueKey(), enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);

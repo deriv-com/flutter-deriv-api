@@ -21,7 +21,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
-    this.enableDebug = true,
+    this.enableDebug = false,
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
@@ -47,7 +47,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Enables debug mode.
   ///
-  /// Default value is `true`.
+  /// Default value is `false`.
   final bool enableDebug;
 
   /// Prints API response to console, only works if [enableDebug] is `true`.
