@@ -21,9 +21,12 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
+    this.enableDebug = true,
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {
-    APIInitializer().initialize(api: api ?? BinaryAPI(uniqueKey: _uniqueKey));
+    APIInitializer().initialize(
+      api: api ?? BinaryAPI(uniqueKey: _uniqueKey, enableDebug: enableDebug),
+    );
 
     _api = Injector()<BaseAPI>();
 
@@ -38,12 +41,15 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     _connect(_connectionInformation);
   }
 
-  /// Prints API response to console.
-  final bool printResponse;
-
   final UniqueKey _uniqueKey = UniqueKey();
 
   late final BaseAPI? _api;
+
+  /// Enables debug mode.
+  final bool enableDebug;
+
+  /// Prints API response to console.
+  final bool printResponse;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
@@ -95,7 +101,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     await _api!.connect(
       _connectionInformation,
-      printResponse: printResponse,
+      printResponse: enableDebug && printResponse,
       onOpen: (UniqueKey uniqueKey) {
         if (_uniqueKey == uniqueKey) {
           emit(const ConnectionConnectedState());

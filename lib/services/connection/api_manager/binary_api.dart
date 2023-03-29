@@ -23,8 +23,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes binary api.
-  BinaryAPI({UniqueKey? uniqueKey})
-      : super(uniqueKey: uniqueKey ?? UniqueKey());
+  BinaryAPI({UniqueKey? uniqueKey, bool enableDebug = true})
+      : super(uniqueKey: uniqueKey ?? UniqueKey(), enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
@@ -69,7 +69,7 @@ class BinaryAPI extends BaseAPI {
       },
     );
 
-    dev.log('$runtimeType $uniqueKey connecting to $uri.');
+    _logDebugInfo('$runtimeType $uniqueKey connecting to $uri.');
 
     await _setUserAgent();
 
@@ -90,12 +90,12 @@ class BinaryAPI extends BaseAPI {
         }
       },
       onDone: () async {
-        dev.log('$runtimeType $uniqueKey web socket is closed.');
+        _logDebugInfo('$runtimeType $uniqueKey web socket is closed.');
 
         onDone?.call(uniqueKey);
       },
       onError: (Object error) {
-        dev.log(
+        _logDebugInfo(
           '$runtimeType $uniqueKey the web socket connection is closed: $error.',
         );
 
@@ -103,7 +103,7 @@ class BinaryAPI extends BaseAPI {
       },
     );
 
-    dev.log('$runtimeType $uniqueKey send initial message.');
+    _logDebugInfo('$runtimeType $uniqueKey send initial message.');
   }
 
   void _resetCallManagers() {
@@ -117,7 +117,9 @@ class BinaryAPI extends BaseAPI {
       _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      dev.log('$runtimeType $uniqueKey error while adding to channel: $e');
+      _logDebugInfo(
+        '$runtimeType $uniqueKey error while adding to channel: $e',
+      );
     }
   }
 
@@ -170,7 +172,7 @@ class BinaryAPI extends BaseAPI {
           );
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      dev.log('$runtimeType $uniqueKey disconnect error', error: e);
+      _logDebugInfo('$runtimeType $uniqueKey disconnect error', error: e);
     } finally {
       _webSocketListener = null;
       _webSocketChannel = null;
@@ -184,20 +186,22 @@ class BinaryAPI extends BaseAPI {
     required bool printResponse,
   }) {
     try {
-      dev.log('$runtimeType $uniqueKey web socket is connected.');
+      _logDebugInfo('$runtimeType $uniqueKey web socket is connected.');
 
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
       if (printResponse) {
-        dev.log('$runtimeType $uniqueKey api response: $message.');
+        _logDebugInfo('$runtimeType $uniqueKey api response: $message.');
       }
 
       if (message.containsKey('req_id')) {
         final int requestId = message['req_id'];
 
         if (printResponse) {
-          dev.log('$runtimeType $uniqueKey have request id: $requestId.');
+          _logDebugInfo(
+            '$runtimeType $uniqueKey have request id: $requestId.',
+          );
         }
 
         if (_callManager?.contains(requestId) ?? false) {
@@ -211,15 +215,15 @@ class BinaryAPI extends BaseAPI {
             response: message,
           );
         } else {
-          dev.log(
+          _logDebugInfo(
             '$runtimeType $requestId, does not match anything in our pending queue.',
           );
         }
       } else {
-        dev.log('$runtimeType $uniqueKey no req_id, ignoring.');
+        _logDebugInfo('$runtimeType $uniqueKey no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      dev.log(
+      _logDebugInfo(
         '$runtimeType $uniqueKey failed to process $response - $e',
         error: e,
       );
@@ -231,6 +235,12 @@ class BinaryAPI extends BaseAPI {
 
     if (userAgent.isNotEmpty) {
       WebSocket.userAgent = userAgent;
+    }
+  }
+
+  void _logDebugInfo(String message, {Object? error}) {
+    if (enableDebug) {
+      dev.log('$runtimeType $uniqueKey $message', error: error);
     }
   }
 }

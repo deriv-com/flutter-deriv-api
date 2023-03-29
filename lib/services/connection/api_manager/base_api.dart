@@ -13,10 +13,13 @@ typedef ConnectionCallback = void Function(UniqueKey uniqueKey);
 /// Base class for handling API connection and calling APIs.
 abstract class BaseAPI {
   /// Initializes base api.
-  BaseAPI({required this.uniqueKey});
+  BaseAPI({required this.uniqueKey, this.enableDebug = false});
 
   /// A key to check the `onDone` function is called from the same instance.
   final UniqueKey uniqueKey;
+
+  /// A flag to enable debug mode.
+  final bool enableDebug;
 
   /// Connects to API.
   Future<void> connect(
