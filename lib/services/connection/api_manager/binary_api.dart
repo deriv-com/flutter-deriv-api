@@ -23,8 +23,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
-  BinaryAPI({UniqueKey? uniqueKey, bool enableDebug = false})
-      : super(uniqueKey: uniqueKey ?? UniqueKey(), enableDebug: enableDebug);
+  BinaryAPI({String? key, bool enableDebug = false})
+      : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
@@ -85,7 +85,7 @@ class BinaryAPI extends BaseAPI {
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
-        onOpen?.call(uniqueKey);
+        onOpen?.call(key);
 
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
@@ -94,7 +94,7 @@ class BinaryAPI extends BaseAPI {
       onDone: () async {
         _logDebugInfo('the websocket is closed.');
 
-        onDone?.call(uniqueKey);
+        onDone?.call(key);
       },
       onError: (Object error) {
         _logDebugInfo(
@@ -102,7 +102,7 @@ class BinaryAPI extends BaseAPI {
           error: error,
         );
 
-        onError?.call(uniqueKey);
+        onError?.call(key);
       },
     );
 
@@ -234,7 +234,7 @@ class BinaryAPI extends BaseAPI {
 
   void _logDebugInfo(String message, {Object? error}) {
     if (enableDebug) {
-      dev.log('$runtimeType $uniqueKey $message', error: error);
+      dev.log('$runtimeType $key $message', error: error);
     }
   }
 }

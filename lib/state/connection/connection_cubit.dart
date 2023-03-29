@@ -25,7 +25,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
-      api: api ?? BinaryAPI(uniqueKey: _uniqueKey, enableDebug: enableDebug),
+      api: api ?? BinaryAPI(key: _key, enableDebug: enableDebug),
     );
 
     _api = Injector()<BaseAPI>();
@@ -41,7 +41,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     _connect(_connectionInformation);
   }
 
-  final UniqueKey _uniqueKey = UniqueKey();
+  final String _key = '${UniqueKey()}';
 
   late final BaseAPI? _api;
 
@@ -106,20 +106,20 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     await _api!.connect(
       _connectionInformation,
       printResponse: enableDebug && printResponse,
-      onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey) {
+      onOpen: (String key) {
+        if (_key == key) {
           emit(const ConnectionConnectedState());
         }
       },
-      onDone: (UniqueKey uniqueKey) async {
-        if (_uniqueKey == uniqueKey) {
+      onDone: (String key) async {
+        if (_key == key) {
           await _api!.disconnect();
 
           emit(const ConnectionDisconnectedState());
         }
       },
-      onError: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey) {
+      onError: (String key) {
+        if (_key == key) {
           emit(const ConnectionDisconnectedState());
         }
       },
