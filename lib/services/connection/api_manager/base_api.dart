@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -8,15 +7,18 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 /// Callbacks for websocket connection.
-typedef ConnectionCallback = void Function(UniqueKey uniqueKey);
+typedef ConnectionCallback = void Function(String key);
 
 /// Base class for handling API connection and calling APIs.
 abstract class BaseAPI {
   /// Initializes base api.
-  BaseAPI({required this.uniqueKey});
+  BaseAPI({required this.key, this.enableDebug = false});
 
-  /// A key to check the `onDone` function is called from the same instance.
-  final UniqueKey uniqueKey;
+  /// A key to check the connect callback function is called from the same instance.
+  final String key;
+
+  /// A flag to enable debug mode.
+  final bool enableDebug;
 
   /// Connects to API.
   Future<void> connect(
