@@ -46,9 +46,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   late final BaseAPI? _api;
 
   /// Enables debug mode.
+  ///
+  /// Default value is `true`.
   final bool enableDebug;
 
-  /// Prints API response to console.
+  /// Prints API response to console, only works if [enableDebug] is `true`.
+  ///
+  /// Default value is `false`.
   final bool printResponse;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
