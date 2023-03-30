@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -109,7 +110,7 @@ import 'mock_data/user/verify_email_response.dart';
 /// This class is for handling mock API connection and calling mock APIs
 class MockAPI extends BaseAPI {
   /// Initializes
-  MockAPI({UniqueKey? uniqueKey}) : super(uniqueKey: uniqueKey ?? UniqueKey());
+  MockAPI({String? key}) : super(key: key ?? '${UniqueKey()}');
 
   @override
   Future<void> connect(
