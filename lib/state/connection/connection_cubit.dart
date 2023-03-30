@@ -21,9 +21,12 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
+    this.enableDebug = false,
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {
-    APIInitializer().initialize(api: api ?? BinaryAPI(uniqueKey: _uniqueKey));
+    APIInitializer().initialize(
+      api: api ?? BinaryAPI(key: _key, enableDebug: enableDebug),
+    );
 
     _api = Injector()<BaseAPI>();
 
@@ -38,12 +41,19 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     _connect(_connectionInformation);
   }
 
-  /// Prints API response to console.
-  final bool printResponse;
-
-  final UniqueKey _uniqueKey = UniqueKey();
+  final String _key = '${UniqueKey()}';
 
   late final BaseAPI? _api;
+
+  /// Enables debug mode.
+  ///
+  /// Default value is `false`.
+  final bool enableDebug;
+
+  /// Prints API response to console, only works if [enableDebug] is `true`.
+  ///
+  /// Default value is `false`.
+  final bool printResponse;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
@@ -95,21 +105,21 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     await _api!.connect(
       _connectionInformation,
-      printResponse: printResponse,
-      onOpen: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey) {
+      printResponse: enableDebug && printResponse,
+      onOpen: (String key) {
+        if (_key == key) {
           emit(const ConnectionConnectedState());
         }
       },
-      onDone: (UniqueKey uniqueKey) async {
-        if (_uniqueKey == uniqueKey) {
+      onDone: (String key) async {
+        if (_key == key) {
           await _api!.disconnect();
 
           emit(const ConnectionDisconnectedState());
         }
       },
-      onError: (UniqueKey uniqueKey) {
-        if (_uniqueKey == uniqueKey) {
+      onError: (String key) {
+        if (_key == key) {
           emit(const ConnectionDisconnectedState());
         }
       },

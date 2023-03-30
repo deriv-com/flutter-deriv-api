@@ -22,14 +22,16 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
-  /// Initializes binary api.
-  BinaryAPI({UniqueKey? uniqueKey})
-      : super(uniqueKey: uniqueKey ?? UniqueKey());
+  /// Initializes [BinaryAPI] instance.
+  BinaryAPI({String? key, bool enableDebug = false})
+      : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
 
-  /// Represents the active web socket connection.
+  /// Represents the active websocket connection.
+  ///
+  /// This is used to send and receive data from the websocket server.
   IOWebSocketChannel? _webSocketChannel;
 
   /// Stream subscription to API data.
@@ -69,11 +71,11 @@ class BinaryAPI extends BaseAPI {
       },
     );
 
-    dev.log('$runtimeType $uniqueKey connecting to $uri.');
+    _logDebugInfo('connecting to $uri.');
 
     await _setUserAgent();
 
-    // Initialize connection to web socket server.
+    // Initialize connection to websocket server.
     _webSocketChannel = IOWebSocketChannel.connect(
       '$uri',
       pingInterval: _websocketConnectTimeOut,
@@ -83,27 +85,28 @@ class BinaryAPI extends BaseAPI {
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
-        onOpen?.call(uniqueKey);
+        onOpen?.call(key);
 
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
         }
       },
       onDone: () async {
-        dev.log('$runtimeType $uniqueKey web socket is closed.');
+        _logDebugInfo('the websocket is closed.');
 
-        onDone?.call(uniqueKey);
+        onDone?.call(key);
       },
       onError: (Object error) {
-        dev.log(
-          '$runtimeType $uniqueKey the web socket connection is closed: $error.',
+        _logDebugInfo(
+          'the websocket connection is closed with error.',
+          error: error,
         );
 
-        onError?.call(uniqueKey);
+        onError?.call(key);
       },
     );
 
-    dev.log('$runtimeType $uniqueKey send initial message.');
+    _logDebugInfo('send initial message.');
   }
 
   void _resetCallManagers() {
@@ -116,8 +119,8 @@ class BinaryAPI extends BaseAPI {
     try {
       _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
       // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
-      dev.log('$runtimeType $uniqueKey error while adding to channel: $e');
+    } catch (error) {
+      _logDebugInfo('error while adding to channel.', error: error);
     }
   }
 
@@ -170,7 +173,7 @@ class BinaryAPI extends BaseAPI {
           );
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      dev.log('$runtimeType $uniqueKey disconnect error', error: e);
+      _logDebugInfo('disconnect error.', error: e);
     } finally {
       _webSocketListener = null;
       _webSocketChannel = null;
@@ -184,21 +187,19 @@ class BinaryAPI extends BaseAPI {
     required bool printResponse,
   }) {
     try {
-      dev.log('$runtimeType $uniqueKey web socket is connected.');
+      _logDebugInfo('the websocket is connected.');
 
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
       if (printResponse) {
-        dev.log('$runtimeType $uniqueKey api response: $message.');
+        _logDebugInfo('api response: $message.');
       }
 
       if (message.containsKey('req_id')) {
         final int requestId = message['req_id'];
 
-        if (printResponse) {
-          dev.log('$runtimeType $uniqueKey have request id: $requestId.');
-        }
+        _logDebugInfo('have request id: $requestId.');
 
         if (_callManager?.contains(requestId) ?? false) {
           _callManager!.handleResponse(
@@ -211,18 +212,15 @@ class BinaryAPI extends BaseAPI {
             response: message,
           );
         } else {
-          dev.log(
+          _logDebugInfo(
             '$runtimeType $requestId, does not match anything in our pending queue.',
           );
         }
       } else {
-        dev.log('$runtimeType $uniqueKey no req_id, ignoring.');
+        _logDebugInfo('no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      dev.log(
-        '$runtimeType $uniqueKey failed to process $response - $e',
-        error: e,
-      );
+      _logDebugInfo('failed to process $response.', error: e);
     }
   }
 
@@ -231,6 +229,12 @@ class BinaryAPI extends BaseAPI {
 
     if (userAgent.isNotEmpty) {
       WebSocket.userAgent = userAgent;
+    }
+  }
+
+  void _logDebugInfo(String message, {Object? error}) {
+    if (enableDebug) {
+      dev.log('$runtimeType $key $message', error: error);
     }
   }
 }
