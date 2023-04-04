@@ -20,25 +20,25 @@ dependencies:
       ref: dev
 
   build: ^2.3.1
-  dart_style: ^2.2.1
+  dart_style: ^2.3.0
   equatable: ^2.0.3
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^8.1.2
   http: ^0.13.4
   intl: ^0.18.0
   meta: ^1.8.0
   recase: ^4.0.0
-  rxdart: ^0.27.4
-  web_socket_channel: ^2.2.0
-  collection: ^1.16.0
-  device_info: ^2.0.3
-  package_info: ^2.0.2
+  rxdart: ^0.27.7
+  web_socket_channel: ^2.3.0
+  collection: ^1.17.0
+  device_info_plus: ^8.1.0
+  package_info_plus: ^3.0.3
   connectivity_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  bloc_test: ^8.0.0
+  bloc_test: ^9.1.1
   code_builder: ^4.1.0
   build_config: ^1.0.0
   build_runner: ^2.3.0
