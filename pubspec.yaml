@@ -20,7 +20,7 @@ dependencies:
       ref: dev
 
   build: ^2.3.1
-  dart_style: ^2.3.0
+  dart_style: ^2.2.5
   equatable: ^2.0.3
   flutter_bloc: ^8.1.2
   http: ^0.13.4
