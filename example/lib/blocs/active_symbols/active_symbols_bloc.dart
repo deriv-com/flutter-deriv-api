@@ -11,31 +11,40 @@ part 'active_symbols_state.dart';
 /// ActiveSymbolsBloc
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
   /// ActiveSymbolsBloc initializer
-  ActiveSymbolsBloc() : super(ActiveSymbolsLoading());
+  ActiveSymbolsBloc() : super(ActiveSymbolsLoading()) {
+    on<FetchActiveSymbols>(
+        (FetchActiveSymbols event, Emitter<ActiveSymbolsState> emit) =>
+            _handleFetchActiveSymbols(event, emit));
 
-  @override
-  Stream<ActiveSymbolsState> mapEventToState(ActiveSymbolsEvent event) async* {
-    if (event is FetchActiveSymbols) {
-      yield ActiveSymbolsLoading();
+    on<SelectActiveSymbol>(
+        (SelectActiveSymbol event, Emitter<ActiveSymbolsState> emit) =>
+            _handleSelectActiveSymbol(event, emit));
+  }
 
-      try {
-        final ActiveSymbolsResponse symbols = await _fetchActiveSymbols();
-        yield ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols!);
-      } on ActiveSymbolsException catch (error) {
-        yield ActiveSymbolsError(error.message);
-      }
-    } else if (event is SelectActiveSymbol) {
-      if (state is ActiveSymbolsLoaded) {
-        final ActiveSymbolsLoaded loadedState = state as ActiveSymbolsLoaded;
+  Future<void> _handleFetchActiveSymbols(
+      FetchActiveSymbols event, Emitter<ActiveSymbolsState> emit) async {
+    emit(ActiveSymbolsLoading());
 
-        yield ActiveSymbolsLoaded(
-          activeSymbols: loadedState.activeSymbols,
-          selectedSymbol: loadedState.activeSymbols[event.index],
-        );
-      } else {
-        yield ActiveSymbolsLoading();
-        add(FetchActiveSymbols());
-      }
+    try {
+      final ActiveSymbolsResponse symbols = await _fetchActiveSymbols();
+      emit(ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols!));
+    } on ActiveSymbolsException catch (error) {
+      emit(ActiveSymbolsError(error.message));
+    }
+  }
+
+  Future<void> _handleSelectActiveSymbol(
+      SelectActiveSymbol event, Emitter<ActiveSymbolsState> emit) async {
+    if (state is ActiveSymbolsLoaded) {
+      final ActiveSymbolsLoaded loadedState = state as ActiveSymbolsLoaded;
+
+      emit(ActiveSymbolsLoaded(
+        activeSymbols: loadedState.activeSymbols,
+        selectedSymbol: loadedState.activeSymbols[event.index],
+      ));
+    } else {
+      emit(ActiveSymbolsLoading());
+      add(FetchActiveSymbols());
     }
   }
 
