@@ -24,7 +24,6 @@ export 'landing_company_exception.dart';
 export 'mt5_exception.dart';
 export 'new_account_exception.dart';
 export 'p2p_advert_exception.dart';
-export 'p2p_advert_exception.dart';
 export 'p2p_advertiser_exception.dart';
 export 'p2p_advertiser_stats_exception.dart';
 export 'p2p_chat_exception.dart';
