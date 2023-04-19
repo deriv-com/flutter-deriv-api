@@ -22,28 +22,33 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
         add(SubscribeProposal(state.selectedContract));
       }
     });
+
+    on<SubscribeProposal>(
+        (SubscribeProposal event, Emitter<PriceProposalState> emit) =>
+            _handleSubscribeProposal(event, emit));
+
+    on<YieldProposalLoaded>(
+        (YieldProposalLoaded event, Emitter<PriceProposalState> emit) =>
+            emit(PriceProposalLoaded(event.proposal.proposal)));
+
+    on<YieldError>((YieldError event, Emitter<PriceProposalState> emit) =>
+        emit(PriceProposalError(event.message)));
   }
 
-  @override
-  Stream<PriceProposalState> mapEventToState(
-    PriceProposalEvent event,
-  ) async* {
-    if (event is SubscribeProposal) {
-      yield PriceProposalLoading();
+  Future<void> _handleSubscribeProposal(
+    SubscribeProposal event,
+    Emitter<PriceProposalState> emit,
+  ) async {
+    emit(PriceProposalLoading());
 
-      await _unsubscribeProposal();
+    await _unsubscribeProposal();
 
-      _subscribeProposal(event)
-          .handleError((dynamic error) => error is ContractOperationException
-              ? add(YieldError(error.message))
-              : add(YieldError(error.toString())))
-          .listen((ProposalResponse? proposal) =>
-              add(YieldProposalLoaded(proposal!)));
-    } else if (event is YieldProposalLoaded) {
-      yield PriceProposalLoaded(event.proposal.proposal);
-    } else if (event is YieldError) {
-      yield PriceProposalError(event.message);
-    }
+    _subscribeProposal(event)
+        .handleError((dynamic error) => error is ContractOperationException
+            ? add(YieldError(error.message))
+            : add(YieldError(error.toString())))
+        .listen((ProposalResponse? proposal) =>
+            add(YieldProposalLoaded(proposal!)));
   }
 
   Stream<ProposalResponse?> _subscribeProposal(SubscribeProposal event) =>
