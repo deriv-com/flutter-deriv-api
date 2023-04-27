@@ -113,8 +113,6 @@ abstract class P2pAdvertiserUpdateModel {
     required this.defaultAdvertDescription,
     required this.createdTime,
     required this.contactInfo,
-    required this.chatUserId,
-    required this.chatToken,
     required this.cancelsRemaining,
     required this.buyOrdersCount,
     required this.buyOrdersAmount,
@@ -128,6 +126,8 @@ abstract class P2pAdvertiserUpdateModel {
     this.buyCompletionRate,
     this.buyTimeAvg,
     this.cancelTimeAvg,
+    this.chatToken,
+    this.chatUserId,
     this.dailyBuy,
     this.dailyBuyLimit,
     this.dailySell,
@@ -144,6 +144,7 @@ abstract class P2pAdvertiserUpdateModel {
     this.releaseTimeAvg,
     this.sellCompletionRate,
     this.totalCompletionRate,
+    this.upgradableDailyLimits,
     this.withdrawalLimit,
   });
 
@@ -198,12 +199,6 @@ abstract class P2pAdvertiserUpdateModel {
   /// Advertiser's contact information.
   final String contactInfo;
 
-  /// The unique identifier for the chat user.
-  final String chatUserId;
-
-  /// The token to be used for authenticating the client for chat.
-  final String chatToken;
-
   /// The number of times the user may cancel orders before being temporarily blocked.
   final int cancelsRemaining;
 
@@ -242,6 +237,12 @@ abstract class P2pAdvertiserUpdateModel {
 
   /// The average time in seconds taken to cancel orders as a buyer within the past 30 days.
   final int? cancelTimeAvg;
+
+  /// The token to be used for authenticating the client for chat.
+  final String? chatToken;
+
+  /// The unique identifier for the chat user.
+  final String? chatUserId;
 
   /// Total value of P2P buy transactions in the past 24 hours.
   final String? dailyBuy;
@@ -291,6 +292,9 @@ abstract class P2pAdvertiserUpdateModel {
   /// The percentage of completed orders out of all orders within the past 30 days.
   final double? totalCompletionRate;
 
+  /// New daily limits available.
+  final UpgradableDailyLimits? upgradableDailyLimits;
+
   /// Remaining withdrawal_limit of a non-fully authenticated advertiser.
   final String? withdrawalLimit;
 }
@@ -305,8 +309,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     required String buyOrdersAmount,
     required int buyOrdersCount,
     required int cancelsRemaining,
-    required String chatToken,
-    required String chatUserId,
     required String contactInfo,
     required DateTime createdTime,
     required String defaultAdvertDescription,
@@ -331,6 +333,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     double? buyCompletionRate,
     int? buyTimeAvg,
     int? cancelTimeAvg,
+    String? chatToken,
+    String? chatUserId,
     String? dailyBuy,
     String? dailyBuyLimit,
     String? dailySell,
@@ -347,6 +351,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     int? releaseTimeAvg,
     double? sellCompletionRate,
     double? totalCompletionRate,
+    UpgradableDailyLimits? upgradableDailyLimits,
     String? withdrawalLimit,
   }) : super(
           balanceAvailable: balanceAvailable,
@@ -355,8 +360,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
           buyOrdersAmount: buyOrdersAmount,
           buyOrdersCount: buyOrdersCount,
           cancelsRemaining: cancelsRemaining,
-          chatToken: chatToken,
-          chatUserId: chatUserId,
           contactInfo: contactInfo,
           createdTime: createdTime,
           defaultAdvertDescription: defaultAdvertDescription,
@@ -381,6 +384,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
           buyCompletionRate: buyCompletionRate,
           buyTimeAvg: buyTimeAvg,
           cancelTimeAvg: cancelTimeAvg,
+          chatToken: chatToken,
+          chatUserId: chatUserId,
           dailyBuy: dailyBuy,
           dailyBuyLimit: dailyBuyLimit,
           dailySell: dailySell,
@@ -397,6 +402,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
           releaseTimeAvg: releaseTimeAvg,
           sellCompletionRate: sellCompletionRate,
           totalCompletionRate: totalCompletionRate,
+          upgradableDailyLimits: upgradableDailyLimits,
           withdrawalLimit: withdrawalLimit,
         );
 
@@ -409,8 +415,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         buyOrdersAmount: json['buy_orders_amount'],
         buyOrdersCount: json['buy_orders_count'],
         cancelsRemaining: json['cancels_remaining'],
-        chatToken: json['chat_token'],
-        chatUserId: json['chat_user_id'],
         contactInfo: json['contact_info'],
         createdTime: getDateTime(json['created_time'])!,
         defaultAdvertDescription: json['default_advert_description'],
@@ -435,6 +439,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         buyCompletionRate: getDouble(json['buy_completion_rate']),
         buyTimeAvg: json['buy_time_avg'],
         cancelTimeAvg: json['cancel_time_avg'],
+        chatToken: json['chat_token'],
+        chatUserId: json['chat_user_id'],
         dailyBuy: json['daily_buy'],
         dailyBuyLimit: json['daily_buy_limit'],
         dailySell: json['daily_sell'],
@@ -451,6 +457,9 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         releaseTimeAvg: json['release_time_avg'],
         sellCompletionRate: getDouble(json['sell_completion_rate']),
         totalCompletionRate: getDouble(json['total_completion_rate']),
+        upgradableDailyLimits: json['upgradable_daily_limits'] == null
+            ? null
+            : UpgradableDailyLimits.fromJson(json['upgradable_daily_limits']),
         withdrawalLimit: json['withdrawal_limit'],
       );
 
@@ -464,8 +473,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     resultMap['buy_orders_amount'] = buyOrdersAmount;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['cancels_remaining'] = cancelsRemaining;
-    resultMap['chat_token'] = chatToken;
-    resultMap['chat_user_id'] = chatUserId;
     resultMap['contact_info'] = contactInfo;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
     resultMap['default_advert_description'] = defaultAdvertDescription;
@@ -490,6 +497,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     resultMap['buy_completion_rate'] = buyCompletionRate;
     resultMap['buy_time_avg'] = buyTimeAvg;
     resultMap['cancel_time_avg'] = cancelTimeAvg;
+    resultMap['chat_token'] = chatToken;
+    resultMap['chat_user_id'] = chatUserId;
     resultMap['daily_buy'] = dailyBuy;
     resultMap['daily_buy_limit'] = dailyBuyLimit;
     resultMap['daily_sell'] = dailySell;
@@ -507,6 +516,9 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     resultMap['release_time_avg'] = releaseTimeAvg;
     resultMap['sell_completion_rate'] = sellCompletionRate;
     resultMap['total_completion_rate'] = totalCompletionRate;
+    if (upgradableDailyLimits != null) {
+      resultMap['upgradable_daily_limits'] = upgradableDailyLimits!.toJson();
+    }
     resultMap['withdrawal_limit'] = withdrawalLimit;
 
     return resultMap;
@@ -520,8 +532,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     String? buyOrdersAmount,
     int? buyOrdersCount,
     int? cancelsRemaining,
-    String? chatToken,
-    String? chatUserId,
     String? contactInfo,
     DateTime? createdTime,
     String? defaultAdvertDescription,
@@ -546,6 +556,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     double? buyCompletionRate,
     int? buyTimeAvg,
     int? cancelTimeAvg,
+    String? chatToken,
+    String? chatUserId,
     String? dailyBuy,
     String? dailyBuyLimit,
     String? dailySell,
@@ -562,6 +574,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     int? releaseTimeAvg,
     double? sellCompletionRate,
     double? totalCompletionRate,
+    UpgradableDailyLimits? upgradableDailyLimits,
     String? withdrawalLimit,
   }) =>
       P2pAdvertiserUpdate(
@@ -571,8 +584,6 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         buyOrdersAmount: buyOrdersAmount ?? this.buyOrdersAmount,
         buyOrdersCount: buyOrdersCount ?? this.buyOrdersCount,
         cancelsRemaining: cancelsRemaining ?? this.cancelsRemaining,
-        chatToken: chatToken ?? this.chatToken,
-        chatUserId: chatUserId ?? this.chatUserId,
         contactInfo: contactInfo ?? this.contactInfo,
         createdTime: createdTime ?? this.createdTime,
         defaultAdvertDescription:
@@ -598,6 +609,8 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         buyCompletionRate: buyCompletionRate ?? this.buyCompletionRate,
         buyTimeAvg: buyTimeAvg ?? this.buyTimeAvg,
         cancelTimeAvg: cancelTimeAvg ?? this.cancelTimeAvg,
+        chatToken: chatToken ?? this.chatToken,
+        chatUserId: chatUserId ?? this.chatUserId,
         dailyBuy: dailyBuy ?? this.dailyBuy,
         dailyBuyLimit: dailyBuyLimit ?? this.dailyBuyLimit,
         dailySell: dailySell ?? this.dailySell,
@@ -614,6 +627,62 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         releaseTimeAvg: releaseTimeAvg ?? this.releaseTimeAvg,
         sellCompletionRate: sellCompletionRate ?? this.sellCompletionRate,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
+        upgradableDailyLimits:
+            upgradableDailyLimits ?? this.upgradableDailyLimits,
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
+      );
+}
+
+/// Upgradable daily limits model class.
+abstract class UpgradableDailyLimitsModel {
+  /// Initializes Upgradable daily limits model class .
+  const UpgradableDailyLimitsModel({
+    required this.maxDailySell,
+    required this.maxDailyBuy,
+  });
+
+  /// Upgradable daily sell limit.
+  final String maxDailySell;
+
+  /// Upgradable daily buy limit.
+  final String maxDailyBuy;
+}
+
+/// Upgradable daily limits class.
+class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
+  /// Initializes Upgradable daily limits class.
+  const UpgradableDailyLimits({
+    required String maxDailyBuy,
+    required String maxDailySell,
+  }) : super(
+          maxDailyBuy: maxDailyBuy,
+          maxDailySell: maxDailySell,
+        );
+
+  /// Creates an instance from JSON.
+  factory UpgradableDailyLimits.fromJson(Map<String, dynamic> json) =>
+      UpgradableDailyLimits(
+        maxDailyBuy: json['max_daily_buy'],
+        maxDailySell: json['max_daily_sell'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['max_daily_buy'] = maxDailyBuy;
+    resultMap['max_daily_sell'] = maxDailySell;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  UpgradableDailyLimits copyWith({
+    String? maxDailyBuy,
+    String? maxDailySell,
+  }) =>
+      UpgradableDailyLimits(
+        maxDailyBuy: maxDailyBuy ?? this.maxDailyBuy,
+        maxDailySell: maxDailySell ?? this.maxDailySell,
       );
 }
