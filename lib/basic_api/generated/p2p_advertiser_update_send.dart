@@ -14,6 +14,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
     this.showName,
+    this.upgradeLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -33,6 +34,7 @@ class P2pAdvertiserUpdateRequest extends Request {
             : json['p2p_advertiser_update'] == 1,
         paymentInfo: json['payment_info'] as String?,
         showName: json['show_name'] == null ? null : json['show_name'] == 1,
+        upgradeLimits: json['upgrade_limits'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -55,6 +57,9 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
   final bool? showName;
 
+  /// [Optional] Used to upgrade daily limits of advertiser if advertiser is eligible
+  final int? upgradeLimits;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -76,6 +81,7 @@ class P2pAdvertiserUpdateRequest extends Request {
             : showName!
                 ? 1
                 : 0,
+        'upgrade_limits': upgradeLimits,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -89,6 +95,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     bool? p2pAdvertiserUpdate,
     String? paymentInfo,
     bool? showName,
+    int? upgradeLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -100,6 +107,7 @@ class P2pAdvertiserUpdateRequest extends Request {
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         showName: showName ?? this.showName,
+        upgradeLimits: upgradeLimits ?? this.upgradeLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
