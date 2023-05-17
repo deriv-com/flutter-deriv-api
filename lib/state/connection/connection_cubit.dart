@@ -32,13 +32,13 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     _connectionInformation = connectionInformation;
 
-    if (_api is BinaryAPI) {
-      _setupConnectivityListener();
-    }
+    _connect(_connectionInformation).then((_) {
+      if (_api is BinaryAPI) {
+        _setupConnectivityListener();
+      }
 
-    _startKeepAliveTimer();
-
-    _connect(_connectionInformation);
+      _startKeepAliveTimer();
+    });
   }
 
   final String _key = '${UniqueKey()}';
@@ -76,7 +76,11 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Reconnect to Websocket.
   Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
-    emit(const ConnectionDisconnectedState());
+    if (state is ConnectionConnectingState) {
+      return;
+    }
+
+    emit(const ConnectionInitialState());
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -87,10 +91,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Connects to the web socket.
   Future<void> _connect(ConnectionInformation connectionInformation) async {
-    if (state is ConnectionConnectingState) {
-      return;
-    }
-
     emit(const ConnectionConnectingState());
 
     try {
