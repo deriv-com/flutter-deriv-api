@@ -113,9 +113,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       },
       onDone: (String key) async {
         if (_key == key) {
-          await _api!.disconnect();
-
           emit(const ConnectionDisconnectedState());
+          unawaited(reconnect());
         }
       },
       onError: (String key) {
