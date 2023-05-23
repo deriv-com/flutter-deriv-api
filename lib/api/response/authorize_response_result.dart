@@ -93,22 +93,6 @@ class AuthorizeResponse extends AuthorizeResponseModel {
       );
 }
 
-/// AccountTypeEnum mapper.
-final Map<String, AccountTypeEnum> accountTypeEnumMapper =
-    <String, AccountTypeEnum>{
-  "trading": AccountTypeEnum.trading,
-  "wallet": AccountTypeEnum.wallet,
-};
-
-/// AccountType Enum.
-enum AccountTypeEnum {
-  /// trading.
-  trading,
-
-  /// wallet.
-  wallet,
-}
-
 /// PlatformEnum mapper.
 final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
   "deriv": PlatformEnum.deriv,
@@ -127,7 +111,6 @@ enum PlatformEnum {
   /// mt5.
   mt5,
 }
-
 /// Authorize model class.
 abstract class AuthorizeModel {
   /// Initializes Authorize model class .
@@ -385,7 +368,6 @@ class Authorize extends AuthorizeModel {
         wallet: wallet ?? this.wallet,
       );
 }
-
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .
@@ -403,7 +385,7 @@ abstract class AccountListItemModel {
   });
 
   /// Account type.
-  final AccountTypeEnum? accountType;
+  final String? accountType;
 
   /// Creation time of the account as epoch.
   final DateTime? createdAt;
@@ -437,7 +419,7 @@ abstract class AccountListItemModel {
 class AccountListItem extends AccountListItemModel {
   /// Initializes Account list item class.
   const AccountListItem({
-    AccountTypeEnum? accountType,
+    String? accountType,
     DateTime? createdAt,
     String? currency,
     DateTime? excludedUntil,
@@ -463,9 +445,7 @@ class AccountListItem extends AccountListItemModel {
   /// Creates an instance from JSON.
   factory AccountListItem.fromJson(Map<String, dynamic> json) =>
       AccountListItem(
-        accountType: json['account_type'] == null
-            ? null
-            : accountTypeEnumMapper[json['account_type']],
+        accountType: json['account_type'],
         createdAt: getDateTime(json['created_at']),
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
@@ -482,10 +462,7 @@ class AccountListItem extends AccountListItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['account_type'] = accountTypeEnumMapper.entries
-        .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
-            entry.value == accountType)
-        .key;
+    resultMap['account_type'] = accountType;
     resultMap['created_at'] = getSecondsSinceEpochDateTime(createdAt);
     resultMap['currency'] = currency;
     resultMap['excluded_until'] = getSecondsSinceEpochDateTime(excludedUntil);
@@ -505,7 +482,7 @@ class AccountListItem extends AccountListItemModel {
 
   /// Creates a copy of instance with given parameters.
   AccountListItem copyWith({
-    AccountTypeEnum? accountType,
+    String? accountType,
     DateTime? createdAt,
     String? currency,
     DateTime? excludedUntil,
@@ -529,7 +506,6 @@ class AccountListItem extends AccountListItemModel {
         wallet: wallet ?? this.wallet,
       );
 }
-
 /// Trading model class.
 abstract class TradingModel {
   /// Initializes Trading model class .
@@ -584,7 +560,6 @@ class Trading extends TradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
-
 /// Linked to item model class.
 abstract class LinkedToItemModel {
   /// Initializes Linked to item model class .
@@ -657,7 +632,6 @@ class LinkedToItem extends LinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Wallet model class.
 abstract class WalletModel {
   /// Initializes Wallet model class .
@@ -752,7 +726,6 @@ class Wallet extends WalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Wallet linked to item model class.
 abstract class WalletLinkedToItemModel {
   /// Initializes Wallet linked to item model class .
@@ -831,7 +804,6 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
         platform: platform ?? this.platform,
       );
 }
-
 /// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel {
   /// Initializes Local currencies property model class .
@@ -875,7 +847,6 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
         fractionalDigits: fractionalDigits ?? this.fractionalDigits,
       );
 }
-
 /// Authorize trading model class.
 abstract class AuthorizeTradingModel {
   /// Initializes Authorize trading model class .
@@ -931,7 +902,6 @@ class AuthorizeTrading extends AuthorizeTradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
-
 /// Trading linked to item model class.
 abstract class TradingLinkedToItemModel {
   /// Initializes Trading linked to item model class .
@@ -1005,7 +975,6 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Authorize wallet model class.
 abstract class AuthorizeWalletModel {
   /// Initializes Authorize wallet model class .
@@ -1101,7 +1070,6 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Wallet linked to item8 model class.
 abstract class WalletLinkedToItem8Model {
   /// Initializes Wallet linked to item8 model class .
