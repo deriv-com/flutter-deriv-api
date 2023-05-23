@@ -2,6 +2,9 @@ analyzer:
   exclude:
     - lib/basic_api/generated/api.dart
 
+  language:
+    strict-raw-types: true
+    
   errors:
     todo: ignore
     missing_required_param: warning
