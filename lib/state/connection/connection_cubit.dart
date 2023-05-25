@@ -113,6 +113,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       },
       onDone: (String key) {
         if (_key == key) {
+          // git not showing changes test
           unawaited(reconnect());
         }
       },
