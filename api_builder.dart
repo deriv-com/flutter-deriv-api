@@ -465,7 +465,7 @@ class APIBuilder extends Builder {
   }
 }
 
-class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
+class GeneratedResponseJson implements Comparable<GeneratedResponseJson> {
   GeneratedResponseJson({
     this.msgType,
     this.fileName,
