@@ -8,7 +8,7 @@ publish_to: "none"
 
 environment:
   sdk: ">=3.0.0"
-  flutter: ">=3.10.0"
+  flutter: "3.10.2"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_dependency_injector
-      ref: dev
+      ref: flutter-version-3
 
   build: ^2.3.1
   dart_style: ^2.3.0
