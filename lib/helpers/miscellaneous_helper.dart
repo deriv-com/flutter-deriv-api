@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 
@@ -33,7 +33,7 @@ String? parseWebSocketUrl(String? url, {bool isAuthUrl = false}) {
 /// Checks for existence of error in [response] and throws exception created by [exceptionCreator]
 void checkException({
   Response? response,
-  APIBaseException Function({BaseExceptionModel? baseExceptionModel})?
+  BaseAPIException Function({BaseExceptionModel? baseExceptionModel})?
       exceptionCreator,
 }) {
   if (response?.error != null) {

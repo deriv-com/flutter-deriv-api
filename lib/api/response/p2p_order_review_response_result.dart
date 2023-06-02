@@ -55,7 +55,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
   /// Cancel a P2P order review.
   ///
   /// For parameters information refer to [P2pOrderReviewReceive].
-  /// Throws an [P2POrderException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pOrderReviewReceive> reviewOrderRaw(
     P2pOrderReviewRequest request,
   ) async {
@@ -64,7 +64,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -73,7 +73,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
   /// Cancel a P2P order review.
   ///
   /// For parameters information refer to [P2pOrderReviewReceive].
-  /// Throws an [P2POrderException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pOrderReviewResponse> reviewOrder(
     P2pOrderReviewRequest request,
   ) async {

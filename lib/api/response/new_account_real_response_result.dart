@@ -56,7 +56,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Opens a new real account.
   ///
   /// For parameters information refer to [NewAccountRealRequest].
-  /// Throws a [NewAccountException] ifAP
+  /// Throws a [BaseAPIException] ifAP
   static Future<NewAccountRealResponse> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {
@@ -65,7 +65,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          NewAccountException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return NewAccountRealResponse.fromJson(response.newAccountReal);

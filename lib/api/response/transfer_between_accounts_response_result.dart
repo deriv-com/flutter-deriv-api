@@ -103,7 +103,7 @@ class TransferBetweenAccountsResponse
   /// Transfer funds between your fiat and crypto currency accounts (for a fee).
   /// Please note that account_from should be same as current authorized account.
   /// For parameters information refer to [TransferBetweenAccountsRequest].
-  /// Throws a [TransferException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TransferBetweenAccountsResponse> transfer(
     TransferBetweenAccountsRequest request,
   ) async {
@@ -113,7 +113,7 @@ class TransferBetweenAccountsResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransferException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TransferBetweenAccountsResponse.fromJson(

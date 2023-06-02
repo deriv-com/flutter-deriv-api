@@ -69,7 +69,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Creates new MT5 user, either demo or real money user.
   ///
   /// For parameters information refer to [Mt5NewAccountRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5NewAccountResponse> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
@@ -78,7 +78,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5NewAccountResponse.fromJson(response.mt5NewAccount);
@@ -86,7 +86,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Allows deposit into MT5 account from binary account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5DepositResponse> deposit({
     required double amount,
     required String fromBinary,
@@ -101,7 +101,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Changes password of the MT5 account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordChangeResponse> changePassword({
     required String newPassword,
     required String oldPassword,
@@ -118,7 +118,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Validates the main password for the MT5 user.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordCheckResponse> checkPassword({
     required String password,
     required PasswordType passwordType,
@@ -133,7 +133,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Resets the password of MT5 account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordResetResponse> resetPassword({
     required String newPassword,
     required PasswordType passwordType,
@@ -150,14 +150,14 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Gets the MT5 user account settings.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5GetSettingsResponse> fetchSettings() =>
       Mt5GetSettingsResponse.fetchSettings(
           Mt5GetSettingsRequest(login: mt5NewAccount?.login));
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5WithdrawalResponse> withdraw({
     required double amount,
     required String toBinary,

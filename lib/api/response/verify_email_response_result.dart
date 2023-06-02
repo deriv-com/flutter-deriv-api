@@ -53,7 +53,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
   ///
   /// The system will send an email to the address containing a security code for verification.
   /// For parameters information refer to [VerifyEmailRequest].
-  /// Throws a [UserException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<VerifyEmailResponse> verify(
     VerifyEmailRequest request,
   ) async {
@@ -62,7 +62,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          UserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return VerifyEmailResponse.fromJson(response.verifyEmail);

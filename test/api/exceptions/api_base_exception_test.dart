@@ -5,39 +5,39 @@ void main() {
   group('APIBaseException tests =>', () {
     test('should return the correct message.', () {
       final BaseExceptionModel baseExceptionModel =
-          BaseExceptionModel(code: '400', message: 'Bad Request');
-      final APIBaseException exception =
-          APIBaseException(baseExceptionModel: baseExceptionModel);
+          BaseExceptionModel(code: 'BAD_REQUEST', message: 'Bad Request');
+      final BaseAPIException exception =
+          BaseAPIException(baseExceptionModel: baseExceptionModel);
 
       expect(exception.message, 'Bad Request');
     });
 
     test('should return the correct code.', () {
       final BaseExceptionModel baseExceptionModel =
-          BaseExceptionModel(code: '400', message: 'Bad Request');
-      final APIBaseException exception =
-          APIBaseException(baseExceptionModel: baseExceptionModel);
+          BaseExceptionModel(code: 'BAD_REQUEST', message: 'Bad Request');
+      final BaseAPIException exception =
+          BaseAPIException(baseExceptionModel: baseExceptionModel);
 
-      expect(exception.code, '400');
+      expect(exception.code, 'BAD_REQUEST');
     });
 
     test('should return the correct details.', () {
       final BaseExceptionModel baseExceptionModel = BaseExceptionModel(
-        code: '400',
+        code: 'BAD_REQUEST',
         message: 'Bad Request',
         details: <String, dynamic>{'key': 'value'},
       );
-      final APIBaseException exception =
-          APIBaseException(baseExceptionModel: baseExceptionModel);
+      final BaseAPIException exception =
+          BaseAPIException(baseExceptionModel: baseExceptionModel);
 
       expect(exception.details, <String, dynamic>{'key': 'value'});
     });
 
     test('should return the correct string representation.', () {
       final BaseExceptionModel baseExceptionModel =
-          BaseExceptionModel(code: '400', message: 'Bad Request');
-      final APIBaseException exception =
-          APIBaseException(baseExceptionModel: baseExceptionModel);
+          BaseExceptionModel(code: 'BAD_REQUEST', message: 'Bad Request');
+      final BaseAPIException exception =
+          BaseAPIException(baseExceptionModel: baseExceptionModel);
       final String stringRepresentation = '$exception';
 
       expect(stringRepresentation, 'Bad Request');
