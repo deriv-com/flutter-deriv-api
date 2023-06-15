@@ -56,14 +56,14 @@ class SellResponse extends SellResponseModel {
 
   /// Sells a contract with parameters specified in [SellRequest].
   ///
-  /// Throws a [ContractOperationException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<SellResponse> sellContract(SellRequest request) async {
     final SellReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return SellResponse.fromJson(response.sell);
@@ -71,7 +71,7 @@ class SellResponse extends SellResponseModel {
 
   /// tries to sell any expired contracts and returns the number of sold contracts as [SellExpiredContractModel].
   ///
-  /// Throws [ContractOperationException] if API response contains an error
+  /// Throws [BaseAPIException] if API response contains an error
   static Future<SellExpiredResponse> sellExpiredContracts([
     SellExpiredRequest? request,
   ]) async {
@@ -82,7 +82,7 @@ class SellResponse extends SellResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return SellExpiredResponse.fromJson(response.sellExpired);

@@ -52,7 +52,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
   ///
   /// For parameters information refer to [SetSelfExclusionRequest].
-  /// Throws a [SelfExclusionException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<SetSelfExclusionResponse> setSelfExclusionMethod(
       SetSelfExclusionRequest request) async {
     final SetSelfExclusionReceive response = await _api.call(request: request);
@@ -60,7 +60,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          SelfExclusionException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetSelfExclusionResponse.fromJson(response.setSelfExclusion);

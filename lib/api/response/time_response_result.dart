@@ -61,7 +61,7 @@ class TimeResponse extends TimeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ServerTimeException(),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

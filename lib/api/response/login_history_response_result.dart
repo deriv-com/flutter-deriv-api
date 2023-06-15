@@ -64,7 +64,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Retrieves a summary of login history for user.
   ///
   /// For parameters information refer to [LoginHistory].
-  /// Throws an [AuthorizeException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<LoginHistoryResponse> fetchHistory([
     LoginHistoryRequest? request,
   ]) async {
@@ -75,7 +75,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AuthorizeException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return LoginHistoryResponse.fromJson(response.loginHistory);

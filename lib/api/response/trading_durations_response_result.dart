@@ -65,7 +65,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
   ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// For parameters information refer to [TradingDurationsRequest].
-  /// Throws a [TradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TradingDurationsResponse> fetchTradingDurations(
     TradingDurationsRequest request,
   ) async {
@@ -74,7 +74,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingDurationsResponse.fromJson(response.tradingDurations);

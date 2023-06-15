@@ -59,7 +59,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   /// Gets user's settings (email, date of birth, address etc).
   ///
   /// For parameters information refer to [GetSettingsRequest].
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<GetSettingsReceive> fetchAccountSettingRaw([
     GetSettingsRequest? request,
   ]) async {
@@ -70,7 +70,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AccountSettingsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -79,7 +79,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   /// Gets user's settings (email, date of birth, address etc).
   ///
   /// For parameters information refer to [GetSettingsRequest].
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<SetSettingsReceive> changeAccountSettingRaw(
     SetSettingsRequest request,
   ) async {
@@ -88,7 +88,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AccountSettingsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -96,7 +96,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   /// Gets user's settings (email, date of birth, address etc).
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<GetSettingsResponse> fetchAccountSetting([
     GetSettingsRequest? request,
   ]) async {
@@ -107,7 +107,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest].
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<SetSettingsResponse> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
