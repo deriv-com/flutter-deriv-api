@@ -56,7 +56,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Returns a list of Payment Agents for a given country for a given currency.
   ///
   /// For parameters information refer to [PaymentagentListRequest].
-  /// Throws a [PaymentAgentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PaymentagentListResponse> fetch(
     PaymentagentListRequest request,
   ) async {
@@ -65,7 +65,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PaymentAgentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentagentListResponse.fromJson(response.paymentagentList);

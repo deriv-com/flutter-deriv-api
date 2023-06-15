@@ -56,7 +56,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// Gets MT5 user account settings.
   ///
   /// For parameters information refer to [Mt5GetSettingsRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5GetSettingsResponse> fetchSettings(
     Mt5GetSettingsRequest request,
   ) async {
@@ -65,7 +65,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5GetSettingsResponse.fromJson(response.mt5GetSettings);

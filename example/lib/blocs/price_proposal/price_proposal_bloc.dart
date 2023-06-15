@@ -44,7 +44,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
     await _unsubscribeProposal();
 
     _subscribeProposal(event)
-        .handleError((dynamic error) => error is ContractOperationException
+        .handleError((dynamic error) => error is BaseAPIException
             ? add(YieldError(error.message))
             : add(YieldError(error.toString())))
         .listen((ProposalResponse? proposal) =>

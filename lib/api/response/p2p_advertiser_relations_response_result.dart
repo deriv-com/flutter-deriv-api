@@ -57,7 +57,7 @@ class P2pAdvertiserRelationsResponse
   /// Updates and returns favourite and blocked advertisers of the current user.
   ///
   /// For parameters information refer to [P2pAdvertiserRelationsRequest].
-  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pAdvertiserRelationsReceive> fetchRaw(
     P2pAdvertiserRelationsRequest request,
   ) async {
@@ -67,7 +67,7 @@ class P2pAdvertiserRelationsResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -76,7 +76,7 @@ class P2pAdvertiserRelationsResponse
   /// Updates and returns favourite and blocked advertisers of the current user.
   ///
   /// For parameters information refer to [P2pAdvertiserRelationsRequest].
-  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pAdvertiserRelationsResponse> fetch(
     P2pAdvertiserRelationsRequest request,
   ) async {
