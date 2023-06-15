@@ -55,7 +55,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
   /// Updates the application specified in [request].
   ///
   /// For parameters information refer to [AppUpdateRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppUpdateResponse> updateApplication(
       AppUpdateRequest request) async {
     final AppUpdateReceive response = await _api.call(request: request);
@@ -63,7 +63,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppUpdateResponse.fromJson(response.appUpdate);

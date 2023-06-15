@@ -61,14 +61,14 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
   /// Allows deposit into MT5 account from binary account.
   ///
   /// For parameters information refer to [Mt5DepositRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5DepositResponse> deposit(Mt5DepositRequest request) async {
     final Mt5DepositReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5DepositResponse.fromJson(

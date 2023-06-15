@@ -80,7 +80,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   ///
   /// This call is available only to accounts that are approved payment agents.
   /// For parameters information refer to [PaymentagentTransferRequest].
-  /// Throws a [PaymentAgentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PaymentagentTransferResponse> transfer(
     PaymentagentTransferRequest request,
   ) async {
@@ -90,7 +90,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PaymentAgentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentagentTransferResponse.fromJson(

@@ -85,7 +85,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -93,7 +93,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
-  /// Throws a [P2POrderException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<P2pOrderCreateResponse?> createAndSubscribe(
     P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -112,7 +112,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
-  /// Throws a [P2POrderException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<P2pOrderCreateReceive?> createAndSubscribeRaw(
     P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -122,7 +122,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                P2POrderException(baseExceptionModel: baseExceptionModel),
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderCreateReceive ? response : null;

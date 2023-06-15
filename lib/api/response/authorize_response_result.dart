@@ -55,7 +55,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///
   /// For parameters information refer to [AuthorizeRequest].
-  /// Throws an [AuthorizeException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<AuthorizeReceive> authorizeMethodRaw(
     AuthorizeRequest request,
   ) async {
@@ -66,7 +66,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AuthorizeException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -75,7 +75,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///
   /// For parameters information refer to [AuthorizeRequest].
-  /// Throws an [AuthorizeException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<AuthorizeResponse> authorizeMethod(
     AuthorizeRequest request,
   ) async {
@@ -111,6 +111,7 @@ enum PlatformEnum {
   /// mt5.
   mt5,
 }
+
 /// Authorize model class.
 abstract class AuthorizeModel {
   /// Initializes Authorize model class .
@@ -368,6 +369,7 @@ class Authorize extends AuthorizeModel {
         wallet: wallet ?? this.wallet,
       );
 }
+
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .
@@ -506,6 +508,7 @@ class AccountListItem extends AccountListItemModel {
         wallet: wallet ?? this.wallet,
       );
 }
+
 /// Trading model class.
 abstract class TradingModel {
   /// Initializes Trading model class .
@@ -560,6 +563,7 @@ class Trading extends TradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
+
 /// Linked to item model class.
 abstract class LinkedToItemModel {
   /// Initializes Linked to item model class .
@@ -632,6 +636,7 @@ class LinkedToItem extends LinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Wallet model class.
 abstract class WalletModel {
   /// Initializes Wallet model class .
@@ -726,6 +731,7 @@ class Wallet extends WalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Wallet linked to item model class.
 abstract class WalletLinkedToItemModel {
   /// Initializes Wallet linked to item model class .
@@ -804,6 +810,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
         platform: platform ?? this.platform,
       );
 }
+
 /// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel {
   /// Initializes Local currencies property model class .
@@ -847,6 +854,7 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
         fractionalDigits: fractionalDigits ?? this.fractionalDigits,
       );
 }
+
 /// Authorize trading model class.
 abstract class AuthorizeTradingModel {
   /// Initializes Authorize trading model class .
@@ -902,6 +910,7 @@ class AuthorizeTrading extends AuthorizeTradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
+
 /// Trading linked to item model class.
 abstract class TradingLinkedToItemModel {
   /// Initializes Trading linked to item model class .
@@ -975,6 +984,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Authorize wallet model class.
 abstract class AuthorizeWalletModel {
   /// Initializes Authorize wallet model class .
@@ -1070,6 +1080,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Wallet linked to item8 model class.
 abstract class WalletLinkedToItem8Model {
   /// Initializes Wallet linked to item8 model class .

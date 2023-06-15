@@ -28,7 +28,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
     try {
       final ActiveSymbolsResponse symbols = await _fetchActiveSymbols();
       emit(ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols!));
-    } on ActiveSymbolsException catch (error) {
+    } on BaseAPIException catch (error) {
       emit(ActiveSymbolsError(error.message));
     }
   }
