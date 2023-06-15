@@ -74,14 +74,14 @@ class BalanceResponse extends BalanceResponseModel {
   /// Gets the balance of account
   ///
   /// For parameters info refer to [BalanceRequest]
-  /// Throws a [BalanceException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<BalanceResponse> fetchBalance(BalanceRequest request) async {
     final BalanceReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BalanceException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return BalanceResponse.fromJson(response.balance, response.subscription);
@@ -89,7 +89,7 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
   ///
-  /// Throws a [BalanceException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<BalanceResponse?> subscribeBalance(
     BalanceRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -100,7 +100,7 @@ class BalanceResponse extends BalanceResponseModel {
         checkException(
           response: response,
           exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-              BalanceException(baseExceptionModel: baseExceptionModel),
+              BaseAPIException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is BalanceReceive
@@ -113,7 +113,7 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Unsubscribes from balance subscription.
   ///
-  /// Throws a [BalanceException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<ForgetResponse?> unsubscribeBalance() async {
     if (subscription == null) {
       return null;
@@ -125,7 +125,7 @@ class BalanceResponse extends BalanceResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BalanceException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -133,7 +133,7 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Unsubscribes all balance subscriptions.
   ///
-  /// Throws a [BalanceException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllBalance() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.balance);
@@ -141,7 +141,7 @@ class BalanceResponse extends BalanceResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BalanceException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

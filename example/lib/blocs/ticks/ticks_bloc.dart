@@ -40,7 +40,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
     await _unsubscribeTick();
 
     _subscribeTick(event.selectedSymbol!)
-        .handleError((dynamic error) => error is TickException
+        .handleError((dynamic error) => error is BaseAPIException
             ? add(YieldError(error.message))
             : add(YieldError(error.toString())))
         .listen((TicksResponse? tick) => add(YieldTick(tick)));

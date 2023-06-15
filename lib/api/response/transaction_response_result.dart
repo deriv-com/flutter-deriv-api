@@ -75,7 +75,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Subscribes to account's transactions
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<TransactionResponse?> subscribeTransactions({
     RequestCompareFunction? comparePredicate,
   }) =>
@@ -88,7 +88,7 @@ class TransactionResponse extends TransactionResponseModel {
         checkException(
           response: response,
           exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-              TransactionsException(baseExceptionModel: baseExceptionModel),
+              BaseAPIException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is TransactionReceive
@@ -101,7 +101,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Unsubscribes from transaction subscription.
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<ForgetResponse?> unsubscribeTransaction() async {
     if (subscription == null) {
       return null;
@@ -113,7 +113,7 @@ class TransactionResponse extends TransactionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransactionsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -121,7 +121,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Unsubscribes all transaction subscriptions.
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllTransaction() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.transaction);
@@ -129,7 +129,7 @@ class TransactionResponse extends TransactionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransactionsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

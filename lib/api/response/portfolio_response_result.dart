@@ -54,7 +54,7 @@ class PortfolioResponse extends PortfolioResponseModel {
 
   /// Gets the portfolio fo logged-in account
   ///
-  /// Throws a [PortfolioException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PortfolioResponse> fetchPortfolio(
       PortfolioRequest request) async {
     final PortfolioReceive response = await _api.call(request: request);
@@ -62,7 +62,7 @@ class PortfolioResponse extends PortfolioResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PortfolioException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PortfolioResponse.fromJson(response.portfolio);

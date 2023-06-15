@@ -64,7 +64,7 @@ class AppListResponse extends AppListResponseModel {
   /// Gets all of the account's OAuth applications.
   ///
   /// For parameters information refer to [AppListRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppListResponse> fetchApplicationList(
     AppListRequest request,
   ) async {
@@ -73,7 +73,7 @@ class AppListResponse extends AppListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppListResponse.fromJson(response.appList);

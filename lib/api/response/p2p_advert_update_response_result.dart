@@ -56,7 +56,7 @@ class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// For parameters information refer to [P2pAdvertUpdateRequest].
-  /// Throws a [P2PAdvertException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<P2pAdvertUpdateResponse> updateAdvert(
     P2pAdvertUpdateRequest request,
   ) async {
@@ -68,7 +68,7 @@ class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// For parameters information refer to [P2pAdvertUpdateRequest].
-  /// Throws a [P2PAdvertException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<P2pAdvertUpdateReceive> updateAdvertRaw(
     P2pAdvertUpdateRequest request,
   ) async {
@@ -77,7 +77,7 @@ class P2pAdvertUpdateResponse extends P2pAdvertUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

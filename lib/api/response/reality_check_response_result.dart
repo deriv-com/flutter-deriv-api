@@ -58,7 +58,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
   /// A `reality check` means a display of time elapsed since the session began, and associated client profit/loss.
   /// The reality check facility is a regulatory requirement for certain landing companies.
   /// For parameters information refer to [RealityCheckRequest].
-  /// Throws a [RealityCheckException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<RealityCheckResponse> check([
     RealityCheckRequest? request,
   ]) async {
@@ -69,7 +69,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          RealityCheckException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return RealityCheckResponse.fromJson(response.realityCheck);
