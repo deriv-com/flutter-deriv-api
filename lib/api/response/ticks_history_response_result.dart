@@ -104,7 +104,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
-  /// Throws a [TickException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TicksHistoryResponse> fetchTickHistory(
     TicksHistoryRequest request,
   ) async {
@@ -113,7 +113,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TickException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TicksHistoryResponse.fromJson(response.candles, response.history,
@@ -122,7 +122,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Gets ticks history and its stream
   ///
-  /// Throws [TickException] if API response contains an error
+  /// Throws [BaseAPIException] if API response contains an error
   static Future<TickHistorySubscription?> fetchTicksAndSubscribe(
     TicksHistoryRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -136,7 +136,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
       checkException(
         response: firstResponse,
         exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-            TickException(baseExceptionModel: baseExceptionModel),
+            BaseAPIException(baseExceptionModel: baseExceptionModel),
       );
       if (firstResponse is TicksHistoryReceive) {
         return TickHistorySubscription(
@@ -150,7 +150,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
               checkException(
                 response: response,
                 exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                    TickException(baseExceptionModel: baseExceptionModel),
+                    BaseAPIException(baseExceptionModel: baseExceptionModel),
               );
 
               return response is TicksReceive

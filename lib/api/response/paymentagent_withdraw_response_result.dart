@@ -70,7 +70,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// Initiates a withdrawal to an approved payment agent.
   ///
   /// For parameters information refer to [PaymentagentWithdrawRequest].
-  /// Throws a [PaymentAgentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PaymentagentWithdrawResponse> withdraw(
     PaymentagentWithdrawRequest request,
   ) async {
@@ -80,7 +80,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PaymentAgentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentagentWithdrawResponse.fromJson(response.paymentagentWithdraw,

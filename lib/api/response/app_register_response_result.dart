@@ -56,7 +56,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
   /// Registers a new OAuth application.
   ///
   /// For parameters information refer to [AppRegisterRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppRegisterResponse> registerApplication(
     AppRegisterRequest request,
   ) async {
@@ -65,7 +65,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppRegisterResponse.fromJson(response.appRegister);

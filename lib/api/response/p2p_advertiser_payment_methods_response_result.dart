@@ -64,7 +64,7 @@ class P2pAdvertiserPaymentMethodsResponse
   /// Manage or list P2P advertiser payment methods.
   ///
   /// For parameters information refer to [P2pAdvertiserPaymentMethodsRequest].
-  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pAdvertiserPaymentMethodsReceive> fetchMethodsRaw(
     P2pAdvertiserPaymentMethodsRequest request,
   ) async {
@@ -74,7 +74,7 @@ class P2pAdvertiserPaymentMethodsResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -83,7 +83,7 @@ class P2pAdvertiserPaymentMethodsResponse
   /// Manage or list P2P advertiser payment methods.
   ///
   /// For parameters information refer to [P2pAdvertiserPaymentMethodsRequest].
-  /// Throws an [P2PAdvertiserException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pAdvertiserPaymentMethodsResponse> fetchMethods(
     P2pAdvertiserPaymentMethodsRequest request,
   ) async {

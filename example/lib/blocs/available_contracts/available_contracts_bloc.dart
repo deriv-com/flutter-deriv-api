@@ -47,7 +47,7 @@ class AvailableContractsBloc
           await _fetchAvailableContracts(event.activeSymbol);
 
       emit(AvailableContractsLoaded(contracts: contracts.contractsFor!));
-    } on ContractsForSymbolException catch (error) {
+    } on BaseAPIException catch (error) {
       emit(AvailableContractsError(error.message));
     }
   }
