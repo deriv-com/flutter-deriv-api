@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
-import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
+
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_receive.dart';
