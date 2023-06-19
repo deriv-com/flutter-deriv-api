@@ -56,7 +56,7 @@ class P2pPingResponse extends P2pPingResponseModel {
   /// Requests the p2p ping request to the server.
   ///
   /// Mostly used to test the connection or to keep it alive.
-  /// Throws a [P2pPingException] if API response contains an error.
+  /// Throws a [APIBaseException] if API response contains an error.
   static Future<P2pPingReceive> p2pPingMethodRaw([
     P2pPingRequest? request,
   ]) async {
@@ -67,7 +67,7 @@ class P2pPingResponse extends P2pPingResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2pPingException(baseExceptionModel: baseExceptionModel),
+          APIBaseException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -76,7 +76,7 @@ class P2pPingResponse extends P2pPingResponseModel {
   /// Requests the p2p ping request to the server.
   ///
   /// Mostly used to test the connection or to keep it alive.
-  /// Throws a [P2pPingException] if API response contains an error.
+  /// Throws a [APIBaseException] if API response contains an error.
   static Future<P2pPingResponse> p2pPingMethod([
     P2pPingRequest? request,
   ]) async {
