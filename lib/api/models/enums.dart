@@ -297,8 +297,14 @@ enum ForgetStreamType {
   /// Candle
   candles,
 
+  /// Exchange Rates
+  exchangeRates,
+
   /// P2P advertiser
   p2pAdvertiser,
+
+  /// P2P advert info
+  p2pAdvertInfo,
 
   /// P2P Order
   p2pOrder,

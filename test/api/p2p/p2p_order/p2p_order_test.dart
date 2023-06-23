@@ -5,8 +5,10 @@ import 'package:flutter_deriv_api/api/response/p2p_order_confirm_response_result
     as order_confirm;
 import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart'
     as order_create;
+import 'package:flutter_deriv_api/api/response/p2p_order_info_response_extended.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_info_response_result.dart'
     as order_info;
+import 'package:flutter_deriv_api/api/response/p2p_order_list_response_extended.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_list_response_result.dart'
     as order_list;
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
@@ -61,7 +63,7 @@ void main() {
 
     test('Fetch Order List Test', () async {
       final order_list.P2pOrderListResponse orderList =
-          await order_list.P2pOrderListResponse.fetchOrderList();
+          await P2pOrderListResponseExtended.fetchOrderList();
       final order_list.ListItem firstOrder = orderList.p2pOrderList!.list.first;
 
       expect(firstOrder.accountCurrency, 'USD');
@@ -95,7 +97,7 @@ void main() {
 
     test('Fetch Order Information Test', () async {
       final order_info.P2pOrderInfoResponse orderResponse =
-          await order_info.P2pOrderInfoResponse.fetchOrder(
+          await P2pOrderInfoResponseExtended.fetchOrder(
         const P2pOrderInfoRequest(id: '108'),
       );
 
@@ -131,12 +133,12 @@ void main() {
 
     test('Order Confirm Test', () async {
       final order_info.P2pOrderInfoResponse order =
-          await order_info.P2pOrderInfoResponse.fetchOrder(
+          await P2pOrderInfoResponseExtended.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_confirm.P2pOrderConfirmResponse confirmedOrder =
-          await order.confirm();
+          await P2pOrderInfoResponseExtended.cast(order).confirm();
 
       expect(confirmedOrder.p2pOrderConfirm?.status,
           order_confirm.StatusEnum.buyerConfirmed);
@@ -144,12 +146,12 @@ void main() {
 
     test('Cancel Order Test', () async {
       final order_info.P2pOrderInfoResponse order =
-          await order_info.P2pOrderInfoResponse.fetchOrder(
+          await P2pOrderInfoResponseExtended.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_cancel.P2pOrderCancelResponse cancelledOrder =
-          await order.cancel();
+          await P2pOrderInfoResponseExtended.cast(order).cancel();
 
       expect(cancelledOrder.p2pOrderCancel?.status,
           order_cancel.StatusEnum.cancelled);
@@ -202,7 +204,7 @@ void main() {
     });
 
     test('Fetch Order List and Subscribe Test', () {
-      order_list.P2pOrderListResponse.subscribeOrderList().listen(expectAsync1(
+      P2pOrderListResponseExtended.subscribeOrderList().listen(expectAsync1(
         (order_list.P2pOrderListResponse? orderList) {
           final order_list.ListItem firstOrder =
               orderList!.p2pOrderList!.list.first;
@@ -244,7 +246,7 @@ void main() {
     });
 
     test('Order Info Subscription Test', () {
-      order_info.P2pOrderInfoResponse.subscribeOrder(
+      P2pOrderInfoResponseExtended.subscribeOrder(
               const P2pOrderInfoRequest(id: '107'))
           .listen(expectAsync1(
         (order_info.P2pOrderInfoResponse? orderResponse) {

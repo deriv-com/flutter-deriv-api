@@ -1,14 +1,4 @@
-// ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
-
-import 'package:equatable/equatable.dart';
-
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Exchange rates response model class.
 abstract class ExchangeRatesResponseModel {
@@ -62,38 +52,6 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
     }
 
     return resultMap;
-  }
-
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
-  ///
-  /// For parameters information refer to [ExchangeRatesRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<ExchangeRatesReceive> fetchExchangeRatesRaw(
-    ExchangeRatesRequest request,
-  ) async {
-    final ExchangeRatesReceive response = await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
-  /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
-  ///
-  /// For parameters information refer to [ExchangeRatesRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<ExchangeRates> fetchExchangeRates(
-    ExchangeRatesRequest request,
-  ) async {
-    final ExchangeRatesReceive response = await fetchExchangeRatesRaw(request);
-
-    return ExchangeRates.fromJson(response.exchangeRates!);
   }
 
   /// Creates a copy of instance with given parameters.

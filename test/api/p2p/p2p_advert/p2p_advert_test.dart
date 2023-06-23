@@ -1,8 +1,8 @@
-import 'package:flutter_test/flutter_test.dart';
-
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_create_response_result.dart'
     as advert_create;
+import 'package:flutter_deriv_api/api/response/p2p_advert_info_response_extended.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advert_info_response_result.dart'
     as advert_info;
 import 'package:flutter_deriv_api/api/response/p2p_advert_list_response_result.dart'
@@ -14,9 +14,9 @@ import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
-import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));
@@ -26,7 +26,7 @@ void main() {
   group('P2P Advert Group ->', () {
     test('Fetch Advert Information Test', () async {
       final advert_info.P2pAdvertInfoResponse advertResponse =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
         const P2pAdvertInfoRequest(id: '21'),
       );
 
@@ -155,11 +155,12 @@ void main() {
 
     test('Update Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
               const P2pAdvertInfoRequest(id: '25'));
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
-          await advert.update(delete: false, isActive: false);
+          await P2pAdvertInfoResponseExtended.cast(advert)
+              .update(delete: false, isActive: false);
 
       final advert_update.P2pAdvertUpdate updatedAdvert =
           advertResponse.p2pAdvertUpdate!;
@@ -200,12 +201,12 @@ void main() {
 
     test('Activate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
         const P2pAdvertInfoRequest(id: '21'),
       );
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
-          await advert.activate();
+          await P2pAdvertInfoResponseExtended.cast(advert).activate();
 
       final advert_update.P2pAdvertUpdate activatedAdvert =
           advertResponse.p2pAdvertUpdate!;
@@ -246,12 +247,12 @@ void main() {
 
     test('Deactivate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
         const P2pAdvertInfoRequest(id: '25'),
       );
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
-          await advert.deactivate();
+          await P2pAdvertInfoResponseExtended.cast(advert).deactivate();
 
       // advertResponse = advert_update.P2pAdvertUpdateResponse(
       //     p2pAdvertUpdate:
@@ -297,12 +298,12 @@ void main() {
 
     test('Delete Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
         const P2pAdvertInfoRequest(id: '25'),
       );
 
       final advert_update.P2pAdvertUpdateResponse deletedAdvertResponse =
-          await advert.delete();
+          await P2pAdvertInfoResponseExtended.cast(advert).delete();
 
       final advert_update.P2pAdvertUpdate deletedAdvert =
           deletedAdvertResponse.p2pAdvertUpdate!;
@@ -343,12 +344,13 @@ void main() {
 
     test('Create Order From Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
-          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+          await P2pAdvertInfoResponseExtended.fetchAdvert(
         const P2pAdvertInfoRequest(id: '2'),
       );
 
       final order_create.P2pOrderCreateResponse orderResponse =
-          await advert.createOrder(amount: 50);
+          await P2pAdvertInfoResponseExtended.cast(advert)
+              .createOrder(amount: 50);
 
       final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate!;
 
