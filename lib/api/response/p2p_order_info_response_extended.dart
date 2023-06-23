@@ -20,11 +20,19 @@ class P2pOrderInfoResponseExtended extends P2pOrderInfoResponse {
     super.subscription,
   });
 
-  /// Casts [P2pOrderInfoResponse] to [P2pOrderInfoResponseExtended].
-  factory P2pOrderInfoResponseExtended.cast(P2pOrderInfoResponse response) =>
+  factory P2pOrderInfoResponseExtended._cast(P2pOrderInfoResponse response) =>
       P2pOrderInfoResponseExtended(
         p2pOrderInfo: response.p2pOrderInfo,
         subscription: response.subscription,
+      );
+
+  /// Creates an instance from JSON.
+  factory P2pOrderInfoResponseExtended.fromJson(
+    dynamic json,
+    dynamic subscriptionJson,
+  ) =>
+      P2pOrderInfoResponseExtended._cast(
+        P2pOrderInfoResponse.fromJson(json, subscriptionJson),
       );
 
   static final BaseAPI _api = Injector()<BaseAPI>();
@@ -32,12 +40,14 @@ class P2pOrderInfoResponseExtended extends P2pOrderInfoResponse {
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
   ///
   /// Throws a [BaseAPIException] if API response contains an error
-  static Future<P2pOrderInfoResponse> fetchOrder(
+  static Future<P2pOrderInfoResponseExtended> fetchOrder(
       P2pOrderInfoRequest request) async {
     final P2pOrderInfoReceive response = await fetchOrderRaw(request);
 
-    return P2pOrderInfoResponse.fromJson(
-        response.p2pOrderInfo, response.subscription);
+    return P2pOrderInfoResponseExtended.fromJson(
+      response.p2pOrderInfo,
+      response.subscription,
+    );
   }
 
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
@@ -77,7 +87,7 @@ class P2pOrderInfoResponseExtended extends P2pOrderInfoResponse {
   /// Subscribes to order with parameters specified in [P2pOrderInfoRequest].
   ///
   /// Throws a [BaseAPIException] if API response contains an error.
-  static Stream<P2pOrderInfoResponse?> subscribeOrder(
+  static Stream<P2pOrderInfoResponseExtended?> subscribeOrder(
     P2pOrderInfoRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
@@ -87,7 +97,7 @@ class P2pOrderInfoResponseExtended extends P2pOrderInfoResponse {
       ).map(
         (P2pOrderInfoReceive? response) => response == null
             ? null
-            : P2pOrderInfoResponse.fromJson(
+            : P2pOrderInfoResponseExtended.fromJson(
                 response.p2pOrderInfo,
                 response.subscription,
               ),

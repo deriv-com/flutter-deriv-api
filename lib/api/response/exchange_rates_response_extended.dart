@@ -17,11 +17,19 @@ class ExchangeRatesResponseExtended extends ExchangeRatesResponse {
     super.subscription,
   });
 
-  /// Casts [ExchangeRatesResponse] to [ExchangeRatesResponseExtended].
-  factory ExchangeRatesResponseExtended.cast(ExchangeRatesResponse response) =>
+  factory ExchangeRatesResponseExtended._cast(ExchangeRatesResponse response) =>
       ExchangeRatesResponseExtended(
         exchangeRates: response.exchangeRates,
         subscription: response.subscription,
+      );
+
+  /// Creates an instance from JSON.
+  factory ExchangeRatesResponseExtended.fromJson(
+    dynamic json,
+    dynamic subscriptionJson,
+  ) =>
+      ExchangeRatesResponseExtended._cast(
+        ExchangeRatesResponse.fromJson(json, subscriptionJson),
       );
 
   static final BaseAPI _api = Injector()<BaseAPI>();

@@ -18,24 +18,34 @@ class P2pOrderListResponseExtended extends P2pOrderListResponse {
     super.subscription,
   });
 
-  /// Casts [P2pOrderListResponse] to [P2pOrderListResponseExtended].
-  factory P2pOrderListResponseExtended.cast(P2pOrderListResponse response) =>
+  factory P2pOrderListResponseExtended._cast(P2pOrderListResponse response) =>
       P2pOrderListResponseExtended(
         p2pOrderList: response.p2pOrderList,
         subscription: response.subscription,
       );
 
+  /// Creates an instance from JSON.
+  factory P2pOrderListResponseExtended.fromJson(
+    dynamic json,
+    dynamic subscriptionJson,
+  ) =>
+      P2pOrderListResponseExtended._cast(
+        P2pOrderListResponse.fromJson(json, subscriptionJson),
+      );
+
   static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
-  static Future<P2pOrderListResponse> fetchOrderList([
+  static Future<P2pOrderListResponseExtended> fetchOrderList([
     P2pOrderListRequest? request,
   ]) async {
     final P2pOrderListReceive response =
         await fetchOrderListRaw(request ?? const P2pOrderListRequest());
 
-    return P2pOrderListResponse.fromJson(
-        response.p2pOrderList, response.subscription);
+    return P2pOrderListResponseExtended.fromJson(
+      response.p2pOrderList,
+      response.subscription,
+    );
   }
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
@@ -56,7 +66,7 @@ class P2pOrderListResponseExtended extends P2pOrderListResponse {
   }
 
   /// Subscribes to the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
-  static Stream<P2pOrderListResponse?> subscribeOrderList({
+  static Stream<P2pOrderListResponseExtended?> subscribeOrderList({
     P2pOrderListRequest? request,
     RequestCompareFunction? comparePredicate,
   }) =>
@@ -66,7 +76,7 @@ class P2pOrderListResponseExtended extends P2pOrderListResponse {
       ).map(
         (P2pOrderListReceive? response) => response == null
             ? null
-            : P2pOrderListResponse.fromJson(
+            : P2pOrderListResponseExtended.fromJson(
                 response.p2pOrderList,
                 response.subscription,
               ),

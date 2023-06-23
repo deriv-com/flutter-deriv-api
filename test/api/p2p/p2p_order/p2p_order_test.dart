@@ -132,26 +132,26 @@ void main() {
     });
 
     test('Order Confirm Test', () async {
-      final order_info.P2pOrderInfoResponse order =
+      final P2pOrderInfoResponseExtended order =
           await P2pOrderInfoResponseExtended.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_confirm.P2pOrderConfirmResponse confirmedOrder =
-          await P2pOrderInfoResponseExtended.cast(order).confirm();
+          await order.confirm();
 
       expect(confirmedOrder.p2pOrderConfirm?.status,
           order_confirm.StatusEnum.buyerConfirmed);
     });
 
     test('Cancel Order Test', () async {
-      final order_info.P2pOrderInfoResponse order =
+      final P2pOrderInfoResponseExtended order =
           await P2pOrderInfoResponseExtended.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_cancel.P2pOrderCancelResponse cancelledOrder =
-          await P2pOrderInfoResponseExtended.cast(order).cancel();
+          await order.cancel();
 
       expect(cancelledOrder.p2pOrderCancel?.status,
           order_cancel.StatusEnum.cancelled);

@@ -17,11 +17,19 @@ class P2pAdvertInfoResponseExtended extends P2pAdvertInfoResponse {
     super.subscription,
   });
 
-  /// Casts [P2pAdvertInfoReceive] to [P2pAdvertInfoResponse].
-  factory P2pAdvertInfoResponseExtended.cast(P2pAdvertInfoResponse response) =>
+  factory P2pAdvertInfoResponseExtended._cast(P2pAdvertInfoResponse response) =>
       P2pAdvertInfoResponseExtended(
         p2pAdvertInfo: response.p2pAdvertInfo,
         subscription: response.subscription,
+      );
+
+  /// Creates an instance from JSON.
+  factory P2pAdvertInfoResponseExtended.fromJson(
+    dynamic json,
+    dynamic subscriptionJson,
+  ) =>
+      P2pAdvertInfoResponseExtended._cast(
+        P2pAdvertInfoResponse.fromJson(json, subscriptionJson),
       );
 
   static final BaseAPI _api = Injector()<BaseAPI>();
@@ -30,13 +38,15 @@ class P2pAdvertInfoResponseExtended extends P2pAdvertInfoResponse {
   ///
   /// For parameters information refer to [P2pAdvertInfoRequest].
   /// Throws a [BaseAPIException] if API response contains an error
-  static Future<P2pAdvertInfoResponse> fetchAdvert(
+  static Future<P2pAdvertInfoResponseExtended> fetchAdvert(
     P2pAdvertInfoRequest request,
   ) async {
     final P2pAdvertInfoReceive response = await fetchAdvertRaw(request);
 
-    return P2pAdvertInfoResponse.fromJson(
-        response.p2pAdvertInfo, response.subscription);
+    return P2pAdvertInfoResponseExtended.fromJson(
+      response.p2pAdvertInfo,
+      response.subscription,
+    );
   }
 
   /// Retrieves information about a P2P (peer to peer) advert.

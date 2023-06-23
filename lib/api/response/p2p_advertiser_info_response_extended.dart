@@ -19,13 +19,21 @@ class P2pAdvertiserInfoResponseExtended extends P2pAdvertiserInfoResponse {
     super.subscription,
   });
 
-  /// Casts [P2pAdvertiserInfoResponse] to [P2pAdvertiserInfoResponseExtended].
-  factory P2pAdvertiserInfoResponseExtended.cast(
+  factory P2pAdvertiserInfoResponseExtended._cast(
     P2pAdvertiserInfoResponse response,
   ) =>
       P2pAdvertiserInfoResponseExtended(
         p2pAdvertiserInfo: response.p2pAdvertiserInfo,
         subscription: response.subscription,
+      );
+
+  /// Creates an instance from JSON.
+  factory P2pAdvertiserInfoResponseExtended.fromJson(
+    dynamic json,
+    dynamic subscriptionJson,
+  ) =>
+      P2pAdvertiserInfoResponseExtended._cast(
+        P2pAdvertiserInfoResponse.fromJson(json, subscriptionJson),
       );
 
   static final BaseAPI _api = Injector()<BaseAPI>();
@@ -34,14 +42,16 @@ class P2pAdvertiserInfoResponseExtended extends P2pAdvertiserInfoResponse {
   ///
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
   /// Throws a [BaseAPIException] if API response contains an error.
-  static Future<P2pAdvertiserInfoResponse> fetchAdvertiserInformation(
+  static Future<P2pAdvertiserInfoResponseExtended> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
   ) async {
     final P2pAdvertiserInfoReceive response =
         await fetchAdvertiserInformationRaw(request);
 
-    return P2pAdvertiserInfoResponse.fromJson(
-        response.p2pAdvertiserInfo, response.subscription);
+    return P2pAdvertiserInfoResponseExtended.fromJson(
+      response.p2pAdvertiserInfo,
+      response.subscription,
+    );
   }
 
   /// Retrieves information about a P2P (peer to peer) advertiser.
@@ -60,21 +70,22 @@ class P2pAdvertiserInfoResponseExtended extends P2pAdvertiserInfoResponse {
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
-  static Stream<P2pAdvertiserInfoResponse?> subscribeAdvertiserInformation(
+  static Stream<P2pAdvertiserInfoResponseExtended?>
+      subscribeAdvertiserInformation(
     P2pAdvertiserInfoRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      subscribeAdvertiserInformationRaw(
-        request,
-        comparePredicate: comparePredicate,
-      ).map(
-        (P2pAdvertiserInfoReceive? response) => response == null
-            ? null
-            : P2pAdvertiserInfoResponse.fromJson(
-                response.p2pAdvertiserInfo,
-                response.subscription,
-              ),
-      );
+          subscribeAdvertiserInformationRaw(
+            request,
+            comparePredicate: comparePredicate,
+          ).map(
+            (P2pAdvertiserInfoReceive? response) => response == null
+                ? null
+                : P2pAdvertiserInfoResponseExtended.fromJson(
+                    response.p2pAdvertiserInfo,
+                    response.subscription,
+                  ),
+          );
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
