@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:test/test.dart';
 
+import 'package:web_socket_client/src/connection_state.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -95,6 +97,9 @@ class MockAPI implements BaseAPI {
   @override
   Future<ForgetAllReceive> unsubscribeAll({required ForgetStreamType method}) =>
       throw UnimplementedError();
+
+  @override
+  Stream<ConnectionState>? get connectionStatus => throw UnimplementedError();
 }
 
 class MockRequest extends Request {}
