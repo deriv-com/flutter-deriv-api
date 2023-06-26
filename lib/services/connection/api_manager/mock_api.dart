@@ -3,8 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:web_socket_client/web_socket_client.dart' as ws;
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -372,6 +370,5 @@ class MockAPI extends BaseAPI {
   }
 
   @override
-  Stream<ws.ConnectionState>? get connectionStatus =>
-      throw UnimplementedError();
+  Stream<bool>? get connectionStatus => throw UnimplementedError();
 }

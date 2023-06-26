@@ -80,6 +80,9 @@ class BinaryAPI extends BaseAPI {
       backoff: const ws.ConstantBackoff(Duration(seconds: 1)),
     );
 
+    await _webSocketChannel?.connection
+        .firstWhere((ws.ConnectionState state) => state is ws.Connected);
+
     _webSocketListener = _webSocketChannel?.messages
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
@@ -238,6 +241,6 @@ class BinaryAPI extends BaseAPI {
   }
 
   @override
-  Stream<ws.ConnectionState>? get connectionStatus =>
-      _webSocketChannel?.connection;
+  Stream<bool>? get connectionStatus => _webSocketChannel?.connection
+      .map((ws.ConnectionState event) => event is ws.Connected);
 }

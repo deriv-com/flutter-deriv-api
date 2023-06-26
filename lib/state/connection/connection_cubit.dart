@@ -4,7 +4,6 @@ import 'dart:developer' as dev;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:web_socket_client/web_socket_client.dart' as ws;
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
@@ -126,14 +125,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     );
   }
 
-  void _setupConnectivityListener() =>
-      _api?.connectionStatus?.listen((ws.ConnectionState event) {
-        if (event is ws.Disconnected) {
-          emit(const ConnectionDisconnectedState());
-        } else if (event is ws.Connected) {
-          reconnect();
-        }
-      });
+  void _setupConnectivityListener() => _api?.connectionStatus?.listen(
+        (bool event) =>
+            event ? reconnect() : emit(const ConnectionDisconnectedState()),
+      );
 
   void _startKeepAliveTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {

@@ -1,5 +1,3 @@
-import 'package:web_socket_client/web_socket_client.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -54,5 +52,6 @@ abstract class BaseAPI {
   Future<void> disconnect();
 
   /// Gets the current connection status.
-  Stream<ConnectionState>? get connectionStatus;
+  /// Returns `true` if connected, otherwise `false`.
+  Stream<bool>? get connectionStatus;
 }
