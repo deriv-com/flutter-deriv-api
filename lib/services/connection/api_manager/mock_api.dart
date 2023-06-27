@@ -11,6 +11,7 @@ import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/enums.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
@@ -368,4 +369,11 @@ class MockAPI extends BaseAPI {
         );
     }
   }
+
+  @override
+  APIStatus get currentConnectionStatus => APIStatus.connected;
+
+  @override
+  Stream<APIStatus> get connectionStatus =>
+      Stream<APIStatus>.value(APIStatus.connected);
 }

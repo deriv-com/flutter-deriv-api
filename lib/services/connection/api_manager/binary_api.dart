@@ -4,7 +4,8 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:web_socket_channel/io.dart';
+
+import 'package:web_socket_client/web_socket_client.dart' as ws;
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/enums.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/extensions.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
@@ -26,13 +29,10 @@ class BinaryAPI extends BaseAPI {
   BinaryAPI({String? key, bool enableDebug = false})
       : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
-  static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
-
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
-  IOWebSocketChannel? _webSocketChannel;
+  ws.WebSocket? _webSocketChannel;
 
   /// Stream subscription to API data.
   StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
@@ -76,12 +76,16 @@ class BinaryAPI extends BaseAPI {
     await _setUserAgent();
 
     // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      '$uri',
-      pingInterval: _websocketConnectTimeOut,
+    _webSocketChannel = ws.WebSocket(
+      uri,
+      pingInterval: const Duration(seconds: 1),
+      backoff: const ws.ConstantBackoff(Duration(seconds: 1)),
     );
 
-    _webSocketListener = _webSocketChannel?.stream
+    await connectionStatus
+        .firstWhere((APIStatus status) => status == APIStatus.connected);
+
+    _webSocketListener = _webSocketChannel?.messages
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
@@ -91,10 +95,12 @@ class BinaryAPI extends BaseAPI {
           _handleResponse(message, printResponse: printResponse);
         }
       },
-      onDone: () async {
+      onDone: () {
         _logDebugInfo('the websocket is closed.');
 
         onDone?.call(key);
+
+        disconnect();
       },
       onError: (Object error) {
         _logDebugInfo(
@@ -103,6 +109,8 @@ class BinaryAPI extends BaseAPI {
         );
 
         onError?.call(key);
+
+        disconnect();
       },
     );
 
@@ -117,10 +125,9 @@ class BinaryAPI extends BaseAPI {
   @override
   void addToChannel(Map<String, dynamic> request) {
     try {
-      _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
-      // ignore: avoid_catches_without_on_clauses
-    } catch (error) {
-      _logDebugInfo('error while adding to channel.', error: error);
+      _webSocketChannel?.send(utf8.encode(jsonEncode(request)));
+    } on Exception catch (error) {
+      _logDebugInfo('error sending message to websocket.', error: error);
     }
   }
 
@@ -167,18 +174,22 @@ class BinaryAPI extends BaseAPI {
     try {
       await _webSocketListener?.cancel();
 
-      await _webSocketChannel?.sink.close().timeout(
-            _disconnectTimeOut,
-            onTimeout: () => throw TimeoutException('Could not close sink.'),
-          );
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
+      _webSocketChannel?.close();
+    } on Exception catch (e) {
       _logDebugInfo('disconnect error.', error: e);
     } finally {
       _webSocketListener = null;
       _webSocketChannel = null;
     }
   }
+
+  @override
+  APIStatus get currentConnectionStatus =>
+      _webSocketChannel!.connection.state.apiStatus;
+
+  @override
+  Stream<APIStatus> get connectionStatus => _webSocketChannel!.connection
+      .map<APIStatus>((ws.ConnectionState state) => state.apiStatus);
 
   /// Handles responses that come from server, by using its reqId,
   /// and completes caller's Future or add the response to caller's stream if it was a subscription call.
