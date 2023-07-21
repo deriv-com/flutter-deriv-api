@@ -6,8 +6,10 @@ import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 /// Extends [ExchangeRatesResponse] with additional methods.
 class ExchangeRatesResponseExtended extends ExchangeRatesResponse {
@@ -63,6 +65,48 @@ class ExchangeRatesResponseExtended extends ExchangeRatesResponse {
 
     return ExchangeRates.fromJson(response.exchangeRates!);
   }
+
+  /// Subscribes the exchange rates from a base currency to all currencies supported by the system.
+  ///
+  /// For parameters information refer to [ExchangeRatesRequest].
+  /// Throws an [BaseAPIException] if API response contains an error.
+  static Stream<ExchangeRatesResponseExtended?> subscribeExchangeRates(
+    ExchangeRatesRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) =>
+      subscribeExchangeRatesRaw(
+        request,
+        comparePredicate: comparePredicate,
+      ).map(
+        (ExchangeRatesReceive? response) => response == null
+            ? null
+            : ExchangeRatesResponseExtended.fromJson(
+                response.exchangeRates,
+                response.subscription,
+              ),
+      );
+
+  /// Subscribes the exchange rates from a base currency to all currencies supported by the system.
+  ///
+  /// For parameters information refer to [ExchangeRatesRequest].
+  /// Throws an [BaseAPIException] if API response contains an error.
+  static Stream<ExchangeRatesReceive?> subscribeExchangeRatesRaw(
+    ExchangeRatesRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<ExchangeRatesReceive?>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
+          );
+
+          return response is ExchangeRatesReceive ? response : null;
+        },
+      );
 
   /// Unsubscribes all exchange rates streams.
   ///
