@@ -26,47 +26,36 @@ class AvailableContractsBloc
         );
       }
     });
-
-    on<FetchAvailableContracts>((FetchAvailableContracts event,
-            Emitter<AvailableContractsState> emit) =>
-        _handleFetchAvailableContracts(event, emit));
-
-    on<SelectContract>(
-        (SelectContract event, Emitter<AvailableContractsState> emit) =>
-            _handleSelectContract(event, emit));
   }
 
-  Future<void> _handleFetchAvailableContracts(
-    FetchAvailableContracts event,
-    Emitter<AvailableContractsState> emit,
-  ) async {
-    emit(AvailableContractsLoading());
+  @override
+  Stream<AvailableContractsState> mapEventToState(
+    AvailableContractsEvent event,
+  ) async* {
+    if (event is FetchAvailableContracts) {
+      yield AvailableContractsLoading();
 
-    try {
-      final ContractsForResponse contracts =
-          await _fetchAvailableContracts(event.activeSymbol);
+      try {
+        final ContractsForResponse contracts =
+            await _fetchAvailableContracts(event.activeSymbol);
 
-      emit(AvailableContractsLoaded(contracts: contracts.contractsFor!));
-    } on BaseAPIException catch (error) {
-      emit(AvailableContractsError(error.message));
-    }
-  }
+        yield AvailableContractsLoaded(contracts: contracts.contractsFor!);
+      } on ContractsForSymbolException catch (error) {
+        yield AvailableContractsError(error.message);
+      }
+    } else if (event is SelectContract) {
+      if (state is AvailableContractsLoaded) {
+        final AvailableContractsLoaded loadedState =
+            state as AvailableContractsLoaded;
 
-  void _handleSelectContract(
-    SelectContract event,
-    Emitter<AvailableContractsState> emit,
-  ) {
-    if (state is AvailableContractsLoaded) {
-      final AvailableContractsLoaded loadedState =
-          state as AvailableContractsLoaded;
-
-      emit(AvailableContractsLoaded(
-        contracts: loadedState.contracts,
-        selectedContract: loadedState.contracts.available[event.index],
-      ));
-    } else {
-      emit(AvailableContractsLoading());
-      add(FetchAvailableContracts());
+        yield AvailableContractsLoaded(
+          contracts: loadedState.contracts,
+          selectedContract: loadedState.contracts.available[event.index],
+        );
+      } else {
+        yield AvailableContractsLoading();
+        add(FetchAvailableContracts());
+      }
     }
   }
 

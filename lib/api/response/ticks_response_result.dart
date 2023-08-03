@@ -71,7 +71,7 @@ class TicksResponse extends TicksResponseModel {
 
   /// Subscribes to a tick for given [TickRequest]
   ///
-  /// Throws [BaseAPIException] if API response contains an error
+  /// Throws [TickException] if API response contains an error
   static Stream<TicksResponse?> subscribeTick(
     TicksRequest tickRequest, {
     RequestCompareFunction? comparePredicate,
@@ -83,7 +83,7 @@ class TicksResponse extends TicksResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                TickException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is TicksReceive
@@ -97,7 +97,7 @@ class TicksResponse extends TicksResponseModel {
 
   /// Unsubscribes all ticks.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TickException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllTicks() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.ticks);
@@ -105,7 +105,7 @@ class TicksResponse extends TicksResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TickException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

@@ -64,7 +64,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
   /// Gets the list of MT5 accounts for client.
   ///
   /// For parameters information refer to [Mt5LoginListRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5LoginListResponse> fetchLoginList(
     Mt5LoginListRequest request,
   ) async {
@@ -73,7 +73,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5LoginListResponse.fromJson(response.mt5LoginList);

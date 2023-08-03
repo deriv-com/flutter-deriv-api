@@ -64,7 +64,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
   /// Immediately cancels the real-time streams of messages of given type.
   ///
   /// For parameters information refer to [ForgetAllRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ForgetException] if API response contains an error
   static Future<ForgetAllResponse> forgetAllMethod(
     ForgetAllRequest request,
   ) async {
@@ -73,7 +73,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

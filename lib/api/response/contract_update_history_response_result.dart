@@ -63,7 +63,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ContractUpdateHistoryResponse> fetchContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {
@@ -73,7 +73,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractUpdateHistoryResponse.fromJson(

@@ -79,7 +79,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Gets the current spot of the the bought contract specified in [ProposalOpenContractRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains any error
+  /// Throws a [ContractOperationException] if API response contains any error
   static Future<ProposalOpenContractResponse> fetchContractState(
     ProposalOpenContractRequest request,
   ) async {
@@ -90,7 +90,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ProposalOpenContractResponse.fromJson(
@@ -99,7 +99,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Stream<ProposalOpenContractResponse?> subscribeContractState(
     ProposalOpenContractRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -111,7 +111,8 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
           );
 
           return response is ProposalOpenContractReceive
@@ -125,7 +126,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Unsubscribes from open contract subscription.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<ForgetResponse?> unsubscribeOpenContract() async {
     if (subscription == null) {
       return null;
@@ -137,7 +138,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -145,7 +146,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Unsubscribes all open contract subscriptions.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllOpenContract() async {
     final ForgetAllReceive response = await _api.unsubscribeAll(
       method: ForgetStreamType.proposalOpenContract,
@@ -154,7 +155,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);
@@ -164,14 +165,14 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   ///
   /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<SellResponse> sell(
           {required int contractId, double price = 0}) =>
       SellResponse.sellContract(SellRequest(sell: contractId, price: price));
 
   /// Cancels this contract
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<CancelResponse> cancel(int contractId) =>
       CancelResponse.cancelContract(CancelRequest(cancel: contractId));
 

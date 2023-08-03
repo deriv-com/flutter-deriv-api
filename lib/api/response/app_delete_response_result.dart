@@ -51,7 +51,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
   /// Deletes the application by appId specified in [AppDeleteRequest.appDelete].
   ///
   /// For parameters information refer to [AppDeleteRequest].
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AppException] if API response contains an error
   static Future<AppDeleteResponse> deleteApplication(
       AppDeleteRequest request) async {
     final AppDeleteReceive response = await _api.call(request: request);
@@ -59,7 +59,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppDeleteResponse.fromJson(response.appDelete);

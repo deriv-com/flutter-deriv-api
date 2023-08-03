@@ -52,7 +52,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
   /// Approve the latest version of terms and conditions.
   ///
   /// For parameters information refer to [TncApprovalRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [UserException] if API response contains an error
   static Future<TncApprovalResponse> verify(
     TncApprovalRequest request,
   ) async {
@@ -61,7 +61,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          UserException(baseExceptionModel: baseExceptionModel),
     );
 
     return TncApprovalResponse.fromJson(response.tncApproval);

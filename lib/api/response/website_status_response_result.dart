@@ -76,7 +76,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Gets Website status.
   ///
   /// For parameters information refer to [WebsiteStatusRequest].
-  /// Throws a [BaseAPIException] if API response contains an error.
+  /// Throws a [WebsiteStatusException] if API response contains an error.
   static Future<WebsiteStatusReceive> fetchWebsiteStatusRaw([
     WebsiteStatusRequest? request,
   ]) async {
@@ -87,7 +87,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -95,7 +95,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Subscribes to website status.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error.
+  /// Throws a [WebsiteStatusException] if API response contains an error.
   static Stream<WebsiteStatusReceive?> subscribeWebsiteStatusRaw(
     WebsiteStatusRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -107,7 +107,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                WebsiteStatusException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is WebsiteStatusReceive ? response : null;
@@ -116,7 +116,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Unsubscribes from website status.
   ///
-  /// Throws an [BaseAPIException] if the API response contains an error.
+  /// Throws an [WebsiteStatusException] if the API response contains an error.
   Future<ForgetReceive?> unsubscribeWebsiteStatusRaw() async {
     if (subscription == null) {
       return null;
@@ -128,7 +128,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -136,7 +136,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Unsubscribes all website status subscriptions.
   ///
-  /// Throws an [BaseAPIException] if the API response contains an error.
+  /// Throws an [WebsiteStatusException] if the API response contains an error.
   static Future<ForgetAllReceive> unsubscribeAllWebsiteStatusRaw() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.websiteStatus);
@@ -144,7 +144,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -152,7 +152,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Gets Website status.
   ///
-  /// Throws an [BaseAPIException] if the API response contains an error.
+  /// Throws an [WebsiteStatusException] if the API response contains an error.
   static Future<WebsiteStatusResponse> fetchWebsiteStatus([
     WebsiteStatusRequest? request,
   ]) async {
@@ -183,7 +183,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Unsubscribes from website status.
   ///
-  /// Throws an [BaseAPIException] if the API response contains an error.
+  /// Throws an [WebsiteStatusException] if the API response contains an error.
   Future<ForgetResponse?> unsubscribeWebsiteStatus() async {
     final ForgetReceive? response = await unsubscribeWebsiteStatusRaw();
 
@@ -192,7 +192,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Unsubscribes all website status subscriptions.
   ///
-  /// Throws an [BaseAPIException] if the API response contains an error.
+  /// Throws an [WebsiteStatusException] if the API response contains an error.
   static Future<ForgetAllResponse> unsubscribeAllWebsiteStatus() async {
     final ForgetAllReceive response = await unsubscribeAllWebsiteStatusRaw();
 

@@ -56,7 +56,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Gets the account's status.
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [AccountStatusException] if API response contains an error.
   static Future<GetAccountStatusReceive> fetchAccountStatusRaw() async {
     final GetAccountStatusReceive response = await _api.call(
       request: const GetAccountStatusRequest(),
@@ -65,7 +65,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AccountStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -74,7 +74,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Gets the account's status.
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [AccountStatusException] if API response contains an error.
   static Future<GetAccountStatusResponse> fetchAccountStatus() async {
     final GetAccountStatusReceive response = await fetchAccountStatusRaw();
 

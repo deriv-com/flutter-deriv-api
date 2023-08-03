@@ -63,7 +63,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
   /// Get List of available payment methods for a given country.
   ///
   /// For parameters information refer to [PaymentMethodsRequest].
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [PaymentException] if API response contains an error
   static Future<PaymentMethodsResponse> updateApplication(
       PaymentMethodsRequest request) async {
     final PaymentMethodsReceive response = await _api.call(request: request);
@@ -71,7 +71,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          PaymentException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentMethodsResponse.fromJson(response.paymentMethods);

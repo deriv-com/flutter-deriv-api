@@ -55,14 +55,14 @@ class StatementResponse extends StatementResponseModel {
   /// Retrieves a summary of account transactions, according to given search criteria.
   ///
   /// For parameters information refer to [StatementRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [StatementException] if API response contains an error
   static Future<StatementResponse> fetch(StatementRequest request) async {
     final StatementReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          StatementException(baseExceptionModel: baseExceptionModel),
     );
 
     return StatementResponse.fromJson(response.statement);

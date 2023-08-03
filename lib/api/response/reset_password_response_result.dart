@@ -58,7 +58,7 @@ class ResetPasswordResponse extends ResetPasswordResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          UserException(baseExceptionModel: baseExceptionModel),
     );
 
     return ResetPasswordResponse.fromJson(response?.resetPassword);

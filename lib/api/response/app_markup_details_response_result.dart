@@ -55,7 +55,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// Retrieve details of app markup according to criteria specified.
   ///
   /// For parameters information refer to [AppMarkupDetailsRequest].
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AppException] if API response contains an error
   static Future<AppMarkupDetailsResponse> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
   ) async {
@@ -64,7 +64,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppMarkupDetailsResponse.fromJson(response.appMarkupDetails);

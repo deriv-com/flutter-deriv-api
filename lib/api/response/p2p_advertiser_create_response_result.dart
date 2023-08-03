@@ -92,7 +92,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -129,7 +129,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserCreateReceive ? response : null;

@@ -59,7 +59,7 @@ class SetFinancialAssessmentResponse
   /// understand the risks involved with binary options trading.
   ///
   /// For parameters information refer to [SetFinancialAssessmentRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [FinancialAssessmentException] if API response contains an error
   static Future<SetFinancialAssessmentResponse> setAssessment(
     SetFinancialAssessmentRequest request,
   ) async {
@@ -69,7 +69,7 @@ class SetFinancialAssessmentResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetFinancialAssessmentResponse.fromJson(

@@ -56,7 +56,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
   /// [scopes] is a list of permission scopes to provide with the token.
   /// [validForCurrentIPOnly] is optional and if you set this parameter during token creation,
   /// then the token created will only work for the IP address that was used to create the token
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [APITokenException] if API response contains an error.
   static Future<ApiTokenResponse> create({
     required String name,
     required List<ScopesItemEnum> scopes,
@@ -73,7 +73,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
     return ApiTokenResponse.fromJson(response.apiToken);
@@ -81,7 +81,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
 
   /// Deletes the [token]
   ///
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [APITokenException] if API response contains an error
   static Future<ApiTokenResponse> delete({
     required String token,
   }) async {
@@ -92,7 +92,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
     return ApiTokenResponse.fromJson(response.apiToken);

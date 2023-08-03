@@ -63,7 +63,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 
   /// Gets oauth application that used for the authorized account.
   ///
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AppException] if API response contains an error
   static Future<OauthAppsResponse> fetchOauthApps([
     OauthAppsRequest? request,
   ]) async {
@@ -74,7 +74,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return OauthAppsResponse.fromJson(response.oauthApps);

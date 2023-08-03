@@ -52,7 +52,7 @@ class ForgetResponse extends ForgetResponseModel {
   /// Immediately cancels the real-time stream of messages with a specific id.
   ///
   /// For parameters information refer to [ForgetRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ForgetException] if API response contains an error
   static Future<ForgetResponse> forgetMethod(
     ForgetRequest request,
   ) async {
@@ -61,7 +61,7 @@ class ForgetResponse extends ForgetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);

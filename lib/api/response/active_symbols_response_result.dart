@@ -63,7 +63,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Gets the list of active symbols.
   ///
   /// For parameters information refer to [ActiveSymbolsRequest].
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [ActiveSymbolsException] if API response contains an error
   static Future<ActiveSymbolsResponse> fetchActiveSymbols(
     ActiveSymbolsRequest request,
   ) async {
@@ -74,7 +74,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
     );
 
     return ActiveSymbolsResponse.fromJson(response.activeSymbols);

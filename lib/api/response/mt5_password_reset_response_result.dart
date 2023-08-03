@@ -52,7 +52,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Resets the password of MT5 account.
   ///
   /// For parameters information refer to [Mt5PasswordResetRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5PasswordResetResponse> resetPassword(
     Mt5PasswordResetRequest request,
   ) async {
@@ -61,7 +61,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5PasswordResetResponse.fromJson(response.mt5PasswordReset);

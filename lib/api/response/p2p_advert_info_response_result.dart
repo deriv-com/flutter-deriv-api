@@ -77,7 +77,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// Retrieves information about a P2P (peer to peer) advert.
   ///
   /// For parameters information refer to [P2pAdvertInfoRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertInfoResponse> fetchAdvert(
     P2pAdvertInfoRequest request,
   ) async {
@@ -90,7 +90,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// Retrieves information about a P2P (peer to peer) advert.
   ///
   /// For parameters information refer to [P2pAdvertInfoRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertInfoReceive> fetchAdvertRaw(
     P2pAdvertInfoRequest request,
   ) async {
@@ -99,7 +99,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -109,7 +109,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   ///
   /// [delete] to permanently delete the advert
   /// [isActive] to activate or deactivate the advert
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> update({
     bool? delete,
     bool? isActive,
@@ -126,7 +126,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   ///
   /// [delete] to permanently delete the advert
   /// [isActive] to activate or deactivate the advert
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateReceive> updateRaw({
     bool? delete,
     bool? isActive,
@@ -141,33 +141,33 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
 
   /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> delete() => update(delete: true);
 
   /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateReceive> deleteRaw() => updateRaw(delete: true);
 
   /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> activate() async => update(isActive: true);
 
   /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateReceive> activateRaw() async =>
       updateRaw(isActive: true);
 
   /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateResponse> deactivate() async => update(isActive: false);
 
   /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2pAdvertUpdateReceive> deactivateRaw() async =>
       updateRaw(isActive: false);
 
@@ -176,7 +176,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// [amount] is the amount of currency to be bought or sold.
   /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
   /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
-  /// Throws [BaseAPIException] if API response contains an error.
+  /// Throws [P2POrderException] if API response contains an error.
   Future<P2pOrderCreateResponse> createOrder({
     required double amount,
     String? contactInfo,
@@ -197,7 +197,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// [amount] is the amount of currency to be bought or sold.
   /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
   /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
-  /// Throws [BaseAPIException] if API response contains an error.
+  /// Throws [P2POrderException] if API response contains an error.
   Future<P2pOrderCreateReceive> createOrderRaw({
     required double amount,
     String? contactInfo,

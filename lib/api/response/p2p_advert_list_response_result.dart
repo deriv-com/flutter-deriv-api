@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/p2p_advert_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
@@ -56,7 +56,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   /// Returns available adverts.
   ///
   /// For parameters information refer to [P2pAdvertListRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertListResponse> fetchAdvertList(
     P2pAdvertListRequest request,
   ) async {
@@ -68,7 +68,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   /// Returns available adverts.
   ///
   /// For parameters information refer to [P2pAdvertListRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertListReceive> fetchAdvertListRaw(
     P2pAdvertListRequest request,
   ) async {
@@ -77,7 +77,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

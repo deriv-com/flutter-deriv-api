@@ -81,7 +81,7 @@ class OHLC extends TickBase {
 
   /// Unsubscribes all OHLC.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TickException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllOHLC() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.candles);
@@ -89,7 +89,7 @@ class OHLC extends TickBase {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TickException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

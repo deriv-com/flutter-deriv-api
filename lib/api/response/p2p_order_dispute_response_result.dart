@@ -56,7 +56,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
   /// Cancel a P2P order dispute.
   ///
   /// For parameters information refer to [P2pOrderDisputeRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [P2POrderException] if API response contains an error.
   static Future<P2pOrderDisputeReceive> disputeOrderRaw(
     P2pOrderDisputeRequest request,
   ) async {
@@ -65,7 +65,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -74,7 +74,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
   /// Cancel a P2P order dispute.
   ///
   /// For parameters information refer to [P2pOrderDisputeRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [P2POrderException] if API response contains an error.
   static Future<P2pOrderDisputeResponse> disputeOrder(
     P2pOrderDisputeRequest request,
   ) async {

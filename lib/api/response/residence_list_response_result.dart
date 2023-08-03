@@ -63,7 +63,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
 
   /// Gets Residence list for the given [ResidenceListRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ResidenceException] if API response contains an error
   static Future<ResidenceListResponse> fetchResidenceList([
     ResidenceListRequest? request,
   ]) async {
@@ -74,7 +74,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ResidenceException(baseExceptionModel: baseExceptionModel),
     );
 
     return ResidenceListResponse.fromJson(response.residenceList);

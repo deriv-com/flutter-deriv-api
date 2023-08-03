@@ -23,14 +23,32 @@ StringBuffer _generateConstructor(
   }
 
   for (final SchemaModel model in children) {
+    final String typePostfix = model.classType == 'dynamic'
+        ? ''
+        : model.isRequired
+            ? ''
+            : '?';
+
     result
       ..write('${model.isRequired ? 'required' : ''} ')
       ..write(
-        isSubclass ? 'super.${model.fieldName},' : 'this.${model.fieldName},',
+        isSubclass
+            ? '${model.classType}$typePostfix ${model.fieldName},'
+            : 'this.${model.fieldName},',
       );
   }
 
-  result.write('});');
+  if (isSubclass) {
+    result.write('}) : super(');
+
+    for (final SchemaModel model in children) {
+      result.write('${model.fieldName}: ${model.fieldName},');
+    }
+
+    result.write(');');
+  } else {
+    result.write('});');
+  }
 
   return result;
 }

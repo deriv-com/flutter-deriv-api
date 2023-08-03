@@ -94,7 +94,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -132,7 +132,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderListReceive ? response : null;
@@ -141,7 +141,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
 
   /// Unsubscribes from order list subscription.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<ForgetResponse?> unsubscribeOrderList() async {
     if (subscription == null) {
       return null;
@@ -153,7 +153,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -161,7 +161,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
 
   /// Unsubscribes from all order subscriptions (Subscriptions to a single order or list).
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllOrder() =>
       P2pOrderInfoResponse.unsubscribeAllOrder();
 

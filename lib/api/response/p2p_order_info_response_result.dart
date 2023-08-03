@@ -81,7 +81,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<P2pOrderInfoResponse> fetchOrder(
       P2pOrderInfoRequest request) async {
     final P2pOrderInfoReceive response = await fetchOrderRaw(request);
@@ -92,7 +92,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<P2pOrderInfoReceive> fetchOrderRaw(
       P2pOrderInfoRequest request) async {
     final P2pOrderInfoReceive response = await _api.call(request: request);
@@ -100,7 +100,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -126,7 +126,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Stream<P2pOrderInfoResponse?> subscribeOrder(
     P2pOrderInfoRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -145,7 +145,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Stream<P2pOrderInfoReceive?> subscribeOrderRaw(
     P2pOrderInfoRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -157,7 +157,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderInfoReceive ? response : null;
@@ -166,7 +166,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Unsubscribes from order subscription.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<ForgetResponse?> unsubscribeOrder() async {
     if (subscription == null) {
       return null;
@@ -178,7 +178,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -186,7 +186,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   /// Unsubscribes all order subscriptions (Subscriptions to a single order or list).
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllOrder() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
@@ -194,7 +194,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);
@@ -203,7 +203,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
   /// Cancels this order
   ///
   /// Returns an order with updated status if successful.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2pOrderCancelResponse> cancel() async {
     final P2pOrderCancelReceive response = await cancelRaw();
     return P2pOrderCancelResponse.fromJson(response.p2pOrderCancel);
@@ -212,7 +212,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
   /// Cancels this order
   ///
   /// Returns an order with updated status if successful.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2pOrderCancelReceive> cancelRaw() async {
     final P2pOrderCancelReceive response =
         await _api.call(request: P2pOrderCancelRequest(id: p2pOrderInfo?.id));
@@ -220,7 +220,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -229,7 +229,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
   /// Confirms this order
   ///
   /// Returns an order with updated status if successful.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2pOrderConfirmResponse> confirm() async {
     final P2pOrderConfirmReceive response = await confirmRaw();
 
@@ -239,7 +239,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
   /// Confirms this order
   ///
   /// Returns an order with updated status if successful.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2pOrderConfirmReceive> confirmRaw() async {
     final P2pOrderConfirmReceive response =
         await _api.call(request: P2pOrderConfirmRequest(id: p2pOrderInfo?.id));
@@ -247,7 +247,7 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

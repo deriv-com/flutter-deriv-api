@@ -73,7 +73,7 @@ class CashierResponse extends CashierResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          CashierException(baseExceptionModel: baseExceptionModel),
     );
 
     return CashierResponse.fromJson(response.cashier, response.cashier);

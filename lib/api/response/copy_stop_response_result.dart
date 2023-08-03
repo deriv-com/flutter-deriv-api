@@ -52,14 +52,14 @@ class CopyStopResponse extends CopyStopResponseModel {
   /// Stops copy trader bets.
   ///
   /// For parameters information refer to [CopyStopRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyStopResponse> stop(CopyStopRequest request) async {
     final CopyStopReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopyStopResponse.fromJson(response.copyStop);

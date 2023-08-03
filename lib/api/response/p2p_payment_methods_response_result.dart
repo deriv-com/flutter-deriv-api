@@ -73,7 +73,7 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

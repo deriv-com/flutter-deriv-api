@@ -64,7 +64,7 @@ class TradingServersResponse extends TradingServersResponseModel {
   /// Get the list of servers for platform. Currently, only mt5 is supported
   ///
   /// For parameters information refer to [TradingServersRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TradingException] if API response contains an error
   static Future<TradingServersResponse> fetchTradingServers(
     TradingServersRequest request,
   ) async {
@@ -73,7 +73,7 @@ class TradingServersResponse extends TradingServersResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingServersResponse.fromJson(response.tradingServers);

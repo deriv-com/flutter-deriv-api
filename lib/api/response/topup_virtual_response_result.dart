@@ -56,7 +56,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Topes up the virtual-money's account balance becomes when it becomes low.
   ///
   /// For parameters information refer to [TopupVirtualRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TopUpVirtualException] if API response contains an error
   static Future<TopupVirtualResponse> topUp([
     TopupVirtualRequest? request,
   ]) async {
@@ -67,7 +67,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TopUpVirtualException(baseExceptionModel: baseExceptionModel),
     );
 
     return TopupVirtualResponse.fromJson(response.topupVirtual);

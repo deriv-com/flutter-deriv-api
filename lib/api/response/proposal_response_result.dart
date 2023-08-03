@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/buy_response_result.dart';
 import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
@@ -76,7 +77,7 @@ class ProposalResponse extends ProposalResponseModel {
   /// Gets the price proposal for contract
   ///
   /// For parameters information refer to [ProposalRequest]
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ProposalResponse> fetchPriceForContract(
     ProposalRequest request,
   ) async {
@@ -85,7 +86,7 @@ class ProposalResponse extends ProposalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ProposalResponse.fromJson(response.proposal, response.subscription);
@@ -94,7 +95,7 @@ class ProposalResponse extends ProposalResponseModel {
   /// Gets the price proposal for contract.
   ///
   /// For parameters information refer to [ProposalRequest]
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Stream<ProposalResponse?> subscribePriceForContract(
     ProposalRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -106,7 +107,8 @@ class ProposalResponse extends ProposalResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
           );
 
           return response is ProposalReceive
@@ -120,7 +122,7 @@ class ProposalResponse extends ProposalResponseModel {
 
   /// Unsubscribes from price proposal subscription.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<ForgetResponse?> unsubscribeProposal() async {
     if (subscription == null) {
       return null;
@@ -132,7 +134,7 @@ class ProposalResponse extends ProposalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -140,7 +142,7 @@ class ProposalResponse extends ProposalResponseModel {
 
   /// Unsubscribes all proposal subscriptions.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllProposal() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.proposal);
@@ -148,7 +150,7 @@ class ProposalResponse extends ProposalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);
@@ -156,7 +158,7 @@ class ProposalResponse extends ProposalResponseModel {
 
   /// Buys this proposal contract with [price] specified.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<BuyResponse> buy({double? price}) => BuyResponse.buyMethod(BuyRequest(
         buy: proposal?.id,
         price: price ?? proposal?.askPrice,
@@ -164,7 +166,7 @@ class ProposalResponse extends ProposalResponseModel {
 
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Stream<ProposalOpenContractResponse?> buyAndSubscribe({double? price}) =>
       BuyResponse.buyAndSubscribe(BuyRequest(
         buy: proposal?.id,

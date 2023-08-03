@@ -77,7 +77,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2PChatException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

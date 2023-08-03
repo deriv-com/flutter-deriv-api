@@ -27,9 +27,6 @@ class ServerTimeCubit extends Cubit<ServerTimeState> {
   void _connectionListener(ConnectionState state) {
     _fetchServerTime(state);
 
-    if (_serverTimeInterval != null && _serverTimeInterval!.isActive) {
-      _serverTimeInterval!.cancel();
-    }
     _serverTimeInterval = Timer.periodic(
       _fetchServerTimeDuration,
       (Timer timer) => _fetchServerTime(state),

@@ -53,14 +53,14 @@ class CancelResponse extends CancelResponseModel {
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<CancelResponse> cancelContract(CancelRequest request) async {
     final CancelReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return CancelResponse.fromJson(response.cancel);

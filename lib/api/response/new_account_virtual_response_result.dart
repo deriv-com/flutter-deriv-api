@@ -56,7 +56,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// Opens a new virtual account.
   ///
   /// For parameters information refer to [NewAccountVirtualRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [NewAccountException] if API response contains an error
   static Future<NewAccountVirtualResponse> openNewVirtualAccount(
     NewAccountVirtualRequest request,
   ) async {
@@ -65,7 +65,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
     return NewAccountVirtualResponse.fromJson(response.newAccountVirtual);

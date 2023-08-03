@@ -51,7 +51,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest]
   ///
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AccountSettingsException] if API response contains an error
   static Future<SetSettingsResponse> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
@@ -60,7 +60,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetSettingsResponse(setSettings: response.setSettings ?? 0);

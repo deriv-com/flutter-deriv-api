@@ -2,14 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:deriv_dependency_injector/dependency_injector.dart';
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_send.dart';
-
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// P2p ping response model class.
 abstract class P2pPingResponseModel {
@@ -49,40 +42,6 @@ class P2pPingResponse extends P2pPingResponseModel {
         .key;
 
     return resultMap;
-  }
-
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// Requests the p2p ping request to the server.
-  ///
-  /// Mostly used to test the connection or to keep it alive.
-  /// Throws a [APIBaseException] if API response contains an error.
-  static Future<P2pPingReceive> p2pPingMethodRaw([
-    P2pPingRequest? request,
-  ]) async {
-    final P2pPingReceive response = await _api.call(
-      request: request ?? const P2pPingRequest(),
-    );
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          APIBaseException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
-  /// Requests the p2p ping request to the server.
-  ///
-  /// Mostly used to test the connection or to keep it alive.
-  /// Throws a [APIBaseException] if API response contains an error.
-  static Future<P2pPingResponse> p2pPingMethod([
-    P2pPingRequest? request,
-  ]) async {
-    final P2pPingReceive response = await p2pPingMethodRaw(request);
-
-    return P2pPingResponse.fromJson(response.p2pPing);
   }
 
   /// Creates a copy of instance with given parameters.

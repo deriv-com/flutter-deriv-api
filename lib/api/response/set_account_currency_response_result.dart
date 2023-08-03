@@ -53,7 +53,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   ///
   /// Please note that account currency can only be set once, and then can never be changed.
   /// For parameters information refer to [SetAccountCurrencyRequest].
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AccountCurrencyException] if API response contains an error
   static Future<SetAccountCurrencyResponse> setCurrency(
     SetAccountCurrencyRequest request,
   ) async {
@@ -63,7 +63,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AccountCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetAccountCurrencyResponse.fromJson(response.setAccountCurrency);

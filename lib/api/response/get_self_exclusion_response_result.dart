@@ -60,7 +60,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   ///
   /// This facility is a regulatory requirement for certain Landing Companies.
   /// For parameters information refer to [GetSelfExclusionRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [SelfExclusionException] if API response contains an error
   static Future<GetSelfExclusionResponse> fetchSelfExclusion([
     GetSelfExclusionRequest? request,
   ]) async {
@@ -71,7 +71,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return GetSelfExclusionResponse.fromJson(response.getSelfExclusion);
@@ -80,14 +80,14 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
   ///
   /// For parameters information refer to [SetSelfExclusionRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [SelfExclusionException] if API response contains an error
   static Future<bool?> setSelfExclusion(SetSelfExclusionRequest request) async {
     final SetSelfExclusionReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);
@@ -96,7 +96,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Excludes user from the website based this parameters
   ///
   /// (this call should be used in conjunction with [fetchSelfExclusion])
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [SelfExclusionException] if API response contains an error
   Future<bool?> exclude() async {
     final SetSelfExclusionReceive response = await _api.call(
       request: SetSelfExclusionRequest(
@@ -121,7 +121,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);

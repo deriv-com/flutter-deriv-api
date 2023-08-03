@@ -64,7 +64,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Retrieves a list of available option payout currencies.
   ///
   /// If a user is logged in, only the currencies available for the account will be returned.
-  /// Throws a [BaseAPIException] if API response contains a error
+  /// Throws a [PayoutCurrencyException] if API response contains a error
   static Future<PayoutCurrenciesResponse> fetchPayoutCurrencies([
     PayoutCurrenciesRequest? request,
   ]) async {
@@ -75,7 +75,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          PayoutCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
     return PayoutCurrenciesResponse.fromJson(response.payoutCurrencies);

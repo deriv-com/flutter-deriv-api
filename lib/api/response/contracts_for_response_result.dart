@@ -55,7 +55,7 @@ class ContractsForResponse extends ContractsForResponseModel {
 
   /// Gets available contracts for given symbol in [ContractsForRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractsForSymbolException] if API response contains an error
   static Future<ContractsForResponse> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {
@@ -66,7 +66,7 @@ class ContractsForResponse extends ContractsForResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractsForSymbolException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractsForResponse.fromJson(response.contractsFor);

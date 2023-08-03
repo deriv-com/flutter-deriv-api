@@ -56,14 +56,14 @@ class ProfitTableResponse extends ProfitTableResponseModel {
   /// Retrieves a summary of account Profit Table, according to given search criteria.
   ///
   /// For parameters information refer to [ProfitTableRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ProfitTableException] if API response contains an error
   static Future<ProfitTableResponse> fetch(ProfitTableRequest request) async {
     final ProfitTableReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ProfitTableException(baseExceptionModel: baseExceptionModel),
     );
 
     return ProfitTableResponse.fromJson(response.profitTable);

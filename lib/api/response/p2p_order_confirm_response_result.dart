@@ -55,7 +55,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Cancel a P2P order confirm.
   ///
   /// For parameters information refer to [P2pOrderConfirmRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [P2POrderException] if API response contains an error.
   static Future<P2pOrderConfirmReceive> confirmOrderRaw(
     P2pOrderConfirmRequest request,
   ) async {
@@ -64,7 +64,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -73,7 +73,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Cancel a P2P order confirm.
   ///
   /// For parameters information refer to [P2pOrderConfirmRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [P2POrderException] if API response contains an error.
   static Future<P2pOrderConfirmResponse> confirmOrder(
     P2pOrderConfirmRequest request,
   ) async {

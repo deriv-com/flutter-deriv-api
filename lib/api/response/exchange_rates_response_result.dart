@@ -69,7 +69,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [ExchangeException] if API response contains an error.
   static Future<ExchangeRatesReceive> fetchExchangeRatesRaw(
     ExchangeRatesRequest request,
   ) async {
@@ -78,7 +78,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -87,7 +87,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
-  /// Throws an [BaseAPIException] if API response contains an error.
+  /// Throws an [ExchangeException] if API response contains an error.
   static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {

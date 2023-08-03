@@ -77,7 +77,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

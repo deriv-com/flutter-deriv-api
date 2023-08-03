@@ -68,7 +68,7 @@ class TickBase extends TickBaseModel {
 
   /// Unsubscribes from tick stream
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TickException] if API response contains an error
   Future<ForgetResponse?> unsubscribe() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -80,7 +80,7 @@ class TickBase extends TickBaseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TickException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);

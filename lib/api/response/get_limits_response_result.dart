@@ -54,7 +54,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
 
   /// Gets the trading and withdrawal limits for logged in account
   ///
-  /// Throws an [BaseAPIException] if API response contains an error
+  /// Throws an [AccountLimitsException] if API response contains an error
   static Future<GetLimitsResponse> fetchAccountLimits([
     GetLimitsRequest? request,
   ]) async {
@@ -65,7 +65,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          AccountLimitsException(baseExceptionModel: baseExceptionModel),
     );
 
     return GetLimitsResponse.fromJson(response.getLimits);

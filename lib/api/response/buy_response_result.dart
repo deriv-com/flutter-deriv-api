@@ -73,7 +73,7 @@ class BuyResponse extends BuyResponseModel {
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<BuyResponse> buyMethod(BuyRequest request) async {
     final BuyReceive response = await _api.call(
       request: request,
@@ -82,7 +82,7 @@ class BuyResponse extends BuyResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return BuyResponse.fromJson(response.buy, response.subscription);
@@ -90,7 +90,7 @@ class BuyResponse extends BuyResponseModel {
 
   /// Buys contract with parameters specified in request and subscribes to it.
   ///
-  /// Throws a [BaseAPIException] is API response contains an error
+  /// Throws a [ContractOperationException] is API response contains an error
   static Stream<ProposalOpenContractResponse?> buyAndSubscribe(
     BuyRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -102,7 +102,8 @@ class BuyResponse extends BuyResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
           );
           return response is ProposalOpenContractReceive
               ? ProposalOpenContractResponse.fromJson(
@@ -115,7 +116,7 @@ class BuyResponse extends BuyResponseModel {
 
   /// Gets the current spot of the this bought contract as [Contract].
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<ProposalOpenContractResponse> fetchState() =>
       ProposalOpenContractResponse.fetchContractState(
         ProposalOpenContractRequest(
@@ -125,7 +126,7 @@ class BuyResponse extends BuyResponseModel {
 
   /// Subscribes to this bought contract spot and returns its spot update as [ContractBaseModel].
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Stream<ProposalOpenContractResponse?> subscribeState({
     RequestCompareFunction? comparePredicate,
   }) =>
@@ -138,7 +139,7 @@ class BuyResponse extends BuyResponseModel {
   ///
   /// New [stopLoss] value for a contract. To cancel, pass null.
   /// New [takeProfit] value for a contract. To cancel, pass null.
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<ContractUpdateResponse> update({
     double? stopLoss,
     double? takeProfit,

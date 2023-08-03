@@ -23,7 +23,7 @@ class TickHistorySubscription {
 
   /// Unsubscribes from tick history stream
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TickException] if API response contains an error
   Future<ForgetResponse?> unsubscribe() async {
     if (tickHistory?.subscription == null) {
       return null;
@@ -36,7 +36,7 @@ class TickHistorySubscription {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TickException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);

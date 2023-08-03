@@ -22,28 +22,27 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }
     });
-
-    on<SubscribeTicks>((SubscribeTicks event, Emitter<TicksState> emit) =>
-        _handleSubscribeTicks(event, emit));
-
-    on<YieldTick>((YieldTick event, Emitter<TicksState> emit) =>
-        emit(TicksLoaded(event.tick?.tick)));
-
-    on<YieldError>((YieldError event, Emitter<TicksState> emit) =>
-        emit(TicksError(event.message)));
   }
 
-  Future<void> _handleSubscribeTicks(
-      SubscribeTicks event, Emitter<TicksState> emit) async {
-    emit(TicksLoading());
+  @override
+  Stream<TicksState> mapEventToState(
+    TicksEvent event,
+  ) async* {
+    if (event is SubscribeTicks) {
+      yield TicksLoading();
 
-    await _unsubscribeTick();
+      await _unsubscribeTick();
 
-    _subscribeTick(event.selectedSymbol!)
-        .handleError((dynamic error) => error is BaseAPIException
-            ? add(YieldError(error.message))
-            : add(YieldError(error.toString())))
-        .listen((TicksResponse? tick) => add(YieldTick(tick)));
+      _subscribeTick(event.selectedSymbol!)
+          .handleError((dynamic error) => error is TickException
+              ? add(YieldError(error.message))
+              : add(YieldError(error.toString())))
+          .listen((TicksResponse? tick) => add(YieldTick(tick)));
+    } else if (event is YieldTick) {
+      yield TicksLoaded(event.tick?.tick);
+    } else if (event is YieldError) {
+      yield TicksError(event.message);
+    }
   }
 
   Stream<TicksResponse?> _subscribeTick(ActiveSymbolsItem selectedSymbol) =>

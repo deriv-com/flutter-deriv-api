@@ -56,7 +56,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
   /// Receives a list of market opening times for a given date.
   ///
   /// For parameters information refer to [TradingTimesRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [TradingException] if API response contains an error
   static Future<TradingTimesResponse> fetchTradingTimes(
     TradingTimesRequest request,
   ) async {
@@ -65,7 +65,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          TradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingTimesResponse.fromJson(response.tradingTimes);

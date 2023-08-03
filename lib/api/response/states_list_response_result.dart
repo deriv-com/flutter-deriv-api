@@ -63,7 +63,7 @@ class StatesListResponse extends StatesListResponseModel {
 
   /// Gets the list of states for the given [StatesListRequest]
   ///
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [StateException] if API response contains an error
   static Future<StatesListResponse> fetchStatesList(
       StatesListRequest request) async {
     final StatesListReceive response = await _api.call(request: request);
@@ -71,7 +71,7 @@ class StatesListResponse extends StatesListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          StateException(baseExceptionModel: baseExceptionModel),
     );
 
     return StatesListResponse.fromJson(response.statesList);
