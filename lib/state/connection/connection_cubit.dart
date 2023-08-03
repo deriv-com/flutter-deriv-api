@@ -146,7 +146,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     );
   }
 
-  Future<void> _startKeepAliveTimer() async {
+  void _startKeepAliveTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer =
           Timer.periodic(_connectivityCheckInterval, (Timer timer) => _ping());
