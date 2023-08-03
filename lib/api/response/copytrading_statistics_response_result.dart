@@ -55,7 +55,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 
   /// Gets the copy trading statistics for given `traderId` in [request]
   ///
-  /// Throws a [CopyTradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<CopytradingStatisticsResponse> fetchStatistics(
     CopytradingStatisticsRequest request,
   ) async {
@@ -66,7 +66,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          CopyTradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopytradingStatisticsResponse.fromJson(

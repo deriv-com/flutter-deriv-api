@@ -55,7 +55,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 
   /// Gets the list of active copiers and/or traders for Copy Trading
   ///
-  /// Throws a [CopyTradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<CopytradingListResponse> fetchList([
     CopytradingListRequest? request,
   ]) async {
@@ -66,7 +66,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          CopyTradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopytradingListResponse.fromJson(response.copytradingList);

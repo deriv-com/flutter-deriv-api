@@ -55,7 +55,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
-  /// Throws a [ContractOperationException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ContractUpdateResponse> updateContract(
     ContractUpdateRequest request,
   ) async {
@@ -64,7 +64,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractUpdateResponse.fromJson(response.contractUpdate);

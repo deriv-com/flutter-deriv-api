@@ -58,7 +58,7 @@ class GetFinancialAssessmentResponse
   ///
   /// The 'financial assessment' is a questionnaire that clients of certain Landing Companies need to complete,
   /// due to regulatory and KYC (know your client) requirements.
-  /// Throws a [FinancialAssessmentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<GetFinancialAssessmentResponse> fetchAssessment(
     GetFinancialAssessmentRequest request,
   ) async {
@@ -68,7 +68,7 @@ class GetFinancialAssessmentResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return GetFinancialAssessmentResponse.fromJson(

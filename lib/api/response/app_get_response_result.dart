@@ -66,7 +66,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// Gets the information of the OAuth application specified by [appId] in [request]
   ///
   /// For parameters information refer to [AppGetRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppGetResponse> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
@@ -75,7 +75,7 @@ class AppGetResponse extends AppGetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppGetResponse.fromJson(response.appGet);
@@ -84,7 +84,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// Gets all of the account's OAuth applications.
   ///
   /// For parameters information refer to [AppListRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<List<AppGetResponse?>?> fetchApplicationList(
     AppListRequest request,
   ) async {
@@ -93,7 +93,7 @@ class AppGetResponse extends AppGetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(

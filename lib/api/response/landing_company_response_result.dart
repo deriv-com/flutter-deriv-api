@@ -58,7 +58,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
 
   /// Gets landing companies for given [LandingCompanyRequest]
   ///
-  /// Throws a [LandingCompanyException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<LandingCompanyResponse> fetchLandingCompanies(
     LandingCompanyRequest request,
   ) async {
@@ -67,7 +67,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          LandingCompanyException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return LandingCompanyResponse.fromJson(response.landingCompany);
@@ -75,7 +75,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
 
   /// Gets details of a landing company specified in [LandingCompanyDetailsRequest]
   ///
-  /// Throws a [LandingCompanyException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<LandingCompanyDetailsResponse> fetchLandingCompanyDetails(
     LandingCompanyDetailsRequest request,
   ) async {
@@ -86,7 +86,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          LandingCompanyException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return LandingCompanyDetailsResponse.fromJson(
