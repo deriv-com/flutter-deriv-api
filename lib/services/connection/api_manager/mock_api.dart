@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'package:deriv_web_socket_client/deriv_web_socket_client.dart' as ws;
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -111,6 +113,10 @@ import 'mock_data/user/verify_email_response.dart';
 class MockAPI extends BaseAPI {
   /// Initializes
   MockAPI({String? key}) : super(key: key ?? '${UniqueKey()}');
+
+  @override
+  Stream<ws.ConnectionState> get connectionStatus =>
+      Stream<ws.ConnectionState>.value(const ws.ConnectedState());
 
   @override
   Future<void> connect(

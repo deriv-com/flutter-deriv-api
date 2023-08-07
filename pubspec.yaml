@@ -20,6 +20,12 @@ dependencies:
       path: packages/deriv_dependency_injector
       ref: flutter-version-3
 
+  deriv_web_socket_client:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_web_socket_client
+      ref: 8cc61cc301f259f2debd0cace29cee79392735ef
+
   build: ^2.3.1
   dart_style: ^2.3.0
   equatable: ^2.0.3
@@ -29,10 +35,8 @@ dependencies:
   meta: ^1.8.0
   recase: ^4.0.0
   rxdart: ^0.27.7
-  web_socket_channel: ^2.3.0
   device_info_plus: ^8.1.0
   package_info_plus: ^3.0.3
-  connectivity_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:

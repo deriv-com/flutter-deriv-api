@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:test/test.dart';
 
+import 'package:deriv_web_socket_client/deriv_web_socket_client.dart' as ws;
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -56,6 +58,10 @@ class MockCallManager extends BaseCallManager<MockResponse> {
 }
 
 class MockAPI implements BaseAPI {
+  @override
+  Stream<ws.ConnectedState> get connectionStatus =>
+      Stream<ws.ConnectedState>.value(const ws.ConnectedState());
+
   @override
   void addToChannel(Map<String, dynamic> request) {}
 
