@@ -1,3 +1,5 @@
+import 'package:deriv_web_socket_client/deriv_web_socket_client.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -28,6 +30,9 @@ abstract class BaseAPI {
     ConnectionCallback? onError,
     bool printResponse,
   });
+
+  /// Gets the current connection status.
+  Stream<ConnectionState> get connectionStatus;
 
   /// Adds request to stream channel.
   void addToChannel(Map<String, dynamic> request);

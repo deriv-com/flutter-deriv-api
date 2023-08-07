@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
-import 'dart:io';
+import 'dart:io' as io;
 
 import 'package:flutter/widgets.dart';
-import 'package:web_socket_channel/io.dart';
+
+import 'package:deriv_web_socket_client/deriv_web_socket_client.dart' as ws;
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
@@ -27,12 +28,11 @@ class BinaryAPI extends BaseAPI {
       : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
 
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
-  IOWebSocketChannel? _webSocketChannel;
+  ws.WebSocket? _webSocket;
 
   /// Stream subscription to API data.
   StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
@@ -48,6 +48,9 @@ class BinaryAPI extends BaseAPI {
 
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
+
+  @override
+  Stream<ws.ConnectionState> get connectionStatus => _webSocket!.connection;
 
   @override
   Future<void> connect(
@@ -76,12 +79,9 @@ class BinaryAPI extends BaseAPI {
     await _setUserAgent();
 
     // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      '$uri',
-      pingInterval: _websocketConnectTimeOut,
-    );
+    _webSocket = ws.WebSocket(uri);
 
-    _webSocketListener = _webSocketChannel?.stream
+    _webSocketListener = _webSocket?.messages
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
@@ -117,7 +117,7 @@ class BinaryAPI extends BaseAPI {
   @override
   void addToChannel(Map<String, dynamic> request) {
     try {
-      _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
+      _webSocket?.send(utf8.encode(jsonEncode(request)));
       // ignore: avoid_catches_without_on_clauses
     } catch (error) {
       _logDebugInfo('error while adding to channel.', error: error);
@@ -167,7 +167,7 @@ class BinaryAPI extends BaseAPI {
     try {
       await _webSocketListener?.cancel();
 
-      await _webSocketChannel?.sink.close().timeout(
+      await _webSocket?.close().timeout(
             _disconnectTimeOut,
             onTimeout: () => throw TimeoutException('Could not close sink.'),
           );
@@ -176,7 +176,7 @@ class BinaryAPI extends BaseAPI {
       _logDebugInfo('disconnect error.', error: e);
     } finally {
       _webSocketListener = null;
-      _webSocketChannel = null;
+      _webSocket = null;
     }
   }
 
@@ -228,7 +228,7 @@ class BinaryAPI extends BaseAPI {
     final String userAgent = await getUserAgent();
 
     if (userAgent.isNotEmpty) {
-      WebSocket.userAgent = userAgent;
+      io.WebSocket.userAgent = userAgent;
     }
   }
 
