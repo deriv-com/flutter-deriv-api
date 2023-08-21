@@ -1,0 +1,257 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "MT5: Accounts List (response)",
+    "description": "Get list of MT5 accounts for client.",
+    "type": "object",
+    "required": [
+        "echo_req",
+        "msg_type"
+    ],
+    "properties": {
+        "mt5_login_list": {
+            "title": "mt5_login_list",
+            "description": "Array containing MT5 account objects.",
+            "type": "array",
+            "items": {
+                "title": "Details of each MT5 loginid.",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "account_type": {
+                        "description": "Account type.",
+                        "type": "string",
+                        "enum": [
+                            "demo",
+                            "real"
+                        ]
+                    },
+                    "balance": {
+                        "description": "Balance of the MT5 account.",
+                        "type": "number"
+                    },
+                    "country": {
+                        "description": "Residence of the MT5 account.",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency of the MT5 account.",
+                        "type": "string"
+                    },
+                    "display_balance": {
+                        "description": "Account balance, formatted to appropriate decimal places.",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email address of the MT5 account.",
+                        "type": "string"
+                    },
+                    "error": {
+                        "description": "Error in MT5 account details.",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "code": {
+                                "description": "Error code string.",
+                                "type": "string"
+                            },
+                            "details": {
+                                "description": "Extra information about the error.",
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "account_type": {
+                                        "description": "MT5 account type.",
+                                        "type": "string"
+                                    },
+                                    "login": {
+                                        "description": "MT5 account login ID.",
+                                        "type": "string"
+                                    },
+                                    "server": {
+                                        "description": "Trade server name of the MT5 account.",
+                                        "type": "string"
+                                    },
+                                    "server_info": {
+                                        "description": "Trade server information.",
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "environment": {
+                                                "description": "The environment. E.g. Deriv-Server.",
+                                                "type": "string",
+                                                "enum": [
+                                                    "Deriv-Demo",
+                                                    "Deriv-Server",
+                                                    "Deriv-Server-02"
+                                                ]
+                                            },
+                                            "geolocation": {
+                                                "description": "Geographical location of the server.",
+                                                "type": "object",
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "group": {
+                                                        "description": "Internal server grouping.",
+                                                        "type": "string"
+                                                    },
+                                                    "location": {
+                                                        "description": "Sever location.",
+                                                        "type": "string"
+                                                    },
+                                                    "region": {
+                                                        "description": "Sever region.",
+                                                        "type": "string"
+                                                    },
+                                                    "sequence": {
+                                                        "description": "Sever sequence.",
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            },
+                                            "id": {
+                                                "description": "Server id.",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "message_to_client": {
+                                "description": "Error message.",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "group": {
+                        "description": "Group type of the MT5 account, e.g. `demo\\svg_financial`",
+                        "type": "string"
+                    },
+                    "landing_company_short": {
+                        "description": "Landing company shortcode of the MT5 account.",
+                        "type": "string",
+                        "enum": [
+                            "bvi",
+                            "labuan",
+                            "malta",
+                            "maltainvest",
+                            "svg",
+                            "vanuatu",
+                            "seychelles"
+                        ]
+                    },
+                    "leverage": {
+                        "description": "Leverage of the MT5 account (1 to 1000).",
+                        "type": "number"
+                    },
+                    "login": {
+                        "description": "Login of MT5 account.",
+                        "type": "string",
+                        "pattern": "^MT[DR]?[0-9]+$"
+                    },
+                    "market_type": {
+                        "description": "Market type",
+                        "type": "string",
+                        "enum": [
+                            "financial",
+                            "synthetic",
+                            "all"
+                        ]
+                    },
+                    "name": {
+                        "description": "Name of the owner of the MT5 account.",
+                        "type": "string"
+                    },
+                    "server": {
+                        "description": "Trade server name of the MT5 account.",
+                        "type": "string"
+                    },
+                    "server_info": {
+                        "description": "Trade server information.",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "environment": {
+                                "description": "The environment. E.g. Deriv-Server.",
+                                "type": "string",
+                                "enum": [
+                                    "Deriv-Demo",
+                                    "Deriv-Server",
+                                    "Deriv-Server-02"
+                                ]
+                            },
+                            "geolocation": {
+                                "description": "Geographical location of the server.",
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "group": {
+                                        "description": "Internal server grouping.",
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "description": "Sever location.",
+                                        "type": "string"
+                                    },
+                                    "region": {
+                                        "description": "Sever region.",
+                                        "type": "string"
+                                    },
+                                    "sequence": {
+                                        "description": "Sever sequence.",
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "id": {
+                                "description": "Server id.",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "MT5 account status.",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    "sub_account_category": {
+                        "description": "Sub account category",
+                        "type": "string",
+                        "enum": [
+                            "",
+                            "swap_free",
+                            "swap_free_high_risk",
+                            "ibt",
+                            "stp"
+                        ]
+                    },
+                    "sub_account_type": {
+                        "description": "Sub account type refer to classic MT5 account",
+                        "type": "string",
+                        "enum": [
+                            "standard",
+                            "financial",
+                            "financial_stp"
+                        ]
+                    }
+                }
+            }
+        },
+        "echo_req": {
+            "description": "Echo of the request made.",
+            "type": "object"
+        },
+        "msg_type": {
+            "description": "Action name of the request made.",
+            "type": "string",
+            "enum": [
+                "mt5_login_list"
+            ]
+        },
+        "req_id": {
+            "description": "Optional field sent in request to map to response, present only when request contains `req_id`.",
+            "type": "integer"
+        }
+    }
+}

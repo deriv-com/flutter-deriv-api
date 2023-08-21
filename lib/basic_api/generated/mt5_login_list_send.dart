@@ -9,13 +9,10 @@ class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest.
   const Mt5LoginListRequest({
     this.mt5LoginList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_login_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_login_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>

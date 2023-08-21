@@ -9,13 +9,10 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest.
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_financial_assessment',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'get_financial_assessment',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>

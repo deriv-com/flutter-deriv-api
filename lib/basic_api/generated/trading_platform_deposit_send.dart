@@ -13,13 +13,10 @@ class TradingPlatformDepositRequest extends Request {
     required this.platform,
     required this.toAccount,
     this.tradingPlatformDeposit = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_deposit',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_deposit',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformDepositRequest.fromJson(Map<String, dynamic> json) =>

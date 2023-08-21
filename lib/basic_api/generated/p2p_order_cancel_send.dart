@@ -10,13 +10,10 @@ class P2pOrderCancelRequest extends Request {
   const P2pOrderCancelRequest({
     required this.id,
     this.p2pOrderCancel = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_cancel',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_cancel',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>

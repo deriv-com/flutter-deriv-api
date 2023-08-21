@@ -9,13 +9,10 @@ class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest.
   const CopytradingListRequest({
     this.copytradingList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'copytrading_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'copytrading_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>

@@ -26,10 +26,8 @@ abstract class ServiceTokenResponseModel {
 class ServiceTokenResponse extends ServiceTokenResponseModel {
   /// Initializes Service token response class.
   const ServiceTokenResponse({
-    ServiceToken? serviceToken,
-  }) : super(
-          serviceToken: serviceToken,
-        );
+    super.serviceToken,
+  });
 
   /// Creates an instance from JSON.
   factory ServiceTokenResponse.fromJson(
@@ -94,12 +92,12 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
         serviceToken: serviceToken ?? this.serviceToken,
       );
 }
-
 /// Service token model class.
 abstract class ServiceTokenModel {
   /// Initializes Service token model class .
   const ServiceTokenModel({
     this.banxa,
+    this.ctrader,
     this.dxtrade,
     this.onfido,
     this.pandats,
@@ -110,13 +108,16 @@ abstract class ServiceTokenModel {
   /// Banxa order data.
   final Banxa? banxa;
 
+  /// CTrader data.
+  final Ctrader? ctrader;
+
   /// Deriv X data.
   final Dxtrade? dxtrade;
 
   /// Onfido data.
   final Onfido? onfido;
 
-  /// pandats data.
+  /// Deriv EZ data.
   final Pandats? pandats;
 
   /// Sendbird data.
@@ -130,24 +131,20 @@ abstract class ServiceTokenModel {
 class ServiceToken extends ServiceTokenModel {
   /// Initializes Service token class.
   const ServiceToken({
-    Banxa? banxa,
-    Dxtrade? dxtrade,
-    Onfido? onfido,
-    Pandats? pandats,
-    Sendbird? sendbird,
-    Wyre? wyre,
-  }) : super(
-          banxa: banxa,
-          dxtrade: dxtrade,
-          onfido: onfido,
-          pandats: pandats,
-          sendbird: sendbird,
-          wyre: wyre,
-        );
+    super.banxa,
+    super.ctrader,
+    super.dxtrade,
+    super.onfido,
+    super.pandats,
+    super.sendbird,
+    super.wyre,
+  });
 
   /// Creates an instance from JSON.
   factory ServiceToken.fromJson(Map<String, dynamic> json) => ServiceToken(
         banxa: json['banxa'] == null ? null : Banxa.fromJson(json['banxa']),
+        ctrader:
+            json['ctrader'] == null ? null : Ctrader.fromJson(json['ctrader']),
         dxtrade:
             json['dxtrade'] == null ? null : Dxtrade.fromJson(json['dxtrade']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
@@ -165,6 +162,9 @@ class ServiceToken extends ServiceTokenModel {
 
     if (banxa != null) {
       resultMap['banxa'] = banxa!.toJson();
+    }
+    if (ctrader != null) {
+      resultMap['ctrader'] = ctrader!.toJson();
     }
     if (dxtrade != null) {
       resultMap['dxtrade'] = dxtrade!.toJson();
@@ -188,6 +188,7 @@ class ServiceToken extends ServiceTokenModel {
   /// Creates a copy of instance with given parameters.
   ServiceToken copyWith({
     Banxa? banxa,
+    Ctrader? ctrader,
     Dxtrade? dxtrade,
     Onfido? onfido,
     Pandats? pandats,
@@ -196,6 +197,7 @@ class ServiceToken extends ServiceTokenModel {
   }) =>
       ServiceToken(
         banxa: banxa ?? this.banxa,
+        ctrader: ctrader ?? this.ctrader,
         dxtrade: dxtrade ?? this.dxtrade,
         onfido: onfido ?? this.onfido,
         pandats: pandats ?? this.pandats,
@@ -203,7 +205,6 @@ class ServiceToken extends ServiceTokenModel {
         wyre: wyre ?? this.wyre,
       );
 }
-
 /// Banxa model class.
 abstract class BanxaModel {
   /// Initializes Banxa model class .
@@ -227,14 +228,10 @@ abstract class BanxaModel {
 class Banxa extends BanxaModel {
   /// Initializes Banxa class.
   const Banxa({
-    String? token,
-    String? url,
-    String? urlIframe,
-  }) : super(
-          token: token,
-          url: url,
-          urlIframe: urlIframe,
-        );
+    super.token,
+    super.url,
+    super.urlIframe,
+  });
 
   /// Creates an instance from JSON.
   factory Banxa.fromJson(Map<String, dynamic> json) => Banxa(
@@ -266,7 +263,46 @@ class Banxa extends BanxaModel {
         urlIframe: urlIframe ?? this.urlIframe,
       );
 }
+/// Ctrader model class.
+abstract class CtraderModel {
+  /// Initializes Ctrader model class .
+  const CtraderModel({
+    this.token,
+  });
 
+  /// CTrader One Time token
+  final String? token;
+}
+
+/// Ctrader class.
+class Ctrader extends CtraderModel {
+  /// Initializes Ctrader class.
+  const Ctrader({
+    super.token,
+  });
+
+  /// Creates an instance from JSON.
+  factory Ctrader.fromJson(Map<String, dynamic> json) => Ctrader(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Ctrader copyWith({
+    String? token,
+  }) =>
+      Ctrader(
+        token: token ?? this.token,
+      );
+}
 /// Dxtrade model class.
 abstract class DxtradeModel {
   /// Initializes Dxtrade model class .
@@ -282,10 +318,8 @@ abstract class DxtradeModel {
 class Dxtrade extends DxtradeModel {
   /// Initializes Dxtrade class.
   const Dxtrade({
-    String? token,
-  }) : super(
-          token: token,
-        );
+    super.token,
+  });
 
   /// Creates an instance from JSON.
   factory Dxtrade.fromJson(Map<String, dynamic> json) => Dxtrade(
@@ -309,7 +343,6 @@ class Dxtrade extends DxtradeModel {
         token: token ?? this.token,
       );
 }
-
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -325,10 +358,8 @@ abstract class OnfidoModel {
 class Onfido extends OnfidoModel {
   /// Initializes Onfido class.
   const Onfido({
-    String? token,
-  }) : super(
-          token: token,
-        );
+    super.token,
+  });
 
   /// Creates an instance from JSON.
   factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
@@ -352,7 +383,6 @@ class Onfido extends OnfidoModel {
         token: token ?? this.token,
       );
 }
-
 /// Pandats model class.
 abstract class PandatsModel {
   /// Initializes Pandats model class .
@@ -360,7 +390,7 @@ abstract class PandatsModel {
     this.token,
   });
 
-  /// Pandats token.
+  /// Deriv EZ SSO token
   final String? token;
 }
 
@@ -368,10 +398,8 @@ abstract class PandatsModel {
 class Pandats extends PandatsModel {
   /// Initializes Pandats class.
   const Pandats({
-    String? token,
-  }) : super(
-          token: token,
-        );
+    super.token,
+  });
 
   /// Creates an instance from JSON.
   factory Pandats.fromJson(Map<String, dynamic> json) => Pandats(
@@ -395,7 +423,6 @@ class Pandats extends PandatsModel {
         token: token ?? this.token,
       );
 }
-
 /// Sendbird model class.
 abstract class SendbirdModel {
   /// Initializes Sendbird model class .
@@ -419,14 +446,10 @@ abstract class SendbirdModel {
 class Sendbird extends SendbirdModel {
   /// Initializes Sendbird class.
   const Sendbird({
-    String? appId,
-    DateTime? expiryTime,
-    String? token,
-  }) : super(
-          appId: appId,
-          expiryTime: expiryTime,
-          token: token,
-        );
+    super.appId,
+    super.expiryTime,
+    super.token,
+  });
 
   /// Creates an instance from JSON.
   factory Sendbird.fromJson(Map<String, dynamic> json) => Sendbird(
@@ -458,7 +481,6 @@ class Sendbird extends SendbirdModel {
         token: token ?? this.token,
       );
 }
-
 /// Wyre model class.
 abstract class WyreModel {
   /// Initializes Wyre model class .
@@ -478,12 +500,9 @@ abstract class WyreModel {
 class Wyre extends WyreModel {
   /// Initializes Wyre class.
   const Wyre({
-    String? token,
-    String? url,
-  }) : super(
-          token: token,
-          url: url,
-        );
+    super.token,
+    super.url,
+  });
 
   /// Creates an instance from JSON.
   factory Wyre.fromJson(Map<String, dynamic> json) => Wyre(

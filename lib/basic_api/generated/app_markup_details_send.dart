@@ -18,13 +18,10 @@ class AppMarkupDetailsRequest extends Request {
     this.offset,
     this.sort,
     this.sortFields,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_markup_details',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_markup_details',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
@@ -39,7 +36,7 @@ class AppMarkupDetailsRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        offset: json['offset'] as int?,
         sort: json['sort'] as String?,
         sortFields: (json['sort_fields'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
@@ -70,7 +67,7 @@ class AppMarkupDetailsRequest extends Request {
   final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
   final String? sort;
@@ -113,7 +110,7 @@ class AppMarkupDetailsRequest extends Request {
     String? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    int? offset,
     String? sort,
     List<String>? sortFields,
     Map<String, dynamic>? passthrough,

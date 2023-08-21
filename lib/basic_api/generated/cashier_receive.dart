@@ -9,16 +9,11 @@ class CashierReceive extends Response {
   /// Initialize CashierReceive.
   const CashierReceive({
     this.cashier,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CashierReceive.fromJson(Map<String, dynamic> json) => CashierReceive(

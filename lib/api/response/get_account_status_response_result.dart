@@ -25,10 +25,8 @@ abstract class GetAccountStatusResponseModel {
 class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Initializes Get account status response class.
   const GetAccountStatusResponse({
-    GetAccountStatus? getAccountStatus,
-  }) : super(
-          getAccountStatus: getAccountStatus,
-        );
+    super.getAccountStatus,
+  });
 
   /// Creates an instance from JSON.
   factory GetAccountStatusResponse.fromJson(
@@ -95,6 +93,8 @@ final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "verified": StatusEnum.verified,
   "rejected": StatusEnum.rejected,
   "pending": StatusEnum.pending,
+  "expired": StatusEnum.expired,
+  "none": StatusEnum.none,
 };
 
 /// Status Enum.
@@ -107,6 +107,12 @@ enum StatusEnum {
 
   /// pending.
   pending,
+
+  /// expired.
+  expired,
+
+  /// none.
+  none,
 }
 
 /// DocumentStatusEnum mapper.
@@ -220,6 +226,29 @@ enum OwnershipStatusEnum {
   verified,
 }
 
+/// P2pStatusEnum mapper.
+final Map<String, P2pStatusEnum> p2pStatusEnumMapper = <String, P2pStatusEnum>{
+  "none": P2pStatusEnum.none,
+  "active": P2pStatusEnum.active,
+  "temp_ban": P2pStatusEnum.tempBan,
+  "perm_ban": P2pStatusEnum.permBan,
+};
+
+/// P2pStatus Enum.
+enum P2pStatusEnum {
+  /// none.
+  none,
+
+  /// active.
+  active,
+
+  /// temp_ban.
+  tempBan,
+
+  /// perm_ban.
+  permBan,
+}
+
 /// SocialIdentityProviderEnum mapper.
 final Map<String, SocialIdentityProviderEnum> socialIdentityProviderEnumMapper =
     <String, SocialIdentityProviderEnum>{
@@ -239,7 +268,6 @@ enum SocialIdentityProviderEnum {
   /// apple.
   apple,
 }
-
 /// Get account status model class.
 abstract class GetAccountStatusModel {
   /// Initializes Get account status model class .
@@ -247,6 +275,7 @@ abstract class GetAccountStatusModel {
     required this.status,
     required this.riskClassification,
     required this.promptClientToAuthenticate,
+    required this.p2pStatus,
     required this.currencyConfig,
     this.authentication,
     this.cashierMissingFields,
@@ -294,6 +323,8 @@ abstract class GetAccountStatusModel {
   /// - `personal_details_locked`: client is not allowed to edit personal profile details.
   /// - `transfers_blocked`: it block any transfer between two accounts.
   /// - `df_deposit_requires_poi`: the DF deposit will be blocked until the client gets age verified.
+  /// - `authenticated_with_idv_photoid`: the client has been fully authenticated by IDV.
+  /// - `idv_revoked`: the client used to be fully authenticated by IDV but it was taken away due to compliance criteria.
   final List<String> status;
 
   /// Client risk classification: `low`, `standard`, `high`.
@@ -301,6 +332,9 @@ abstract class GetAccountStatusModel {
 
   /// Indicates whether the client should be prompted to authenticate their account.
   final bool promptClientToAuthenticate;
+
+  /// Current P2P status of client.
+  final P2pStatusEnum p2pStatus;
 
   /// Provides cashier details for client currency.
   final Map<String, CurrencyConfigProperty> currencyConfig;
@@ -322,24 +356,16 @@ abstract class GetAccountStatusModel {
 class GetAccountStatus extends GetAccountStatusModel {
   /// Initializes Get account status class.
   const GetAccountStatus({
-    required Map<String, CurrencyConfigProperty> currencyConfig,
-    required bool promptClientToAuthenticate,
-    required String riskClassification,
-    required List<String> status,
-    Authentication? authentication,
-    List<String>? cashierMissingFields,
-    List<String>? cashierValidation,
-    SocialIdentityProviderEnum? socialIdentityProvider,
-  }) : super(
-          currencyConfig: currencyConfig,
-          promptClientToAuthenticate: promptClientToAuthenticate,
-          riskClassification: riskClassification,
-          status: status,
-          authentication: authentication,
-          cashierMissingFields: cashierMissingFields,
-          cashierValidation: cashierValidation,
-          socialIdentityProvider: socialIdentityProvider,
-        );
+    required super.currencyConfig,
+    required super.p2pStatus,
+    required super.promptClientToAuthenticate,
+    required super.riskClassification,
+    required super.status,
+    super.authentication,
+    super.cashierMissingFields,
+    super.cashierValidation,
+    super.socialIdentityProvider,
+  });
 
   /// Creates an instance from JSON.
   factory GetAccountStatus.fromJson(Map<String, dynamic> json) =>
@@ -351,6 +377,7 @@ class GetAccountStatus extends GetAccountStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrencyConfigProperty>(entry.key,
                             CurrencyConfigProperty.fromJson(entry.value)))),
+        p2pStatus: p2pStatusEnumMapper[json['p2p_status']]!,
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate'])!,
         riskClassification: json['risk_classification'],
@@ -387,6 +414,10 @@ class GetAccountStatus extends GetAccountStatusModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['currency_config'] = currencyConfig;
+    resultMap['p2p_status'] = p2pStatusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, P2pStatusEnum> entry) => entry.value == p2pStatus)
+        .key;
     resultMap['prompt_client_to_authenticate'] = promptClientToAuthenticate;
     resultMap['risk_classification'] = riskClassification;
     resultMap['status'] = status
@@ -424,6 +455,7 @@ class GetAccountStatus extends GetAccountStatusModel {
   /// Creates a copy of instance with given parameters.
   GetAccountStatus copyWith({
     Map<String, CurrencyConfigProperty>? currencyConfig,
+    P2pStatusEnum? p2pStatus,
     bool? promptClientToAuthenticate,
     String? riskClassification,
     List<String>? status,
@@ -434,6 +466,7 @@ class GetAccountStatus extends GetAccountStatusModel {
   }) =>
       GetAccountStatus(
         currencyConfig: currencyConfig ?? this.currencyConfig,
+        p2pStatus: p2pStatus ?? this.p2pStatus,
         promptClientToAuthenticate:
             promptClientToAuthenticate ?? this.promptClientToAuthenticate,
         riskClassification: riskClassification ?? this.riskClassification,
@@ -445,7 +478,6 @@ class GetAccountStatus extends GetAccountStatusModel {
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
 }
-
 /// Currency config property model class.
 abstract class CurrencyConfigPropertyModel {
   /// Initializes Currency config property model class .
@@ -465,12 +497,9 @@ abstract class CurrencyConfigPropertyModel {
 class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
   /// Initializes Currency config property class.
   const CurrencyConfigProperty({
-    bool? isDepositSuspended,
-    bool? isWithdrawalSuspended,
-  }) : super(
-          isDepositSuspended: isDepositSuspended,
-          isWithdrawalSuspended: isWithdrawalSuspended,
-        );
+    super.isDepositSuspended,
+    super.isWithdrawalSuspended,
+  });
 
   /// Creates an instance from JSON.
   factory CurrencyConfigProperty.fromJson(Map<String, dynamic> json) =>
@@ -500,7 +529,6 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
 }
-
 /// Authentication model class.
 abstract class AuthenticationModel {
   /// Initializes Authentication model class .
@@ -536,20 +564,13 @@ abstract class AuthenticationModel {
 class Authentication extends AuthenticationModel {
   /// Initializes Authentication class.
   const Authentication({
-    required List<String> needsVerification,
-    Attempts? attempts,
-    Document? document,
-    Identity? identity,
-    Income? income,
-    Ownership? ownership,
-  }) : super(
-          needsVerification: needsVerification,
-          attempts: attempts,
-          document: document,
-          identity: identity,
-          income: income,
-          ownership: ownership,
-        );
+    required super.needsVerification,
+    super.attempts,
+    super.document,
+    super.identity,
+    super.income,
+    super.ownership,
+  });
 
   /// Creates an instance from JSON.
   factory Authentication.fromJson(Map<String, dynamic> json) => Authentication(
@@ -620,7 +641,6 @@ class Authentication extends AuthenticationModel {
         ownership: ownership ?? this.ownership,
       );
 }
-
 /// Attempts model class.
 abstract class AttemptsModel {
   /// Initializes Attempts model class .
@@ -644,14 +664,10 @@ abstract class AttemptsModel {
 class Attempts extends AttemptsModel {
   /// Initializes Attempts class.
   const Attempts({
-    int? count,
-    List<HistoryItem>? history,
-    Map<String, dynamic>? latest,
-  }) : super(
-          count: count,
-          history: history,
-          latest: latest,
-        );
+    super.count,
+    super.history,
+    super.latest,
+  });
 
   /// Creates an instance from JSON.
   factory Attempts.fromJson(Map<String, dynamic> json) => Attempts(
@@ -695,12 +711,12 @@ class Attempts extends AttemptsModel {
         latest: latest ?? this.latest,
       );
 }
-
 /// History item model class.
 abstract class HistoryItemModel {
   /// Initializes History item model class .
   const HistoryItemModel({
     this.countryCode,
+    this.documentType,
     this.id,
     this.service,
     this.status,
@@ -709,6 +725,9 @@ abstract class HistoryItemModel {
 
   /// 2-letter country code used to request the attempt.
   final String? countryCode;
+
+  /// The document type of the attempt.
+  final String? documentType;
 
   /// The id of the attempt.
   final String? id;
@@ -727,22 +746,18 @@ abstract class HistoryItemModel {
 class HistoryItem extends HistoryItemModel {
   /// Initializes History item class.
   const HistoryItem({
-    String? countryCode,
-    String? id,
-    String? service,
-    StatusEnum? status,
-    DateTime? timestamp,
-  }) : super(
-          countryCode: countryCode,
-          id: id,
-          service: service,
-          status: status,
-          timestamp: timestamp,
-        );
+    super.countryCode,
+    super.documentType,
+    super.id,
+    super.service,
+    super.status,
+    super.timestamp,
+  });
 
   /// Creates an instance from JSON.
   factory HistoryItem.fromJson(Map<String, dynamic> json) => HistoryItem(
         countryCode: json['country_code'],
+        documentType: json['document_type'],
         id: json['id'],
         service: json['service'],
         status:
@@ -755,6 +770,7 @@ class HistoryItem extends HistoryItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['country_code'] = countryCode;
+    resultMap['document_type'] = documentType;
     resultMap['id'] = id;
     resultMap['service'] = service;
     resultMap['status'] = statusEnumMapper.entries
@@ -769,6 +785,7 @@ class HistoryItem extends HistoryItemModel {
   /// Creates a copy of instance with given parameters.
   HistoryItem copyWith({
     String? countryCode,
+    String? documentType,
     String? id,
     String? service,
     StatusEnum? status,
@@ -776,13 +793,13 @@ class HistoryItem extends HistoryItemModel {
   }) =>
       HistoryItem(
         countryCode: countryCode ?? this.countryCode,
+        documentType: documentType ?? this.documentType,
         id: id ?? this.id,
         service: service ?? this.service,
         status: status ?? this.status,
         timestamp: timestamp ?? this.timestamp,
       );
 }
-
 /// Document model class.
 abstract class DocumentModel {
   /// Initializes Document model class .
@@ -802,12 +819,9 @@ abstract class DocumentModel {
 class Document extends DocumentModel {
   /// Initializes Document class.
   const Document({
-    DateTime? expiryDate,
-    DocumentStatusEnum? status,
-  }) : super(
-          expiryDate: expiryDate,
-          status: status,
-        );
+    super.expiryDate,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory Document.fromJson(Map<String, dynamic> json) => Document(
@@ -840,7 +854,6 @@ class Document extends DocumentModel {
         status: status ?? this.status,
       );
 }
-
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -864,14 +877,10 @@ abstract class IdentityModel {
 class Identity extends IdentityModel {
   /// Initializes Identity class.
   const Identity({
-    DateTime? expiryDate,
-    Services? services,
-    DocumentStatusEnum? status,
-  }) : super(
-          expiryDate: expiryDate,
-          services: services,
-          status: status,
-        );
+    super.expiryDate,
+    super.services,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory Identity.fromJson(Map<String, dynamic> json) => Identity(
@@ -912,7 +921,6 @@ class Identity extends IdentityModel {
         status: status ?? this.status,
       );
 }
-
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -936,14 +944,10 @@ abstract class ServicesModel {
 class Services extends ServicesModel {
   /// Initializes Services class.
   const Services({
-    Idv? idv,
-    Manual? manual,
-    Onfido? onfido,
-  }) : super(
-          idv: idv,
-          manual: manual,
-          onfido: onfido,
-        );
+    super.idv,
+    super.manual,
+    super.onfido,
+  });
 
   /// Creates an instance from JSON.
   factory Services.fromJson(Map<String, dynamic> json) => Services(
@@ -981,7 +985,6 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
-
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
@@ -1013,18 +1016,12 @@ abstract class IdvModel {
 class Idv extends IdvModel {
   /// Initializes Idv class.
   const Idv({
-    DateTime? expiryDate,
-    List<String>? lastRejected,
-    Map<String, dynamic>? reportedProperties,
-    IdvStatusEnum? status,
-    int? submissionsLeft,
-  }) : super(
-          expiryDate: expiryDate,
-          lastRejected: lastRejected,
-          reportedProperties: reportedProperties,
-          status: status,
-          submissionsLeft: submissionsLeft,
-        );
+    super.expiryDate,
+    super.lastRejected,
+    super.reportedProperties,
+    super.status,
+    super.submissionsLeft,
+  });
 
   /// Creates an instance from JSON.
   factory Idv.fromJson(Map<String, dynamic> json) => Idv(
@@ -1080,7 +1077,6 @@ class Idv extends IdvModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
-
 /// Manual model class.
 abstract class ManualModel {
   /// Initializes Manual model class .
@@ -1096,10 +1092,8 @@ abstract class ManualModel {
 class Manual extends ManualModel {
   /// Initializes Manual class.
   const Manual({
-    DocumentStatusEnum? status,
-  }) : super(
-          status: status,
-        );
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory Manual.fromJson(Map<String, dynamic> json) => Manual(
@@ -1128,7 +1122,6 @@ class Manual extends ManualModel {
         status: status ?? this.status,
       );
 }
-
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -1172,24 +1165,15 @@ abstract class OnfidoModel {
 class Onfido extends OnfidoModel {
   /// Initializes Onfido class.
   const Onfido({
-    String? countryCode,
-    List<String>? documents,
-    List<String>? documentsSupported,
-    bool? isCountrySupported,
-    List<String>? lastRejected,
-    Map<String, dynamic>? reportedProperties,
-    DocumentStatusEnum? status,
-    int? submissionsLeft,
-  }) : super(
-          countryCode: countryCode,
-          documents: documents,
-          documentsSupported: documentsSupported,
-          isCountrySupported: isCountrySupported,
-          lastRejected: lastRejected,
-          reportedProperties: reportedProperties,
-          status: status,
-          submissionsLeft: submissionsLeft,
-        );
+    super.countryCode,
+    super.documents,
+    super.documentsSupported,
+    super.isCountrySupported,
+    super.lastRejected,
+    super.reportedProperties,
+    super.status,
+    super.submissionsLeft,
+  });
 
   /// Creates an instance from JSON.
   factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
@@ -1282,7 +1266,6 @@ class Onfido extends OnfidoModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
-
 /// Income model class.
 abstract class IncomeModel {
   /// Initializes Income model class .
@@ -1302,12 +1285,9 @@ abstract class IncomeModel {
 class Income extends IncomeModel {
   /// Initializes Income class.
   const Income({
-    DateTime? expiryDate,
-    IncomeStatusEnum? status,
-  }) : super(
-          expiryDate: expiryDate,
-          status: status,
-        );
+    super.expiryDate,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory Income.fromJson(Map<String, dynamic> json) => Income(
@@ -1340,7 +1320,6 @@ class Income extends IncomeModel {
         status: status ?? this.status,
       );
 }
-
 /// Ownership model class.
 abstract class OwnershipModel {
   /// Initializes Ownership model class .
@@ -1360,12 +1339,9 @@ abstract class OwnershipModel {
 class Ownership extends OwnershipModel {
   /// Initializes Ownership class.
   const Ownership({
-    List<RequestsItem>? requests,
-    OwnershipStatusEnum? status,
-  }) : super(
-          requests: requests,
-          status: status,
-        );
+    super.requests,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory Ownership.fromJson(Map<String, dynamic> json) => Ownership(
@@ -1410,7 +1386,6 @@ class Ownership extends OwnershipModel {
         status: status ?? this.status,
       );
 }
-
 /// Requests item model class.
 abstract class RequestsItemModel {
   /// Initializes Requests item model class .
@@ -1438,16 +1413,11 @@ abstract class RequestsItemModel {
 class RequestsItem extends RequestsItemModel {
   /// Initializes Requests item class.
   const RequestsItem({
-    String? creationTime,
-    double? documentsRequired,
-    double? id,
-    String? paymentMethod,
-  }) : super(
-          creationTime: creationTime,
-          documentsRequired: documentsRequired,
-          id: id,
-          paymentMethod: paymentMethod,
-        );
+    super.creationTime,
+    super.documentsRequired,
+    super.id,
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory RequestsItem.fromJson(Map<String, dynamic> json) => RequestsItem(

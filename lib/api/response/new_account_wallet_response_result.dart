@@ -19,10 +19,8 @@ abstract class NewAccountWalletResponseModel {
 class NewAccountWalletResponse extends NewAccountWalletResponseModel {
   /// Initializes New account wallet response class.
   const NewAccountWalletResponse({
-    NewAccountWallet? newAccountWallet,
-  }) : super(
-          newAccountWallet: newAccountWallet,
-        );
+    super.newAccountWallet,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountWalletResponse.fromJson(
@@ -88,20 +86,13 @@ abstract class NewAccountWalletModel {
 class NewAccountWallet extends NewAccountWalletModel {
   /// Initializes New account wallet class.
   const NewAccountWallet({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
-    String? currency,
-    String? landingCompanyShort,
-    String? landingCompanyShortcode,
-  }) : super(
-          clientId: clientId,
-          landingCompany: landingCompany,
-          oauthToken: oauthToken,
-          currency: currency,
-          landingCompanyShort: landingCompanyShort,
-          landingCompanyShortcode: landingCompanyShortcode,
-        );
+    required super.clientId,
+    required super.landingCompany,
+    required super.oauthToken,
+    super.currency,
+    super.landingCompanyShort,
+    super.landingCompanyShortcode,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountWallet.fromJson(Map<String, dynamic> json) =>

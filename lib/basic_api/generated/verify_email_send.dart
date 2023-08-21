@@ -11,13 +11,10 @@ class VerifyEmailRequest extends Request {
     required this.type,
     this.urlParameters,
     required this.verifyEmail,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'verify_email',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'verify_email',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +26,7 @@ class VerifyEmailRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// Purpose of the email verification call.
+  /// Purpose of email verification, request_email and reset_password are the only two types restricted from all unoffical apps
   final String? type;
 
   /// [Optional] Extra parameters that can be attached to the verify email link URL.

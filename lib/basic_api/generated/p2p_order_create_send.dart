@@ -16,13 +16,10 @@ class P2pOrderCreateRequest extends Request {
     required this.paymentMethodIds,
     this.rate,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>

@@ -9,14 +9,12 @@ class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest.
   const AssetIndexRequest({
     this.assetIndex = true,
-    this.landingCompany,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'asset_index',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    required this.landingCompany,
+    this.landingCompanyShort,
+    super.msgType = 'asset_index',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +22,7 @@ class AssetIndexRequest extends Request {
         assetIndex:
             json['asset_index'] == null ? null : json['asset_index'] == 1,
         landingCompany: json['landing_company'] as String?,
+        landingCompanyShort: json['landing_company_short'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -31,8 +30,11 @@ class AssetIndexRequest extends Request {
   /// Must be `true`
   final bool? assetIndex;
 
-  /// [Optional] If specified, will return only the underlyings for the specified landing company.
+  /// Deprecated - replaced by landing_company_short.
   final String? landingCompany;
+
+  /// [Optional] If specified, will return only the underlyings for the specified landing company.
+  final String? landingCompanyShort;
 
   /// Converts this instance to JSON
   @override
@@ -43,6 +45,7 @@ class AssetIndexRequest extends Request {
                 ? 1
                 : 0,
         'landing_company': landingCompany,
+        'landing_company_short': landingCompanyShort,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -52,12 +55,14 @@ class AssetIndexRequest extends Request {
   AssetIndexRequest copyWith({
     bool? assetIndex,
     String? landingCompany,
+    String? landingCompanyShort,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       AssetIndexRequest(
         assetIndex: assetIndex ?? this.assetIndex,
         landingCompany: landingCompany ?? this.landingCompany,
+        landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

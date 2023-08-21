@@ -13,17 +13,14 @@ class TradingPlatformNewAccountRequest extends Request {
     this.currency,
     this.dryRun,
     required this.marketType,
-    this.password,
+    required this.password,
     required this.platform,
     this.subAccountType,
     this.tradingPlatformNewAccount = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_new_account',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_new_account',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformNewAccountRequest.fromJson(
@@ -59,7 +56,7 @@ class TradingPlatformNewAccountRequest extends Request {
   /// Market type
   final String? marketType;
 
-  /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
+  /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). Only for DXTrade.
   final String? password;
 
   /// Name of trading platform.

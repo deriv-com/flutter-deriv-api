@@ -9,13 +9,10 @@ class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest.
   const RevokeOauthAppRequest({
     required this.revokeOauthApp,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'revoke_oauth_app',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'revoke_oauth_app',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>

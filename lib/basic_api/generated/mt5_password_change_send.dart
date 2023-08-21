@@ -13,13 +13,10 @@ class Mt5PasswordChangeRequest extends Request {
     required this.newPassword,
     required this.oldPassword,
     this.passwordType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_password_change',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_password_change',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>

@@ -9,21 +9,20 @@ class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest.
   const ActiveSymbolsRequest({
     required this.activeSymbols,
-    this.landingCompany,
+    required this.landingCompany,
+    this.landingCompanyShort,
     this.productType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'active_symbols',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'active_symbols',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsRequest(
         activeSymbols: json['active_symbols'] as String?,
         landingCompany: json['landing_company'] as String?,
+        landingCompanyShort: json['landing_company_short'] as String?,
         productType: json['product_type'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -32,8 +31,11 @@ class ActiveSymbolsRequest extends Request {
   /// If you use `brief`, only a subset of fields will be returned.
   final String? activeSymbols;
 
-  /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
+  /// Deprecated - replaced by landing_company_short.
   final String? landingCompany;
+
+  /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
+  final String? landingCompanyShort;
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   final String? productType;
@@ -43,6 +45,7 @@ class ActiveSymbolsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'active_symbols': activeSymbols,
         'landing_company': landingCompany,
+        'landing_company_short': landingCompanyShort,
         'product_type': productType,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -53,6 +56,7 @@ class ActiveSymbolsRequest extends Request {
   ActiveSymbolsRequest copyWith({
     String? activeSymbols,
     String? landingCompany,
+    String? landingCompanyShort,
     String? productType,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -60,6 +64,7 @@ class ActiveSymbolsRequest extends Request {
       ActiveSymbolsRequest(
         activeSymbols: activeSymbols ?? this.activeSymbols,
         landingCompany: landingCompany ?? this.landingCompany,
+        landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         productType: productType ?? this.productType,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -27,10 +27,8 @@ abstract class GetSelfExclusionResponseModel {
 class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Initializes Get self exclusion response class.
   const GetSelfExclusionResponse({
-    GetSelfExclusion? getSelfExclusion,
-  }) : super(
-          getSelfExclusion: getSelfExclusion,
-        );
+    super.getSelfExclusion,
+  });
 
   /// Creates an instance from JSON.
   factory GetSelfExclusionResponse.fromJson(
@@ -135,7 +133,6 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
 }
-
 /// Get self exclusion model class.
 abstract class GetSelfExclusionModel {
   /// Initializes Get self exclusion model class .
@@ -203,36 +200,21 @@ abstract class GetSelfExclusionModel {
 class GetSelfExclusion extends GetSelfExclusionModel {
   /// Initializes Get self exclusion class.
   const GetSelfExclusion({
-    String? excludeUntil,
-    double? max30dayDeposit,
-    double? max30dayLosses,
-    double? max30dayTurnover,
-    double? max7dayDeposit,
-    double? max7dayLosses,
-    double? max7dayTurnover,
-    double? maxBalance,
-    double? maxDeposit,
-    double? maxLosses,
-    int? maxOpenBets,
-    double? maxTurnover,
-    int? sessionDurationLimit,
-    DateTime? timeoutUntil,
-  }) : super(
-          excludeUntil: excludeUntil,
-          max30dayDeposit: max30dayDeposit,
-          max30dayLosses: max30dayLosses,
-          max30dayTurnover: max30dayTurnover,
-          max7dayDeposit: max7dayDeposit,
-          max7dayLosses: max7dayLosses,
-          max7dayTurnover: max7dayTurnover,
-          maxBalance: maxBalance,
-          maxDeposit: maxDeposit,
-          maxLosses: maxLosses,
-          maxOpenBets: maxOpenBets,
-          maxTurnover: maxTurnover,
-          sessionDurationLimit: sessionDurationLimit,
-          timeoutUntil: timeoutUntil,
-        );
+    super.excludeUntil,
+    super.max30dayDeposit,
+    super.max30dayLosses,
+    super.max30dayTurnover,
+    super.max7dayDeposit,
+    super.max7dayLosses,
+    super.max7dayTurnover,
+    super.maxBalance,
+    super.maxDeposit,
+    super.maxLosses,
+    super.maxOpenBets,
+    super.maxTurnover,
+    super.sessionDurationLimit,
+    super.timeoutUntil,
+  });
 
   /// Creates an instance from JSON.
   factory GetSelfExclusion.fromJson(Map<String, dynamic> json) =>

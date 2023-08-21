@@ -24,10 +24,8 @@ class TradingPlatformNewAccountResponse
     extends TradingPlatformNewAccountResponseModel {
   /// Initializes Trading platform new account response class.
   const TradingPlatformNewAccountResponse({
-    TradingPlatformNewAccount? tradingPlatformNewAccount,
-  }) : super(
-          tradingPlatformNewAccount: tradingPlatformNewAccount,
-        );
+    super.tradingPlatformNewAccount,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformNewAccountResponse.fromJson(
@@ -57,7 +55,7 @@ class TradingPlatformNewAccountResponse
   ///
   /// This call creates new Trading account, either demo or real money.
   /// For parameters information refer to [TradingPlatformNewAccountRequest].
-  /// Throws a [BaseAPIException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error.
   static Future<TradingPlatformNewAccountResponse> create(
     TradingPlatformNewAccountRequest request,
   ) async {
@@ -165,6 +163,7 @@ enum MarketTypeEnum {
 final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
   "dxtrade": PlatformEnum.dxtrade,
   "derivez": PlatformEnum.derivez,
+  "ctrader": PlatformEnum.ctrader,
 };
 
 /// Platform Enum.
@@ -174,6 +173,9 @@ enum PlatformEnum {
 
   /// derivez.
   derivez,
+
+  /// ctrader.
+  ctrader,
 }
 
 /// SubAccountTypeEnum mapper.
@@ -191,7 +193,6 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
-
 /// Trading platform new account model class.
 abstract class TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account model class .
@@ -251,32 +252,19 @@ abstract class TradingPlatformNewAccountModel {
 class TradingPlatformNewAccount extends TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account class.
   const TradingPlatformNewAccount({
-    String? accountId,
-    AccountTypeEnum? accountType,
-    String? agent,
-    double? balance,
-    String? currency,
-    String? displayBalance,
-    int? enabled,
-    LandingCompanyShortEnum? landingCompanyShort,
-    String? login,
-    MarketTypeEnum? marketType,
-    PlatformEnum? platform,
-    SubAccountTypeEnum? subAccountType,
-  }) : super(
-          accountId: accountId,
-          accountType: accountType,
-          agent: agent,
-          balance: balance,
-          currency: currency,
-          displayBalance: displayBalance,
-          enabled: enabled,
-          landingCompanyShort: landingCompanyShort,
-          login: login,
-          marketType: marketType,
-          platform: platform,
-          subAccountType: subAccountType,
-        );
+    super.accountId,
+    super.accountType,
+    super.agent,
+    super.balance,
+    super.currency,
+    super.displayBalance,
+    super.enabled,
+    super.landingCompanyShort,
+    super.login,
+    super.marketType,
+    super.platform,
+    super.subAccountType,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformNewAccount.fromJson(Map<String, dynamic> json) =>

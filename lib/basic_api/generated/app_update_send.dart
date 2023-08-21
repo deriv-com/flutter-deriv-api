@@ -18,13 +18,10 @@ class AppUpdateRequest extends Request {
     this.redirectUri,
     required this.scopes,
     this.verificationUri,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_update',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_update',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -45,7 +42,7 @@ class AppUpdateRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
+  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout). Max markup: 3%.
   final num? appMarkupPercentage;
 
   /// Application app_id.

@@ -26,10 +26,8 @@ class P2pAdvertiserRelationsResponse
     extends P2pAdvertiserRelationsResponseModel {
   /// Initializes P2p advertiser relations response class.
   const P2pAdvertiserRelationsResponse({
-    P2pAdvertiserRelations? p2pAdvertiserRelations,
-  }) : super(
-          p2pAdvertiserRelations: p2pAdvertiserRelations,
-        );
+    super.p2pAdvertiserRelations,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserRelationsResponse.fromJson(
@@ -95,7 +93,6 @@ class P2pAdvertiserRelationsResponse
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
       );
 }
-
 /// P2p advertiser relations model class.
 abstract class P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations model class .
@@ -115,12 +112,9 @@ abstract class P2pAdvertiserRelationsModel {
 class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations class.
   const P2pAdvertiserRelations({
-    required List<BlockedAdvertisersItem> blockedAdvertisers,
-    required List<FavouriteAdvertisersItem> favouriteAdvertisers,
-  }) : super(
-          blockedAdvertisers: blockedAdvertisers,
-          favouriteAdvertisers: favouriteAdvertisers,
-        );
+    required super.blockedAdvertisers,
+    required super.favouriteAdvertisers,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserRelations.fromJson(Map<String, dynamic> json) =>
@@ -166,7 +160,6 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
         favouriteAdvertisers: favouriteAdvertisers ?? this.favouriteAdvertisers,
       );
 }
-
 /// Blocked advertisers item model class.
 abstract class BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item model class .
@@ -190,14 +183,10 @@ abstract class BlockedAdvertisersItemModel {
 class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item class.
   const BlockedAdvertisersItem({
-    DateTime? createdTime,
-    String? id,
-    String? name,
-  }) : super(
-          createdTime: createdTime,
-          id: id,
-          name: name,
-        );
+    super.createdTime,
+    super.id,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory BlockedAdvertisersItem.fromJson(Map<String, dynamic> json) =>
@@ -230,7 +219,6 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
         name: name ?? this.name,
       );
 }
-
 /// Favourite advertisers item model class.
 abstract class FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item model class .
@@ -254,14 +242,10 @@ abstract class FavouriteAdvertisersItemModel {
 class FavouriteAdvertisersItem extends FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item class.
   const FavouriteAdvertisersItem({
-    DateTime? createdTime,
-    String? id,
-    String? name,
-  }) : super(
-          createdTime: createdTime,
-          id: id,
-          name: name,
-        );
+    super.createdTime,
+    super.id,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory FavouriteAdvertisersItem.fromJson(Map<String, dynamic> json) =>

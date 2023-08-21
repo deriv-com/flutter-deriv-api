@@ -10,13 +10,10 @@ class CryptoConfigRequest extends Request {
   const CryptoConfigRequest({
     this.cryptoConfig = true,
     this.currencyCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'crypto_config',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'crypto_config',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CryptoConfigRequest.fromJson(Map<String, dynamic> json) =>

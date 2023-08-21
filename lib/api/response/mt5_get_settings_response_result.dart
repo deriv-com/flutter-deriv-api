@@ -25,10 +25,8 @@ abstract class Mt5GetSettingsResponseModel {
 class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// Initializes Mt5 get settings response class.
   const Mt5GetSettingsResponse({
-    Mt5GetSettings? mt5GetSettings,
-  }) : super(
-          mt5GetSettings: mt5GetSettings,
-        );
+    super.mt5GetSettings,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5GetSettingsResponse.fromJson(
@@ -159,7 +157,6 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
-
 /// Mt5 get settings model class.
 abstract class Mt5GetSettingsModel {
   /// Initializes Mt5 get settings model class .
@@ -247,46 +244,26 @@ abstract class Mt5GetSettingsModel {
 class Mt5GetSettings extends Mt5GetSettingsModel {
   /// Initializes Mt5 get settings class.
   const Mt5GetSettings({
-    AccountTypeEnum? accountType,
-    String? address,
-    String? balance,
-    String? city,
-    String? company,
-    String? country,
-    String? currency,
-    String? email,
-    String? group,
-    LandingCompanyShortEnum? landingCompanyShort,
-    double? leverage,
-    String? login,
-    MarketTypeEnum? marketType,
-    String? name,
-    String? phone,
-    String? phonePassword,
-    String? state,
-    SubAccountTypeEnum? subAccountType,
-    String? zipCode,
-  }) : super(
-          accountType: accountType,
-          address: address,
-          balance: balance,
-          city: city,
-          company: company,
-          country: country,
-          currency: currency,
-          email: email,
-          group: group,
-          landingCompanyShort: landingCompanyShort,
-          leverage: leverage,
-          login: login,
-          marketType: marketType,
-          name: name,
-          phone: phone,
-          phonePassword: phonePassword,
-          state: state,
-          subAccountType: subAccountType,
-          zipCode: zipCode,
-        );
+    super.accountType,
+    super.address,
+    super.balance,
+    super.city,
+    super.company,
+    super.country,
+    super.currency,
+    super.email,
+    super.group,
+    super.landingCompanyShort,
+    super.leverage,
+    super.login,
+    super.marketType,
+    super.name,
+    super.phone,
+    super.phonePassword,
+    super.state,
+    super.subAccountType,
+    super.zipCode,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5GetSettings.fromJson(Map<String, dynamic> json) => Mt5GetSettings(

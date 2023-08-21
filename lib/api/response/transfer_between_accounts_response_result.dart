@@ -42,18 +42,12 @@ class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
   /// Initializes Transfer between accounts response class.
   const TransferBetweenAccountsResponse({
-    bool? transferBetweenAccounts,
-    List<AccountsItem>? accounts,
-    String? clientToFullName,
-    String? clientToLoginid,
-    int? transactionId,
-  }) : super(
-          transferBetweenAccounts: transferBetweenAccounts,
-          accounts: accounts,
-          clientToFullName: clientToFullName,
-          clientToLoginid: clientToLoginid,
-          transactionId: transactionId,
-        );
+    super.transferBetweenAccounts,
+    super.accounts,
+    super.clientToFullName,
+    super.clientToLoginid,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccountsResponse.fromJson(
@@ -151,6 +145,7 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "dxtrade": AccountTypeEnum.dxtrade,
   "derivez": AccountTypeEnum.derivez,
   "binary": AccountTypeEnum.binary,
+  "ctrader": AccountTypeEnum.ctrader,
 };
 
 /// AccountType Enum.
@@ -172,6 +167,9 @@ enum AccountTypeEnum {
 
   /// binary.
   binary,
+
+  /// ctrader.
+  ctrader,
 }
 
 /// MarketTypeEnum mapper.
@@ -193,7 +191,6 @@ enum MarketTypeEnum {
   /// all.
   all,
 }
-
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
@@ -241,26 +238,16 @@ abstract class AccountsItemModel {
 class AccountsItem extends AccountsItemModel {
   /// Initializes Accounts item class.
   const AccountsItem({
-    AccountTypeEnum? accountType,
-    String? balance,
-    String? currency,
-    bool? demoAccount,
-    String? derivezGroup,
-    String? loginid,
-    MarketTypeEnum? marketType,
-    String? mt5Group,
-    String? status,
-  }) : super(
-          accountType: accountType,
-          balance: balance,
-          currency: currency,
-          demoAccount: demoAccount,
-          derivezGroup: derivezGroup,
-          loginid: loginid,
-          marketType: marketType,
-          mt5Group: mt5Group,
-          status: status,
-        );
+    super.accountType,
+    super.balance,
+    super.currency,
+    super.demoAccount,
+    super.derivezGroup,
+    super.loginid,
+    super.marketType,
+    super.mt5Group,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory AccountsItem.fromJson(Map<String, dynamic> json) => AccountsItem(

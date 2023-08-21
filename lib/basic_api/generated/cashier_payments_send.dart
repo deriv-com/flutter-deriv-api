@@ -12,13 +12,10 @@ class CashierPaymentsRequest extends Request {
     this.provider,
     this.subscribe,
     this.transactionType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cashier_payments',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'cashier_payments',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CashierPaymentsRequest.fromJson(Map<String, dynamic> json) =>
