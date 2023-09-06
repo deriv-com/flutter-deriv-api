@@ -67,6 +67,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets endpoint of websocket.
   static String get endpoint => _connectionInformation.endpoint;
 
+  /// Gets auth endpoint of websocket.
+  static String get authEndpoint => _connectionInformation.authEndpoint;
+
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
