@@ -10,10 +10,13 @@ class PaymentMethodsRequest extends Request {
   const PaymentMethodsRequest({
     this.country,
     this.paymentMethods = true,
-    super.msgType = 'payment_methods',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'payment_methods',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>

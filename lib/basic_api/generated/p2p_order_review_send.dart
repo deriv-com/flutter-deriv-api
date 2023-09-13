@@ -12,10 +12,13 @@ class P2pOrderReviewRequest extends Request {
     this.p2pOrderReview = true,
     required this.rating,
     this.recommended,
-    super.msgType = 'p2p_order_review',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_order_review',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pOrderReviewRequest.fromJson(Map<String, dynamic> json) =>

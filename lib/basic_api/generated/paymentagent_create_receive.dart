@@ -8,11 +8,16 @@ import '../response.dart';
 class PaymentagentCreateReceive extends Response {
   /// Initialize PaymentagentCreateReceive.
   const PaymentagentCreateReceive({
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory PaymentagentCreateReceive.fromJson(Map<String, dynamic> json) =>
