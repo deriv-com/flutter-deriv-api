@@ -19,8 +19,10 @@ abstract class AccountClosureResponseModel {
 class AccountClosureResponse extends AccountClosureResponseModel {
   /// Initializes Account closure response class.
   const AccountClosureResponse({
-    super.accountClosure,
-  });
+    bool? accountClosure,
+  }) : super(
+          accountClosure: accountClosure,
+        );
 
   /// Creates an instance from JSON.
   factory AccountClosureResponse.fromJson(

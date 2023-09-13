@@ -19,8 +19,10 @@ abstract class AccountStatisticsResponseModel {
 class AccountStatisticsResponse extends AccountStatisticsResponseModel {
   /// Initializes Account statistics response class.
   const AccountStatisticsResponse({
-    super.accountStatistics,
-  });
+    AccountStatistics? accountStatistics,
+  }) : super(
+          accountStatistics: accountStatistics,
+        );
 
   /// Creates an instance from JSON.
   factory AccountStatisticsResponse.fromJson(
@@ -74,10 +76,14 @@ abstract class AccountStatisticsModel {
 class AccountStatistics extends AccountStatisticsModel {
   /// Initializes Account statistics class.
   const AccountStatistics({
-    super.currency,
-    super.totalDeposits,
-    super.totalWithdrawals,
-  });
+    String? currency,
+    double? totalDeposits,
+    double? totalWithdrawals,
+  }) : super(
+          currency: currency,
+          totalDeposits: totalDeposits,
+          totalWithdrawals: totalWithdrawals,
+        );
 
   /// Creates an instance from JSON.
   factory AccountStatistics.fromJson(Map<String, dynamic> json) =>
