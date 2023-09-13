@@ -9,11 +9,16 @@ class P2pOrderReviewReceive extends Response {
   /// Initialize P2pOrderReviewReceive.
   const P2pOrderReviewReceive({
     this.p2pOrderReview,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pOrderReviewReceive.fromJson(Map<String, dynamic> json) =>

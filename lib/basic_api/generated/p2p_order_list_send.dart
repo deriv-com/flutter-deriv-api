@@ -14,10 +14,13 @@ class P2pOrderListRequest extends Request {
     this.offset,
     this.p2pOrderList = true,
     this.subscribe,
-    super.msgType = 'p2p_order_list',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_order_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>

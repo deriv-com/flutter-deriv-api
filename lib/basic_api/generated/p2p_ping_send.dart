@@ -9,10 +9,13 @@ class P2pPingRequest extends Request {
   /// Initialize P2pPingRequest.
   const P2pPingRequest({
     this.p2pPing = true,
-    super.msgType = 'p2p_ping',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_ping',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pPingRequest.fromJson(Map<String, dynamic> json) => P2pPingRequest(
