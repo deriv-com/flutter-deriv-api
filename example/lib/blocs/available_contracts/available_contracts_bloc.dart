@@ -76,6 +76,5 @@ class AvailableContractsBloc
   ) async =>
       ContractsForResponse.fetchContractsForSymbol(ContractsForRequest(
         contractsFor: selectedSymbol?.symbol,
-        landingCompany: 'svg',
       ));
 }

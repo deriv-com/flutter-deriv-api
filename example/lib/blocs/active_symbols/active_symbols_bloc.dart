@@ -53,6 +53,5 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
       ActiveSymbolsResponse.fetchActiveSymbols(const ActiveSymbolsRequest(
         activeSymbols: 'brief',
         productType: 'basic',
-        landingCompany: 'svg',
       ));
 }
