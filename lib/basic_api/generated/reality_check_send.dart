@@ -9,10 +9,13 @@ class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest.
   const RealityCheckRequest({
     this.realityCheck = true,
-    super.msgType = 'reality_check',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'reality_check',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>

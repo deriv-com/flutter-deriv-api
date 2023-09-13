@@ -9,10 +9,13 @@ class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest.
   const PayoutCurrenciesRequest({
     this.payoutCurrencies = true,
-    super.msgType = 'payout_currencies',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'payout_currencies',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>

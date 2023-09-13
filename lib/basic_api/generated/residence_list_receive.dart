@@ -9,11 +9,16 @@ class ResidenceListReceive extends Response {
   /// Initialize ResidenceListReceive.
   const ResidenceListReceive({
     this.residenceList,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory ResidenceListReceive.fromJson(Map<String, dynamic> json) =>

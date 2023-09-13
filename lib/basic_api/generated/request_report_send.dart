@@ -12,10 +12,13 @@ class RequestReportRequest extends Request {
     required this.dateTo,
     required this.reportType,
     this.requestReport = true,
-    super.msgType = 'request_report',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'request_report',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>

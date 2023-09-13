@@ -29,10 +29,13 @@ class ProposalRequest extends Request {
     this.subscribe,
     required this.symbol,
     this.tradingPeriodStart,
-    super.msgType = 'proposal',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'proposal',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>

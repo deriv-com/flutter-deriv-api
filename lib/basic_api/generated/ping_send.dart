@@ -9,10 +9,13 @@ class PingRequest extends Request {
   /// Initialize PingRequest.
   const PingRequest({
     this.ping = true,
-    super.msgType = 'ping',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'ping',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
