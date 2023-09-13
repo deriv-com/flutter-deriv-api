@@ -25,10 +25,8 @@ abstract class CopytradingListResponseModel {
 class CopytradingListResponse extends CopytradingListResponseModel {
   /// Initializes Copytrading list response class.
   const CopytradingListResponse({
-    CopytradingList? copytradingList,
-  }) : super(
-          copytradingList: copytradingList,
-        );
+    super.copytradingList,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingListResponse.fromJson(
@@ -80,7 +78,6 @@ class CopytradingListResponse extends CopytradingListResponseModel {
         copytradingList: copytradingList ?? this.copytradingList,
       );
 }
-
 /// Copytrading list model class.
 abstract class CopytradingListModel {
   /// Initializes Copytrading list model class .
@@ -100,12 +97,9 @@ abstract class CopytradingListModel {
 class CopytradingList extends CopytradingListModel {
   /// Initializes Copytrading list class.
   const CopytradingList({
-    required List<CopiersItem> copiers,
-    required List<TradersItem> traders,
-  }) : super(
-          copiers: copiers,
-          traders: traders,
-        );
+    required super.copiers,
+    required super.traders,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingList.fromJson(Map<String, dynamic> json) =>
@@ -151,7 +145,6 @@ class CopytradingList extends CopytradingListModel {
         traders: traders ?? this.traders,
       );
 }
-
 /// Copiers item model class.
 abstract class CopiersItemModel {
   /// Initializes Copiers item model class .
@@ -167,10 +160,8 @@ abstract class CopiersItemModel {
 class CopiersItem extends CopiersItemModel {
   /// Initializes Copiers item class.
   const CopiersItem({
-    required String loginid,
-  }) : super(
-          loginid: loginid,
-        );
+    required super.loginid,
+  });
 
   /// Creates an instance from JSON.
   factory CopiersItem.fromJson(Map<String, dynamic> json) => CopiersItem(
@@ -194,7 +185,6 @@ class CopiersItem extends CopiersItemModel {
         loginid: loginid ?? this.loginid,
       );
 }
-
 /// Traders item model class.
 abstract class TradersItemModel {
   /// Initializes Traders item model class .
@@ -230,20 +220,13 @@ abstract class TradersItemModel {
 class TradersItem extends TradersItemModel {
   /// Initializes Traders item class.
   const TradersItem({
-    List<String>? assets,
-    String? loginid,
-    double? maxTradeStake,
-    double? minTradeStake,
-    String? token,
-    List<String>? tradeTypes,
-  }) : super(
-          assets: assets,
-          loginid: loginid,
-          maxTradeStake: maxTradeStake,
-          minTradeStake: minTradeStake,
-          token: token,
-          tradeTypes: tradeTypes,
-        );
+    super.assets,
+    super.loginid,
+    super.maxTradeStake,
+    super.minTradeStake,
+    super.token,
+    super.tradeTypes,
+  });
 
   /// Creates an instance from JSON.
   factory TradersItem.fromJson(Map<String, dynamic> json) => TradersItem(

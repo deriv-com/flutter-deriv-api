@@ -19,10 +19,8 @@ class TradingPlatformPasswordResetResponse
     extends TradingPlatformPasswordResetResponseModel {
   /// Initializes Trading platform password reset response class.
   const TradingPlatformPasswordResetResponse({
-    bool? tradingPlatformPasswordReset,
-  }) : super(
-          tradingPlatformPasswordReset: tradingPlatformPasswordReset,
-        );
+    super.tradingPlatformPasswordReset,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformPasswordResetResponse.fromJson(

@@ -10,13 +10,10 @@ class SellRequest extends Request {
   const SellRequest({
     required this.price,
     required this.sell,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'sell',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'sell',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(

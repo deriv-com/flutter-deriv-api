@@ -13,26 +13,26 @@ class SetFinancialAssessmentRequest extends Request {
     this.binaryOptionsTradingFrequency,
     this.cfdTradingExperience,
     this.cfdTradingFrequency,
-    required this.educationLevel,
-    required this.employmentIndustry,
+    this.educationLevel,
+    this.employmentIndustry,
     this.employmentStatus,
-    required this.estimatedWorth,
+    this.estimatedWorth,
+    this.financialInformation,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    required this.incomeSource,
-    required this.netIncome,
-    required this.occupation,
+    this.incomeSource,
+    this.netIncome,
+    this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = true,
     this.sourceOfWealth,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'set_financial_assessment',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.tradingExperience,
+    this.tradingExperienceRegulated,
+    super.msgType = 'set_financial_assessment',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
@@ -48,6 +48,8 @@ class SetFinancialAssessmentRequest extends Request {
         employmentIndustry: json['employment_industry'] as String?,
         employmentStatus: json['employment_status'] as String?,
         estimatedWorth: json['estimated_worth'] as String?,
+        financialInformation:
+            json['financial_information'] as Map<String, dynamic>?,
         forexTradingExperience: json['forex_trading_experience'] as String?,
         forexTradingFrequency: json['forex_trading_frequency'] as String?,
         incomeSource: json['income_source'] as String?,
@@ -61,6 +63,9 @@ class SetFinancialAssessmentRequest extends Request {
             ? null
             : json['set_financial_assessment'] == 1,
         sourceOfWealth: json['source_of_wealth'] as String?,
+        tradingExperience: json['trading_experience'] as Map<String, dynamic>?,
+        tradingExperienceRegulated:
+            json['trading_experience_regulated'] as Map<String, dynamic>?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -80,17 +85,20 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] CFDs trading frequency.
   final String? cfdTradingFrequency;
 
-  /// Level of Education.
+  /// [Optional] Level of Education.
   final String? educationLevel;
 
-  /// Industry of Employment.
+  /// [Optional] Industry of Employment.
   final String? employmentIndustry;
 
   /// [Optional] Employment Status.
   final String? employmentStatus;
 
-  /// Estimated Net Worth.
+  /// [Optional] Estimated Net Worth.
   final String? estimatedWorth;
+
+  /// [Optional] The financial information of a client
+  final Map<String, dynamic>? financialInformation;
 
   /// [Optional] Forex trading experience.
   final String? forexTradingExperience;
@@ -98,13 +106,13 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Forex trading frequency.
   final String? forexTradingFrequency;
 
-  /// Income Source.
+  /// [Optional] Income Source.
   final String? incomeSource;
 
-  /// Net Annual Income.
+  /// [Optional] Net Annual Income.
   final String? netIncome;
 
-  /// Occupation.
+  /// [Optional] Occupation.
   final String? occupation;
 
   /// [Optional] Trading experience in other financial instruments.
@@ -119,6 +127,12 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Source of wealth.
   final String? sourceOfWealth;
 
+  /// [Optional] The trading experience of a client
+  final Map<String, dynamic>? tradingExperience;
+
+  /// [Optional] The trading experience of a `maltainvest` client
+  final Map<String, dynamic>? tradingExperienceRegulated;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -131,6 +145,7 @@ class SetFinancialAssessmentRequest extends Request {
         'employment_industry': employmentIndustry,
         'employment_status': employmentStatus,
         'estimated_worth': estimatedWorth,
+        'financial_information': financialInformation,
         'forex_trading_experience': forexTradingExperience,
         'forex_trading_frequency': forexTradingFrequency,
         'income_source': incomeSource,
@@ -145,6 +160,8 @@ class SetFinancialAssessmentRequest extends Request {
                 ? 1
                 : 0,
         'source_of_wealth': sourceOfWealth,
+        'trading_experience': tradingExperience,
+        'trading_experience_regulated': tradingExperienceRegulated,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -161,6 +178,7 @@ class SetFinancialAssessmentRequest extends Request {
     String? employmentIndustry,
     String? employmentStatus,
     String? estimatedWorth,
+    Map<String, dynamic>? financialInformation,
     String? forexTradingExperience,
     String? forexTradingFrequency,
     String? incomeSource,
@@ -170,6 +188,8 @@ class SetFinancialAssessmentRequest extends Request {
     String? otherInstrumentsTradingFrequency,
     bool? setFinancialAssessment,
     String? sourceOfWealth,
+    Map<String, dynamic>? tradingExperience,
+    Map<String, dynamic>? tradingExperienceRegulated,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -185,6 +205,7 @@ class SetFinancialAssessmentRequest extends Request {
         employmentIndustry: employmentIndustry ?? this.employmentIndustry,
         employmentStatus: employmentStatus ?? this.employmentStatus,
         estimatedWorth: estimatedWorth ?? this.estimatedWorth,
+        financialInformation: financialInformation ?? this.financialInformation,
         forexTradingExperience:
             forexTradingExperience ?? this.forexTradingExperience,
         forexTradingFrequency:
@@ -199,6 +220,9 @@ class SetFinancialAssessmentRequest extends Request {
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
         sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
+        tradingExperience: tradingExperience ?? this.tradingExperience,
+        tradingExperienceRegulated:
+            tradingExperienceRegulated ?? this.tradingExperienceRegulated,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

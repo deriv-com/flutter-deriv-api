@@ -25,10 +25,8 @@ abstract class SetSettingsResponseModel {
 class SetSettingsResponse extends SetSettingsResponseModel {
   /// Initializes Set settings response class.
   const SetSettingsResponse({
-    int? setSettings,
-  }) : super(
-          setSettings: setSettings,
-        );
+    super.setSettings,
+  });
 
   /// Creates an instance from JSON.
   factory SetSettingsResponse.fromJson(

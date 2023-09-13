@@ -9,16 +9,11 @@ class TradingServersReceive extends Response {
   /// Initialize TradingServersReceive.
   const TradingServersReceive({
     this.tradingServers,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingServersReceive.fromJson(Map<String, dynamic> json) =>

@@ -9,13 +9,10 @@ class CancelRequest extends Request {
   /// Initialize CancelRequest.
   const CancelRequest({
     required this.cancel,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cancel',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'cancel',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(

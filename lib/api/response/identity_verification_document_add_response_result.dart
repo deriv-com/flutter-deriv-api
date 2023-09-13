@@ -19,10 +19,8 @@ class IdentityVerificationDocumentAddResponse
     extends IdentityVerificationDocumentAddResponseModel {
   /// Initializes Identity verification document add response class.
   const IdentityVerificationDocumentAddResponse({
-    int? identityVerificationDocumentAdd,
-  }) : super(
-          identityVerificationDocumentAdd: identityVerificationDocumentAdd,
-        );
+    super.identityVerificationDocumentAdd,
+  });
 
   /// Creates an instance from JSON.
   factory IdentityVerificationDocumentAddResponse.fromJson(

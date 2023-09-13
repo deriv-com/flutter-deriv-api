@@ -9,13 +9,10 @@ class AppGetRequest extends Request {
   /// Initialize AppGetRequest.
   const AppGetRequest({
     required this.appGet,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_get',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_get',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(

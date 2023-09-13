@@ -12,13 +12,10 @@ class SellContractForMultipleAccountsRequest extends Request {
     this.sellContractForMultipleAccounts = true,
     required this.shortcode,
     required this.tokens,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'sell_contract_for_multiple_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'sell_contract_for_multiple_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SellContractForMultipleAccountsRequest.fromJson(

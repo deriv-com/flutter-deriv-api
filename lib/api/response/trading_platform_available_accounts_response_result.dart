@@ -21,11 +21,8 @@ class TradingPlatformAvailableAccountsResponse
     extends TradingPlatformAvailableAccountsResponseModel {
   /// Initializes Trading platform available accounts response class.
   const TradingPlatformAvailableAccountsResponse({
-    List<TradingPlatformAvailableAccountsItem>?
-        tradingPlatformAvailableAccounts,
-  }) : super(
-          tradingPlatformAvailableAccounts: tradingPlatformAvailableAccounts,
-        );
+    super.tradingPlatformAvailableAccounts,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAvailableAccountsResponse.fromJson(
@@ -70,11 +67,29 @@ class TradingPlatformAvailableAccountsResponse
       );
 }
 
+/// LinkableLandingCompaniesItemEnum mapper.
+final Map<String, LinkableLandingCompaniesItemEnum>
+    linkableLandingCompaniesItemEnumMapper =
+    <String, LinkableLandingCompaniesItemEnum>{
+  "svg": LinkableLandingCompaniesItemEnum.svg,
+  "maltainvest": LinkableLandingCompaniesItemEnum.maltainvest,
+};
+
+/// LinkableLandingCompaniesItem Enum.
+enum LinkableLandingCompaniesItemEnum {
+  /// svg.
+  svg,
+
+  /// maltainvest.
+  maltainvest,
+}
+
 /// MarketTypeEnum mapper.
 final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "gaming": MarketTypeEnum.gaming,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -84,12 +99,16 @@ enum MarketTypeEnum {
 
   /// gaming.
   gaming,
+
+  /// all.
+  all,
 }
 
 /// SubAccountTypeEnum mapper.
 final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "standard": SubAccountTypeEnum.standard,
+  "swap_free": SubAccountTypeEnum.swapFree,
   "stp": SubAccountTypeEnum.stp,
 };
 
@@ -98,6 +117,9 @@ enum SubAccountTypeEnum {
   /// standard.
   standard,
 
+  /// swap_free.
+  swapFree,
+
   /// stp.
   stp,
 }
@@ -105,12 +127,16 @@ enum SubAccountTypeEnum {
 abstract class TradingPlatformAvailableAccountsItemModel {
   /// Initializes Trading platform available accounts item model class .
   const TradingPlatformAvailableAccountsItemModel({
+    this.linkableLandingCompanies,
     this.marketType,
     this.name,
     this.requirements,
     this.shortcode,
     this.subAccountType,
   });
+
+  /// A list of Deriv landing companies that can work with this account type
+  final List<LinkableLandingCompaniesItemEnum>? linkableLandingCompanies;
 
   /// The type of market tradable by this account
   final MarketTypeEnum? marketType;
@@ -133,23 +159,27 @@ class TradingPlatformAvailableAccountsItem
     extends TradingPlatformAvailableAccountsItemModel {
   /// Initializes Trading platform available accounts item class.
   const TradingPlatformAvailableAccountsItem({
-    MarketTypeEnum? marketType,
-    String? name,
-    Requirements? requirements,
-    String? shortcode,
-    SubAccountTypeEnum? subAccountType,
-  }) : super(
-          marketType: marketType,
-          name: name,
-          requirements: requirements,
-          shortcode: shortcode,
-          subAccountType: subAccountType,
-        );
+    super.linkableLandingCompanies,
+    super.marketType,
+    super.name,
+    super.requirements,
+    super.shortcode,
+    super.subAccountType,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAvailableAccountsItem.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformAvailableAccountsItem(
+        linkableLandingCompanies: json['linkable_landing_companies'] == null
+            ? null
+            : List<LinkableLandingCompaniesItemEnum>.from(
+                json['linkable_landing_companies']?.map(
+                  (dynamic item) => item == null
+                      ? null
+                      : linkableLandingCompaniesItemEnumMapper[item],
+                ),
+              ),
         marketType: json['market_type'] == null
             ? null
             : marketTypeEnumMapper[json['market_type']],
@@ -167,6 +197,19 @@ class TradingPlatformAvailableAccountsItem
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    if (linkableLandingCompanies != null) {
+      resultMap['linkable_landing_companies'] = linkableLandingCompanies!
+          .map<dynamic>(
+            (LinkableLandingCompaniesItemEnum item) =>
+                linkableLandingCompaniesItemEnumMapper.entries
+                    .firstWhere(
+                        (MapEntry<String, LinkableLandingCompaniesItemEnum>
+                                entry) =>
+                            entry.value == item)
+                    .key,
+          )
+          .toList();
+    }
     resultMap['market_type'] = marketTypeEnumMapper.entries
         .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
             entry.value == marketType)
@@ -186,6 +229,7 @@ class TradingPlatformAvailableAccountsItem
 
   /// Creates a copy of instance with given parameters.
   TradingPlatformAvailableAccountsItem copyWith({
+    List<LinkableLandingCompaniesItemEnum>? linkableLandingCompanies,
     MarketTypeEnum? marketType,
     String? name,
     Requirements? requirements,
@@ -193,6 +237,8 @@ class TradingPlatformAvailableAccountsItem
     SubAccountTypeEnum? subAccountType,
   }) =>
       TradingPlatformAvailableAccountsItem(
+        linkableLandingCompanies:
+            linkableLandingCompanies ?? this.linkableLandingCompanies,
         marketType: marketType ?? this.marketType,
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
@@ -227,16 +273,11 @@ abstract class RequirementsModel {
 class Requirements extends RequirementsModel {
   /// Initializes Requirements class.
   const Requirements({
-    AfterFirstDeposit? afterFirstDeposit,
-    Compliance? compliance,
-    List<String>? signup,
-    List<String>? withdrawal,
-  }) : super(
-          afterFirstDeposit: afterFirstDeposit,
-          compliance: compliance,
-          signup: signup,
-          withdrawal: withdrawal,
-        );
+    super.afterFirstDeposit,
+    super.compliance,
+    super.signup,
+    super.withdrawal,
+  });
 
   /// Creates an instance from JSON.
   factory Requirements.fromJson(Map<String, dynamic> json) => Requirements(
@@ -319,10 +360,8 @@ abstract class AfterFirstDepositModel {
 class AfterFirstDeposit extends AfterFirstDepositModel {
   /// Initializes After first deposit class.
   const AfterFirstDeposit({
-    List<String>? financialAssessment,
-  }) : super(
-          financialAssessment: financialAssessment,
-        );
+    super.financialAssessment,
+  });
 
   /// Creates an instance from JSON.
   factory AfterFirstDeposit.fromJson(Map<String, dynamic> json) =>
@@ -378,12 +417,9 @@ abstract class ComplianceModel {
 class Compliance extends ComplianceModel {
   /// Initializes Compliance class.
   const Compliance({
-    List<String>? mt5,
-    List<String>? taxInformation,
-  }) : super(
-          mt5: mt5,
-          taxInformation: taxInformation,
-        );
+    super.mt5,
+    super.taxInformation,
+  });
 
   /// Creates an instance from JSON.
   factory Compliance.fromJson(Map<String, dynamic> json) => Compliance(

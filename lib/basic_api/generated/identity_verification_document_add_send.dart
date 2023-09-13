@@ -8,22 +8,21 @@ import '../request.dart';
 class IdentityVerificationDocumentAddRequest extends Request {
   /// Initialize IdentityVerificationDocumentAddRequest.
   const IdentityVerificationDocumentAddRequest({
+    this.documentAdditional,
     required this.documentNumber,
     required this.documentType,
     this.identityVerificationDocumentAdd = true,
     required this.issuingCountry,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'identity_verification_document_add',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'identity_verification_document_add',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory IdentityVerificationDocumentAddRequest.fromJson(
           Map<String, dynamic> json) =>
       IdentityVerificationDocumentAddRequest(
+        documentAdditional: json['document_additional'] as String?,
         documentNumber: json['document_number'] as String?,
         documentType: json['document_type'] as String?,
         identityVerificationDocumentAdd:
@@ -34,6 +33,9 @@ class IdentityVerificationDocumentAddRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] Additional info required by some document types.
+  final String? documentAdditional;
 
   /// The identification number of the document.
   final String? documentNumber;
@@ -50,6 +52,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'document_additional': documentAdditional,
         'document_number': documentNumber,
         'document_type': documentType,
         'identity_verification_document_add':
@@ -66,6 +69,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   IdentityVerificationDocumentAddRequest copyWith({
+    String? documentAdditional,
     String? documentNumber,
     String? documentType,
     bool? identityVerificationDocumentAdd,
@@ -74,6 +78,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
     int? reqId,
   }) =>
       IdentityVerificationDocumentAddRequest(
+        documentAdditional: documentAdditional ?? this.documentAdditional,
         documentNumber: documentNumber ?? this.documentNumber,
         documentType: documentType ?? this.documentType,
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??

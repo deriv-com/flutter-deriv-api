@@ -9,16 +9,11 @@ class SellReceive extends Response {
   /// Initialize SellReceive.
   const SellReceive({
     this.sell,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SellReceive.fromJson(Map<String, dynamic> json) => SellReceive(

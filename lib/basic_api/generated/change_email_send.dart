@@ -12,13 +12,10 @@ class ChangeEmailRequest extends Request {
     required this.newEmail,
     this.newPassword,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'change_email',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'change_email',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ChangeEmailRequest.fromJson(Map<String, dynamic> json) =>

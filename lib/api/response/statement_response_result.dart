@@ -25,10 +25,8 @@ abstract class StatementResponseModel {
 class StatementResponse extends StatementResponseModel {
   /// Initializes Statement response class.
   const StatementResponse({
-    Statement? statement,
-  }) : super(
-          statement: statement,
-        );
+    super.statement,
+  });
 
   /// Creates an instance from JSON.
   factory StatementResponse.fromJson(
@@ -120,7 +118,6 @@ enum ActionTypeEnum {
   /// transfer.
   transfer,
 }
-
 /// Statement model class.
 abstract class StatementModel {
   /// Initializes Statement model class .
@@ -140,12 +137,9 @@ abstract class StatementModel {
 class Statement extends StatementModel {
   /// Initializes Statement class.
   const Statement({
-    double? count,
-    List<TransactionsItem>? transactions,
-  }) : super(
-          count: count,
-          transactions: transactions,
-        );
+    super.count,
+    super.transactions,
+  });
 
   /// Creates an instance from JSON.
   factory Statement.fromJson(Map<String, dynamic> json) => Statement(
@@ -185,7 +179,6 @@ class Statement extends StatementModel {
         transactions: transactions ?? this.transactions,
       );
 }
-
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -261,40 +254,23 @@ abstract class TransactionsItemModel {
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
   const TransactionsItem({
-    ActionTypeEnum? actionType,
-    double? amount,
-    int? appId,
-    double? balanceAfter,
-    int? contractId,
-    Fees? fees,
-    From? from,
-    String? longcode,
-    double? payout,
-    DateTime? purchaseTime,
-    int? referenceId,
-    String? shortcode,
-    To? to,
-    int? transactionId,
-    DateTime? transactionTime,
-    String? withdrawalDetails,
-  }) : super(
-          actionType: actionType,
-          amount: amount,
-          appId: appId,
-          balanceAfter: balanceAfter,
-          contractId: contractId,
-          fees: fees,
-          from: from,
-          longcode: longcode,
-          payout: payout,
-          purchaseTime: purchaseTime,
-          referenceId: referenceId,
-          shortcode: shortcode,
-          to: to,
-          transactionId: transactionId,
-          transactionTime: transactionTime,
-          withdrawalDetails: withdrawalDetails,
-        );
+    super.actionType,
+    super.amount,
+    super.appId,
+    super.balanceAfter,
+    super.contractId,
+    super.fees,
+    super.from,
+    super.longcode,
+    super.payout,
+    super.purchaseTime,
+    super.referenceId,
+    super.shortcode,
+    super.to,
+    super.transactionId,
+    super.transactionTime,
+    super.withdrawalDetails,
+  });
 
   /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>
@@ -391,7 +367,6 @@ class TransactionsItem extends TransactionsItemModel {
         withdrawalDetails: withdrawalDetails ?? this.withdrawalDetails,
       );
 }
-
 /// Fees model class.
 abstract class FeesModel {
   /// Initializes Fees model class .
@@ -419,16 +394,11 @@ abstract class FeesModel {
 class Fees extends FeesModel {
   /// Initializes Fees class.
   const Fees({
-    double? amount,
-    String? currency,
-    double? minimum,
-    double? percentage,
-  }) : super(
-          amount: amount,
-          currency: currency,
-          minimum: minimum,
-          percentage: percentage,
-        );
+    super.amount,
+    super.currency,
+    super.minimum,
+    super.percentage,
+  });
 
   /// Creates an instance from JSON.
   factory Fees.fromJson(Map<String, dynamic> json) => Fees(
@@ -464,7 +434,6 @@ class Fees extends FeesModel {
         percentage: percentage ?? this.percentage,
       );
 }
-
 /// From model class.
 abstract class FromModel {
   /// Initializes From model class .
@@ -480,10 +449,8 @@ abstract class FromModel {
 class From extends FromModel {
   /// Initializes From class.
   const From({
-    String? loginid,
-  }) : super(
-          loginid: loginid,
-        );
+    super.loginid,
+  });
 
   /// Creates an instance from JSON.
   factory From.fromJson(Map<String, dynamic> json) => From(
@@ -507,7 +474,6 @@ class From extends FromModel {
         loginid: loginid ?? this.loginid,
       );
 }
-
 /// To model class.
 abstract class ToModel {
   /// Initializes To model class .
@@ -523,10 +489,8 @@ abstract class ToModel {
 class To extends ToModel {
   /// Initializes To class.
   const To({
-    String? loginid,
-  }) : super(
-          loginid: loginid,
-        );
+    super.loginid,
+  });
 
   /// Creates an instance from JSON.
   factory To.fromJson(Map<String, dynamic> json) => To(

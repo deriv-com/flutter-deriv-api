@@ -25,10 +25,8 @@ abstract class LogoutResponseModel {
 class LogoutResponse extends LogoutResponseModel {
   /// Initializes Logout response class.
   const LogoutResponse({
-    int? logout,
-  }) : super(
-          logout: logout,
-        );
+    super.logout,
+  });
 
   /// Creates an instance from JSON.
   factory LogoutResponse.fromJson(

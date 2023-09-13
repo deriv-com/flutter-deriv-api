@@ -9,13 +9,10 @@ class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest.
   const TopupVirtualRequest({
     this.topupVirtual = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'topup_virtual',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'topup_virtual',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>

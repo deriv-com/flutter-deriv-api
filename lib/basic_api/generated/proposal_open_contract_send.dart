@@ -11,13 +11,10 @@ class ProposalOpenContractRequest extends Request {
     this.contractId,
     this.proposalOpenContract = true,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'proposal_open_contract',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'proposal_open_contract',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>

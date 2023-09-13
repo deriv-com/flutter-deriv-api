@@ -34,12 +34,9 @@ abstract class TicksResponseModel {
 class TicksResponse extends TicksResponseModel {
   /// Initializes Ticks response class.
   const TicksResponse({
-    Tick? tick,
-    Subscription? subscription,
-  }) : super(
-          tick: tick,
-          subscription: subscription,
-        );
+    super.tick,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory TicksResponse.fromJson(
@@ -121,7 +118,6 @@ class TicksResponse extends TicksResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Tick model class.
 abstract class TickModel {
   /// Initializes Tick model class .
@@ -161,22 +157,14 @@ abstract class TickModel {
 class Tick extends TickModel {
   /// Initializes Tick class.
   const Tick({
-    required double pipSize,
-    double? ask,
-    double? bid,
-    DateTime? epoch,
-    String? id,
-    double? quote,
-    String? symbol,
-  }) : super(
-          pipSize: pipSize,
-          ask: ask,
-          bid: bid,
-          epoch: epoch,
-          id: id,
-          quote: quote,
-          symbol: symbol,
-        );
+    required super.pipSize,
+    super.ask,
+    super.bid,
+    super.epoch,
+    super.id,
+    super.quote,
+    super.symbol,
+  });
 
   /// Creates an instance from JSON.
   factory Tick.fromJson(Map<String, dynamic> json) => Tick(
@@ -224,7 +212,6 @@ class Tick extends TickModel {
         symbol: symbol ?? this.symbol,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -240,10 +227,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

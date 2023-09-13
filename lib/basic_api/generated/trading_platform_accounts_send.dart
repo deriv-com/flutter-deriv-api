@@ -10,13 +10,10 @@ class TradingPlatformAccountsRequest extends Request {
   const TradingPlatformAccountsRequest({
     required this.platform,
     this.tradingPlatformAccounts = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAccountsRequest.fromJson(Map<String, dynamic> json) =>

@@ -18,13 +18,10 @@ class AppRegisterRequest extends Request {
     this.redirectUri,
     required this.scopes,
     this.verificationUri,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_register',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_register',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
@@ -46,7 +43,7 @@ class AppRegisterRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
+  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout). Max markup: 3%.
   final num? appMarkupPercentage;
 
   /// Must be `true`

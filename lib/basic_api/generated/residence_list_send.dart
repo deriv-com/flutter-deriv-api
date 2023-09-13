@@ -9,13 +9,10 @@ class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest.
   const ResidenceListRequest({
     this.residenceList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'residence_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'residence_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>

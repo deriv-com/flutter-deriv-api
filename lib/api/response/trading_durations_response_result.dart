@@ -25,10 +25,8 @@ abstract class TradingDurationsResponseModel {
 class TradingDurationsResponse extends TradingDurationsResponseModel {
   /// Initializes Trading durations response class.
   const TradingDurationsResponse({
-    List<TradingDurationsItem>? tradingDurations,
-  }) : super(
-          tradingDurations: tradingDurations,
-        );
+    super.tradingDurations,
+  });
 
   /// Creates an instance from JSON.
   factory TradingDurationsResponse.fromJson(
@@ -88,7 +86,6 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
         tradingDurations: tradingDurations ?? this.tradingDurations,
       );
 }
-
 /// Trading durations item model class.
 abstract class TradingDurationsItemModel {
   /// Initializes Trading durations item model class .
@@ -112,14 +109,10 @@ abstract class TradingDurationsItemModel {
 class TradingDurationsItem extends TradingDurationsItemModel {
   /// Initializes Trading durations item class.
   const TradingDurationsItem({
-    List<DataItem>? data,
-    TradingDurationsItemMarket? market,
-    TradingDurationsItemSubmarket? submarket,
-  }) : super(
-          data: data,
-          market: market,
-          submarket: submarket,
-        );
+    super.data,
+    super.market,
+    super.submarket,
+  });
 
   /// Creates an instance from JSON.
   factory TradingDurationsItem.fromJson(Map<String, dynamic> json) =>
@@ -172,7 +165,6 @@ class TradingDurationsItem extends TradingDurationsItemModel {
         submarket: submarket ?? this.submarket,
       );
 }
-
 /// Data item model class.
 abstract class DataItemModel {
   /// Initializes Data item model class .
@@ -200,16 +192,11 @@ abstract class DataItemModel {
 class DataItem extends DataItemModel {
   /// Initializes Data item class.
   const DataItem({
-    Market? market,
-    Submarket? submarket,
-    List<SymbolItem>? symbol,
-    List<TradeDurationsItem>? tradeDurations,
-  }) : super(
-          market: market,
-          submarket: submarket,
-          symbol: symbol,
-          tradeDurations: tradeDurations,
-        );
+    super.market,
+    super.submarket,
+    super.symbol,
+    super.tradeDurations,
+  });
 
   /// Creates an instance from JSON.
   factory DataItem.fromJson(Map<String, dynamic> json) => DataItem(
@@ -275,7 +262,6 @@ class DataItem extends DataItemModel {
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
 }
-
 /// Market model class.
 abstract class MarketModel {
   /// Initializes Market model class .
@@ -295,12 +281,9 @@ abstract class MarketModel {
 class Market extends MarketModel {
   /// Initializes Market class.
   const Market({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory Market.fromJson(Map<String, dynamic> json) => Market(
@@ -328,7 +311,6 @@ class Market extends MarketModel {
         name: name ?? this.name,
       );
 }
-
 /// Submarket model class.
 abstract class SubmarketModel {
   /// Initializes Submarket model class .
@@ -348,12 +330,9 @@ abstract class SubmarketModel {
 class Submarket extends SubmarketModel {
   /// Initializes Submarket class.
   const Submarket({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory Submarket.fromJson(Map<String, dynamic> json) => Submarket(
@@ -381,7 +360,6 @@ class Submarket extends SubmarketModel {
         name: name ?? this.name,
       );
 }
-
 /// Symbol item model class.
 abstract class SymbolItemModel {
   /// Initializes Symbol item model class .
@@ -401,12 +379,9 @@ abstract class SymbolItemModel {
 class SymbolItem extends SymbolItemModel {
   /// Initializes Symbol item class.
   const SymbolItem({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory SymbolItem.fromJson(Map<String, dynamic> json) => SymbolItem(
@@ -434,7 +409,6 @@ class SymbolItem extends SymbolItemModel {
         name: name ?? this.name,
       );
 }
-
 /// Trade durations item model class.
 abstract class TradeDurationsItemModel {
   /// Initializes Trade durations item model class .
@@ -454,12 +428,9 @@ abstract class TradeDurationsItemModel {
 class TradeDurationsItem extends TradeDurationsItemModel {
   /// Initializes Trade durations item class.
   const TradeDurationsItem({
-    List<DurationsItem>? durations,
-    TradeType? tradeType,
-  }) : super(
-          durations: durations,
-          tradeType: tradeType,
-        );
+    super.durations,
+    super.tradeType,
+  });
 
   /// Creates an instance from JSON.
   factory TradeDurationsItem.fromJson(Map<String, dynamic> json) =>
@@ -504,7 +475,6 @@ class TradeDurationsItem extends TradeDurationsItemModel {
         tradeType: tradeType ?? this.tradeType,
       );
 }
-
 /// Durations item model class.
 abstract class DurationsItemModel {
   /// Initializes Durations item model class .
@@ -532,16 +502,11 @@ abstract class DurationsItemModel {
 class DurationsItem extends DurationsItemModel {
   /// Initializes Durations item class.
   const DurationsItem({
-    String? displayName,
-    int? max,
-    int? min,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          max: max,
-          min: min,
-          name: name,
-        );
+    super.displayName,
+    super.max,
+    super.min,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory DurationsItem.fromJson(Map<String, dynamic> json) => DurationsItem(
@@ -577,7 +542,6 @@ class DurationsItem extends DurationsItemModel {
         name: name ?? this.name,
       );
 }
-
 /// Trade type model class.
 abstract class TradeTypeModel {
   /// Initializes Trade type model class .
@@ -597,12 +561,9 @@ abstract class TradeTypeModel {
 class TradeType extends TradeTypeModel {
   /// Initializes Trade type class.
   const TradeType({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory TradeType.fromJson(Map<String, dynamic> json) => TradeType(
@@ -630,7 +591,6 @@ class TradeType extends TradeTypeModel {
         name: name ?? this.name,
       );
 }
-
 /// Trading durations item market model class.
 abstract class TradingDurationsItemMarketModel {
   /// Initializes Trading durations item market model class .
@@ -650,12 +610,9 @@ abstract class TradingDurationsItemMarketModel {
 class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
   /// Initializes Trading durations item market class.
   const TradingDurationsItemMarket({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory TradingDurationsItemMarket.fromJson(Map<String, dynamic> json) =>
@@ -684,7 +641,6 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
         name: name ?? this.name,
       );
 }
-
 /// Trading durations item submarket model class.
 abstract class TradingDurationsItemSubmarketModel {
   /// Initializes Trading durations item submarket model class .
@@ -704,12 +660,9 @@ abstract class TradingDurationsItemSubmarketModel {
 class TradingDurationsItemSubmarket extends TradingDurationsItemSubmarketModel {
   /// Initializes Trading durations item submarket class.
   const TradingDurationsItemSubmarket({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory TradingDurationsItemSubmarket.fromJson(Map<String, dynamic> json) =>

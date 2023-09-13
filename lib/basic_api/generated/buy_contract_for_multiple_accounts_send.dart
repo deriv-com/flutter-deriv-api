@@ -12,13 +12,10 @@ class BuyContractForMultipleAccountsRequest extends Request {
     this.parameters,
     required this.price,
     required this.tokens,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'buy_contract_for_multiple_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'buy_contract_for_multiple_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory BuyContractForMultipleAccountsRequest.fromJson(

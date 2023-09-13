@@ -19,10 +19,8 @@ abstract class ChangePasswordResponseModel {
 class ChangePasswordResponse extends ChangePasswordResponseModel {
   /// Initializes Change password response class.
   const ChangePasswordResponse({
-    bool? changePassword,
-  }) : super(
-          changePassword: changePassword,
-        );
+    super.changePassword,
+  });
 
   /// Creates an instance from JSON.
   factory ChangePasswordResponse.fromJson(

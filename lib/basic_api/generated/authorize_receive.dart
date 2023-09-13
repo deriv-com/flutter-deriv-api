@@ -9,16 +9,11 @@ class AuthorizeReceive extends Response {
   /// Initialize AuthorizeReceive.
   const AuthorizeReceive({
     this.authorize,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AuthorizeReceive.fromJson(Map<String, dynamic> json) =>

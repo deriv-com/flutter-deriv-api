@@ -9,16 +9,11 @@ class P2pOrderDisputeReceive extends Response {
   /// Initialize P2pOrderDisputeReceive.
   const P2pOrderDisputeReceive({
     this.p2pOrderDispute,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderDisputeReceive.fromJson(Map<String, dynamic> json) =>

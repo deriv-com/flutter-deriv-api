@@ -25,10 +25,8 @@ abstract class PayoutCurrenciesResponseModel {
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Initializes Payout currencies response class.
   const PayoutCurrenciesResponse({
-    List<String>? payoutCurrencies,
-  }) : super(
-          payoutCurrencies: payoutCurrencies,
-        );
+    super.payoutCurrencies,
+  });
 
   /// Creates an instance from JSON.
   factory PayoutCurrenciesResponse.fromJson(

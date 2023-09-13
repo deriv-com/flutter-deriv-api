@@ -20,10 +20,8 @@ class TradingPlatformInvestorPasswordChangeResponse
     extends TradingPlatformInvestorPasswordChangeResponseModel {
   /// Initializes Trading platform investor password change response class.
   const TradingPlatformInvestorPasswordChangeResponse({
-    bool? tradingPlatformPasswordChange,
-  }) : super(
-          tradingPlatformPasswordChange: tradingPlatformPasswordChange,
-        );
+    super.tradingPlatformPasswordChange,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformInvestorPasswordChangeResponse.fromJson(

@@ -25,10 +25,8 @@ abstract class SetSelfExclusionResponseModel {
 class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// Initializes Set self exclusion response class.
   const SetSelfExclusionResponse({
-    int? setSelfExclusion,
-  }) : super(
-          setSelfExclusion: setSelfExclusion,
-        );
+    super.setSelfExclusion,
+  });
 
   /// Creates an instance from JSON.
   factory SetSelfExclusionResponse.fromJson(

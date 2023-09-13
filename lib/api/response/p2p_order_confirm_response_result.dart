@@ -24,10 +24,8 @@ abstract class P2pOrderConfirmResponseModel {
 class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Initializes P2p order confirm response class.
   const P2pOrderConfirmResponse({
-    P2pOrderConfirm? p2pOrderConfirm,
-  }) : super(
-          p2pOrderConfirm: p2pOrderConfirm,
-        );
+    super.p2pOrderConfirm,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderConfirmResponse.fromJson(
@@ -105,7 +103,6 @@ enum StatusEnum {
   /// completed.
   completed,
 }
-
 /// P2p order confirm model class.
 abstract class P2pOrderConfirmModel {
   /// Initializes P2p order confirm model class .
@@ -129,14 +126,10 @@ abstract class P2pOrderConfirmModel {
 class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Initializes P2p order confirm class.
   const P2pOrderConfirm({
-    required String id,
-    int? dryRun,
-    StatusEnum? status,
-  }) : super(
-          id: id,
-          dryRun: dryRun,
-          status: status,
-        );
+    required super.id,
+    super.dryRun,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderConfirm.fromJson(Map<String, dynamic> json) =>

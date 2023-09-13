@@ -16,7 +16,7 @@ abstract class TradingPlatformDepositResponseModel {
   });
 
   /// Information about deposit transaction, or status of demo account top up.
-  final dynamic tradingPlatformDeposit;
+  final Map<String, dynamic>? tradingPlatformDeposit;
 }
 
 /// Trading platform deposit response class.
@@ -24,10 +24,8 @@ class TradingPlatformDepositResponse
     extends TradingPlatformDepositResponseModel {
   /// Initializes Trading platform deposit response class.
   const TradingPlatformDepositResponse({
-    dynamic tradingPlatformDeposit,
-  }) : super(
-          tradingPlatformDeposit: tradingPlatformDeposit,
-        );
+    super.tradingPlatformDeposit,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformDepositResponse.fromJson(
@@ -72,7 +70,7 @@ class TradingPlatformDepositResponse
 
   /// Creates a copy of instance with given parameters.
   TradingPlatformDepositResponse copyWith({
-    dynamic tradingPlatformDeposit,
+    Map<String, dynamic>? tradingPlatformDeposit,
   }) =>
       TradingPlatformDepositResponse(
         tradingPlatformDeposit:

@@ -16,7 +16,6 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-
 /// Buy response model class.
 abstract class BuyResponseModel {
   /// Initializes Buy response model class .
@@ -36,12 +35,9 @@ abstract class BuyResponseModel {
 class BuyResponse extends BuyResponseModel {
   /// Initializes Buy response class.
   const BuyResponse({
-    Buy? buy,
-    Subscription? subscription,
-  }) : super(
-          buy: buy,
-          subscription: subscription,
-        );
+    super.buy,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory BuyResponse.fromJson(
@@ -161,7 +157,6 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Buy model class.
 abstract class BuyModel {
   /// Initializes Buy model class .
@@ -209,26 +204,16 @@ abstract class BuyModel {
 class Buy extends BuyModel {
   /// Initializes Buy class.
   const Buy({
-    required double balanceAfter,
-    required double buyPrice,
-    required int contractId,
-    required String longcode,
-    required double payout,
-    required DateTime purchaseTime,
-    required String shortcode,
-    required DateTime startTime,
-    required int transactionId,
-  }) : super(
-          balanceAfter: balanceAfter,
-          buyPrice: buyPrice,
-          contractId: contractId,
-          longcode: longcode,
-          payout: payout,
-          purchaseTime: purchaseTime,
-          shortcode: shortcode,
-          startTime: startTime,
-          transactionId: transactionId,
-        );
+    required super.balanceAfter,
+    required super.buyPrice,
+    required super.contractId,
+    required super.longcode,
+    required super.payout,
+    required super.purchaseTime,
+    required super.shortcode,
+    required super.startTime,
+    required super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory Buy.fromJson(Map<String, dynamic> json) => Buy(
@@ -284,7 +269,6 @@ class Buy extends BuyModel {
         transactionId: transactionId ?? this.transactionId,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -300,10 +284,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

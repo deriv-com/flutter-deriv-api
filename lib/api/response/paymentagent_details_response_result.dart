@@ -18,10 +18,8 @@ abstract class PaymentagentDetailsResponseModel {
 class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
   /// Initializes Paymentagent details response class.
   const PaymentagentDetailsResponse({
-    PaymentagentDetails? paymentagentDetails,
-  }) : super(
-          paymentagentDetails: paymentagentDetails,
-        );
+    super.paymentagentDetails,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentDetailsResponse.fromJson(
@@ -56,16 +54,18 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
 abstract class PaymentagentDetailsModel {
   /// Initializes Paymentagent details model class .
   const PaymentagentDetailsModel({
+    required this.canApply,
     this.affiliateId,
     this.codeOfConductApproval,
     this.commissionDeposit,
     this.commissionWithdrawal,
     this.currencyCode,
+    this.eligibiltyValidation,
     this.email,
     this.information,
-    this.isListed,
     this.maxWithdrawal,
     this.minWithdrawal,
+    this.newlyAuthorized,
     this.paymentAgentName,
     this.phoneNumbers,
     this.status,
@@ -73,6 +73,9 @@ abstract class PaymentagentDetailsModel {
     this.targetCountry,
     this.urls,
   });
+
+  /// If `true`, the client may apply using paymentagent_create.
+  final bool canApply;
 
   /// Client's My Affiliate id, if exists.
   final String? affiliateId;
@@ -89,20 +92,23 @@ abstract class PaymentagentDetailsModel {
   /// Currency supported by the payment agent. It's usually the same as agent's Deriv account currency.
   final String? currencyCode;
 
+  /// Contains a list of error codes that would prevent a successful payment agent application.
+  final List<String>? eligibiltyValidation;
+
   /// Payment agent's email address.
   final String? email;
 
   /// Information about payment agent and their proposed service.
   final String? information;
 
-  /// Wether or not the client should be listed among available agents in the FE.
-  final bool? isListed;
-
   /// Maximum amount allowed for withdrawals
   final double? maxWithdrawal;
 
   /// Minimum amount allowed for withdrawals
   final double? minWithdrawal;
+
+  /// Indicates if the payment agent was recently approved with no transactions yet.
+  final bool? newlyAuthorized;
 
   /// The name with which the payment agent is going to be identified.
   final String? paymentAgentName;
@@ -127,54 +133,47 @@ abstract class PaymentagentDetailsModel {
 class PaymentagentDetails extends PaymentagentDetailsModel {
   /// Initializes Paymentagent details class.
   const PaymentagentDetails({
-    String? affiliateId,
-    bool? codeOfConductApproval,
-    double? commissionDeposit,
-    double? commissionWithdrawal,
-    String? currencyCode,
-    String? email,
-    String? information,
-    bool? isListed,
-    double? maxWithdrawal,
-    double? minWithdrawal,
-    String? paymentAgentName,
-    List<PhoneNumbersItem>? phoneNumbers,
-    Map<String, dynamic>? status,
-    List<SupportedPaymentMethodsItem>? supportedPaymentMethods,
-    String? targetCountry,
-    List<UrlsItem>? urls,
-  }) : super(
-          affiliateId: affiliateId,
-          codeOfConductApproval: codeOfConductApproval,
-          commissionDeposit: commissionDeposit,
-          commissionWithdrawal: commissionWithdrawal,
-          currencyCode: currencyCode,
-          email: email,
-          information: information,
-          isListed: isListed,
-          maxWithdrawal: maxWithdrawal,
-          minWithdrawal: minWithdrawal,
-          paymentAgentName: paymentAgentName,
-          phoneNumbers: phoneNumbers,
-          status: status,
-          supportedPaymentMethods: supportedPaymentMethods,
-          targetCountry: targetCountry,
-          urls: urls,
-        );
+    required super.canApply,
+    super.affiliateId,
+    super.codeOfConductApproval,
+    super.commissionDeposit,
+    super.commissionWithdrawal,
+    super.currencyCode,
+    super.eligibiltyValidation,
+    super.email,
+    super.information,
+    super.maxWithdrawal,
+    super.minWithdrawal,
+    super.newlyAuthorized,
+    super.paymentAgentName,
+    super.phoneNumbers,
+    super.status,
+    super.supportedPaymentMethods,
+    super.targetCountry,
+    super.urls,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentDetails.fromJson(Map<String, dynamic> json) =>
       PaymentagentDetails(
+        canApply: getBool(json['can_apply'])!,
         affiliateId: json['affiliate_id'],
         codeOfConductApproval: getBool(json['code_of_conduct_approval']),
         commissionDeposit: getDouble(json['commission_deposit']),
         commissionWithdrawal: getDouble(json['commission_withdrawal']),
         currencyCode: json['currency_code'],
+        eligibiltyValidation: json['eligibilty_validation'] == null
+            ? null
+            : List<String>.from(
+                json['eligibilty_validation']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         email: json['email'],
         information: json['information'],
-        isListed: getBool(json['is_listed']),
         maxWithdrawal: getDouble(json['max_withdrawal']),
         minWithdrawal: getDouble(json['min_withdrawal']),
+        newlyAuthorized: getBool(json['newly_authorized']),
         paymentAgentName: json['payment_agent_name'],
         phoneNumbers: json['phone_numbers'] == null
             ? null
@@ -205,16 +204,24 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['can_apply'] = canApply;
     resultMap['affiliate_id'] = affiliateId;
     resultMap['code_of_conduct_approval'] = codeOfConductApproval;
     resultMap['commission_deposit'] = commissionDeposit;
     resultMap['commission_withdrawal'] = commissionWithdrawal;
     resultMap['currency_code'] = currencyCode;
+    if (eligibiltyValidation != null) {
+      resultMap['eligibilty_validation'] = eligibiltyValidation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     resultMap['email'] = email;
     resultMap['information'] = information;
-    resultMap['is_listed'] = isListed;
     resultMap['max_withdrawal'] = maxWithdrawal;
     resultMap['min_withdrawal'] = minWithdrawal;
+    resultMap['newly_authorized'] = newlyAuthorized;
     resultMap['payment_agent_name'] = paymentAgentName;
     if (phoneNumbers != null) {
       resultMap['phone_numbers'] = phoneNumbers!
@@ -245,16 +252,18 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   PaymentagentDetails copyWith({
+    bool? canApply,
     String? affiliateId,
     bool? codeOfConductApproval,
     double? commissionDeposit,
     double? commissionWithdrawal,
     String? currencyCode,
+    List<String>? eligibiltyValidation,
     String? email,
     String? information,
-    bool? isListed,
     double? maxWithdrawal,
     double? minWithdrawal,
+    bool? newlyAuthorized,
     String? paymentAgentName,
     List<PhoneNumbersItem>? phoneNumbers,
     Map<String, dynamic>? status,
@@ -263,17 +272,19 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     List<UrlsItem>? urls,
   }) =>
       PaymentagentDetails(
+        canApply: canApply ?? this.canApply,
         affiliateId: affiliateId ?? this.affiliateId,
         codeOfConductApproval:
             codeOfConductApproval ?? this.codeOfConductApproval,
         commissionDeposit: commissionDeposit ?? this.commissionDeposit,
         commissionWithdrawal: commissionWithdrawal ?? this.commissionWithdrawal,
         currencyCode: currencyCode ?? this.currencyCode,
+        eligibiltyValidation: eligibiltyValidation ?? this.eligibiltyValidation,
         email: email ?? this.email,
         information: information ?? this.information,
-        isListed: isListed ?? this.isListed,
         maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
+        newlyAuthorized: newlyAuthorized ?? this.newlyAuthorized,
         paymentAgentName: paymentAgentName ?? this.paymentAgentName,
         phoneNumbers: phoneNumbers ?? this.phoneNumbers,
         status: status ?? this.status,
@@ -298,10 +309,8 @@ abstract class PhoneNumbersItemModel {
 class PhoneNumbersItem extends PhoneNumbersItemModel {
   /// Initializes Phone numbers item class.
   const PhoneNumbersItem({
-    String? phoneNumber,
-  }) : super(
-          phoneNumber: phoneNumber,
-        );
+    super.phoneNumber,
+  });
 
   /// Creates an instance from JSON.
   factory PhoneNumbersItem.fromJson(Map<String, dynamic> json) =>
@@ -341,10 +350,8 @@ abstract class SupportedPaymentMethodsItemModel {
 class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item class.
   const SupportedPaymentMethodsItem({
-    String? paymentMethod,
-  }) : super(
-          paymentMethod: paymentMethod,
-        );
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory SupportedPaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
@@ -384,10 +391,8 @@ abstract class UrlsItemModel {
 class UrlsItem extends UrlsItemModel {
   /// Initializes Urls item class.
   const UrlsItem({
-    String? url,
-  }) : super(
-          url: url,
-        );
+    super.url,
+  });
 
   /// Creates an instance from JSON.
   factory UrlsItem.fromJson(Map<String, dynamic> json) => UrlsItem(

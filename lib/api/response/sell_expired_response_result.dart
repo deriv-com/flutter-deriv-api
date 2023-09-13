@@ -18,10 +18,8 @@ abstract class SellExpiredResponseModel {
 class SellExpiredResponse extends SellExpiredResponseModel {
   /// Initializes Sell expired response class.
   const SellExpiredResponse({
-    SellExpired? sellExpired,
-  }) : super(
-          sellExpired: sellExpired,
-        );
+    super.sellExpired,
+  });
 
   /// Creates an instance from JSON.
   factory SellExpiredResponse.fromJson(
@@ -67,10 +65,8 @@ abstract class SellExpiredModel {
 class SellExpired extends SellExpiredModel {
   /// Initializes Sell expired class.
   const SellExpired({
-    int? count,
-  }) : super(
-          count: count,
-        );
+    super.count,
+  });
 
   /// Creates an instance from JSON.
   factory SellExpired.fromJson(Map<String, dynamic> json) => SellExpired(

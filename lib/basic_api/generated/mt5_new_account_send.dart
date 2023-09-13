@@ -27,14 +27,12 @@ class Mt5NewAccountRequest extends Request {
     this.phonePassword,
     this.server,
     this.state,
+    this.subAccountCategory,
     this.zipCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_new_account',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_new_account',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
@@ -60,6 +58,7 @@ class Mt5NewAccountRequest extends Request {
         phonePassword: json['phonePassword'] as String?,
         server: json['server'] as String?,
         state: json['state'] as String?,
+        subAccountCategory: json['sub_account_category'] as String?,
         zipCode: json['zipCode'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -98,7 +97,7 @@ class Mt5NewAccountRequest extends Request {
   /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
   final String? mainPassword;
 
-  /// [Optional] To choose whether account is conventional or not. Unavailable for financial_stp MT5_account_type
+  /// [Optional] To choose whether account is conventional or swap_free. Unavailable for financial_stp MT5_account_type
   final String? mt5AccountCategory;
 
   /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products. If 'account_type' set to 'financial', setting 'mt5_account_type' is also required.
@@ -121,6 +120,9 @@ class Mt5NewAccountRequest extends Request {
 
   /// [Optional] User's state (region) of residence.
   final String? state;
+
+  /// [Optional] Indicate the sub account category that we have in the cfd group naming convention.
+  final String? subAccountCategory;
 
   /// [Optional] User's zip code.
   final String? zipCode;
@@ -155,6 +157,7 @@ class Mt5NewAccountRequest extends Request {
         'phonePassword': phonePassword,
         'server': server,
         'state': state,
+        'sub_account_category': subAccountCategory,
         'zipCode': zipCode,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -182,6 +185,7 @@ class Mt5NewAccountRequest extends Request {
     String? phonePassword,
     String? server,
     String? state,
+    String? subAccountCategory,
     String? zipCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -206,6 +210,7 @@ class Mt5NewAccountRequest extends Request {
         phonePassword: phonePassword ?? this.phonePassword,
         server: server ?? this.server,
         state: state ?? this.state,
+        subAccountCategory: subAccountCategory ?? this.subAccountCategory,
         zipCode: zipCode ?? this.zipCode,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

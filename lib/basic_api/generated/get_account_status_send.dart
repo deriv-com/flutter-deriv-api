@@ -9,13 +9,10 @@ class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest.
   const GetAccountStatusRequest({
     this.getAccountStatus = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_account_status',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'get_account_status',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>

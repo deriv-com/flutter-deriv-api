@@ -10,13 +10,10 @@ class TransactionRequest extends Request {
   const TransactionRequest({
     this.subscribe,
     this.transaction = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'transaction',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'transaction',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>

@@ -25,10 +25,8 @@ abstract class CopyStartResponseModel {
 class CopyStartResponse extends CopyStartResponseModel {
   /// Initializes Copy start response class.
   const CopyStartResponse({
-    int? copyStart,
-  }) : super(
-          copyStart: copyStart,
-        );
+    super.copyStart,
+  });
 
   /// Creates an instance from JSON.
   factory CopyStartResponse.fromJson(

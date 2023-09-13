@@ -11,13 +11,10 @@ class AccountSecurityRequest extends Request {
     this.accountSecurity = true,
     this.otp,
     this.totpAction,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'account_security',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'account_security',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>

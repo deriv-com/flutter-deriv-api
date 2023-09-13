@@ -25,10 +25,8 @@ abstract class AppRegisterResponseModel {
 class AppRegisterResponse extends AppRegisterResponseModel {
   /// Initializes App register response class.
   const AppRegisterResponse({
-    AppRegister? appRegister,
-  }) : super(
-          appRegister: appRegister,
-        );
+    super.appRegister,
+  });
 
   /// Creates an instance from JSON.
   factory AppRegisterResponse.fromJson(
@@ -79,7 +77,6 @@ class AppRegisterResponse extends AppRegisterResponseModel {
         appRegister: appRegister ?? this.appRegister,
       );
 }
-
 /// App register model class.
 abstract class AppRegisterModel {
   /// Initializes App register model class .
@@ -135,30 +132,18 @@ abstract class AppRegisterModel {
 class AppRegister extends AppRegisterModel {
   /// Initializes App register class.
   const AppRegister({
-    required int appId,
-    required double appMarkupPercentage,
-    required String appstore,
-    required String github,
-    required String googleplay,
-    required String homepage,
-    required String name,
-    required String redirectUri,
-    required String verificationUri,
-    int? active,
-    List<String>? scopes,
-  }) : super(
-          appId: appId,
-          appMarkupPercentage: appMarkupPercentage,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          name: name,
-          redirectUri: redirectUri,
-          verificationUri: verificationUri,
-          active: active,
-          scopes: scopes,
-        );
+    required super.appId,
+    required super.appMarkupPercentage,
+    required super.appstore,
+    required super.github,
+    required super.googleplay,
+    required super.homepage,
+    required super.name,
+    required super.redirectUri,
+    required super.verificationUri,
+    super.active,
+    super.scopes,
+  });
 
   /// Creates an instance from JSON.
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(

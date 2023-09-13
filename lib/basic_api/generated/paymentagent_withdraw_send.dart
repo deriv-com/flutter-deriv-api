@@ -15,13 +15,10 @@ class PaymentagentWithdrawRequest extends Request {
     required this.paymentagentLoginid,
     this.paymentagentWithdraw = true,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'paymentagent_withdraw',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'paymentagent_withdraw',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>

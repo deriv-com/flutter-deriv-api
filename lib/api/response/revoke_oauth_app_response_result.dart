@@ -25,10 +25,8 @@ abstract class RevokeOauthAppResponseModel {
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Initializes Revoke oauth app response class.
   const RevokeOauthAppResponse({
-    int? revokeOauthApp,
-  }) : super(
-          revokeOauthApp: revokeOauthApp,
-        );
+    super.revokeOauthApp,
+  });
 
   /// Creates an instance from JSON.
   factory RevokeOauthAppResponse.fromJson(

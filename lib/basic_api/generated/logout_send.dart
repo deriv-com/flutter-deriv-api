@@ -9,13 +9,10 @@ class LogoutRequest extends Request {
   /// Initialize LogoutRequest.
   const LogoutRequest({
     this.logout = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'logout',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'logout',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(

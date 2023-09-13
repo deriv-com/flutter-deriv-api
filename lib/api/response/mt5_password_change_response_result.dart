@@ -25,10 +25,8 @@ abstract class Mt5PasswordChangeResponseModel {
 class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
   /// Initializes Mt5 password change response class.
   const Mt5PasswordChangeResponse({
-    int? mt5PasswordChange,
-  }) : super(
-          mt5PasswordChange: mt5PasswordChange,
-        );
+    super.mt5PasswordChange,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordChangeResponse.fromJson(

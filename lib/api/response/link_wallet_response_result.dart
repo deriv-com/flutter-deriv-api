@@ -19,10 +19,8 @@ abstract class LinkWalletResponseModel {
 class LinkWalletResponse extends LinkWalletResponseModel {
   /// Initializes Link wallet response class.
   const LinkWalletResponse({
-    int? linkWallet,
-  }) : super(
-          linkWallet: linkWallet,
-        );
+    super.linkWallet,
+  });
 
   /// Creates an instance from JSON.
   factory LinkWalletResponse.fromJson(

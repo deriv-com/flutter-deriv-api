@@ -37,16 +37,11 @@ abstract class PaymentagentTransferResponseModel {
 class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   /// Initializes Paymentagent transfer response class.
   const PaymentagentTransferResponse({
-    int? paymentagentTransfer,
-    String? clientToFullName,
-    String? clientToLoginid,
-    int? transactionId,
-  }) : super(
-          paymentagentTransfer: paymentagentTransfer,
-          clientToFullName: clientToFullName,
-          clientToLoginid: clientToLoginid,
-          transactionId: transactionId,
-        );
+    super.paymentagentTransfer,
+    super.clientToFullName,
+    super.clientToLoginid,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentTransferResponse.fromJson(

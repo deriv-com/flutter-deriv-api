@@ -12,13 +12,10 @@ class Mt5WithdrawalRequest extends Request {
     required this.fromMt5,
     this.mt5Withdrawal = true,
     required this.toBinary,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_withdrawal',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_withdrawal',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>

@@ -25,10 +25,8 @@ abstract class SetAccountCurrencyResponseModel {
 class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   /// Initializes Set account currency response class.
   const SetAccountCurrencyResponse({
-    bool? setAccountCurrency,
-  }) : super(
-          setAccountCurrency: setAccountCurrency,
-        );
+    super.setAccountCurrency,
+  });
 
   /// Creates an instance from JSON.
   factory SetAccountCurrencyResponse.fromJson(

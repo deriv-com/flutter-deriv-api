@@ -20,10 +20,8 @@ class GetAvailableAccountsToTransferResponse
     extends GetAvailableAccountsToTransferResponseModel {
   /// Initializes Get available accounts to transfer response class.
   const GetAvailableAccountsToTransferResponse({
-    GetAvailableAccountsToTransfer? getAvailableAccountsToTransfer,
-  }) : super(
-          getAvailableAccountsToTransfer: getAvailableAccountsToTransfer,
-        );
+    super.getAvailableAccountsToTransfer,
+  });
 
   /// Creates an instance from JSON.
   factory GetAvailableAccountsToTransferResponse.fromJson(
@@ -117,10 +115,8 @@ class GetAvailableAccountsToTransfer
     extends GetAvailableAccountsToTransferModel {
   /// Initializes Get available accounts to transfer class.
   const GetAvailableAccountsToTransfer({
-    required List<AccountListItem> accountList,
-  }) : super(
-          accountList: accountList,
-        );
+    required super.accountList,
+  });
 
   /// Creates an instance from JSON.
   factory GetAvailableAccountsToTransfer.fromJson(Map<String, dynamic> json) =>
@@ -180,16 +176,11 @@ abstract class AccountListItemModel {
 class AccountListItem extends AccountListItemModel {
   /// Initializes Account list item class.
   const AccountListItem({
-    required AccountTypeEnum accountType,
-    required String currency,
-    required String loginid,
-    required TypeEnum type,
-  }) : super(
-          accountType: accountType,
-          currency: currency,
-          loginid: loginid,
-          type: type,
-        );
+    required super.accountType,
+    required super.currency,
+    required super.loginid,
+    required super.type,
+  });
 
   /// Creates an instance from JSON.
   factory AccountListItem.fromJson(Map<String, dynamic> json) =>

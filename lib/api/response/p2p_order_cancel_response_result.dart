@@ -24,10 +24,8 @@ abstract class P2pOrderCancelResponseModel {
 class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
   /// Initializes P2p order cancel response class.
   const P2pOrderCancelResponse({
-    P2pOrderCancel? p2pOrderCancel,
-  }) : super(
-          p2pOrderCancel: p2pOrderCancel,
-        );
+    super.p2pOrderCancel,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCancelResponse.fromJson(
@@ -101,7 +99,6 @@ enum StatusEnum {
   /// cancelled.
   cancelled,
 }
-
 /// P2p order cancel model class.
 abstract class P2pOrderCancelModel {
   /// Initializes P2p order cancel model class .
@@ -121,12 +118,9 @@ abstract class P2pOrderCancelModel {
 class P2pOrderCancel extends P2pOrderCancelModel {
   /// Initializes P2p order cancel class.
   const P2pOrderCancel({
-    required String id,
-    required StatusEnum status,
-  }) : super(
-          id: id,
-          status: status,
-        );
+    required super.id,
+    required super.status,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCancel.fromJson(Map<String, dynamic> json) => P2pOrderCancel(

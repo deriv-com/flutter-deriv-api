@@ -10,13 +10,10 @@ class AuthorizeRequest extends Request {
   const AuthorizeRequest({
     this.addToLoginHistory,
     required this.authorize,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'authorize',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'authorize',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>

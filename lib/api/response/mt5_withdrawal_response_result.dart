@@ -29,12 +29,9 @@ abstract class Mt5WithdrawalResponseModel {
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Initializes Mt5 withdrawal response class.
   const Mt5WithdrawalResponse({
-    int? mt5Withdrawal,
-    int? binaryTransactionId,
-  }) : super(
-          mt5Withdrawal: mt5Withdrawal,
-          binaryTransactionId: binaryTransactionId,
-        );
+    super.mt5Withdrawal,
+    super.binaryTransactionId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5WithdrawalResponse.fromJson(

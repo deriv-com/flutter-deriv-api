@@ -24,10 +24,8 @@ abstract class P2pOrderReviewResponseModel {
 class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
   /// Initializes P2p order review response class.
   const P2pOrderReviewResponse({
-    P2pOrderReview? p2pOrderReview,
-  }) : super(
-          p2pOrderReview: p2pOrderReview,
-        );
+    super.p2pOrderReview,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderReviewResponse.fromJson(
@@ -90,7 +88,6 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
         p2pOrderReview: p2pOrderReview ?? this.p2pOrderReview,
       );
 }
-
 /// P2p order review model class.
 abstract class P2pOrderReviewModel {
   /// Initializes P2p order review model class .
@@ -122,18 +119,12 @@ abstract class P2pOrderReviewModel {
 class P2pOrderReview extends P2pOrderReviewModel {
   /// Initializes P2p order review class.
   const P2pOrderReview({
-    required String advertiserId,
-    required DateTime createdTime,
-    required String orderId,
-    required int rating,
-    int? recommended,
-  }) : super(
-          advertiserId: advertiserId,
-          createdTime: createdTime,
-          orderId: orderId,
-          rating: rating,
-          recommended: recommended,
-        );
+    required super.advertiserId,
+    required super.createdTime,
+    required super.orderId,
+    required super.rating,
+    super.recommended,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderReview.fromJson(Map<String, dynamic> json) => P2pOrderReview(

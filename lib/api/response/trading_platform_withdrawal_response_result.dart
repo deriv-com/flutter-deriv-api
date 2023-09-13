@@ -20,10 +20,8 @@ class TradingPlatformWithdrawalResponse
     extends TradingPlatformWithdrawalResponseModel {
   /// Initializes Trading platform withdrawal response class.
   const TradingPlatformWithdrawalResponse({
-    TradingPlatformWithdrawal? tradingPlatformWithdrawal,
-  }) : super(
-          tradingPlatformWithdrawal: tradingPlatformWithdrawal,
-        );
+    super.tradingPlatformWithdrawal,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformWithdrawalResponse.fromJson(
@@ -71,10 +69,8 @@ abstract class TradingPlatformWithdrawalModel {
 class TradingPlatformWithdrawal extends TradingPlatformWithdrawalModel {
   /// Initializes Trading platform withdrawal class.
   const TradingPlatformWithdrawal({
-    int? transactionId,
-  }) : super(
-          transactionId: transactionId,
-        );
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformWithdrawal.fromJson(Map<String, dynamic> json) =>

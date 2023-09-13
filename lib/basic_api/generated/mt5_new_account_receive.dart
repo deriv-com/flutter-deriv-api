@@ -9,16 +9,11 @@ class Mt5NewAccountReceive extends Response {
   /// Initialize Mt5NewAccountReceive.
   const Mt5NewAccountReceive({
     this.mt5NewAccount,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5NewAccountReceive.fromJson(Map<String, dynamic> json) =>

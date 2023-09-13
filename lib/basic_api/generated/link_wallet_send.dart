@@ -11,13 +11,10 @@ class LinkWalletRequest extends Request {
     required this.clientId,
     this.linkWallet = true,
     required this.walletId,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'link_wallet',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'link_wallet',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LinkWalletRequest.fromJson(Map<String, dynamic> json) =>

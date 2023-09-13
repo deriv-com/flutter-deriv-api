@@ -9,13 +9,10 @@ class AppListRequest extends Request {
   /// Initialize AppListRequest.
   const AppListRequest({
     this.appList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(

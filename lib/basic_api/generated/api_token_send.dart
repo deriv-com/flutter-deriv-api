@@ -13,13 +13,10 @@ class ApiTokenRequest extends Request {
     this.newToken,
     this.newTokenScopes,
     this.validForCurrentIpOnly,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'api_token',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'api_token',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>

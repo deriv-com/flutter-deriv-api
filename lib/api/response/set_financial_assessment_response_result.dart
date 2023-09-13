@@ -26,10 +26,8 @@ class SetFinancialAssessmentResponse
     extends SetFinancialAssessmentResponseModel {
   /// Initializes Set financial assessment response class.
   const SetFinancialAssessmentResponse({
-    SetFinancialAssessment? setFinancialAssessment,
-  }) : super(
-          setFinancialAssessment: setFinancialAssessment,
-        );
+    super.setFinancialAssessment,
+  });
 
   /// Creates an instance from JSON.
   factory SetFinancialAssessmentResponse.fromJson(
@@ -85,7 +83,6 @@ class SetFinancialAssessmentResponse
             setFinancialAssessment ?? this.setFinancialAssessment,
       );
 }
-
 /// Set financial assessment model class.
 abstract class SetFinancialAssessmentModel {
   /// Initializes Set financial assessment model class .
@@ -113,16 +110,11 @@ abstract class SetFinancialAssessmentModel {
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
   /// Initializes Set financial assessment class.
   const SetFinancialAssessment({
-    int? cfdScore,
-    int? financialInformationScore,
-    int? totalScore,
-    int? tradingScore,
-  }) : super(
-          cfdScore: cfdScore,
-          financialInformationScore: financialInformationScore,
-          totalScore: totalScore,
-          tradingScore: tradingScore,
-        );
+    super.cfdScore,
+    super.financialInformationScore,
+    super.totalScore,
+    super.tradingScore,
+  });
 
   /// Creates an instance from JSON.
   factory SetFinancialAssessment.fromJson(Map<String, dynamic> json) =>

@@ -18,10 +18,8 @@ abstract class DocumentUploadResponseModel {
 class DocumentUploadResponse extends DocumentUploadResponseModel {
   /// Initializes Document upload response class.
   const DocumentUploadResponse({
-    DocumentUpload? documentUpload,
-  }) : super(
-          documentUpload: documentUpload,
-        );
+    super.documentUpload,
+  });
 
   /// Creates an instance from JSON.
   factory DocumentUploadResponse.fromJson(
@@ -87,20 +85,13 @@ abstract class DocumentUploadModel {
 class DocumentUpload extends DocumentUploadModel {
   /// Initializes Document upload class.
   const DocumentUpload({
-    required double callType,
-    required double uploadId,
-    String? checksum,
-    String? documentIssuingCountry,
-    double? size,
-    String? status,
-  }) : super(
-          callType: callType,
-          uploadId: uploadId,
-          checksum: checksum,
-          documentIssuingCountry: documentIssuingCountry,
-          size: size,
-          status: status,
-        );
+    required super.callType,
+    required super.uploadId,
+    super.checksum,
+    super.documentIssuingCountry,
+    super.size,
+    super.status,
+  });
 
   /// Creates an instance from JSON.
   factory DocumentUpload.fromJson(Map<String, dynamic> json) => DocumentUpload(

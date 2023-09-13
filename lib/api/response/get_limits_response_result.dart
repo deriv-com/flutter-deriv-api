@@ -25,10 +25,8 @@ abstract class GetLimitsResponseModel {
 class GetLimitsResponse extends GetLimitsResponseModel {
   /// Initializes Get limits response class.
   const GetLimitsResponse({
-    GetLimits? getLimits,
-  }) : super(
-          getLimits: getLimits,
-        );
+    super.getLimits,
+  });
 
   /// Creates an instance from JSON.
   factory GetLimitsResponse.fromJson(
@@ -79,12 +77,12 @@ class GetLimitsResponse extends GetLimitsResponseModel {
         getLimits: getLimits ?? this.getLimits,
       );
 }
-
 /// Get limits model class.
 abstract class GetLimitsModel {
   /// Initializes Get limits model class .
   const GetLimitsModel({
     this.accountBalance,
+    this.dailyCumulativeAmountTransfers,
     this.dailyTransfers,
     this.dailyTurnover,
     this.lifetimeLimit,
@@ -102,6 +100,9 @@ abstract class GetLimitsModel {
 
   /// Maximum account cash balance
   final double? accountBalance;
+
+  /// Cumulative daily transfer limits
+  final Map<String, dynamic>? dailyCumulativeAmountTransfers;
 
   /// Daily transfers
   final Map<String, dynamic>? dailyTransfers;
@@ -147,40 +148,28 @@ abstract class GetLimitsModel {
 class GetLimits extends GetLimitsModel {
   /// Initializes Get limits class.
   const GetLimits({
-    double? accountBalance,
-    Map<String, dynamic>? dailyTransfers,
-    double? dailyTurnover,
-    double? lifetimeLimit,
-    Map<String, List<MarketSpecificPropertyItem>>? marketSpecific,
-    int? numOfDays,
-    double? numOfDaysLimit,
-    int? openPositions,
-    double? payout,
-    PayoutPerSymbol? payoutPerSymbol,
-    double? payoutPerSymbolAndContractType,
-    double? remainder,
-    double? withdrawalForXDaysMonetary,
-    double? withdrawalSinceInceptionMonetary,
-  }) : super(
-          accountBalance: accountBalance,
-          dailyTransfers: dailyTransfers,
-          dailyTurnover: dailyTurnover,
-          lifetimeLimit: lifetimeLimit,
-          marketSpecific: marketSpecific,
-          numOfDays: numOfDays,
-          numOfDaysLimit: numOfDaysLimit,
-          openPositions: openPositions,
-          payout: payout,
-          payoutPerSymbol: payoutPerSymbol,
-          payoutPerSymbolAndContractType: payoutPerSymbolAndContractType,
-          remainder: remainder,
-          withdrawalForXDaysMonetary: withdrawalForXDaysMonetary,
-          withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
-        );
+    super.accountBalance,
+    super.dailyCumulativeAmountTransfers,
+    super.dailyTransfers,
+    super.dailyTurnover,
+    super.lifetimeLimit,
+    super.marketSpecific,
+    super.numOfDays,
+    super.numOfDaysLimit,
+    super.openPositions,
+    super.payout,
+    super.payoutPerSymbol,
+    super.payoutPerSymbolAndContractType,
+    super.remainder,
+    super.withdrawalForXDaysMonetary,
+    super.withdrawalSinceInceptionMonetary,
+  });
 
   /// Creates an instance from JSON.
   factory GetLimits.fromJson(Map<String, dynamic> json) => GetLimits(
         accountBalance: getDouble(json['account_balance']),
+        dailyCumulativeAmountTransfers:
+            json['daily_cumulative_amount_transfers'],
         dailyTransfers: json['daily_transfers'],
         dailyTurnover: getDouble(json['daily_turnover']),
         lifetimeLimit: getDouble(json['lifetime_limit']),
@@ -220,6 +209,8 @@ class GetLimits extends GetLimitsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_balance'] = accountBalance;
+    resultMap['daily_cumulative_amount_transfers'] =
+        dailyCumulativeAmountTransfers;
     resultMap['daily_transfers'] = dailyTransfers;
     resultMap['daily_turnover'] = dailyTurnover;
     resultMap['lifetime_limit'] = lifetimeLimit;
@@ -244,6 +235,7 @@ class GetLimits extends GetLimitsModel {
   /// Creates a copy of instance with given parameters.
   GetLimits copyWith({
     double? accountBalance,
+    Map<String, dynamic>? dailyCumulativeAmountTransfers,
     Map<String, dynamic>? dailyTransfers,
     double? dailyTurnover,
     double? lifetimeLimit,
@@ -260,6 +252,8 @@ class GetLimits extends GetLimitsModel {
   }) =>
       GetLimits(
         accountBalance: accountBalance ?? this.accountBalance,
+        dailyCumulativeAmountTransfers: dailyCumulativeAmountTransfers ??
+            this.dailyCumulativeAmountTransfers,
         dailyTransfers: dailyTransfers ?? this.dailyTransfers,
         dailyTurnover: dailyTurnover ?? this.dailyTurnover,
         lifetimeLimit: lifetimeLimit ?? this.lifetimeLimit,
@@ -278,7 +272,6 @@ class GetLimits extends GetLimitsModel {
             this.withdrawalSinceInceptionMonetary,
       );
 }
-
 /// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item model class .
@@ -310,18 +303,12 @@ abstract class MarketSpecificPropertyItemModel {
 class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item class.
   const MarketSpecificPropertyItem({
-    String? level,
-    String? name,
-    double? payoutLimit,
-    String? profileName,
-    double? turnoverLimit,
-  }) : super(
-          level: level,
-          name: name,
-          payoutLimit: payoutLimit,
-          profileName: profileName,
-          turnoverLimit: turnoverLimit,
-        );
+    super.level,
+    super.name,
+    super.payoutLimit,
+    super.profileName,
+    super.turnoverLimit,
+  });
 
   /// Creates an instance from JSON.
   factory MarketSpecificPropertyItem.fromJson(Map<String, dynamic> json) =>
@@ -362,7 +349,6 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
 }
-
 /// Payout per symbol model class.
 abstract class PayoutPerSymbolModel {
   /// Initializes Payout per symbol model class .
@@ -382,12 +368,9 @@ abstract class PayoutPerSymbolModel {
 class PayoutPerSymbol extends PayoutPerSymbolModel {
   /// Initializes Payout per symbol class.
   const PayoutPerSymbol({
-    double? atm,
-    NonAtm? nonAtm,
-  }) : super(
-          atm: atm,
-          nonAtm: nonAtm,
-        );
+    super.atm,
+    super.nonAtm,
+  });
 
   /// Creates an instance from JSON.
   factory PayoutPerSymbol.fromJson(Map<String, dynamic> json) =>
@@ -419,7 +402,6 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
         nonAtm: nonAtm ?? this.nonAtm,
       );
 }
-
 /// Non atm model class.
 abstract class NonAtmModel {
   /// Initializes Non atm model class .
@@ -439,12 +421,9 @@ abstract class NonAtmModel {
 class NonAtm extends NonAtmModel {
   /// Initializes Non atm class.
   const NonAtm({
-    double? lessThanSevenDays,
-    double? moreThanSevenDays,
-  }) : super(
-          lessThanSevenDays: lessThanSevenDays,
-          moreThanSevenDays: moreThanSevenDays,
-        );
+    super.lessThanSevenDays,
+    super.moreThanSevenDays,
+  });
 
   /// Creates an instance from JSON.
   factory NonAtm.fromJson(Map<String, dynamic> json) => NonAtm(

@@ -24,10 +24,8 @@ abstract class AppDeleteResponseModel {
 class AppDeleteResponse extends AppDeleteResponseModel {
   /// Initializes App delete response class.
   const AppDeleteResponse({
-    int? appDelete,
-  }) : super(
-          appDelete: appDelete,
-        );
+    super.appDelete,
+  });
 
   /// Creates an instance from JSON.
   factory AppDeleteResponse.fromJson(

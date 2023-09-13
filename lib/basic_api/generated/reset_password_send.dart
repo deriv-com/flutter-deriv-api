@@ -12,13 +12,10 @@ class ResetPasswordRequest extends Request {
     required this.newPassword,
     this.resetPassword = true,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'reset_password',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'reset_password',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>

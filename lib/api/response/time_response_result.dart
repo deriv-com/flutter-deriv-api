@@ -25,10 +25,8 @@ abstract class TimeResponseModel {
 class TimeResponse extends TimeResponseModel {
   /// Initializes Time response class.
   const TimeResponse({
-    DateTime? time,
-  }) : super(
-          time: time,
-        );
+    super.time,
+  });
 
   /// Creates an instance from JSON.
   factory TimeResponse.fromJson(
@@ -61,7 +59,7 @@ class TimeResponse extends TimeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
+          ServerTimeException(),
     );
 
     return response;

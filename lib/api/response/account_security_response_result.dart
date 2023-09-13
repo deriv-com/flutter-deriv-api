@@ -19,10 +19,8 @@ abstract class AccountSecurityResponseModel {
 class AccountSecurityResponse extends AccountSecurityResponseModel {
   /// Initializes Account security response class.
   const AccountSecurityResponse({
-    AccountSecurity? accountSecurity,
-  }) : super(
-          accountSecurity: accountSecurity,
-        );
+    super.accountSecurity,
+  });
 
   /// Creates an instance from JSON.
   factory AccountSecurityResponse.fromJson(
@@ -68,10 +66,8 @@ abstract class AccountSecurityModel {
 class AccountSecurity extends AccountSecurityModel {
   /// Initializes Account security class.
   const AccountSecurity({
-    Totp? totp,
-  }) : super(
-          totp: totp,
-        );
+    super.totp,
+  });
 
   /// Creates an instance from JSON.
   factory AccountSecurity.fromJson(Map<String, dynamic> json) =>
@@ -117,12 +113,9 @@ abstract class TotpModel {
 class Totp extends TotpModel {
   /// Initializes Totp class.
   const Totp({
-    bool? isEnabled,
-    String? secretKey,
-  }) : super(
-          isEnabled: isEnabled,
-          secretKey: secretKey,
-        );
+    super.isEnabled,
+    super.secretKey,
+  });
 
   /// Creates an instance from JSON.
   factory Totp.fromJson(Map<String, dynamic> json) => Totp(

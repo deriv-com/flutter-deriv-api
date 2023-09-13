@@ -24,10 +24,8 @@ class TradingPlatformAccountsResponse
     extends TradingPlatformAccountsResponseModel {
   /// Initializes Trading platform accounts response class.
   const TradingPlatformAccountsResponse({
-    List<TradingPlatformAccountsItem>? tradingPlatformAccounts,
-  }) : super(
-          tradingPlatformAccounts: tradingPlatformAccounts,
-        );
+    super.tradingPlatformAccounts,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAccountsResponse.fromJson(
@@ -168,6 +166,7 @@ enum MarketTypeEnum {
 final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
   "dxtrade": PlatformEnum.dxtrade,
   "mt5": PlatformEnum.mt5,
+  "ctrader": PlatformEnum.ctrader,
 };
 
 /// Platform Enum.
@@ -177,6 +176,9 @@ enum PlatformEnum {
 
   /// mt5.
   mt5,
+
+  /// ctrader.
+  ctrader,
 }
 
 /// EnvironmentEnum mapper.
@@ -214,7 +216,6 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
-
 /// Trading platform accounts item model class.
 abstract class TradingPlatformAccountsItemModel {
   /// Initializes Trading platform accounts item model class .
@@ -298,44 +299,25 @@ abstract class TradingPlatformAccountsItemModel {
 class TradingPlatformAccountsItem extends TradingPlatformAccountsItemModel {
   /// Initializes Trading platform accounts item class.
   const TradingPlatformAccountsItem({
-    String? accountId,
-    AccountTypeEnum? accountType,
-    double? balance,
-    String? country,
-    String? currency,
-    String? displayBalance,
-    String? email,
-    int? enabled,
-    String? group,
-    LandingCompanyShortEnum? landingCompanyShort,
-    double? leverage,
-    String? login,
-    MarketTypeEnum? marketType,
-    String? name,
-    PlatformEnum? platform,
-    String? server,
-    ServerInfo? serverInfo,
-    SubAccountTypeEnum? subAccountType,
-  }) : super(
-          accountId: accountId,
-          accountType: accountType,
-          balance: balance,
-          country: country,
-          currency: currency,
-          displayBalance: displayBalance,
-          email: email,
-          enabled: enabled,
-          group: group,
-          landingCompanyShort: landingCompanyShort,
-          leverage: leverage,
-          login: login,
-          marketType: marketType,
-          name: name,
-          platform: platform,
-          server: server,
-          serverInfo: serverInfo,
-          subAccountType: subAccountType,
-        );
+    super.accountId,
+    super.accountType,
+    super.balance,
+    super.country,
+    super.currency,
+    super.displayBalance,
+    super.email,
+    super.enabled,
+    super.group,
+    super.landingCompanyShort,
+    super.leverage,
+    super.login,
+    super.marketType,
+    super.name,
+    super.platform,
+    super.server,
+    super.serverInfo,
+    super.subAccountType,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAccountsItem.fromJson(Map<String, dynamic> json) =>
@@ -457,7 +439,6 @@ class TradingPlatformAccountsItem extends TradingPlatformAccountsItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
-
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -481,14 +462,10 @@ abstract class ServerInfoModel {
 class ServerInfo extends ServerInfoModel {
   /// Initializes Server info class.
   const ServerInfo({
-    EnvironmentEnum? environment,
-    Geolocation? geolocation,
-    String? id,
-  }) : super(
-          environment: environment,
-          geolocation: geolocation,
-          id: id,
-        );
+    super.environment,
+    super.geolocation,
+    super.id,
+  });
 
   /// Creates an instance from JSON.
   factory ServerInfo.fromJson(Map<String, dynamic> json) => ServerInfo(
@@ -529,7 +506,6 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
-
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .
@@ -557,16 +533,11 @@ abstract class GeolocationModel {
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
   const Geolocation({
-    String? group,
-    String? location,
-    String? region,
-    int? sequence,
-  }) : super(
-          group: group,
-          location: location,
-          region: region,
-          sequence: sequence,
-        );
+    super.group,
+    super.location,
+    super.region,
+    super.sequence,
+  });
 
   /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(

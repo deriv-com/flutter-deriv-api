@@ -10,13 +10,10 @@ class GetAvailableAccountsToTransferRequest extends Request {
   const GetAvailableAccountsToTransferRequest({
     this.getAvailableAccountsToTransfer = true,
     required this.loginid,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_available_accounts_to_transfer',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'get_available_accounts_to_transfer',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetAvailableAccountsToTransferRequest.fromJson(

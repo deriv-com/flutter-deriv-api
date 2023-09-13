@@ -13,13 +13,10 @@ class TradingPlatformWithdrawalRequest extends Request {
     required this.platform,
     required this.toAccount,
     this.tradingPlatformWithdrawal = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_withdrawal',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_withdrawal',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformWithdrawalRequest.fromJson(

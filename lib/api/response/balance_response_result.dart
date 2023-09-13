@@ -36,12 +36,9 @@ abstract class BalanceResponseModel {
 class BalanceResponse extends BalanceResponseModel {
   /// Initializes Balance response class.
   const BalanceResponse({
-    Balance? balance,
-    Subscription? subscription,
-  }) : super(
-          balance: balance,
-          subscription: subscription,
-        );
+    super.balance,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory BalanceResponse.fromJson(
@@ -172,7 +169,6 @@ enum TypeEnum {
   /// deriv.
   deriv,
 }
-
 /// Balance model class.
 abstract class BalanceModel {
   /// Initializes Balance model class .
@@ -208,20 +204,13 @@ abstract class BalanceModel {
 class Balance extends BalanceModel {
   /// Initializes Balance class.
   const Balance({
-    required double balance,
-    required String currency,
-    required String loginid,
-    Map<String, AccountsProperty>? accounts,
-    String? id,
-    Total? total,
-  }) : super(
-          balance: balance,
-          currency: currency,
-          loginid: loginid,
-          accounts: accounts,
-          id: id,
-          total: total,
-        );
+    required super.balance,
+    required super.currency,
+    required super.loginid,
+    super.accounts,
+    super.id,
+    super.total,
+  });
 
   /// Creates an instance from JSON.
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
@@ -274,7 +263,6 @@ class Balance extends BalanceModel {
         total: total ?? this.total,
       );
 }
-
 /// Accounts property model class.
 abstract class AccountsPropertyModel {
   /// Initializes Accounts property model class .
@@ -310,20 +298,13 @@ abstract class AccountsPropertyModel {
 class AccountsProperty extends AccountsPropertyModel {
   /// Initializes Accounts property class.
   const AccountsProperty({
-    required double balance,
-    required double convertedAmount,
-    required String currency,
-    required bool demoAccount,
-    required bool status,
-    required TypeEnum type,
-  }) : super(
-          balance: balance,
-          convertedAmount: convertedAmount,
-          currency: currency,
-          demoAccount: demoAccount,
-          status: status,
-          type: type,
-        );
+    required super.balance,
+    required super.convertedAmount,
+    required super.currency,
+    required super.demoAccount,
+    required super.status,
+    required super.type,
+  });
 
   /// Creates an instance from JSON.
   factory AccountsProperty.fromJson(Map<String, dynamic> json) =>
@@ -370,7 +351,6 @@ class AccountsProperty extends AccountsPropertyModel {
         type: type ?? this.type,
       );
 }
-
 /// Total model class.
 abstract class TotalModel {
   /// Initializes Total model class .
@@ -398,16 +378,11 @@ abstract class TotalModel {
 class Total extends TotalModel {
   /// Initializes Total class.
   const Total({
-    Deriv? deriv,
-    DerivDemo? derivDemo,
-    Mt5? mt5,
-    Mt5Demo? mt5Demo,
-  }) : super(
-          deriv: deriv,
-          derivDemo: derivDemo,
-          mt5: mt5,
-          mt5Demo: mt5Demo,
-        );
+    super.deriv,
+    super.derivDemo,
+    super.mt5,
+    super.mt5Demo,
+  });
 
   /// Creates an instance from JSON.
   factory Total.fromJson(Map<String, dynamic> json) => Total(
@@ -455,7 +430,6 @@ class Total extends TotalModel {
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
 }
-
 /// Deriv model class.
 abstract class DerivModel {
   /// Initializes Deriv model class .
@@ -475,12 +449,9 @@ abstract class DerivModel {
 class Deriv extends DerivModel {
   /// Initializes Deriv class.
   const Deriv({
-    required double amount,
-    required String currency,
-  }) : super(
-          amount: amount,
-          currency: currency,
-        );
+    required super.amount,
+    required super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory Deriv.fromJson(Map<String, dynamic> json) => Deriv(
@@ -508,7 +479,6 @@ class Deriv extends DerivModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Deriv demo model class.
 abstract class DerivDemoModel {
   /// Initializes Deriv demo model class .
@@ -528,12 +498,9 @@ abstract class DerivDemoModel {
 class DerivDemo extends DerivDemoModel {
   /// Initializes Deriv demo class.
   const DerivDemo({
-    required double amount,
-    required String currency,
-  }) : super(
-          amount: amount,
-          currency: currency,
-        );
+    required super.amount,
+    required super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory DerivDemo.fromJson(Map<String, dynamic> json) => DerivDemo(
@@ -561,7 +528,6 @@ class DerivDemo extends DerivDemoModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Mt5 model class.
 abstract class Mt5Model {
   /// Initializes Mt5 model class .
@@ -581,12 +547,9 @@ abstract class Mt5Model {
 class Mt5 extends Mt5Model {
   /// Initializes Mt5 class.
   const Mt5({
-    required double amount,
-    required String currency,
-  }) : super(
-          amount: amount,
-          currency: currency,
-        );
+    required super.amount,
+    required super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5.fromJson(Map<String, dynamic> json) => Mt5(
@@ -614,7 +577,6 @@ class Mt5 extends Mt5Model {
         currency: currency ?? this.currency,
       );
 }
-
 /// Mt5 demo model class.
 abstract class Mt5DemoModel {
   /// Initializes Mt5 demo model class .
@@ -634,12 +596,9 @@ abstract class Mt5DemoModel {
 class Mt5Demo extends Mt5DemoModel {
   /// Initializes Mt5 demo class.
   const Mt5Demo({
-    required double amount,
-    required String currency,
-  }) : super(
-          amount: amount,
-          currency: currency,
-        );
+    required super.amount,
+    required super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5Demo.fromJson(Map<String, dynamic> json) => Mt5Demo(
@@ -667,7 +626,6 @@ class Mt5Demo extends Mt5DemoModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -683,10 +641,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

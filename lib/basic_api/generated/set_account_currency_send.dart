@@ -9,13 +9,10 @@ class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest.
   const SetAccountCurrencyRequest({
     required this.setAccountCurrency,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'set_account_currency',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'set_account_currency',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>

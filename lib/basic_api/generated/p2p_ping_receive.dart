@@ -9,16 +9,11 @@ class P2pPingReceive extends Response {
   /// Initialize P2pPingReceive.
   const P2pPingReceive({
     this.p2pPing,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pPingReceive.fromJson(Map<String, dynamic> json) => P2pPingReceive(

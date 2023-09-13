@@ -25,10 +25,8 @@ abstract class Mt5PasswordCheckResponseModel {
 class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// Initializes Mt5 password check response class.
   const Mt5PasswordCheckResponse({
-    int? mt5PasswordCheck,
-  }) : super(
-          mt5PasswordCheck: mt5PasswordCheck,
-        );
+    super.mt5PasswordCheck,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordCheckResponse.fromJson(
