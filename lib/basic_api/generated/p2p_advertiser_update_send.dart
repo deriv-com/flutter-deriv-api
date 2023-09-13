@@ -15,13 +15,10 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.paymentInfo,
     this.showName,
     this.upgradeLimits,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_update',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_update',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -57,7 +54,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
   final bool? showName;
 
-  /// [Optional] Used to upgrade daily limits of advertiser if advertiser is eligible
+  /// [Optional] Used to upgrade daily limits of eligible advertiser.
   final int? upgradeLimits;
 
   /// Converts this instance to JSON

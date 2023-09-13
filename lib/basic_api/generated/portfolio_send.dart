@@ -10,13 +10,10 @@ class PortfolioRequest extends Request {
   const PortfolioRequest({
     required this.contractType,
     this.portfolio = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'portfolio',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'portfolio',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>

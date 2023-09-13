@@ -9,13 +9,10 @@ class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest.
   const CopyStopRequest({
     required this.copyStop,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'copy_stop',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'copy_stop',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>

@@ -25,10 +25,8 @@ abstract class Mt5LoginListResponseModel {
 class Mt5LoginListResponse extends Mt5LoginListResponseModel {
   /// Initializes Mt5 login list response class.
   const Mt5LoginListResponse({
-    List<Mt5LoginListItem>? mt5LoginList,
-  }) : super(
-          mt5LoginList: mt5LoginList,
-        );
+    super.mt5LoginList,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5LoginListResponse.fromJson(
@@ -145,6 +143,7 @@ final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
+  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
@@ -154,6 +153,9 @@ enum MarketTypeEnum {
 
   /// synthetic.
   synthetic,
+
+  /// all.
+  all,
 }
 
 /// EnvironmentEnum mapper.
@@ -176,22 +178,57 @@ enum EnvironmentEnum {
   derivServer02,
 }
 
+/// SubAccountCategoryEnum mapper.
+final Map<String, SubAccountCategoryEnum> subAccountCategoryEnumMapper =
+    <String, SubAccountCategoryEnum>{
+  "none": SubAccountCategoryEnum.none,
+  "swap_free": SubAccountCategoryEnum.swapFree,
+  "swap_free_high_risk": SubAccountCategoryEnum.swapFreeHighRisk,
+  "ibt": SubAccountCategoryEnum.ibt,
+  "stp": SubAccountCategoryEnum.stp,
+};
+
+/// SubAccountCategory Enum.
+enum SubAccountCategoryEnum {
+  /// none.
+  none,
+
+  /// swap_free.
+  swapFree,
+
+  /// swap_free_high_risk.
+  swapFreeHighRisk,
+
+  /// ibt.
+  ibt,
+
+  /// stp.
+  stp,
+}
+
 /// SubAccountTypeEnum mapper.
 final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
+  "standard": SubAccountTypeEnum.standard,
   "financial": SubAccountTypeEnum.financial,
   "financial_stp": SubAccountTypeEnum.financialStp,
+  "swap_free": SubAccountTypeEnum.swapFree,
 };
 
 /// SubAccountType Enum.
 enum SubAccountTypeEnum {
+  /// standard.
+  standard,
+
   /// financial.
   financial,
 
   /// financial_stp.
   financialStp,
-}
 
+  /// swap_free.
+  swapFree,
+}
 /// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel {
   /// Initializes Mt5 login list item model class .
@@ -211,6 +248,7 @@ abstract class Mt5LoginListItemModel {
     this.server,
     this.serverInfo,
     this.status,
+    this.subAccountCategory,
     this.subAccountType,
   });
 
@@ -259,7 +297,10 @@ abstract class Mt5LoginListItemModel {
   /// MT5 account status.
   final String? status;
 
-  /// Sub account type
+  /// Sub account category
+  final SubAccountCategoryEnum? subAccountCategory;
+
+  /// Sub account type refer to classic MT5 account
   final SubAccountTypeEnum? subAccountType;
 }
 
@@ -267,40 +308,24 @@ abstract class Mt5LoginListItemModel {
 class Mt5LoginListItem extends Mt5LoginListItemModel {
   /// Initializes Mt5 login list item class.
   const Mt5LoginListItem({
-    AccountTypeEnum? accountType,
-    double? balance,
-    String? country,
-    String? currency,
-    String? displayBalance,
-    String? email,
-    String? group,
-    LandingCompanyShortEnum? landingCompanyShort,
-    double? leverage,
-    String? login,
-    MarketTypeEnum? marketType,
-    String? name,
-    String? server,
-    ServerInfo? serverInfo,
-    String? status,
-    SubAccountTypeEnum? subAccountType,
-  }) : super(
-          accountType: accountType,
-          balance: balance,
-          country: country,
-          currency: currency,
-          displayBalance: displayBalance,
-          email: email,
-          group: group,
-          landingCompanyShort: landingCompanyShort,
-          leverage: leverage,
-          login: login,
-          marketType: marketType,
-          name: name,
-          server: server,
-          serverInfo: serverInfo,
-          status: status,
-          subAccountType: subAccountType,
-        );
+    super.accountType,
+    super.balance,
+    super.country,
+    super.currency,
+    super.displayBalance,
+    super.email,
+    super.group,
+    super.landingCompanyShort,
+    super.leverage,
+    super.login,
+    super.marketType,
+    super.name,
+    super.server,
+    super.serverInfo,
+    super.status,
+    super.subAccountCategory,
+    super.subAccountType,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5LoginListItem.fromJson(Map<String, dynamic> json) =>
@@ -328,6 +353,9 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
             ? null
             : ServerInfo.fromJson(json['server_info']),
         status: json['status'],
+        subAccountCategory: json['sub_account_category'] == null
+            ? null
+            : subAccountCategoryEnumMapper[json['sub_account_category']],
         subAccountType: json['sub_account_type'] == null
             ? null
             : subAccountTypeEnumMapper[json['sub_account_type']],
@@ -363,6 +391,10 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
       resultMap['server_info'] = serverInfo!.toJson();
     }
     resultMap['status'] = status;
+    resultMap['sub_account_category'] = subAccountCategoryEnumMapper.entries
+        .firstWhere((MapEntry<String, SubAccountCategoryEnum> entry) =>
+            entry.value == subAccountCategory)
+        .key;
     resultMap['sub_account_type'] = subAccountTypeEnumMapper.entries
         .firstWhere((MapEntry<String, SubAccountTypeEnum> entry) =>
             entry.value == subAccountType)
@@ -388,6 +420,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
     String? server,
     ServerInfo? serverInfo,
     String? status,
+    SubAccountCategoryEnum? subAccountCategory,
     SubAccountTypeEnum? subAccountType,
   }) =>
       Mt5LoginListItem(
@@ -406,10 +439,10 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         server: server ?? this.server,
         serverInfo: serverInfo ?? this.serverInfo,
         status: status ?? this.status,
+        subAccountCategory: subAccountCategory ?? this.subAccountCategory,
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
-
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -433,14 +466,10 @@ abstract class ServerInfoModel {
 class ServerInfo extends ServerInfoModel {
   /// Initializes Server info class.
   const ServerInfo({
-    EnvironmentEnum? environment,
-    Geolocation? geolocation,
-    String? id,
-  }) : super(
-          environment: environment,
-          geolocation: geolocation,
-          id: id,
-        );
+    super.environment,
+    super.geolocation,
+    super.id,
+  });
 
   /// Creates an instance from JSON.
   factory ServerInfo.fromJson(Map<String, dynamic> json) => ServerInfo(
@@ -481,7 +510,6 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
-
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .
@@ -495,13 +523,13 @@ abstract class GeolocationModel {
   /// Internal server grouping.
   final String? group;
 
-  /// Sever location.
+  /// Server location.
   final String? location;
 
-  /// Sever region.
+  /// Server region.
   final String? region;
 
-  /// Sever sequence.
+  /// Server sequence.
   final int? sequence;
 }
 
@@ -509,16 +537,11 @@ abstract class GeolocationModel {
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
   const Geolocation({
-    String? group,
-    String? location,
-    String? region,
-    int? sequence,
-  }) : super(
-          group: group,
-          location: location,
-          region: region,
-          sequence: sequence,
-        );
+    super.group,
+    super.location,
+    super.region,
+    super.sequence,
+  });
 
   /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(

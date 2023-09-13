@@ -13,13 +13,10 @@ class ServiceTokenRequest extends Request {
     required this.server,
     this.service,
     this.serviceToken = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'service_token',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'service_token',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>

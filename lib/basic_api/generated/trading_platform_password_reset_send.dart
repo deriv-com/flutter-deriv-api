@@ -12,13 +12,10 @@ class TradingPlatformPasswordResetRequest extends Request {
     required this.platform,
     this.tradingPlatformPasswordReset = true,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_password_reset',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_password_reset',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformPasswordResetRequest.fromJson(

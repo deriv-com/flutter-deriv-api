@@ -11,13 +11,10 @@ class ContractUpdateHistoryRequest extends Request {
     required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'contract_update_history',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'contract_update_history',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>

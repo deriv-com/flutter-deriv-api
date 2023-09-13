@@ -16,13 +16,10 @@ class ProfitTableRequest extends Request {
     this.offset,
     this.profitTable = true,
     this.sort,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'profit_table',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'profit_table',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
@@ -35,7 +32,7 @@ class ProfitTableRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        offset: json['offset'] as int?,
         profitTable:
             json['profit_table'] == null ? null : json['profit_table'] == 1,
         sort: json['sort'] as String?,
@@ -59,7 +56,7 @@ class ProfitTableRequest extends Request {
   final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// Must be `true`
   final bool? profitTable;
@@ -98,7 +95,7 @@ class ProfitTableRequest extends Request {
     String? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    int? offset,
     bool? profitTable,
     String? sort,
     Map<String, dynamic>? passthrough,

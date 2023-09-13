@@ -9,13 +9,10 @@ class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest.
   const AppDeleteRequest({
     required this.appDelete,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_delete',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_delete',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>

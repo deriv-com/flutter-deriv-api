@@ -19,13 +19,10 @@ class PaymentagentCreateRequest extends Request {
     required this.phoneNumbers,
     required this.supportedPaymentMethods,
     required this.urls,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'paymentagent_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'paymentagent_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentCreateRequest.fromJson(Map<String, dynamic> json) =>

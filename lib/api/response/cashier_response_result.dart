@@ -29,12 +29,9 @@ abstract class CashierResponseModel {
 class CashierResponse extends CashierResponseModel {
   /// Initializes Cashier response class.
   const CashierResponse({
-    String? cashierString,
-    CashierObject? cashierObject,
-  }) : super(
-          cashierString: cashierString,
-          cashierObject: cashierObject,
-        );
+    super.cashierString,
+    super.cashierObject,
+  });
 
   /// Creates an instance from JSON.
   factory CashierResponse.fromJson(
@@ -104,7 +101,6 @@ enum ActionEnum {
   /// withdraw.
   withdraw,
 }
-
 /// Cashier object model class.
 abstract class CashierObjectModel {
   /// Initializes Cashier object model class .
@@ -128,14 +124,10 @@ abstract class CashierObjectModel {
 class CashierObject extends CashierObjectModel {
   /// Initializes Cashier object class.
   const CashierObject({
-    required ActionEnum action,
-    Deposit? deposit,
-    Map<String, dynamic>? withdraw,
-  }) : super(
-          action: action,
-          deposit: deposit,
-          withdraw: withdraw,
-        );
+    required super.action,
+    super.deposit,
+    super.withdraw,
+  });
 
   /// Creates an instance from JSON.
   factory CashierObject.fromJson(Map<String, dynamic> json) => CashierObject(
@@ -173,7 +165,6 @@ class CashierObject extends CashierObjectModel {
         withdraw: withdraw ?? this.withdraw,
       );
 }
-
 /// Deposit model class.
 abstract class DepositModel {
   /// Initializes Deposit model class .
@@ -189,10 +180,8 @@ abstract class DepositModel {
 class Deposit extends DepositModel {
   /// Initializes Deposit class.
   const Deposit({
-    required String address,
-  }) : super(
-          address: address,
-        );
+    required super.address,
+  });
 
   /// Creates an instance from JSON.
   factory Deposit.fromJson(Map<String, dynamic> json) => Deposit(

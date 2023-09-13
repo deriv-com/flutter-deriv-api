@@ -10,13 +10,10 @@ class P2pChatCreateRequest extends Request {
   const P2pChatCreateRequest({
     required this.orderId,
     this.p2pChatCreate = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_chat_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_chat_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>

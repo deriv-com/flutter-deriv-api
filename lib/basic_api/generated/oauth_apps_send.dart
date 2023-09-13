@@ -9,13 +9,10 @@ class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest.
   const OauthAppsRequest({
     this.oauthApps = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'oauth_apps',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'oauth_apps',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>

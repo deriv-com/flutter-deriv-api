@@ -32,13 +32,10 @@ class NewAccountRealRequest extends Request {
     this.secretQuestion,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'new_account_real',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'new_account_real',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>

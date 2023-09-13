@@ -14,13 +14,10 @@ class PaymentagentTransferRequest extends Request {
     this.dryRun,
     this.paymentagentTransfer = true,
     required this.transferTo,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'paymentagent_transfer',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'paymentagent_transfer',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
