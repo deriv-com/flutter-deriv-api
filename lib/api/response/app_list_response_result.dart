@@ -25,8 +25,10 @@ abstract class AppListResponseModel {
 class AppListResponse extends AppListResponseModel {
   /// Initializes App list response class.
   const AppListResponse({
-    super.appList,
-  });
+    List<AppListItem>? appList,
+  }) : super(
+          appList: appList,
+        );
 
   /// Creates an instance from JSON.
   factory AppListResponse.fromJson(
@@ -85,6 +87,7 @@ class AppListResponse extends AppListResponseModel {
         appList: appList ?? this.appList,
       );
 }
+
 /// App list item model class.
 abstract class AppListItemModel {
   /// Initializes App list item model class .
@@ -140,18 +143,30 @@ abstract class AppListItemModel {
 class AppListItem extends AppListItemModel {
   /// Initializes App list item class.
   const AppListItem({
-    required super.appId,
-    required super.appMarkupPercentage,
-    required super.name,
-    required super.redirectUri,
-    super.active,
-    super.appstore,
-    super.github,
-    super.googleplay,
-    super.homepage,
-    super.scopes,
-    super.verificationUri,
-  });
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required String redirectUri,
+    int? active,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    List<String>? scopes,
+    String? verificationUri,
+  }) : super(
+          appId: appId,
+          appMarkupPercentage: appMarkupPercentage,
+          name: name,
+          redirectUri: redirectUri,
+          active: active,
+          appstore: appstore,
+          github: github,
+          googleplay: googleplay,
+          homepage: homepage,
+          scopes: scopes,
+          verificationUri: verificationUri,
+        );
 
   /// Creates an instance from JSON.
   factory AppListItem.fromJson(Map<String, dynamic> json) => AppListItem(

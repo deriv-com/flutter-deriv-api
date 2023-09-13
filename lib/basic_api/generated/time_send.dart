@@ -9,10 +9,13 @@ class TimeRequest extends Request {
   /// Initialize TimeRequest.
   const TimeRequest({
     this.time = true,
-    super.msgType = 'time',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'time',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(

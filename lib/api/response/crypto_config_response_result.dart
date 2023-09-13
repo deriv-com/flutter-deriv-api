@@ -19,8 +19,10 @@ abstract class CryptoConfigResponseModel {
 class CryptoConfigResponse extends CryptoConfigResponseModel {
   /// Initializes Crypto config response class.
   const CryptoConfigResponse({
-    super.cryptoConfig,
-  });
+    CryptoConfig? cryptoConfig,
+  }) : super(
+          cryptoConfig: cryptoConfig,
+        );
 
   /// Creates an instance from JSON.
   factory CryptoConfigResponse.fromJson(
@@ -66,8 +68,10 @@ abstract class CryptoConfigModel {
 class CryptoConfig extends CryptoConfigModel {
   /// Initializes Crypto config class.
   const CryptoConfig({
-    required super.currenciesConfig,
-  });
+    required Map<String, CurrenciesConfigProperty> currenciesConfig,
+  }) : super(
+          currenciesConfig: currenciesConfig,
+        );
 
   /// Creates an instance from JSON.
   factory CryptoConfig.fromJson(Map<String, dynamic> json) => CryptoConfig(
@@ -116,9 +120,12 @@ abstract class CurrenciesConfigPropertyModel {
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property class.
   const CurrenciesConfigProperty({
-    super.minimumDeposit,
-    super.minimumWithdrawal,
-  });
+    double? minimumDeposit,
+    double? minimumWithdrawal,
+  }) : super(
+          minimumDeposit: minimumDeposit,
+          minimumWithdrawal: minimumWithdrawal,
+        );
 
   /// Creates an instance from JSON.
   factory CurrenciesConfigProperty.fromJson(Map<String, dynamic> json) =>

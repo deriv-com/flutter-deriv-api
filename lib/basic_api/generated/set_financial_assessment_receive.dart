@@ -9,11 +9,16 @@ class SetFinancialAssessmentReceive extends Response {
   /// Initialize SetFinancialAssessmentReceive.
   const SetFinancialAssessmentReceive({
     this.setFinancialAssessment,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory SetFinancialAssessmentReceive.fromJson(Map<String, dynamic> json) =>

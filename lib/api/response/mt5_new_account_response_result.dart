@@ -38,8 +38,10 @@ abstract class Mt5NewAccountResponseModel {
 class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Initializes Mt5 new account response class.
   const Mt5NewAccountResponse({
-    super.mt5NewAccount,
-  });
+    Mt5NewAccount? mt5NewAccount,
+  }) : super(
+          mt5NewAccount: mt5NewAccount,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5NewAccountResponse.fromJson(
@@ -183,7 +185,6 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "demo": AccountTypeEnum.demo,
   "gaming": AccountTypeEnum.gaming,
   "financial": AccountTypeEnum.financial,
-  "all": AccountTypeEnum.all,
 };
 
 /// AccountType Enum.
@@ -196,25 +197,18 @@ enum AccountTypeEnum {
 
   /// financial.
   financial,
-
-  /// all.
-  all,
 }
 
 /// Mt5AccountCategoryEnum mapper.
 final Map<String, Mt5AccountCategoryEnum> mt5AccountCategoryEnumMapper =
     <String, Mt5AccountCategoryEnum>{
   "conventional": Mt5AccountCategoryEnum.conventional,
-  "swap_free": Mt5AccountCategoryEnum.swapFree,
 };
 
 /// Mt5AccountCategory Enum.
 enum Mt5AccountCategoryEnum {
   /// conventional.
   conventional,
-
-  /// swap_free.
-  swapFree,
 }
 
 /// Mt5AccountTypeEnum mapper.
@@ -222,7 +216,6 @@ final Map<String, Mt5AccountTypeEnum> mt5AccountTypeEnumMapper =
     <String, Mt5AccountTypeEnum>{
   "financial": Mt5AccountTypeEnum.financial,
   "financial_stp": Mt5AccountTypeEnum.financialStp,
-  "standard": Mt5AccountTypeEnum.standard,
 };
 
 /// Mt5AccountType Enum.
@@ -232,10 +225,8 @@ enum Mt5AccountTypeEnum {
 
   /// financial_stp.
   financialStp,
-
-  /// standard.
-  standard,
 }
+
 /// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .
@@ -271,7 +262,7 @@ abstract class Mt5NewAccountModel {
   /// With default value of conventional, unavailable for `financial_stp` sub account type.
   final Mt5AccountCategoryEnum? mt5AccountCategory;
 
-  /// Sub account type for classic MT5 account.
+  /// Sub account type, present only when account type is either `demo` or `financial`.
   final Mt5AccountTypeEnum? mt5AccountType;
 }
 
@@ -279,15 +270,24 @@ abstract class Mt5NewAccountModel {
 class Mt5NewAccount extends Mt5NewAccountModel {
   /// Initializes Mt5 new account class.
   const Mt5NewAccount({
-    super.accountType,
-    super.agent,
-    super.balance,
-    super.currency,
-    super.displayBalance,
-    super.login,
-    super.mt5AccountCategory,
-    super.mt5AccountType,
-  });
+    AccountTypeEnum? accountType,
+    String? agent,
+    double? balance,
+    String? currency,
+    String? displayBalance,
+    String? login,
+    Mt5AccountCategoryEnum? mt5AccountCategory,
+    Mt5AccountTypeEnum? mt5AccountType,
+  }) : super(
+          accountType: accountType,
+          agent: agent,
+          balance: balance,
+          currency: currency,
+          displayBalance: displayBalance,
+          login: login,
+          mt5AccountCategory: mt5AccountCategory,
+          mt5AccountType: mt5AccountType,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5NewAccount.fromJson(Map<String, dynamic> json) => Mt5NewAccount(

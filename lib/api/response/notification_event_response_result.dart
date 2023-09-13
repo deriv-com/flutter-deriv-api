@@ -19,8 +19,10 @@ abstract class NotificationEventResponseModel {
 class NotificationEventResponse extends NotificationEventResponseModel {
   /// Initializes Notification event response class.
   const NotificationEventResponse({
-    super.notificationEvent,
-  });
+    bool? notificationEvent,
+  }) : super(
+          notificationEvent: notificationEvent,
+        );
 
   /// Creates an instance from JSON.
   factory NotificationEventResponse.fromJson(

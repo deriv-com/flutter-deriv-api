@@ -11,10 +11,13 @@ class VerifyEmailCellxpertRequest extends Request {
     required this.type,
     this.urlParameters,
     required this.verifyEmailCellxpert,
-    super.msgType = 'verify_email_cellxpert',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'verify_email_cellxpert',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory VerifyEmailCellxpertRequest.fromJson(Map<String, dynamic> json) =>

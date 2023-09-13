@@ -23,10 +23,13 @@ class SetSelfExclusionRequest extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = true,
     this.timeoutUntil,
-    super.msgType = 'set_self_exclusion',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'set_self_exclusion',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>

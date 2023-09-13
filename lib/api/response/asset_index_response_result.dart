@@ -25,8 +25,10 @@ abstract class AssetIndexResponseModel {
 class AssetIndexResponse extends AssetIndexResponseModel {
   /// Initializes Asset index response class.
   const AssetIndexResponse({
-    super.assetIndex,
-  });
+    List<dynamic>? assetIndex,
+  }) : super(
+          assetIndex: assetIndex,
+        );
 
   /// Creates an instance from JSON.
   factory AssetIndexResponse.fromJson(

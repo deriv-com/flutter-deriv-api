@@ -18,8 +18,10 @@ abstract class NewAccountMaltainvestResponseModel {
 class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
   /// Initializes New account maltainvest response class.
   const NewAccountMaltainvestResponse({
-    super.newAccountMaltainvest,
-  });
+    NewAccountMaltainvest? newAccountMaltainvest,
+  }) : super(
+          newAccountMaltainvest: newAccountMaltainvest,
+        );
 
   /// Creates an instance from JSON.
   factory NewAccountMaltainvestResponse.fromJson(
@@ -82,12 +84,18 @@ abstract class NewAccountMaltainvestModel {
 class NewAccountMaltainvest extends NewAccountMaltainvestModel {
   /// Initializes New account maltainvest class.
   const NewAccountMaltainvest({
-    required super.clientId,
-    required super.landingCompany,
-    required super.oauthToken,
-    super.landingCompanyShort,
-    super.landingCompanyShortcode,
-  });
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? landingCompanyShort,
+    String? landingCompanyShortcode,
+  }) : super(
+          clientId: clientId,
+          landingCompany: landingCompany,
+          oauthToken: oauthToken,
+          landingCompanyShort: landingCompanyShort,
+          landingCompanyShortcode: landingCompanyShortcode,
+        );
 
   /// Creates an instance from JSON.
   factory NewAccountMaltainvest.fromJson(Map<String, dynamic> json) =>

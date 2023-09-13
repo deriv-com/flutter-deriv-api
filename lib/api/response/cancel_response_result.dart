@@ -25,8 +25,10 @@ abstract class CancelResponseModel {
 class CancelResponse extends CancelResponseModel {
   /// Initializes Cancel response class.
   const CancelResponse({
-    super.cancel,
-  });
+    Cancel? cancel,
+  }) : super(
+          cancel: cancel,
+        );
 
   /// Creates an instance from JSON.
   factory CancelResponse.fromJson(
@@ -72,6 +74,7 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
+
 /// Cancel model class.
 abstract class CancelModel {
   /// Initializes Cancel model class .
@@ -103,12 +106,18 @@ abstract class CancelModel {
 class Cancel extends CancelModel {
   /// Initializes Cancel class.
   const Cancel({
-    super.balanceAfter,
-    super.contractId,
-    super.referenceId,
-    super.soldFor,
-    super.transactionId,
-  });
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
+  }) : super(
+          balanceAfter: balanceAfter,
+          contractId: contractId,
+          referenceId: referenceId,
+          soldFor: soldFor,
+          transactionId: transactionId,
+        );
 
   /// Creates an instance from JSON.
   factory Cancel.fromJson(Map<String, dynamic> json) => Cancel(

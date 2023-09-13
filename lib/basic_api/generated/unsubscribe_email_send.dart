@@ -11,10 +11,13 @@ class UnsubscribeEmailRequest extends Request {
     required this.binaryUserId,
     required this.checksum,
     this.unsubscribeEmail = true,
-    super.msgType = 'unsubscribe_email',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'unsubscribe_email',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory UnsubscribeEmailRequest.fromJson(Map<String, dynamic> json) =>

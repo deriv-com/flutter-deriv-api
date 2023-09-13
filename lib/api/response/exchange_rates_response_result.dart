@@ -29,9 +29,12 @@ abstract class ExchangeRatesResponseModel {
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
   const ExchangeRatesResponse({
-    super.exchangeRates,
-    super.subscription,
-  });
+    ExchangeRates? exchangeRates,
+    Subscription? subscription,
+  }) : super(
+          exchangeRates: exchangeRates,
+          subscription: subscription,
+        );
 
   /// Creates an instance from JSON.
   factory ExchangeRatesResponse.fromJson(
@@ -103,6 +106,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
@@ -126,10 +130,14 @@ abstract class ExchangeRatesModel {
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes Exchange rates class.
   const ExchangeRates({
-    super.baseCurrency,
-    super.date,
-    super.rates,
-  });
+    String? baseCurrency,
+    DateTime? date,
+    Map<String, double>? rates,
+  }) : super(
+          baseCurrency: baseCurrency,
+          date: date,
+          rates: rates,
+        );
 
   /// Creates an instance from JSON.
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
@@ -168,6 +176,7 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -183,8 +192,10 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required super.id,
-  });
+    required String id,
+  }) : super(
+          id: id,
+        );
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

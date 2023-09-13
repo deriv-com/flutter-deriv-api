@@ -10,10 +10,13 @@ class WebsiteStatusRequest extends Request {
   const WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = true,
-    super.msgType = 'website_status',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'website_status',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>

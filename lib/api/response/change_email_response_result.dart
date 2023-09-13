@@ -19,8 +19,10 @@ abstract class ChangeEmailResponseModel {
 class ChangeEmailResponse extends ChangeEmailResponseModel {
   /// Initializes Change email response class.
   const ChangeEmailResponse({
-    super.changeEmail,
-  });
+    bool? changeEmail,
+  }) : super(
+          changeEmail: changeEmail,
+        );
 
   /// Creates an instance from JSON.
   factory ChangeEmailResponse.fromJson(

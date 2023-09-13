@@ -19,8 +19,10 @@ abstract class AppMarkupStatisticsResponseModel {
 class AppMarkupStatisticsResponse extends AppMarkupStatisticsResponseModel {
   /// Initializes App markup statistics response class.
   const AppMarkupStatisticsResponse({
-    super.appMarkupStatistics,
-  });
+    AppMarkupStatistics? appMarkupStatistics,
+  }) : super(
+          appMarkupStatistics: appMarkupStatistics,
+        );
 
   /// Creates an instance from JSON.
   factory AppMarkupStatisticsResponse.fromJson(
@@ -74,10 +76,14 @@ abstract class AppMarkupStatisticsModel {
 class AppMarkupStatistics extends AppMarkupStatisticsModel {
   /// Initializes App markup statistics class.
   const AppMarkupStatistics({
-    super.breakdown,
-    super.totalAppMarkupUsd,
-    super.totalTransactionsCount,
-  });
+    List<BreakdownItem>? breakdown,
+    double? totalAppMarkupUsd,
+    double? totalTransactionsCount,
+  }) : super(
+          breakdown: breakdown,
+          totalAppMarkupUsd: totalAppMarkupUsd,
+          totalTransactionsCount: totalTransactionsCount,
+        );
 
   /// Creates an instance from JSON.
   factory AppMarkupStatistics.fromJson(Map<String, dynamic> json) =>
@@ -154,12 +160,18 @@ abstract class BreakdownItemModel {
 class BreakdownItem extends BreakdownItemModel {
   /// Initializes Breakdown item class.
   const BreakdownItem({
-    super.appId,
-    super.appMarkupUsd,
-    super.appMarkupValue,
-    super.devCurrcode,
-    super.transactionsCount,
-  });
+    int? appId,
+    double? appMarkupUsd,
+    double? appMarkupValue,
+    String? devCurrcode,
+    double? transactionsCount,
+  }) : super(
+          appId: appId,
+          appMarkupUsd: appMarkupUsd,
+          appMarkupValue: appMarkupValue,
+          devCurrcode: devCurrcode,
+          transactionsCount: transactionsCount,
+        );
 
   /// Creates an instance from JSON.
   factory BreakdownItem.fromJson(Map<String, dynamic> json) => BreakdownItem(

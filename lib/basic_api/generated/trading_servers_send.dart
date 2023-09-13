@@ -13,10 +13,13 @@ class TradingServersRequest extends Request {
     this.marketType,
     this.platform,
     this.tradingServers = true,
-    super.msgType = 'trading_servers',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'trading_servers',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>

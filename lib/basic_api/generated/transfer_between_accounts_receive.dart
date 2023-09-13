@@ -13,11 +13,16 @@ class TransferBetweenAccountsReceive extends Response {
     this.clientToLoginid,
     this.transactionId,
     this.transferBetweenAccounts,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccountsReceive.fromJson(Map<String, dynamic> json) =>

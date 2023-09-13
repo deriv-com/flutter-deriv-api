@@ -16,10 +16,13 @@ class TicksHistoryRequest extends Request {
     this.style,
     this.subscribe,
     required this.ticksHistory,
-    super.msgType = 'ticks_history',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'ticks_history',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>

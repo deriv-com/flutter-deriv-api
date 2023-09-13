@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/basic_api/generated/profit_table_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
   /// Initializes Profit table response model class .
@@ -24,8 +25,10 @@ abstract class ProfitTableResponseModel {
 class ProfitTableResponse extends ProfitTableResponseModel {
   /// Initializes Profit table response class.
   const ProfitTableResponse({
-    super.profitTable,
-  });
+    ProfitTable? profitTable,
+  }) : super(
+          profitTable: profitTable,
+        );
 
   /// Creates an instance from JSON.
   factory ProfitTableResponse.fromJson(
@@ -74,6 +77,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
         profitTable: profitTable ?? this.profitTable,
       );
 }
+
 /// Profit table model class.
 abstract class ProfitTableModel {
   /// Initializes Profit table model class .
@@ -93,9 +97,12 @@ abstract class ProfitTableModel {
 class ProfitTable extends ProfitTableModel {
   /// Initializes Profit table class.
   const ProfitTable({
-    super.count,
-    super.transactions,
-  });
+    double? count,
+    List<TransactionsItem>? transactions,
+  }) : super(
+          count: count,
+          transactions: transactions,
+        );
 
   /// Creates an instance from JSON.
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
@@ -135,6 +142,7 @@ class ProfitTable extends ProfitTableModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -190,18 +198,30 @@ abstract class TransactionsItemModel {
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
   const TransactionsItem({
-    super.appId,
-    super.buyPrice,
-    super.contractId,
-    super.durationType,
-    super.longcode,
-    super.payout,
-    super.purchaseTime,
-    super.sellPrice,
-    super.sellTime,
-    super.shortcode,
-    super.transactionId,
-  });
+    int? appId,
+    double? buyPrice,
+    int? contractId,
+    String? durationType,
+    String? longcode,
+    double? payout,
+    DateTime? purchaseTime,
+    double? sellPrice,
+    DateTime? sellTime,
+    String? shortcode,
+    int? transactionId,
+  }) : super(
+          appId: appId,
+          buyPrice: buyPrice,
+          contractId: contractId,
+          durationType: durationType,
+          longcode: longcode,
+          payout: payout,
+          purchaseTime: purchaseTime,
+          sellPrice: sellPrice,
+          sellTime: sellTime,
+          shortcode: shortcode,
+          transactionId: transactionId,
+        );
 
   /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>

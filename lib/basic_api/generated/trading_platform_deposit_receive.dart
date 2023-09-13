@@ -9,11 +9,16 @@ class TradingPlatformDepositReceive extends Response {
   /// Initialize TradingPlatformDepositReceive.
   const TradingPlatformDepositReceive({
     this.tradingPlatformDeposit,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TradingPlatformDepositReceive.fromJson(Map<String, dynamic> json) =>

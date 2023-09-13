@@ -25,8 +25,10 @@ abstract class ContractsForResponseModel {
 class ContractsForResponse extends ContractsForResponseModel {
   /// Initializes Contracts for response class.
   const ContractsForResponse({
-    super.contractsFor,
-  });
+    ContractsFor? contractsFor,
+  }) : super(
+          contractsFor: contractsFor,
+        );
 
   /// Creates an instance from JSON.
   factory ContractsForResponse.fromJson(
@@ -78,6 +80,7 @@ class ContractsForResponse extends ContractsForResponseModel {
         contractsFor: contractsFor ?? this.contractsFor,
       );
 }
+
 /// Contracts for model class.
 abstract class ContractsForModel {
   /// Initializes Contracts for model class .
@@ -86,7 +89,6 @@ abstract class ContractsForModel {
     this.close,
     this.feedLicense,
     this.hitCount,
-    this.nonAvailable,
     this.open,
     this.spot,
   });
@@ -103,9 +105,6 @@ abstract class ContractsForModel {
   /// Count of contracts available
   final double? hitCount;
 
-  /// Array of non_available contracts details
-  final List<dynamic>? nonAvailable;
-
   /// Symbol's next market-open time as an epoch value
   final DateTime? open;
 
@@ -117,14 +116,20 @@ abstract class ContractsForModel {
 class ContractsFor extends ContractsForModel {
   /// Initializes Contracts for class.
   const ContractsFor({
-    required super.available,
-    super.close,
-    super.feedLicense,
-    super.hitCount,
-    super.nonAvailable,
-    super.open,
-    super.spot,
-  });
+    required List<AvailableItem> available,
+    DateTime? close,
+    String? feedLicense,
+    double? hitCount,
+    DateTime? open,
+    double? spot,
+  }) : super(
+          available: available,
+          close: close,
+          feedLicense: feedLicense,
+          hitCount: hitCount,
+          open: open,
+          spot: spot,
+        );
 
   /// Creates an instance from JSON.
   factory ContractsFor.fromJson(Map<String, dynamic> json) => ContractsFor(
@@ -136,13 +141,6 @@ class ContractsFor extends ContractsForModel {
         close: getDateTime(json['close']),
         feedLicense: json['feed_license'],
         hitCount: getDouble(json['hit_count']),
-        nonAvailable: json['non_available'] == null
-            ? null
-            : List<dynamic>.from(
-                json['non_available']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
         open: getDateTime(json['open']),
         spot: getDouble(json['spot']),
       );
@@ -160,13 +158,6 @@ class ContractsFor extends ContractsForModel {
     resultMap['close'] = getSecondsSinceEpochDateTime(close);
     resultMap['feed_license'] = feedLicense;
     resultMap['hit_count'] = hitCount;
-    if (nonAvailable != null) {
-      resultMap['non_available'] = nonAvailable!
-          .map<dynamic>(
-            (dynamic item) => item,
-          )
-          .toList();
-    }
     resultMap['open'] = getSecondsSinceEpochDateTime(open);
     resultMap['spot'] = spot;
 
@@ -179,7 +170,6 @@ class ContractsFor extends ContractsForModel {
     DateTime? close,
     String? feedLicense,
     double? hitCount,
-    List<dynamic>? nonAvailable,
     DateTime? open,
     double? spot,
   }) =>
@@ -188,11 +178,11 @@ class ContractsFor extends ContractsForModel {
         close: close ?? this.close,
         feedLicense: feedLicense ?? this.feedLicense,
         hitCount: hitCount ?? this.hitCount,
-        nonAvailable: nonAvailable ?? this.nonAvailable,
         open: open ?? this.open,
         spot: spot ?? this.spot,
       );
 }
+
 /// Available item model class.
 abstract class AvailableItemModel {
   /// Initializes Available item model class .
@@ -222,8 +212,6 @@ abstract class AvailableItemModel {
     this.highBarrier,
     this.lastDigitRange,
     this.lowBarrier,
-    this.maxStake,
-    this.minStake,
     this.multiplierRange,
     this.payoutLimit,
     this.tradingPeriod,
@@ -304,12 +292,6 @@ abstract class AvailableItemModel {
   /// Low barrier Details.
   final String? lowBarrier;
 
-  /// [Only for turbos options] Maximum contract stake
-  final double? maxStake;
-
-  /// [Only for turbos options] Minimum contract stake
-  final double? minStake;
-
   /// Multiplier range.
   final List<dynamic>? multiplierRange;
 
@@ -324,37 +306,64 @@ abstract class AvailableItemModel {
 class AvailableItem extends AvailableItemModel {
   /// Initializes Available item class.
   const AvailableItem({
-    required super.barrierCategory,
-    required super.barriers,
-    required super.contractCategory,
-    required super.contractCategoryDisplay,
-    required super.contractType,
-    required super.exchangeName,
-    required super.expiryType,
-    required super.market,
-    required super.maxContractDuration,
-    required super.minContractDuration,
-    required super.sentiment,
-    required super.startType,
-    required super.submarket,
-    required super.underlyingSymbol,
-    super.availableBarriers,
-    super.barrier,
-    super.barrierChoices,
-    super.cancellationRange,
-    super.contractDisplay,
-    super.expiredBarriers,
-    super.forwardStartingOptions,
-    super.growthRateRange,
-    super.highBarrier,
-    super.lastDigitRange,
-    super.lowBarrier,
-    super.maxStake,
-    super.minStake,
-    super.multiplierRange,
-    super.payoutLimit,
-    super.tradingPeriod,
-  });
+    required String barrierCategory,
+    required double barriers,
+    required String contractCategory,
+    required String contractCategoryDisplay,
+    required String contractType,
+    required String exchangeName,
+    required String expiryType,
+    required String market,
+    required String maxContractDuration,
+    required String minContractDuration,
+    required String sentiment,
+    required String startType,
+    required String submarket,
+    required String underlyingSymbol,
+    List<dynamic>? availableBarriers,
+    String? barrier,
+    List<dynamic>? barrierChoices,
+    List<dynamic>? cancellationRange,
+    String? contractDisplay,
+    List<dynamic>? expiredBarriers,
+    List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    List<dynamic>? growthRateRange,
+    String? highBarrier,
+    List<dynamic>? lastDigitRange,
+    String? lowBarrier,
+    List<dynamic>? multiplierRange,
+    double? payoutLimit,
+    Map<String, dynamic>? tradingPeriod,
+  }) : super(
+          barrierCategory: barrierCategory,
+          barriers: barriers,
+          contractCategory: contractCategory,
+          contractCategoryDisplay: contractCategoryDisplay,
+          contractType: contractType,
+          exchangeName: exchangeName,
+          expiryType: expiryType,
+          market: market,
+          maxContractDuration: maxContractDuration,
+          minContractDuration: minContractDuration,
+          sentiment: sentiment,
+          startType: startType,
+          submarket: submarket,
+          underlyingSymbol: underlyingSymbol,
+          availableBarriers: availableBarriers,
+          barrier: barrier,
+          barrierChoices: barrierChoices,
+          cancellationRange: cancellationRange,
+          contractDisplay: contractDisplay,
+          expiredBarriers: expiredBarriers,
+          forwardStartingOptions: forwardStartingOptions,
+          growthRateRange: growthRateRange,
+          highBarrier: highBarrier,
+          lastDigitRange: lastDigitRange,
+          lowBarrier: lowBarrier,
+          multiplierRange: multiplierRange,
+          payoutLimit: payoutLimit,
+          tradingPeriod: tradingPeriod,
+        );
 
   /// Creates an instance from JSON.
   factory AvailableItem.fromJson(Map<String, dynamic> json) => AvailableItem(
@@ -425,8 +434,6 @@ class AvailableItem extends AvailableItemModel {
                 ),
               ),
         lowBarrier: json['low_barrier'],
-        maxStake: getDouble(json['max_stake']),
-        minStake: getDouble(json['min_stake']),
         multiplierRange: json['multiplier_range'] == null
             ? null
             : List<dynamic>.from(
@@ -509,8 +516,6 @@ class AvailableItem extends AvailableItemModel {
           .toList();
     }
     resultMap['low_barrier'] = lowBarrier;
-    resultMap['max_stake'] = maxStake;
-    resultMap['min_stake'] = minStake;
     if (multiplierRange != null) {
       resultMap['multiplier_range'] = multiplierRange!
           .map<dynamic>(
@@ -551,8 +556,6 @@ class AvailableItem extends AvailableItemModel {
     String? highBarrier,
     List<dynamic>? lastDigitRange,
     String? lowBarrier,
-    double? maxStake,
-    double? minStake,
     List<dynamic>? multiplierRange,
     double? payoutLimit,
     Map<String, dynamic>? tradingPeriod,
@@ -585,13 +588,12 @@ class AvailableItem extends AvailableItemModel {
         highBarrier: highBarrier ?? this.highBarrier,
         lastDigitRange: lastDigitRange ?? this.lastDigitRange,
         lowBarrier: lowBarrier ?? this.lowBarrier,
-        maxStake: maxStake ?? this.maxStake,
-        minStake: minStake ?? this.minStake,
         multiplierRange: multiplierRange ?? this.multiplierRange,
         payoutLimit: payoutLimit ?? this.payoutLimit,
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
 }
+
 /// Forward starting options item model class.
 abstract class ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item model class .
@@ -619,11 +621,16 @@ abstract class ForwardStartingOptionsItemModel {
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item class.
   const ForwardStartingOptionsItem({
-    super.blackouts,
-    super.close,
-    super.date,
-    super.open,
-  });
+    List<dynamic>? blackouts,
+    String? close,
+    String? date,
+    String? open,
+  }) : super(
+          blackouts: blackouts,
+          close: close,
+          date: date,
+          open: open,
+        );
 
   /// Creates an instance from JSON.
   factory ForwardStartingOptionsItem.fromJson(Map<String, dynamic> json) =>

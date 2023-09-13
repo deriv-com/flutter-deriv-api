@@ -25,8 +25,10 @@ abstract class NewAccountRealResponseModel {
 class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Initializes New account real response class.
   const NewAccountRealResponse({
-    super.newAccountReal,
-  });
+    NewAccountReal? newAccountReal,
+  }) : super(
+          newAccountReal: newAccountReal,
+        );
 
   /// Creates an instance from JSON.
   factory NewAccountRealResponse.fromJson(
@@ -77,6 +79,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
 }
+
 /// New account real model class.
 abstract class NewAccountRealModel {
   /// Initializes New account real model class .
@@ -112,13 +115,20 @@ abstract class NewAccountRealModel {
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes New account real class.
   const NewAccountReal({
-    required super.clientId,
-    required super.landingCompany,
-    required super.oauthToken,
-    super.currency,
-    super.landingCompanyShort,
-    super.landingCompanyShortcode,
-  });
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? currency,
+    String? landingCompanyShort,
+    String? landingCompanyShortcode,
+  }) : super(
+          clientId: clientId,
+          landingCompany: landingCompany,
+          oauthToken: oauthToken,
+          currency: currency,
+          landingCompanyShort: landingCompanyShort,
+          landingCompanyShortcode: landingCompanyShortcode,
+        );
 
   /// Creates an instance from JSON.
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(

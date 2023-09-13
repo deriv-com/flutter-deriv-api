@@ -25,8 +25,10 @@ abstract class ContractUpdateHistoryResponseModel {
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   /// Initializes Contract update history response class.
   const ContractUpdateHistoryResponse({
-    super.contractUpdateHistory,
-  });
+    List<ContractUpdateHistoryItem>? contractUpdateHistory,
+  }) : super(
+          contractUpdateHistory: contractUpdateHistory,
+        );
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryResponse.fromJson(
@@ -87,6 +89,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
             contractUpdateHistory ?? this.contractUpdateHistory,
       );
 }
+
 /// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item model class .
@@ -118,12 +121,18 @@ abstract class ContractUpdateHistoryItemModel {
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item class.
   const ContractUpdateHistoryItem({
-    super.displayName,
-    super.orderAmount,
-    super.orderDate,
-    super.orderType,
-    super.value,
-  });
+    String? displayName,
+    String? orderAmount,
+    DateTime? orderDate,
+    String? orderType,
+    String? value,
+  }) : super(
+          displayName: displayName,
+          orderAmount: orderAmount,
+          orderDate: orderDate,
+          orderType: orderType,
+          value: value,
+        );
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryItem.fromJson(Map<String, dynamic> json) =>

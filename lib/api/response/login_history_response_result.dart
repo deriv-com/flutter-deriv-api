@@ -25,8 +25,10 @@ abstract class LoginHistoryResponseModel {
 class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Initializes Login history response class.
   const LoginHistoryResponse({
-    super.loginHistory,
-  });
+    List<LoginHistoryItem>? loginHistory,
+  }) : super(
+          loginHistory: loginHistory,
+        );
 
   /// Creates an instance from JSON.
   factory LoginHistoryResponse.fromJson(
@@ -87,6 +89,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
         loginHistory: loginHistory ?? this.loginHistory,
       );
 }
+
 /// Login history item model class.
 abstract class LoginHistoryItemModel {
   /// Initializes Login history item model class .
@@ -114,11 +117,16 @@ abstract class LoginHistoryItemModel {
 class LoginHistoryItem extends LoginHistoryItemModel {
   /// Initializes Login history item class.
   const LoginHistoryItem({
-    required super.action,
-    required super.environment,
-    required super.status,
-    required super.time,
-  });
+    required String action,
+    required String environment,
+    required bool status,
+    required DateTime time,
+  }) : super(
+          action: action,
+          environment: environment,
+          status: status,
+          time: time,
+        );
 
   /// Creates an instance from JSON.
   factory LoginHistoryItem.fromJson(Map<String, dynamic> json) =>

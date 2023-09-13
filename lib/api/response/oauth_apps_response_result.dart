@@ -17,7 +17,7 @@ abstract class OauthAppsResponseModel {
     this.oauthApps,
   });
 
-  /// List of 3rd party OAuth applications that used for the authorized account.
+  /// List of OAuth applications that used for the authorized account.
   final List<OauthAppsItem>? oauthApps;
 }
 
@@ -25,8 +25,10 @@ abstract class OauthAppsResponseModel {
 class OauthAppsResponse extends OauthAppsResponseModel {
   /// Initializes Oauth apps response class.
   const OauthAppsResponse({
-    super.oauthApps,
-  });
+    List<OauthAppsItem>? oauthApps,
+  }) : super(
+          oauthApps: oauthApps,
+        );
 
   /// Creates an instance from JSON.
   factory OauthAppsResponse.fromJson(
@@ -86,12 +88,12 @@ class OauthAppsResponse extends OauthAppsResponseModel {
         oauthApps: oauthApps ?? this.oauthApps,
       );
 }
+
 /// Oauth apps item model class.
 abstract class OauthAppsItemModel {
   /// Initializes Oauth apps item model class .
   const OauthAppsItemModel({
     required this.scopes,
-    required this.official,
     required this.name,
     required this.appMarkupPercentage,
     required this.appId,
@@ -100,9 +102,6 @@ abstract class OauthAppsItemModel {
 
   /// The list of permission scopes grant for each app.
   final List<String> scopes;
-
-  /// Boolean value: `true` or `false`, indicating `true` if app is an official app and `false` incase of unofficial app
-  final bool official;
 
   /// Application name
   final String name;
@@ -121,20 +120,24 @@ abstract class OauthAppsItemModel {
 class OauthAppsItem extends OauthAppsItemModel {
   /// Initializes Oauth apps item class.
   const OauthAppsItem({
-    required super.appId,
-    required super.appMarkupPercentage,
-    required super.name,
-    required super.official,
-    required super.scopes,
-    super.lastUsed,
-  });
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required List<String> scopes,
+    String? lastUsed,
+  }) : super(
+          appId: appId,
+          appMarkupPercentage: appMarkupPercentage,
+          name: name,
+          scopes: scopes,
+          lastUsed: lastUsed,
+        );
 
   /// Creates an instance from JSON.
   factory OauthAppsItem.fromJson(Map<String, dynamic> json) => OauthAppsItem(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         name: json['name'],
-        official: getBool(json['official'])!,
         scopes: List<String>.from(
           json['scopes'].map(
             (dynamic item) => item,
@@ -150,7 +153,6 @@ class OauthAppsItem extends OauthAppsItemModel {
     resultMap['app_id'] = appId;
     resultMap['app_markup_percentage'] = appMarkupPercentage;
     resultMap['name'] = name;
-    resultMap['official'] = official;
     resultMap['scopes'] = scopes
         .map<dynamic>(
           (String item) => item,
@@ -167,7 +169,6 @@ class OauthAppsItem extends OauthAppsItemModel {
     int? appId,
     double? appMarkupPercentage,
     String? name,
-    bool? official,
     List<String>? scopes,
     String? lastUsed,
   }) =>
@@ -175,7 +176,6 @@ class OauthAppsItem extends OauthAppsItemModel {
         appId: appId ?? this.appId,
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         name: name ?? this.name,
-        official: official ?? this.official,
         scopes: scopes ?? this.scopes,
         lastUsed: lastUsed ?? this.lastUsed,
       );

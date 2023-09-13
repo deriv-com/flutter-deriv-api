@@ -25,8 +25,10 @@ abstract class ForgetAllResponseModel {
 class ForgetAllResponse extends ForgetAllResponseModel {
   /// Initializes Forget all response class.
   const ForgetAllResponse({
-    super.forgetAll,
-  });
+    List<dynamic>? forgetAll,
+  }) : super(
+          forgetAll: forgetAll,
+        );
 
   /// Creates an instance from JSON.
   factory ForgetAllResponse.fromJson(

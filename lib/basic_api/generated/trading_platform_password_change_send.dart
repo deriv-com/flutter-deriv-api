@@ -12,10 +12,13 @@ class TradingPlatformPasswordChangeRequest extends Request {
     required this.oldPassword,
     required this.platform,
     this.tradingPlatformPasswordChange = true,
-    super.msgType = 'trading_platform_password_change',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'trading_platform_password_change',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TradingPlatformPasswordChangeRequest.fromJson(

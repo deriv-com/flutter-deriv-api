@@ -20,8 +20,10 @@ class CashierWithdrawalCancelResponse
     extends CashierWithdrawalCancelResponseModel {
   /// Initializes Cashier withdrawal cancel response class.
   const CashierWithdrawalCancelResponse({
-    super.cashierWithdrawalCancel,
-  });
+    CashierWithdrawalCancel? cashierWithdrawalCancel,
+  }) : super(
+          cashierWithdrawalCancel: cashierWithdrawalCancel,
+        );
 
   /// Creates an instance from JSON.
   factory CashierWithdrawalCancelResponse.fromJson(
@@ -85,9 +87,12 @@ abstract class CashierWithdrawalCancelModel {
 class CashierWithdrawalCancel extends CashierWithdrawalCancelModel {
   /// Initializes Cashier withdrawal cancel class.
   const CashierWithdrawalCancel({
-    required super.id,
-    required super.statusCode,
-  });
+    required String id,
+    required StatusCodeEnum statusCode,
+  }) : super(
+          id: id,
+          statusCode: statusCode,
+        );
 
   /// Creates an instance from JSON.
   factory CashierWithdrawalCancel.fromJson(Map<String, dynamic> json) =>

@@ -14,10 +14,13 @@ class TransferBetweenAccountsRequest extends Request {
     this.amount,
     this.currency,
     required this.transferBetweenAccounts,
-    super.msgType = 'transfer_between_accounts',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'transfer_between_accounts',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>

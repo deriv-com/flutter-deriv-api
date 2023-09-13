@@ -9,10 +9,13 @@ class StatesListRequest extends Request {
   /// Initialize StatesListRequest.
   const StatesListRequest({
     required this.statesList,
-    super.msgType = 'states_list',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'states_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>

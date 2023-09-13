@@ -24,8 +24,10 @@ abstract class AppMarkupDetailsResponseModel {
 class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// Initializes App markup details response class.
   const AppMarkupDetailsResponse({
-    super.appMarkupDetails,
-  });
+    AppMarkupDetails? appMarkupDetails,
+  }) : super(
+          appMarkupDetails: appMarkupDetails,
+        );
 
   /// Creates an instance from JSON.
   factory AppMarkupDetailsResponse.fromJson(
@@ -76,6 +78,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
 }
+
 /// App markup details model class.
 abstract class AppMarkupDetailsModel {
   /// Initializes App markup details model class .
@@ -91,8 +94,10 @@ abstract class AppMarkupDetailsModel {
 class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Initializes App markup details class.
   const AppMarkupDetails({
-    super.transactions,
-  });
+    List<TransactionsItem>? transactions,
+  }) : super(
+          transactions: transactions,
+        );
 
   /// Creates an instance from JSON.
   factory AppMarkupDetails.fromJson(Map<String, dynamic> json) =>
@@ -129,6 +134,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -180,17 +186,28 @@ abstract class TransactionsItemModel {
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
   const TransactionsItem({
-    super.appId,
-    super.appMarkup,
-    super.appMarkupUsd,
-    super.appMarkupValue,
-    super.clientCurrcode,
-    super.clientLoginid,
-    super.devCurrcode,
-    super.devLoginid,
-    super.transactionId,
-    super.transactionTime,
-  });
+    int? appId,
+    double? appMarkup,
+    double? appMarkupUsd,
+    double? appMarkupValue,
+    String? clientCurrcode,
+    String? clientLoginid,
+    String? devCurrcode,
+    String? devLoginid,
+    int? transactionId,
+    String? transactionTime,
+  }) : super(
+          appId: appId,
+          appMarkup: appMarkup,
+          appMarkupUsd: appMarkupUsd,
+          appMarkupValue: appMarkupValue,
+          clientCurrcode: clientCurrcode,
+          clientLoginid: clientLoginid,
+          devCurrcode: devCurrcode,
+          devLoginid: devLoginid,
+          transactionId: transactionId,
+          transactionTime: transactionTime,
+        );
 
   /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>

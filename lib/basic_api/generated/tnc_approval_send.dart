@@ -11,10 +11,13 @@ class TncApprovalRequest extends Request {
     this.affiliateCocAgreement,
     this.tncApproval = true,
     this.ukgcFundsProtection,
-    super.msgType = 'tnc_approval',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'tnc_approval',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>

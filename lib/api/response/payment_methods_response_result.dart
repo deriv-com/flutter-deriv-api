@@ -24,8 +24,10 @@ abstract class PaymentMethodsResponseModel {
 class PaymentMethodsResponse extends PaymentMethodsResponseModel {
   /// Initializes Payment methods response class.
   const PaymentMethodsResponse({
-    super.paymentMethods,
-  });
+    List<PaymentMethodsItem>? paymentMethods,
+  }) : super(
+          paymentMethods: paymentMethods,
+        );
 
   /// Creates an instance from JSON.
   factory PaymentMethodsResponse.fromJson(
@@ -83,6 +85,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
+
 /// Payment methods item model class.
 abstract class PaymentMethodsItemModel {
   /// Initializes Payment methods item model class .
@@ -146,20 +149,34 @@ abstract class PaymentMethodsItemModel {
 class PaymentMethodsItem extends PaymentMethodsItemModel {
   /// Initializes Payment methods item class.
   const PaymentMethodsItem({
-    required super.depositLimits,
-    required super.depositTime,
-    required super.description,
-    required super.displayName,
-    required super.id,
-    required super.paymentProcessor,
-    required super.predefinedAmounts,
-    required super.signupLink,
-    required super.supportedCurrencies,
-    required super.type,
-    required super.typeDisplayName,
-    required super.withdrawLimits,
-    required super.withdrawalTime,
-  });
+    required Map<String, DepositLimitsProperty> depositLimits,
+    required String depositTime,
+    required String description,
+    required String displayName,
+    required String id,
+    required String paymentProcessor,
+    required List<int> predefinedAmounts,
+    required String signupLink,
+    required List<String> supportedCurrencies,
+    required String type,
+    required String typeDisplayName,
+    required Map<String, WithdrawLimitsProperty> withdrawLimits,
+    required String withdrawalTime,
+  }) : super(
+          depositLimits: depositLimits,
+          depositTime: depositTime,
+          description: description,
+          displayName: displayName,
+          id: id,
+          paymentProcessor: paymentProcessor,
+          predefinedAmounts: predefinedAmounts,
+          signupLink: signupLink,
+          supportedCurrencies: supportedCurrencies,
+          type: type,
+          typeDisplayName: typeDisplayName,
+          withdrawLimits: withdrawLimits,
+          withdrawalTime: withdrawalTime,
+        );
 
   /// Creates an instance from JSON.
   factory PaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
@@ -262,6 +279,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawalTime: withdrawalTime ?? this.withdrawalTime,
       );
 }
+
 /// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel {
   /// Initializes Deposit limits property model class .
@@ -281,9 +299,12 @@ abstract class DepositLimitsPropertyModel {
 class DepositLimitsProperty extends DepositLimitsPropertyModel {
   /// Initializes Deposit limits property class.
   const DepositLimitsProperty({
-    required super.max,
-    required super.min,
-  });
+    required int max,
+    required int min,
+  }) : super(
+          max: max,
+          min: min,
+        );
 
   /// Creates an instance from JSON.
   factory DepositLimitsProperty.fromJson(Map<String, dynamic> json) =>
@@ -312,6 +333,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         min: min ?? this.min,
       );
 }
+
 /// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property model class .
@@ -331,9 +353,12 @@ abstract class WithdrawLimitsPropertyModel {
 class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property class.
   const WithdrawLimitsProperty({
-    required super.max,
-    required super.min,
-  });
+    required int max,
+    required int min,
+  }) : super(
+          max: max,
+          min: min,
+        );
 
   /// Creates an instance from JSON.
   factory WithdrawLimitsProperty.fromJson(Map<String, dynamic> json) =>

@@ -24,8 +24,10 @@ abstract class ApiTokenResponseModel {
 class ApiTokenResponse extends ApiTokenResponseModel {
   /// Initializes Api token response class.
   const ApiTokenResponse({
-    super.apiToken,
-  });
+    ApiToken? apiToken,
+  }) : super(
+          apiToken: apiToken,
+        );
 
   /// Creates an instance from JSON.
   factory ApiTokenResponse.fromJson(
@@ -132,6 +134,7 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
+
 /// Api token model class.
 abstract class ApiTokenModel {
   /// Initializes Api token model class .
@@ -155,10 +158,14 @@ abstract class ApiTokenModel {
 class ApiToken extends ApiTokenModel {
   /// Initializes Api token class.
   const ApiToken({
-    super.deleteToken,
-    super.newToken,
-    super.tokens,
-  });
+    int? deleteToken,
+    int? newToken,
+    List<TokensItem>? tokens,
+  }) : super(
+          deleteToken: deleteToken,
+          newToken: newToken,
+          tokens: tokens,
+        );
 
   /// Creates an instance from JSON.
   factory ApiToken.fromJson(Map<String, dynamic> json) => ApiToken(
@@ -202,6 +209,7 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
+
 /// Tokens item model class.
 abstract class TokensItemModel {
   /// Initializes Tokens item model class .
@@ -233,12 +241,18 @@ abstract class TokensItemModel {
 class TokensItem extends TokensItemModel {
   /// Initializes Tokens item class.
   const TokensItem({
-    super.displayName,
-    super.lastUsed,
-    super.scopes,
-    super.token,
-    super.validForIp,
-  });
+    String? displayName,
+    String? lastUsed,
+    List<ScopesItemEnum>? scopes,
+    String? token,
+    String? validForIp,
+  }) : super(
+          displayName: displayName,
+          lastUsed: lastUsed,
+          scopes: scopes,
+          token: token,
+          validForIp: validForIp,
+        );
 
   /// Creates an instance from JSON.
   factory TokensItem.fromJson(Map<String, dynamic> json) => TokensItem(
