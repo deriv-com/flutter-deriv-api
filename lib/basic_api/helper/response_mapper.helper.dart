@@ -92,7 +92,6 @@ import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
 import '../generated/paymentagent_list_receive.dart';
 import '../generated/paymentagent_transfer_receive.dart';
-import '../generated/paymentagent_withdraw_justification_receive.dart';
 import '../generated/paymentagent_withdraw_receive.dart';
 import '../generated/payout_currencies_receive.dart';
 import '../generated/ping_receive.dart';
@@ -325,8 +324,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return PaymentagentListReceive.fromJson(responseMap);
     case 'paymentagent_transfer':
       return PaymentagentTransferReceive.fromJson(responseMap);
-    case 'paymentagent_withdraw_justification':
-      return PaymentagentWithdrawJustificationReceive.fromJson(responseMap);
     case 'paymentagent_withdraw':
       return PaymentagentWithdrawReceive.fromJson(responseMap);
     case 'payout_currencies':
