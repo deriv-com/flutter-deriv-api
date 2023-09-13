@@ -13,10 +13,13 @@ class P2pAdvertiserRelationsRequest extends Request {
     this.p2pAdvertiserRelations = true,
     required this.removeBlocked,
     required this.removeFavourites,
-    super.msgType = 'p2p_advertiser_relations',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_advertiser_relations',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserRelationsRequest.fromJson(Map<String, dynamic> json) =>

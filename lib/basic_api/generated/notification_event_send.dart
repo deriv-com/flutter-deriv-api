@@ -12,10 +12,13 @@ class NotificationEventRequest extends Request {
     required this.category,
     required this.event,
     this.notificationEvent = true,
-    super.msgType = 'notification_event',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'notification_event',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>

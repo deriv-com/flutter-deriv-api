@@ -12,10 +12,13 @@ class Mt5DepositRequest extends Request {
     required this.fromBinary,
     this.mt5Deposit = true,
     required this.toMt5,
-    super.msgType = 'mt5_deposit',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'mt5_deposit',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>

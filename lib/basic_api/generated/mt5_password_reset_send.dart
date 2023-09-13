@@ -13,10 +13,13 @@ class Mt5PasswordResetRequest extends Request {
     required this.newPassword,
     this.passwordType,
     required this.verificationCode,
-    super.msgType = 'mt5_password_reset',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'mt5_password_reset',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>

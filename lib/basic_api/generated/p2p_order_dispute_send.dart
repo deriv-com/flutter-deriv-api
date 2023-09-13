@@ -11,10 +11,13 @@ class P2pOrderDisputeRequest extends Request {
     required this.disputeReason,
     required this.id,
     this.p2pOrderDispute = true,
-    super.msgType = 'p2p_order_dispute',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_order_dispute',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pOrderDisputeRequest.fromJson(Map<String, dynamic> json) =>

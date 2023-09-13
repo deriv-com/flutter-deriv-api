@@ -10,10 +10,13 @@ class Mt5GetSettingsRequest extends Request {
   const Mt5GetSettingsRequest({
     required this.login,
     this.mt5GetSettings = true,
-    super.msgType = 'mt5_get_settings',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'mt5_get_settings',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,7 +11,6 @@ class P2pAdvertListRequest extends Request {
     this.advertiserId,
     this.advertiserName,
     this.amount,
-    this.blockTrade,
     this.counterpartyType,
     this.favouritesOnly,
     this.limit,
@@ -21,10 +20,13 @@ class P2pAdvertListRequest extends Request {
     this.paymentMethod,
     this.sortBy,
     this.useClientLimits,
-    super.msgType = 'p2p_advert_list',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_advert_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +34,6 @@ class P2pAdvertListRequest extends Request {
         advertiserId: json['advertiser_id'] as String?,
         advertiserName: json['advertiser_name'] as String?,
         amount: json['amount'] as num?,
-        blockTrade:
-            json['block_trade'] == null ? null : json['block_trade'] == 1,
         counterpartyType: json['counterparty_type'] as String?,
         favouritesOnly: json['favourites_only'] == null
             ? null
@@ -63,9 +63,6 @@ class P2pAdvertListRequest extends Request {
 
   /// [Optional] How much to buy or sell, used to calculate prices.
   final num? amount;
-
-  /// [Optional] Return block trade adverts when `true`, non-block trade adverts when `false` (default).
-  final bool? blockTrade;
 
   /// [Optional] Filter the adverts by `counterparty_type`.
   final String? counterpartyType;
@@ -100,11 +97,6 @@ class P2pAdvertListRequest extends Request {
         'advertiser_id': advertiserId,
         'advertiser_name': advertiserName,
         'amount': amount,
-        'block_trade': blockTrade == null
-            ? null
-            : blockTrade!
-                ? 1
-                : 0,
         'counterparty_type': counterpartyType,
         'favourites_only': favouritesOnly == null
             ? null
@@ -136,7 +128,6 @@ class P2pAdvertListRequest extends Request {
     String? advertiserId,
     String? advertiserName,
     num? amount,
-    bool? blockTrade,
     String? counterpartyType,
     bool? favouritesOnly,
     int? limit,
@@ -153,7 +144,6 @@ class P2pAdvertListRequest extends Request {
         advertiserId: advertiserId ?? this.advertiserId,
         advertiserName: advertiserName ?? this.advertiserName,
         amount: amount ?? this.amount,
-        blockTrade: blockTrade ?? this.blockTrade,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         favouritesOnly: favouritesOnly ?? this.favouritesOnly,
         limit: limit ?? this.limit,

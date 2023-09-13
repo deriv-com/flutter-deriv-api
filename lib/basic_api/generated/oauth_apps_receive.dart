@@ -9,11 +9,16 @@ class OauthAppsReceive extends Response {
   /// Initialize OauthAppsReceive.
   const OauthAppsReceive({
     this.oauthApps,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory OauthAppsReceive.fromJson(Map<String, dynamic> json) =>
@@ -28,7 +33,7 @@ class OauthAppsReceive extends Response {
         reqId: json['req_id'] as int?,
       );
 
-  /// List of 3rd party OAuth applications that used for the authorized account.
+  /// List of OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>>? oauthApps;
 
   /// Converts this instance to JSON

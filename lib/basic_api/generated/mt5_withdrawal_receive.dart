@@ -10,11 +10,16 @@ class Mt5WithdrawalReceive extends Response {
   const Mt5WithdrawalReceive({
     this.binaryTransactionId,
     this.mt5Withdrawal,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5WithdrawalReceive.fromJson(Map<String, dynamic> json) =>

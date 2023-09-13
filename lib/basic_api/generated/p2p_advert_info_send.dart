@@ -12,10 +12,13 @@ class P2pAdvertInfoRequest extends Request {
     this.p2pAdvertInfo = true,
     this.subscribe,
     this.useClientLimits,
-    super.msgType = 'p2p_advert_info',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_advert_info',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>

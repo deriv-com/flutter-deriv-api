@@ -12,10 +12,13 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
     required this.delete,
     this.p2pAdvertiserPaymentMethods = true,
     required this.update,
-    super.msgType = 'p2p_advertiser_payment_methods',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_advertiser_payment_methods',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserPaymentMethodsRequest.fromJson(

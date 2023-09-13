@@ -12,10 +12,13 @@ class P2pOrderConfirmRequest extends Request {
     required this.id,
     this.p2pOrderConfirm = true,
     this.verificationCode,
-    super.msgType = 'p2p_order_confirm',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_order_confirm',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>

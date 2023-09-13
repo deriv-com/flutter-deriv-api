@@ -12,10 +12,13 @@ class Mt5PasswordCheckRequest extends Request {
     this.mt5PasswordCheck = true,
     required this.password,
     this.passwordType,
-    super.msgType = 'mt5_password_check',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'mt5_password_check',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
