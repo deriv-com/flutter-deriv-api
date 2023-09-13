@@ -16,7 +16,6 @@ void main() {
       const ActiveSymbolsRequest(
         activeSymbols: 'brief',
         productType: 'basic',
-        landingCompany: 'svg',
       ),
     );
 
