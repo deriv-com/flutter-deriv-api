@@ -15,10 +15,13 @@ class CashierRequest extends Request {
     this.provider,
     this.type,
     this.verificationCode,
-    super.msgType = 'cashier',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'cashier',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(

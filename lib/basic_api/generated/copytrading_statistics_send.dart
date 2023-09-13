@@ -10,10 +10,13 @@ class CopytradingStatisticsRequest extends Request {
   const CopytradingStatisticsRequest({
     this.copytradingStatistics = true,
     required this.traderId,
-    super.msgType = 'copytrading_statistics',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'copytrading_statistics',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>

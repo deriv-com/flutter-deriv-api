@@ -11,10 +11,13 @@ class BalanceRequest extends Request {
     this.account,
     this.balance = true,
     this.subscribe,
-    super.msgType = 'balance',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'balance',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(

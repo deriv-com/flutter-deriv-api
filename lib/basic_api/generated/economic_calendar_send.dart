@@ -12,10 +12,13 @@ class EconomicCalendarRequest extends Request {
     this.economicCalendar = true,
     this.endDate,
     this.startDate,
-    super.msgType = 'economic_calendar',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'economic_calendar',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory EconomicCalendarRequest.fromJson(Map<String, dynamic> json) =>

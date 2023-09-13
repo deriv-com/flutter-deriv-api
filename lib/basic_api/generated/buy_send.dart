@@ -12,10 +12,13 @@ class BuyRequest extends Request {
     this.parameters,
     required this.price,
     this.subscribe,
-    super.msgType = 'buy',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'buy',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(

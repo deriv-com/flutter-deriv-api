@@ -10,10 +10,13 @@ class LoginHistoryRequest extends Request {
   const LoginHistoryRequest({
     this.limit,
     this.loginHistory = true,
-    super.msgType = 'login_history',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'login_history',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>

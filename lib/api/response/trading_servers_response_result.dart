@@ -25,8 +25,10 @@ abstract class TradingServersResponseModel {
 class TradingServersResponse extends TradingServersResponseModel {
   /// Initializes Trading servers response class.
   const TradingServersResponse({
-    super.tradingServers,
-  });
+    List<TradingServersItem>? tradingServers,
+  }) : super(
+          tradingServers: tradingServers,
+        );
 
   /// Creates an instance from JSON.
   factory TradingServersResponse.fromJson(
@@ -148,6 +150,7 @@ enum IdEnum {
   /// p02_ts02.
   p02Ts02,
 }
+
 /// Trading servers item model class.
 abstract class TradingServersItemModel {
   /// Initializes Trading servers item model class .
@@ -195,16 +198,26 @@ abstract class TradingServersItemModel {
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes Trading servers item class.
   const TradingServersItem({
-    super.accountType,
-    super.disabled,
-    super.environment,
-    super.geolocation,
-    super.id,
-    super.marketType,
-    super.messageToClient,
-    super.recommended,
-    super.supportedAccounts,
-  });
+    AccountTypeEnum? accountType,
+    bool? disabled,
+    EnvironmentEnum? environment,
+    Geolocation? geolocation,
+    IdEnum? id,
+    String? marketType,
+    String? messageToClient,
+    bool? recommended,
+    List<String>? supportedAccounts,
+  }) : super(
+          accountType: accountType,
+          disabled: disabled,
+          environment: environment,
+          geolocation: geolocation,
+          id: id,
+          marketType: marketType,
+          messageToClient: messageToClient,
+          recommended: recommended,
+          supportedAccounts: supportedAccounts,
+        );
 
   /// Creates an instance from JSON.
   factory TradingServersItem.fromJson(Map<String, dynamic> json) =>
@@ -289,6 +302,7 @@ class TradingServersItem extends TradingServersItemModel {
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .
@@ -316,11 +330,16 @@ abstract class GeolocationModel {
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
   const Geolocation({
-    super.group,
-    super.location,
-    super.region,
-    super.sequence,
-  });
+    String? group,
+    String? location,
+    String? region,
+    int? sequence,
+  }) : super(
+          group: group,
+          location: location,
+          region: region,
+          sequence: sequence,
+        );
 
   /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(

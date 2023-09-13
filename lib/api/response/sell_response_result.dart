@@ -28,8 +28,10 @@ abstract class SellResponseModel {
 class SellResponse extends SellResponseModel {
   /// Initializes Sell response class.
   const SellResponse({
-    super.sell,
-  });
+    Sell? sell,
+  }) : super(
+          sell: sell,
+        );
 
   /// Creates an instance from JSON.
   factory SellResponse.fromJson(
@@ -94,6 +96,7 @@ class SellResponse extends SellResponseModel {
         sell: sell ?? this.sell,
       );
 }
+
 /// Sell model class.
 abstract class SellModel {
   /// Initializes Sell model class .
@@ -125,12 +128,18 @@ abstract class SellModel {
 class Sell extends SellModel {
   /// Initializes Sell class.
   const Sell({
-    super.balanceAfter,
-    super.contractId,
-    super.referenceId,
-    super.soldFor,
-    super.transactionId,
-  });
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
+  }) : super(
+          balanceAfter: balanceAfter,
+          contractId: contractId,
+          referenceId: referenceId,
+          soldFor: soldFor,
+          transactionId: transactionId,
+        );
 
   /// Creates an instance from JSON.
   factory Sell.fromJson(Map<String, dynamic> json) => Sell(

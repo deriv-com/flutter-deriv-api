@@ -9,10 +9,13 @@ class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest.
   const GetSelfExclusionRequest({
     this.getSelfExclusion = true,
-    super.msgType = 'get_self_exclusion',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'get_self_exclusion',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>

@@ -9,10 +9,13 @@ class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest.
   const ForgetAllRequest({
     this.forgetAll,
-    super.msgType = 'forget_all',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'forget_all',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>

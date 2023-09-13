@@ -9,10 +9,13 @@ class AccountStatisticsRequest extends Request {
   /// Initialize AccountStatisticsRequest.
   const AccountStatisticsRequest({
     this.accountStatistics = true,
-    super.msgType = 'account_statistics',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'account_statistics',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>

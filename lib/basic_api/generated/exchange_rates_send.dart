@@ -12,10 +12,13 @@ class ExchangeRatesRequest extends Request {
     this.exchangeRates = true,
     this.subscribe,
     this.targetCurrency,
-    super.msgType = 'exchange_rates',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'exchange_rates',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>

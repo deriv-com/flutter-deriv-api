@@ -19,8 +19,10 @@ abstract class VerifyEmailCellxpertResponseModel {
 class VerifyEmailCellxpertResponse extends VerifyEmailCellxpertResponseModel {
   /// Initializes Verify email cellxpert response class.
   const VerifyEmailCellxpertResponse({
-    super.verifyEmailCellxpert,
-  });
+    bool? verifyEmailCellxpert,
+  }) : super(
+          verifyEmailCellxpert: verifyEmailCellxpert,
+        );
 
   /// Creates an instance from JSON.
   factory VerifyEmailCellxpertResponse.fromJson(

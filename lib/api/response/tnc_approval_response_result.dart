@@ -25,8 +25,10 @@ abstract class TncApprovalResponseModel {
 class TncApprovalResponse extends TncApprovalResponseModel {
   /// Initializes Tnc approval response class.
   const TncApprovalResponse({
-    super.tncApproval,
-  });
+    int? tncApproval,
+  }) : super(
+          tncApproval: tncApproval,
+        );
 
   /// Creates an instance from JSON.
   factory TncApprovalResponse.fromJson(

@@ -10,7 +10,7 @@ class DocumentUploadRequest extends Request {
   const DocumentUploadRequest({
     required this.documentFormat,
     this.documentId,
-    required this.documentIssuingCountry,
+    this.documentIssuingCountry,
     required this.documentType,
     this.documentUpload = true,
     required this.expectedChecksum,
@@ -19,10 +19,13 @@ class DocumentUploadRequest extends Request {
     this.lifetimeValid,
     this.pageType,
     this.proofOfOwnership,
-    super.msgType = 'document_upload',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'document_upload',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
@@ -51,7 +54,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
   final String? documentId;
 
-  /// 2-letter country code, mandatory for POI only
+  /// [Optional] 2-letter country code
   final String? documentIssuingCountry;
 
   /// Document type

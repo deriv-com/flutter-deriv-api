@@ -25,8 +25,10 @@ abstract class TopupVirtualResponseModel {
 class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Initializes Topup virtual response class.
   const TopupVirtualResponse({
-    super.topupVirtual,
-  });
+    TopupVirtual? topupVirtual,
+  }) : super(
+          topupVirtual: topupVirtual,
+        );
 
   /// Creates an instance from JSON.
   factory TopupVirtualResponse.fromJson(
@@ -79,6 +81,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
 }
+
 /// Topup virtual model class.
 abstract class TopupVirtualModel {
   /// Initializes Topup virtual model class .
@@ -98,9 +101,12 @@ abstract class TopupVirtualModel {
 class TopupVirtual extends TopupVirtualModel {
   /// Initializes Topup virtual class.
   const TopupVirtual({
-    super.amount,
-    super.currency,
-  });
+    double? amount,
+    String? currency,
+  }) : super(
+          amount: amount,
+          currency: currency,
+        );
 
   /// Creates an instance from JSON.
   factory TopupVirtual.fromJson(Map<String, dynamic> json) => TopupVirtual(

@@ -10,10 +10,13 @@ class CashierWithdrawalCancelRequest extends Request {
   const CashierWithdrawalCancelRequest({
     this.cashierWithdrawalCancel = true,
     required this.id,
-    super.msgType = 'cashier_withdrawal_cancel',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'cashier_withdrawal_cancel',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory CashierWithdrawalCancelRequest.fromJson(Map<String, dynamic> json) =>

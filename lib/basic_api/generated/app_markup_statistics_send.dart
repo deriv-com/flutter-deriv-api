@@ -11,10 +11,13 @@ class AppMarkupStatisticsRequest extends Request {
     this.appMarkupStatistics = true,
     required this.dateFrom,
     required this.dateTo,
-    super.msgType = 'app_markup_statistics',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'app_markup_statistics',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory AppMarkupStatisticsRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,10 +11,13 @@ class ChangePasswordRequest extends Request {
     this.changePassword = true,
     required this.newPassword,
     required this.oldPassword,
-    super.msgType = 'change_password',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'change_password',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>

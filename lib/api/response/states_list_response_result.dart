@@ -25,8 +25,10 @@ abstract class StatesListResponseModel {
 class StatesListResponse extends StatesListResponseModel {
   /// Initializes States list response class.
   const StatesListResponse({
-    super.statesList,
-  });
+    List<StatesListItem>? statesList,
+  }) : super(
+          statesList: statesList,
+        );
 
   /// Creates an instance from JSON.
   factory StatesListResponse.fromJson(
@@ -83,6 +85,7 @@ class StatesListResponse extends StatesListResponseModel {
         statesList: statesList ?? this.statesList,
       );
 }
+
 /// States list item model class.
 abstract class StatesListItemModel {
   /// Initializes States list item model class .
@@ -102,9 +105,12 @@ abstract class StatesListItemModel {
 class StatesListItem extends StatesListItemModel {
   /// Initializes States list item class.
   const StatesListItem({
-    super.text,
-    super.value,
-  });
+    String? text,
+    String? value,
+  }) : super(
+          text: text,
+          value: value,
+        );
 
   /// Creates an instance from JSON.
   factory StatesListItem.fromJson(Map<String, dynamic> json) => StatesListItem(

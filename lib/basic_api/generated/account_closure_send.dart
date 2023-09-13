@@ -10,10 +10,13 @@ class AccountClosureRequest extends Request {
   const AccountClosureRequest({
     this.accountClosure = true,
     required this.reason,
-    super.msgType = 'account_closure',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'account_closure',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>

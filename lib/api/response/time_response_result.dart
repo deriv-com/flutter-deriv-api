@@ -25,8 +25,10 @@ abstract class TimeResponseModel {
 class TimeResponse extends TimeResponseModel {
   /// Initializes Time response class.
   const TimeResponse({
-    super.time,
-  });
+    DateTime? time,
+  }) : super(
+          time: time,
+        );
 
   /// Creates an instance from JSON.
   factory TimeResponse.fromJson(
