@@ -7,9 +7,6 @@ import '../generated/account_closure_receive.dart';
 import '../generated/account_security_receive.dart';
 import '../generated/account_statistics_receive.dart';
 import '../generated/active_symbols_receive.dart';
-import '../generated/affiliate_add_company_receive.dart';
-import '../generated/affiliate_add_person_receive.dart';
-import '../generated/affiliate_register_person_receive.dart';
 import '../generated/api_token_receive.dart';
 import '../generated/app_delete_receive.dart';
 import '../generated/app_get_receive.dart';
@@ -50,7 +47,6 @@ import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
 import '../generated/get_settings_receive.dart';
 import '../generated/identity_verification_document_add_receive.dart';
-import '../generated/kyc_auth_status_receive.dart';
 import '../generated/landing_company_details_receive.dart';
 import '../generated/landing_company_receive.dart';
 import '../generated/link_wallet_receive.dart';
@@ -159,12 +155,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AccountStatisticsReceive.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsReceive.fromJson(responseMap);
-    case 'affiliate_add_company':
-      return AffiliateAddCompanyReceive.fromJson(responseMap);
-    case 'affiliate_add_person':
-      return AffiliateAddPersonReceive.fromJson(responseMap);
-    case 'affiliate_register_person':
-      return AffiliateRegisterPersonReceive.fromJson(responseMap);
     case 'api_token':
       return ApiTokenReceive.fromJson(responseMap);
     case 'app_delete':
@@ -245,8 +235,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return GetSettingsReceive.fromJson(responseMap);
     case 'identity_verification_document_add':
       return IdentityVerificationDocumentAddReceive.fromJson(responseMap);
-    case 'kyc_auth_status':
-      return KycAuthStatusReceive.fromJson(responseMap);
     case 'landing_company_details':
       return LandingCompanyDetailsReceive.fromJson(responseMap);
     case 'landing_company':
