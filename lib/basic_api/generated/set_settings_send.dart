@@ -17,7 +17,7 @@ class SetSettingsRequest extends Request {
     this.allowCopiers,
     this.citizen,
     this.dateOfBirth,
-    required this.dxtradeUserException,
+    this.dxtradeUserException,
     this.emailConsent,
     this.employmentStatus,
     this.featureFlag,
