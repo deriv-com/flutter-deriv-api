@@ -13,7 +13,7 @@ class TradingPlatformNewAccountRequest extends Request {
     this.currency,
     this.dryRun,
     required this.marketType,
-    required this.password,
+    this.password,
     required this.platform,
     this.subAccountType,
     this.tradingPlatformNewAccount = true,
