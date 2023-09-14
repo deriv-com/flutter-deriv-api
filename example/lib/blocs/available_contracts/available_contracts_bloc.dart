@@ -9,7 +9,6 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import '../active_symbols/active_symbols_bloc.dart';
 
 part 'available_contracts_event.dart';
-
 part 'available_contracts_state.dart';
 
 /// AvailableContractsBloc

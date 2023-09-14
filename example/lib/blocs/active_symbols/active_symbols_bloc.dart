@@ -6,7 +6,6 @@ import 'package:flutter_deriv_api/api/response/active_symbols_response_result.da
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 part 'active_symbols_event.dart';
-
 part 'active_symbols_state.dart';
 
 /// ActiveSymbolsBloc
