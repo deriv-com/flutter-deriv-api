@@ -20,7 +20,7 @@ class WalletMigrationResponseExtended extends WalletMigrationResponse {
   /// - `start` to initiate the migration process.
   /// - `state` to check the status of the migration.
   /// - `reset` to reset the migration process.
-  Future<WalletMigrationResponse> fetchWalletMigration({
+  static Future<WalletMigrationResponse> fetchWalletMigration({
     required WalletMigrationRequest request,
   }) async {
     final WalletMigrationReceive response = await _api.call(request: request);
