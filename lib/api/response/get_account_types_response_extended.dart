@@ -23,6 +23,6 @@ class GetAccountTypesResponseExtended extends GetAccountStatusResponse {
           BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
-    return GetAccountTypesResponse.fromJson(response);
+    return GetAccountTypesResponse.fromJson(response.getAccountTypes);
   }
 }

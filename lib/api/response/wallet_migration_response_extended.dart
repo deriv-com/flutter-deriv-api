@@ -31,25 +31,25 @@ class WalletMigrationResponseExtended extends WalletMigrationResponse {
           BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
-    return WalletMigrationResponse.fromJson(response);
+    return WalletMigrationResponse.fromJson(response.walletMigration);
   }
 
   /// Starts the user's migration process to wallet.
-  Future<WalletMigrationResponse> startMigration() => fetchWalletMigration(
+  static Future<WalletMigrationResponse> startMigration() => fetchWalletMigration(
         request: const WalletMigrationRequest(
           walletMigration: 'start',
         ),
       );
 
   /// Resets the user's migration process to wallet.
-  Future<WalletMigrationResponse> resetMigration() => fetchWalletMigration(
+  static Future<WalletMigrationResponse> resetMigration() => fetchWalletMigration(
         request: const WalletMigrationRequest(
           walletMigration: 'reset',
         ),
       );
 
   /// Checks the status of the user's migration process to wallet.
-  Future<WalletMigrationResponse> checkStatus() => fetchWalletMigration(
+  static Future<WalletMigrationResponse> checkStatus() => fetchWalletMigration(
         request: const WalletMigrationRequest(
           walletMigration: 'state',
         ),
