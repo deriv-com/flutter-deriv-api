@@ -19,8 +19,10 @@ abstract class RequestReportResponseModel {
 class RequestReportResponse extends RequestReportResponseModel {
   /// Initializes Request report response class.
   const RequestReportResponse({
-    super.requestReport,
-  });
+    RequestReport? requestReport,
+  }) : super(
+          requestReport: requestReport,
+        );
 
   /// Creates an instance from JSON.
   factory RequestReportResponse.fromJson(
@@ -66,8 +68,10 @@ abstract class RequestReportModel {
 class RequestReport extends RequestReportModel {
   /// Initializes Request report class.
   const RequestReport({
-    super.reportStatus,
-  });
+    int? reportStatus,
+  }) : super(
+          reportStatus: reportStatus,
+        );
 
   /// Creates an instance from JSON.
   factory RequestReport.fromJson(Map<String, dynamic> json) => RequestReport(

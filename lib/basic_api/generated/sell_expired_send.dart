@@ -9,10 +9,13 @@ class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest.
   const SellExpiredRequest({
     this.sellExpired = true,
-    super.msgType = 'sell_expired',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'sell_expired',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>

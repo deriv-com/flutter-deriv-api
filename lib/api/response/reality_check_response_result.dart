@@ -25,8 +25,10 @@ abstract class RealityCheckResponseModel {
 class RealityCheckResponse extends RealityCheckResponseModel {
   /// Initializes Reality check response class.
   const RealityCheckResponse({
-    super.realityCheck,
-  });
+    RealityCheck? realityCheck,
+  }) : super(
+          realityCheck: realityCheck,
+        );
 
   /// Creates an instance from JSON.
   factory RealityCheckResponse.fromJson(
@@ -81,6 +83,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
         realityCheck: realityCheck ?? this.realityCheck,
       );
 }
+
 /// Reality check model class.
 abstract class RealityCheckModel {
   /// Initializes Reality check model class .
@@ -128,16 +131,26 @@ abstract class RealityCheckModel {
 class RealityCheck extends RealityCheckModel {
   /// Initializes Reality check class.
   const RealityCheck({
-    super.buyAmount,
-    super.buyCount,
-    super.currency,
-    super.loginid,
-    super.openContractCount,
-    super.potentialProfit,
-    super.sellAmount,
-    super.sellCount,
-    super.startTime,
-  });
+    double? buyAmount,
+    int? buyCount,
+    String? currency,
+    String? loginid,
+    int? openContractCount,
+    double? potentialProfit,
+    double? sellAmount,
+    int? sellCount,
+    DateTime? startTime,
+  }) : super(
+          buyAmount: buyAmount,
+          buyCount: buyCount,
+          currency: currency,
+          loginid: loginid,
+          openContractCount: openContractCount,
+          potentialProfit: potentialProfit,
+          sellAmount: sellAmount,
+          sellCount: sellCount,
+          startTime: startTime,
+        );
 
   /// Creates an instance from JSON.
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(

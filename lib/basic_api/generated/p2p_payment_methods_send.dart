@@ -9,10 +9,13 @@ class P2pPaymentMethodsRequest extends Request {
   /// Initialize P2pPaymentMethodsRequest.
   const P2pPaymentMethodsRequest({
     this.p2pPaymentMethods = true,
-    super.msgType = 'p2p_payment_methods',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'p2p_payment_methods',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory P2pPaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>

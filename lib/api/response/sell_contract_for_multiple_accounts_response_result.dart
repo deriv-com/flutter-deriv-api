@@ -19,8 +19,10 @@ class SellContractForMultipleAccountsResponse
     extends SellContractForMultipleAccountsResponseModel {
   /// Initializes Sell contract for multiple accounts response class.
   const SellContractForMultipleAccountsResponse({
-    super.sellContractForMultipleAccounts,
-  });
+    SellContractForMultipleAccounts? sellContractForMultipleAccounts,
+  }) : super(
+          sellContractForMultipleAccounts: sellContractForMultipleAccounts,
+        );
 
   /// Creates an instance from JSON.
   factory SellContractForMultipleAccountsResponse.fromJson(
@@ -71,8 +73,10 @@ class SellContractForMultipleAccounts
     extends SellContractForMultipleAccountsModel {
   /// Initializes Sell contract for multiple accounts class.
   const SellContractForMultipleAccounts({
-    super.result,
-  });
+    List<Map<String, dynamic>>? result,
+  }) : super(
+          result: result,
+        );
 
   /// Creates an instance from JSON.
   factory SellContractForMultipleAccounts.fromJson(Map<String, dynamic> json) =>

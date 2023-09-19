@@ -24,8 +24,10 @@ abstract class ResetPasswordResponseModel {
 class ResetPasswordResponse extends ResetPasswordResponseModel {
   /// Initializes Reset password response class.
   const ResetPasswordResponse({
-    super.resetPassword,
-  });
+    bool? resetPassword,
+  }) : super(
+          resetPassword: resetPassword,
+        );
 
   /// Creates an instance from JSON.
   factory ResetPasswordResponse.fromJson(

@@ -10,10 +10,13 @@ class PaymentagentListRequest extends Request {
   const PaymentagentListRequest({
     this.currency,
     required this.paymentagentList,
-    super.msgType = 'paymentagent_list',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'paymentagent_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>

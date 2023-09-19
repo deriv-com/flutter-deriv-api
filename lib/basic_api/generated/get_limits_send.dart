@@ -9,10 +9,13 @@ class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest.
   const GetLimitsRequest({
     this.getLimits = true,
-    super.msgType = 'get_limits',
-    super.passthrough,
-    super.reqId,
-  });
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) : super(
+          msgType: 'get_limits',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>

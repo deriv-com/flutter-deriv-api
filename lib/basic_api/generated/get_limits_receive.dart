@@ -9,11 +9,16 @@ class GetLimitsReceive extends Response {
   /// Initialize GetLimitsReceive.
   const GetLimitsReceive({
     this.getLimits,
-    super.echoReq,
-    super.error,
-    super.msgType,
-    super.reqId,
-  });
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON.
   factory GetLimitsReceive.fromJson(Map<String, dynamic> json) =>

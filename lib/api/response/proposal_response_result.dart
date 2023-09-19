@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/buy_response_result.dart';
 import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
@@ -39,9 +38,12 @@ abstract class ProposalResponseModel {
 class ProposalResponse extends ProposalResponseModel {
   /// Initializes Proposal response class.
   const ProposalResponse({
-    super.proposal,
-    super.subscription,
-  });
+    Proposal? proposal,
+    Subscription? subscription,
+  }) : super(
+          proposal: proposal,
+          subscription: subscription,
+        );
 
   /// Creates an instance from JSON.
   factory ProposalResponse.fromJson(
@@ -179,6 +181,7 @@ class ProposalResponse extends ProposalResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Proposal model class.
 abstract class ProposalModel extends Equatable {
   /// Initializes Proposal model class .
@@ -196,7 +199,6 @@ abstract class ProposalModel extends Equatable {
     this.commission,
     this.contractDetails,
     this.dateExpiry,
-    this.displayNumberOfContracts,
     this.limitOrder,
     this.maxStake,
     this.minStake,
@@ -237,28 +239,25 @@ abstract class ProposalModel extends Equatable {
   /// Commission changed in percentage (%).
   final double? commission;
 
-  /// Contains contract information.
+  /// Contains contract information. (Only applicable for accumulator).
   final ContractDetails? contractDetails;
 
   /// The end date of the contract.
   final DateTime? dateExpiry;
 
-  /// [Only for vanilla or turbos options] The implied number of contracts
-  final String? displayNumberOfContracts;
-
   /// Contains limit order information. (Only applicable for contract with limit order).
   final LimitOrder? limitOrder;
 
-  /// [Only for vanilla or turbos options] Maximum stakes allowed
+  /// [Only for vanilla options] Maximum stakes allowed
   final double? maxStake;
 
-  /// [Only for vanilla or turbos options] Minimum stakes allowed
+  /// [Only for vanilla options] Minimum stakes allowed
   final double? minStake;
 
   /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
   final double? multiplier;
 
-  /// [Only for vanilla or turbos options] The implied number of contracts
+  /// [Only for vanilla options] The implied number of contracts
   final double? numberOfContracts;
 }
 
@@ -266,26 +265,44 @@ abstract class ProposalModel extends Equatable {
 class Proposal extends ProposalModel {
   /// Initializes Proposal class.
   const Proposal({
-    required super.askPrice,
-    required super.dateStart,
-    required super.displayValue,
-    required super.id,
-    required super.longcode,
-    required super.payout,
-    required super.spot,
-    required super.spotTime,
-    super.barrierChoices,
-    super.cancellation,
-    super.commission,
-    super.contractDetails,
-    super.dateExpiry,
-    super.displayNumberOfContracts,
-    super.limitOrder,
-    super.maxStake,
-    super.minStake,
-    super.multiplier,
-    super.numberOfContracts,
-  });
+    required double askPrice,
+    required DateTime dateStart,
+    required String displayValue,
+    required String id,
+    required String longcode,
+    required double payout,
+    required double spot,
+    required DateTime spotTime,
+    List<dynamic>? barrierChoices,
+    Cancellation? cancellation,
+    double? commission,
+    ContractDetails? contractDetails,
+    DateTime? dateExpiry,
+    LimitOrder? limitOrder,
+    double? maxStake,
+    double? minStake,
+    double? multiplier,
+    double? numberOfContracts,
+  }) : super(
+          askPrice: askPrice,
+          dateStart: dateStart,
+          displayValue: displayValue,
+          id: id,
+          longcode: longcode,
+          payout: payout,
+          spot: spot,
+          spotTime: spotTime,
+          barrierChoices: barrierChoices,
+          cancellation: cancellation,
+          commission: commission,
+          contractDetails: contractDetails,
+          dateExpiry: dateExpiry,
+          limitOrder: limitOrder,
+          maxStake: maxStake,
+          minStake: minStake,
+          multiplier: multiplier,
+          numberOfContracts: numberOfContracts,
+        );
 
   /// Creates an instance from JSON.
   factory Proposal.fromJson(Map<String, dynamic> json) => Proposal(
@@ -312,7 +329,6 @@ class Proposal extends ProposalModel {
             ? null
             : ContractDetails.fromJson(json['contract_details']),
         dateExpiry: getDateTime(json['date_expiry']),
-        displayNumberOfContracts: json['display_number_of_contracts'],
         limitOrder: json['limit_order'] == null
             ? null
             : LimitOrder.fromJson(json['limit_order']),
@@ -349,7 +365,6 @@ class Proposal extends ProposalModel {
       resultMap['contract_details'] = contractDetails!.toJson();
     }
     resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
-    resultMap['display_number_of_contracts'] = displayNumberOfContracts;
     if (limitOrder != null) {
       resultMap['limit_order'] = limitOrder!.toJson();
     }
@@ -376,7 +391,6 @@ class Proposal extends ProposalModel {
     double? commission,
     ContractDetails? contractDetails,
     DateTime? dateExpiry,
-    String? displayNumberOfContracts,
     LimitOrder? limitOrder,
     double? maxStake,
     double? minStake,
@@ -397,8 +411,6 @@ class Proposal extends ProposalModel {
         commission: commission ?? this.commission,
         contractDetails: contractDetails ?? this.contractDetails,
         dateExpiry: dateExpiry ?? this.dateExpiry,
-        displayNumberOfContracts:
-            displayNumberOfContracts ?? this.displayNumberOfContracts,
         limitOrder: limitOrder ?? this.limitOrder,
         maxStake: maxStake ?? this.maxStake,
         minStake: minStake ?? this.minStake,
@@ -418,6 +430,7 @@ class Proposal extends ProposalModel {
         limitOrder,
       ];
 }
+
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
@@ -437,9 +450,12 @@ abstract class CancellationModel extends Equatable {
 class Cancellation extends CancellationModel {
   /// Initializes Cancellation class.
   const Cancellation({
-    super.askPrice,
-    super.dateExpiry,
-  });
+    double? askPrice,
+    DateTime? dateExpiry,
+  }) : super(
+          askPrice: askPrice,
+          dateExpiry: dateExpiry,
+        );
 
   /// Creates an instance from JSON.
   factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
@@ -474,12 +490,11 @@ class Cancellation extends CancellationModel {
         dateExpiry,
       ];
 }
+
 /// Contract details model class.
 abstract class ContractDetailsModel {
   /// Initializes Contract details model class .
   const ContractDetailsModel({
-    this.barrier,
-    this.barrierSpotDistance,
     this.highBarrier,
     this.lastTickEpoch,
     this.lowBarrier,
@@ -488,12 +503,6 @@ abstract class ContractDetailsModel {
     this.tickSizeBarrier,
     this.ticksStayedIn,
   });
-
-  /// Barrier of the contract.
-  final String? barrier;
-
-  /// Absolute difference between high/low barrier and spot
-  final String? barrierSpotDistance;
 
   /// High barrier calculated based on current spot
   final String? highBarrier;
@@ -521,22 +530,26 @@ abstract class ContractDetailsModel {
 class ContractDetails extends ContractDetailsModel {
   /// Initializes Contract details class.
   const ContractDetails({
-    super.barrier,
-    super.barrierSpotDistance,
-    super.highBarrier,
-    super.lastTickEpoch,
-    super.lowBarrier,
-    super.maximumPayout,
-    super.maximumTicks,
-    super.tickSizeBarrier,
-    super.ticksStayedIn,
-  });
+    String? highBarrier,
+    DateTime? lastTickEpoch,
+    String? lowBarrier,
+    double? maximumPayout,
+    int? maximumTicks,
+    double? tickSizeBarrier,
+    List<int>? ticksStayedIn,
+  }) : super(
+          highBarrier: highBarrier,
+          lastTickEpoch: lastTickEpoch,
+          lowBarrier: lowBarrier,
+          maximumPayout: maximumPayout,
+          maximumTicks: maximumTicks,
+          tickSizeBarrier: tickSizeBarrier,
+          ticksStayedIn: ticksStayedIn,
+        );
 
   /// Creates an instance from JSON.
   factory ContractDetails.fromJson(Map<String, dynamic> json) =>
       ContractDetails(
-        barrier: json['barrier'],
-        barrierSpotDistance: json['barrier_spot_distance'],
         highBarrier: json['high_barrier'],
         lastTickEpoch: getDateTime(json['last_tick_epoch']),
         lowBarrier: json['low_barrier'],
@@ -556,8 +569,6 @@ class ContractDetails extends ContractDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['barrier'] = barrier;
-    resultMap['barrier_spot_distance'] = barrierSpotDistance;
     resultMap['high_barrier'] = highBarrier;
     resultMap['last_tick_epoch'] = getSecondsSinceEpochDateTime(lastTickEpoch);
     resultMap['low_barrier'] = lowBarrier;
@@ -577,8 +588,6 @@ class ContractDetails extends ContractDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   ContractDetails copyWith({
-    String? barrier,
-    String? barrierSpotDistance,
     String? highBarrier,
     DateTime? lastTickEpoch,
     String? lowBarrier,
@@ -588,8 +597,6 @@ class ContractDetails extends ContractDetailsModel {
     List<int>? ticksStayedIn,
   }) =>
       ContractDetails(
-        barrier: barrier ?? this.barrier,
-        barrierSpotDistance: barrierSpotDistance ?? this.barrierSpotDistance,
         highBarrier: highBarrier ?? this.highBarrier,
         lastTickEpoch: lastTickEpoch ?? this.lastTickEpoch,
         lowBarrier: lowBarrier ?? this.lowBarrier,
@@ -599,6 +606,7 @@ class ContractDetails extends ContractDetailsModel {
         ticksStayedIn: ticksStayedIn ?? this.ticksStayedIn,
       );
 }
+
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
@@ -622,10 +630,14 @@ abstract class LimitOrderModel extends Equatable {
 class LimitOrder extends LimitOrderModel {
   /// Initializes Limit order class.
   const LimitOrder({
-    super.stopLoss,
-    super.stopOut,
-    super.takeProfit,
-  });
+    StopLoss? stopLoss,
+    StopOut? stopOut,
+    TakeProfit? takeProfit,
+  }) : super(
+          stopLoss: stopLoss,
+          stopOut: stopOut,
+          takeProfit: takeProfit,
+        );
 
   /// Creates an instance from JSON.
   factory LimitOrder.fromJson(Map<String, dynamic> json) => LimitOrder(
@@ -677,6 +689,7 @@ class LimitOrder extends LimitOrderModel {
         takeProfit,
       ];
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -704,11 +717,16 @@ abstract class StopLossModel extends Equatable {
 class StopLoss extends StopLossModel {
   /// Initializes Stop loss class.
   const StopLoss({
-    super.displayName,
-    super.orderAmount,
-    super.orderDate,
-    super.value,
-  });
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
+  }) : super(
+          displayName: displayName,
+          orderAmount: orderAmount,
+          orderDate: orderDate,
+          value: value,
+        );
 
   /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
@@ -751,6 +769,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
@@ -778,11 +797,16 @@ abstract class StopOutModel extends Equatable {
 class StopOut extends StopOutModel {
   /// Initializes Stop out class.
   const StopOut({
-    super.displayName,
-    super.orderAmount,
-    super.orderDate,
-    super.value,
-  });
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
+  }) : super(
+          displayName: displayName,
+          orderAmount: orderAmount,
+          orderDate: orderDate,
+          value: value,
+        );
 
   /// Creates an instance from JSON.
   factory StopOut.fromJson(Map<String, dynamic> json) => StopOut(
@@ -825,6 +849,7 @@ class StopOut extends StopOutModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -852,11 +877,16 @@ abstract class TakeProfitModel extends Equatable {
 class TakeProfit extends TakeProfitModel {
   /// Initializes Take profit class.
   const TakeProfit({
-    super.displayName,
-    super.orderAmount,
-    super.orderDate,
-    super.value,
-  });
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
+  }) : super(
+          displayName: displayName,
+          orderAmount: orderAmount,
+          orderDate: orderDate,
+          value: value,
+        );
 
   /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
@@ -899,6 +929,7 @@ class TakeProfit extends TakeProfitModel {
         orderAmount,
       ];
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -914,8 +945,10 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required super.id,
-  });
+    required String id,
+  }) : super(
+          id: id,
+        );
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
