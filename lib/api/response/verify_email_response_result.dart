@@ -25,8 +25,10 @@ abstract class VerifyEmailResponseModel {
 class VerifyEmailResponse extends VerifyEmailResponseModel {
   /// Initializes Verify email response class.
   const VerifyEmailResponse({
-    super.verifyEmail,
-  });
+    bool? verifyEmail,
+  }) : super(
+          verifyEmail: verifyEmail,
+        );
 
   /// Creates an instance from JSON.
   factory VerifyEmailResponse.fromJson(

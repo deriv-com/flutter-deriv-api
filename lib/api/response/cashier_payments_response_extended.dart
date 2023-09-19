@@ -37,7 +37,7 @@ class CashierPaymentsResponseExtended extends CashierPaymentsResponse {
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
   ///
   /// Throws a [BaseAPIException] if API response contains an error
-  static Stream<CashierPaymentsResponse?> subscribeContractState(
+  static Stream<CashierPaymentsResponse?> subscribeCashierPayment(
     CashierPaymentsRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
