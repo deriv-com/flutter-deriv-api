@@ -22,6 +22,7 @@ import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/copy_trading_list_response.dart';
 import 'mock_data/account/copy_trading_statistics_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_account_types_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_self_exclusion_response.dart';
 import 'mock_data/account/get_settings_response.dart';
@@ -229,6 +230,8 @@ class MockAPI extends BaseAPI {
         return forgetAllResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
+      case 'get_account_types':
+        return getAccountTypesResponse;
       case 'get_financial_assessment':
         return getFinancialAssessmentResponse;
       case 'get_limits':
