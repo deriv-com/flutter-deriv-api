@@ -12,7 +12,7 @@ class NewAccountWalletResponseExtended extends NewAccountWalletResponse {
   static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Creates a new wallet account.
-  static Future<NewAccountWalletResponse> fetchAccountTypes({
+  static Future<NewAccountWalletResponse> createNewWalletAccount({
     required NewAccountWalletRequest request,
   }) async {
     final NewAccountWalletReceive response = await _api.call(request: request);
