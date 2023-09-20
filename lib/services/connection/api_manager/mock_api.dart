@@ -12,6 +12,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/new_account_wallet_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_payments_response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
@@ -269,6 +270,8 @@ class MockAPI extends BaseAPI {
         return newAccountRealResponse;
       case 'new_account_virtual':
         return newAccountVirtualResponse;
+      case 'new_account_wallet':
+        return newAccountWalletResponse;
       case 'oauth_apps':
         return oauthAppsResponse;
       case 'p2p_advert_create':

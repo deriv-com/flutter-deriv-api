@@ -23,6 +23,6 @@ class NewAccountWalletResponseExtended extends NewAccountWalletResponse {
           BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
-    return NewAccountWalletResponse.fromJson(response);
+    return NewAccountWalletResponse.fromJson(response.newAccountWallet);
   }
 }
