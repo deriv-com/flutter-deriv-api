@@ -16,7 +16,7 @@ class WalletMigrationResponseExtended extends WalletMigrationResponse {
   /// the migration or reset it if it has failed for any reason.
   ///
   /// [request] is the request object. For its `walletMigration` field, you can
-  /// you can set the following values:
+  /// set the following values:
   /// - `start` to initiate the migration process.
   /// - `state` to check the status of the migration.
   /// - `reset` to reset the migration process.

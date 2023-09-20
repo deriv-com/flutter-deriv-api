@@ -29,9 +29,12 @@ abstract class Mt5DepositResponseModel {
 class Mt5DepositResponse extends Mt5DepositResponseModel {
   /// Initializes Mt5 deposit response class.
   const Mt5DepositResponse({
-    super.mt5Deposit,
-    super.binaryTransactionId,
-  });
+    int? mt5Deposit,
+    int? binaryTransactionId,
+  }) : super(
+          mt5Deposit: mt5Deposit,
+          binaryTransactionId: binaryTransactionId,
+        );
 
   /// Creates an instance from JSON.
   factory Mt5DepositResponse.fromJson(
