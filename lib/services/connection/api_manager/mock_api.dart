@@ -109,6 +109,7 @@ import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
 import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
+import 'mock_data/wallet_migration_response.dart';
 
 /// This class is for handling mock API connection and calling mock APIs
 class MockAPI extends BaseAPI {
@@ -370,6 +371,8 @@ class MockAPI extends BaseAPI {
         return verifyEmailResponse;
       case 'website_status':
         return websiteStatusResponse;
+      case 'wallet_migration':
+        return walletMigrationResponse;
 
       default:
         throw APIManagerException(

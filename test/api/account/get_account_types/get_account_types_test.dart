@@ -11,7 +11,7 @@ void main() {
 
   tearDown(() => Injector().dispose());
 
-  test('Account Limits Test', () async {
+  test('Get account types API call returns the expected result.', () async {
     final GetAccountTypesResponse accountTypesResponse =
         await GetAccountTypesResponseExtended.fetchAccountTypes(
       request: const GetAccountTypesRequest(),

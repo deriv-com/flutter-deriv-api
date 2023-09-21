@@ -11,7 +11,7 @@ void main() {
 
   tearDown(() => Injector().dispose());
 
-  test('Account Limits Test', () async {
+  test('New account wallet API call returns the expected result.', () async {
     final NewAccountWalletResponse newAccountWallet =
         await NewAccountWalletResponseExtended.createNewWalletAccount(
       request: const NewAccountWalletRequest(
