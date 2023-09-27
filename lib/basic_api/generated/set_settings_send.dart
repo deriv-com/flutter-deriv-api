@@ -17,7 +17,9 @@ class SetSettingsRequest extends Request {
     this.allowCopiers,
     this.citizen,
     this.dateOfBirth,
+    this.dxtradeUserException,
     this.emailConsent,
+    this.employmentStatus,
     this.featureFlag,
     this.firstName,
     this.lastName,
@@ -34,13 +36,10 @@ class SetSettingsRequest extends Request {
     this.taxIdentificationNumber,
     this.taxResidence,
     this.tradingHub,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'set_settings',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'set_settings',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
@@ -55,8 +54,12 @@ class SetSettingsRequest extends Request {
             json['allow_copiers'] == null ? null : json['allow_copiers'] == 1,
         citizen: json['citizen'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
+        dxtradeUserException: json['dxtrade_user_exception'] == null
+            ? null
+            : json['dxtrade_user_exception'] == 1,
         emailConsent:
             json['email_consent'] == null ? null : json['email_consent'] == 1,
+        employmentStatus: json['employment_status'] as String?,
         featureFlag: json['feature_flag'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
@@ -106,8 +109,14 @@ class SetSettingsRequest extends Request {
   /// [Optional] Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
   final String? dateOfBirth;
 
+  /// Boolean value `true` or `false`, indicating if user email belong to dxtrade exception list.
+  final bool? dxtradeUserException;
+
   /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool? emailConsent;
+
+  /// [Optional] Employment Status.
+  final String? employmentStatus;
 
   /// [Optional] Enable or disable one or multiple features.
   final Map<String, dynamic>? featureFlag;
@@ -173,11 +182,17 @@ class SetSettingsRequest extends Request {
                 : 0,
         'citizen': citizen,
         'date_of_birth': dateOfBirth,
+        'dxtrade_user_exception': dxtradeUserException == null
+            ? null
+            : dxtradeUserException!
+                ? 1
+                : 0,
         'email_consent': emailConsent == null
             ? null
             : emailConsent!
                 ? 1
                 : 0,
+        'employment_status': employmentStatus,
         'feature_flag': featureFlag,
         'first_name': firstName,
         'last_name': lastName,
@@ -218,7 +233,9 @@ class SetSettingsRequest extends Request {
     bool? allowCopiers,
     String? citizen,
     String? dateOfBirth,
+    bool? dxtradeUserException,
     bool? emailConsent,
+    String? employmentStatus,
     Map<String, dynamic>? featureFlag,
     String? firstName,
     String? lastName,
@@ -248,7 +265,9 @@ class SetSettingsRequest extends Request {
         allowCopiers: allowCopiers ?? this.allowCopiers,
         citizen: citizen ?? this.citizen,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        dxtradeUserException: dxtradeUserException ?? this.dxtradeUserException,
         emailConsent: emailConsent ?? this.emailConsent,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,

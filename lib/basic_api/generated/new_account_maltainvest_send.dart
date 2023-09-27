@@ -17,45 +17,44 @@ class NewAccountMaltainvestRequest extends Request {
     this.addressPostcode,
     this.addressState,
     this.affiliateToken,
-    this.binaryOptionsTradingExperience,
-    this.binaryOptionsTradingFrequency,
-    this.cfdTradingExperience,
-    this.cfdTradingFrequency,
+    required this.cfdExperience,
+    required this.cfdFrequency,
+    required this.cfdTradingDefinition,
     this.citizen,
     this.clientType,
     this.currency,
     required this.dateOfBirth,
     required this.educationLevel,
     required this.employmentIndustry,
-    this.employmentStatus,
+    required this.employmentStatus,
     required this.estimatedWorth,
     required this.firstName,
-    this.forexTradingExperience,
-    this.forexTradingFrequency,
     required this.incomeSource,
     required this.lastName,
+    required this.leverageImpactTrading,
+    required this.leverageTradingHighRiskStopLoss,
     required this.netIncome,
     this.newAccountMaltainvest = true,
     this.nonPepDeclaration,
     required this.occupation,
-    this.otherInstrumentsTradingExperience,
-    this.otherInstrumentsTradingFrequency,
     this.phone,
     this.placeOfBirth,
+    required this.requiredInitialMargin,
     required this.residence,
+    required this.riskTolerance,
     required this.salutation,
     this.secretAnswer,
     this.secretQuestion,
+    required this.sourceOfExperience,
     this.sourceOfWealth,
     required this.taxIdentificationNumber,
     required this.taxResidence,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'new_account_maltainvest',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    required this.tradingExperienceFinancialInstruments,
+    required this.tradingFrequencyFinancialInstruments,
+    super.msgType = 'new_account_maltainvest',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
@@ -70,12 +69,9 @@ class NewAccountMaltainvestRequest extends Request {
         addressPostcode: json['address_postcode'] as String?,
         addressState: json['address_state'] as String?,
         affiliateToken: json['affiliate_token'] as String?,
-        binaryOptionsTradingExperience:
-            json['binary_options_trading_experience'] as String?,
-        binaryOptionsTradingFrequency:
-            json['binary_options_trading_frequency'] as String?,
-        cfdTradingExperience: json['cfd_trading_experience'] as String?,
-        cfdTradingFrequency: json['cfd_trading_frequency'] as String?,
+        cfdExperience: json['cfd_experience'] as String?,
+        cfdFrequency: json['cfd_frequency'] as String?,
+        cfdTradingDefinition: json['cfd_trading_definition'] as String?,
         citizen: json['citizen'] as String?,
         clientType: json['client_type'] as String?,
         currency: json['currency'] as String?,
@@ -85,29 +81,33 @@ class NewAccountMaltainvestRequest extends Request {
         employmentStatus: json['employment_status'] as String?,
         estimatedWorth: json['estimated_worth'] as String?,
         firstName: json['first_name'] as String?,
-        forexTradingExperience: json['forex_trading_experience'] as String?,
-        forexTradingFrequency: json['forex_trading_frequency'] as String?,
         incomeSource: json['income_source'] as String?,
         lastName: json['last_name'] as String?,
+        leverageImpactTrading: json['leverage_impact_trading'] as String?,
+        leverageTradingHighRiskStopLoss:
+            json['leverage_trading_high_risk_stop_loss'] as String?,
         netIncome: json['net_income'] as String?,
         newAccountMaltainvest: json['new_account_maltainvest'] == null
             ? null
             : json['new_account_maltainvest'] == 1,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
         occupation: json['occupation'] as String?,
-        otherInstrumentsTradingExperience:
-            json['other_instruments_trading_experience'] as String?,
-        otherInstrumentsTradingFrequency:
-            json['other_instruments_trading_frequency'] as String?,
         phone: json['phone'] as String?,
         placeOfBirth: json['place_of_birth'] as String?,
+        requiredInitialMargin: json['required_initial_margin'] as String?,
         residence: json['residence'] as String?,
+        riskTolerance: json['risk_tolerance'] as String?,
         salutation: json['salutation'] as String?,
         secretAnswer: json['secret_answer'] as String?,
         secretQuestion: json['secret_question'] as String?,
+        sourceOfExperience: json['source_of_experience'] as String?,
         sourceOfWealth: json['source_of_wealth'] as String?,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tradingExperienceFinancialInstruments:
+            json['trading_experience_financial_instruments'] as String?,
+        tradingFrequencyFinancialInstruments:
+            json['trading_frequency_financial_instruments'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -139,17 +139,14 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] Affiliate token, within 32 characters.
   final String? affiliateToken;
 
-  /// [Optional] Binary options trading experience.
-  final String? binaryOptionsTradingExperience;
+  /// How much experience do you have in CFD trading?
+  final String? cfdExperience;
 
-  /// [Optional] Binary options trading frequency.
-  final String? binaryOptionsTradingFrequency;
+  /// How many CFD trades have you placed in the past 12 months?
+  final String? cfdFrequency;
 
-  /// [Optional] CFDs trading experience.
-  final String? cfdTradingExperience;
-
-  /// [Optional] CFDs trading frequency.
-  final String? cfdTradingFrequency;
+  /// In your understanding, CFD trading allows you to:
+  final String? cfdTradingDefinition;
 
   /// [Optional] Country of legal citizenship, 2-letter country code. Possible value receive from `residence_list` call.
   final String? citizen;
@@ -169,7 +166,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// Industry of Employment.
   final String? employmentIndustry;
 
-  /// [Optional] Employment Status.
+  /// Employment Status.
   final String? employmentStatus;
 
   /// Estimated Net Worth.
@@ -178,17 +175,17 @@ class NewAccountMaltainvestRequest extends Request {
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
 
-  /// [Optional] Forex trading experience.
-  final String? forexTradingExperience;
-
-  /// [Optional] Forex trading frequency.
-  final String? forexTradingFrequency;
-
   /// Income Source.
   final String? incomeSource;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? lastName;
+
+  /// How does leverage affect CFD trading?
+  final String? leverageImpactTrading;
+
+  /// Leverage trading is high-risk, so it's a good idea to use risk management features such as stop loss. Stop loss allows you to
+  final String? leverageTradingHighRiskStopLoss;
 
   /// Net Annual Income.
   final String? netIncome;
@@ -202,20 +199,20 @@ class NewAccountMaltainvestRequest extends Request {
   /// Occupation.
   final String? occupation;
 
-  /// [Optional] Trading experience in other financial instruments.
-  final String? otherInstrumentsTradingExperience;
-
-  /// [Optional] Trading frequency in other financial instruments.
-  final String? otherInstrumentsTradingFrequency;
-
   /// [Optional] Starting with `+` followed by 9-35 digits, hyphens or space.
   final String? phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   final String? placeOfBirth;
 
+  /// When would you be required to pay an initial margin?
+  final String? requiredInitialMargin;
+
   /// 2-letter country code, possible value receive from `residence_list` call.
   final String? residence;
+
+  /// Do you understand that you could potentially lose 100% of the money you use to trade?
+  final String? riskTolerance;
 
   /// Accept any value in enum list.
   final String? salutation;
@@ -226,6 +223,9 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] Accept any value in enum list.
   final String? secretQuestion;
 
+  /// How much knowledge and experience do you have in relation to online trading?
+  final String? sourceOfExperience;
+
   /// [Optional] Source of wealth.
   final String? sourceOfWealth;
 
@@ -234,6 +234,12 @@ class NewAccountMaltainvestRequest extends Request {
 
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String? taxResidence;
+
+  /// How much experience do you have with other financial instruments?
+  final String? tradingExperienceFinancialInstruments;
+
+  /// How many trades have you placed with other financial instruments in the past 12 months?
+  final String? tradingFrequencyFinancialInstruments;
 
   /// Converts this instance to JSON
   @override
@@ -251,10 +257,9 @@ class NewAccountMaltainvestRequest extends Request {
         'address_postcode': addressPostcode,
         'address_state': addressState,
         'affiliate_token': affiliateToken,
-        'binary_options_trading_experience': binaryOptionsTradingExperience,
-        'binary_options_trading_frequency': binaryOptionsTradingFrequency,
-        'cfd_trading_experience': cfdTradingExperience,
-        'cfd_trading_frequency': cfdTradingFrequency,
+        'cfd_experience': cfdExperience,
+        'cfd_frequency': cfdFrequency,
+        'cfd_trading_definition': cfdTradingDefinition,
         'citizen': citizen,
         'client_type': clientType,
         'currency': currency,
@@ -264,10 +269,10 @@ class NewAccountMaltainvestRequest extends Request {
         'employment_status': employmentStatus,
         'estimated_worth': estimatedWorth,
         'first_name': firstName,
-        'forex_trading_experience': forexTradingExperience,
-        'forex_trading_frequency': forexTradingFrequency,
         'income_source': incomeSource,
         'last_name': lastName,
+        'leverage_impact_trading': leverageImpactTrading,
+        'leverage_trading_high_risk_stop_loss': leverageTradingHighRiskStopLoss,
         'net_income': netIncome,
         'new_account_maltainvest': newAccountMaltainvest == null
             ? null
@@ -276,18 +281,22 @@ class NewAccountMaltainvestRequest extends Request {
                 : 0,
         'non_pep_declaration': nonPepDeclaration,
         'occupation': occupation,
-        'other_instruments_trading_experience':
-            otherInstrumentsTradingExperience,
-        'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
         'phone': phone,
         'place_of_birth': placeOfBirth,
+        'required_initial_margin': requiredInitialMargin,
         'residence': residence,
+        'risk_tolerance': riskTolerance,
         'salutation': salutation,
         'secret_answer': secretAnswer,
         'secret_question': secretQuestion,
+        'source_of_experience': sourceOfExperience,
         'source_of_wealth': sourceOfWealth,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'trading_experience_financial_instruments':
+            tradingExperienceFinancialInstruments,
+        'trading_frequency_financial_instruments':
+            tradingFrequencyFinancialInstruments,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -304,10 +313,9 @@ class NewAccountMaltainvestRequest extends Request {
     String? addressPostcode,
     String? addressState,
     String? affiliateToken,
-    String? binaryOptionsTradingExperience,
-    String? binaryOptionsTradingFrequency,
-    String? cfdTradingExperience,
-    String? cfdTradingFrequency,
+    String? cfdExperience,
+    String? cfdFrequency,
+    String? cfdTradingDefinition,
     String? citizen,
     String? clientType,
     String? currency,
@@ -317,25 +325,28 @@ class NewAccountMaltainvestRequest extends Request {
     String? employmentStatus,
     String? estimatedWorth,
     String? firstName,
-    String? forexTradingExperience,
-    String? forexTradingFrequency,
     String? incomeSource,
     String? lastName,
+    String? leverageImpactTrading,
+    String? leverageTradingHighRiskStopLoss,
     String? netIncome,
     bool? newAccountMaltainvest,
     int? nonPepDeclaration,
     String? occupation,
-    String? otherInstrumentsTradingExperience,
-    String? otherInstrumentsTradingFrequency,
     String? phone,
     String? placeOfBirth,
+    String? requiredInitialMargin,
     String? residence,
+    String? riskTolerance,
     String? salutation,
     String? secretAnswer,
     String? secretQuestion,
+    String? sourceOfExperience,
     String? sourceOfWealth,
     String? taxIdentificationNumber,
     String? taxResidence,
+    String? tradingExperienceFinancialInstruments,
+    String? tradingFrequencyFinancialInstruments,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -349,12 +360,9 @@ class NewAccountMaltainvestRequest extends Request {
         addressPostcode: addressPostcode ?? this.addressPostcode,
         addressState: addressState ?? this.addressState,
         affiliateToken: affiliateToken ?? this.affiliateToken,
-        binaryOptionsTradingExperience: binaryOptionsTradingExperience ??
-            this.binaryOptionsTradingExperience,
-        binaryOptionsTradingFrequency:
-            binaryOptionsTradingFrequency ?? this.binaryOptionsTradingFrequency,
-        cfdTradingExperience: cfdTradingExperience ?? this.cfdTradingExperience,
-        cfdTradingFrequency: cfdTradingFrequency ?? this.cfdTradingFrequency,
+        cfdExperience: cfdExperience ?? this.cfdExperience,
+        cfdFrequency: cfdFrequency ?? this.cfdFrequency,
+        cfdTradingDefinition: cfdTradingDefinition ?? this.cfdTradingDefinition,
         citizen: citizen ?? this.citizen,
         clientType: clientType ?? this.clientType,
         currency: currency ?? this.currency,
@@ -364,31 +372,37 @@ class NewAccountMaltainvestRequest extends Request {
         employmentStatus: employmentStatus ?? this.employmentStatus,
         estimatedWorth: estimatedWorth ?? this.estimatedWorth,
         firstName: firstName ?? this.firstName,
-        forexTradingExperience:
-            forexTradingExperience ?? this.forexTradingExperience,
-        forexTradingFrequency:
-            forexTradingFrequency ?? this.forexTradingFrequency,
         incomeSource: incomeSource ?? this.incomeSource,
         lastName: lastName ?? this.lastName,
+        leverageImpactTrading:
+            leverageImpactTrading ?? this.leverageImpactTrading,
+        leverageTradingHighRiskStopLoss: leverageTradingHighRiskStopLoss ??
+            this.leverageTradingHighRiskStopLoss,
         netIncome: netIncome ?? this.netIncome,
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         occupation: occupation ?? this.occupation,
-        otherInstrumentsTradingExperience: otherInstrumentsTradingExperience ??
-            this.otherInstrumentsTradingExperience,
-        otherInstrumentsTradingFrequency: otherInstrumentsTradingFrequency ??
-            this.otherInstrumentsTradingFrequency,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        requiredInitialMargin:
+            requiredInitialMargin ?? this.requiredInitialMargin,
         residence: residence ?? this.residence,
+        riskTolerance: riskTolerance ?? this.riskTolerance,
         salutation: salutation ?? this.salutation,
         secretAnswer: secretAnswer ?? this.secretAnswer,
         secretQuestion: secretQuestion ?? this.secretQuestion,
+        sourceOfExperience: sourceOfExperience ?? this.sourceOfExperience,
         sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tradingExperienceFinancialInstruments:
+            tradingExperienceFinancialInstruments ??
+                this.tradingExperienceFinancialInstruments,
+        tradingFrequencyFinancialInstruments:
+            tradingFrequencyFinancialInstruments ??
+                this.tradingFrequencyFinancialInstruments,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

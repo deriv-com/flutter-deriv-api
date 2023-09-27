@@ -15,13 +15,10 @@ class StatementRequest extends Request {
     this.limit,
     this.offset,
     this.statement = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'statement',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'statement',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
@@ -32,7 +29,7 @@ class StatementRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        offset: json['offset'] as int?,
         statement: json['statement'] == null ? null : json['statement'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -54,7 +51,7 @@ class StatementRequest extends Request {
   final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// Must be `true`
   final bool? statement;
@@ -89,7 +86,7 @@ class StatementRequest extends Request {
     int? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    int? offset,
     bool? statement,
     Map<String, dynamic>? passthrough,
     int? reqId,

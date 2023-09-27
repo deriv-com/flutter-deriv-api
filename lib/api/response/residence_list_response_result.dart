@@ -25,10 +25,8 @@ abstract class ResidenceListResponseModel {
 class ResidenceListResponse extends ResidenceListResponseModel {
   /// Initializes Residence list response class.
   const ResidenceListResponse({
-    List<ResidenceListItem>? residenceList,
-  }) : super(
-          residenceList: residenceList,
-        );
+    super.residenceList,
+  });
 
   /// Creates an instance from JSON.
   factory ResidenceListResponse.fromJson(
@@ -88,7 +86,6 @@ class ResidenceListResponse extends ResidenceListResponseModel {
         residenceList: residenceList ?? this.residenceList,
       );
 }
-
 /// Residence list item model class.
 abstract class ResidenceListItemModel {
   /// Initializes Residence list item model class .
@@ -128,22 +125,14 @@ abstract class ResidenceListItemModel {
 class ResidenceListItem extends ResidenceListItemModel {
   /// Initializes Residence list item class.
   const ResidenceListItem({
-    String? disabled,
-    Identity? identity,
-    String? phoneIdd,
-    String? selected,
-    String? text,
-    List<String>? tinFormat,
-    String? value,
-  }) : super(
-          disabled: disabled,
-          identity: identity,
-          phoneIdd: phoneIdd,
-          selected: selected,
-          text: text,
-          tinFormat: tinFormat,
-          value: value,
-        );
+    super.disabled,
+    super.identity,
+    super.phoneIdd,
+    super.selected,
+    super.text,
+    super.tinFormat,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory ResidenceListItem.fromJson(Map<String, dynamic> json) =>
@@ -208,7 +197,6 @@ class ResidenceListItem extends ResidenceListItemModel {
         value: value ?? this.value,
       );
 }
-
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -224,10 +212,8 @@ abstract class IdentityModel {
 class Identity extends IdentityModel {
   /// Initializes Identity class.
   const Identity({
-    Services? services,
-  }) : super(
-          services: services,
-        );
+    super.services,
+  });
 
   /// Creates an instance from JSON.
   factory Identity.fromJson(Map<String, dynamic> json) => Identity(
@@ -255,7 +241,6 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
       );
 }
-
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -275,12 +260,9 @@ abstract class ServicesModel {
 class Services extends ServicesModel {
   /// Initializes Services class.
   const Services({
-    Idv? idv,
-    Onfido? onfido,
-  }) : super(
-          idv: idv,
-          onfido: onfido,
-        );
+    super.idv,
+    super.onfido,
+  });
 
   /// Creates an instance from JSON.
   factory Services.fromJson(Map<String, dynamic> json) => Services(
@@ -312,7 +294,6 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
-
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
@@ -336,14 +317,10 @@ abstract class IdvModel {
 class Idv extends IdvModel {
   /// Initializes Idv class.
   const Idv({
-    Map<String, DocumentsSupportedProperty>? documentsSupported,
-    bool? hasVisualSample,
-    bool? isCountrySupported,
-  }) : super(
-          documentsSupported: documentsSupported,
-          hasVisualSample: hasVisualSample,
-          isCountrySupported: isCountrySupported,
-        );
+    super.documentsSupported,
+    super.hasVisualSample,
+    super.isCountrySupported,
+  });
 
   /// Creates an instance from JSON.
   factory Idv.fromJson(Map<String, dynamic> json) => Idv(
@@ -383,14 +360,17 @@ class Idv extends IdvModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
-
 /// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property model class .
   const DocumentsSupportedPropertyModel({
+    this.additional,
     this.displayName,
     this.format,
   });
+
+  /// [Optional] Additional input required from the user
+  final Additional? additional;
 
   /// The localized display name
   final String? displayName;
@@ -403,16 +383,71 @@ abstract class DocumentsSupportedPropertyModel {
 class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property class.
   const DocumentsSupportedProperty({
-    String? displayName,
-    String? format,
-  }) : super(
-          displayName: displayName,
-          format: format,
-        );
+    super.additional,
+    super.displayName,
+    super.format,
+  });
 
   /// Creates an instance from JSON.
   factory DocumentsSupportedProperty.fromJson(Map<String, dynamic> json) =>
       DocumentsSupportedProperty(
+        additional: json['additional'] == null
+            ? null
+            : Additional.fromJson(json['additional']),
+        displayName: json['display_name'],
+        format: json['format'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (additional != null) {
+      resultMap['additional'] = additional!.toJson();
+    }
+    resultMap['display_name'] = displayName;
+    resultMap['format'] = format;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  DocumentsSupportedProperty copyWith({
+    Additional? additional,
+    String? displayName,
+    String? format,
+  }) =>
+      DocumentsSupportedProperty(
+        additional: additional ?? this.additional,
+        displayName: displayName ?? this.displayName,
+        format: format ?? this.format,
+      );
+}
+/// Additional model class.
+abstract class AdditionalModel {
+  /// Initializes Additional model class .
+  const AdditionalModel({
+    this.displayName,
+    this.format,
+  });
+
+  /// The localized display name
+  final String? displayName;
+
+  /// [Optional] Regex pattern to validate documents
+  final String? format;
+}
+
+/// Additional class.
+class Additional extends AdditionalModel {
+  /// Initializes Additional class.
+  const Additional({
+    super.displayName,
+    super.format,
+  });
+
+  /// Creates an instance from JSON.
+  factory Additional.fromJson(Map<String, dynamic> json) => Additional(
         displayName: json['display_name'],
         format: json['format'],
       );
@@ -428,16 +463,15 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
   }
 
   /// Creates a copy of instance with given parameters.
-  DocumentsSupportedProperty copyWith({
+  Additional copyWith({
     String? displayName,
     String? format,
   }) =>
-      DocumentsSupportedProperty(
+      Additional(
         displayName: displayName ?? this.displayName,
         format: format ?? this.format,
       );
 }
-
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -458,13 +492,9 @@ abstract class OnfidoModel {
 class Onfido extends OnfidoModel {
   /// Initializes Onfido class.
   const Onfido({
-    Map<String, DocumentsSupportedDocumentsSupportedProperty>?
-        documentsSupported,
-    bool? isCountrySupported,
-  }) : super(
-          documentsSupported: documentsSupported,
-          isCountrySupported: isCountrySupported,
-        );
+    super.documentsSupported,
+    super.isCountrySupported,
+  });
 
   /// Creates an instance from JSON.
   factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
@@ -503,7 +533,6 @@ class Onfido extends OnfidoModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
-
 /// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property model class .
@@ -524,12 +553,9 @@ class DocumentsSupportedDocumentsSupportedProperty
     extends DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property class.
   const DocumentsSupportedDocumentsSupportedProperty({
-    String? displayName,
-    String? format,
-  }) : super(
-          displayName: displayName,
-          format: format,
-        );
+    super.displayName,
+    super.format,
+  });
 
   /// Creates an instance from JSON.
   factory DocumentsSupportedDocumentsSupportedProperty.fromJson(
