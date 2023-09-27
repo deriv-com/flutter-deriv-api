@@ -30,13 +30,10 @@ class NewAccountVirtualRequest extends Request {
     this.utmSource,
     this.utmTerm,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'new_account_virtual',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'new_account_virtual',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>

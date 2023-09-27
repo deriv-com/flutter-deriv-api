@@ -653,6 +653,11 @@ const String websiteStatusResponse = '''{
       "cancellation_count_period": 24,
       "cancellation_grace_period": 15,
       "cancellation_limit": 3,
+      "cross_border_ads_enabled": 1,
+      "block_trade": {
+        "disabled": false,
+        "maximum_advert_amount": 3000
+      },
       "maximum_advert_amount": 3000,
       "maximum_order_amount": 1000,
       "order_daily_limit": 200,

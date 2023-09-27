@@ -9,16 +9,11 @@ class Mt5PasswordChangeReceive extends Response {
   /// Initialize Mt5PasswordChangeReceive.
   const Mt5PasswordChangeReceive({
     this.mt5PasswordChange,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordChangeReceive.fromJson(Map<String, dynamic> json) =>
