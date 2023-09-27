@@ -9,13 +9,10 @@ class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest.
   const GetSettingsRequest({
     this.getSettings = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_settings',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'get_settings',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>

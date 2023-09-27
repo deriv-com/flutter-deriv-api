@@ -131,7 +131,7 @@ void main() {
       ).fetchSettings();
 
       expect(mt5Settings.mt5GetSettings?.address, 'sample address');
-      expect(mt5Settings.mt5GetSettings?.balance, '250.0');
+      expect(mt5Settings.mt5GetSettings?.balance, 250.0);
       expect(mt5Settings.mt5GetSettings?.city, 'London');
       expect(mt5Settings.mt5GetSettings?.company, 'sample company');
       expect(mt5Settings.mt5GetSettings?.country, 'England');

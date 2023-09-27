@@ -23,12 +23,9 @@ abstract class CashierPaymentsResponseModel {
 class CashierPaymentsResponse extends CashierPaymentsResponseModel {
   /// Initializes Cashier payments response class.
   const CashierPaymentsResponse({
-    CashierPayments? cashierPayments,
-    Subscription? subscription,
-  }) : super(
-          cashierPayments: cashierPayments,
-          subscription: subscription,
-        );
+    super.cashierPayments,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory CashierPaymentsResponse.fromJson(
@@ -80,6 +77,8 @@ final Map<String, StatusCodeEnum> statusCodeEnumMapper =
   "PERFORMING_BLOCKCHAIN_TXN": StatusCodeEnum.performingBlockchainTxn,
   "PROCESSING": StatusCodeEnum.processing,
   "REJECTED": StatusCodeEnum.rejected,
+  "REVERTED": StatusCodeEnum.reverted,
+  "REVERTING": StatusCodeEnum.reverting,
   "SENT": StatusCodeEnum.sent,
   "VERIFIED": StatusCodeEnum.verified,
 };
@@ -109,6 +108,12 @@ enum StatusCodeEnum {
 
   /// REJECTED.
   rejected,
+
+  /// REVERTED.
+  reverted,
+
+  /// REVERTING.
+  reverting,
 
   /// SENT.
   sent,
@@ -147,10 +152,8 @@ abstract class CashierPaymentsModel {
 class CashierPayments extends CashierPaymentsModel {
   /// Initializes Cashier payments class.
   const CashierPayments({
-    List<CryptoItem>? crypto,
-  }) : super(
-          crypto: crypto,
-        );
+    super.crypto,
+  });
 
   /// Creates an instance from JSON.
   factory CashierPayments.fromJson(Map<String, dynamic> json) =>
@@ -198,6 +201,7 @@ abstract class CryptoItemModel {
     required this.addressUrl,
     required this.addressHash,
     this.amount,
+    this.confirmations,
     this.isValidToCancel,
     this.submitDate,
     this.transactionHash,
@@ -210,7 +214,7 @@ abstract class CryptoItemModel {
   /// The status message of the transaction.
   final String statusMessage;
 
-  /// The status code of the transaction. Possible values for **deposit:** `PENDING|CONFIRMED|ERROR`, possible values for **withdrawal:** `LOCKED|VERIFIED|REJECTED|PERFORMING_BLOCKCHAIN_TXN|PROCESSING|SENT|ERROR|CANCELLED`.
+  /// The status code of the transaction. Possible values for **deposit:** `PENDING|CONFIRMED|ERROR`, possible values for **withdrawal:** `LOCKED|VERIFIED|REJECTED|PERFORMING_BLOCKCHAIN_TXN|PROCESSING|SENT|ERROR|CANCELLED|REVERTING|REVERTED`.
   final StatusCodeEnum statusCode;
 
   /// The unique identifier for the transaction.
@@ -224,6 +228,9 @@ abstract class CryptoItemModel {
 
   /// [Optional] The transaction amount. Not present when deposit transaction still unconfirmed.
   final double? amount;
+
+  /// [Optional] The number of confirmations for pending deposits or withdrawals
+  final int? confirmations;
 
   /// [Optional] Boolean value: `true` or `false`, indicating whether the transaction can be cancelled. Only applicable for `withdrawal` transactions.
   final bool? isValidToCancel;
@@ -242,30 +249,19 @@ abstract class CryptoItemModel {
 class CryptoItem extends CryptoItemModel {
   /// Initializes Crypto item class.
   const CryptoItem({
-    required String addressHash,
-    required String addressUrl,
-    required String id,
-    required StatusCodeEnum statusCode,
-    required String statusMessage,
-    required TransactionTypeEnum transactionType,
-    double? amount,
-    bool? isValidToCancel,
-    DateTime? submitDate,
-    String? transactionHash,
-    String? transactionUrl,
-  }) : super(
-          addressHash: addressHash,
-          addressUrl: addressUrl,
-          id: id,
-          statusCode: statusCode,
-          statusMessage: statusMessage,
-          transactionType: transactionType,
-          amount: amount,
-          isValidToCancel: isValidToCancel,
-          submitDate: submitDate,
-          transactionHash: transactionHash,
-          transactionUrl: transactionUrl,
-        );
+    required super.addressHash,
+    required super.addressUrl,
+    required super.id,
+    required super.statusCode,
+    required super.statusMessage,
+    required super.transactionType,
+    super.amount,
+    super.confirmations,
+    super.isValidToCancel,
+    super.submitDate,
+    super.transactionHash,
+    super.transactionUrl,
+  });
 
   /// Creates an instance from JSON.
   factory CryptoItem.fromJson(Map<String, dynamic> json) => CryptoItem(
@@ -276,6 +272,7 @@ class CryptoItem extends CryptoItemModel {
         statusMessage: json['status_message'],
         transactionType: transactionTypeEnumMapper[json['transaction_type']]!,
         amount: getDouble(json['amount']),
+        confirmations: json['confirmations'],
         isValidToCancel: getBool(json['is_valid_to_cancel']),
         submitDate: getDateTime(json['submit_date']),
         transactionHash: json['transaction_hash'],
@@ -299,6 +296,7 @@ class CryptoItem extends CryptoItemModel {
             entry.value == transactionType)
         .key;
     resultMap['amount'] = amount;
+    resultMap['confirmations'] = confirmations;
     resultMap['is_valid_to_cancel'] = isValidToCancel;
     resultMap['submit_date'] = getSecondsSinceEpochDateTime(submitDate);
     resultMap['transaction_hash'] = transactionHash;
@@ -316,6 +314,7 @@ class CryptoItem extends CryptoItemModel {
     String? statusMessage,
     TransactionTypeEnum? transactionType,
     double? amount,
+    int? confirmations,
     bool? isValidToCancel,
     DateTime? submitDate,
     String? transactionHash,
@@ -329,6 +328,7 @@ class CryptoItem extends CryptoItemModel {
         statusMessage: statusMessage ?? this.statusMessage,
         transactionType: transactionType ?? this.transactionType,
         amount: amount ?? this.amount,
+        confirmations: confirmations ?? this.confirmations,
         isValidToCancel: isValidToCancel ?? this.isValidToCancel,
         submitDate: submitDate ?? this.submitDate,
         transactionHash: transactionHash ?? this.transactionHash,
@@ -350,10 +350,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

@@ -7,7 +7,6 @@ import '../generated/account_closure_receive.dart';
 import '../generated/account_security_receive.dart';
 import '../generated/account_statistics_receive.dart';
 import '../generated/active_symbols_receive.dart';
-import '../generated/affiliate_account_add_receive.dart';
 import '../generated/api_token_receive.dart';
 import '../generated/app_delete_receive.dart';
 import '../generated/app_get_receive.dart';
@@ -122,6 +121,7 @@ import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
 import '../generated/trading_platform_accounts_receive.dart';
+import '../generated/trading_platform_asset_listing_receive.dart';
 import '../generated/trading_platform_available_accounts_receive.dart';
 import '../generated/trading_platform_deposit_receive.dart';
 import '../generated/trading_platform_investor_password_change_receive.dart';
@@ -138,6 +138,7 @@ import '../generated/transfer_between_accounts_receive.dart';
 import '../generated/unsubscribe_email_receive.dart';
 import '../generated/verify_email_cellxpert_receive.dart';
 import '../generated/verify_email_receive.dart';
+import '../generated/wallet_migration_receive.dart';
 import '../generated/website_status_receive.dart';
 import '../response.dart';
 
@@ -153,8 +154,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AccountStatisticsReceive.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsReceive.fromJson(responseMap);
-    case 'affiliate_account_add':
-      return AffiliateAccountAddReceive.fromJson(responseMap);
     case 'api_token':
       return ApiTokenReceive.fromJson(responseMap);
     case 'app_delete':
@@ -383,6 +382,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingDurationsReceive.fromJson(responseMap);
     case 'trading_platform_accounts':
       return TradingPlatformAccountsReceive.fromJson(responseMap);
+    case 'trading_platform_asset_listing':
+      return TradingPlatformAssetListingReceive.fromJson(responseMap);
     case 'trading_platform_available_accounts':
       return TradingPlatformAvailableAccountsReceive.fromJson(responseMap);
     case 'trading_platform_deposit':
@@ -415,6 +416,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return VerifyEmailCellxpertReceive.fromJson(responseMap);
     case 'verify_email':
       return VerifyEmailReceive.fromJson(responseMap);
+    case 'wallet_migration':
+      return WalletMigrationReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
 

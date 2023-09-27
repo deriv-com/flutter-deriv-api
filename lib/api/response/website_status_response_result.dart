@@ -36,12 +36,9 @@ abstract class WebsiteStatusResponseModel {
 class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Initializes Website status response class.
   const WebsiteStatusResponse({
-    WebsiteStatus? websiteStatus,
-    Subscription? subscription,
-  }) : super(
-          websiteStatus: websiteStatus,
-          subscription: subscription,
-        );
+    super.websiteStatus,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory WebsiteStatusResponse.fromJson(
@@ -284,13 +281,13 @@ enum SiteStatusEnum {
   /// updating.
   updating,
 }
-
 /// Website status model class.
 abstract class WebsiteStatusModel {
   /// Initializes Website status model class .
   const WebsiteStatusModel({
     required this.currenciesConfig,
     required this.apiCallLimits,
+    this.brokerCodes,
     this.clientsCountry,
     this.dxtradeStatus,
     this.message,
@@ -307,6 +304,9 @@ abstract class WebsiteStatusModel {
 
   /// Maximum number of API calls during specified period of time.
   final ApiCallLimits apiCallLimits;
+
+  /// List of all available broker codes.
+  final List<String>? brokerCodes;
 
   /// Country code of connected IP
   final String? clientsCountry;
@@ -340,30 +340,19 @@ abstract class WebsiteStatusModel {
 class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes Website status class.
   const WebsiteStatus({
-    required ApiCallLimits apiCallLimits,
-    required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    String? clientsCountry,
-    DxtradeStatus? dxtradeStatus,
-    String? message,
-    Mt5Status? mt5Status,
-    P2pConfig? p2pConfig,
-    PaymentAgents? paymentAgents,
-    SiteStatusEnum? siteStatus,
-    List<String>? supportedLanguages,
-    String? termsConditionsVersion,
-  }) : super(
-          apiCallLimits: apiCallLimits,
-          currenciesConfig: currenciesConfig,
-          clientsCountry: clientsCountry,
-          dxtradeStatus: dxtradeStatus,
-          message: message,
-          mt5Status: mt5Status,
-          p2pConfig: p2pConfig,
-          paymentAgents: paymentAgents,
-          siteStatus: siteStatus,
-          supportedLanguages: supportedLanguages,
-          termsConditionsVersion: termsConditionsVersion,
-        );
+    required super.apiCallLimits,
+    required super.currenciesConfig,
+    super.brokerCodes,
+    super.clientsCountry,
+    super.dxtradeStatus,
+    super.message,
+    super.mt5Status,
+    super.p2pConfig,
+    super.paymentAgents,
+    super.siteStatus,
+    super.supportedLanguages,
+    super.termsConditionsVersion,
+  });
 
   /// Creates an instance from JSON.
   factory WebsiteStatus.fromJson(Map<String, dynamic> json) => WebsiteStatus(
@@ -375,6 +364,13 @@ class WebsiteStatus extends WebsiteStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrenciesConfigProperty>(entry.key,
                             CurrenciesConfigProperty.fromJson(entry.value)))),
+        brokerCodes: json['broker_codes'] == null
+            ? null
+            : List<String>.from(
+                json['broker_codes']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         clientsCountry: json['clients_country'],
         dxtradeStatus: json['dxtrade_status'] == null
             ? null
@@ -409,6 +405,13 @@ class WebsiteStatus extends WebsiteStatusModel {
     resultMap['api_call_limits'] = apiCallLimits.toJson();
 
     resultMap['currencies_config'] = currenciesConfig;
+    if (brokerCodes != null) {
+      resultMap['broker_codes'] = brokerCodes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     resultMap['clients_country'] = clientsCountry;
     if (dxtradeStatus != null) {
       resultMap['dxtrade_status'] = dxtradeStatus!.toJson();
@@ -443,6 +446,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   WebsiteStatus copyWith({
     ApiCallLimits? apiCallLimits,
     Map<String, CurrenciesConfigProperty>? currenciesConfig,
+    List<String>? brokerCodes,
     String? clientsCountry,
     DxtradeStatus? dxtradeStatus,
     String? message,
@@ -456,6 +460,7 @@ class WebsiteStatus extends WebsiteStatusModel {
       WebsiteStatus(
         apiCallLimits: apiCallLimits ?? this.apiCallLimits,
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
+        brokerCodes: brokerCodes ?? this.brokerCodes,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         dxtradeStatus: dxtradeStatus ?? this.dxtradeStatus,
         message: message ?? this.message,
@@ -468,7 +473,6 @@ class WebsiteStatus extends WebsiteStatusModel {
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
 }
-
 /// Api call limits model class.
 abstract class ApiCallLimitsModel {
   /// Initializes Api call limits model class .
@@ -496,16 +500,11 @@ abstract class ApiCallLimitsModel {
 class ApiCallLimits extends ApiCallLimitsModel {
   /// Initializes Api call limits class.
   const ApiCallLimits({
-    required MaxProposalSubscription maxProposalSubscription,
-    required MaxRequestesGeneral maxRequestesGeneral,
-    required MaxRequestsOutcome maxRequestsOutcome,
-    required MaxRequestsPricing maxRequestsPricing,
-  }) : super(
-          maxProposalSubscription: maxProposalSubscription,
-          maxRequestesGeneral: maxRequestesGeneral,
-          maxRequestsOutcome: maxRequestsOutcome,
-          maxRequestsPricing: maxRequestsPricing,
-        );
+    required super.maxProposalSubscription,
+    required super.maxRequestesGeneral,
+    required super.maxRequestsOutcome,
+    required super.maxRequestsPricing,
+  });
 
   /// Creates an instance from JSON.
   factory ApiCallLimits.fromJson(Map<String, dynamic> json) => ApiCallLimits(
@@ -549,7 +548,6 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
 }
-
 /// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription model class .
@@ -569,12 +567,9 @@ abstract class MaxProposalSubscriptionModel {
 class MaxProposalSubscription extends MaxProposalSubscriptionModel {
   /// Initializes Max proposal subscription class.
   const MaxProposalSubscription({
-    required String appliesTo,
-    required double max,
-  }) : super(
-          appliesTo: appliesTo,
-          max: max,
-        );
+    required super.appliesTo,
+    required super.max,
+  });
 
   /// Creates an instance from JSON.
   factory MaxProposalSubscription.fromJson(Map<String, dynamic> json) =>
@@ -603,7 +598,6 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         max: max ?? this.max,
       );
 }
-
 /// Max requestes general model class.
 abstract class MaxRequestesGeneralModel {
   /// Initializes Max requestes general model class .
@@ -627,14 +621,10 @@ abstract class MaxRequestesGeneralModel {
 class MaxRequestesGeneral extends MaxRequestesGeneralModel {
   /// Initializes Max requestes general class.
   const MaxRequestesGeneral({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
-  }) : super(
-          appliesTo: appliesTo,
-          hourly: hourly,
-          minutely: minutely,
-        );
+    required super.appliesTo,
+    required super.hourly,
+    required super.minutely,
+  });
 
   /// Creates an instance from JSON.
   factory MaxRequestesGeneral.fromJson(Map<String, dynamic> json) =>
@@ -667,7 +657,6 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         minutely: minutely ?? this.minutely,
       );
 }
-
 /// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome model class .
@@ -691,14 +680,10 @@ abstract class MaxRequestsOutcomeModel {
 class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
   /// Initializes Max requests outcome class.
   const MaxRequestsOutcome({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
-  }) : super(
-          appliesTo: appliesTo,
-          hourly: hourly,
-          minutely: minutely,
-        );
+    required super.appliesTo,
+    required super.hourly,
+    required super.minutely,
+  });
 
   /// Creates an instance from JSON.
   factory MaxRequestsOutcome.fromJson(Map<String, dynamic> json) =>
@@ -731,7 +716,6 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         minutely: minutely ?? this.minutely,
       );
 }
-
 /// Max requests pricing model class.
 abstract class MaxRequestsPricingModel {
   /// Initializes Max requests pricing model class .
@@ -755,14 +739,10 @@ abstract class MaxRequestsPricingModel {
 class MaxRequestsPricing extends MaxRequestsPricingModel {
   /// Initializes Max requests pricing class.
   const MaxRequestsPricing({
-    required String appliesTo,
-    required double hourly,
-    required double minutely,
-  }) : super(
-          appliesTo: appliesTo,
-          hourly: hourly,
-          minutely: minutely,
-        );
+    required super.appliesTo,
+    required super.hourly,
+    required super.minutely,
+  });
 
   /// Creates an instance from JSON.
   factory MaxRequestsPricing.fromJson(Map<String, dynamic> json) =>
@@ -795,7 +775,6 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         minutely: minutely ?? this.minutely,
       );
 }
-
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
@@ -839,24 +818,15 @@ abstract class CurrenciesConfigPropertyModel {
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property class.
   const CurrenciesConfigProperty({
-    required double fractionalDigits,
-    required double isDepositSuspended,
-    required double isSuspended,
-    required double isWithdrawalSuspended,
-    required double stakeDefault,
-    required TransferBetweenAccounts transferBetweenAccounts,
-    required TypeEnum type,
-    String? name,
-  }) : super(
-          fractionalDigits: fractionalDigits,
-          isDepositSuspended: isDepositSuspended,
-          isSuspended: isSuspended,
-          isWithdrawalSuspended: isWithdrawalSuspended,
-          stakeDefault: stakeDefault,
-          transferBetweenAccounts: transferBetweenAccounts,
-          type: type,
-          name: name,
-        );
+    required super.fractionalDigits,
+    required super.isDepositSuspended,
+    required super.isSuspended,
+    required super.isWithdrawalSuspended,
+    required super.stakeDefault,
+    required super.transferBetweenAccounts,
+    required super.type,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory CurrenciesConfigProperty.fromJson(Map<String, dynamic> json) =>
@@ -915,13 +885,13 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         name: name ?? this.name,
       );
 }
-
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts model class .
   const TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
+    this.limitsCtrader,
     this.limitsDerivez,
     this.limitsDxtrade,
     this.limitsMt5,
@@ -932,6 +902,9 @@ abstract class TransferBetweenAccountsModel {
 
   /// The fee that applies for transfer between accounts with different types of currencies.
   final Map<String, double> fees;
+
+  /// Range of allowed amount for transfer between ctrader accounts.
+  final Map<String, dynamic>? limitsCtrader;
 
   /// Range of allowed amount for transfer between derivez accounts.
   final Map<String, dynamic>? limitsDerivez;
@@ -947,18 +920,13 @@ abstract class TransferBetweenAccountsModel {
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts class.
   const TransferBetweenAccounts({
-    required Map<String, double> fees,
-    required Limits limits,
-    Map<String, dynamic>? limitsDerivez,
-    Map<String, dynamic>? limitsDxtrade,
-    Map<String, dynamic>? limitsMt5,
-  }) : super(
-          fees: fees,
-          limits: limits,
-          limitsDerivez: limitsDerivez,
-          limitsDxtrade: limitsDxtrade,
-          limitsMt5: limitsMt5,
-        );
+    required super.fees,
+    required super.limits,
+    super.limitsCtrader,
+    super.limitsDerivez,
+    super.limitsDxtrade,
+    super.limitsMt5,
+  });
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
@@ -968,6 +936,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
             .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
                 MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
         limits: Limits.fromJson(json['limits']),
+        limitsCtrader: json['limits_ctrader'],
         limitsDerivez: json['limits_derivez'],
         limitsDxtrade: json['limits_dxtrade'],
         limitsMt5: json['limits_mt5'],
@@ -980,6 +949,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     resultMap['fees'] = fees;
     resultMap['limits'] = limits.toJson();
 
+    resultMap['limits_ctrader'] = limitsCtrader;
     resultMap['limits_derivez'] = limitsDerivez;
     resultMap['limits_dxtrade'] = limitsDxtrade;
     resultMap['limits_mt5'] = limitsMt5;
@@ -991,6 +961,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   TransferBetweenAccounts copyWith({
     Map<String, double>? fees,
     Limits? limits,
+    Map<String, dynamic>? limitsCtrader,
     Map<String, dynamic>? limitsDerivez,
     Map<String, dynamic>? limitsDxtrade,
     Map<String, dynamic>? limitsMt5,
@@ -998,12 +969,12 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
       TransferBetweenAccounts(
         fees: fees ?? this.fees,
         limits: limits ?? this.limits,
+        limitsCtrader: limitsCtrader ?? this.limitsCtrader,
         limitsDerivez: limitsDerivez ?? this.limitsDerivez,
         limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
 }
-
 /// Limits model class.
 abstract class LimitsModel {
   /// Initializes Limits model class .
@@ -1023,12 +994,9 @@ abstract class LimitsModel {
 class Limits extends LimitsModel {
   /// Initializes Limits class.
   const Limits({
-    required double min,
-    double? max,
-  }) : super(
-          min: min,
-          max: max,
-        );
+    required super.min,
+    super.max,
+  });
 
   /// Creates an instance from JSON.
   factory Limits.fromJson(Map<String, dynamic> json) => Limits(
@@ -1056,7 +1024,6 @@ class Limits extends LimitsModel {
         max: max ?? this.max,
       );
 }
-
 /// Dxtrade status model class.
 abstract class DxtradeStatusModel {
   /// Initializes Dxtrade status model class .
@@ -1080,14 +1047,10 @@ abstract class DxtradeStatusModel {
 class DxtradeStatus extends DxtradeStatusModel {
   /// Initializes Dxtrade status class.
   const DxtradeStatus({
-    int? all,
-    int? demo,
-    int? real,
-  }) : super(
-          all: all,
-          demo: demo,
-          real: real,
-        );
+    super.all,
+    super.demo,
+    super.real,
+  });
 
   /// Creates an instance from JSON.
   factory DxtradeStatus.fromJson(Map<String, dynamic> json) => DxtradeStatus(
@@ -1119,7 +1082,6 @@ class DxtradeStatus extends DxtradeStatusModel {
         real: real ?? this.real,
       );
 }
-
 /// Mt5 status model class.
 abstract class Mt5StatusModel {
   /// Initializes Mt5 status model class .
@@ -1139,12 +1101,9 @@ abstract class Mt5StatusModel {
 class Mt5Status extends Mt5StatusModel {
   /// Initializes Mt5 status class.
   const Mt5Status({
-    List<dynamic>? demo,
-    List<dynamic>? real,
-  }) : super(
-          demo: demo,
-          real: real,
-        );
+    super.demo,
+    super.real,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5Status.fromJson(Map<String, dynamic> json) => Mt5Status(
@@ -1196,7 +1155,6 @@ class Mt5Status extends Mt5StatusModel {
         real: real ?? this.real,
       );
 }
-
 /// P2p config model class.
 abstract class P2pConfigModel {
   /// Initializes P2p config model class .
@@ -1214,10 +1172,12 @@ abstract class P2pConfigModel {
     required this.fixedRateAdverts,
     required this.featureLevel,
     required this.disabled,
+    required this.crossBorderAdsEnabled,
     required this.cancellationLimit,
     required this.cancellationGracePeriod,
     required this.cancellationCountPeriod,
     required this.cancellationBlockDuration,
+    required this.blockTrade,
     required this.advertsActiveLimit,
     this.advertsArchivePeriod,
     this.fixedRateAdvertsEndDate,
@@ -1263,6 +1223,9 @@ abstract class P2pConfigModel {
   /// When `true`, the P2P service is unavailable.
   final bool disabled;
 
+  /// When `false`, only exchanges in local currency are allowed for P2P advertiser.
+  final bool crossBorderAdsEnabled;
+
   /// A buyer will be temporarily barred after marking this number of cancellations within cancellation_period.
   final int cancellationLimit;
 
@@ -1274,6 +1237,9 @@ abstract class P2pConfigModel {
 
   /// A buyer will be blocked for this duration after exceeding the cancellation limit, in hours.
   final int cancellationBlockDuration;
+
+  /// Block trading settings
+  final BlockTrade blockTrade;
 
   /// Maximum number of active ads allowed by an advertiser per currency pair and advert type (buy or sell).
   final int advertsActiveLimit;
@@ -1292,58 +1258,40 @@ abstract class P2pConfigModel {
 class P2pConfig extends P2pConfigModel {
   /// Initializes P2p config class.
   const P2pConfig({
-    required int advertsActiveLimit,
-    required int cancellationBlockDuration,
-    required int cancellationCountPeriod,
-    required int cancellationGracePeriod,
-    required int cancellationLimit,
-    required bool disabled,
-    required int featureLevel,
-    required FixedRateAdvertsEnum fixedRateAdverts,
-    required FloatRateAdvertsEnum floatRateAdverts,
-    required double floatRateOffsetLimit,
-    required List<LocalCurrenciesItem> localCurrencies,
-    required double maximumAdvertAmount,
-    required double maximumOrderAmount,
-    required int orderDailyLimit,
-    required int orderPaymentPeriod,
-    required bool paymentMethodsEnabled,
-    required double reviewPeriod,
-    required List<String> supportedCurrencies,
-    int? advertsArchivePeriod,
-    String? fixedRateAdvertsEndDate,
-    String? overrideExchangeRate,
-  }) : super(
-          advertsActiveLimit: advertsActiveLimit,
-          cancellationBlockDuration: cancellationBlockDuration,
-          cancellationCountPeriod: cancellationCountPeriod,
-          cancellationGracePeriod: cancellationGracePeriod,
-          cancellationLimit: cancellationLimit,
-          disabled: disabled,
-          featureLevel: featureLevel,
-          fixedRateAdverts: fixedRateAdverts,
-          floatRateAdverts: floatRateAdverts,
-          floatRateOffsetLimit: floatRateOffsetLimit,
-          localCurrencies: localCurrencies,
-          maximumAdvertAmount: maximumAdvertAmount,
-          maximumOrderAmount: maximumOrderAmount,
-          orderDailyLimit: orderDailyLimit,
-          orderPaymentPeriod: orderPaymentPeriod,
-          paymentMethodsEnabled: paymentMethodsEnabled,
-          reviewPeriod: reviewPeriod,
-          supportedCurrencies: supportedCurrencies,
-          advertsArchivePeriod: advertsArchivePeriod,
-          fixedRateAdvertsEndDate: fixedRateAdvertsEndDate,
-          overrideExchangeRate: overrideExchangeRate,
-        );
+    required super.advertsActiveLimit,
+    required super.blockTrade,
+    required super.cancellationBlockDuration,
+    required super.cancellationCountPeriod,
+    required super.cancellationGracePeriod,
+    required super.cancellationLimit,
+    required super.crossBorderAdsEnabled,
+    required super.disabled,
+    required super.featureLevel,
+    required super.fixedRateAdverts,
+    required super.floatRateAdverts,
+    required super.floatRateOffsetLimit,
+    required super.localCurrencies,
+    required super.maximumAdvertAmount,
+    required super.maximumOrderAmount,
+    required super.orderDailyLimit,
+    required super.orderPaymentPeriod,
+    required super.paymentMethodsEnabled,
+    required super.reviewPeriod,
+    required super.supportedCurrencies,
+    super.advertsArchivePeriod,
+    super.fixedRateAdvertsEndDate,
+    super.overrideExchangeRate,
+  });
 
   /// Creates an instance from JSON.
   factory P2pConfig.fromJson(Map<String, dynamic> json) => P2pConfig(
         advertsActiveLimit: json['adverts_active_limit'],
+        blockTrade: BlockTrade.fromJson(json['block_trade']),
         cancellationBlockDuration: json['cancellation_block_duration'],
         cancellationCountPeriod: json['cancellation_count_period'],
         cancellationGracePeriod: json['cancellation_grace_period'],
         cancellationLimit: json['cancellation_limit'],
+        crossBorderAdsEnabled: getBool(json['cross_border_ads_enabled'])!,
         disabled: getBool(json['disabled'])!,
         featureLevel: json['feature_level'],
         fixedRateAdverts:
@@ -1377,10 +1325,13 @@ class P2pConfig extends P2pConfigModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['adverts_active_limit'] = advertsActiveLimit;
+    resultMap['block_trade'] = blockTrade.toJson();
+
     resultMap['cancellation_block_duration'] = cancellationBlockDuration;
     resultMap['cancellation_count_period'] = cancellationCountPeriod;
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
     resultMap['cancellation_limit'] = cancellationLimit;
+    resultMap['cross_border_ads_enabled'] = crossBorderAdsEnabled;
     resultMap['disabled'] = disabled;
     resultMap['feature_level'] = featureLevel;
     resultMap['fixed_rate_adverts'] = fixedRateAdvertsEnumMapper.entries
@@ -1420,10 +1371,12 @@ class P2pConfig extends P2pConfigModel {
   /// Creates a copy of instance with given parameters.
   P2pConfig copyWith({
     int? advertsActiveLimit,
+    BlockTrade? blockTrade,
     int? cancellationBlockDuration,
     int? cancellationCountPeriod,
     int? cancellationGracePeriod,
     int? cancellationLimit,
+    bool? crossBorderAdsEnabled,
     bool? disabled,
     int? featureLevel,
     FixedRateAdvertsEnum? fixedRateAdverts,
@@ -1443,6 +1396,7 @@ class P2pConfig extends P2pConfigModel {
   }) =>
       P2pConfig(
         advertsActiveLimit: advertsActiveLimit ?? this.advertsActiveLimit,
+        blockTrade: blockTrade ?? this.blockTrade,
         cancellationBlockDuration:
             cancellationBlockDuration ?? this.cancellationBlockDuration,
         cancellationCountPeriod:
@@ -1450,6 +1404,8 @@ class P2pConfig extends P2pConfigModel {
         cancellationGracePeriod:
             cancellationGracePeriod ?? this.cancellationGracePeriod,
         cancellationLimit: cancellationLimit ?? this.cancellationLimit,
+        crossBorderAdsEnabled:
+            crossBorderAdsEnabled ?? this.crossBorderAdsEnabled,
         disabled: disabled ?? this.disabled,
         featureLevel: featureLevel ?? this.featureLevel,
         fixedRateAdverts: fixedRateAdverts ?? this.fixedRateAdverts,
@@ -1470,7 +1426,55 @@ class P2pConfig extends P2pConfigModel {
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 }
+/// Block trade model class.
+abstract class BlockTradeModel {
+  /// Initializes Block trade model class .
+  const BlockTradeModel({
+    this.disabled,
+    this.maximumAdvertAmount,
+  });
 
+  /// When `true`, Block trading is unavailable.
+  final bool? disabled;
+
+  /// Maximum amount of a block trade advert, in USD.
+  final double? maximumAdvertAmount;
+}
+
+/// Block trade class.
+class BlockTrade extends BlockTradeModel {
+  /// Initializes Block trade class.
+  const BlockTrade({
+    super.disabled,
+    super.maximumAdvertAmount,
+  });
+
+  /// Creates an instance from JSON.
+  factory BlockTrade.fromJson(Map<String, dynamic> json) => BlockTrade(
+        disabled: getBool(json['disabled']),
+        maximumAdvertAmount: getDouble(json['maximum_advert_amount']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['disabled'] = disabled;
+    resultMap['maximum_advert_amount'] = maximumAdvertAmount;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  BlockTrade copyWith({
+    bool? disabled,
+    double? maximumAdvertAmount,
+  }) =>
+      BlockTrade(
+        disabled: disabled ?? this.disabled,
+        maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
+      );
+}
 /// Local currencies item model class.
 abstract class LocalCurrenciesItemModel {
   /// Initializes Local currencies item model class .
@@ -1498,16 +1502,11 @@ abstract class LocalCurrenciesItemModel {
 class LocalCurrenciesItem extends LocalCurrenciesItemModel {
   /// Initializes Local currencies item class.
   const LocalCurrenciesItem({
-    required String displayName,
-    required bool hasAdverts,
-    required String symbol,
-    int? isDefault,
-  }) : super(
-          displayName: displayName,
-          hasAdverts: hasAdverts,
-          symbol: symbol,
-          isDefault: isDefault,
-        );
+    required super.displayName,
+    required super.hasAdverts,
+    required super.symbol,
+    super.isDefault,
+  });
 
   /// Creates an instance from JSON.
   factory LocalCurrenciesItem.fromJson(Map<String, dynamic> json) =>
@@ -1544,7 +1543,6 @@ class LocalCurrenciesItem extends LocalCurrenciesItemModel {
         isDefault: isDefault ?? this.isDefault,
       );
 }
-
 /// Payment agents model class.
 abstract class PaymentAgentsModel {
   /// Initializes Payment agents model class .
@@ -1560,10 +1558,8 @@ abstract class PaymentAgentsModel {
 class PaymentAgents extends PaymentAgentsModel {
   /// Initializes Payment agents class.
   const PaymentAgents({
-    required Map<String, double> initialDepositPerCountry,
-  }) : super(
-          initialDepositPerCountry: initialDepositPerCountry,
-        );
+    required super.initialDepositPerCountry,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentAgents.fromJson(Map<String, dynamic> json) => PaymentAgents(
@@ -1592,7 +1588,6 @@ class PaymentAgents extends PaymentAgentsModel {
             initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -1608,10 +1603,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
