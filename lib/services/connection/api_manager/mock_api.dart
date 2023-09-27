@@ -12,6 +12,8 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/new_account_wallet_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_payments_response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 
@@ -21,6 +23,7 @@ import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/copy_trading_list_response.dart';
 import 'mock_data/account/copy_trading_statistics_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_account_types_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_self_exclusion_response.dart';
 import 'mock_data/account/get_settings_response.dart';
@@ -106,6 +109,7 @@ import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
 import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
+import 'mock_data/wallet_migration_response.dart';
 
 /// This class is for handling mock API connection and calling mock APIs
 class MockAPI extends BaseAPI {
@@ -203,6 +207,8 @@ class MockAPI extends BaseAPI {
         return cancelResponse;
       case 'cashier':
         return cashierInformationResponse;
+      case 'cashier_payments':
+        return cashierPaymentsResponse;
       case 'contract_update':
         return contractUpdateResponse;
       case 'contract_update_history':
@@ -226,6 +232,8 @@ class MockAPI extends BaseAPI {
         return forgetAllResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
+      case 'get_account_types':
+        return getAccountTypesResponse;
       case 'get_financial_assessment':
         return getFinancialAssessmentResponse;
       case 'get_limits':
@@ -263,6 +271,8 @@ class MockAPI extends BaseAPI {
         return newAccountRealResponse;
       case 'new_account_virtual':
         return newAccountVirtualResponse;
+      case 'new_account_wallet':
+        return newAccountWalletResponse;
       case 'oauth_apps':
         return oauthAppsResponse;
       case 'p2p_advert_create':
@@ -361,6 +371,8 @@ class MockAPI extends BaseAPI {
         return verifyEmailResponse;
       case 'website_status':
         return websiteStatusResponse;
+      case 'wallet_migration':
+        return walletMigrationResponse;
 
       default:
         throw APIManagerException(
