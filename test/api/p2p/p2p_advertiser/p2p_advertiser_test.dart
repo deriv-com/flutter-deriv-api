@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advertiser_adverts_response_result.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advertiser_create_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advertiser_info_response_extended.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advertiser_info_response_result.dart';
 import 'package:flutter_deriv_api/api/response/p2p_advertiser_update_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_adverts_send.dart';
@@ -20,7 +21,7 @@ void main() {
   group('P2P Advertiser Group ->', () {
     test('Fetch Advertiser Information Test', () async {
       final P2pAdvertiserInfoResponse advertiserResponse =
-          await P2pAdvertiserInfoResponse.fetchAdvertiserInformation(
+          await P2pAdvertiserInfoResponseExtended.fetchAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
       );
 
@@ -43,7 +44,7 @@ void main() {
     });
 
     test('Subscribe to Advertiser Test', () {
-      P2pAdvertiserInfoResponse.subscribeAdvertiserInformation(
+      P2pAdvertiserInfoResponseExtended.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
       ).listen(
         expectAsync1((P2pAdvertiserInfoResponse? advertiser) {
