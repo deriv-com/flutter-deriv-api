@@ -9,11 +9,13 @@ class P2pAdvertCreateRequest extends Request {
   /// Initialize P2pAdvertCreateRequest.
   const P2pAdvertCreateRequest({
     required this.amount,
+    this.blockTrade,
     this.contactInfo,
     this.description,
     this.localCurrency,
     required this.maxOrderAmount,
     required this.minOrderAmount,
+    this.orderExpiryPeriod,
     this.p2pAdvertCreate = true,
     this.paymentInfo,
     this.paymentMethod,
@@ -22,23 +24,23 @@ class P2pAdvertCreateRequest extends Request {
     required this.rate,
     required this.rateType,
     required this.type,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advert_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advert_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreateRequest(
         amount: json['amount'] as num?,
+        blockTrade:
+            json['block_trade'] == null ? null : json['block_trade'] == 1,
         contactInfo: json['contact_info'] as String?,
         description: json['description'] as String?,
         localCurrency: json['local_currency'] as String?,
         maxOrderAmount: json['max_order_amount'] as num?,
         minOrderAmount: json['min_order_amount'] as num?,
+        orderExpiryPeriod: json['order_expiry_period'] as int?,
         p2pAdvertCreate: json['p2p_advert_create'] == null
             ? null
             : json['p2p_advert_create'] == 1,
@@ -60,6 +62,9 @@ class P2pAdvertCreateRequest extends Request {
   /// The total amount of the advert, in advertiser's account currency.
   final num? amount;
 
+  /// [Optional] Indicates if this is block trade ad or not. Default: `false`.
+  final bool? blockTrade;
+
   /// [Optional] Advertiser contact information.
   final String? contactInfo;
 
@@ -74,6 +79,9 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than or equal to `max_order_amount`.
   final num? minOrderAmount;
+
+  /// [Optional] Expiry period (seconds) for order created against this ad.
+  final int? orderExpiryPeriod;
 
   /// Must be `true`
   final bool? p2pAdvertCreate;
@@ -103,11 +111,17 @@ class P2pAdvertCreateRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
+        'block_trade': blockTrade == null
+            ? null
+            : blockTrade!
+                ? 1
+                : 0,
         'contact_info': contactInfo,
         'description': description,
         'local_currency': localCurrency,
         'max_order_amount': maxOrderAmount,
         'min_order_amount': minOrderAmount,
+        'order_expiry_period': orderExpiryPeriod,
         'p2p_advert_create': p2pAdvertCreate == null
             ? null
             : p2pAdvertCreate!
@@ -128,11 +142,13 @@ class P2pAdvertCreateRequest extends Request {
   @override
   P2pAdvertCreateRequest copyWith({
     num? amount,
+    bool? blockTrade,
     String? contactInfo,
     String? description,
     String? localCurrency,
     num? maxOrderAmount,
     num? minOrderAmount,
+    int? orderExpiryPeriod,
     bool? p2pAdvertCreate,
     String? paymentInfo,
     String? paymentMethod,
@@ -146,11 +162,13 @@ class P2pAdvertCreateRequest extends Request {
   }) =>
       P2pAdvertCreateRequest(
         amount: amount ?? this.amount,
+        blockTrade: blockTrade ?? this.blockTrade,
         contactInfo: contactInfo ?? this.contactInfo,
         description: description ?? this.description,
         localCurrency: localCurrency ?? this.localCurrency,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         p2pAdvertCreate: p2pAdvertCreate ?? this.p2pAdvertCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
