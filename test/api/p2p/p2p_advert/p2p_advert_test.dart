@@ -61,7 +61,7 @@ void main() {
     test('Fetch Advert List Test', () async {
       final advert_list.P2pAdvertListResponse advertsRes =
           await advert_list.P2pAdvertListResponse.fetchAdvertList(
-        const P2pAdvertListRequest(counterpartyType: 'sell', blockTrade: true),
+        const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
 
       final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList!.list;
