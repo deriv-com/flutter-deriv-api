@@ -18,7 +18,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_dependency_injector
-      ref: flutter-version-3
+      ref: dev
 
   build: ^2.3.1
   dart_style: ^2.3.0
