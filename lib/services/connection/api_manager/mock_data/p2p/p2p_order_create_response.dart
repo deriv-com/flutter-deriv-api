@@ -9,8 +9,10 @@ const String p2pOrderCreateResponse = '''{
   "p2p_order_create": {
     "account_currency": "USD",
     "advert_details": {
+      "block_trade": 1,
       "description": "Please contact via whatsapp 1234",
       "id": "6",
+      "order_expiry_period": 3600,
       "payment_method": "bank_transfer",
       "type": "sell"
     },
