@@ -9,20 +9,19 @@ class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest.
   const ProposalOpenContractRequest({
     this.contractId,
+    this.loginid,
     this.proposalOpenContract = true,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'proposal_open_contract',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'proposal_open_contract',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractRequest(
         contractId: json['contract_id'] as int?,
+        loginid: json['loginid'] as String?,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
             : json['proposal_open_contract'] == 1,
@@ -34,6 +33,9 @@ class ProposalOpenContractRequest extends Request {
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
   final int? contractId;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? proposalOpenContract;
 
@@ -44,6 +46,7 @@ class ProposalOpenContractRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
+        'loginid': loginid,
         'proposal_open_contract': proposalOpenContract == null
             ? null
             : proposalOpenContract!
@@ -62,6 +65,7 @@ class ProposalOpenContractRequest extends Request {
   @override
   ProposalOpenContractRequest copyWith({
     int? contractId,
+    String? loginid,
     bool? proposalOpenContract,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
@@ -69,6 +73,7 @@ class ProposalOpenContractRequest extends Request {
   }) =>
       ProposalOpenContractRequest(
         contractId: contractId ?? this.contractId,
+        loginid: loginid ?? this.loginid,
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,

@@ -20,7 +20,6 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-
 /// Proposal open contract response model class.
 abstract class ProposalOpenContractResponseModel {
   /// Initializes Proposal open contract response model class .
@@ -40,12 +39,9 @@ abstract class ProposalOpenContractResponseModel {
 class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// Initializes Proposal open contract response class.
   const ProposalOpenContractResponse({
-    ProposalOpenContract? proposalOpenContract,
-    Subscription? subscription,
-  }) : super(
-          proposalOpenContract: proposalOpenContract,
-          subscription: subscription,
-        );
+    super.proposalOpenContract,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory ProposalOpenContractResponse.fromJson(
@@ -216,7 +212,6 @@ enum StatusEnum {
   /// null.
   _null,
 }
-
 /// Proposal open contract model class.
 abstract class ProposalOpenContractModel {
   /// Initializes Proposal open contract model class .
@@ -225,6 +220,7 @@ abstract class ProposalOpenContractModel {
     this.auditDetails,
     this.barrier,
     this.barrierCount,
+    this.barrierSpotDistance,
     this.bidPrice,
     this.buyPrice,
     this.cancellation,
@@ -235,11 +231,14 @@ abstract class ProposalOpenContractModel {
     this.currency,
     this.currentSpot,
     this.currentSpotDisplayValue,
+    this.currentSpotHighBarrier,
+    this.currentSpotLowBarrier,
     this.currentSpotTime,
     this.dateExpiry,
     this.dateSettlement,
     this.dateStart,
     this.displayName,
+    this.displayNumberOfContracts,
     this.displayValue,
     this.entrySpot,
     this.entrySpotDisplayValue,
@@ -265,10 +264,12 @@ abstract class ProposalOpenContractModel {
     this.longcode,
     this.lowBarrier,
     this.multiplier,
+    this.numberOfContracts,
     this.payout,
     this.profit,
     this.profitPercentage,
     this.purchaseTime,
+    this.resetBarrier,
     this.resetTime,
     this.sellPrice,
     this.sellSpot,
@@ -283,6 +284,7 @@ abstract class ProposalOpenContractModel {
     this.transactionIds,
     this.underlying,
     this.validationError,
+    this.validationErrorCode,
   });
 
   /// Account Id
@@ -296,6 +298,9 @@ abstract class ProposalOpenContractModel {
 
   /// The number of barriers a contract has.
   final double? barrierCount;
+
+  /// [Only for accumulator] Absolute difference between high/low barrier and spot
+  final String? barrierSpotDistance;
 
   /// Price at which the contract could be sold back to the company.
   final double? bidPrice;
@@ -327,6 +332,12 @@ abstract class ProposalOpenContractModel {
   /// Spot value with the correct precision if we have license to stream this symbol.
   final String? currentSpotDisplayValue;
 
+  /// [Applicable for accumulator] High barrier based on current spot.
+  final String? currentSpotHighBarrier;
+
+  /// [Applicable for accumulator] Low barrier based on current spot.
+  final String? currentSpotLowBarrier;
+
   /// The corresponding time of the current spot.
   final DateTime? currentSpotTime;
 
@@ -341,6 +352,9 @@ abstract class ProposalOpenContractModel {
 
   /// Display name of underlying
   final String? displayName;
+
+  /// [Only for vanilla or turbos options] The implied number of contracts
+  final String? displayNumberOfContracts;
 
   /// The `bid_price` with the correct precision
   final String? displayValue;
@@ -417,6 +431,9 @@ abstract class ProposalOpenContractModel {
   /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
   final double? multiplier;
 
+  /// [Only for vanilla or turbos options] The implied number of contracts
+  final double? numberOfContracts;
+
   /// Payout value of the contract.
   final double? payout;
 
@@ -429,7 +446,10 @@ abstract class ProposalOpenContractModel {
   /// Epoch of purchase time, will be same as `date_start` for all contracts except forward starting contracts.
   final DateTime? purchaseTime;
 
-  /// [Only for reset trades] The epoch time of a barrier reset.
+  /// [Only for reset trades i.e. RESETCALL and RESETPUT] Reset barrier of the contract.
+  final String? resetBarrier;
+
+  /// [Only for reset trades i.e. RESETCALL and RESETPUT] The epoch time of a barrier reset.
   final DateTime? resetTime;
 
   /// Price at which contract was sold, only available when contract has been sold.
@@ -470,138 +490,85 @@ abstract class ProposalOpenContractModel {
 
   /// Error message if validation fails
   final String? validationError;
+
+  /// Error code if validation fails
+  final String? validationErrorCode;
 }
 
 /// Proposal open contract class.
 class ProposalOpenContract extends ProposalOpenContractModel {
   /// Initializes Proposal open contract class.
   const ProposalOpenContract({
-    double? accountId,
-    AuditDetails? auditDetails,
-    String? barrier,
-    double? barrierCount,
-    double? bidPrice,
-    double? buyPrice,
-    Cancellation? cancellation,
-    double? commision,
-    double? commission,
-    int? contractId,
-    String? contractType,
-    String? currency,
-    double? currentSpot,
-    String? currentSpotDisplayValue,
-    DateTime? currentSpotTime,
-    DateTime? dateExpiry,
-    DateTime? dateSettlement,
-    DateTime? dateStart,
-    String? displayName,
-    String? displayValue,
-    double? entrySpot,
-    String? entrySpotDisplayValue,
-    double? entryTick,
-    String? entryTickDisplayValue,
-    DateTime? entryTickTime,
-    double? exitTick,
-    String? exitTickDisplayValue,
-    DateTime? exitTickTime,
-    DateTime? expiryTime,
-    double? growthRate,
-    String? highBarrier,
-    String? id,
-    bool? isExpired,
-    bool? isForwardStarting,
-    bool? isIntraday,
-    bool? isPathDependent,
-    bool? isSettleable,
-    bool? isSold,
-    bool? isValidToCancel,
-    bool? isValidToSell,
-    LimitOrder? limitOrder,
-    String? longcode,
-    String? lowBarrier,
-    double? multiplier,
-    double? payout,
-    double? profit,
-    double? profitPercentage,
-    DateTime? purchaseTime,
-    DateTime? resetTime,
-    double? sellPrice,
-    double? sellSpot,
-    String? sellSpotDisplayValue,
-    DateTime? sellSpotTime,
-    DateTime? sellTime,
-    String? shortcode,
-    StatusEnum? status,
-    int? tickCount,
-    int? tickPassed,
-    List<TickStreamItem>? tickStream,
-    TransactionIds? transactionIds,
-    String? underlying,
-    String? validationError,
-  }) : super(
-          accountId: accountId,
-          auditDetails: auditDetails,
-          barrier: barrier,
-          barrierCount: barrierCount,
-          bidPrice: bidPrice,
-          buyPrice: buyPrice,
-          cancellation: cancellation,
-          commision: commision,
-          commission: commission,
-          contractId: contractId,
-          contractType: contractType,
-          currency: currency,
-          currentSpot: currentSpot,
-          currentSpotDisplayValue: currentSpotDisplayValue,
-          currentSpotTime: currentSpotTime,
-          dateExpiry: dateExpiry,
-          dateSettlement: dateSettlement,
-          dateStart: dateStart,
-          displayName: displayName,
-          displayValue: displayValue,
-          entrySpot: entrySpot,
-          entrySpotDisplayValue: entrySpotDisplayValue,
-          entryTick: entryTick,
-          entryTickDisplayValue: entryTickDisplayValue,
-          entryTickTime: entryTickTime,
-          exitTick: exitTick,
-          exitTickDisplayValue: exitTickDisplayValue,
-          exitTickTime: exitTickTime,
-          expiryTime: expiryTime,
-          growthRate: growthRate,
-          highBarrier: highBarrier,
-          id: id,
-          isExpired: isExpired,
-          isForwardStarting: isForwardStarting,
-          isIntraday: isIntraday,
-          isPathDependent: isPathDependent,
-          isSettleable: isSettleable,
-          isSold: isSold,
-          isValidToCancel: isValidToCancel,
-          isValidToSell: isValidToSell,
-          limitOrder: limitOrder,
-          longcode: longcode,
-          lowBarrier: lowBarrier,
-          multiplier: multiplier,
-          payout: payout,
-          profit: profit,
-          profitPercentage: profitPercentage,
-          purchaseTime: purchaseTime,
-          resetTime: resetTime,
-          sellPrice: sellPrice,
-          sellSpot: sellSpot,
-          sellSpotDisplayValue: sellSpotDisplayValue,
-          sellSpotTime: sellSpotTime,
-          sellTime: sellTime,
-          shortcode: shortcode,
-          status: status,
-          tickCount: tickCount,
-          tickPassed: tickPassed,
-          tickStream: tickStream,
-          transactionIds: transactionIds,
-          underlying: underlying,
-          validationError: validationError,
-        );
+    super.accountId,
+    super.auditDetails,
+    super.barrier,
+    super.barrierCount,
+    super.barrierSpotDistance,
+    super.bidPrice,
+    super.buyPrice,
+    super.cancellation,
+    super.commision,
+    super.commission,
+    super.contractId,
+    super.contractType,
+    super.currency,
+    super.currentSpot,
+    super.currentSpotDisplayValue,
+    super.currentSpotHighBarrier,
+    super.currentSpotLowBarrier,
+    super.currentSpotTime,
+    super.dateExpiry,
+    super.dateSettlement,
+    super.dateStart,
+    super.displayName,
+    super.displayNumberOfContracts,
+    super.displayValue,
+    super.entrySpot,
+    super.entrySpotDisplayValue,
+    super.entryTick,
+    super.entryTickDisplayValue,
+    super.entryTickTime,
+    super.exitTick,
+    super.exitTickDisplayValue,
+    super.exitTickTime,
+    super.expiryTime,
+    super.growthRate,
+    super.highBarrier,
+    super.id,
+    super.isExpired,
+    super.isForwardStarting,
+    super.isIntraday,
+    super.isPathDependent,
+    super.isSettleable,
+    super.isSold,
+    super.isValidToCancel,
+    super.isValidToSell,
+    super.limitOrder,
+    super.longcode,
+    super.lowBarrier,
+    super.multiplier,
+    super.numberOfContracts,
+    super.payout,
+    super.profit,
+    super.profitPercentage,
+    super.purchaseTime,
+    super.resetBarrier,
+    super.resetTime,
+    super.sellPrice,
+    super.sellSpot,
+    super.sellSpotDisplayValue,
+    super.sellSpotTime,
+    super.sellTime,
+    super.shortcode,
+    super.status,
+    super.tickCount,
+    super.tickPassed,
+    super.tickStream,
+    super.transactionIds,
+    super.underlying,
+    super.validationError,
+    super.validationErrorCode,
+  });
 
   /// Creates an instance from JSON.
   factory ProposalOpenContract.fromJson(Map<String, dynamic> json) =>
@@ -612,6 +579,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
             : AuditDetails.fromJson(json['audit_details']),
         barrier: json['barrier'],
         barrierCount: getDouble(json['barrier_count']),
+        barrierSpotDistance: json['barrier_spot_distance'],
         bidPrice: getDouble(json['bid_price']),
         buyPrice: getDouble(json['buy_price']),
         cancellation: json['cancellation'] == null
@@ -624,11 +592,14 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         currency: json['currency'],
         currentSpot: getDouble(json['current_spot']),
         currentSpotDisplayValue: json['current_spot_display_value'],
+        currentSpotHighBarrier: json['current_spot_high_barrier'],
+        currentSpotLowBarrier: json['current_spot_low_barrier'],
         currentSpotTime: getDateTime(json['current_spot_time']),
         dateExpiry: getDateTime(json['date_expiry']),
         dateSettlement: getDateTime(json['date_settlement']),
         dateStart: getDateTime(json['date_start']),
         displayName: json['display_name'],
+        displayNumberOfContracts: json['display_number_of_contracts'],
         displayValue: json['display_value'],
         entrySpot: getDouble(json['entry_spot']),
         entrySpotDisplayValue: json['entry_spot_display_value'],
@@ -656,10 +627,12 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         longcode: json['longcode'],
         lowBarrier: json['low_barrier'],
         multiplier: getDouble(json['multiplier']),
+        numberOfContracts: getDouble(json['number_of_contracts']),
         payout: getDouble(json['payout']),
         profit: getDouble(json['profit']),
         profitPercentage: getDouble(json['profit_percentage']),
         purchaseTime: getDateTime(json['purchase_time']),
+        resetBarrier: json['reset_barrier'],
         resetTime: getDateTime(json['reset_time']),
         sellPrice: getDouble(json['sell_price']),
         sellSpot: getDouble(json['sell_spot']),
@@ -683,6 +656,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
             : TransactionIds.fromJson(json['transaction_ids']),
         underlying: json['underlying'],
         validationError: json['validation_error'],
+        validationErrorCode: json['validation_error_code'],
       );
 
   /// Converts an instance to JSON.
@@ -695,6 +669,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     }
     resultMap['barrier'] = barrier;
     resultMap['barrier_count'] = barrierCount;
+    resultMap['barrier_spot_distance'] = barrierSpotDistance;
     resultMap['bid_price'] = bidPrice;
     resultMap['buy_price'] = buyPrice;
     if (cancellation != null) {
@@ -707,12 +682,15 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     resultMap['currency'] = currency;
     resultMap['current_spot'] = currentSpot;
     resultMap['current_spot_display_value'] = currentSpotDisplayValue;
+    resultMap['current_spot_high_barrier'] = currentSpotHighBarrier;
+    resultMap['current_spot_low_barrier'] = currentSpotLowBarrier;
     resultMap['current_spot_time'] =
         getSecondsSinceEpochDateTime(currentSpotTime);
     resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
     resultMap['date_settlement'] = getSecondsSinceEpochDateTime(dateSettlement);
     resultMap['date_start'] = getSecondsSinceEpochDateTime(dateStart);
     resultMap['display_name'] = displayName;
+    resultMap['display_number_of_contracts'] = displayNumberOfContracts;
     resultMap['display_value'] = displayValue;
     resultMap['entry_spot'] = entrySpot;
     resultMap['entry_spot_display_value'] = entrySpotDisplayValue;
@@ -740,10 +718,12 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     resultMap['longcode'] = longcode;
     resultMap['low_barrier'] = lowBarrier;
     resultMap['multiplier'] = multiplier;
+    resultMap['number_of_contracts'] = numberOfContracts;
     resultMap['payout'] = payout;
     resultMap['profit'] = profit;
     resultMap['profit_percentage'] = profitPercentage;
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
+    resultMap['reset_barrier'] = resetBarrier;
     resultMap['reset_time'] = getSecondsSinceEpochDateTime(resetTime);
     resultMap['sell_price'] = sellPrice;
     resultMap['sell_spot'] = sellSpot;
@@ -769,6 +749,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     }
     resultMap['underlying'] = underlying;
     resultMap['validation_error'] = validationError;
+    resultMap['validation_error_code'] = validationErrorCode;
 
     return resultMap;
   }
@@ -779,6 +760,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     AuditDetails? auditDetails,
     String? barrier,
     double? barrierCount,
+    String? barrierSpotDistance,
     double? bidPrice,
     double? buyPrice,
     Cancellation? cancellation,
@@ -789,11 +771,14 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? currency,
     double? currentSpot,
     String? currentSpotDisplayValue,
+    String? currentSpotHighBarrier,
+    String? currentSpotLowBarrier,
     DateTime? currentSpotTime,
     DateTime? dateExpiry,
     DateTime? dateSettlement,
     DateTime? dateStart,
     String? displayName,
+    String? displayNumberOfContracts,
     String? displayValue,
     double? entrySpot,
     String? entrySpotDisplayValue,
@@ -819,10 +804,12 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? longcode,
     String? lowBarrier,
     double? multiplier,
+    double? numberOfContracts,
     double? payout,
     double? profit,
     double? profitPercentage,
     DateTime? purchaseTime,
+    String? resetBarrier,
     DateTime? resetTime,
     double? sellPrice,
     double? sellSpot,
@@ -837,12 +824,14 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     TransactionIds? transactionIds,
     String? underlying,
     String? validationError,
+    String? validationErrorCode,
   }) =>
       ProposalOpenContract(
         accountId: accountId ?? this.accountId,
         auditDetails: auditDetails ?? this.auditDetails,
         barrier: barrier ?? this.barrier,
         barrierCount: barrierCount ?? this.barrierCount,
+        barrierSpotDistance: barrierSpotDistance ?? this.barrierSpotDistance,
         bidPrice: bidPrice ?? this.bidPrice,
         buyPrice: buyPrice ?? this.buyPrice,
         cancellation: cancellation ?? this.cancellation,
@@ -854,11 +843,17 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         currentSpot: currentSpot ?? this.currentSpot,
         currentSpotDisplayValue:
             currentSpotDisplayValue ?? this.currentSpotDisplayValue,
+        currentSpotHighBarrier:
+            currentSpotHighBarrier ?? this.currentSpotHighBarrier,
+        currentSpotLowBarrier:
+            currentSpotLowBarrier ?? this.currentSpotLowBarrier,
         currentSpotTime: currentSpotTime ?? this.currentSpotTime,
         dateExpiry: dateExpiry ?? this.dateExpiry,
         dateSettlement: dateSettlement ?? this.dateSettlement,
         dateStart: dateStart ?? this.dateStart,
         displayName: displayName ?? this.displayName,
+        displayNumberOfContracts:
+            displayNumberOfContracts ?? this.displayNumberOfContracts,
         displayValue: displayValue ?? this.displayValue,
         entrySpot: entrySpot ?? this.entrySpot,
         entrySpotDisplayValue:
@@ -886,10 +881,12 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         longcode: longcode ?? this.longcode,
         lowBarrier: lowBarrier ?? this.lowBarrier,
         multiplier: multiplier ?? this.multiplier,
+        numberOfContracts: numberOfContracts ?? this.numberOfContracts,
         payout: payout ?? this.payout,
         profit: profit ?? this.profit,
         profitPercentage: profitPercentage ?? this.profitPercentage,
         purchaseTime: purchaseTime ?? this.purchaseTime,
+        resetBarrier: resetBarrier ?? this.resetBarrier,
         resetTime: resetTime ?? this.resetTime,
         sellPrice: sellPrice ?? this.sellPrice,
         sellSpot: sellSpot ?? this.sellSpot,
@@ -904,9 +901,9 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         transactionIds: transactionIds ?? this.transactionIds,
         underlying: underlying ?? this.underlying,
         validationError: validationError ?? this.validationError,
+        validationErrorCode: validationErrorCode ?? this.validationErrorCode,
       );
 }
-
 /// Audit details model class.
 abstract class AuditDetailsModel {
   /// Initializes Audit details model class .
@@ -930,14 +927,10 @@ abstract class AuditDetailsModel {
 class AuditDetails extends AuditDetailsModel {
   /// Initializes Audit details class.
   const AuditDetails({
-    List<AllTicksItem>? allTicks,
-    List<ContractEndItem>? contractEnd,
-    List<ContractStartItem>? contractStart,
-  }) : super(
-          allTicks: allTicks,
-          contractEnd: contractEnd,
-          contractStart: contractStart,
-        );
+    super.allTicks,
+    super.contractEnd,
+    super.contractStart,
+  });
 
   /// Creates an instance from JSON.
   factory AuditDetails.fromJson(Map<String, dynamic> json) => AuditDetails(
@@ -1005,7 +998,6 @@ class AuditDetails extends AuditDetailsModel {
         contractStart: contractStart ?? this.contractStart,
       );
 }
-
 /// All ticks item model class.
 abstract class AllTicksItemModel {
   /// Initializes All ticks item model class .
@@ -1037,18 +1029,12 @@ abstract class AllTicksItemModel {
 class AllTicksItem extends AllTicksItemModel {
   /// Initializes All ticks item class.
   const AllTicksItem({
-    DateTime? epoch,
-    String? flag,
-    String? name,
-    double? tick,
-    String? tickDisplayValue,
-  }) : super(
-          epoch: epoch,
-          flag: flag,
-          name: name,
-          tick: tick,
-          tickDisplayValue: tickDisplayValue,
-        );
+    super.epoch,
+    super.flag,
+    super.name,
+    super.tick,
+    super.tickDisplayValue,
+  });
 
   /// Creates an instance from JSON.
   factory AllTicksItem.fromJson(Map<String, dynamic> json) => AllTicksItem(
@@ -1088,7 +1074,6 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Contract end item model class.
 abstract class ContractEndItemModel {
   /// Initializes Contract end item model class .
@@ -1120,18 +1105,12 @@ abstract class ContractEndItemModel {
 class ContractEndItem extends ContractEndItemModel {
   /// Initializes Contract end item class.
   const ContractEndItem({
-    DateTime? epoch,
-    String? flag,
-    String? name,
-    double? tick,
-    String? tickDisplayValue,
-  }) : super(
-          epoch: epoch,
-          flag: flag,
-          name: name,
-          tick: tick,
-          tickDisplayValue: tickDisplayValue,
-        );
+    super.epoch,
+    super.flag,
+    super.name,
+    super.tick,
+    super.tickDisplayValue,
+  });
 
   /// Creates an instance from JSON.
   factory ContractEndItem.fromJson(Map<String, dynamic> json) =>
@@ -1172,7 +1151,6 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Contract start item model class.
 abstract class ContractStartItemModel {
   /// Initializes Contract start item model class .
@@ -1204,18 +1182,12 @@ abstract class ContractStartItemModel {
 class ContractStartItem extends ContractStartItemModel {
   /// Initializes Contract start item class.
   const ContractStartItem({
-    DateTime? epoch,
-    String? flag,
-    String? name,
-    double? tick,
-    String? tickDisplayValue,
-  }) : super(
-          epoch: epoch,
-          flag: flag,
-          name: name,
-          tick: tick,
-          tickDisplayValue: tickDisplayValue,
-        );
+    super.epoch,
+    super.flag,
+    super.name,
+    super.tick,
+    super.tickDisplayValue,
+  });
 
   /// Creates an instance from JSON.
   factory ContractStartItem.fromJson(Map<String, dynamic> json) =>
@@ -1256,7 +1228,6 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
@@ -1276,12 +1247,9 @@ abstract class CancellationModel extends Equatable {
 class Cancellation extends CancellationModel {
   /// Initializes Cancellation class.
   const Cancellation({
-    double? askPrice,
-    DateTime? dateExpiry,
-  }) : super(
-          askPrice: askPrice,
-          dateExpiry: dateExpiry,
-        );
+    super.askPrice,
+    super.dateExpiry,
+  });
 
   /// Creates an instance from JSON.
   factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
@@ -1316,7 +1284,6 @@ class Cancellation extends CancellationModel {
         dateExpiry,
       ];
 }
-
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
@@ -1340,14 +1307,10 @@ abstract class LimitOrderModel extends Equatable {
 class LimitOrder extends LimitOrderModel {
   /// Initializes Limit order class.
   const LimitOrder({
-    StopLoss? stopLoss,
-    StopOut? stopOut,
-    TakeProfit? takeProfit,
-  }) : super(
-          stopLoss: stopLoss,
-          stopOut: stopOut,
-          takeProfit: takeProfit,
-        );
+    super.stopLoss,
+    super.stopOut,
+    super.takeProfit,
+  });
 
   /// Creates an instance from JSON.
   factory LimitOrder.fromJson(Map<String, dynamic> json) => LimitOrder(
@@ -1399,7 +1362,6 @@ class LimitOrder extends LimitOrderModel {
         takeProfit,
       ];
 }
-
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -1427,16 +1389,11 @@ abstract class StopLossModel extends Equatable {
 class StopLoss extends StopLossModel {
   /// Initializes Stop loss class.
   const StopLoss({
-    String? displayName,
-    double? orderAmount,
-    DateTime? orderDate,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
@@ -1479,7 +1436,6 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
-
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
@@ -1507,16 +1463,11 @@ abstract class StopOutModel extends Equatable {
 class StopOut extends StopOutModel {
   /// Initializes Stop out class.
   const StopOut({
-    String? displayName,
-    double? orderAmount,
-    DateTime? orderDate,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory StopOut.fromJson(Map<String, dynamic> json) => StopOut(
@@ -1559,7 +1510,6 @@ class StopOut extends StopOutModel {
         orderAmount,
       ];
 }
-
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -1587,16 +1537,11 @@ abstract class TakeProfitModel extends Equatable {
 class TakeProfit extends TakeProfitModel {
   /// Initializes Take profit class.
   const TakeProfit({
-    String? displayName,
-    double? orderAmount,
-    DateTime? orderDate,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
@@ -1639,7 +1584,6 @@ class TakeProfit extends TakeProfitModel {
         orderAmount,
       ];
 }
-
 /// Tick stream item model class.
 abstract class TickStreamItemModel {
   /// Initializes Tick stream item model class .
@@ -1663,14 +1607,10 @@ abstract class TickStreamItemModel {
 class TickStreamItem extends TickStreamItemModel {
   /// Initializes Tick stream item class.
   const TickStreamItem({
-    DateTime? epoch,
-    double? tick,
-    String? tickDisplayValue,
-  }) : super(
-          epoch: epoch,
-          tick: tick,
-          tickDisplayValue: tickDisplayValue,
-        );
+    super.epoch,
+    super.tick,
+    super.tickDisplayValue,
+  });
 
   /// Creates an instance from JSON.
   factory TickStreamItem.fromJson(Map<String, dynamic> json) => TickStreamItem(
@@ -1702,7 +1642,6 @@ class TickStreamItem extends TickStreamItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Transaction ids model class.
 abstract class TransactionIdsModel {
   /// Initializes Transaction ids model class .
@@ -1722,12 +1661,9 @@ abstract class TransactionIdsModel {
 class TransactionIds extends TransactionIdsModel {
   /// Initializes Transaction ids class.
   const TransactionIds({
-    int? buy,
-    int? sell,
-  }) : super(
-          buy: buy,
-          sell: sell,
-        );
+    super.buy,
+    super.sell,
+  });
 
   /// Creates an instance from JSON.
   factory TransactionIds.fromJson(Map<String, dynamic> json) => TransactionIds(
@@ -1755,7 +1691,6 @@ class TransactionIds extends TransactionIdsModel {
         sell: sell ?? this.sell,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -1771,10 +1706,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
