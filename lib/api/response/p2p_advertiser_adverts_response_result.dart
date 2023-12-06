@@ -25,10 +25,8 @@ abstract class P2pAdvertiserAdvertsResponseModel {
 class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
   /// Initializes P2p advertiser adverts response class.
   const P2pAdvertiserAdvertsResponse({
-    P2pAdvertiserAdverts? p2pAdvertiserAdverts,
-  }) : super(
-          p2pAdvertiserAdverts: p2pAdvertiserAdverts,
-        );
+    super.p2pAdvertiserAdverts,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserAdvertsResponse.fromJson(
@@ -148,6 +146,8 @@ final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_block_trade_ineligible":
+      VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
@@ -175,13 +175,15 @@ enum VisibilityStatusItemEnum {
   /// advertiser_balance.
   advertiserBalance,
 
+  /// advertiser_block_trade_ineligible.
+  advertiserBlockTradeIneligible,
+
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
-
 /// P2p advertiser adverts model class.
 abstract class P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts model class .
@@ -197,10 +199,8 @@ abstract class P2pAdvertiserAdvertsModel {
 class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts class.
   const P2pAdvertiserAdverts({
-    required List<ListItem> list,
-  }) : super(
-          list: list,
-        );
+    required super.list,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserAdverts.fromJson(Map<String, dynamic> json) =>
@@ -233,7 +233,6 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
         list: list ?? this.list,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -245,6 +244,7 @@ abstract class ListItemModel {
     required this.rateDisplay,
     required this.rate,
     required this.paymentInfo,
+    required this.orderExpiryPeriod,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
@@ -262,6 +262,7 @@ abstract class ListItemModel {
     required this.country,
     required this.counterpartyType,
     required this.contactInfo,
+    required this.blockTrade,
     required this.amountDisplay,
     required this.amount,
     required this.advertiserDetails,
@@ -297,6 +298,9 @@ abstract class ListItemModel {
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
+
+  /// Expiry period (seconds) for order created against this ad.
+  final int orderExpiryPeriod;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -349,6 +353,9 @@ abstract class ListItemModel {
   /// Advertiser contact information. Only applicable for 'sell adverts'.
   final String contactInfo;
 
+  /// Indicates if this is block trade advert or not.
+  final bool blockTrade;
+
   /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String amountDisplay;
 
@@ -393,6 +400,7 @@ abstract class ListItemModel {
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
   final List<VisibilityStatusItemEnum>? visibilityStatus;
@@ -402,82 +410,46 @@ abstract class ListItemModel {
 class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
-    required String accountCurrency,
-    required int activeOrders,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String contactInfo,
-    required CounterpartyTypeEnum counterpartyType,
-    required String country,
-    required DateTime createdTime,
-    required String description,
-    required String id,
-    required bool isActive,
-    required bool isVisible,
-    required String localCurrency,
-    required double maxOrderAmount,
-    required String maxOrderAmountDisplay,
-    required double maxOrderAmountLimit,
-    required String maxOrderAmountLimitDisplay,
-    required double minOrderAmount,
-    required String minOrderAmountDisplay,
-    required double minOrderAmountLimit,
-    required String minOrderAmountLimitDisplay,
-    required String paymentInfo,
-    required double rate,
-    required String rateDisplay,
-    required RateTypeEnum rateType,
-    required double remainingAmount,
-    required String remainingAmountDisplay,
-    required TypeEnum type,
-    int? daysUntilArchive,
-    double? effectiveRate,
-    String? effectiveRateDisplay,
-    String? paymentMethod,
-    List<String>? paymentMethodNames,
-    double? price,
-    String? priceDisplay,
-    List<VisibilityStatusItemEnum>? visibilityStatus,
-  }) : super(
-          accountCurrency: accountCurrency,
-          activeOrders: activeOrders,
-          advertiserDetails: advertiserDetails,
-          amount: amount,
-          amountDisplay: amountDisplay,
-          contactInfo: contactInfo,
-          counterpartyType: counterpartyType,
-          country: country,
-          createdTime: createdTime,
-          description: description,
-          id: id,
-          isActive: isActive,
-          isVisible: isVisible,
-          localCurrency: localCurrency,
-          maxOrderAmount: maxOrderAmount,
-          maxOrderAmountDisplay: maxOrderAmountDisplay,
-          maxOrderAmountLimit: maxOrderAmountLimit,
-          maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
-          minOrderAmount: minOrderAmount,
-          minOrderAmountDisplay: minOrderAmountDisplay,
-          minOrderAmountLimit: minOrderAmountLimit,
-          minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          paymentInfo: paymentInfo,
-          rate: rate,
-          rateDisplay: rateDisplay,
-          rateType: rateType,
-          remainingAmount: remainingAmount,
-          remainingAmountDisplay: remainingAmountDisplay,
-          type: type,
-          daysUntilArchive: daysUntilArchive,
-          effectiveRate: effectiveRate,
-          effectiveRateDisplay: effectiveRateDisplay,
-          paymentMethod: paymentMethod,
-          paymentMethodNames: paymentMethodNames,
-          price: price,
-          priceDisplay: priceDisplay,
-          visibilityStatus: visibilityStatus,
-        );
+    required super.accountCurrency,
+    required super.activeOrders,
+    required super.advertiserDetails,
+    required super.amount,
+    required super.amountDisplay,
+    required super.blockTrade,
+    required super.contactInfo,
+    required super.counterpartyType,
+    required super.country,
+    required super.createdTime,
+    required super.description,
+    required super.id,
+    required super.isActive,
+    required super.isVisible,
+    required super.localCurrency,
+    required super.maxOrderAmount,
+    required super.maxOrderAmountDisplay,
+    required super.maxOrderAmountLimit,
+    required super.maxOrderAmountLimitDisplay,
+    required super.minOrderAmount,
+    required super.minOrderAmountDisplay,
+    required super.minOrderAmountLimit,
+    required super.minOrderAmountLimitDisplay,
+    required super.orderExpiryPeriod,
+    required super.paymentInfo,
+    required super.rate,
+    required super.rateDisplay,
+    required super.rateType,
+    required super.remainingAmount,
+    required super.remainingAmountDisplay,
+    required super.type,
+    super.daysUntilArchive,
+    super.effectiveRate,
+    super.effectiveRateDisplay,
+    super.paymentMethod,
+    super.paymentMethodNames,
+    super.price,
+    super.priceDisplay,
+    super.visibilityStatus,
+  });
 
   /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
@@ -487,6 +459,7 @@ class ListItem extends ListItemModel {
             AdvertiserDetails.fromJson(json['advertiser_details']),
         amount: getDouble(json['amount'])!,
         amountDisplay: json['amount_display'],
+        blockTrade: getBool(json['block_trade'])!,
         contactInfo: json['contact_info'],
         counterpartyType:
             counterpartyTypeEnumMapper[json['counterparty_type']]!,
@@ -505,6 +478,7 @@ class ListItem extends ListItemModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
+        orderExpiryPeriod: json['order_expiry_period'],
         paymentInfo: json['payment_info'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
@@ -546,6 +520,7 @@ class ListItem extends ListItemModel {
 
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
+    resultMap['block_trade'] = blockTrade;
     resultMap['contact_info'] = contactInfo;
     resultMap['counterparty_type'] = counterpartyTypeEnumMapper.entries
         .firstWhere((MapEntry<String, CounterpartyTypeEnum> entry) =>
@@ -566,6 +541,7 @@ class ListItem extends ListItemModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
+    resultMap['order_expiry_period'] = orderExpiryPeriod;
     resultMap['payment_info'] = paymentInfo;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
@@ -614,6 +590,7 @@ class ListItem extends ListItemModel {
     AdvertiserDetails? advertiserDetails,
     double? amount,
     String? amountDisplay,
+    bool? blockTrade,
     String? contactInfo,
     CounterpartyTypeEnum? counterpartyType,
     String? country,
@@ -631,6 +608,7 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     double? minOrderAmountLimit,
     String? minOrderAmountLimitDisplay,
+    int? orderExpiryPeriod,
     String? paymentInfo,
     double? rate,
     String? rateDisplay,
@@ -653,6 +631,7 @@ class ListItem extends ListItemModel {
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
+        blockTrade: blockTrade ?? this.blockTrade,
         contactInfo: contactInfo ?? this.contactInfo,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         country: country ?? this.country,
@@ -674,6 +653,7 @@ class ListItem extends ListItemModel {
         minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
         minOrderAmountLimitDisplay:
             minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
+        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         rate: rate ?? this.rate,
         rateDisplay: rateDisplay ?? this.rateDisplay,
@@ -692,7 +672,6 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -752,32 +731,19 @@ abstract class AdvertiserDetailsModel {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
-    required int completedOrdersCount,
-    required String id,
-    required bool isOnline,
-    required String name,
-    required int ratingCount,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-    double? ratingAverage,
-    double? recommendedAverage,
-    int? recommendedCount,
-    double? totalCompletionRate,
-  }) : super(
-          completedOrdersCount: completedOrdersCount,
-          id: id,
-          isOnline: isOnline,
-          name: name,
-          ratingCount: ratingCount,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-          ratingAverage: ratingAverage,
-          recommendedAverage: recommendedAverage,
-          recommendedCount: recommendedCount,
-          totalCompletionRate: totalCompletionRate,
-        );
+    required super.completedOrdersCount,
+    required super.id,
+    required super.isOnline,
+    required super.name,
+    required super.ratingCount,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+    super.ratingAverage,
+    super.recommendedAverage,
+    super.recommendedCount,
+    super.totalCompletionRate,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>

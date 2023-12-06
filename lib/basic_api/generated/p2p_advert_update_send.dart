@@ -16,6 +16,7 @@ class P2pAdvertUpdateRequest extends Request {
     this.localCurrency,
     this.maxOrderAmount,
     this.minOrderAmount,
+    this.orderExpiryPeriod,
     this.p2pAdvertUpdate = true,
     this.paymentInfo,
     this.paymentMethodIds,
@@ -23,13 +24,10 @@ class P2pAdvertUpdateRequest extends Request {
     this.rate,
     this.rateType,
     this.remainingAmount,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advert_update',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advert_update',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +40,7 @@ class P2pAdvertUpdateRequest extends Request {
         localCurrency: json['local_currency'] as String?,
         maxOrderAmount: json['max_order_amount'] as num?,
         minOrderAmount: json['min_order_amount'] as num?,
+        orderExpiryPeriod: json['order_expiry_period'] as int?,
         p2pAdvertUpdate: json['p2p_advert_update'] == null
             ? null
             : json['p2p_advert_update'] == 1,
@@ -83,6 +82,9 @@ class P2pAdvertUpdateRequest extends Request {
   /// [Optional] Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than or equal to `max_order_amount`.
   final num? minOrderAmount;
 
+  /// [Optional] Expiry period (seconds) for order created against this ad.
+  final int? orderExpiryPeriod;
+
   /// Must be `true`
   final bool? p2pAdvertUpdate;
 
@@ -123,6 +125,7 @@ class P2pAdvertUpdateRequest extends Request {
         'local_currency': localCurrency,
         'max_order_amount': maxOrderAmount,
         'min_order_amount': minOrderAmount,
+        'order_expiry_period': orderExpiryPeriod,
         'p2p_advert_update': p2pAdvertUpdate == null
             ? null
             : p2pAdvertUpdate!
@@ -149,6 +152,7 @@ class P2pAdvertUpdateRequest extends Request {
     String? localCurrency,
     num? maxOrderAmount,
     num? minOrderAmount,
+    int? orderExpiryPeriod,
     bool? p2pAdvertUpdate,
     String? paymentInfo,
     List<int>? paymentMethodIds,
@@ -168,6 +172,7 @@ class P2pAdvertUpdateRequest extends Request {
         localCurrency: localCurrency ?? this.localCurrency,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
