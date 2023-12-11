@@ -21,10 +21,11 @@ class _SampleAppState extends State<SampleApp> {
 
     _connectionCubit = api_connection.ConnectionCubit(
       ConnectionInformation(
-          appId: '1089',
-          brand: 'binary',
-          endpoint: 'frontend.binaryws.com',
-          authEndpoint: ''),
+        appId: '1089',
+        brand: 'binary',
+        endpoint: 'frontend.binaryws.com',
+        authEndpoint: '',
+      ),
     );
   }
 
