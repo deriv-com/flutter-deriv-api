@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 class AvailableAccountsResponseExtended extends AvailableAccountsResponse {
   static final BaseAPI _api = Injector()<BaseAPI>();
 
-  /// Fetches the cashier payments.
+  /// Fetches the available wallets that can be created
   static Future<AvailableAccountsResponse> fetchAvailableWalletsToCreate({
     required AvailableAccountsRequest request,
   }) async {
