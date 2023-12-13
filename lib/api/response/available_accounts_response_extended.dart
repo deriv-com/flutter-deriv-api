@@ -12,7 +12,7 @@ class AvailableAccountsResponseExtended extends AvailableAccountsResponse {
   static final BaseAPI _api = Injector()<BaseAPI>();
 
   /// Fetches the cashier payments.
-  static Future<AvailableAccountsResponse> fetchCashierPayments({
+  static Future<AvailableAccountsResponse> fetchAvailableWalletsToCreate({
     required AvailableAccountsRequest request,
   }) async {
     final AvailableAccountsReceive response = await _api.call(request: request);
