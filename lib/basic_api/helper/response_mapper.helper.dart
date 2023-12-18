@@ -17,6 +17,7 @@ import '../generated/app_register_receive.dart';
 import '../generated/app_update_receive.dart';
 import '../generated/asset_index_receive.dart';
 import '../generated/authorize_receive.dart';
+import '../generated/available_accounts_receive.dart';
 import '../generated/balance_receive.dart';
 import '../generated/buy_contract_for_multiple_accounts_receive.dart';
 import '../generated/buy_receive.dart';
@@ -41,7 +42,6 @@ import '../generated/forget_all_receive.dart';
 import '../generated/forget_receive.dart';
 import '../generated/get_account_status_receive.dart';
 import '../generated/get_account_types_receive.dart';
-import '../generated/get_available_accounts_to_transfer_receive.dart';
 import '../generated/get_financial_assessment_receive.dart';
 import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
@@ -174,6 +174,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AssetIndexReceive.fromJson(responseMap);
     case 'authorize':
       return AuthorizeReceive.fromJson(responseMap);
+    case 'available_accounts':
+      return AvailableAccountsReceive.fromJson(responseMap);
     case 'balance':
       return BalanceReceive.fromJson(responseMap);
     case 'buy_contract_for_multiple_accounts':
@@ -222,8 +224,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return GetAccountStatusReceive.fromJson(responseMap);
     case 'get_account_types':
       return GetAccountTypesReceive.fromJson(responseMap);
-    case 'get_available_accounts_to_transfer':
-      return GetAvailableAccountsToTransferReceive.fromJson(responseMap);
     case 'get_financial_assessment':
       return GetFinancialAssessmentReceive.fromJson(responseMap);
     case 'get_limits':
