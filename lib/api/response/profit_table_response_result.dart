@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:deriv_dependency_injector/dependency_injector.dart';
 
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
@@ -158,6 +157,7 @@ abstract class TransactionsItemModel {
     this.sellTime,
     this.shortcode,
     this.transactionId,
+    this.underlyingSymbol,
   });
 
   /// ID of the application where this contract was purchased.
@@ -192,6 +192,9 @@ abstract class TransactionsItemModel {
 
   /// The transaction Identifier. Every contract (buy or sell) and every payment has a unique transaction identifier.
   final int? transactionId;
+
+  /// The underlying symbol for the contract.
+  final String? underlyingSymbol;
 }
 
 /// Transactions item class.
@@ -209,6 +212,7 @@ class TransactionsItem extends TransactionsItemModel {
     DateTime? sellTime,
     String? shortcode,
     int? transactionId,
+    String? underlyingSymbol,
   }) : super(
           appId: appId,
           buyPrice: buyPrice,
@@ -221,6 +225,7 @@ class TransactionsItem extends TransactionsItemModel {
           sellTime: sellTime,
           shortcode: shortcode,
           transactionId: transactionId,
+          underlyingSymbol: underlyingSymbol,
         );
 
   /// Creates an instance from JSON.
@@ -237,6 +242,7 @@ class TransactionsItem extends TransactionsItemModel {
         sellTime: getDateTime(json['sell_time']),
         shortcode: json['shortcode'],
         transactionId: json['transaction_id'],
+        underlyingSymbol: json['underlying_symbol'],
       );
 
   /// Converts an instance to JSON.
