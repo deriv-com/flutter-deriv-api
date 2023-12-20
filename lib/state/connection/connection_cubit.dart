@@ -73,12 +73,15 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
-  /// Streamsubscription for connectivity.
+  /// Stream subscription for connectivity.
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
 
   /// Reconnect to Websocket.
-  Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
-    emit(const ConnectionDisconnectedState());
+  Future<void> reconnect({
+    ConnectionInformation? connectionInformation,
+    bool isChangingLanguage = false,
+  }) async {
+    emit(ConnectionDisconnectedState(isChangingLanguage: isChangingLanguage));
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
