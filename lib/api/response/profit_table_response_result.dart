@@ -158,6 +158,10 @@ abstract class TransactionsItemModel {
     this.shortcode,
     this.transactionId,
     this.underlyingSymbol,
+    this.contractType,
+    this.dealCancellationDuration,
+    this.multiplier,
+    this.growthRate,
   });
 
   /// ID of the application where this contract was purchased.
@@ -195,6 +199,18 @@ abstract class TransactionsItemModel {
 
   /// The underlying symbol for the contract.
   final String? underlyingSymbol;
+
+  /// The contract type.
+  final String? contractType;
+
+  /// The duration to cancel the contract.
+  final String? dealCancellationDuration;
+
+  /// The multiplier.
+  final String? multiplier;
+
+  /// The growth rate.
+  final String? growthRate;
 }
 
 /// Transactions item class.
@@ -213,6 +229,10 @@ class TransactionsItem extends TransactionsItemModel {
     String? shortcode,
     int? transactionId,
     String? underlyingSymbol,
+    String? contractType,
+    String? dealCancellationDuration,
+    String? multiplier,
+    String? growthRate,
   }) : super(
           appId: appId,
           buyPrice: buyPrice,
@@ -226,6 +246,10 @@ class TransactionsItem extends TransactionsItemModel {
           shortcode: shortcode,
           transactionId: transactionId,
           underlyingSymbol: underlyingSymbol,
+          contractType: contractType,
+          dealCancellationDuration: dealCancellationDuration,
+          multiplier: multiplier,
+          growthRate: growthRate,
         );
 
   /// Creates an instance from JSON.
@@ -243,6 +267,10 @@ class TransactionsItem extends TransactionsItemModel {
         shortcode: json['shortcode'],
         transactionId: json['transaction_id'],
         underlyingSymbol: json['underlying_symbol'],
+        contractType: json['contract_type'],
+        dealCancellationDuration: json['deal_cancellation_duration'],
+        multiplier: json['multiplier'],
+        growthRate: json['growth_rate'],
       );
 
   /// Converts an instance to JSON.
