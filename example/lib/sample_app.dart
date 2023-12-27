@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
-import 'package:flutter_deriv_api/state/connection/connection_cubit.dart'
-    as api_connection;
+import 'package:flutter_deriv_api/state/connection/connection_cubit.dart';
 import 'package:flutter_deriv_api_example/pages/main_page.dart';
 
 /// Sample App main widget
@@ -13,13 +12,13 @@ class SampleApp extends StatefulWidget {
 }
 
 class _SampleAppState extends State<SampleApp> {
-  late api_connection.ConnectionCubit _connectionCubit;
+  late ConnectionCubit _connectionCubit;
 
   @override
   void initState() {
     super.initState();
 
-    _connectionCubit = api_connection.ConnectionCubit(
+    _connectionCubit = ConnectionCubit(
       ConnectionInformation(
         appId: '1089',
         brand: 'binary',
@@ -39,7 +38,7 @@ class _SampleAppState extends State<SampleApp> {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: <BlocProvider<dynamic>>[
-          BlocProvider<api_connection.ConnectionCubit>.value(
+          BlocProvider<ConnectionCubit>.value(
             value: _connectionCubit,
           ),
         ],
@@ -47,20 +46,19 @@ class _SampleAppState extends State<SampleApp> {
           appBar: AppBar(
             title: const Text('API Sample App'),
           ),
-          body: BlocBuilder<api_connection.ConnectionCubit,
-              api_connection.ConnectionState>(
+          body: BlocBuilder<ConnectionCubit, DerivConnectionState>(
             builder: (
               BuildContext context,
-              api_connection.ConnectionState state,
+              DerivConnectionState state,
             ) {
-              if (state is api_connection.ConnectionConnectedState) {
+              if (state is ConnectionConnectedState) {
                 return MainPage();
-              } else if (state is api_connection.ConnectionInitialState ||
-                  state is api_connection.ConnectionConnectingState) {
+              } else if (state is ConnectionInitialState ||
+                  state is ConnectionConnectingState) {
                 return _buildCenterText('Connecting...');
-              } else if (state is api_connection.ConnectionErrorState) {
+              } else if (state is ConnectionErrorState) {
                 return _buildCenterText('Connection Error\n${state.error}');
-              } else if (state is api_connection.ConnectionDisconnectedState) {
+              } else if (state is ConnectionDisconnectedState) {
                 return _buildCenterText(
                   'Connection is down, trying to reconnect...',
                 );
