@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -104,6 +103,7 @@ import 'mock_data/p2p/p2p_order_confirm_response.dart';
 import 'mock_data/p2p/p2p_order_create_response.dart';
 import 'mock_data/p2p/p2p_order_info_response.dart';
 import 'mock_data/p2p/p2p_order_list_response.dart';
+import 'mock_data/trading_platform/trading_platform_password_reset_response.dart';
 import 'mock_data/user/get_financial_assessment_response.dart';
 import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
@@ -361,6 +361,8 @@ class MockAPI extends BaseAPI {
         return topUpVirtualResponse;
       case 'trading_durations':
         return tradingDurationsResponse;
+      case 'trading_platform_password_reset':
+        return tradingPlatformPasswordResetResponse;
       case 'trading_times':
         return tradingTimesResponse;
       case 'transaction':
