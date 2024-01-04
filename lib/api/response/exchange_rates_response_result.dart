@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:flutter_deriv_api/api/response/exchange_rates_response_extended.dart';
 
 /// Exchange rates response model class.
 abstract class ExchangeRatesResponseModel {
@@ -25,7 +26,10 @@ abstract class ExchangeRatesResponseModel {
   final Subscription? subscription;
 }
 
-/// Exchange rates response class.
+/// Exchange rates response class. <br>
+///
+/// DeveloperNote: In case of adding new functionality to this class, please use the extended version of the class i.e [ExchangeRatesResponseExtended]
+
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
   const ExchangeRatesResponse({
@@ -88,6 +92,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
+  /// Developer NOTE: to use the realtime update to exchange rates please refer to [ExchangeRatesResponseExtended.subscribeToExchangeRates] method.
   static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {
