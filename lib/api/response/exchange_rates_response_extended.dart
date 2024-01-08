@@ -31,10 +31,12 @@ class ExchangeRatesResponseExtended extends ExchangeRatesResponse {
                 BaseAPIException(baseExceptionModel: baseExceptionModel),
           );
 
-          return response is ExchangeRatesReceive
-              ? ExchangeRatesResponse.fromJson(
-                  response.exchangeRates, response.subscription)
-              : null;
+          if (response is ExchangeRatesReceive) {
+            return ExchangeRatesResponse.fromJson(
+                response.exchangeRates, response.subscription);
+          } else {
+            throw Exception('Bad response received');
+          }
         },
       );
 
