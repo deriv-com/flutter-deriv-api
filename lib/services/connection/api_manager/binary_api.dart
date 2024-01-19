@@ -75,38 +75,44 @@ class BinaryAPI extends BaseAPI {
 
     await _setUserAgent();
 
-    // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      '$uri',
-      pingInterval: _websocketConnectTimeOut,
-    );
-
-    _webSocketListener = _webSocketChannel?.stream
-        .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
-        .listen(
-      (Map<String, dynamic>? message) {
-        onOpen?.call(key);
-
-        if (message != null) {
-          _handleResponse(message, printResponse: printResponse);
-        }
-      },
-      onDone: () async {
-        _logDebugInfo('the websocket is closed.');
-
-        onDone?.call(key);
-      },
-      onError: (Object error) {
-        _logDebugInfo(
-          'the websocket connection is closed with error.',
-          error: error,
+    HttpOverrides.runWithHttpOverrides(
+      () {
+        // Initialize connection to websocket server.
+        _webSocketChannel = IOWebSocketChannel.connect(
+          '$uri',
+          pingInterval: _websocketConnectTimeOut,
         );
 
-        onError?.call(key);
-      },
-    );
+        _webSocketListener = _webSocketChannel?.stream
+            .map<Map<String, dynamic>?>(
+                (Object? result) => jsonDecode('$result'))
+            .listen(
+          (Map<String, dynamic>? message) {
+            onOpen?.call(key);
 
-    _logDebugInfo('send initial message.');
+            if (message != null) {
+              _handleResponse(message, printResponse: printResponse);
+            }
+          },
+          onDone: () async {
+            _logDebugInfo('the websocket is closed.');
+
+            onDone?.call(key);
+          },
+          onError: (Object error) {
+            _logDebugInfo(
+              'the websocket connection is closed with error.',
+              error: error,
+            );
+
+            onError?.call(key);
+          },
+        );
+
+        _logDebugInfo('send initial message.');
+      },
+      _CustomHttpOverrides('ip', 90),
+    );
   }
 
   void _resetCallManagers() {
@@ -237,4 +243,21 @@ class BinaryAPI extends BaseAPI {
       dev.log('$runtimeType $key $message', error: error);
     }
   }
+}
+
+class _CustomHttpOverrides extends HttpOverrides {
+  /// Initialize [_CustomHttpOverrides].
+  _CustomHttpOverrides(this.proxyUrl, this.port, {this.isProxyEnabled = true});
+
+  final String proxyUrl;
+  final int port;
+
+  final bool isProxyEnabled;
+
+  @override
+  HttpClient createHttpClient(SecurityContext? context) =>
+      super.createHttpClient(context)
+        ..findProxy = (Uri uri) =>
+        // TODO(NA): use DIRECT to disable.
+            'PROXY $proxyUrl:$port';
 }
