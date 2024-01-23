@@ -16,7 +16,7 @@ import 'package:deriv_dependency_injector/dependency_injector.dart';
 part 'connection_state.dart';
 
 /// Bringing [ConnectionCubit] to flutter-deriv-api to simplify the usage of api.
-class ConnectionCubit extends Cubit<ConnectionState> {
+class ConnectionCubit extends Cubit<DerivConnectionState> {
   /// Initializes [ConnectionCubit].
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
