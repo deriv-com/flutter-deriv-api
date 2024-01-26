@@ -4,6 +4,7 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -74,6 +75,9 @@ class BinaryAPI extends BaseAPI {
     _logDebugInfo('connecting to $uri.');
 
     await _setUserAgent();
+    final String proxy =
+        await FlutterSystemProxy.findProxyFromEnvironment(uri.toString());
+    print('@@@@@ Proxy: $proxy');
 
     HttpOverrides.runWithHttpOverrides(
       () {
@@ -111,7 +115,7 @@ class BinaryAPI extends BaseAPI {
 
         _logDebugInfo('send initial message.');
       },
-      _CustomHttpOverrides('ip', 90),
+      _CustomHttpOverrides(proxy),
     );
   }
 
@@ -247,17 +251,14 @@ class BinaryAPI extends BaseAPI {
 
 class _CustomHttpOverrides extends HttpOverrides {
   /// Initialize [_CustomHttpOverrides].
-  _CustomHttpOverrides(this.proxyUrl, this.port, {this.isProxyEnabled = true});
+  _CustomHttpOverrides(this.proxy);
 
-  final String proxyUrl;
-  final int port;
-
-  final bool isProxyEnabled;
+  final String proxy;
 
   @override
   HttpClient createHttpClient(SecurityContext? context) =>
       super.createHttpClient(context)
         ..findProxy = (Uri uri) =>
-        // TODO(NA): use DIRECT to disable.
-            'PROXY $proxyUrl:$port';
+            // TODO(NA): use DIRECT to disable.
+            proxy;
 }

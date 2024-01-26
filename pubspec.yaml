@@ -32,6 +32,10 @@ dependencies:
   device_info_plus: ^8.1.0
   package_info_plus: ^3.0.3
   connectivity_plus: ^3.0.3
+  flutter_system_proxy:
+    git:
+      url: git@github.com:BrowserStackCE/flutter_system_proxy.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
