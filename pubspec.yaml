@@ -31,7 +31,7 @@ dependencies:
   web_socket_channel: ^2.3.0
   device_info_plus: ^8.1.0
   package_info_plus: ^4.2.0
-  connectivity_plus: ^3.0.3
+  connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:
