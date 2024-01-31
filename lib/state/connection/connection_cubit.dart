@@ -21,11 +21,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
+    required Function(String proxy) onProxyFound,
     this.enableDebug = false,
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
-      api: api ?? BinaryAPI(key: _key, enableDebug: enableDebug),
+      api: api ??
+          BinaryAPI(
+            key: _key,
+            enableDebug: enableDebug,
+            onProxyFound: onProxyFound,
+          ),
     );
 
     _api = Injector()<BaseAPI>();

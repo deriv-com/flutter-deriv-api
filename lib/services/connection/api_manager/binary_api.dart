@@ -24,11 +24,15 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
-  BinaryAPI({String? key, bool enableDebug = false})
-      : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
+  BinaryAPI({
+    String? key,
+    bool enableDebug = false,
+    required this.onProxyFound,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+  final Function(String proxy) onProxyFound;
 
   /// Represents the active websocket connection.
   ///
@@ -78,6 +82,8 @@ class BinaryAPI extends BaseAPI {
     final String proxy =
         await FlutterSystemProxy.findProxyFromEnvironment(uri.toString());
     print('@@@@@ Proxy: $proxy');
+
+    onProxyFound(proxy);
 
     HttpOverrides.runWithHttpOverrides(
       () {
