@@ -87,6 +87,7 @@ import '../generated/p2p_order_list_receive.dart';
 import '../generated/p2p_order_review_receive.dart';
 import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/p2p_ping_receive.dart';
+import '../generated/p2p_settings_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
@@ -314,6 +315,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pPaymentMethodsReceive.fromJson(responseMap);
     case 'p2p_ping':
       return P2pPingReceive.fromJson(responseMap);
+    case 'p2p_settings':
+      return P2pSettingsReceive.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsReceive.fromJson(responseMap);
     case 'paymentagent_create':
