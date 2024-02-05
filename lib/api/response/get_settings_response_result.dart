@@ -130,7 +130,6 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           allowCopiers: getSettings?.allowCopiers,
           citizen: getSettings?.citizen,
           dateOfBirth: getStringFromDateTime(getSettings?.dateOfBirth),
-          dxtradeUserException: getSettings?.dxtradeUserException,
           emailConsent: getSettings?.emailConsent,
           firstName: getSettings?.firstName,
           lastName: getSettings?.lastName,
@@ -183,7 +182,6 @@ enum EmploymentStatusEnum {
   /// Unemployed.
   unemployed,
 }
-
 /// Get settings model class.
 abstract class GetSettingsModel {
   /// Initializes Get settings model class .
@@ -549,7 +547,6 @@ class GetSettings extends GetSettingsModel {
         userHash: userHash ?? this.userHash,
       );
 }
-
 /// Feature flag model class.
 abstract class FeatureFlagModel {
   /// Initializes Feature flag model class .

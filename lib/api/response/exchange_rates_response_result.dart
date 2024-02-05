@@ -9,7 +9,6 @@ import 'package:flutter_deriv_api/basic_api/generated/exchange_rates_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-import 'package:flutter_deriv_api/api/response/exchange_rates_response_extended.dart';
 
 /// Exchange rates response model class.
 abstract class ExchangeRatesResponseModel {
@@ -19,26 +18,20 @@ abstract class ExchangeRatesResponseModel {
     this.subscription,
   });
 
-  /// Exchange rate values from base to all other currencies
+  /// Exchange rate values from base to target currency
   final ExchangeRates? exchangeRates;
 
   /// For subscription requests only.
   final Subscription? subscription;
 }
 
-/// Exchange rates response class. <br>
-///
-/// DeveloperNote: In case of adding new functionality to this class, please use the extended version of the class i.e [ExchangeRatesResponseExtended]
-
+/// Exchange rates response class.
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
   const ExchangeRatesResponse({
-    ExchangeRates? exchangeRates,
-    Subscription? subscription,
-  }) : super(
-          exchangeRates: exchangeRates,
-          subscription: subscription,
-        );
+    super.exchangeRates,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory ExchangeRatesResponse.fromJson(
@@ -92,7 +85,6 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
-  /// Developer NOTE: to use the realtime update to exchange rates please refer to [ExchangeRatesResponseExtended.subscribeToExchangeRates] method.
   static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {
@@ -111,7 +103,6 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
@@ -127,7 +118,7 @@ abstract class ExchangeRatesModel {
   /// Date retrieval epoch time represented as an integer number
   final DateTime? date;
 
-  /// Rates of exchanging a unit of base currency into the target currencies
+  /// Rate of exchanging a unit of base currency into a target currency
   final Map<String, double>? rates;
 }
 
@@ -135,14 +126,10 @@ abstract class ExchangeRatesModel {
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes Exchange rates class.
   const ExchangeRates({
-    String? baseCurrency,
-    DateTime? date,
-    Map<String, double>? rates,
-  }) : super(
-          baseCurrency: baseCurrency,
-          date: date,
-          rates: rates,
-        );
+    super.baseCurrency,
+    super.date,
+    super.rates,
+  });
 
   /// Creates an instance from JSON.
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
@@ -181,7 +168,6 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -197,10 +183,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

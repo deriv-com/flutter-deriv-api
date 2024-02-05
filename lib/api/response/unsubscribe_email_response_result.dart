@@ -23,12 +23,9 @@ abstract class UnsubscribeEmailResponseModel {
 class UnsubscribeEmailResponse extends UnsubscribeEmailResponseModel {
   /// Initializes Unsubscribe email response class.
   const UnsubscribeEmailResponse({
-    double? binaryUserId,
-    bool? emailUnsubscribeStatus,
-  }) : super(
-          binaryUserId: binaryUserId,
-          emailUnsubscribeStatus: emailUnsubscribeStatus,
-        );
+    super.binaryUserId,
+    super.emailUnsubscribeStatus,
+  });
 
   /// Creates an instance from JSON.
   factory UnsubscribeEmailResponse.fromJson(

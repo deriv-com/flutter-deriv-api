@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
-import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
+
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
   /// Initializes Profit table response model class .
@@ -24,10 +24,8 @@ abstract class ProfitTableResponseModel {
 class ProfitTableResponse extends ProfitTableResponseModel {
   /// Initializes Profit table response class.
   const ProfitTableResponse({
-    ProfitTable? profitTable,
-  }) : super(
-          profitTable: profitTable,
-        );
+    super.profitTable,
+  });
 
   /// Creates an instance from JSON.
   factory ProfitTableResponse.fromJson(
@@ -76,7 +74,6 @@ class ProfitTableResponse extends ProfitTableResponseModel {
         profitTable: profitTable ?? this.profitTable,
       );
 }
-
 /// Profit table model class.
 abstract class ProfitTableModel {
   /// Initializes Profit table model class .
@@ -96,12 +93,9 @@ abstract class ProfitTableModel {
 class ProfitTable extends ProfitTableModel {
   /// Initializes Profit table class.
   const ProfitTable({
-    double? count,
-    List<TransactionsItem>? transactions,
-  }) : super(
-          count: count,
-          transactions: transactions,
-        );
+    super.count,
+    super.transactions,
+  });
 
   /// Creates an instance from JSON.
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
@@ -141,7 +135,6 @@ class ProfitTable extends ProfitTableModel {
         transactions: transactions ?? this.transactions,
       );
 }
-
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -149,8 +142,12 @@ abstract class TransactionsItemModel {
     this.appId,
     this.buyPrice,
     this.contractId,
+    this.contractType,
+    this.dealCancellationDuration,
     this.durationType,
+    this.growthRate,
     this.longcode,
+    this.multiplier,
     this.payout,
     this.purchaseTime,
     this.sellPrice,
@@ -158,10 +155,6 @@ abstract class TransactionsItemModel {
     this.shortcode,
     this.transactionId,
     this.underlyingSymbol,
-    this.contractType,
-    this.dealCancellationDuration,
-    this.multiplier,
-    this.growthRate,
   });
 
   /// ID of the application where this contract was purchased.
@@ -173,11 +166,23 @@ abstract class TransactionsItemModel {
   /// The unique contract identifier.
   final int? contractId;
 
-  /// The duration type of the contract.
+  /// [Optional] The contract type for the transaction if description is set to 1.
+  final String? contractType;
+
+  /// [Optional] Duration set for deal cancellation for Multiplier contracts in synthetic indices if description is set to 1.
+  final String? dealCancellationDuration;
+
+  /// [Optional] The duration type of the contract if description is set to 1.
   final String? durationType;
 
-  /// The description of contract purchased if description is set to 1
+  /// [Optional] The growth rate for Accumulators contract if description is set to 1.
+  final String? growthRate;
+
+  /// [Optional] The description of contract purchased if description is set to 1
   final String? longcode;
+
+  /// [Optional] The multiplier for Multiplier contracts if description is set to 1.
+  final String? multiplier;
 
   /// Payout price
   final double? payout;
@@ -191,66 +196,37 @@ abstract class TransactionsItemModel {
   /// Epoch sell time of the transaction
   final DateTime? sellTime;
 
-  /// Compact description of the contract purchased if description is set to 1
+  /// [Optional] Compact description of the contract purchased if description is set to 1
   final String? shortcode;
 
   /// The transaction Identifier. Every contract (buy or sell) and every payment has a unique transaction identifier.
   final int? transactionId;
 
-  /// The underlying symbol for the contract.
+  /// [Optional] Symbol code if description is set to 1
   final String? underlyingSymbol;
-
-  /// The contract type.
-  final String? contractType;
-
-  /// The duration to cancel the contract.
-  final String? dealCancellationDuration;
-
-  /// The multiplier.
-  final String? multiplier;
-
-  /// The growth rate.
-  final String? growthRate;
 }
 
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes Transactions item class.
   const TransactionsItem({
-    int? appId,
-    double? buyPrice,
-    int? contractId,
-    String? durationType,
-    String? longcode,
-    double? payout,
-    DateTime? purchaseTime,
-    double? sellPrice,
-    DateTime? sellTime,
-    String? shortcode,
-    int? transactionId,
-    String? underlyingSymbol,
-    String? contractType,
-    String? dealCancellationDuration,
-    String? multiplier,
-    String? growthRate,
-  }) : super(
-          appId: appId,
-          buyPrice: buyPrice,
-          contractId: contractId,
-          durationType: durationType,
-          longcode: longcode,
-          payout: payout,
-          purchaseTime: purchaseTime,
-          sellPrice: sellPrice,
-          sellTime: sellTime,
-          shortcode: shortcode,
-          transactionId: transactionId,
-          underlyingSymbol: underlyingSymbol,
-          contractType: contractType,
-          dealCancellationDuration: dealCancellationDuration,
-          multiplier: multiplier,
-          growthRate: growthRate,
-        );
+    super.appId,
+    super.buyPrice,
+    super.contractId,
+    super.contractType,
+    super.dealCancellationDuration,
+    super.durationType,
+    super.growthRate,
+    super.longcode,
+    super.multiplier,
+    super.payout,
+    super.purchaseTime,
+    super.sellPrice,
+    super.sellTime,
+    super.shortcode,
+    super.transactionId,
+    super.underlyingSymbol,
+  });
 
   /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>
@@ -258,8 +234,12 @@ class TransactionsItem extends TransactionsItemModel {
         appId: json['app_id'],
         buyPrice: getDouble(json['buy_price']),
         contractId: json['contract_id'],
+        contractType: json['contract_type'],
+        dealCancellationDuration: json['deal_cancellation_duration'],
         durationType: json['duration_type'],
+        growthRate: json['growth_rate'],
         longcode: json['longcode'],
+        multiplier: json['multiplier'],
         payout: getDouble(json['payout']),
         purchaseTime: getDateTime(json['purchase_time']),
         sellPrice: getDouble(json['sell_price']),
@@ -267,10 +247,6 @@ class TransactionsItem extends TransactionsItemModel {
         shortcode: json['shortcode'],
         transactionId: json['transaction_id'],
         underlyingSymbol: json['underlying_symbol'],
-        contractType: json['contract_type'],
-        dealCancellationDuration: json['deal_cancellation_duration'],
-        multiplier: json['multiplier'],
-        growthRate: json['growth_rate'],
       );
 
   /// Converts an instance to JSON.
@@ -280,14 +256,19 @@ class TransactionsItem extends TransactionsItemModel {
     resultMap['app_id'] = appId;
     resultMap['buy_price'] = buyPrice;
     resultMap['contract_id'] = contractId;
+    resultMap['contract_type'] = contractType;
+    resultMap['deal_cancellation_duration'] = dealCancellationDuration;
     resultMap['duration_type'] = durationType;
+    resultMap['growth_rate'] = growthRate;
     resultMap['longcode'] = longcode;
+    resultMap['multiplier'] = multiplier;
     resultMap['payout'] = payout;
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
     resultMap['sell_price'] = sellPrice;
     resultMap['sell_time'] = getSecondsSinceEpochDateTime(sellTime);
     resultMap['shortcode'] = shortcode;
     resultMap['transaction_id'] = transactionId;
+    resultMap['underlying_symbol'] = underlyingSymbol;
 
     return resultMap;
   }
@@ -297,26 +278,37 @@ class TransactionsItem extends TransactionsItemModel {
     int? appId,
     double? buyPrice,
     int? contractId,
+    String? contractType,
+    String? dealCancellationDuration,
     String? durationType,
+    String? growthRate,
     String? longcode,
+    String? multiplier,
     double? payout,
     DateTime? purchaseTime,
     double? sellPrice,
     DateTime? sellTime,
     String? shortcode,
     int? transactionId,
+    String? underlyingSymbol,
   }) =>
       TransactionsItem(
         appId: appId ?? this.appId,
         buyPrice: buyPrice ?? this.buyPrice,
         contractId: contractId ?? this.contractId,
+        contractType: contractType ?? this.contractType,
+        dealCancellationDuration:
+            dealCancellationDuration ?? this.dealCancellationDuration,
         durationType: durationType ?? this.durationType,
+        growthRate: growthRate ?? this.growthRate,
         longcode: longcode ?? this.longcode,
+        multiplier: multiplier ?? this.multiplier,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,
         sellPrice: sellPrice ?? this.sellPrice,
         sellTime: sellTime ?? this.sellTime,
         shortcode: shortcode ?? this.shortcode,
         transactionId: transactionId ?? this.transactionId,
+        underlyingSymbol: underlyingSymbol ?? this.underlyingSymbol,
       );
 }

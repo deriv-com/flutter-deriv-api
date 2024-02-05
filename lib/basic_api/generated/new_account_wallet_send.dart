@@ -8,7 +8,7 @@ import '../request.dart';
 class NewAccountWalletRequest extends Request {
   /// Initialize NewAccountWalletRequest.
   const NewAccountWalletRequest({
-    this.acceptRisk,
+    required this.acceptRisk,
     this.accountOpeningReason,
     required this.accountType,
     this.addressCity,
@@ -20,16 +20,17 @@ class NewAccountWalletRequest extends Request {
     this.clientType,
     required this.currency,
     this.dateOfBirth,
-    this.financialAssessment,
+    required this.financialAssessment,
     this.firstName,
     this.landingCompanyShort,
     this.lastName,
+    this.loginid,
     this.newAccountWallet = true,
     this.nonPepDeclaration,
     this.phone,
-    this.salutation,
-    this.taxIdentificationNumber,
-    this.taxResidence,
+    required this.salutation,
+    required this.taxIdentificationNumber,
+    required this.taxResidence,
     super.msgType = 'new_account_wallet',
     super.passthrough,
     super.reqId,
@@ -56,6 +57,7 @@ class NewAccountWalletRequest extends Request {
         firstName: json['first_name'] as String?,
         landingCompanyShort: json['landing_company_short'] as String?,
         lastName: json['last_name'] as String?,
+        loginid: json['loginid'] as String?,
         newAccountWallet: json['new_account_wallet'] == null
             ? null
             : json['new_account_wallet'] == 1,
@@ -116,6 +118,9 @@ class NewAccountWalletRequest extends Request {
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? lastName;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? newAccountWallet;
 
@@ -157,6 +162,7 @@ class NewAccountWalletRequest extends Request {
         'first_name': firstName,
         'landing_company_short': landingCompanyShort,
         'last_name': lastName,
+        'loginid': loginid,
         'new_account_wallet': newAccountWallet == null
             ? null
             : newAccountWallet!
@@ -190,6 +196,7 @@ class NewAccountWalletRequest extends Request {
     String? firstName,
     String? landingCompanyShort,
     String? lastName,
+    String? loginid,
     bool? newAccountWallet,
     int? nonPepDeclaration,
     String? phone,
@@ -216,6 +223,7 @@ class NewAccountWalletRequest extends Request {
         firstName: firstName ?? this.firstName,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         lastName: lastName ?? this.lastName,
+        loginid: loginid ?? this.loginid,
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,

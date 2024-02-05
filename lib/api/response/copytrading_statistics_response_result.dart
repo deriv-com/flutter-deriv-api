@@ -25,10 +25,8 @@ abstract class CopytradingStatisticsResponseModel {
 class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
   /// Initializes Copytrading statistics response class.
   const CopytradingStatisticsResponse({
-    CopytradingStatistics? copytradingStatistics,
-  }) : super(
-          copytradingStatistics: copytradingStatistics,
-        );
+    super.copytradingStatistics,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingStatisticsResponse.fromJson(
@@ -82,7 +80,6 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
             copytradingStatistics ?? this.copytradingStatistics,
       );
 }
-
 /// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel {
   /// Initializes Copytrading statistics model class .
@@ -142,32 +139,19 @@ abstract class CopytradingStatisticsModel {
 class CopytradingStatistics extends CopytradingStatisticsModel {
   /// Initializes Copytrading statistics class.
   const CopytradingStatistics({
-    required DateTime activeSince,
-    required int avgDuration,
-    required double avgLoss,
-    required double avgProfit,
-    required double copiers,
-    required double last12monthsProfitableTrades,
-    required Map<String, double> monthlyProfitableTrades,
-    required double performanceProbability,
-    required int totalTrades,
-    required Map<String, double> tradesBreakdown,
-    required double tradesProfitable,
-    Map<String, double>? yearlyProfitableTrades,
-  }) : super(
-          activeSince: activeSince,
-          avgDuration: avgDuration,
-          avgLoss: avgLoss,
-          avgProfit: avgProfit,
-          copiers: copiers,
-          last12monthsProfitableTrades: last12monthsProfitableTrades,
-          monthlyProfitableTrades: monthlyProfitableTrades,
-          performanceProbability: performanceProbability,
-          totalTrades: totalTrades,
-          tradesBreakdown: tradesBreakdown,
-          tradesProfitable: tradesProfitable,
-          yearlyProfitableTrades: yearlyProfitableTrades,
-        );
+    required super.activeSince,
+    required super.avgDuration,
+    required super.avgLoss,
+    required super.avgProfit,
+    required super.copiers,
+    required super.last12monthsProfitableTrades,
+    required super.monthlyProfitableTrades,
+    required super.performanceProbability,
+    required super.totalTrades,
+    required super.tradesBreakdown,
+    required super.tradesProfitable,
+    super.yearlyProfitableTrades,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingStatistics.fromJson(Map<String, dynamic> json) =>

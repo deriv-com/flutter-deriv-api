@@ -271,6 +271,10 @@ abstract class ListItemModel {
     this.daysUntilArchive,
     this.effectiveRate,
     this.effectiveRateDisplay,
+    this.eligibleCountries,
+    this.minCompletionRate,
+    this.minJoinDays,
+    this.minRating,
     this.paymentMethod,
     this.paymentMethodNames,
     this.price,
@@ -380,6 +384,18 @@ abstract class ListItemModel {
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
 
+  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders.
+  final List<String>? eligibleCountries;
+
+  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders.
+  final double? minCompletionRate;
+
+  /// Counterparties who joined less than this number of days ago are not allowed to place orders.
+  final int? minJoinDays;
+
+  /// Counterparties who have an average rating less than this value are not allowed to place orders.
+  final double? minRating;
+
   /// Payment method name (deprecated).
   final String? paymentMethod;
 
@@ -444,6 +460,10 @@ class ListItem extends ListItemModel {
     super.daysUntilArchive,
     super.effectiveRate,
     super.effectiveRateDisplay,
+    super.eligibleCountries,
+    super.minCompletionRate,
+    super.minJoinDays,
+    super.minRating,
     super.paymentMethod,
     super.paymentMethodNames,
     super.price,
@@ -489,6 +509,16 @@ class ListItem extends ListItemModel {
         daysUntilArchive: json['days_until_archive'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
+        eligibleCountries: json['eligible_countries'] == null
+            ? null
+            : List<String>.from(
+                json['eligible_countries']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        minCompletionRate: getDouble(json['min_completion_rate']),
+        minJoinDays: json['min_join_days'],
+        minRating: getDouble(json['min_rating']),
         paymentMethod: json['payment_method'],
         paymentMethodNames: json['payment_method_names'] == null
             ? null
@@ -557,6 +587,16 @@ class ListItem extends ListItemModel {
     resultMap['days_until_archive'] = daysUntilArchive;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
+    if (eligibleCountries != null) {
+      resultMap['eligible_countries'] = eligibleCountries!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['min_completion_rate'] = minCompletionRate;
+    resultMap['min_join_days'] = minJoinDays;
+    resultMap['min_rating'] = minRating;
     resultMap['payment_method'] = paymentMethod;
     if (paymentMethodNames != null) {
       resultMap['payment_method_names'] = paymentMethodNames!
@@ -619,6 +659,10 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     double? effectiveRate,
     String? effectiveRateDisplay,
+    List<String>? eligibleCountries,
+    double? minCompletionRate,
+    int? minJoinDays,
+    double? minRating,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     double? price,
@@ -665,6 +709,10 @@ class ListItem extends ListItemModel {
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
+        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
+        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
+        minJoinDays: minJoinDays ?? this.minJoinDays,
+        minRating: minRating ?? this.minRating,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         price: price ?? this.price,

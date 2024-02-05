@@ -9,16 +9,11 @@ class PayoutCurrenciesReceive extends Response {
   /// Initialize PayoutCurrenciesReceive.
   const PayoutCurrenciesReceive({
     this.payoutCurrencies,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PayoutCurrenciesReceive.fromJson(Map<String, dynamic> json) =>

@@ -25,10 +25,8 @@ abstract class ForgetResponseModel {
 class ForgetResponse extends ForgetResponseModel {
   /// Initializes Forget response class.
   const ForgetResponse({
-    bool? forget,
-  }) : super(
-          forget: forget,
-        );
+    super.forget,
+  });
 
   /// Creates an instance from JSON.
   factory ForgetResponse.fromJson(

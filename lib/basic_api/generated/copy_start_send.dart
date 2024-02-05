@@ -10,22 +10,21 @@ class CopyStartRequest extends Request {
   const CopyStartRequest({
     this.assets,
     required this.copyStart,
+    this.loginid,
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'copy_start',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'copy_start',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       CopyStartRequest(
         assets: json['assets'] as dynamic,
         copyStart: json['copy_start'] as String?,
+        loginid: json['loginid'] as String?,
         maxTradeStake: json['max_trade_stake'] as num?,
         minTradeStake: json['min_trade_stake'] as num?,
         tradeTypes: json['trade_types'] as dynamic,
@@ -38,6 +37,9 @@ class CopyStartRequest extends Request {
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
   final String? copyStart;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Used to set maximum trade stake to be copied.
   final num? maxTradeStake;
@@ -53,6 +55,7 @@ class CopyStartRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'assets': assets,
         'copy_start': copyStart,
+        'loginid': loginid,
         'max_trade_stake': maxTradeStake,
         'min_trade_stake': minTradeStake,
         'trade_types': tradeTypes,
@@ -65,6 +68,7 @@ class CopyStartRequest extends Request {
   CopyStartRequest copyWith({
     dynamic assets,
     String? copyStart,
+    String? loginid,
     num? maxTradeStake,
     num? minTradeStake,
     dynamic tradeTypes,
@@ -74,6 +78,7 @@ class CopyStartRequest extends Request {
       CopyStartRequest(
         assets: assets ?? this.assets,
         copyStart: copyStart ?? this.copyStart,
+        loginid: loginid ?? this.loginid,
         maxTradeStake: maxTradeStake ?? this.maxTradeStake,
         minTradeStake: minTradeStake ?? this.minTradeStake,
         tradeTypes: tradeTypes ?? this.tradeTypes,

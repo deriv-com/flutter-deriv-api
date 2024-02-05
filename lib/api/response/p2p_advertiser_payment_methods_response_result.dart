@@ -2,14 +2,13 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_send.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart'; 
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart'; 
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_receive.dart'; 
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_send.dart'; 
+import 'package:flutter_deriv_api/helpers/helpers.dart'; 
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'; 
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-
 /// P2p advertiser payment methods response model class.
 abstract class P2pAdvertiserPaymentMethodsResponseModel {
   /// Initializes P2p advertiser payment methods response model class .
@@ -27,11 +26,8 @@ class P2pAdvertiserPaymentMethodsResponse
     extends P2pAdvertiserPaymentMethodsResponseModel {
   /// Initializes P2p advertiser payment methods response class.
   const P2pAdvertiserPaymentMethodsResponse({
-    Map<String, P2pAdvertiserPaymentMethodsProperty>?
-        p2pAdvertiserPaymentMethods,
-  }) : super(
-          p2pAdvertiserPaymentMethods: p2pAdvertiserPaymentMethods,
-        );
+    super.p2pAdvertiserPaymentMethods,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserPaymentMethodsResponse.fromJson(
@@ -141,7 +137,6 @@ enum P2pAdvertiserPaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
-
 /// P2p advertiser payment methods property model class.
 abstract class P2pAdvertiserPaymentMethodsPropertyModel {
   /// Initializes P2p advertiser payment methods property model class .
@@ -182,22 +177,14 @@ class P2pAdvertiserPaymentMethodsProperty
     extends P2pAdvertiserPaymentMethodsPropertyModel {
   /// Initializes P2p advertiser payment methods property class.
   const P2pAdvertiserPaymentMethodsProperty({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required P2pAdvertiserPaymentMethodsPropertyTypeEnum type,
-    String? displayName,
-    List<String>? usedByAdverts,
-    List<String>? usedByOrders,
-  }) : super(
-          fields: fields,
-          isEnabled: isEnabled,
-          method: method,
-          type: type,
-          displayName: displayName,
-          usedByAdverts: usedByAdverts,
-          usedByOrders: usedByOrders,
-        );
+    required super.fields,
+    required super.isEnabled,
+    required super.method,
+    required super.type,
+    super.displayName,
+    super.usedByAdverts,
+    super.usedByOrders,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserPaymentMethodsProperty.fromJson(
@@ -282,7 +269,6 @@ class P2pAdvertiserPaymentMethodsProperty
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -310,16 +296,11 @@ abstract class FieldsPropertyModel {
 class FieldsProperty extends FieldsPropertyModel {
   /// Initializes Fields property class.
   const FieldsProperty({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-          value: value,
-        );
+    required super.displayName,
+    required super.required,
+    required super.type,
+    required super.value,
+  });
 
   /// Creates an instance from JSON.
   factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
