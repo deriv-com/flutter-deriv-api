@@ -33,6 +33,7 @@ class NewAccountMaltainvestRequest extends Request {
     required this.lastName,
     required this.leverageImpactTrading,
     required this.leverageTradingHighRiskStopLoss,
+    this.loginid,
     required this.netIncome,
     this.newAccountMaltainvest = true,
     this.nonPepDeclaration,
@@ -86,6 +87,7 @@ class NewAccountMaltainvestRequest extends Request {
         leverageImpactTrading: json['leverage_impact_trading'] as String?,
         leverageTradingHighRiskStopLoss:
             json['leverage_trading_high_risk_stop_loss'] as String?,
+        loginid: json['loginid'] as String?,
         netIncome: json['net_income'] as String?,
         newAccountMaltainvest: json['new_account_maltainvest'] == null
             ? null
@@ -187,6 +189,9 @@ class NewAccountMaltainvestRequest extends Request {
   /// Leverage trading is high-risk, so it's a good idea to use risk management features such as stop loss. Stop loss allows you to
   final String? leverageTradingHighRiskStopLoss;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Net Annual Income.
   final String? netIncome;
 
@@ -273,6 +278,7 @@ class NewAccountMaltainvestRequest extends Request {
         'last_name': lastName,
         'leverage_impact_trading': leverageImpactTrading,
         'leverage_trading_high_risk_stop_loss': leverageTradingHighRiskStopLoss,
+        'loginid': loginid,
         'net_income': netIncome,
         'new_account_maltainvest': newAccountMaltainvest == null
             ? null
@@ -329,6 +335,7 @@ class NewAccountMaltainvestRequest extends Request {
     String? lastName,
     String? leverageImpactTrading,
     String? leverageTradingHighRiskStopLoss,
+    String? loginid,
     String? netIncome,
     bool? newAccountMaltainvest,
     int? nonPepDeclaration,
@@ -378,6 +385,7 @@ class NewAccountMaltainvestRequest extends Request {
             leverageImpactTrading ?? this.leverageImpactTrading,
         leverageTradingHighRiskStopLoss: leverageTradingHighRiskStopLoss ??
             this.leverageTradingHighRiskStopLoss,
+        loginid: loginid ?? this.loginid,
         netIncome: netIncome ?? this.netIncome,
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,

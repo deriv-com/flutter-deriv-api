@@ -10,21 +10,20 @@ class P2pOrderConfirmRequest extends Request {
   const P2pOrderConfirmRequest({
     this.dryRun,
     required this.id,
+    this.loginid,
     this.p2pOrderConfirm = true,
     this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_confirm',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_confirm',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirmRequest(
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         p2pOrderConfirm: json['p2p_order_confirm'] == null
             ? null
             : json['p2p_order_confirm'] == 1,
@@ -38,6 +37,9 @@ class P2pOrderConfirmRequest extends Request {
 
   /// The unique identifier for this order.
   final String? id;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? p2pOrderConfirm;
@@ -54,6 +56,7 @@ class P2pOrderConfirmRequest extends Request {
                 ? 1
                 : 0,
         'id': id,
+        'loginid': loginid,
         'p2p_order_confirm': p2pOrderConfirm == null
             ? null
             : p2pOrderConfirm!
@@ -69,6 +72,7 @@ class P2pOrderConfirmRequest extends Request {
   P2pOrderConfirmRequest copyWith({
     bool? dryRun,
     String? id,
+    String? loginid,
     bool? p2pOrderConfirm,
     String? verificationCode,
     Map<String, dynamic>? passthrough,
@@ -77,6 +81,7 @@ class P2pOrderConfirmRequest extends Request {
       P2pOrderConfirmRequest(
         dryRun: dryRun ?? this.dryRun,
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
         verificationCode: verificationCode ?? this.verificationCode,
         passthrough: passthrough ?? this.passthrough,

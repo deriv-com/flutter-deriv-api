@@ -187,6 +187,7 @@ final Map<String, EnvironmentEnum> environmentEnumMapper =
   "Deriv-Demo": EnvironmentEnum.derivDemo,
   "Deriv-Server": EnvironmentEnum.derivServer,
   "Deriv-Server-02": EnvironmentEnum.derivServer02,
+  "Deriv-Server-03": EnvironmentEnum.derivServer03,
 };
 
 /// Environment Enum.
@@ -199,6 +200,9 @@ enum EnvironmentEnum {
 
   /// Deriv-Server-02.
   derivServer02,
+
+  /// Deriv-Server-03.
+  derivServer03,
 }
 
 /// SubAccountTypeEnum mapper.

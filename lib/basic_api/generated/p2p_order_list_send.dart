@@ -13,6 +13,7 @@ class P2pOrderListRequest extends Request {
     this.dateFrom,
     this.dateTo,
     this.limit,
+    this.loginid,
     this.offset,
     this.p2pOrderList = true,
     this.subscribe,
@@ -29,6 +30,7 @@ class P2pOrderListRequest extends Request {
         dateFrom: json['date_from'] as String?,
         dateTo: json['date_to'] as String?,
         limit: json['limit'] as int?,
+        loginid: json['loginid'] as String?,
         offset: json['offset'] as int?,
         p2pOrderList:
             json['p2p_order_list'] == null ? null : json['p2p_order_list'] == 1,
@@ -52,6 +54,9 @@ class P2pOrderListRequest extends Request {
   /// [Optional] Used for paging.
   final int? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Used for paging.
   final int? offset;
 
@@ -69,6 +74,7 @@ class P2pOrderListRequest extends Request {
         'date_from': dateFrom,
         'date_to': dateTo,
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'p2p_order_list': p2pOrderList == null
             ? null
@@ -92,6 +98,7 @@ class P2pOrderListRequest extends Request {
     String? dateFrom,
     String? dateTo,
     int? limit,
+    String? loginid,
     int? offset,
     bool? p2pOrderList,
     bool? subscribe,
@@ -104,6 +111,7 @@ class P2pOrderListRequest extends Request {
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         p2pOrderList: p2pOrderList ?? this.p2pOrderList,
         subscribe: subscribe ?? this.subscribe,

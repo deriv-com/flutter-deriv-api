@@ -10,19 +10,18 @@ class BalanceRequest extends Request {
   const BalanceRequest({
     this.account,
     this.balance = true,
+    this.loginid,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'balance',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'balance',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
         account: json['account'] as String?,
         balance: json['balance'] == null ? null : json['balance'] == 1,
+        loginid: json['loginid'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -33,6 +32,9 @@ class BalanceRequest extends Request {
 
   /// Must be `true`
   final bool? balance;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] If set to `true`, will send updates whenever the balance changes.
   final bool? subscribe;
@@ -46,6 +48,7 @@ class BalanceRequest extends Request {
             : balance!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'subscribe': subscribe == null
             ? null
             : subscribe!
@@ -60,6 +63,7 @@ class BalanceRequest extends Request {
   BalanceRequest copyWith({
     String? account,
     bool? balance,
+    String? loginid,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -67,6 +71,7 @@ class BalanceRequest extends Request {
       BalanceRequest(
         account: account ?? this.account,
         balance: balance ?? this.balance,
+        loginid: loginid ?? this.loginid,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -9,16 +9,14 @@ class BuyContractForMultipleAccountsRequest extends Request {
   /// Initialize BuyContractForMultipleAccountsRequest.
   const BuyContractForMultipleAccountsRequest({
     required this.buyContractForMultipleAccounts,
+    this.loginid,
     this.parameters,
     required this.price,
     required this.tokens,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'buy_contract_for_multiple_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'buy_contract_for_multiple_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory BuyContractForMultipleAccountsRequest.fromJson(
@@ -26,6 +24,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
       BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts:
             json['buy_contract_for_multiple_accounts'] as String?,
+        loginid: json['loginid'] as String?,
         parameters: json['parameters'] as Map<String, dynamic>?,
         price: json['price'] as num?,
         tokens: (json['tokens'] as List<dynamic>?)
@@ -37,6 +36,9 @@ class BuyContractForMultipleAccountsRequest extends Request {
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String? buyContractForMultipleAccounts;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Used to pass the parameters for contract buy.
   final Map<String, dynamic>? parameters;
@@ -51,6 +53,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'buy_contract_for_multiple_accounts': buyContractForMultipleAccounts,
+        'loginid': loginid,
         'parameters': parameters,
         'price': price,
         'tokens': tokens,
@@ -62,6 +65,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
   @override
   BuyContractForMultipleAccountsRequest copyWith({
     String? buyContractForMultipleAccounts,
+    String? loginid,
     Map<String, dynamic>? parameters,
     num? price,
     List<String>? tokens,
@@ -71,6 +75,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
       BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
             this.buyContractForMultipleAccounts,
+        loginid: loginid ?? this.loginid,
         parameters: parameters ?? this.parameters,
         price: price ?? this.price,
         tokens: tokens ?? this.tokens,

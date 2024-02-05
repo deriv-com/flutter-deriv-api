@@ -35,12 +35,9 @@ abstract class P2pOrderListResponseModel {
 class P2pOrderListResponse extends P2pOrderListResponseModel {
   /// Initializes P2p order list response class.
   const P2pOrderListResponse({
-    P2pOrderList? p2pOrderList,
-    Subscription? subscription,
-  }) : super(
-          p2pOrderList: p2pOrderList,
-          subscription: subscription,
-        );
+    super.p2pOrderList,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderListResponse.fromJson(
@@ -237,7 +234,6 @@ enum StatusEnum {
   /// dispute-completed.
   disputeCompleted,
 }
-
 /// P2p order list model class.
 abstract class P2pOrderListModel {
   /// Initializes P2p order list model class .
@@ -253,10 +249,8 @@ abstract class P2pOrderListModel {
 class P2pOrderList extends P2pOrderListModel {
   /// Initializes P2p order list class.
   const P2pOrderList({
-    required List<ListItem> list,
-  }) : super(
-          list: list,
-        );
+    required super.list,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderList.fromJson(Map<String, dynamic> json) => P2pOrderList(
@@ -288,12 +282,10 @@ class P2pOrderList extends P2pOrderListModel {
         list: list ?? this.list,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
   const ListItemModel({
-    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -323,11 +315,9 @@ abstract class ListItemModel {
     this.reviewDetails,
     this.verificationLockoutUntil,
     this.verificationNextRequest,
+    this.verificationPending,
     this.verificationTokenExpiry,
   });
-
-  /// Indicates that the seller in the process of confirming the order.
-  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -416,6 +406,9 @@ abstract class ListItemModel {
   /// If a verification request has already been made, the epoch time that another verification request can be made.
   final DateTime? verificationNextRequest;
 
+  /// Indicates that the seller in the process of confirming the order.
+  final bool? verificationPending;
+
   /// Epoch time that the current verification token will expire.
   final DateTime? verificationTokenExpiry;
 }
@@ -424,70 +417,38 @@ abstract class ListItemModel {
 class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
-    required String accountCurrency,
-    required AdvertDetails advertDetails,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String chatChannelUrl,
-    required String contactInfo,
-    required DateTime createdTime,
-    required DisputeDetails disputeDetails,
-    required DateTime expiryTime,
-    required String id,
-    required bool isIncoming,
-    required bool isReviewable,
-    required String localCurrency,
-    required String paymentInfo,
-    required double price,
-    required String priceDisplay,
-    required double rate,
-    required String rateDisplay,
-    required StatusEnum status,
-    required TypeEnum type,
-    required bool verificationPending,
-    ClientDetails? clientDetails,
-    DateTime? completionTime,
-    bool? isSeen,
-    String? paymentMethod,
-    List<String>? paymentMethodNames,
-    ReviewDetails? reviewDetails,
-    DateTime? verificationLockoutUntil,
-    DateTime? verificationNextRequest,
-    DateTime? verificationTokenExpiry,
-  }) : super(
-          accountCurrency: accountCurrency,
-          advertDetails: advertDetails,
-          advertiserDetails: advertiserDetails,
-          amount: amount,
-          amountDisplay: amountDisplay,
-          chatChannelUrl: chatChannelUrl,
-          contactInfo: contactInfo,
-          createdTime: createdTime,
-          disputeDetails: disputeDetails,
-          expiryTime: expiryTime,
-          id: id,
-          isIncoming: isIncoming,
-          isReviewable: isReviewable,
-          localCurrency: localCurrency,
-          paymentInfo: paymentInfo,
-          price: price,
-          priceDisplay: priceDisplay,
-          rate: rate,
-          rateDisplay: rateDisplay,
-          status: status,
-          type: type,
-          verificationPending: verificationPending,
-          clientDetails: clientDetails,
-          completionTime: completionTime,
-          isSeen: isSeen,
-          paymentMethod: paymentMethod,
-          paymentMethodNames: paymentMethodNames,
-          reviewDetails: reviewDetails,
-          verificationLockoutUntil: verificationLockoutUntil,
-          verificationNextRequest: verificationNextRequest,
-          verificationTokenExpiry: verificationTokenExpiry,
-        );
+    required super.accountCurrency,
+    required super.advertDetails,
+    required super.advertiserDetails,
+    required super.amount,
+    required super.amountDisplay,
+    required super.chatChannelUrl,
+    required super.contactInfo,
+    required super.createdTime,
+    required super.disputeDetails,
+    required super.expiryTime,
+    required super.id,
+    required super.isIncoming,
+    required super.isReviewable,
+    required super.localCurrency,
+    required super.paymentInfo,
+    required super.price,
+    required super.priceDisplay,
+    required super.rate,
+    required super.rateDisplay,
+    required super.status,
+    required super.type,
+    super.clientDetails,
+    super.completionTime,
+    super.isSeen,
+    super.paymentMethod,
+    super.paymentMethodNames,
+    super.reviewDetails,
+    super.verificationLockoutUntil,
+    super.verificationNextRequest,
+    super.verificationPending,
+    super.verificationTokenExpiry,
+  });
 
   /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
@@ -513,7 +474,6 @@ class ListItem extends ListItemModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
-        verificationPending: getBool(json['verification_pending'])!,
         clientDetails: json['client_details'] == null
             ? null
             : ClientDetails.fromJson(json['client_details']),
@@ -533,6 +493,7 @@ class ListItem extends ListItemModel {
         verificationLockoutUntil:
             getDateTime(json['verification_lockout_until']),
         verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationPending: getBool(json['verification_pending']),
         verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
@@ -569,7 +530,6 @@ class ListItem extends ListItemModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
-    resultMap['verification_pending'] = verificationPending;
     if (clientDetails != null) {
       resultMap['client_details'] = clientDetails!.toJson();
     }
@@ -590,6 +550,7 @@ class ListItem extends ListItemModel {
         getSecondsSinceEpochDateTime(verificationLockoutUntil);
     resultMap['verification_next_request'] =
         getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_pending'] = verificationPending;
     resultMap['verification_token_expiry'] =
         getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
@@ -619,7 +580,6 @@ class ListItem extends ListItemModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
-    bool? verificationPending,
     ClientDetails? clientDetails,
     DateTime? completionTime,
     bool? isSeen,
@@ -628,6 +588,7 @@ class ListItem extends ListItemModel {
     ReviewDetails? reviewDetails,
     DateTime? verificationLockoutUntil,
     DateTime? verificationNextRequest,
+    bool? verificationPending,
     DateTime? verificationTokenExpiry,
   }) =>
       ListItem(
@@ -652,7 +613,6 @@ class ListItem extends ListItemModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
-        verificationPending: verificationPending ?? this.verificationPending,
         clientDetails: clientDetails ?? this.clientDetails,
         completionTime: completionTime ?? this.completionTime,
         isSeen: isSeen ?? this.isSeen,
@@ -663,11 +623,11 @@ class ListItem extends ListItemModel {
             verificationLockoutUntil ?? this.verificationLockoutUntil,
         verificationNextRequest:
             verificationNextRequest ?? this.verificationNextRequest,
+        verificationPending: verificationPending ?? this.verificationPending,
         verificationTokenExpiry:
             verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
-
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -675,6 +635,7 @@ abstract class AdvertDetailsModel {
     required this.type,
     required this.id,
     required this.description,
+    required this.blockTrade,
     this.paymentMethod,
   });
 
@@ -687,6 +648,9 @@ abstract class AdvertDetailsModel {
   /// General information about the advert.
   final String description;
 
+  /// Indicates if this is block trade advert or not.
+  final bool blockTrade;
+
   /// The payment method.
   final String? paymentMethod;
 }
@@ -695,19 +659,16 @@ abstract class AdvertDetailsModel {
 class AdvertDetails extends AdvertDetailsModel {
   /// Initializes Advert details class.
   const AdvertDetails({
-    required String description,
-    required String id,
-    required TypeEnum type,
-    String? paymentMethod,
-  }) : super(
-          description: description,
-          id: id,
-          type: type,
-          paymentMethod: paymentMethod,
-        );
+    required super.blockTrade,
+    required super.description,
+    required super.id,
+    required super.type,
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
+        blockTrade: getBool(json['block_trade'])!,
         description: json['description'],
         id: json['id'],
         type: typeEnumMapper[json['type']]!,
@@ -718,6 +679,7 @@ class AdvertDetails extends AdvertDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['block_trade'] = blockTrade;
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['type'] = typeEnumMapper.entries
@@ -730,19 +692,20 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
+    bool? blockTrade,
     String? description,
     String? id,
     TypeEnum? type,
     String? paymentMethod,
   }) =>
       AdvertDetails(
+        blockTrade: blockTrade ?? this.blockTrade,
         description: description ?? this.description,
         id: id ?? this.id,
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -786,24 +749,15 @@ abstract class AdvertiserDetailsModel {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    int? isRecommended,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          isRecommended: isRecommended,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.isRecommended,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
@@ -857,7 +811,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
@@ -877,12 +830,9 @@ abstract class DisputeDetailsModel {
 class DisputeDetails extends DisputeDetailsModel {
   /// Initializes Dispute details class.
   const DisputeDetails({
-    String? disputeReason,
-    String? disputerLoginid,
-  }) : super(
-          disputeReason: disputeReason,
-          disputerLoginid: disputerLoginid,
-        );
+    super.disputeReason,
+    super.disputerLoginid,
+  });
 
   /// Creates an instance from JSON.
   factory DisputeDetails.fromJson(Map<String, dynamic> json) => DisputeDetails(
@@ -910,7 +860,6 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
-
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -954,24 +903,15 @@ abstract class ClientDetailsModel {
 class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
   const ClientDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    int? isRecommended,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          isRecommended: isRecommended,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.isRecommended,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
@@ -1024,7 +964,6 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Review details model class.
 abstract class ReviewDetailsModel {
   /// Initializes Review details model class .
@@ -1048,14 +987,10 @@ abstract class ReviewDetailsModel {
 class ReviewDetails extends ReviewDetailsModel {
   /// Initializes Review details class.
   const ReviewDetails({
-    required DateTime createdTime,
-    required int rating,
-    int? recommended,
-  }) : super(
-          createdTime: createdTime,
-          rating: rating,
-          recommended: recommended,
-        );
+    required super.createdTime,
+    required super.rating,
+    super.recommended,
+  });
 
   /// Creates an instance from JSON.
   factory ReviewDetails.fromJson(Map<String, dynamic> json) => ReviewDetails(
@@ -1087,7 +1022,6 @@ class ReviewDetails extends ReviewDetailsModel {
         recommended: recommended ?? this.recommended,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -1103,10 +1037,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

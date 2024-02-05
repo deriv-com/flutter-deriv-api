@@ -11,22 +11,22 @@ class P2pAdvertListRequest extends Request {
     this.advertiserId,
     this.advertiserName,
     this.amount,
+    this.blockTrade,
     this.counterpartyType,
     this.favouritesOnly,
+    this.hideIneligible,
     this.limit,
     this.localCurrency,
+    this.loginid,
     this.offset,
     this.p2pAdvertList = true,
     this.paymentMethod,
     this.sortBy,
     this.useClientLimits,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advert_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advert_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
@@ -34,12 +34,18 @@ class P2pAdvertListRequest extends Request {
         advertiserId: json['advertiser_id'] as String?,
         advertiserName: json['advertiser_name'] as String?,
         amount: json['amount'] as num?,
+        blockTrade:
+            json['block_trade'] == null ? null : json['block_trade'] == 1,
         counterpartyType: json['counterparty_type'] as String?,
         favouritesOnly: json['favourites_only'] == null
             ? null
             : json['favourites_only'] == 1,
+        hideIneligible: json['hide_ineligible'] == null
+            ? null
+            : json['hide_ineligible'] == 1,
         limit: json['limit'] as int?,
         localCurrency: json['local_currency'] as String?,
+        loginid: json['loginid'] as String?,
         offset: json['offset'] as int?,
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
@@ -64,17 +70,26 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] How much to buy or sell, used to calculate prices.
   final num? amount;
 
+  /// [Optional] Return block trade adverts when `true`, non-block trade adverts when `false` (default).
+  final bool? blockTrade;
+
   /// [Optional] Filter the adverts by `counterparty_type`.
   final String? counterpartyType;
 
   /// [Optional] Only show adverts from favourite advertisers. Default is `false`.
   final bool? favouritesOnly;
 
+  /// [Optional] If set to `true`, adverts for which the current user does not meet counteryparty terms are not returned.
+  final bool? hideIneligible;
+
   /// [Optional] Used for paging.
   final int? limit;
 
   /// [Optional] Currency to conduct payment transaction in. If not provided, only ads from country of residence will be returned.
   final String? localCurrency;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Used for paging.
   final int? offset;
@@ -97,14 +112,25 @@ class P2pAdvertListRequest extends Request {
         'advertiser_id': advertiserId,
         'advertiser_name': advertiserName,
         'amount': amount,
+        'block_trade': blockTrade == null
+            ? null
+            : blockTrade!
+                ? 1
+                : 0,
         'counterparty_type': counterpartyType,
         'favourites_only': favouritesOnly == null
             ? null
             : favouritesOnly!
                 ? 1
                 : 0,
+        'hide_ineligible': hideIneligible == null
+            ? null
+            : hideIneligible!
+                ? 1
+                : 0,
         'limit': limit,
         'local_currency': localCurrency,
+        'loginid': loginid,
         'offset': offset,
         'p2p_advert_list': p2pAdvertList == null
             ? null
@@ -128,10 +154,13 @@ class P2pAdvertListRequest extends Request {
     String? advertiserId,
     String? advertiserName,
     num? amount,
+    bool? blockTrade,
     String? counterpartyType,
     bool? favouritesOnly,
+    bool? hideIneligible,
     int? limit,
     String? localCurrency,
+    String? loginid,
     int? offset,
     bool? p2pAdvertList,
     List<String>? paymentMethod,
@@ -144,10 +173,13 @@ class P2pAdvertListRequest extends Request {
         advertiserId: advertiserId ?? this.advertiserId,
         advertiserName: advertiserName ?? this.advertiserName,
         amount: amount ?? this.amount,
+        blockTrade: blockTrade ?? this.blockTrade,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         favouritesOnly: favouritesOnly ?? this.favouritesOnly,
+        hideIneligible: hideIneligible ?? this.hideIneligible,
         limit: limit ?? this.limit,
         localCurrency: localCurrency ?? this.localCurrency,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
         paymentMethod: paymentMethod ?? this.paymentMethod,
