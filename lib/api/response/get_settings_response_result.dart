@@ -143,6 +143,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           secretQuestion: secretQuestion,
           taxIdentificationNumber: getSettings?.taxIdentificationNumber,
           taxResidence: getSettings?.taxResidence,
+          dxtradeUserException: getSettings?.dxtradeUserException,
         ),
       );
 
@@ -182,6 +183,7 @@ enum EmploymentStatusEnum {
   /// Unemployed.
   unemployed,
 }
+
 /// Get settings model class.
 abstract class GetSettingsModel {
   /// Initializes Get settings model class .
@@ -547,6 +549,7 @@ class GetSettings extends GetSettingsModel {
         userHash: userHash ?? this.userHash,
       );
 }
+
 /// Feature flag model class.
 abstract class FeatureFlagModel {
   /// Initializes Feature flag model class .
