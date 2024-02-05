@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:build/build.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:json_schema2/json_schema2.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:recase/recase.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
@@ -60,7 +60,7 @@ class APIBuilder extends Builder {
       final Map<dynamic, dynamic> schemaDefinition =
           jsonDecode(await buildStep.readAsString(buildStep.inputId));
 
-      final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
+      final JsonSchema schema = JsonSchema.create(schemaDefinition);
 
       // We keep our list of property keys in original form here so we can iterate over and map them.
       final List<String> properties = schema.properties.keys.toList()..sort();
