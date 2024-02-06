@@ -31,7 +31,7 @@ dependencies:
   rxdart: ^0.27.7
   web_socket_channel: ^2.3.0
   device_info_plus: ^8.1.0
-  package_info_plus: ^3.0.3
+  package_info_plus: ^4.2.0
   connectivity_plus: ^3.0.3
 
 dev_dependencies:
