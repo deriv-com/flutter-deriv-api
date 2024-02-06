@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -19,6 +19,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
@@ -32,7 +33,7 @@ class BinaryAPI extends BaseAPI {
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
-  IOWebSocketChannel? _webSocketChannel;
+  WebSocketChannel? _webSocketChannel;
 
   /// Stream subscription to API data.
   StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
@@ -73,13 +74,18 @@ class BinaryAPI extends BaseAPI {
 
     _logDebugInfo('connecting to $uri.');
 
-    await _setUserAgent();
-
+    if (!kIsWeb) {
+      await _setUserAgent();
+    }
     // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      '$uri',
-      pingInterval: _websocketConnectTimeOut,
-    );
+    if (kIsWeb) {
+      _webSocketChannel = WebSocketChannel.connect(uri);
+    } else {
+      _webSocketChannel = IOWebSocketChannel.connect(
+        '$uri',
+        pingInterval: _websocketConnectTimeOut,
+      );
+    }
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
