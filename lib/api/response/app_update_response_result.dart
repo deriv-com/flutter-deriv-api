@@ -25,10 +25,8 @@ abstract class AppUpdateResponseModel {
 class AppUpdateResponse extends AppUpdateResponseModel {
   /// Initializes App update response class.
   const AppUpdateResponse({
-    AppUpdate? appUpdate,
-  }) : super(
-          appUpdate: appUpdate,
-        );
+    super.appUpdate,
+  });
 
   /// Creates an instance from JSON.
   factory AppUpdateResponse.fromJson(
@@ -77,7 +75,6 @@ class AppUpdateResponse extends AppUpdateResponseModel {
         appUpdate: appUpdate ?? this.appUpdate,
       );
 }
-
 /// App update model class.
 abstract class AppUpdateModel {
   /// Initializes App update model class .
@@ -133,30 +130,18 @@ abstract class AppUpdateModel {
 class AppUpdate extends AppUpdateModel {
   /// Initializes App update class.
   const AppUpdate({
-    int? active,
-    int? appId,
-    double? appMarkupPercentage,
-    String? appstore,
-    String? github,
-    String? googleplay,
-    String? homepage,
-    String? name,
-    String? redirectUri,
-    List<String>? scopes,
-    String? verificationUri,
-  }) : super(
-          active: active,
-          appId: appId,
-          appMarkupPercentage: appMarkupPercentage,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          name: name,
-          redirectUri: redirectUri,
-          scopes: scopes,
-          verificationUri: verificationUri,
-        );
+    super.active,
+    super.appId,
+    super.appMarkupPercentage,
+    super.appstore,
+    super.github,
+    super.googleplay,
+    super.homepage,
+    super.name,
+    super.redirectUri,
+    super.scopes,
+    super.verificationUri,
+  });
 
   /// Creates an instance from JSON.
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(

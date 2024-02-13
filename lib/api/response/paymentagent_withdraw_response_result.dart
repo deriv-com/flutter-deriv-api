@@ -33,14 +33,10 @@ abstract class PaymentagentWithdrawResponseModel {
 class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// Initializes Paymentagent withdraw response class.
   const PaymentagentWithdrawResponse({
-    int? paymentagentWithdraw,
-    String? paymentagentName,
-    int? transactionId,
-  }) : super(
-          paymentagentWithdraw: paymentagentWithdraw,
-          paymentagentName: paymentagentName,
-          transactionId: transactionId,
-        );
+    super.paymentagentWithdraw,
+    super.paymentagentName,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentWithdrawResponse.fromJson(

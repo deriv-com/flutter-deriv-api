@@ -9,16 +9,14 @@ class CashierPaymentsRequest extends Request {
   /// Initialize CashierPaymentsRequest.
   const CashierPaymentsRequest({
     this.cashierPayments = true,
+    this.loginid,
     this.provider,
     this.subscribe,
     this.transactionType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cashier_payments',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'cashier_payments',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CashierPaymentsRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +24,7 @@ class CashierPaymentsRequest extends Request {
         cashierPayments: json['cashier_payments'] == null
             ? null
             : json['cashier_payments'] == 1,
+        loginid: json['loginid'] as String?,
         provider: json['provider'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         transactionType: json['transaction_type'] as String?,
@@ -35,6 +34,9 @@ class CashierPaymentsRequest extends Request {
 
   /// Must be `true`
   final bool? cashierPayments;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Cashier provider. `crypto` will be default option for crypto currency accounts.
   final String? provider;
@@ -53,6 +55,7 @@ class CashierPaymentsRequest extends Request {
             : cashierPayments!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'provider': provider,
         'subscribe': subscribe == null
             ? null
@@ -68,6 +71,7 @@ class CashierPaymentsRequest extends Request {
   @override
   CashierPaymentsRequest copyWith({
     bool? cashierPayments,
+    String? loginid,
     String? provider,
     bool? subscribe,
     String? transactionType,
@@ -76,6 +80,7 @@ class CashierPaymentsRequest extends Request {
   }) =>
       CashierPaymentsRequest(
         cashierPayments: cashierPayments ?? this.cashierPayments,
+        loginid: loginid ?? this.loginid,
         provider: provider ?? this.provider,
         subscribe: subscribe ?? this.subscribe,
         transactionType: transactionType ?? this.transactionType,

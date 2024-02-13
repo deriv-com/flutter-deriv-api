@@ -10,16 +10,14 @@ class P2pAdvertiserRelationsRequest extends Request {
   const P2pAdvertiserRelationsRequest({
     required this.addBlocked,
     required this.addFavourites,
+    this.loginid,
     this.p2pAdvertiserRelations = true,
     required this.removeBlocked,
     required this.removeFavourites,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_relations',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_relations',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserRelationsRequest.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +28,7 @@ class P2pAdvertiserRelationsRequest extends Request {
         addFavourites: (json['add_favourites'] as List<dynamic>?)
             ?.map<num>((dynamic item) => item as num)
             .toList(),
+        loginid: json['loginid'] as String?,
         p2pAdvertiserRelations: json['p2p_advertiser_relations'] == null
             ? null
             : json['p2p_advertiser_relations'] == 1,
@@ -49,6 +48,9 @@ class P2pAdvertiserRelationsRequest extends Request {
   /// IDs of advertisers to add as favourites.
   final List<num>? addFavourites;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pAdvertiserRelations;
 
@@ -63,6 +65,7 @@ class P2pAdvertiserRelationsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'add_blocked': addBlocked,
         'add_favourites': addFavourites,
+        'loginid': loginid,
         'p2p_advertiser_relations': p2pAdvertiserRelations == null
             ? null
             : p2pAdvertiserRelations!
@@ -79,6 +82,7 @@ class P2pAdvertiserRelationsRequest extends Request {
   P2pAdvertiserRelationsRequest copyWith({
     List<num>? addBlocked,
     List<num>? addFavourites,
+    String? loginid,
     bool? p2pAdvertiserRelations,
     List<num>? removeBlocked,
     List<num>? removeFavourites,
@@ -88,6 +92,7 @@ class P2pAdvertiserRelationsRequest extends Request {
       P2pAdvertiserRelationsRequest(
         addBlocked: addBlocked ?? this.addBlocked,
         addFavourites: addFavourites ?? this.addFavourites,
+        loginid: loginid ?? this.loginid,
         p2pAdvertiserRelations:
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
         removeBlocked: removeBlocked ?? this.removeBlocked,

@@ -11,14 +11,12 @@ class NotificationEventRequest extends Request {
     required this.args,
     required this.category,
     required this.event,
+    this.loginid,
     this.notificationEvent = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'notification_event',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'notification_event',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +24,7 @@ class NotificationEventRequest extends Request {
         args: json['args'] as Map<String, dynamic>?,
         category: json['category'] as String?,
         event: json['event'] as String?,
+        loginid: json['loginid'] as String?,
         notificationEvent: json['notification_event'] == null
             ? null
             : json['notification_event'] == 1,
@@ -42,6 +41,9 @@ class NotificationEventRequest extends Request {
   /// The name of the event.
   final String? event;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? notificationEvent;
 
@@ -51,6 +53,7 @@ class NotificationEventRequest extends Request {
         'args': args,
         'category': category,
         'event': event,
+        'loginid': loginid,
         'notification_event': notificationEvent == null
             ? null
             : notificationEvent!
@@ -66,6 +69,7 @@ class NotificationEventRequest extends Request {
     Map<String, dynamic>? args,
     String? category,
     String? event,
+    String? loginid,
     bool? notificationEvent,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -74,6 +78,7 @@ class NotificationEventRequest extends Request {
         args: args ?? this.args,
         category: category ?? this.category,
         event: event ?? this.event,
+        loginid: loginid ?? this.loginid,
         notificationEvent: notificationEvent ?? this.notificationEvent,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

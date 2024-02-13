@@ -9,16 +9,11 @@ class Mt5GetSettingsReceive extends Response {
   /// Initialize Mt5GetSettingsReceive.
   const Mt5GetSettingsReceive({
     this.mt5GetSettings,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5GetSettingsReceive.fromJson(Map<String, dynamic> json) =>

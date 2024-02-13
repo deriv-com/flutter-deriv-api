@@ -109,6 +109,7 @@ enum AccountCategoryEnum {
 
 /// PlatformEnum mapper.
 final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
+  "ctrader": PlatformEnum.ctrader,
   "derivez": PlatformEnum.derivez,
   "dtrade": PlatformEnum.dtrade,
   "dwallet": PlatformEnum.dwallet,
@@ -118,6 +119,9 @@ final Map<String, PlatformEnum> platformEnumMapper = <String, PlatformEnum>{
 
 /// Platform Enum.
 enum PlatformEnum {
+  /// ctrader.
+  ctrader,
+
   /// derivez.
   derivez,
 
@@ -155,7 +159,7 @@ abstract class AuthorizeModel {
     this.userId,
   });
 
-  /// List of accounts for current user.
+  /// List of accounts for current user. This is also available from the `account_list` call.
   final List<AccountListItem>? accountList;
 
   /// Cash balance of the account.
@@ -373,6 +377,7 @@ abstract class AccountListItemModel {
   const AccountListItemModel({
     this.accountCategory,
     this.accountType,
+    this.broker,
     this.createdAt,
     this.currency,
     this.excludedUntil,
@@ -388,6 +393,9 @@ abstract class AccountListItemModel {
 
   /// Account type.
   final String? accountType;
+
+  /// 2 letter broker code.
+  final String? broker;
 
   /// Creation time of the account as epoch.
   final DateTime? createdAt;
@@ -420,6 +428,7 @@ class AccountListItem extends AccountListItemModel {
   const AccountListItem({
     super.accountCategory,
     super.accountType,
+    super.broker,
     super.createdAt,
     super.currency,
     super.excludedUntil,
@@ -437,6 +446,7 @@ class AccountListItem extends AccountListItemModel {
             ? null
             : accountCategoryEnumMapper[json['account_category']],
         accountType: json['account_type'],
+        broker: json['broker'],
         createdAt: getDateTime(json['created_at']),
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
@@ -462,6 +472,7 @@ class AccountListItem extends AccountListItemModel {
             entry.value == accountCategory)
         .key;
     resultMap['account_type'] = accountType;
+    resultMap['broker'] = broker;
     resultMap['created_at'] = getSecondsSinceEpochDateTime(createdAt);
     resultMap['currency'] = currency;
     resultMap['excluded_until'] = getSecondsSinceEpochDateTime(excludedUntil);
@@ -484,6 +495,7 @@ class AccountListItem extends AccountListItemModel {
   AccountListItem copyWith({
     AccountCategoryEnum? accountCategory,
     String? accountType,
+    String? broker,
     DateTime? createdAt,
     String? currency,
     DateTime? excludedUntil,
@@ -496,6 +508,7 @@ class AccountListItem extends AccountListItemModel {
       AccountListItem(
         accountCategory: accountCategory ?? this.accountCategory,
         accountType: accountType ?? this.accountType,
+        broker: broker ?? this.broker,
         createdAt: createdAt ?? this.createdAt,
         currency: currency ?? this.currency,
         excludedUntil: excludedUntil ?? this.excludedUntil,

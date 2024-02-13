@@ -271,6 +271,8 @@ abstract class ProposalOpenContractModel {
     this.purchaseTime,
     this.resetBarrier,
     this.resetTime,
+    this.selectedSpot,
+    this.selectedTick,
     this.sellPrice,
     this.sellSpot,
     this.sellSpotDisplayValue,
@@ -452,6 +454,12 @@ abstract class ProposalOpenContractModel {
   /// [Only for reset trades i.e. RESETCALL and RESETPUT] The epoch time of a barrier reset.
   final DateTime? resetTime;
 
+  /// Spot value at the selected tick for the contract.
+  final double? selectedSpot;
+
+  /// [Only for highlowticks trades i.e. TICKHIGH and TICKLOW] Selected tick for the contract.
+  final int? selectedTick;
+
   /// Price at which contract was sold, only available when contract has been sold.
   final double? sellPrice;
 
@@ -554,6 +562,8 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     super.purchaseTime,
     super.resetBarrier,
     super.resetTime,
+    super.selectedSpot,
+    super.selectedTick,
     super.sellPrice,
     super.sellSpot,
     super.sellSpotDisplayValue,
@@ -634,6 +644,8 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         purchaseTime: getDateTime(json['purchase_time']),
         resetBarrier: json['reset_barrier'],
         resetTime: getDateTime(json['reset_time']),
+        selectedSpot: getDouble(json['selected_spot']),
+        selectedTick: json['selected_tick'],
         sellPrice: getDouble(json['sell_price']),
         sellSpot: getDouble(json['sell_spot']),
         sellSpotDisplayValue: json['sell_spot_display_value'],
@@ -725,6 +737,8 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
     resultMap['reset_barrier'] = resetBarrier;
     resultMap['reset_time'] = getSecondsSinceEpochDateTime(resetTime);
+    resultMap['selected_spot'] = selectedSpot;
+    resultMap['selected_tick'] = selectedTick;
     resultMap['sell_price'] = sellPrice;
     resultMap['sell_spot'] = sellSpot;
     resultMap['sell_spot_display_value'] = sellSpotDisplayValue;
@@ -811,6 +825,8 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     DateTime? purchaseTime,
     String? resetBarrier,
     DateTime? resetTime,
+    double? selectedSpot,
+    int? selectedTick,
     double? sellPrice,
     double? sellSpot,
     String? sellSpotDisplayValue,
@@ -888,6 +904,8 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         purchaseTime: purchaseTime ?? this.purchaseTime,
         resetBarrier: resetBarrier ?? this.resetBarrier,
         resetTime: resetTime ?? this.resetTime,
+        selectedSpot: selectedSpot ?? this.selectedSpot,
+        selectedTick: selectedTick ?? this.selectedTick,
         sellPrice: sellPrice ?? this.sellPrice,
         sellSpot: sellSpot ?? this.sellSpot,
         sellSpotDisplayValue: sellSpotDisplayValue ?? this.sellSpotDisplayValue,
