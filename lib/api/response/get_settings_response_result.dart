@@ -130,7 +130,6 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           allowCopiers: getSettings?.allowCopiers,
           citizen: getSettings?.citizen,
           dateOfBirth: getStringFromDateTime(getSettings?.dateOfBirth),
-          dxtradeUserException: getSettings?.dxtradeUserException,
           emailConsent: getSettings?.emailConsent,
           firstName: getSettings?.firstName,
           lastName: getSettings?.lastName,
@@ -144,6 +143,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           secretQuestion: secretQuestion,
           taxIdentificationNumber: getSettings?.taxIdentificationNumber,
           taxResidence: getSettings?.taxResidence,
+          dxtradeUserException: getSettings?.dxtradeUserException,
         ),
       );
 

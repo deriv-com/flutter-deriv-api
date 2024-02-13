@@ -18,7 +18,9 @@ class Mt5NewAccountRequest extends Request {
     required this.email,
     this.investPassword,
     required this.leverage,
+    this.loginid,
     required this.mainPassword,
+    this.migrate,
     this.mt5AccountCategory,
     this.mt5AccountType,
     this.mt5NewAccount = true,
@@ -47,7 +49,9 @@ class Mt5NewAccountRequest extends Request {
         email: json['email'] as String?,
         investPassword: json['investPassword'] as String?,
         leverage: json['leverage'] as num?,
+        loginid: json['loginid'] as String?,
         mainPassword: json['mainPassword'] as String?,
+        migrate: json['migrate'] as dynamic,
         mt5AccountCategory: json['mt5_account_category'] as String?,
         mt5AccountType: json['mt5_account_type'] as String?,
         mt5NewAccount: json['mt5_new_account'] == null
@@ -94,8 +98,14 @@ class Mt5NewAccountRequest extends Request {
   /// Client leverage (from 1 to 1000).
   final num? leverage;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
   final String? mainPassword;
+
+  /// [Optional] Indicates whether the user would like to migrate his account to other jurisdiction.
+  final dynamic migrate;
 
   /// [Optional] To choose whether account is conventional or swap_free. Unavailable for financial_stp MT5_account_type
   final String? mt5AccountCategory;
@@ -144,7 +154,9 @@ class Mt5NewAccountRequest extends Request {
         'email': email,
         'investPassword': investPassword,
         'leverage': leverage,
+        'loginid': loginid,
         'mainPassword': mainPassword,
+        'migrate': migrate,
         'mt5_account_category': mt5AccountCategory,
         'mt5_account_type': mt5AccountType,
         'mt5_new_account': mt5NewAccount == null
@@ -176,7 +188,9 @@ class Mt5NewAccountRequest extends Request {
     String? email,
     String? investPassword,
     num? leverage,
+    String? loginid,
     String? mainPassword,
+    dynamic migrate,
     String? mt5AccountCategory,
     String? mt5AccountType,
     bool? mt5NewAccount,
@@ -201,7 +215,9 @@ class Mt5NewAccountRequest extends Request {
         email: email ?? this.email,
         investPassword: investPassword ?? this.investPassword,
         leverage: leverage ?? this.leverage,
+        loginid: loginid ?? this.loginid,
         mainPassword: mainPassword ?? this.mainPassword,
+        migrate: migrate ?? this.migrate,
         mt5AccountCategory: mt5AccountCategory ?? this.mt5AccountCategory,
         mt5AccountType: mt5AccountType ?? this.mt5AccountType,
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,

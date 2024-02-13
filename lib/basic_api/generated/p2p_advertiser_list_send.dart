@@ -11,17 +11,15 @@ class P2pAdvertiserListRequest extends Request {
     this.advertiserName,
     this.isBlocked,
     this.limit,
+    this.loginid,
     this.offset,
     this.p2pAdvertiserList = true,
     this.sortBy,
     this.tradePartners,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserListRequest.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +27,7 @@ class P2pAdvertiserListRequest extends Request {
         advertiserName: json['advertiser_name'] as String?,
         isBlocked: json['is_blocked'] == null ? null : json['is_blocked'] == 1,
         limit: json['limit'] as int?,
+        loginid: json['loginid'] as String?,
         offset: json['offset'] as int?,
         p2pAdvertiserList: json['p2p_advertiser_list'] == null
             ? null
@@ -48,6 +47,9 @@ class P2pAdvertiserListRequest extends Request {
 
   /// [Optional] Used for paging.
   final int? limit;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Used for paging.
   final int? offset;
@@ -71,6 +73,7 @@ class P2pAdvertiserListRequest extends Request {
                 ? 1
                 : 0,
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'p2p_advertiser_list': p2pAdvertiserList == null
             ? null
@@ -93,6 +96,7 @@ class P2pAdvertiserListRequest extends Request {
     String? advertiserName,
     bool? isBlocked,
     int? limit,
+    String? loginid,
     int? offset,
     bool? p2pAdvertiserList,
     String? sortBy,
@@ -104,6 +108,7 @@ class P2pAdvertiserListRequest extends Request {
         advertiserName: advertiserName ?? this.advertiserName,
         isBlocked: isBlocked ?? this.isBlocked,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         p2pAdvertiserList: p2pAdvertiserList ?? this.p2pAdvertiserList,
         sortBy: sortBy ?? this.sortBy,

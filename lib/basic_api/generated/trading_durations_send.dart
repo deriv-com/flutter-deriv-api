@@ -10,6 +10,7 @@ class TradingDurationsRequest extends Request {
   const TradingDurationsRequest({
     required this.landingCompany,
     this.landingCompanyShort,
+    this.loginid,
     this.tradingDurations = true,
     super.msgType = 'trading_durations',
     super.passthrough,
@@ -21,6 +22,7 @@ class TradingDurationsRequest extends Request {
       TradingDurationsRequest(
         landingCompany: json['landing_company'] as String?,
         landingCompanyShort: json['landing_company_short'] as String?,
+        loginid: json['loginid'] as String?,
         tradingDurations: json['trading_durations'] == null
             ? null
             : json['trading_durations'] == 1,
@@ -34,6 +36,9 @@ class TradingDurationsRequest extends Request {
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String? landingCompanyShort;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? tradingDurations;
 
@@ -42,6 +47,7 @@ class TradingDurationsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company': landingCompany,
         'landing_company_short': landingCompanyShort,
+        'loginid': loginid,
         'trading_durations': tradingDurations == null
             ? null
             : tradingDurations!
@@ -56,6 +62,7 @@ class TradingDurationsRequest extends Request {
   TradingDurationsRequest copyWith({
     String? landingCompany,
     String? landingCompanyShort,
+    String? loginid,
     bool? tradingDurations,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -63,6 +70,7 @@ class TradingDurationsRequest extends Request {
       TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
+        loginid: loginid ?? this.loginid,
         tradingDurations: tradingDurations ?? this.tradingDurations,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

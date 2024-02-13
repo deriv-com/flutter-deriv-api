@@ -10,15 +10,13 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
   const P2pAdvertiserPaymentMethodsRequest({
     required this.create,
     required this.delete,
+    this.loginid,
     this.p2pAdvertiserPaymentMethods = true,
     required this.update,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_payment_methods',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_payment_methods',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserPaymentMethodsRequest.fromJson(
@@ -31,6 +29,7 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
         delete: (json['delete'] as List<dynamic>?)
             ?.map<num>((dynamic item) => item as num)
             .toList(),
+        loginid: json['loginid'] as String?,
         p2pAdvertiserPaymentMethods:
             json['p2p_advertiser_payment_methods'] == null
                 ? null
@@ -46,6 +45,9 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
   /// Contains payment methods to delete.
   final List<num>? delete;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pAdvertiserPaymentMethods;
 
@@ -57,6 +59,7 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'create': create,
         'delete': delete,
+        'loginid': loginid,
         'p2p_advertiser_payment_methods': p2pAdvertiserPaymentMethods == null
             ? null
             : p2pAdvertiserPaymentMethods!
@@ -72,6 +75,7 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
   P2pAdvertiserPaymentMethodsRequest copyWith({
     List<Map<String, dynamic>>? create,
     List<num>? delete,
+    String? loginid,
     bool? p2pAdvertiserPaymentMethods,
     Map<String, dynamic>? update,
     Map<String, dynamic>? passthrough,
@@ -80,6 +84,7 @@ class P2pAdvertiserPaymentMethodsRequest extends Request {
       P2pAdvertiserPaymentMethodsRequest(
         create: create ?? this.create,
         delete: delete ?? this.delete,
+        loginid: loginid ?? this.loginid,
         p2pAdvertiserPaymentMethods:
             p2pAdvertiserPaymentMethods ?? this.p2pAdvertiserPaymentMethods,
         update: update ?? this.update,

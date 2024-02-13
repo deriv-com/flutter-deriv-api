@@ -9,22 +9,21 @@ class ServiceTokenRequest extends Request {
   /// Initialize ServiceTokenRequest.
   const ServiceTokenRequest({
     this.country,
+    this.loginid,
     this.referrer,
     required this.server,
     this.service,
     this.serviceToken = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'service_token',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'service_token',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>
       ServiceTokenRequest(
         country: json['country'] as String?,
+        loginid: json['loginid'] as String?,
         referrer: json['referrer'] as String?,
         server: json['server'] as String?,
         service: json['service'] as dynamic,
@@ -36,6 +35,9 @@ class ServiceTokenRequest extends Request {
 
   /// [Optional] The 2-letter country code.
   final String? country;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] The URL of the web page where the Web SDK will be used.
   final String? referrer;
@@ -53,6 +55,7 @@ class ServiceTokenRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'country': country,
+        'loginid': loginid,
         'referrer': referrer,
         'server': server,
         'service': service,
@@ -69,6 +72,7 @@ class ServiceTokenRequest extends Request {
   @override
   ServiceTokenRequest copyWith({
     String? country,
+    String? loginid,
     String? referrer,
     String? server,
     dynamic service,
@@ -78,6 +82,7 @@ class ServiceTokenRequest extends Request {
   }) =>
       ServiceTokenRequest(
         country: country ?? this.country,
+        loginid: loginid ?? this.loginid,
         referrer: referrer ?? this.referrer,
         server: server ?? this.server,
         service: service ?? this.service,

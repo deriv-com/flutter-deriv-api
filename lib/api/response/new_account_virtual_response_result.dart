@@ -25,10 +25,8 @@ abstract class NewAccountVirtualResponseModel {
 class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// Initializes New account virtual response class.
   const NewAccountVirtualResponse({
-    NewAccountVirtual? newAccountVirtual,
-  }) : super(
-          newAccountVirtual: newAccountVirtual,
-        );
+    super.newAccountVirtual,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountVirtualResponse.fromJson(
@@ -94,7 +92,6 @@ enum TypeEnum {
   /// wallet.
   wallet,
 }
-
 /// New account virtual model class.
 abstract class NewAccountVirtualModel {
   /// Initializes New account virtual model class .
@@ -134,22 +131,14 @@ abstract class NewAccountVirtualModel {
 class NewAccountVirtual extends NewAccountVirtualModel {
   /// Initializes New account virtual class.
   const NewAccountVirtual({
-    required double balance,
-    required String clientId,
-    required String currency,
-    required String email,
-    required String oauthToken,
-    String? refreshToken,
-    TypeEnum? type,
-  }) : super(
-          balance: balance,
-          clientId: clientId,
-          currency: currency,
-          email: email,
-          oauthToken: oauthToken,
-          refreshToken: refreshToken,
-          type: type,
-        );
+    required super.balance,
+    required super.clientId,
+    required super.currency,
+    required super.email,
+    required super.oauthToken,
+    super.refreshToken,
+    super.type,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountVirtual.fromJson(Map<String, dynamic> json) =>

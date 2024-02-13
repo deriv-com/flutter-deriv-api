@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/p2p_advert_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dart';
@@ -221,7 +221,6 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
-
 /// P2p advert create model class.
 abstract class P2pAdvertCreateModel {
   /// Initializes P2p advert create model class .
@@ -258,6 +257,10 @@ abstract class P2pAdvertCreateModel {
     this.contactInfo,
     this.effectiveRate,
     this.effectiveRateDisplay,
+    this.eligibleCountries,
+    this.minCompletionRate,
+    this.minJoinDays,
+    this.minRating,
     this.paymentInfo,
     this.paymentMethod,
     this.paymentMethodDetails,
@@ -363,6 +366,18 @@ abstract class P2pAdvertCreateModel {
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
 
+  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders against this advert.
+  final List<String>? eligibleCountries;
+
+  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders against this advert.
+  final double? minCompletionRate;
+
+  /// Counterparties who joined less than this number of days ago are not allowed to place orders against this advert.
+  final int? minJoinDays;
+
+  /// Counterparties who have an average rating less than this value are not allowed to place orders against this advert.
+  final double? minRating;
+
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
@@ -431,6 +446,10 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     super.contactInfo,
     super.effectiveRate,
     super.effectiveRateDisplay,
+    super.eligibleCountries,
+    super.minCompletionRate,
+    super.minJoinDays,
+    super.minRating,
     super.paymentInfo,
     super.paymentMethod,
     super.paymentMethodDetails,
@@ -477,6 +496,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         contactInfo: json['contact_info'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
+        eligibleCountries: json['eligible_countries'] == null
+            ? null
+            : List<String>.from(
+                json['eligible_countries']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        minCompletionRate: getDouble(json['min_completion_rate']),
+        minJoinDays: json['min_join_days'],
+        minRating: getDouble(json['min_rating']),
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
@@ -556,6 +585,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     resultMap['contact_info'] = contactInfo;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
+    if (eligibleCountries != null) {
+      resultMap['eligible_countries'] = eligibleCountries!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['min_completion_rate'] = minCompletionRate;
+    resultMap['min_join_days'] = minJoinDays;
+    resultMap['min_rating'] = minRating;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
@@ -618,6 +657,10 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     String? contactInfo,
     double? effectiveRate,
     String? effectiveRateDisplay,
+    List<String>? eligibleCountries,
+    double? minCompletionRate,
+    int? minJoinDays,
+    double? minRating,
     String? paymentInfo,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
@@ -664,6 +707,10 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         contactInfo: contactInfo ?? this.contactInfo,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
+        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
+        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
+        minJoinDays: minJoinDays ?? this.minJoinDays,
+        minRating: minRating ?? this.minRating,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
@@ -673,7 +720,6 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -815,7 +861,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
-
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -944,7 +989,6 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .

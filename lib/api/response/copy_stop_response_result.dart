@@ -25,10 +25,8 @@ abstract class CopyStopResponseModel {
 class CopyStopResponse extends CopyStopResponseModel {
   /// Initializes Copy stop response class.
   const CopyStopResponse({
-    int? copyStop,
-  }) : super(
-          copyStop: copyStop,
-        );
+    super.copyStop,
+  });
 
   /// Creates an instance from JSON.
   factory CopyStopResponse.fromJson(

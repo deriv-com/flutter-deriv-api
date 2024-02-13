@@ -25,10 +25,8 @@ abstract class PingResponseModel {
 class PingResponse extends PingResponseModel {
   /// Initializes Ping response class.
   const PingResponse({
-    PingEnum? ping,
-  }) : super(
-          ping: ping,
-        );
+    super.ping,
+  });
 
   /// Creates an instance from JSON.
   factory PingResponse.fromJson(

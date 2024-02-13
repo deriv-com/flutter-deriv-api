@@ -17,12 +17,13 @@ class SetSettingsRequest extends Request {
     this.allowCopiers,
     this.citizen,
     this.dateOfBirth,
-    this.dxtradeUserException,
+    required this.dxtradeUserException,
     this.emailConsent,
     this.employmentStatus,
     this.featureFlag,
     this.firstName,
     this.lastName,
+    this.loginid,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
@@ -63,6 +64,7 @@ class SetSettingsRequest extends Request {
         featureFlag: json['feature_flag'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
+        loginid: json['loginid'] as String?,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
         phone: json['phone'] as String?,
         placeOfBirth: json['place_of_birth'] as String?,
@@ -126,6 +128,9 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? lastName;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
   final int? nonPepDeclaration;
@@ -196,6 +201,7 @@ class SetSettingsRequest extends Request {
         'feature_flag': featureFlag,
         'first_name': firstName,
         'last_name': lastName,
+        'loginid': loginid,
         'non_pep_declaration': nonPepDeclaration,
         'phone': phone,
         'place_of_birth': placeOfBirth,
@@ -239,6 +245,7 @@ class SetSettingsRequest extends Request {
     Map<String, dynamic>? featureFlag,
     String? firstName,
     String? lastName,
+    String? loginid,
     int? nonPepDeclaration,
     String? phone,
     String? placeOfBirth,
@@ -271,6 +278,7 @@ class SetSettingsRequest extends Request {
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        loginid: loginid ?? this.loginid,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
