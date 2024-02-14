@@ -11,7 +11,7 @@ void main() {
       () {
         connectionCubit = ConnectionCubit(
           ConnectionInformation(appId: '', brand: '', endpoint: '',authEndpoint: ''),
-          api: MockAPI(),
+          api: MockAPI(), onProxyFound: (String proxy) {  },
         );
       },
     );

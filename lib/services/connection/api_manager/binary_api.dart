@@ -79,50 +79,44 @@ class BinaryAPI extends BaseAPI {
     _logDebugInfo('connecting to $uri.');
 
     await _setUserAgent();
-    final String proxy =
-        await FlutterSystemProxy.findProxyFromEnvironment(uri.toString());
-    print('@@@@@ Proxy: $proxy');
+    final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
+        uri.toString().replaceAll('wss', 'https'));
+
+    final HttpClient client = HttpClient();
+    client.findProxy = (uri) => proxy;
 
     onProxyFound(proxy);
 
-    HttpOverrides.runWithHttpOverrides(
-      () {
-        // Initialize connection to websocket server.
-        _webSocketChannel = IOWebSocketChannel.connect(
-          '$uri',
-          pingInterval: _websocketConnectTimeOut,
-        );
+    // Initialize connection to websocket server.
+    _webSocketChannel = IOWebSocketChannel.connect('$uri',
+        pingInterval: _websocketConnectTimeOut, customClient: client);
 
-        _webSocketListener = _webSocketChannel?.stream
-            .map<Map<String, dynamic>?>(
-                (Object? result) => jsonDecode('$result'))
-            .listen(
-          (Map<String, dynamic>? message) {
-            onOpen?.call(key);
+    _webSocketListener = _webSocketChannel?.stream
+        .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
+        .listen(
+      (Map<String, dynamic>? message) {
+        onOpen?.call(key);
 
-            if (message != null) {
-              _handleResponse(message, printResponse: printResponse);
-            }
-          },
-          onDone: () async {
-            _logDebugInfo('the websocket is closed.');
-
-            onDone?.call(key);
-          },
-          onError: (Object error) {
-            _logDebugInfo(
-              'the websocket connection is closed with error.',
-              error: error,
-            );
-
-            onError?.call(key);
-          },
-        );
-
-        _logDebugInfo('send initial message.');
+        if (message != null) {
+          _handleResponse(message, printResponse: printResponse);
+        }
       },
-      _CustomHttpOverrides(proxy),
+      onDone: () async {
+        _logDebugInfo('the websocket is closed.');
+
+        onDone?.call(key);
+      },
+      onError: (Object error) {
+        _logDebugInfo(
+          'the websocket connection is closed with error.',
+          error: error,
+        );
+
+        onError?.call(key);
+      },
     );
+
+    _logDebugInfo('send initial message.');
   }
 
   void _resetCallManagers() {
