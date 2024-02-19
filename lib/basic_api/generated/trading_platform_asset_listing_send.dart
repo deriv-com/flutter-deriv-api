@@ -8,6 +8,7 @@ import '../request.dart';
 class TradingPlatformAssetListingRequest extends Request {
   /// Initialize TradingPlatformAssetListingRequest.
   const TradingPlatformAssetListingRequest({
+    this.loginid,
     required this.platform,
     required this.region,
     this.subscribe,
@@ -22,6 +23,7 @@ class TradingPlatformAssetListingRequest extends Request {
   factory TradingPlatformAssetListingRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformAssetListingRequest(
+        loginid: json['loginid'] as String?,
         platform: json['platform'] as String?,
         region: json['region'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
@@ -33,6 +35,9 @@ class TradingPlatformAssetListingRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Trading platform name
   final String? platform;
@@ -52,6 +57,7 @@ class TradingPlatformAssetListingRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'platform': platform,
         'region': region,
         'subscribe': subscribe == null
@@ -72,6 +78,7 @@ class TradingPlatformAssetListingRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingPlatformAssetListingRequest copyWith({
+    String? loginid,
     String? platform,
     String? region,
     bool? subscribe,
@@ -81,6 +88,7 @@ class TradingPlatformAssetListingRequest extends Request {
     int? reqId,
   }) =>
       TradingPlatformAssetListingRequest(
+        loginid: loginid ?? this.loginid,
         platform: platform ?? this.platform,
         region: region ?? this.region,
         subscribe: subscribe ?? this.subscribe,

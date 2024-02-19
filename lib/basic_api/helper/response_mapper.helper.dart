@@ -4,9 +4,13 @@
 // function that maps the `msg_type`s to equivalent Response objects
 
 import '../generated/account_closure_receive.dart';
+import '../generated/account_list_receive.dart';
 import '../generated/account_security_receive.dart';
 import '../generated/account_statistics_receive.dart';
 import '../generated/active_symbols_receive.dart';
+import '../generated/affiliate_add_company_receive.dart';
+import '../generated/affiliate_add_person_receive.dart';
+import '../generated/affiliate_register_person_receive.dart';
 import '../generated/api_token_receive.dart';
 import '../generated/app_delete_receive.dart';
 import '../generated/app_get_receive.dart';
@@ -27,6 +31,7 @@ import '../generated/cashier_receive.dart';
 import '../generated/cashier_withdrawal_cancel_receive.dart';
 import '../generated/change_email_receive.dart';
 import '../generated/change_password_receive.dart';
+import '../generated/confirm_email_receive.dart';
 import '../generated/contract_update_history_receive.dart';
 import '../generated/contract_update_receive.dart';
 import '../generated/contracts_for_receive.dart';
@@ -35,6 +40,7 @@ import '../generated/copy_stop_receive.dart';
 import '../generated/copytrading_list_receive.dart';
 import '../generated/copytrading_statistics_receive.dart';
 import '../generated/crypto_config_receive.dart';
+import '../generated/crypto_estimations_receive.dart';
 import '../generated/document_upload_receive.dart';
 import '../generated/economic_calendar_receive.dart';
 import '../generated/exchange_rates_receive.dart';
@@ -47,6 +53,8 @@ import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
 import '../generated/get_settings_receive.dart';
 import '../generated/identity_verification_document_add_receive.dart';
+import '../generated/jtoken_create_receive.dart';
+import '../generated/kyc_auth_status_receive.dart';
 import '../generated/landing_company_details_receive.dart';
 import '../generated/landing_company_receive.dart';
 import '../generated/link_wallet_receive.dart';
@@ -87,11 +95,20 @@ import '../generated/p2p_order_list_receive.dart';
 import '../generated/p2p_order_review_receive.dart';
 import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/p2p_ping_receive.dart';
+import '../generated/p2p_settings_receive.dart';
+import '../generated/passkeys_list_receive.dart';
+import '../generated/passkeys_login_receive.dart';
+import '../generated/passkeys_options_receive.dart';
+import '../generated/passkeys_register_options_receive.dart';
+import '../generated/passkeys_register_receive.dart';
+import '../generated/passkeys_rename_receive.dart';
+import '../generated/passkeys_revoke_receive.dart';
 import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_create_receive.dart';
 import '../generated/paymentagent_details_receive.dart';
 import '../generated/paymentagent_list_receive.dart';
 import '../generated/paymentagent_transfer_receive.dart';
+import '../generated/paymentagent_withdraw_justification_receive.dart';
 import '../generated/paymentagent_withdraw_receive.dart';
 import '../generated/payout_currencies_receive.dart';
 import '../generated/ping_receive.dart';
@@ -126,6 +143,7 @@ import '../generated/trading_platform_available_accounts_receive.dart';
 import '../generated/trading_platform_deposit_receive.dart';
 import '../generated/trading_platform_investor_password_change_receive.dart';
 import '../generated/trading_platform_investor_password_reset_receive.dart';
+import '../generated/trading_platform_leverage_receive.dart';
 import '../generated/trading_platform_new_account_receive.dart';
 import '../generated/trading_platform_password_change_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
@@ -139,6 +157,7 @@ import '../generated/unsubscribe_email_receive.dart';
 import '../generated/verify_email_cellxpert_receive.dart';
 import '../generated/verify_email_receive.dart';
 import '../generated/wallet_migration_receive.dart';
+import '../generated/website_config_receive.dart';
 import '../generated/website_status_receive.dart';
 import '../response.dart';
 
@@ -148,12 +167,20 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
     case 'account_closure':
       return AccountClosureReceive.fromJson(responseMap);
+    case 'account_list':
+      return AccountListReceive.fromJson(responseMap);
     case 'account_security':
       return AccountSecurityReceive.fromJson(responseMap);
     case 'account_statistics':
       return AccountStatisticsReceive.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsReceive.fromJson(responseMap);
+    case 'affiliate_add_company':
+      return AffiliateAddCompanyReceive.fromJson(responseMap);
+    case 'affiliate_add_person':
+      return AffiliateAddPersonReceive.fromJson(responseMap);
+    case 'affiliate_register_person':
+      return AffiliateRegisterPersonReceive.fromJson(responseMap);
     case 'api_token':
       return ApiTokenReceive.fromJson(responseMap);
     case 'app_delete':
@@ -194,6 +221,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ChangeEmailReceive.fromJson(responseMap);
     case 'change_password':
       return ChangePasswordReceive.fromJson(responseMap);
+    case 'confirm_email':
+      return ConfirmEmailReceive.fromJson(responseMap);
     case 'contract_update_history':
       return ContractUpdateHistoryReceive.fromJson(responseMap);
     case 'contract_update':
@@ -210,6 +239,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return CopytradingStatisticsReceive.fromJson(responseMap);
     case 'crypto_config':
       return CryptoConfigReceive.fromJson(responseMap);
+    case 'crypto_estimations':
+      return CryptoEstimationsReceive.fromJson(responseMap);
     case 'document_upload':
       return DocumentUploadReceive.fromJson(responseMap);
     case 'economic_calendar':
@@ -234,6 +265,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return GetSettingsReceive.fromJson(responseMap);
     case 'identity_verification_document_add':
       return IdentityVerificationDocumentAddReceive.fromJson(responseMap);
+    case 'jtoken_create':
+      return JtokenCreateReceive.fromJson(responseMap);
+    case 'kyc_auth_status':
+      return KycAuthStatusReceive.fromJson(responseMap);
     case 'landing_company_details':
       return LandingCompanyDetailsReceive.fromJson(responseMap);
     case 'landing_company':
@@ -314,6 +349,22 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pPaymentMethodsReceive.fromJson(responseMap);
     case 'p2p_ping':
       return P2pPingReceive.fromJson(responseMap);
+    case 'p2p_settings':
+      return P2pSettingsReceive.fromJson(responseMap);
+    case 'passkeys_list':
+      return PasskeysListReceive.fromJson(responseMap);
+    case 'passkeys_login':
+      return PasskeysLoginReceive.fromJson(responseMap);
+    case 'passkeys_options':
+      return PasskeysOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register_options':
+      return PasskeysRegisterOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register':
+      return PasskeysRegisterReceive.fromJson(responseMap);
+    case 'passkeys_rename':
+      return PasskeysRenameReceive.fromJson(responseMap);
+    case 'passkeys_revoke':
+      return PasskeysRevokeReceive.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsReceive.fromJson(responseMap);
     case 'paymentagent_create':
@@ -324,6 +375,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return PaymentagentListReceive.fromJson(responseMap);
     case 'paymentagent_transfer':
       return PaymentagentTransferReceive.fromJson(responseMap);
+    case 'paymentagent_withdraw_justification':
+      return PaymentagentWithdrawJustificationReceive.fromJson(responseMap);
     case 'paymentagent_withdraw':
       return PaymentagentWithdrawReceive.fromJson(responseMap);
     case 'payout_currencies':
@@ -392,6 +445,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingPlatformInvestorPasswordChangeReceive.fromJson(responseMap);
     case 'trading_platform_investor_password_reset':
       return TradingPlatformInvestorPasswordResetReceive.fromJson(responseMap);
+    case 'trading_platform_leverage':
+      return TradingPlatformLeverageReceive.fromJson(responseMap);
     case 'trading_platform_new_account':
       return TradingPlatformNewAccountReceive.fromJson(responseMap);
     case 'trading_platform_password_change':
@@ -418,6 +473,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return VerifyEmailReceive.fromJson(responseMap);
     case 'wallet_migration':
       return WalletMigrationReceive.fromJson(responseMap);
+    case 'website_config':
+      return WebsiteConfigReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
 

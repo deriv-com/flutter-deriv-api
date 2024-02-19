@@ -11,7 +11,7 @@ class NewAccountRealRequest extends Request {
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
-    this.addressLine1,
+    required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -19,14 +19,15 @@ class NewAccountRealRequest extends Request {
     this.citizen,
     this.clientType,
     this.currency,
-    this.dateOfBirth,
-    this.firstName,
-    this.lastName,
+    required this.dateOfBirth,
+    required this.firstName,
+    required this.lastName,
+    this.loginid,
     this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
-    this.residence,
+    required this.residence,
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,
@@ -54,6 +55,7 @@ class NewAccountRealRequest extends Request {
         dateOfBirth: json['date_of_birth'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
+        loginid: json['loginid'] as String?,
         newAccountReal: json['new_account_real'] == null
             ? null
             : json['new_account_real'] == 1,
@@ -112,6 +114,9 @@ class NewAccountRealRequest extends Request {
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? lastName;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? newAccountReal;
 
@@ -159,6 +164,7 @@ class NewAccountRealRequest extends Request {
         'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
+        'loginid': loginid,
         'new_account_real': newAccountReal == null
             ? null
             : newAccountReal!
@@ -194,6 +200,7 @@ class NewAccountRealRequest extends Request {
     String? dateOfBirth,
     String? firstName,
     String? lastName,
+    String? loginid,
     bool? newAccountReal,
     int? nonPepDeclaration,
     String? phone,
@@ -222,6 +229,7 @@ class NewAccountRealRequest extends Request {
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        loginid: loginid ?? this.loginid,
         newAccountReal: newAccountReal ?? this.newAccountReal,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,

@@ -10,21 +10,20 @@ class Mt5WithdrawalRequest extends Request {
   const Mt5WithdrawalRequest({
     required this.amount,
     required this.fromMt5,
+    this.loginid,
     this.mt5Withdrawal = true,
     required this.toBinary,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_withdrawal',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_withdrawal',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       Mt5WithdrawalRequest(
         amount: json['amount'] as num?,
         fromMt5: json['from_mt5'] as String?,
+        loginid: json['loginid'] as String?,
         mt5Withdrawal:
             json['mt5_withdrawal'] == null ? null : json['mt5_withdrawal'] == 1,
         toBinary: json['to_binary'] as String?,
@@ -38,6 +37,9 @@ class Mt5WithdrawalRequest extends Request {
   /// MT5 account login to withdraw money from
   final String? fromMt5;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? mt5Withdrawal;
 
@@ -49,6 +51,7 @@ class Mt5WithdrawalRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_mt5': fromMt5,
+        'loginid': loginid,
         'mt5_withdrawal': mt5Withdrawal == null
             ? null
             : mt5Withdrawal!
@@ -64,6 +67,7 @@ class Mt5WithdrawalRequest extends Request {
   Mt5WithdrawalRequest copyWith({
     num? amount,
     String? fromMt5,
+    String? loginid,
     bool? mt5Withdrawal,
     String? toBinary,
     Map<String, dynamic>? passthrough,
@@ -72,6 +76,7 @@ class Mt5WithdrawalRequest extends Request {
       Mt5WithdrawalRequest(
         amount: amount ?? this.amount,
         fromMt5: fromMt5 ?? this.fromMt5,
+        loginid: loginid ?? this.loginid,
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
         toBinary: toBinary ?? this.toBinary,
         passthrough: passthrough ?? this.passthrough,
