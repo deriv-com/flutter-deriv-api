@@ -21,7 +21,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
-    required Function(String proxy) onProxyFound,
+    Function(String proxy)? onProxyFound,
     this.enableDebug = false,
     this.printResponse = false,
   }) : super(const ConnectionInitialState()) {

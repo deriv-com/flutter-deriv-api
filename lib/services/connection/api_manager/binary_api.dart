@@ -27,12 +27,12 @@ class BinaryAPI extends BaseAPI {
   BinaryAPI({
     String? key,
     bool enableDebug = false,
-    required this.onProxyFound,
+    this.onProxyFound,
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
-  final Function(String proxy) onProxyFound;
+  final Function(String proxy)? onProxyFound;
 
   /// Represents the active websocket connection.
   ///
@@ -85,7 +85,7 @@ class BinaryAPI extends BaseAPI {
     final HttpClient client = HttpClient();
     client.findProxy = (uri) => proxy;
 
-    onProxyFound(proxy);
+    onProxyFound?.call(proxy);
 
     // Initialize connection to websocket server.
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
