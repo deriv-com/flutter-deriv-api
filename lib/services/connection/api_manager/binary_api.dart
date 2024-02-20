@@ -32,6 +32,7 @@ class BinaryAPI extends BaseAPI {
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+  // TODO(Ramin): delete this.
   final Function(String proxy)? onProxyFound;
 
   /// Represents the active websocket connection.
@@ -82,8 +83,7 @@ class BinaryAPI extends BaseAPI {
     final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
         uri.toString().replaceAll('wss', 'https'));
 
-    final HttpClient client = HttpClient();
-    client.findProxy = (uri) => proxy;
+    final HttpClient client = HttpClient()..findProxy = (Uri uri) => proxy;
 
     onProxyFound?.call(proxy);
 
@@ -247,18 +247,4 @@ class BinaryAPI extends BaseAPI {
       dev.log('$runtimeType $key $message', error: error);
     }
   }
-}
-
-class _CustomHttpOverrides extends HttpOverrides {
-  /// Initialize [_CustomHttpOverrides].
-  _CustomHttpOverrides(this.proxy);
-
-  final String proxy;
-
-  @override
-  HttpClient createHttpClient(SecurityContext? context) =>
-      super.createHttpClient(context)
-        ..findProxy = (Uri uri) =>
-            // TODO(NA): use DIRECT to disable.
-            proxy;
 }
