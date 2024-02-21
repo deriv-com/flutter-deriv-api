@@ -1,4 +1,4 @@
 [submodule "binary-websocket-api"]
 	path = binary-websocket-api
-	url = https://github.com/regentmarkets/binary-websocket-api.git
-	branch = master
+	url = https://github.com/bassam-deriv/binary-websocket-api.git
+	branch = deriv_passkeys
