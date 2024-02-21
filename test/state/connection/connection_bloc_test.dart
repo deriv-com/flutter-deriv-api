@@ -10,8 +10,9 @@ void main() {
     setUpAll(
       () {
         connectionCubit = ConnectionCubit(
-          ConnectionInformation(appId: '', brand: '', endpoint: '',authEndpoint: ''),
-          api: MockAPI(), onProxyFound: (String proxy) {  },
+          ConnectionInformation(
+              appId: '', brand: '', endpoint: '', authEndpoint: ''),
+          api: MockAPI(),
         );
       },
     );

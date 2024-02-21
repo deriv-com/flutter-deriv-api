@@ -26,7 +26,6 @@ class _SampleAppState extends State<SampleApp> {
         endpoint: 'frontend.binaryws.com',
         authEndpoint: '',
       ),
-      onProxyFound: (_) {},
     );
   }
 
