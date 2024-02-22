@@ -9,17 +9,16 @@ class AppGetRequest extends Request {
   /// Initialize AppGetRequest.
   const AppGetRequest({
     required this.appGet,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_get',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'app_get',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
         appGet: json['app_get'] as int?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -27,10 +26,14 @@ class AppGetRequest extends Request {
   /// Application app_id
   final int? appGet;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_get': appGet,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -39,11 +42,13 @@ class AppGetRequest extends Request {
   @override
   AppGetRequest copyWith({
     int? appGet,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       AppGetRequest(
         appGet: appGet ?? this.appGet,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

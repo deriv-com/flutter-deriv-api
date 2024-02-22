@@ -8,22 +8,22 @@ import '../request.dart';
 class IdentityVerificationDocumentAddRequest extends Request {
   /// Initialize IdentityVerificationDocumentAddRequest.
   const IdentityVerificationDocumentAddRequest({
+    this.documentAdditional,
     required this.documentNumber,
     required this.documentType,
     this.identityVerificationDocumentAdd = true,
     required this.issuingCountry,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'identity_verification_document_add',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'identity_verification_document_add',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory IdentityVerificationDocumentAddRequest.fromJson(
           Map<String, dynamic> json) =>
       IdentityVerificationDocumentAddRequest(
+        documentAdditional: json['document_additional'] as String?,
         documentNumber: json['document_number'] as String?,
         documentType: json['document_type'] as String?,
         identityVerificationDocumentAdd:
@@ -31,9 +31,13 @@ class IdentityVerificationDocumentAddRequest extends Request {
                 ? null
                 : json['identity_verification_document_add'] == 1,
         issuingCountry: json['issuing_country'] as String?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] Additional info required by some document types.
+  final String? documentAdditional;
 
   /// The identification number of the document.
   final String? documentNumber;
@@ -47,9 +51,13 @@ class IdentityVerificationDocumentAddRequest extends Request {
   /// 2-letter country code (can obtained from `residence_list` call).
   final String? issuingCountry;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'document_additional': documentAdditional,
         'document_number': documentNumber,
         'document_type': documentType,
         'identity_verification_document_add':
@@ -59,6 +67,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
                     ? 1
                     : 0,
         'issuing_country': issuingCountry,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -66,19 +75,23 @@ class IdentityVerificationDocumentAddRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   IdentityVerificationDocumentAddRequest copyWith({
+    String? documentAdditional,
     String? documentNumber,
     String? documentType,
     bool? identityVerificationDocumentAdd,
     String? issuingCountry,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       IdentityVerificationDocumentAddRequest(
+        documentAdditional: documentAdditional ?? this.documentAdditional,
         documentNumber: documentNumber ?? this.documentNumber,
         documentType: documentType ?? this.documentType,
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??
             this.identityVerificationDocumentAdd,
         issuingCountry: issuingCountry ?? this.issuingCountry,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

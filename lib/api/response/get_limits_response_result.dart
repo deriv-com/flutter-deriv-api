@@ -86,6 +86,7 @@ abstract class GetLimitsModel {
     this.dailyTransfers,
     this.dailyTurnover,
     this.lifetimeLimit,
+    this.lifetimeTransfers,
     this.marketSpecific,
     this.numOfDays,
     this.numOfDaysLimit,
@@ -112,6 +113,9 @@ abstract class GetLimitsModel {
 
   /// Lifetime withdrawal limit
   final double? lifetimeLimit;
+
+  /// Lifetime transfer limits. Only present when applicable to the current accout.
+  final LifetimeTransfers? lifetimeTransfers;
 
   /// Contains limitation information for each market.
   final Map<String, List<MarketSpecificPropertyItem>>? marketSpecific;
@@ -153,6 +157,7 @@ class GetLimits extends GetLimitsModel {
     super.dailyTransfers,
     super.dailyTurnover,
     super.lifetimeLimit,
+    super.lifetimeTransfers,
     super.marketSpecific,
     super.numOfDays,
     super.numOfDaysLimit,
@@ -173,6 +178,9 @@ class GetLimits extends GetLimitsModel {
         dailyTransfers: json['daily_transfers'],
         dailyTurnover: getDouble(json['daily_turnover']),
         lifetimeLimit: getDouble(json['lifetime_limit']),
+        lifetimeTransfers: json['lifetime_transfers'] == null
+            ? null
+            : LifetimeTransfers.fromJson(json['lifetime_transfers']),
         marketSpecific: json['market_specific'] == null
             ? null
             : Map<String, List<MarketSpecificPropertyItem>>.fromEntries(json[
@@ -214,6 +222,9 @@ class GetLimits extends GetLimitsModel {
     resultMap['daily_transfers'] = dailyTransfers;
     resultMap['daily_turnover'] = dailyTurnover;
     resultMap['lifetime_limit'] = lifetimeLimit;
+    if (lifetimeTransfers != null) {
+      resultMap['lifetime_transfers'] = lifetimeTransfers!.toJson();
+    }
     resultMap['market_specific'] = marketSpecific;
     resultMap['num_of_days'] = numOfDays;
     resultMap['num_of_days_limit'] = numOfDaysLimit;
@@ -239,6 +250,7 @@ class GetLimits extends GetLimitsModel {
     Map<String, dynamic>? dailyTransfers,
     double? dailyTurnover,
     double? lifetimeLimit,
+    LifetimeTransfers? lifetimeTransfers,
     Map<String, List<MarketSpecificPropertyItem>>? marketSpecific,
     int? numOfDays,
     double? numOfDaysLimit,
@@ -257,6 +269,7 @@ class GetLimits extends GetLimitsModel {
         dailyTransfers: dailyTransfers ?? this.dailyTransfers,
         dailyTurnover: dailyTurnover ?? this.dailyTurnover,
         lifetimeLimit: lifetimeLimit ?? this.lifetimeLimit,
+        lifetimeTransfers: lifetimeTransfers ?? this.lifetimeTransfers,
         marketSpecific: marketSpecific ?? this.marketSpecific,
         numOfDays: numOfDays ?? this.numOfDays,
         numOfDaysLimit: numOfDaysLimit ?? this.numOfDaysLimit,
@@ -270,6 +283,224 @@ class GetLimits extends GetLimitsModel {
             withdrawalForXDaysMonetary ?? this.withdrawalForXDaysMonetary,
         withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary ??
             this.withdrawalSinceInceptionMonetary,
+      );
+}
+/// Lifetime transfers model class.
+abstract class LifetimeTransfersModel {
+  /// Initializes Lifetime transfers model class .
+  const LifetimeTransfersModel({
+    this.cryptoToCrypto,
+    this.cryptoToFiat,
+    this.fiatToCrypto,
+  });
+
+  /// Lifetime transfer limit for crypto to crypto currencies.
+  final CryptoToCrypto? cryptoToCrypto;
+
+  /// Lifetime transfer limit for crypto to fiat currencies.
+  final CryptoToFiat? cryptoToFiat;
+
+  /// Lifetime transfer limit for fiat to crypto currencies.
+  final FiatToCrypto? fiatToCrypto;
+}
+
+/// Lifetime transfers class.
+class LifetimeTransfers extends LifetimeTransfersModel {
+  /// Initializes Lifetime transfers class.
+  const LifetimeTransfers({
+    super.cryptoToCrypto,
+    super.cryptoToFiat,
+    super.fiatToCrypto,
+  });
+
+  /// Creates an instance from JSON.
+  factory LifetimeTransfers.fromJson(Map<String, dynamic> json) =>
+      LifetimeTransfers(
+        cryptoToCrypto: json['crypto_to_crypto'] == null
+            ? null
+            : CryptoToCrypto.fromJson(json['crypto_to_crypto']),
+        cryptoToFiat: json['crypto_to_fiat'] == null
+            ? null
+            : CryptoToFiat.fromJson(json['crypto_to_fiat']),
+        fiatToCrypto: json['fiat_to_crypto'] == null
+            ? null
+            : FiatToCrypto.fromJson(json['fiat_to_crypto']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (cryptoToCrypto != null) {
+      resultMap['crypto_to_crypto'] = cryptoToCrypto!.toJson();
+    }
+    if (cryptoToFiat != null) {
+      resultMap['crypto_to_fiat'] = cryptoToFiat!.toJson();
+    }
+    if (fiatToCrypto != null) {
+      resultMap['fiat_to_crypto'] = fiatToCrypto!.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  LifetimeTransfers copyWith({
+    CryptoToCrypto? cryptoToCrypto,
+    CryptoToFiat? cryptoToFiat,
+    FiatToCrypto? fiatToCrypto,
+  }) =>
+      LifetimeTransfers(
+        cryptoToCrypto: cryptoToCrypto ?? this.cryptoToCrypto,
+        cryptoToFiat: cryptoToFiat ?? this.cryptoToFiat,
+        fiatToCrypto: fiatToCrypto ?? this.fiatToCrypto,
+      );
+}
+/// Crypto to crypto model class.
+abstract class CryptoToCryptoModel {
+  /// Initializes Crypto to crypto model class .
+  const CryptoToCryptoModel({
+    this.allowed,
+    this.available,
+  });
+
+  /// Total limit in client's currency.
+  final double? allowed;
+
+  /// Remaining limit in client's currency.
+  final double? available;
+}
+
+/// Crypto to crypto class.
+class CryptoToCrypto extends CryptoToCryptoModel {
+  /// Initializes Crypto to crypto class.
+  const CryptoToCrypto({
+    super.allowed,
+    super.available,
+  });
+
+  /// Creates an instance from JSON.
+  factory CryptoToCrypto.fromJson(Map<String, dynamic> json) => CryptoToCrypto(
+        allowed: getDouble(json['allowed']),
+        available: getDouble(json['available']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['allowed'] = allowed;
+    resultMap['available'] = available;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  CryptoToCrypto copyWith({
+    double? allowed,
+    double? available,
+  }) =>
+      CryptoToCrypto(
+        allowed: allowed ?? this.allowed,
+        available: available ?? this.available,
+      );
+}
+/// Crypto to fiat model class.
+abstract class CryptoToFiatModel {
+  /// Initializes Crypto to fiat model class .
+  const CryptoToFiatModel({
+    this.allowed,
+    this.available,
+  });
+
+  /// Total limit in client's currency.
+  final double? allowed;
+
+  /// Remaining limit in client's currency.
+  final double? available;
+}
+
+/// Crypto to fiat class.
+class CryptoToFiat extends CryptoToFiatModel {
+  /// Initializes Crypto to fiat class.
+  const CryptoToFiat({
+    super.allowed,
+    super.available,
+  });
+
+  /// Creates an instance from JSON.
+  factory CryptoToFiat.fromJson(Map<String, dynamic> json) => CryptoToFiat(
+        allowed: getDouble(json['allowed']),
+        available: getDouble(json['available']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['allowed'] = allowed;
+    resultMap['available'] = available;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  CryptoToFiat copyWith({
+    double? allowed,
+    double? available,
+  }) =>
+      CryptoToFiat(
+        allowed: allowed ?? this.allowed,
+        available: available ?? this.available,
+      );
+}
+/// Fiat to crypto model class.
+abstract class FiatToCryptoModel {
+  /// Initializes Fiat to crypto model class .
+  const FiatToCryptoModel({
+    this.allowed,
+    this.available,
+  });
+
+  /// Total limit in client's currency.
+  final double? allowed;
+
+  /// Remaining limit in client's currency.
+  final double? available;
+}
+
+/// Fiat to crypto class.
+class FiatToCrypto extends FiatToCryptoModel {
+  /// Initializes Fiat to crypto class.
+  const FiatToCrypto({
+    super.allowed,
+    super.available,
+  });
+
+  /// Creates an instance from JSON.
+  factory FiatToCrypto.fromJson(Map<String, dynamic> json) => FiatToCrypto(
+        allowed: getDouble(json['allowed']),
+        available: getDouble(json['available']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['allowed'] = allowed;
+    resultMap['available'] = available;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FiatToCrypto copyWith({
+    double? allowed,
+    double? available,
+  }) =>
+      FiatToCrypto(
+        allowed: allowed ?? this.allowed,
+        available: available ?? this.available,
       );
 }
 /// Market specific property item model class.

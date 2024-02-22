@@ -12,8 +12,9 @@ class TradingPlatformNewAccountRequest extends Request {
     this.company,
     this.currency,
     this.dryRun,
+    this.loginid,
     required this.marketType,
-    this.password,
+    required this.password,
     required this.platform,
     this.subAccountType,
     this.tradingPlatformNewAccount = true,
@@ -30,6 +31,7 @@ class TradingPlatformNewAccountRequest extends Request {
         company: json['company'] as String?,
         currency: json['currency'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        loginid: json['loginid'] as String?,
         marketType: json['market_type'] as String?,
         password: json['password'] as String?,
         platform: json['platform'] as String?,
@@ -52,6 +54,9 @@ class TradingPlatformNewAccountRequest extends Request {
 
   /// [Optional] If set to `true`, only validation is performed.
   final bool? dryRun;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Market type
   final String? marketType;
@@ -79,6 +84,7 @@ class TradingPlatformNewAccountRequest extends Request {
             : dryRun!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'market_type': marketType,
         'password': password,
         'platform': platform,
@@ -99,6 +105,7 @@ class TradingPlatformNewAccountRequest extends Request {
     String? company,
     String? currency,
     bool? dryRun,
+    String? loginid,
     String? marketType,
     String? password,
     String? platform,
@@ -112,6 +119,7 @@ class TradingPlatformNewAccountRequest extends Request {
         company: company ?? this.company,
         currency: currency ?? this.currency,
         dryRun: dryRun ?? this.dryRun,
+        loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         password: password ?? this.password,
         platform: platform ?? this.platform,

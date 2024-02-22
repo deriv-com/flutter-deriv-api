@@ -14,18 +14,16 @@ class PaymentagentCreateRequest extends Request {
     required this.commissionWithdrawal,
     required this.email,
     this.information,
+    this.loginid,
     required this.paymentAgentName,
     this.paymentagentCreate = true,
     required this.phoneNumbers,
     required this.supportedPaymentMethods,
     required this.urls,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'paymentagent_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'paymentagent_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -36,6 +34,7 @@ class PaymentagentCreateRequest extends Request {
         commissionWithdrawal: json['commission_withdrawal'] as num?,
         email: json['email'] as String?,
         information: json['information'] as String?,
+        loginid: json['loginid'] as String?,
         paymentAgentName: json['payment_agent_name'] as String?,
         paymentagentCreate: json['paymentagent_create'] == null
             ? null
@@ -75,6 +74,9 @@ class PaymentagentCreateRequest extends Request {
   /// [Optional] Information about payment agent and their proposed service.
   final String? information;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// The name with which the payment agent is going to be identified.
   final String? paymentAgentName;
 
@@ -99,6 +101,7 @@ class PaymentagentCreateRequest extends Request {
         'commission_withdrawal': commissionWithdrawal,
         'email': email,
         'information': information,
+        'loginid': loginid,
         'payment_agent_name': paymentAgentName,
         'paymentagent_create': paymentagentCreate == null
             ? null
@@ -121,6 +124,7 @@ class PaymentagentCreateRequest extends Request {
     num? commissionWithdrawal,
     String? email,
     String? information,
+    String? loginid,
     String? paymentAgentName,
     bool? paymentagentCreate,
     List<Map<String, dynamic>>? phoneNumbers,
@@ -137,6 +141,7 @@ class PaymentagentCreateRequest extends Request {
         commissionWithdrawal: commissionWithdrawal ?? this.commissionWithdrawal,
         email: email ?? this.email,
         information: information ?? this.information,
+        loginid: loginid ?? this.loginid,
         paymentAgentName: paymentAgentName ?? this.paymentAgentName,
         paymentagentCreate: paymentagentCreate ?? this.paymentagentCreate,
         phoneNumbers: phoneNumbers ?? this.phoneNumbers,

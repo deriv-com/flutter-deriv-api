@@ -18,10 +18,8 @@ abstract class EconomicCalendarResponseModel {
 class EconomicCalendarResponse extends EconomicCalendarResponseModel {
   /// Initializes Economic calendar response class.
   const EconomicCalendarResponse({
-    EconomicCalendar? economicCalendar,
-  }) : super(
-          economicCalendar: economicCalendar,
-        );
+    super.economicCalendar,
+  });
 
   /// Creates an instance from JSON.
   factory EconomicCalendarResponse.fromJson(
@@ -67,10 +65,8 @@ abstract class EconomicCalendarModel {
 class EconomicCalendar extends EconomicCalendarModel {
   /// Initializes Economic calendar class.
   const EconomicCalendar({
-    List<EventsItem>? events,
-  }) : super(
-          events: events,
-        );
+    super.events,
+  });
 
   /// Creates an instance from JSON.
   factory EconomicCalendar.fromJson(Map<String, dynamic> json) =>
@@ -146,22 +142,14 @@ abstract class EventsItemModel {
 class EventsItem extends EventsItemModel {
   /// Initializes Events item class.
   const EventsItem({
-    Actual? actual,
-    String? currency,
-    String? eventName,
-    Forecast? forecast,
-    int? impact,
-    Previous? previous,
-    DateTime? releaseDate,
-  }) : super(
-          actual: actual,
-          currency: currency,
-          eventName: eventName,
-          forecast: forecast,
-          impact: impact,
-          previous: previous,
-          releaseDate: releaseDate,
-        );
+    super.actual,
+    super.currency,
+    super.eventName,
+    super.forecast,
+    super.impact,
+    super.previous,
+    super.releaseDate,
+  });
 
   /// Creates an instance from JSON.
   factory EventsItem.fromJson(Map<String, dynamic> json) => EventsItem(
@@ -234,10 +222,8 @@ abstract class ActualModel {
 class Actual extends ActualModel {
   /// Initializes Actual class.
   const Actual({
-    String? displayValue,
-  }) : super(
-          displayValue: displayValue,
-        );
+    super.displayValue,
+  });
 
   /// Creates an instance from JSON.
   factory Actual.fromJson(Map<String, dynamic> json) => Actual(
@@ -276,10 +262,8 @@ abstract class ForecastModel {
 class Forecast extends ForecastModel {
   /// Initializes Forecast class.
   const Forecast({
-    String? displayValue,
-  }) : super(
-          displayValue: displayValue,
-        );
+    super.displayValue,
+  });
 
   /// Creates an instance from JSON.
   factory Forecast.fromJson(Map<String, dynamic> json) => Forecast(
@@ -318,10 +302,8 @@ abstract class PreviousModel {
 class Previous extends PreviousModel {
   /// Initializes Previous class.
   const Previous({
-    String? displayValue,
-  }) : super(
-          displayValue: displayValue,
-        );
+    super.displayValue,
+  });
 
   /// Creates an instance from JSON.
   factory Previous.fromJson(Map<String, dynamic> json) => Previous(

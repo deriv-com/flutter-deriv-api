@@ -9,13 +9,11 @@ class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest.
   const CopytradingListRequest({
     this.copytradingList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'copytrading_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'copytrading_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +21,16 @@ class CopytradingListRequest extends Request {
         copytradingList: json['copytrading_list'] == null
             ? null
             : json['copytrading_list'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? copytradingList;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -38,6 +40,7 @@ class CopytradingListRequest extends Request {
             : copytradingList!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -46,11 +49,13 @@ class CopytradingListRequest extends Request {
   @override
   CopytradingListRequest copyWith({
     bool? copytradingList,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       CopytradingListRequest(
         copytradingList: copytradingList ?? this.copytradingList,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

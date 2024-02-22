@@ -241,6 +241,7 @@ abstract class P2pAdvertUpdateModel {
     this.description,
     this.effectiveRate,
     this.effectiveRateDisplay,
+    this.eligibleCountries,
     this.isActive,
     this.isVisible,
     this.localCurrency,
@@ -248,10 +249,13 @@ abstract class P2pAdvertUpdateModel {
     this.maxOrderAmountDisplay,
     this.maxOrderAmountLimit,
     this.maxOrderAmountLimitDisplay,
+    this.minCompletionRate,
+    this.minJoinDays,
     this.minOrderAmount,
     this.minOrderAmountDisplay,
     this.minOrderAmountLimit,
     this.minOrderAmountLimitDisplay,
+    this.minRating,
     this.orderExpiryPeriod,
     this.paymentInfo,
     this.paymentMethod,
@@ -316,6 +320,9 @@ abstract class P2pAdvertUpdateModel {
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
 
+  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders against this advert
+  final List<String>? eligibleCountries;
+
   /// The activation status of the advert.
   final bool? isActive;
 
@@ -337,6 +344,12 @@ abstract class P2pAdvertUpdateModel {
   /// Maximum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String? maxOrderAmountLimitDisplay;
 
+  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders against this advert.
+  final double? minCompletionRate;
+
+  /// Counterparties who joined less than this number of days ago are not allowed to place orders against this advert.
+  final int? minJoinDays;
+
   /// Minimum order amount specified in advert, in `account_currency`. It is only visible to the advert owner.
   final double? minOrderAmount;
 
@@ -348,6 +361,9 @@ abstract class P2pAdvertUpdateModel {
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String? minOrderAmountLimitDisplay;
+
+  /// Counterparties who have an average rating less than this value are not allowed to place orders against this advert.
+  final double? minRating;
 
   /// Expiry period (seconds) for order created against this ad.
   final int? orderExpiryPeriod;
@@ -422,6 +438,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     super.description,
     super.effectiveRate,
     super.effectiveRateDisplay,
+    super.eligibleCountries,
     super.isActive,
     super.isVisible,
     super.localCurrency,
@@ -429,10 +446,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     super.maxOrderAmountDisplay,
     super.maxOrderAmountLimit,
     super.maxOrderAmountLimitDisplay,
+    super.minCompletionRate,
+    super.minJoinDays,
     super.minOrderAmount,
     super.minOrderAmountDisplay,
     super.minOrderAmountLimit,
     super.minOrderAmountLimitDisplay,
+    super.minRating,
     super.orderExpiryPeriod,
     super.paymentInfo,
     super.paymentMethod,
@@ -472,6 +492,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         description: json['description'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
+        eligibleCountries: json['eligible_countries'] == null
+            ? null
+            : List<String>.from(
+                json['eligible_countries']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         isActive: getBool(json['is_active']),
         isVisible: getBool(json['is_visible']),
         localCurrency: json['local_currency'],
@@ -479,10 +506,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         maxOrderAmountDisplay: json['max_order_amount_display'],
         maxOrderAmountLimit: getDouble(json['max_order_amount_limit']),
         maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
+        minCompletionRate: getDouble(json['min_completion_rate']),
+        minJoinDays: json['min_join_days'],
         minOrderAmount: getDouble(json['min_order_amount']),
         minOrderAmountDisplay: json['min_order_amount_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit']),
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
+        minRating: getDouble(json['min_rating']),
         orderExpiryPeriod: json['order_expiry_period'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
@@ -552,6 +582,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     resultMap['description'] = description;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
+    if (eligibleCountries != null) {
+      resultMap['eligible_countries'] = eligibleCountries!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     resultMap['is_active'] = isActive;
     resultMap['is_visible'] = isVisible;
     resultMap['local_currency'] = localCurrency;
@@ -559,10 +596,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
     resultMap['max_order_amount_limit'] = maxOrderAmountLimit;
     resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
+    resultMap['min_completion_rate'] = minCompletionRate;
+    resultMap['min_join_days'] = minJoinDays;
     resultMap['min_order_amount'] = minOrderAmount;
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
+    resultMap['min_rating'] = minRating;
     resultMap['order_expiry_period'] = orderExpiryPeriod;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
@@ -622,6 +662,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     String? description,
     double? effectiveRate,
     String? effectiveRateDisplay,
+    List<String>? eligibleCountries,
     bool? isActive,
     bool? isVisible,
     String? localCurrency,
@@ -629,10 +670,13 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
     String? maxOrderAmountDisplay,
     double? maxOrderAmountLimit,
     String? maxOrderAmountLimitDisplay,
+    double? minCompletionRate,
+    int? minJoinDays,
     double? minOrderAmount,
     String? minOrderAmountDisplay,
     double? minOrderAmountLimit,
     String? minOrderAmountLimitDisplay,
+    double? minRating,
     int? orderExpiryPeriod,
     String? paymentInfo,
     String? paymentMethod,
@@ -665,6 +709,7 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         description: description ?? this.description,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
+        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
         isActive: isActive ?? this.isActive,
         isVisible: isVisible ?? this.isVisible,
         localCurrency: localCurrency ?? this.localCurrency,
@@ -674,12 +719,15 @@ class P2pAdvertUpdate extends P2pAdvertUpdateModel {
         maxOrderAmountLimit: maxOrderAmountLimit ?? this.maxOrderAmountLimit,
         maxOrderAmountLimitDisplay:
             maxOrderAmountLimitDisplay ?? this.maxOrderAmountLimitDisplay,
+        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
+        minJoinDays: minJoinDays ?? this.minJoinDays,
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
         minOrderAmountDisplay:
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
         minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
         minOrderAmountLimitDisplay:
             minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
+        minRating: minRating ?? this.minRating,
         orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,

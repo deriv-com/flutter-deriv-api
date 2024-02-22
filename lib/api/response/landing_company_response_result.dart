@@ -186,7 +186,7 @@ abstract class LandingCompanyModel {
   /// Available Deriv X financial account types (all except Synthetic Indices).
   final DxtradeFinancialCompany? dxtradeFinancialCompany;
 
-  /// Available Deriv X gaming account types (Synthetic Indices).
+  /// Available Deriv X derived account types (Synthetic Indices).
   final DxtradeGamingCompany? dxtradeGamingCompany;
 
   /// Landing Company for financial contracts (all except Synthetic Indices)
@@ -195,7 +195,7 @@ abstract class LandingCompanyModel {
   /// Forbidden postcode pattern
   final String? forbiddenPostcodePattern;
 
-  /// Landing Company for gaming contracts (Synthetic Indices)
+  /// Landing Company for derived contracts (Synthetic Indices)
   final GamingCompany? gamingCompany;
 
   /// Country code
@@ -219,7 +219,7 @@ abstract class LandingCompanyModel {
   /// Landing Company for MT5 financial contracts (all except Synthetic Indices), currently divided into Financial STP, Financial (standard) as subtypes.
   final MtFinancialCompany? mtFinancialCompany;
 
-  /// Landing Company for MT5 standard gaming contracts (Synthetic Indices), currently has Financial as subtype.
+  /// Landing Company for MT5 standard derived contracts (Synthetic Indices), currently has Financial as subtype.
   final MtGamingCompany? mtGamingCompany;
 
   /// Country name
@@ -4440,7 +4440,7 @@ abstract class MtGamingCompanyModel {
     this.financial,
   });
 
-  /// Landing Company for MT5 gaming contracts (Synthetic Indices)
+  /// Landing Company for MT5 derived contracts (Synthetic Indices)
   final MtGamingCompanyFinancial? financial;
 }
 
