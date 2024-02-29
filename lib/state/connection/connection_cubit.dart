@@ -22,12 +22,15 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
     this.enableDebug = false,
+        // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
     this.printResponse = false,
+    this.proxyAwareConnection = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
       api: api ??
           BinaryAPI(
             key: _key,
+            proxyAwareConnection: proxyAwareConnection,
             enableDebug: enableDebug,
           ),
     );
@@ -54,6 +57,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ///
   /// Default value is `false`.
   final bool printResponse;
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);

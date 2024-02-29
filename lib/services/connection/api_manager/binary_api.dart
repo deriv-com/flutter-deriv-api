@@ -27,10 +27,14 @@ class BinaryAPI extends BaseAPI {
   BinaryAPI({
     String? key,
     bool enableDebug = false,
+    this.proxyAwareConnection = false,
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
 
   /// Represents the active websocket connection.
   ///
@@ -77,10 +81,15 @@ class BinaryAPI extends BaseAPI {
     _logDebugInfo('connecting to $uri.');
 
     await _setUserAgent();
-    final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
-        uri.toString().replaceAll('wss', 'https'));
 
-    final HttpClient client = HttpClient()..findProxy = (Uri uri) => proxy;
+    HttpClient? client;
+
+    if (proxyAwareConnection) {
+      final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
+          uri.toString().replaceAll('wss', 'https'));
+
+      client = HttpClient()..findProxy = (Uri uri) => proxy;
+    }
 
     // Initialize connection to websocket server.
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
