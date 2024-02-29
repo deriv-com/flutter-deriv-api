@@ -20,6 +20,7 @@ class NewAccountRealRequest extends Request {
     this.clientType,
     this.currency,
     required this.dateOfBirth,
+    this.fatcaDeclaration,
     required this.firstName,
     required this.lastName,
     this.loginid,
@@ -53,6 +54,9 @@ class NewAccountRealRequest extends Request {
         clientType: json['client_type'] as String?,
         currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
+        fatcaDeclaration: json['fatca_declaration'] == null
+            ? null
+            : json['fatca_declaration'] == 1,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         loginid: json['loginid'] as String?,
@@ -108,6 +112,9 @@ class NewAccountRealRequest extends Request {
   /// Date of birth format: `yyyy-mm-dd`.
   final String? dateOfBirth;
 
+  /// [Optional] Indicates client's self-declaration of FATCA.
+  final bool? fatcaDeclaration;
+
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
 
@@ -162,6 +169,11 @@ class NewAccountRealRequest extends Request {
         'client_type': clientType,
         'currency': currency,
         'date_of_birth': dateOfBirth,
+        'fatca_declaration': fatcaDeclaration == null
+            ? null
+            : fatcaDeclaration!
+                ? 1
+                : 0,
         'first_name': firstName,
         'last_name': lastName,
         'loginid': loginid,
@@ -198,6 +210,7 @@ class NewAccountRealRequest extends Request {
     String? clientType,
     String? currency,
     String? dateOfBirth,
+    bool? fatcaDeclaration,
     String? firstName,
     String? lastName,
     String? loginid,
@@ -227,6 +240,7 @@ class NewAccountRealRequest extends Request {
         clientType: clientType ?? this.clientType,
         currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         loginid: loginid ?? this.loginid,

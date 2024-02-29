@@ -385,7 +385,7 @@ class GetAccountStatus extends GetAccountStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrencyConfigProperty>(entry.key,
                             CurrencyConfigProperty.fromJson(entry.value)))),
-        p2pPoaRequired: getBool(json['p2p_poa_required'])!,
+        p2pPoaRequired: json['p2p_poa_required'] == true,
         p2pStatus: p2pStatusEnumMapper[json['p2p_status']]!,
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate'])!,

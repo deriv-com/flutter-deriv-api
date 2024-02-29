@@ -49,6 +49,47 @@ class APIBuilder extends Builder {
     'req_id': 'integer?',
   };
 
+  static const List<String> hiddenCalls = <String>[
+    'account_closure',
+    'account_security',
+    'account_statistics',
+    'affiliate_account_add',
+    'affiliate_add_company',
+    'affiliate_add_person',
+    'affiliate_register_person',
+    'available_accounts',
+    'cashier_payments',
+    'cashier_withdrawal_cancel',
+    'change_email',
+    'change_password',
+    'get_account_types',
+    'jtoken_create',
+    'link_wallet',
+    'new_account_wallet',
+    'notification_event',
+    'passkeys_list',
+    'passkeys_login',
+    'passkeys_options',
+    'passkeys_register',
+    'passkeys_register_options',
+    'passkeys_rename',
+    'passkeys_revoke',
+    'request_report',
+    'reset_password',
+    'service_token',
+    'trading_platform_accounts',
+    'trading_platform_asset_listing',
+    'trading_platform_available_accounts',
+    'trading_platform_deposit',
+    'trading_platform_investor_password_change',
+    'trading_platform_leverage',
+    'trading_platform_new_account',
+    'trading_platform_password_change',
+    'trading_platform_product_listing',
+    'trading_platform_withdrawal',
+    'wallet_migration'
+  ];
+
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
         '.json': <String>['.dart']
@@ -77,41 +118,42 @@ class APIBuilder extends Builder {
       }
 
       final String methodName = items.group(2)!;
-      final String schemaType = items.group(3)!;
-      final String className = ReCase(methodName).pascalCase;
+      if (!hiddenCalls.contains(methodName)) {
+        final String schemaType = items.group(3)!;
+        final String className = ReCase(methodName).pascalCase;
 
-      final String classFullName = className + schemaTypeMap[schemaType]!;
-      final String fileName = '${methodName}_$schemaType';
+        final String classFullName = className + schemaTypeMap[schemaType]!;
+        final String fileName = '${methodName}_$schemaType';
 
-      if (schemaType == 'receive') {
-        final Map<String, dynamic> propertiesMap =
-            schemaDefinition['properties'];
+        if (schemaType == 'receive') {
+          final Map<String, dynamic> propertiesMap =
+              schemaDefinition['properties'];
 
-        if (propertiesMap.containsKey('msg_type')) {
-          final Map<String, dynamic> messageType = propertiesMap['msg_type'];
+          if (propertiesMap.containsKey('msg_type')) {
+            final Map<String, dynamic> messageType = propertiesMap['msg_type'];
 
-          if (messageType.containsKey('enum')) {
-            generatedResponses.add(
-              GeneratedResponseJson(
-                msgType: messageType['enum'].first,
-                fileName: fileName,
-                fullClassName: classFullName,
-              ),
-            );
+            if (messageType.containsKey('enum')) {
+              generatedResponses.add(
+                GeneratedResponseJson(
+                  msgType: messageType['enum'].first,
+                  fileName: fileName,
+                  fullClassName: classFullName,
+                ),
+              );
+            }
           }
         }
-      }
 
-      await buildStep.writeAsString(
-        // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
-        // over-specific about where it lets you write things - you *can* navigate to parent
-        // directories, but it's not easy to support dynamic names that way without a lot of
-        // extra code.
-        // https://stackoverflow.com/questions/51188114/dart-build-runner-can-only-scan-read-write-files-in-the-web-directory
-        // AssetId(buildStep.inputId.package, 'lib/api/${className}${schemaTypeMap[schemaType]}.dart'),
-        buildStep.inputId.changeExtension('.dart'),
-        DartFormatter().format(
-          '''
+        await buildStep.writeAsString(
+          // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
+          // over-specific about where it lets you write things - you *can* navigate to parent
+          // directories, but it's not easy to support dynamic names that way without a lot of
+          // extra code.
+          // https://stackoverflow.com/questions/51188114/dart-build-runner-can-only-scan-read-write-files-in-the-web-directory
+          // AssetId(buildStep.inputId.package, 'lib/api/${className}${schemaTypeMap[schemaType]}.dart'),
+          buildStep.inputId.changeExtension('.dart'),
+          DartFormatter().format(
+            '''
             /// Generated automatically from ${buildStep.inputId}.
 
             // ignore_for_file: always_put_required_named_parameters_first
@@ -136,8 +178,9 @@ class APIBuilder extends Builder {
               List<Object?> get props => ${_getEquatableFields(classFullName, properties)};
             }
           ''',
-        ),
-      );
+          ),
+        );
+      }
     } on Exception catch (e) {
       log.severe('Failed to process ${buildStep.inputId} - $e');
     }

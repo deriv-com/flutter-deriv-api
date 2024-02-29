@@ -134,7 +134,7 @@ class OauthAppsItem extends OauthAppsItemModel {
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         name: json['name'],
-        official: getBool(json['official'])!,
+        official: json['official'] == true,
         scopes: List<String>.from(
           json['scopes'].map(
             (dynamic item) => item,

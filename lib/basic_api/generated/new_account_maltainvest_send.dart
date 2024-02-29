@@ -28,6 +28,7 @@ class NewAccountMaltainvestRequest extends Request {
     required this.employmentIndustry,
     required this.employmentStatus,
     required this.estimatedWorth,
+    this.fatcaDeclaration,
     required this.firstName,
     required this.incomeSource,
     required this.lastName,
@@ -81,6 +82,9 @@ class NewAccountMaltainvestRequest extends Request {
         employmentIndustry: json['employment_industry'] as String?,
         employmentStatus: json['employment_status'] as String?,
         estimatedWorth: json['estimated_worth'] as String?,
+        fatcaDeclaration: json['fatca_declaration'] == null
+            ? null
+            : json['fatca_declaration'] == 1,
         firstName: json['first_name'] as String?,
         incomeSource: json['income_source'] as String?,
         lastName: json['last_name'] as String?,
@@ -173,6 +177,9 @@ class NewAccountMaltainvestRequest extends Request {
 
   /// Estimated Net Worth.
   final String? estimatedWorth;
+
+  /// [Optional] Indicates client's self-declaration of FATCA.
+  final bool? fatcaDeclaration;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
@@ -273,6 +280,11 @@ class NewAccountMaltainvestRequest extends Request {
         'employment_industry': employmentIndustry,
         'employment_status': employmentStatus,
         'estimated_worth': estimatedWorth,
+        'fatca_declaration': fatcaDeclaration == null
+            ? null
+            : fatcaDeclaration!
+                ? 1
+                : 0,
         'first_name': firstName,
         'income_source': incomeSource,
         'last_name': lastName,
@@ -330,6 +342,7 @@ class NewAccountMaltainvestRequest extends Request {
     String? employmentIndustry,
     String? employmentStatus,
     String? estimatedWorth,
+    bool? fatcaDeclaration,
     String? firstName,
     String? incomeSource,
     String? lastName,
@@ -378,6 +391,7 @@ class NewAccountMaltainvestRequest extends Request {
         employmentIndustry: employmentIndustry ?? this.employmentIndustry,
         employmentStatus: employmentStatus ?? this.employmentStatus,
         estimatedWorth: estimatedWorth ?? this.estimatedWorth,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
         firstName: firstName ?? this.firstName,
         incomeSource: incomeSource ?? this.incomeSource,
         lastName: lastName ?? this.lastName,

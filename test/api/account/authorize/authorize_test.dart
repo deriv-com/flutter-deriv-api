@@ -20,6 +20,7 @@ void main() {
         const AuthorizeRequest(
           authorize: 'sample_token_334da73d',
           addToLoginHistory: true,
+          tokens: <String>[],
         ),
       );
 

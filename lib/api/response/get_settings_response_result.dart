@@ -205,6 +205,7 @@ abstract class GetSettingsModel {
     this.email,
     this.emailConsent,
     this.employmentStatus,
+    this.fatcaDeclaration,
     this.featureFlag,
     this.firstName,
     this.hasSecretAnswer,
@@ -274,6 +275,9 @@ abstract class GetSettingsModel {
 
   /// Employment Status.
   final EmploymentStatusEnum? employmentStatus;
+
+  /// Indicates client's self-declaration for FATCA.
+  final int? fatcaDeclaration;
 
   /// Contains features that are enabled or disabled for this user
   final FeatureFlag? featureFlag;
@@ -348,6 +352,7 @@ class GetSettings extends GetSettingsModel {
     super.email,
     super.emailConsent,
     super.employmentStatus,
+    super.fatcaDeclaration,
     super.featureFlag,
     super.firstName,
     super.hasSecretAnswer,
@@ -389,6 +394,7 @@ class GetSettings extends GetSettingsModel {
         employmentStatus: json['employment_status'] == null
             ? null
             : employmentStatusEnumMapper[json['employment_status']],
+        fatcaDeclaration: json['fatca_declaration'],
         featureFlag: json['feature_flag'] == null
             ? null
             : FeatureFlag.fromJson(json['feature_flag']),
@@ -442,6 +448,7 @@ class GetSettings extends GetSettingsModel {
         .firstWhere((MapEntry<String, EmploymentStatusEnum> entry) =>
             entry.value == employmentStatus)
         .key;
+    resultMap['fatca_declaration'] = fatcaDeclaration;
     if (featureFlag != null) {
       resultMap['feature_flag'] = featureFlag!.toJson();
     }
@@ -490,6 +497,7 @@ class GetSettings extends GetSettingsModel {
     String? email,
     bool? emailConsent,
     EmploymentStatusEnum? employmentStatus,
+    int? fatcaDeclaration,
     FeatureFlag? featureFlag,
     String? firstName,
     bool? hasSecretAnswer,
@@ -527,6 +535,7 @@ class GetSettings extends GetSettingsModel {
         email: email ?? this.email,
         emailConsent: emailConsent ?? this.emailConsent,
         employmentStatus: employmentStatus ?? this.employmentStatus,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         hasSecretAnswer: hasSecretAnswer ?? this.hasSecretAnswer,

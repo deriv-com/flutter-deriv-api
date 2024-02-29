@@ -761,7 +761,7 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates an instance from JSON.
   factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
-        blockTrade: getBool(json['block_trade'])!,
+        blockTrade: json['block_trade'] == true,
         description: json['description'],
         id: json['id'],
         type: typeEnumMapper[json['type']]!,

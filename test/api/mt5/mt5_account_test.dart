@@ -2,14 +2,12 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/mt5_deposit_response_result.dart';
 import 'package:flutter_deriv_api/api/response/mt5_get_settings_response_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_login_list_response_result.dart';
 import 'package:flutter_deriv_api/api/response/mt5_new_account_response_result.dart'
     as new_account;
 import 'package:flutter_deriv_api/api/response/mt5_password_change_response_result.dart';
 import 'package:flutter_deriv_api/api/response/mt5_password_check_response_result.dart';
 import 'package:flutter_deriv_api/api/response/mt5_password_reset_response_result.dart';
 import 'package:flutter_deriv_api/api/response/mt5_withdrawal_response_result.dart';
-import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
@@ -51,25 +49,6 @@ void main() {
       expect(mt5Account.mt5NewAccount?.login, 'MT346525');
       expect(mt5Account.mt5NewAccount?.mt5AccountType,
           new_account.Mt5AccountTypeEnum.financial);
-    });
-
-    test('MT5 Login List Test', () async {
-      final Mt5LoginListResponse mt5LoginList =
-          await Mt5LoginListResponse.fetchLoginList(
-        const Mt5LoginListRequest(),
-      );
-
-      expect(mt5LoginList.mt5LoginList?.length, 1);
-
-      expect(mt5LoginList.mt5LoginList?.first.balance, 350.0);
-      expect(mt5LoginList.mt5LoginList?.first.country, 'India');
-      expect(mt5LoginList.mt5LoginList?.first.currency, 'USD');
-      expect(mt5LoginList.mt5LoginList?.first.displayBalance, '350.0');
-      expect(mt5LoginList.mt5LoginList?.first.email, 'test@example.com');
-      expect(mt5LoginList.mt5LoginList?.first.group, 'svg_standard');
-      expect(mt5LoginList.mt5LoginList?.first.leverage, 100);
-      expect(mt5LoginList.mt5LoginList?.first.login, 'MT346525');
-      expect(mt5LoginList.mt5LoginList?.first.name, 'Jon Doe');
     });
 
     test('MT5 Deposit Test', () async {

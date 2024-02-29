@@ -51,6 +51,8 @@ const String getAccountStatusResponse = '''{
     },
     "prompt_client_to_authenticate": 0,
     "risk_classification": "low",
+    "p2p_status": "active",
+    "p2p_poa_required": 1,
     "status": [
       "allow_document_upload",
       "financial_information_not_complete",
