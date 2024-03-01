@@ -2,13 +2,13 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:deriv_dependency_injector/dependency_injector.dart'; 
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart'; 
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart'; 
-import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_receive.dart'; 
-import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_send.dart'; 
- 
-import 'package:flutter_deriv_api/helpers/helpers.dart'; 
+import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_ping_send.dart';
+
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// P2p ping response model class.
