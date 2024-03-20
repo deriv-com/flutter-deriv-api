@@ -45,32 +45,6 @@ class PasskeysRevokeResponse extends PasskeysRevokeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// revoke a passkey.
-  static Future<PasskeysRevokeResponse> fetch(
-    PasskeysRevokeRequest request,
-  ) async {
-    final PasskeysRevokeReceive response = await fetchRaw(request);
-
-    return PasskeysRevokeResponse.fromJson(response.toJson());
-  }
-
-  /// Fetches raw passkeys revoke response.
-  static Future<PasskeysRevokeReceive> fetchRaw(
-    PasskeysRevokeRequest request,
-  ) async {
-    final PasskeysRevokeReceive response = await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
   /// Creates a copy of instance with given parameters.
   PasskeysRevokeResponse copyWith({
     int? passkeysRevoke,

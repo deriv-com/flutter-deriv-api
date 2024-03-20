@@ -49,32 +49,6 @@ class PasskeysRegisterResponse extends PasskeysRegisterResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// register a new passkey.
-  static Future<PasskeysRegisterResponse> fetch(
-    PasskeysRegisterRequest request,
-  ) async {
-    final PasskeysRegisterReceive response = await fetchRaw(request);
-
-    return PasskeysRegisterResponse.fromJson(response.toJson());
-  }
-
-  /// Fetches raw passkeys register response.
-  static Future<PasskeysRegisterReceive> fetchRaw(
-    PasskeysRegisterRequest request,
-  ) async {
-    final PasskeysRegisterReceive response = await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
   /// Creates a copy of instance with given parameters.
   PasskeysRegisterResponse copyWith({
     PasskeysRegister? passkeysRegister,

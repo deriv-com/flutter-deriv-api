@@ -45,32 +45,6 @@ class PasskeysRenameResponse extends PasskeysRenameResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// rename a passkey.
-  static Future<PasskeysRenameResponse> fetch(
-    PasskeysRenameRequest request,
-  ) async {
-    final PasskeysRenameReceive response = await fetchRaw(request);
-
-    return PasskeysRenameResponse.fromJson(response.toJson());
-  }
-
-  /// Fetches raw passkeys rename response.
-  static Future<PasskeysRenameReceive> fetchRaw(
-    PasskeysRenameRequest request,
-  ) async {
-    final PasskeysRenameReceive response = await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
   /// Creates a copy of instance with given parameters.
   PasskeysRenameResponse copyWith({
     int? passkeysRename,

@@ -51,33 +51,6 @@ class PasskeysRegisterOptionsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// List all register passkeys options.
-  static Future<PasskeysRegisterOptionsResponse> fetch(
-    PasskeysRegisterOptionsRequest request,
-  ) async {
-    final PasskeysRegisterOptionsReceive response = await fetchRaw(request);
-
-    return PasskeysRegisterOptionsResponse.fromJson(response.toJson());
-  }
-
-  /// Fetches raw register passkeys options response.
-  static Future<PasskeysRegisterOptionsReceive> fetchRaw(
-    PasskeysRegisterOptionsRequest request,
-  ) async {
-    final PasskeysRegisterOptionsReceive response =
-        await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
   /// Creates a copy of instance with given parameters.
   PasskeysRegisterOptionsResponse copyWith({
     PasskeysRegisterOptions? passkeysRegisterOptions,
