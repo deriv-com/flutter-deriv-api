@@ -24,10 +24,8 @@ abstract class P2pPaymentMethodsResponseModel {
 class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
   /// Initializes P2p payment methods response class.
   const P2pPaymentMethodsResponse({
-    Map<String, P2pPaymentMethodsProperty>? p2pPaymentMethods,
-  }) : super(
-          p2pPaymentMethods: p2pPaymentMethods,
-        );
+    super.p2pPaymentMethods,
+  });
 
   /// Creates an instance from JSON.
   factory P2pPaymentMethodsResponse.fromJson(
@@ -73,7 +71,7 @@ class P2pPaymentMethodsResponse extends P2pPaymentMethodsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -123,7 +121,6 @@ enum P2pPaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
-
 /// P2p payment methods property model class.
 abstract class P2pPaymentMethodsPropertyModel {
   /// Initializes P2p payment methods property model class .
@@ -147,14 +144,10 @@ abstract class P2pPaymentMethodsPropertyModel {
 class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
   /// Initializes P2p payment methods property class.
   const P2pPaymentMethodsProperty({
-    required String displayName,
-    required Map<String, FieldsProperty> fields,
-    required P2pPaymentMethodsPropertyTypeEnum type,
-  }) : super(
-          displayName: displayName,
-          fields: fields,
-          type: type,
-        );
+    required super.displayName,
+    required super.fields,
+    required super.type,
+  });
 
   /// Creates an instance from JSON.
   factory P2pPaymentMethodsProperty.fromJson(Map<String, dynamic> json) =>
@@ -196,7 +189,6 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
         type: type ?? this.type,
       );
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -220,14 +212,10 @@ abstract class FieldsPropertyModel {
 class FieldsProperty extends FieldsPropertyModel {
   /// Initializes Fields property class.
   const FieldsProperty({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-        );
+    required super.displayName,
+    required super.required,
+    required super.type,
+  });
 
   /// Creates an instance from JSON.
   factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(

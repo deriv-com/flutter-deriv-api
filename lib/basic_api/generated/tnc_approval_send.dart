@@ -9,20 +9,19 @@ class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest.
   const TncApprovalRequest({
     this.affiliateCocAgreement,
+    this.loginid,
     this.tncApproval = true,
     this.ukgcFundsProtection,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'tnc_approval',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'tnc_approval',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       TncApprovalRequest(
         affiliateCocAgreement: json['affiliate_coc_agreement'] as int?,
+        loginid: json['loginid'] as String?,
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
         ukgcFundsProtection: json['ukgc_funds_protection'] as int?,
@@ -32,6 +31,9 @@ class TncApprovalRequest extends Request {
 
   /// [Optional] For Affiliate's Code of Conduct Agreement.
   final int? affiliateCocAgreement;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? tncApproval;
@@ -43,6 +45,7 @@ class TncApprovalRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'affiliate_coc_agreement': affiliateCocAgreement,
+        'loginid': loginid,
         'tnc_approval': tncApproval == null
             ? null
             : tncApproval!
@@ -57,6 +60,7 @@ class TncApprovalRequest extends Request {
   @override
   TncApprovalRequest copyWith({
     int? affiliateCocAgreement,
+    String? loginid,
     bool? tncApproval,
     int? ukgcFundsProtection,
     Map<String, dynamic>? passthrough,
@@ -65,6 +69,7 @@ class TncApprovalRequest extends Request {
       TncApprovalRequest(
         affiliateCocAgreement:
             affiliateCocAgreement ?? this.affiliateCocAgreement,
+        loginid: loginid ?? this.loginid,
         tncApproval: tncApproval ?? this.tncApproval,
         ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
         passthrough: passthrough ?? this.passthrough,

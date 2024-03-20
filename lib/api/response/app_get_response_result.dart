@@ -37,10 +37,8 @@ abstract class AppGetResponseModel {
 class AppGetResponse extends AppGetResponseModel {
   /// Initializes App get response class.
   const AppGetResponse({
-    AppGet? appGet,
-  }) : super(
-          appGet: appGet,
-        );
+    super.appGet,
+  });
 
   /// Creates an instance from JSON.
   factory AppGetResponse.fromJson(
@@ -66,7 +64,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// Gets the information of the OAuth application specified by [appId] in [request]
   ///
   /// For parameters information refer to [AppGetRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppGetResponse> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
@@ -75,7 +73,7 @@ class AppGetResponse extends AppGetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppGetResponse.fromJson(response.appGet);
@@ -84,7 +82,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// Gets all of the account's OAuth applications.
   ///
   /// For parameters information refer to [AppListRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<List<AppGetResponse?>?> fetchApplicationList(
     AppListRequest request,
   ) async {
@@ -93,7 +91,7 @@ class AppGetResponse extends AppGetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
@@ -186,7 +184,6 @@ class AppGetResponse extends AppGetResponseModel {
         appGet: appGet ?? this.appGet,
       );
 }
-
 /// App get model class.
 abstract class AppGetModel {
   /// Initializes App get model class .
@@ -242,30 +239,18 @@ abstract class AppGetModel {
 class AppGet extends AppGetModel {
   /// Initializes App get class.
   const AppGet({
-    required int appId,
-    required double appMarkupPercentage,
-    required String appstore,
-    required String github,
-    required String googleplay,
-    required String homepage,
-    required String name,
-    required String redirectUri,
-    required String verificationUri,
-    int? active,
-    List<String>? scopes,
-  }) : super(
-          appId: appId,
-          appMarkupPercentage: appMarkupPercentage,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          name: name,
-          redirectUri: redirectUri,
-          verificationUri: verificationUri,
-          active: active,
-          scopes: scopes,
-        );
+    required super.appId,
+    required super.appMarkupPercentage,
+    required super.appstore,
+    required super.github,
+    required super.googleplay,
+    required super.homepage,
+    required super.name,
+    required super.redirectUri,
+    required super.verificationUri,
+    super.active,
+    super.scopes,
+  });
 
   /// Creates an instance from JSON.
   factory AppGet.fromJson(Map<String, dynamic> json) => AppGet(

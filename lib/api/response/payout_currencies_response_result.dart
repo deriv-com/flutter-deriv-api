@@ -25,10 +25,8 @@ abstract class PayoutCurrenciesResponseModel {
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Initializes Payout currencies response class.
   const PayoutCurrenciesResponse({
-    List<String>? payoutCurrencies,
-  }) : super(
-          payoutCurrencies: payoutCurrencies,
-        );
+    super.payoutCurrencies,
+  });
 
   /// Creates an instance from JSON.
   factory PayoutCurrenciesResponse.fromJson(
@@ -64,7 +62,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Retrieves a list of available option payout currencies.
   ///
   /// If a user is logged in, only the currencies available for the account will be returned.
-  /// Throws a [PayoutCurrencyException] if API response contains a error
+  /// Throws a [BaseAPIException] if API response contains a error
   static Future<PayoutCurrenciesResponse> fetchPayoutCurrencies([
     PayoutCurrenciesRequest? request,
   ]) async {
@@ -75,7 +73,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PayoutCurrencyException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PayoutCurrenciesResponse.fromJson(response.payoutCurrencies);

@@ -22,23 +22,26 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
     this.enableDebug = false,
+        // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
     this.printResponse = false,
+    this.proxyAwareConnection = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
-      api: api ?? BinaryAPI(key: _key, enableDebug: enableDebug),
+      api: api ??
+          BinaryAPI(
+            key: _key,
+            proxyAwareConnection: proxyAwareConnection,
+            enableDebug: enableDebug,
+          ),
     );
 
     _api = Injector()<BaseAPI>();
 
     _connectionInformation = connectionInformation;
 
-    if (_api is BinaryAPI) {
-      _setupConnectivityListener();
-    }
+    _connect(_connectionInformation);
 
     _startKeepAliveTimer();
-
-    _connect(_connectionInformation);
   }
 
   final String _key = '${UniqueKey()}';
@@ -54,6 +57,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ///
   /// Default value is `false`.
   final bool printResponse;
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
@@ -71,12 +77,21 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets endpoint of websocket.
   static String get endpoint => _connectionInformation.endpoint;
 
+  /// Gets auth endpoint of websocket.
+  static String get authEndpoint => _connectionInformation.authEndpoint;
+
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
+  /// Stream subscription for connectivity.
+  StreamSubscription<ConnectivityResult>? connectivitySubscription;
+
   /// Reconnect to Websocket.
-  Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
-    emit(const ConnectionDisconnectedState());
+  Future<void> reconnect({
+    ConnectionInformation? connectionInformation,
+    bool isChangingLanguage = false,
+  }) async {
+    emit(ConnectionDisconnectedState(isChangingLanguage: isChangingLanguage));
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -111,11 +126,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
           emit(const ConnectionConnectedState());
         }
       },
-      onDone: (String key) async {
+      onDone: (String key) {
         if (_key == key) {
-          await _api!.disconnect();
-
-          emit(const ConnectionDisconnectedState());
+          unawaited(reconnect());
         }
       },
       onError: (String key) {
@@ -124,26 +137,30 @@ class ConnectionCubit extends Cubit<ConnectionState> {
         }
       },
     );
+
+    if (_api is BinaryAPI) {
+      _setupConnectivityListener();
+    }
   }
 
-  void _setupConnectivityListener() =>
-      Connectivity().onConnectivityChanged.listen(
-        (ConnectivityResult status) async {
-          final bool isConnectedToNetwork =
-              status == ConnectivityResult.mobile ||
-                  status == ConnectivityResult.wifi;
+  void _setupConnectivityListener() {
+    connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult status) async {
+        final bool isConnectedToNetwork = status == ConnectivityResult.mobile ||
+            status == ConnectivityResult.wifi;
 
-          if (isConnectedToNetwork) {
-            final bool isConnected = await _ping();
+        if (isConnectedToNetwork) {
+          final bool isConnected = await _ping();
 
-            if (!isConnected) {
-              await reconnect();
-            }
-          } else if (status == ConnectivityResult.none) {
-            emit(const ConnectionDisconnectedState());
+          if (!isConnected) {
+            await reconnect();
           }
-        },
-      );
+        } else if (status == ConnectivityResult.none) {
+          emit(const ConnectionDisconnectedState());
+        }
+      },
+    );
+  }
 
   void _startKeepAliveTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
@@ -156,7 +173,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     try {
       final PingResponse response =
           await PingResponse.pingMethod().timeout(_pingTimeout);
-
       return response.ping == PingEnum.pong;
     } on Exception catch (_) {
       return false;
@@ -166,7 +182,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   @override
   Future<void> close() {
     _connectivityTimer?.cancel();
-
+    connectivitySubscription?.cancel();
+    connectivitySubscription = null;
     return super.close();
   }
 }

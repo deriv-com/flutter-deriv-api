@@ -26,10 +26,8 @@ class GetFinancialAssessmentResponse
     extends GetFinancialAssessmentResponseModel {
   /// Initializes Get financial assessment response class.
   const GetFinancialAssessmentResponse({
-    GetFinancialAssessment? getFinancialAssessment,
-  }) : super(
-          getFinancialAssessment: getFinancialAssessment,
-        );
+    super.getFinancialAssessment,
+  });
 
   /// Creates an instance from JSON.
   factory GetFinancialAssessmentResponse.fromJson(
@@ -58,7 +56,7 @@ class GetFinancialAssessmentResponse
   ///
   /// The 'financial assessment' is a questionnaire that clients of certain Landing Companies need to complete,
   /// due to regulatory and KYC (know your client) requirements.
-  /// Throws a [FinancialAssessmentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<GetFinancialAssessmentResponse> fetchAssessment(
     GetFinancialAssessmentRequest request,
   ) async {
@@ -68,7 +66,7 @@ class GetFinancialAssessmentResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return GetFinancialAssessmentResponse.fromJson(
@@ -84,7 +82,6 @@ class GetFinancialAssessmentResponse
             getFinancialAssessment ?? this.getFinancialAssessment,
       );
 }
-
 /// Get financial assessment model class.
 abstract class GetFinancialAssessmentModel {
   /// Initializes Get financial assessment model class .
@@ -92,7 +89,10 @@ abstract class GetFinancialAssessmentModel {
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
     this.binaryOptionsTradingFrequency,
+    this.cfdExperience,
+    this.cfdFrequency,
     this.cfdScore,
+    this.cfdTradingDefinition,
     this.cfdTradingExperience,
     this.cfdTradingFrequency,
     this.commoditiesTradingExperience,
@@ -107,16 +107,23 @@ abstract class GetFinancialAssessmentModel {
     this.incomeSource,
     this.indicesTradingExperience,
     this.indicesTradingFrequency,
+    this.leverageImpactTrading,
+    this.leverageTradingHighRiskStopLoss,
     this.netIncome,
     this.occupation,
     this.otherDerivativesTradingExperience,
     this.otherDerivativesTradingFrequency,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
+    this.requiredInitialMargin,
+    this.riskTolerance,
+    this.sourceOfExperience,
     this.sourceOfWealth,
     this.stocksTradingExperience,
     this.stocksTradingFrequency,
     this.totalScore,
+    this.tradingExperienceFinancialInstruments,
+    this.tradingFrequencyFinancialInstruments,
     this.tradingScore,
   });
 
@@ -129,8 +136,17 @@ abstract class GetFinancialAssessmentModel {
   /// Binary options trading frequency
   final String? binaryOptionsTradingFrequency;
 
+  /// How much experience do you have in CFD trading?
+  final String? cfdExperience;
+
+  /// How many CFD trades have you placed in the past 12 months?
+  final String? cfdFrequency;
+
   /// CFD Score
   final int? cfdScore;
+
+  /// In your understanding, CFD trading allows you to:
+  final String? cfdTradingDefinition;
 
   /// CFDs trading experience
   final String? cfdTradingExperience;
@@ -174,6 +190,12 @@ abstract class GetFinancialAssessmentModel {
   /// Indices trading frequency
   final String? indicesTradingFrequency;
 
+  /// How does leverage affect CFD trading?
+  final String? leverageImpactTrading;
+
+  /// Leverage trading is high-risk, so it's a good idea to use risk management features such as stop loss. Stop loss allows you to
+  final String? leverageTradingHighRiskStopLoss;
+
   /// Net Annual Income
   final String? netIncome;
 
@@ -192,6 +214,15 @@ abstract class GetFinancialAssessmentModel {
   /// Trading frequency in other financial instruments
   final String? otherInstrumentsTradingFrequency;
 
+  /// When would you be required to pay an initial margin?
+  final String? requiredInitialMargin;
+
+  /// Do you understand that you could potentially lose 100% of the money you use to trade?
+  final String? riskTolerance;
+
+  /// How much knowledge and experience do you have in relation to online trading?
+  final String? sourceOfExperience;
+
   /// Source of wealth
   final String? sourceOfWealth;
 
@@ -204,6 +235,12 @@ abstract class GetFinancialAssessmentModel {
   /// Total Score
   final int? totalScore;
 
+  /// How much experience do you have with other financial instruments?
+  final String? tradingExperienceFinancialInstruments;
+
+  /// How many trades have you placed with other financial instruments in the past 12 months?
+  final String? tradingFrequencyFinancialInstruments;
+
   /// Trading Experience Score
   final int? tradingScore;
 }
@@ -212,66 +249,46 @@ abstract class GetFinancialAssessmentModel {
 class GetFinancialAssessment extends GetFinancialAssessmentModel {
   /// Initializes Get financial assessment class.
   const GetFinancialAssessment({
-    String? accountTurnover,
-    String? binaryOptionsTradingExperience,
-    String? binaryOptionsTradingFrequency,
-    int? cfdScore,
-    String? cfdTradingExperience,
-    String? cfdTradingFrequency,
-    String? commoditiesTradingExperience,
-    String? commoditiesTradingFrequency,
-    String? educationLevel,
-    String? employmentIndustry,
-    String? employmentStatus,
-    String? estimatedWorth,
-    int? financialInformationScore,
-    String? forexTradingExperience,
-    String? forexTradingFrequency,
-    String? incomeSource,
-    String? indicesTradingExperience,
-    String? indicesTradingFrequency,
-    String? netIncome,
-    String? occupation,
-    String? otherDerivativesTradingExperience,
-    String? otherDerivativesTradingFrequency,
-    String? otherInstrumentsTradingExperience,
-    String? otherInstrumentsTradingFrequency,
-    String? sourceOfWealth,
-    String? stocksTradingExperience,
-    String? stocksTradingFrequency,
-    int? totalScore,
-    int? tradingScore,
-  }) : super(
-          accountTurnover: accountTurnover,
-          binaryOptionsTradingExperience: binaryOptionsTradingExperience,
-          binaryOptionsTradingFrequency: binaryOptionsTradingFrequency,
-          cfdScore: cfdScore,
-          cfdTradingExperience: cfdTradingExperience,
-          cfdTradingFrequency: cfdTradingFrequency,
-          commoditiesTradingExperience: commoditiesTradingExperience,
-          commoditiesTradingFrequency: commoditiesTradingFrequency,
-          educationLevel: educationLevel,
-          employmentIndustry: employmentIndustry,
-          employmentStatus: employmentStatus,
-          estimatedWorth: estimatedWorth,
-          financialInformationScore: financialInformationScore,
-          forexTradingExperience: forexTradingExperience,
-          forexTradingFrequency: forexTradingFrequency,
-          incomeSource: incomeSource,
-          indicesTradingExperience: indicesTradingExperience,
-          indicesTradingFrequency: indicesTradingFrequency,
-          netIncome: netIncome,
-          occupation: occupation,
-          otherDerivativesTradingExperience: otherDerivativesTradingExperience,
-          otherDerivativesTradingFrequency: otherDerivativesTradingFrequency,
-          otherInstrumentsTradingExperience: otherInstrumentsTradingExperience,
-          otherInstrumentsTradingFrequency: otherInstrumentsTradingFrequency,
-          sourceOfWealth: sourceOfWealth,
-          stocksTradingExperience: stocksTradingExperience,
-          stocksTradingFrequency: stocksTradingFrequency,
-          totalScore: totalScore,
-          tradingScore: tradingScore,
-        );
+    super.accountTurnover,
+    super.binaryOptionsTradingExperience,
+    super.binaryOptionsTradingFrequency,
+    super.cfdExperience,
+    super.cfdFrequency,
+    super.cfdScore,
+    super.cfdTradingDefinition,
+    super.cfdTradingExperience,
+    super.cfdTradingFrequency,
+    super.commoditiesTradingExperience,
+    super.commoditiesTradingFrequency,
+    super.educationLevel,
+    super.employmentIndustry,
+    super.employmentStatus,
+    super.estimatedWorth,
+    super.financialInformationScore,
+    super.forexTradingExperience,
+    super.forexTradingFrequency,
+    super.incomeSource,
+    super.indicesTradingExperience,
+    super.indicesTradingFrequency,
+    super.leverageImpactTrading,
+    super.leverageTradingHighRiskStopLoss,
+    super.netIncome,
+    super.occupation,
+    super.otherDerivativesTradingExperience,
+    super.otherDerivativesTradingFrequency,
+    super.otherInstrumentsTradingExperience,
+    super.otherInstrumentsTradingFrequency,
+    super.requiredInitialMargin,
+    super.riskTolerance,
+    super.sourceOfExperience,
+    super.sourceOfWealth,
+    super.stocksTradingExperience,
+    super.stocksTradingFrequency,
+    super.totalScore,
+    super.tradingExperienceFinancialInstruments,
+    super.tradingFrequencyFinancialInstruments,
+    super.tradingScore,
+  });
 
   /// Creates an instance from JSON.
   factory GetFinancialAssessment.fromJson(Map<String, dynamic> json) =>
@@ -280,7 +297,10 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         binaryOptionsTradingExperience:
             json['binary_options_trading_experience'],
         binaryOptionsTradingFrequency: json['binary_options_trading_frequency'],
+        cfdExperience: json['cfd_experience'],
+        cfdFrequency: json['cfd_frequency'],
         cfdScore: json['cfd_score'],
+        cfdTradingDefinition: json['cfd_trading_definition'],
         cfdTradingExperience: json['cfd_trading_experience'],
         cfdTradingFrequency: json['cfd_trading_frequency'],
         commoditiesTradingExperience: json['commodities_trading_experience'],
@@ -295,6 +315,9 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         incomeSource: json['income_source'],
         indicesTradingExperience: json['indices_trading_experience'],
         indicesTradingFrequency: json['indices_trading_frequency'],
+        leverageImpactTrading: json['leverage_impact_trading'],
+        leverageTradingHighRiskStopLoss:
+            json['leverage_trading_high_risk_stop_loss'],
         netIncome: json['net_income'],
         occupation: json['occupation'],
         otherDerivativesTradingExperience:
@@ -305,10 +328,17 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
             json['other_instruments_trading_experience'],
         otherInstrumentsTradingFrequency:
             json['other_instruments_trading_frequency'],
+        requiredInitialMargin: json['required_initial_margin'],
+        riskTolerance: json['risk_tolerance'],
+        sourceOfExperience: json['source_of_experience'],
         sourceOfWealth: json['source_of_wealth'],
         stocksTradingExperience: json['stocks_trading_experience'],
         stocksTradingFrequency: json['stocks_trading_frequency'],
         totalScore: json['total_score'],
+        tradingExperienceFinancialInstruments:
+            json['trading_experience_financial_instruments'],
+        tradingFrequencyFinancialInstruments:
+            json['trading_frequency_financial_instruments'],
         tradingScore: json['trading_score'],
       );
 
@@ -321,7 +351,10 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         binaryOptionsTradingExperience;
     resultMap['binary_options_trading_frequency'] =
         binaryOptionsTradingFrequency;
+    resultMap['cfd_experience'] = cfdExperience;
+    resultMap['cfd_frequency'] = cfdFrequency;
     resultMap['cfd_score'] = cfdScore;
+    resultMap['cfd_trading_definition'] = cfdTradingDefinition;
     resultMap['cfd_trading_experience'] = cfdTradingExperience;
     resultMap['cfd_trading_frequency'] = cfdTradingFrequency;
     resultMap['commodities_trading_experience'] = commoditiesTradingExperience;
@@ -336,6 +369,9 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
     resultMap['income_source'] = incomeSource;
     resultMap['indices_trading_experience'] = indicesTradingExperience;
     resultMap['indices_trading_frequency'] = indicesTradingFrequency;
+    resultMap['leverage_impact_trading'] = leverageImpactTrading;
+    resultMap['leverage_trading_high_risk_stop_loss'] =
+        leverageTradingHighRiskStopLoss;
     resultMap['net_income'] = netIncome;
     resultMap['occupation'] = occupation;
     resultMap['other_derivatives_trading_experience'] =
@@ -346,10 +382,17 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         otherInstrumentsTradingExperience;
     resultMap['other_instruments_trading_frequency'] =
         otherInstrumentsTradingFrequency;
+    resultMap['required_initial_margin'] = requiredInitialMargin;
+    resultMap['risk_tolerance'] = riskTolerance;
+    resultMap['source_of_experience'] = sourceOfExperience;
     resultMap['source_of_wealth'] = sourceOfWealth;
     resultMap['stocks_trading_experience'] = stocksTradingExperience;
     resultMap['stocks_trading_frequency'] = stocksTradingFrequency;
     resultMap['total_score'] = totalScore;
+    resultMap['trading_experience_financial_instruments'] =
+        tradingExperienceFinancialInstruments;
+    resultMap['trading_frequency_financial_instruments'] =
+        tradingFrequencyFinancialInstruments;
     resultMap['trading_score'] = tradingScore;
 
     return resultMap;
@@ -360,7 +403,10 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
     String? accountTurnover,
     String? binaryOptionsTradingExperience,
     String? binaryOptionsTradingFrequency,
+    String? cfdExperience,
+    String? cfdFrequency,
     int? cfdScore,
+    String? cfdTradingDefinition,
     String? cfdTradingExperience,
     String? cfdTradingFrequency,
     String? commoditiesTradingExperience,
@@ -375,16 +421,23 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
     String? incomeSource,
     String? indicesTradingExperience,
     String? indicesTradingFrequency,
+    String? leverageImpactTrading,
+    String? leverageTradingHighRiskStopLoss,
     String? netIncome,
     String? occupation,
     String? otherDerivativesTradingExperience,
     String? otherDerivativesTradingFrequency,
     String? otherInstrumentsTradingExperience,
     String? otherInstrumentsTradingFrequency,
+    String? requiredInitialMargin,
+    String? riskTolerance,
+    String? sourceOfExperience,
     String? sourceOfWealth,
     String? stocksTradingExperience,
     String? stocksTradingFrequency,
     int? totalScore,
+    String? tradingExperienceFinancialInstruments,
+    String? tradingFrequencyFinancialInstruments,
     int? tradingScore,
   }) =>
       GetFinancialAssessment(
@@ -393,7 +446,10 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
             this.binaryOptionsTradingExperience,
         binaryOptionsTradingFrequency:
             binaryOptionsTradingFrequency ?? this.binaryOptionsTradingFrequency,
+        cfdExperience: cfdExperience ?? this.cfdExperience,
+        cfdFrequency: cfdFrequency ?? this.cfdFrequency,
         cfdScore: cfdScore ?? this.cfdScore,
+        cfdTradingDefinition: cfdTradingDefinition ?? this.cfdTradingDefinition,
         cfdTradingExperience: cfdTradingExperience ?? this.cfdTradingExperience,
         cfdTradingFrequency: cfdTradingFrequency ?? this.cfdTradingFrequency,
         commoditiesTradingExperience:
@@ -415,6 +471,10 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
             indicesTradingExperience ?? this.indicesTradingExperience,
         indicesTradingFrequency:
             indicesTradingFrequency ?? this.indicesTradingFrequency,
+        leverageImpactTrading:
+            leverageImpactTrading ?? this.leverageImpactTrading,
+        leverageTradingHighRiskStopLoss: leverageTradingHighRiskStopLoss ??
+            this.leverageTradingHighRiskStopLoss,
         netIncome: netIncome ?? this.netIncome,
         occupation: occupation ?? this.occupation,
         otherDerivativesTradingExperience: otherDerivativesTradingExperience ??
@@ -425,12 +485,22 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
             this.otherInstrumentsTradingExperience,
         otherInstrumentsTradingFrequency: otherInstrumentsTradingFrequency ??
             this.otherInstrumentsTradingFrequency,
+        requiredInitialMargin:
+            requiredInitialMargin ?? this.requiredInitialMargin,
+        riskTolerance: riskTolerance ?? this.riskTolerance,
+        sourceOfExperience: sourceOfExperience ?? this.sourceOfExperience,
         sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
         stocksTradingExperience:
             stocksTradingExperience ?? this.stocksTradingExperience,
         stocksTradingFrequency:
             stocksTradingFrequency ?? this.stocksTradingFrequency,
         totalScore: totalScore ?? this.totalScore,
+        tradingExperienceFinancialInstruments:
+            tradingExperienceFinancialInstruments ??
+                this.tradingExperienceFinancialInstruments,
+        tradingFrequencyFinancialInstruments:
+            tradingFrequencyFinancialInstruments ??
+                this.tradingFrequencyFinancialInstruments,
         tradingScore: tradingScore ?? this.tradingScore,
       );
 }

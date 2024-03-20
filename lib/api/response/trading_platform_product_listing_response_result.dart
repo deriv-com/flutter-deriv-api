@@ -21,11 +21,8 @@ class TradingPlatformProductListingResponse
     extends TradingPlatformProductListingResponseModel {
   /// Initializes Trading platform product listing response class.
   const TradingPlatformProductListingResponse({
-    Map<String, TradingPlatformProductListingProperty>?
-        tradingPlatformProductListing,
-  }) : super(
-          tradingPlatformProductListing: tradingPlatformProductListing,
-        );
+    super.tradingPlatformProductListing,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformProductListingResponse.fromJson(
@@ -92,16 +89,11 @@ class TradingPlatformProductListingProperty
     extends TradingPlatformProductListingPropertyModel {
   /// Initializes Trading platform product listing property class.
   const TradingPlatformProductListingProperty({
-    List<String>? availableMarkets,
-    List<String>? availableTradeTypes,
-    String? name,
-    List<ProductListItem>? productList,
-  }) : super(
-          availableMarkets: availableMarkets,
-          availableTradeTypes: availableTradeTypes,
-          name: name,
-          productList: productList,
-        );
+    super.availableMarkets,
+    super.availableTradeTypes,
+    super.name,
+    super.productList,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformProductListingProperty.fromJson(
@@ -206,18 +198,12 @@ abstract class ProductListItemModel {
 class ProductListItem extends ProductListItemModel {
   /// Initializes Product list item class.
   const ProductListItem({
-    List<String>? availableAccountTypes,
-    List<String>? availableTradeTypes,
-    Market? market,
-    Submarket? submarket,
-    Symbol? symbol,
-  }) : super(
-          availableAccountTypes: availableAccountTypes,
-          availableTradeTypes: availableTradeTypes,
-          market: market,
-          submarket: submarket,
-          symbol: symbol,
-        );
+    super.availableAccountTypes,
+    super.availableTradeTypes,
+    super.market,
+    super.submarket,
+    super.symbol,
+  });
 
   /// Creates an instance from JSON.
   factory ProductListItem.fromJson(Map<String, dynamic> json) =>
@@ -310,12 +296,9 @@ abstract class MarketModel {
 class Market extends MarketModel {
   /// Initializes Market class.
   const Market({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory Market.fromJson(Map<String, dynamic> json) => Market(
@@ -362,12 +345,9 @@ abstract class SubmarketModel {
 class Submarket extends SubmarketModel {
   /// Initializes Submarket class.
   const Submarket({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory Submarket.fromJson(Map<String, dynamic> json) => Submarket(
@@ -414,12 +394,9 @@ abstract class SymbolModel {
 class Symbol extends SymbolModel {
   /// Initializes Symbol class.
   const Symbol({
-    String? displayName,
-    String? name,
-  }) : super(
-          displayName: displayName,
-          name: name,
-        );
+    super.displayName,
+    super.name,
+  });
 
   /// Creates an instance from JSON.
   factory Symbol.fromJson(Map<String, dynamic> json) => Symbol(

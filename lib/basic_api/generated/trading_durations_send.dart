@@ -8,20 +8,21 @@ import '../request.dart';
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest.
   const TradingDurationsRequest({
-    this.landingCompany,
+    required this.landingCompany,
+    this.landingCompanyShort,
+    this.loginid,
     this.tradingDurations = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_durations',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_durations',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
         landingCompany: json['landing_company'] as String?,
+        landingCompanyShort: json['landing_company_short'] as String?,
+        loginid: json['loginid'] as String?,
         tradingDurations: json['trading_durations'] == null
             ? null
             : json['trading_durations'] == 1,
@@ -29,8 +30,14 @@ class TradingDurationsRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] If specified, will return only the underlyings for the specified landing company.
+  /// Deprecated - Replaced by landing_company_short.
   final String? landingCompany;
+
+  /// [Optional] If specified, will return only the underlyings for the specified landing company.
+  final String? landingCompanyShort;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? tradingDurations;
@@ -39,6 +46,8 @@ class TradingDurationsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company': landingCompany,
+        'landing_company_short': landingCompanyShort,
+        'loginid': loginid,
         'trading_durations': tradingDurations == null
             ? null
             : tradingDurations!
@@ -52,12 +61,16 @@ class TradingDurationsRequest extends Request {
   @override
   TradingDurationsRequest copyWith({
     String? landingCompany,
+    String? landingCompanyShort,
+    String? loginid,
     bool? tradingDurations,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,
+        landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
+        loginid: loginid ?? this.loginid,
         tradingDurations: tradingDurations ?? this.tradingDurations,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -25,10 +25,8 @@ abstract class CopyStartResponseModel {
 class CopyStartResponse extends CopyStartResponseModel {
   /// Initializes Copy start response class.
   const CopyStartResponse({
-    int? copyStart,
-  }) : super(
-          copyStart: copyStart,
-        );
+    super.copyStart,
+  });
 
   /// Creates an instance from JSON.
   factory CopyStartResponse.fromJson(
@@ -52,14 +50,14 @@ class CopyStartResponse extends CopyStartResponseModel {
   /// Starts copy trader bets.
   ///
   /// For parameters information refer to [CopyStartRequest].
-  /// Throws a [CopyTradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<CopyStartResponse> start(CopyStartRequest request) async {
     final CopyStartReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          CopyTradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopyStartResponse.fromJson(response.copyStart);

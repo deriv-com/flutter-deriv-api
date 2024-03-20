@@ -25,10 +25,8 @@ abstract class P2pOrderDisputeResponseModel {
 class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
   /// Initializes P2p order dispute response class.
   const P2pOrderDisputeResponse({
-    P2pOrderDispute? p2pOrderDispute,
-  }) : super(
-          p2pOrderDispute: p2pOrderDispute,
-        );
+    super.p2pOrderDispute,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderDisputeResponse.fromJson(
@@ -56,7 +54,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
   /// Cancel a P2P order dispute.
   ///
   /// For parameters information refer to [P2pOrderDisputeRequest].
-  /// Throws an [P2POrderException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pOrderDisputeReceive> disputeOrderRaw(
     P2pOrderDisputeRequest request,
   ) async {
@@ -65,7 +63,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -74,7 +72,7 @@ class P2pOrderDisputeResponse extends P2pOrderDisputeResponseModel {
   /// Cancel a P2P order dispute.
   ///
   /// For parameters information refer to [P2pOrderDisputeRequest].
-  /// Throws an [P2POrderException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<P2pOrderDisputeResponse> disputeOrder(
     P2pOrderDisputeRequest request,
   ) async {
@@ -153,12 +151,10 @@ enum StatusEnum {
   /// dispute-completed.
   disputeCompleted,
 }
-
 /// P2p order dispute model class.
 abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
   const P2pOrderDisputeModel({
-    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -184,11 +180,9 @@ abstract class P2pOrderDisputeModel {
     required this.accountCurrency,
     this.verificationLockoutUntil,
     this.verificationNextRequest,
+    this.verificationPending,
     this.verificationTokenExpiry,
   });
-
-  /// Indicates that the seller in the process of confirming the order.
-  final bool verificationPending;
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
@@ -265,6 +259,9 @@ abstract class P2pOrderDisputeModel {
   /// If a verification request has already been made, the epoch time that another verification request can be made.
   final DateTime? verificationNextRequest;
 
+  /// Indicates that the seller in the process of confirming the order.
+  final bool? verificationPending;
+
   /// Epoch time that the current verification token will expire.
   final DateTime? verificationTokenExpiry;
 }
@@ -273,62 +270,34 @@ abstract class P2pOrderDisputeModel {
 class P2pOrderDispute extends P2pOrderDisputeModel {
   /// Initializes P2p order dispute class.
   const P2pOrderDispute({
-    required String accountCurrency,
-    required AdvertDetails advertDetails,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String chatChannelUrl,
-    required ClientDetails clientDetails,
-    required String contactInfo,
-    required DateTime createdTime,
-    required DisputeDetails disputeDetails,
-    required DateTime expiryTime,
-    required String id,
-    required bool isIncoming,
-    required bool isReviewable,
-    required bool isSeen,
-    required String localCurrency,
-    required String paymentInfo,
-    required double price,
-    required String priceDisplay,
-    required double rate,
-    required String rateDisplay,
-    required StatusEnum status,
-    required TypeEnum type,
-    required bool verificationPending,
-    DateTime? verificationLockoutUntil,
-    DateTime? verificationNextRequest,
-    DateTime? verificationTokenExpiry,
-  }) : super(
-          accountCurrency: accountCurrency,
-          advertDetails: advertDetails,
-          advertiserDetails: advertiserDetails,
-          amount: amount,
-          amountDisplay: amountDisplay,
-          chatChannelUrl: chatChannelUrl,
-          clientDetails: clientDetails,
-          contactInfo: contactInfo,
-          createdTime: createdTime,
-          disputeDetails: disputeDetails,
-          expiryTime: expiryTime,
-          id: id,
-          isIncoming: isIncoming,
-          isReviewable: isReviewable,
-          isSeen: isSeen,
-          localCurrency: localCurrency,
-          paymentInfo: paymentInfo,
-          price: price,
-          priceDisplay: priceDisplay,
-          rate: rate,
-          rateDisplay: rateDisplay,
-          status: status,
-          type: type,
-          verificationPending: verificationPending,
-          verificationLockoutUntil: verificationLockoutUntil,
-          verificationNextRequest: verificationNextRequest,
-          verificationTokenExpiry: verificationTokenExpiry,
-        );
+    required super.accountCurrency,
+    required super.advertDetails,
+    required super.advertiserDetails,
+    required super.amount,
+    required super.amountDisplay,
+    required super.chatChannelUrl,
+    required super.clientDetails,
+    required super.contactInfo,
+    required super.createdTime,
+    required super.disputeDetails,
+    required super.expiryTime,
+    required super.id,
+    required super.isIncoming,
+    required super.isReviewable,
+    required super.isSeen,
+    required super.localCurrency,
+    required super.paymentInfo,
+    required super.price,
+    required super.priceDisplay,
+    required super.rate,
+    required super.rateDisplay,
+    required super.status,
+    required super.type,
+    super.verificationLockoutUntil,
+    super.verificationNextRequest,
+    super.verificationPending,
+    super.verificationTokenExpiry,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderDispute.fromJson(Map<String, dynamic> json) =>
@@ -357,10 +326,10 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
-        verificationPending: getBool(json['verification_pending'])!,
         verificationLockoutUntil:
             getDateTime(json['verification_lockout_until']),
         verificationNextRequest: getDateTime(json['verification_next_request']),
+        verificationPending: getBool(json['verification_pending']),
         verificationTokenExpiry: getDateTime(json['verification_token_expiry']),
       );
 
@@ -400,11 +369,11 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
-    resultMap['verification_pending'] = verificationPending;
     resultMap['verification_lockout_until'] =
         getSecondsSinceEpochDateTime(verificationLockoutUntil);
     resultMap['verification_next_request'] =
         getSecondsSinceEpochDateTime(verificationNextRequest);
+    resultMap['verification_pending'] = verificationPending;
     resultMap['verification_token_expiry'] =
         getSecondsSinceEpochDateTime(verificationTokenExpiry);
 
@@ -436,9 +405,9 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
-    bool? verificationPending,
     DateTime? verificationLockoutUntil,
     DateTime? verificationNextRequest,
+    bool? verificationPending,
     DateTime? verificationTokenExpiry,
   }) =>
       P2pOrderDispute(
@@ -465,16 +434,15 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
-        verificationPending: verificationPending ?? this.verificationPending,
         verificationLockoutUntil:
             verificationLockoutUntil ?? this.verificationLockoutUntil,
         verificationNextRequest:
             verificationNextRequest ?? this.verificationNextRequest,
+        verificationPending: verificationPending ?? this.verificationPending,
         verificationTokenExpiry:
             verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
-
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -482,6 +450,7 @@ abstract class AdvertDetailsModel {
     required this.type,
     required this.id,
     required this.description,
+    required this.blockTrade,
     this.paymentMethod,
   });
 
@@ -494,6 +463,9 @@ abstract class AdvertDetailsModel {
   /// General information about the advert.
   final String description;
 
+  /// Indicates if this is block trade advert or not.
+  final bool blockTrade;
+
   /// The payment method.
   final String? paymentMethod;
 }
@@ -502,19 +474,16 @@ abstract class AdvertDetailsModel {
 class AdvertDetails extends AdvertDetailsModel {
   /// Initializes Advert details class.
   const AdvertDetails({
-    required String description,
-    required String id,
-    required TypeEnum type,
-    String? paymentMethod,
-  }) : super(
-          description: description,
-          id: id,
-          type: type,
-          paymentMethod: paymentMethod,
-        );
+    required super.blockTrade,
+    required super.description,
+    required super.id,
+    required super.type,
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
+        blockTrade: getBool(json['block_trade'])!,
         description: json['description'],
         id: json['id'],
         type: typeEnumMapper[json['type']]!,
@@ -525,6 +494,7 @@ class AdvertDetails extends AdvertDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['block_trade'] = blockTrade;
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['type'] = typeEnumMapper.entries
@@ -537,19 +507,20 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
+    bool? blockTrade,
     String? description,
     String? id,
     TypeEnum? type,
     String? paymentMethod,
   }) =>
       AdvertDetails(
+        blockTrade: blockTrade ?? this.blockTrade,
         description: description ?? this.description,
         id: id ?? this.id,
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -575,7 +546,7 @@ abstract class AdvertiserDetailsModel {
   /// The advertiser's unique identifier.
   final String id;
 
-  /// The advertiser's first name.
+  /// The client's first name.
   final String? firstName;
 
   /// The advertiser's last name.
@@ -589,22 +560,14 @@ abstract class AdvertiserDetailsModel {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
@@ -654,7 +617,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -694,22 +656,14 @@ abstract class ClientDetailsModel {
 class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
   const ClientDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
@@ -758,7 +712,6 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
@@ -778,12 +731,9 @@ abstract class DisputeDetailsModel {
 class DisputeDetails extends DisputeDetailsModel {
   /// Initializes Dispute details class.
   const DisputeDetails({
-    required String disputeReason,
-    required String disputerLoginid,
-  }) : super(
-          disputeReason: disputeReason,
-          disputerLoginid: disputerLoginid,
-        );
+    required super.disputeReason,
+    required super.disputerLoginid,
+  });
 
   /// Creates an instance from JSON.
   factory DisputeDetails.fromJson(Map<String, dynamic> json) => DisputeDetails(

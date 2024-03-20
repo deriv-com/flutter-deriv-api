@@ -25,10 +25,8 @@ abstract class AssetIndexResponseModel {
 class AssetIndexResponse extends AssetIndexResponseModel {
   /// Initializes Asset index response class.
   const AssetIndexResponse({
-    List<dynamic>? assetIndex,
-  }) : super(
-          assetIndex: assetIndex,
-        );
+    super.assetIndex,
+  });
 
   /// Creates an instance from JSON.
   factory AssetIndexResponse.fromJson(
@@ -64,7 +62,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
   ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
-  /// Throws an [AssetIndexException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AssetIndexResponse> fetchAssetIndices(
     AssetIndexRequest request,
   ) async {
@@ -75,7 +73,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AssetIndexException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AssetIndexResponse.fromJson(response.assetIndex);

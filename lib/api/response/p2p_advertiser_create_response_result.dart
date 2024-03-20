@@ -31,12 +31,9 @@ abstract class P2pAdvertiserCreateResponseModel {
 class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   /// Initializes P2p advertiser create response class.
   const P2pAdvertiserCreateResponse({
-    P2pAdvertiserCreate? p2pAdvertiserCreate,
-    Subscription? subscription,
-  }) : super(
-          p2pAdvertiserCreate: p2pAdvertiserCreate,
-          subscription: subscription,
-        );
+    super.p2pAdvertiserCreate,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserCreateResponse.fromJson(
@@ -92,7 +89,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -129,7 +126,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserCreateReceive ? response : null;
@@ -146,7 +143,6 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create model class .
@@ -168,8 +164,6 @@ abstract class P2pAdvertiserCreateModel {
     required this.defaultAdvertDescription,
     required this.createdTime,
     required this.contactInfo,
-    required this.chatUserId,
-    required this.chatToken,
     required this.cancelsRemaining,
     required this.buyOrdersCount,
     required this.buyOrdersAmount,
@@ -180,6 +174,8 @@ abstract class P2pAdvertiserCreateModel {
     this.buyCompletionRate,
     this.buyTimeAvg,
     this.cancelTimeAvg,
+    this.chatToken,
+    this.chatUserId,
     this.dailyBuy,
     this.dailyBuyLimit,
     this.dailySell,
@@ -248,12 +244,6 @@ abstract class P2pAdvertiserCreateModel {
   /// Advertiser's contact information.
   final String contactInfo;
 
-  /// The unique identifier for the chat user.
-  final String chatUserId;
-
-  /// The token to be used for authenticating the client for chat.
-  final String chatToken;
-
   /// The number of times the user may cancel orders before being temporarily blocked.
   final int cancelsRemaining;
 
@@ -283,6 +273,12 @@ abstract class P2pAdvertiserCreateModel {
 
   /// The average time in seconds taken to cancel orders as a buyer within the past 30 days.
   final int? cancelTimeAvg;
+
+  /// The token to be used for authenticating the client for chat.
+  final String? chatToken;
+
+  /// The unique identifier for the chat user.
+  final String? chatUserId;
 
   /// Total value of P2P buy transactions in the past 24 hours.
   final String? dailyBuy;
@@ -334,96 +330,51 @@ abstract class P2pAdvertiserCreateModel {
 class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create class.
   const P2pAdvertiserCreate({
-    required double balanceAvailable,
-    required bool basicVerification,
-    required int blockedByCount,
-    required String buyOrdersAmount,
-    required int buyOrdersCount,
-    required int cancelsRemaining,
-    required String chatToken,
-    required String chatUserId,
-    required String contactInfo,
-    required DateTime createdTime,
-    required String defaultAdvertDescription,
-    required bool fullVerification,
-    required String id,
-    required bool isApproved,
-    required bool isListed,
-    required bool isOnline,
-    required String name,
-    required int partnerCount,
-    required String paymentInfo,
-    required int ratingCount,
-    required String sellOrdersAmount,
-    required int sellOrdersCount,
-    required bool showName,
-    required int totalOrdersCount,
-    required String totalTurnover,
-    double? advertRates,
-    double? buyCompletionRate,
-    int? buyTimeAvg,
-    int? cancelTimeAvg,
-    String? dailyBuy,
-    String? dailyBuyLimit,
-    String? dailySell,
-    String? dailySellLimit,
-    DateTime? lastOnlineTime,
-    String? maxOrderAmount,
-    String? minBalance,
-    String? minOrderAmount,
-    double? ratingAverage,
-    double? recommendedAverage,
-    int? recommendedCount,
-    int? releaseTimeAvg,
-    double? sellCompletionRate,
-    double? totalCompletionRate,
-    String? withdrawalLimit,
-  }) : super(
-          balanceAvailable: balanceAvailable,
-          basicVerification: basicVerification,
-          blockedByCount: blockedByCount,
-          buyOrdersAmount: buyOrdersAmount,
-          buyOrdersCount: buyOrdersCount,
-          cancelsRemaining: cancelsRemaining,
-          chatToken: chatToken,
-          chatUserId: chatUserId,
-          contactInfo: contactInfo,
-          createdTime: createdTime,
-          defaultAdvertDescription: defaultAdvertDescription,
-          fullVerification: fullVerification,
-          id: id,
-          isApproved: isApproved,
-          isListed: isListed,
-          isOnline: isOnline,
-          name: name,
-          partnerCount: partnerCount,
-          paymentInfo: paymentInfo,
-          ratingCount: ratingCount,
-          sellOrdersAmount: sellOrdersAmount,
-          sellOrdersCount: sellOrdersCount,
-          showName: showName,
-          totalOrdersCount: totalOrdersCount,
-          totalTurnover: totalTurnover,
-          advertRates: advertRates,
-          buyCompletionRate: buyCompletionRate,
-          buyTimeAvg: buyTimeAvg,
-          cancelTimeAvg: cancelTimeAvg,
-          dailyBuy: dailyBuy,
-          dailyBuyLimit: dailyBuyLimit,
-          dailySell: dailySell,
-          dailySellLimit: dailySellLimit,
-          lastOnlineTime: lastOnlineTime,
-          maxOrderAmount: maxOrderAmount,
-          minBalance: minBalance,
-          minOrderAmount: minOrderAmount,
-          ratingAverage: ratingAverage,
-          recommendedAverage: recommendedAverage,
-          recommendedCount: recommendedCount,
-          releaseTimeAvg: releaseTimeAvg,
-          sellCompletionRate: sellCompletionRate,
-          totalCompletionRate: totalCompletionRate,
-          withdrawalLimit: withdrawalLimit,
-        );
+    required super.balanceAvailable,
+    required super.basicVerification,
+    required super.blockedByCount,
+    required super.buyOrdersAmount,
+    required super.buyOrdersCount,
+    required super.cancelsRemaining,
+    required super.contactInfo,
+    required super.createdTime,
+    required super.defaultAdvertDescription,
+    required super.fullVerification,
+    required super.id,
+    required super.isApproved,
+    required super.isListed,
+    required super.isOnline,
+    required super.name,
+    required super.partnerCount,
+    required super.paymentInfo,
+    required super.ratingCount,
+    required super.sellOrdersAmount,
+    required super.sellOrdersCount,
+    required super.showName,
+    required super.totalOrdersCount,
+    required super.totalTurnover,
+    super.advertRates,
+    super.buyCompletionRate,
+    super.buyTimeAvg,
+    super.cancelTimeAvg,
+    super.chatToken,
+    super.chatUserId,
+    super.dailyBuy,
+    super.dailyBuyLimit,
+    super.dailySell,
+    super.dailySellLimit,
+    super.lastOnlineTime,
+    super.maxOrderAmount,
+    super.minBalance,
+    super.minOrderAmount,
+    super.ratingAverage,
+    super.recommendedAverage,
+    super.recommendedCount,
+    super.releaseTimeAvg,
+    super.sellCompletionRate,
+    super.totalCompletionRate,
+    super.withdrawalLimit,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserCreate.fromJson(Map<String, dynamic> json) =>
@@ -434,8 +385,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         buyOrdersAmount: json['buy_orders_amount'],
         buyOrdersCount: json['buy_orders_count'],
         cancelsRemaining: json['cancels_remaining'],
-        chatToken: json['chat_token'],
-        chatUserId: json['chat_user_id'],
         contactInfo: json['contact_info'],
         createdTime: getDateTime(json['created_time'])!,
         defaultAdvertDescription: json['default_advert_description'],
@@ -457,6 +406,8 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         buyCompletionRate: getDouble(json['buy_completion_rate']),
         buyTimeAvg: json['buy_time_avg'],
         cancelTimeAvg: json['cancel_time_avg'],
+        chatToken: json['chat_token'],
+        chatUserId: json['chat_user_id'],
         dailyBuy: json['daily_buy'],
         dailyBuyLimit: json['daily_buy_limit'],
         dailySell: json['daily_sell'],
@@ -484,8 +435,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     resultMap['buy_orders_amount'] = buyOrdersAmount;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['cancels_remaining'] = cancelsRemaining;
-    resultMap['chat_token'] = chatToken;
-    resultMap['chat_user_id'] = chatUserId;
     resultMap['contact_info'] = contactInfo;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
     resultMap['default_advert_description'] = defaultAdvertDescription;
@@ -507,6 +456,8 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     resultMap['buy_completion_rate'] = buyCompletionRate;
     resultMap['buy_time_avg'] = buyTimeAvg;
     resultMap['cancel_time_avg'] = cancelTimeAvg;
+    resultMap['chat_token'] = chatToken;
+    resultMap['chat_user_id'] = chatUserId;
     resultMap['daily_buy'] = dailyBuy;
     resultMap['daily_buy_limit'] = dailyBuyLimit;
     resultMap['daily_sell'] = dailySell;
@@ -535,8 +486,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     String? buyOrdersAmount,
     int? buyOrdersCount,
     int? cancelsRemaining,
-    String? chatToken,
-    String? chatUserId,
     String? contactInfo,
     DateTime? createdTime,
     String? defaultAdvertDescription,
@@ -558,6 +507,8 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     double? buyCompletionRate,
     int? buyTimeAvg,
     int? cancelTimeAvg,
+    String? chatToken,
+    String? chatUserId,
     String? dailyBuy,
     String? dailyBuyLimit,
     String? dailySell,
@@ -581,8 +532,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         buyOrdersAmount: buyOrdersAmount ?? this.buyOrdersAmount,
         buyOrdersCount: buyOrdersCount ?? this.buyOrdersCount,
         cancelsRemaining: cancelsRemaining ?? this.cancelsRemaining,
-        chatToken: chatToken ?? this.chatToken,
-        chatUserId: chatUserId ?? this.chatUserId,
         contactInfo: contactInfo ?? this.contactInfo,
         createdTime: createdTime ?? this.createdTime,
         defaultAdvertDescription:
@@ -605,6 +554,8 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         buyCompletionRate: buyCompletionRate ?? this.buyCompletionRate,
         buyTimeAvg: buyTimeAvg ?? this.buyTimeAvg,
         cancelTimeAvg: cancelTimeAvg ?? this.cancelTimeAvg,
+        chatToken: chatToken ?? this.chatToken,
+        chatUserId: chatUserId ?? this.chatUserId,
         dailyBuy: dailyBuy ?? this.dailyBuy,
         dailyBuyLimit: dailyBuyLimit ?? this.dailyBuyLimit,
         dailySell: dailySell ?? this.dailySell,
@@ -622,7 +573,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -638,10 +588,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

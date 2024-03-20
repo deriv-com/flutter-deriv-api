@@ -25,10 +25,8 @@ abstract class ForgetAllResponseModel {
 class ForgetAllResponse extends ForgetAllResponseModel {
   /// Initializes Forget all response class.
   const ForgetAllResponse({
-    List<dynamic>? forgetAll,
-  }) : super(
-          forgetAll: forgetAll,
-        );
+    super.forgetAll,
+  });
 
   /// Creates an instance from JSON.
   factory ForgetAllResponse.fromJson(
@@ -64,7 +62,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
   /// Immediately cancels the real-time streams of messages of given type.
   ///
   /// For parameters information refer to [ForgetAllRequest].
-  /// Throws a [ForgetException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ForgetAllResponse> forgetAllMethod(
     ForgetAllRequest request,
   ) async {
@@ -73,7 +71,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ForgetException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);

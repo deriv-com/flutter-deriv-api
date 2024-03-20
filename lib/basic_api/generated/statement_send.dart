@@ -13,15 +13,13 @@ class StatementRequest extends Request {
     this.dateTo,
     this.description,
     this.limit,
+    this.loginid,
     this.offset,
     this.statement = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'statement',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'statement',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
@@ -32,7 +30,8 @@ class StatementRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        loginid: json['loginid'] as String?,
+        offset: json['offset'] as int?,
         statement: json['statement'] == null ? null : json['statement'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -53,8 +52,11 @@ class StatementRequest extends Request {
   /// [Optional] Maximum number of transactions to receive.
   final num? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// Must be `true`
   final bool? statement;
@@ -71,6 +73,7 @@ class StatementRequest extends Request {
                 ? 1
                 : 0,
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'statement': statement == null
             ? null
@@ -89,7 +92,8 @@ class StatementRequest extends Request {
     int? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    String? loginid,
+    int? offset,
     bool? statement,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -100,6 +104,7 @@ class StatementRequest extends Request {
         dateTo: dateTo ?? this.dateTo,
         description: description ?? this.description,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         statement: statement ?? this.statement,
         passthrough: passthrough ?? this.passthrough,

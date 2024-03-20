@@ -11,13 +11,11 @@ class AppMarkupStatisticsRequest extends Request {
     this.appMarkupStatistics = true,
     required this.dateFrom,
     required this.dateTo,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_markup_statistics',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'app_markup_statistics',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppMarkupStatisticsRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +25,7 @@ class AppMarkupStatisticsRequest extends Request {
             : json['app_markup_statistics'] == 1,
         dateFrom: json['date_from'] as String?,
         dateTo: json['date_to'] as String?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -40,6 +39,9 @@ class AppMarkupStatisticsRequest extends Request {
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
   final String? dateTo;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -50,6 +52,7 @@ class AppMarkupStatisticsRequest extends Request {
                 : 0,
         'date_from': dateFrom,
         'date_to': dateTo,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -60,6 +63,7 @@ class AppMarkupStatisticsRequest extends Request {
     bool? appMarkupStatistics,
     String? dateFrom,
     String? dateTo,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -67,6 +71,7 @@ class AppMarkupStatisticsRequest extends Request {
         appMarkupStatistics: appMarkupStatistics ?? this.appMarkupStatistics,
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

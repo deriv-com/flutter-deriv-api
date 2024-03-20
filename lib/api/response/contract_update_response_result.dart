@@ -25,10 +25,8 @@ abstract class ContractUpdateResponseModel {
 class ContractUpdateResponse extends ContractUpdateResponseModel {
   /// Initializes Contract update response class.
   const ContractUpdateResponse({
-    ContractUpdate? contractUpdate,
-  }) : super(
-          contractUpdate: contractUpdate,
-        );
+    super.contractUpdate,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdateResponse.fromJson(
@@ -55,7 +53,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
-  /// Throws a [ContractOperationException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ContractUpdateResponse> updateContract(
     ContractUpdateRequest request,
   ) async {
@@ -64,7 +62,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractUpdateResponse.fromJson(response.contractUpdate);
@@ -78,7 +76,6 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
 }
-
 /// Contract update model class.
 abstract class ContractUpdateModel {
   /// Initializes Contract update model class .
@@ -98,12 +95,9 @@ abstract class ContractUpdateModel {
 class ContractUpdate extends ContractUpdateModel {
   /// Initializes Contract update class.
   const ContractUpdate({
-    StopLoss? stopLoss,
-    TakeProfit? takeProfit,
-  }) : super(
-          stopLoss: stopLoss,
-          takeProfit: takeProfit,
-        );
+    super.stopLoss,
+    super.takeProfit,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdate.fromJson(Map<String, dynamic> json) => ContractUpdate(
@@ -139,7 +133,6 @@ class ContractUpdate extends ContractUpdateModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -167,16 +160,11 @@ abstract class StopLossModel extends Equatable {
 class StopLoss extends StopLossModel {
   /// Initializes Stop loss class.
   const StopLoss({
-    String? displayName,
-    double? orderAmount,
-    DateTime? orderDate,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
@@ -219,7 +207,6 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
-
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -247,16 +234,11 @@ abstract class TakeProfitModel extends Equatable {
 class TakeProfit extends TakeProfitModel {
   /// Initializes Take profit class.
   const TakeProfit({
-    String? displayName,
-    double? orderAmount,
-    DateTime? orderDate,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(

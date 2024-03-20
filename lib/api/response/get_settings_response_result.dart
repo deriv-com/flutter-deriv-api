@@ -28,10 +28,8 @@ abstract class GetSettingsResponseModel {
 class GetSettingsResponse extends GetSettingsResponseModel {
   /// Initializes Get settings response class.
   const GetSettingsResponse({
-    GetSettings? getSettings,
-  }) : super(
-          getSettings: getSettings,
-        );
+    super.getSettings,
+  });
 
   /// Creates an instance from JSON.
   factory GetSettingsResponse.fromJson(
@@ -59,7 +57,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   /// Gets user's settings (email, date of birth, address etc).
   ///
   /// For parameters information refer to [GetSettingsRequest].
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<GetSettingsReceive> fetchAccountSettingRaw([
     GetSettingsRequest? request,
   ]) async {
@@ -70,7 +68,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AccountSettingsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -79,7 +77,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   /// Gets user's settings (email, date of birth, address etc).
   ///
   /// For parameters information refer to [GetSettingsRequest].
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<SetSettingsReceive> changeAccountSettingRaw(
     SetSettingsRequest request,
   ) async {
@@ -88,7 +86,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AccountSettingsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -96,7 +94,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   /// Gets user's settings (email, date of birth, address etc).
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<GetSettingsResponse> fetchAccountSetting([
     GetSettingsRequest? request,
   ]) async {
@@ -107,7 +105,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest].
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<SetSettingsResponse> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
@@ -145,6 +143,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
           secretQuestion: secretQuestion,
           taxIdentificationNumber: getSettings?.taxIdentificationNumber,
           taxResidence: getSettings?.taxResidence,
+          dxtradeUserException: getSettings?.dxtradeUserException,
         ),
       );
 
@@ -155,6 +154,34 @@ class GetSettingsResponse extends GetSettingsResponseModel {
       GetSettingsResponse(
         getSettings: getSettings ?? this.getSettings,
       );
+}
+
+/// EmploymentStatusEnum mapper.
+final Map<String, EmploymentStatusEnum> employmentStatusEnumMapper =
+    <String, EmploymentStatusEnum>{
+  "Employed": EmploymentStatusEnum.employed,
+  "Pensioner": EmploymentStatusEnum.pensioner,
+  "Self-Employed": EmploymentStatusEnum.selfEmployed,
+  "Student": EmploymentStatusEnum.student,
+  "Unemployed": EmploymentStatusEnum.unemployed,
+};
+
+/// EmploymentStatus Enum.
+enum EmploymentStatusEnum {
+  /// Employed.
+  employed,
+
+  /// Pensioner.
+  pensioner,
+
+  /// Self-Employed.
+  selfEmployed,
+
+  /// Student.
+  student,
+
+  /// Unemployed.
+  unemployed,
 }
 
 /// Get settings model class.
@@ -170,11 +197,14 @@ abstract class GetSettingsModel {
     this.allowCopiers,
     this.citizen,
     this.clientTncStatus,
+    this.coolingOffExpirationDate,
     this.country,
     this.countryCode,
     this.dateOfBirth,
+    this.dxtradeUserException,
     this.email,
     this.emailConsent,
+    this.employmentStatus,
     this.featureFlag,
     this.firstName,
     this.hasSecretAnswer,
@@ -221,6 +251,9 @@ abstract class GetSettingsModel {
   /// Latest terms and conditions version accepted by client
   final String? clientTncStatus;
 
+  /// Cooldown expiration epoch date when a client fails appropriateness tests
+  final DateTime? coolingOffExpirationDate;
+
   /// User Country (same as residence field) - deprecated
   final String? country;
 
@@ -230,11 +263,17 @@ abstract class GetSettingsModel {
   /// Epoch of user's birthday (note: Only available for users who have at least one real account)
   final DateTime? dateOfBirth;
 
+  /// Boolean value `true` or `false`, indicating if user email belong to dxtrade exception list.
+  final bool? dxtradeUserException;
+
   /// User Email
   final String? email;
 
   /// Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool? emailConsent;
+
+  /// Employment Status.
+  final EmploymentStatusEnum? employmentStatus;
 
   /// Contains features that are enabled or disabled for this user
   final FeatureFlag? featureFlag;
@@ -292,70 +331,41 @@ abstract class GetSettingsModel {
 class GetSettings extends GetSettingsModel {
   /// Initializes Get settings class.
   const GetSettings({
-    String? accountOpeningReason,
-    String? addressCity,
-    String? addressLine1,
-    String? addressLine2,
-    String? addressPostcode,
-    String? addressState,
-    bool? allowCopiers,
-    String? citizen,
-    String? clientTncStatus,
-    String? country,
-    String? countryCode,
-    DateTime? dateOfBirth,
-    String? email,
-    bool? emailConsent,
-    FeatureFlag? featureFlag,
-    String? firstName,
-    bool? hasSecretAnswer,
-    List<String>? immutableFields,
-    bool? isAuthenticatedPaymentAgent,
-    String? lastName,
-    bool? nonPepDeclaration,
-    String? phone,
-    String? placeOfBirth,
-    String? preferredLanguage,
-    bool? requestProfessionalStatus,
-    String? residence,
-    String? salutation,
-    String? taxIdentificationNumber,
-    String? taxResidence,
-    int? tradingHub,
-    String? userHash,
-  }) : super(
-          accountOpeningReason: accountOpeningReason,
-          addressCity: addressCity,
-          addressLine1: addressLine1,
-          addressLine2: addressLine2,
-          addressPostcode: addressPostcode,
-          addressState: addressState,
-          allowCopiers: allowCopiers,
-          citizen: citizen,
-          clientTncStatus: clientTncStatus,
-          country: country,
-          countryCode: countryCode,
-          dateOfBirth: dateOfBirth,
-          email: email,
-          emailConsent: emailConsent,
-          featureFlag: featureFlag,
-          firstName: firstName,
-          hasSecretAnswer: hasSecretAnswer,
-          immutableFields: immutableFields,
-          isAuthenticatedPaymentAgent: isAuthenticatedPaymentAgent,
-          lastName: lastName,
-          nonPepDeclaration: nonPepDeclaration,
-          phone: phone,
-          placeOfBirth: placeOfBirth,
-          preferredLanguage: preferredLanguage,
-          requestProfessionalStatus: requestProfessionalStatus,
-          residence: residence,
-          salutation: salutation,
-          taxIdentificationNumber: taxIdentificationNumber,
-          taxResidence: taxResidence,
-          tradingHub: tradingHub,
-          userHash: userHash,
-        );
+    super.accountOpeningReason,
+    super.addressCity,
+    super.addressLine1,
+    super.addressLine2,
+    super.addressPostcode,
+    super.addressState,
+    super.allowCopiers,
+    super.citizen,
+    super.clientTncStatus,
+    super.coolingOffExpirationDate,
+    super.country,
+    super.countryCode,
+    super.dateOfBirth,
+    super.dxtradeUserException,
+    super.email,
+    super.emailConsent,
+    super.employmentStatus,
+    super.featureFlag,
+    super.firstName,
+    super.hasSecretAnswer,
+    super.immutableFields,
+    super.isAuthenticatedPaymentAgent,
+    super.lastName,
+    super.nonPepDeclaration,
+    super.phone,
+    super.placeOfBirth,
+    super.preferredLanguage,
+    super.requestProfessionalStatus,
+    super.residence,
+    super.salutation,
+    super.taxIdentificationNumber,
+    super.taxResidence,
+    super.tradingHub,
+    super.userHash,
+  });
 
   /// Creates an instance from JSON.
   factory GetSettings.fromJson(Map<String, dynamic> json) => GetSettings(
@@ -368,11 +378,17 @@ class GetSettings extends GetSettingsModel {
         allowCopiers: getBool(json['allow_copiers']),
         citizen: json['citizen'],
         clientTncStatus: json['client_tnc_status'],
+        coolingOffExpirationDate:
+            getDateTime(json['cooling_off_expiration_date']),
         country: json['country'],
         countryCode: json['country_code'],
         dateOfBirth: getDateTime(json['date_of_birth']),
+        dxtradeUserException: getBool(json['dxtrade_user_exception']),
         email: json['email'],
         emailConsent: getBool(json['email_consent']),
+        employmentStatus: json['employment_status'] == null
+            ? null
+            : employmentStatusEnumMapper[json['employment_status']],
         featureFlag: json['feature_flag'] == null
             ? null
             : FeatureFlag.fromJson(json['feature_flag']),
@@ -414,11 +430,18 @@ class GetSettings extends GetSettingsModel {
     resultMap['allow_copiers'] = allowCopiers;
     resultMap['citizen'] = citizen;
     resultMap['client_tnc_status'] = clientTncStatus;
+    resultMap['cooling_off_expiration_date'] =
+        getSecondsSinceEpochDateTime(coolingOffExpirationDate);
     resultMap['country'] = country;
     resultMap['country_code'] = countryCode;
     resultMap['date_of_birth'] = getSecondsSinceEpochDateTime(dateOfBirth);
+    resultMap['dxtrade_user_exception'] = dxtradeUserException;
     resultMap['email'] = email;
     resultMap['email_consent'] = emailConsent;
+    resultMap['employment_status'] = employmentStatusEnumMapper.entries
+        .firstWhere((MapEntry<String, EmploymentStatusEnum> entry) =>
+            entry.value == employmentStatus)
+        .key;
     if (featureFlag != null) {
       resultMap['feature_flag'] = featureFlag!.toJson();
     }
@@ -459,11 +482,14 @@ class GetSettings extends GetSettingsModel {
     bool? allowCopiers,
     String? citizen,
     String? clientTncStatus,
+    DateTime? coolingOffExpirationDate,
     String? country,
     String? countryCode,
     DateTime? dateOfBirth,
+    bool? dxtradeUserException,
     String? email,
     bool? emailConsent,
+    EmploymentStatusEnum? employmentStatus,
     FeatureFlag? featureFlag,
     String? firstName,
     bool? hasSecretAnswer,
@@ -492,11 +518,15 @@ class GetSettings extends GetSettingsModel {
         allowCopiers: allowCopiers ?? this.allowCopiers,
         citizen: citizen ?? this.citizen,
         clientTncStatus: clientTncStatus ?? this.clientTncStatus,
+        coolingOffExpirationDate:
+            coolingOffExpirationDate ?? this.coolingOffExpirationDate,
         country: country ?? this.country,
         countryCode: countryCode ?? this.countryCode,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        dxtradeUserException: dxtradeUserException ?? this.dxtradeUserException,
         email: email ?? this.email,
         emailConsent: emailConsent ?? this.emailConsent,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         hasSecretAnswer: hasSecretAnswer ?? this.hasSecretAnswer,
@@ -535,10 +565,8 @@ abstract class FeatureFlagModel {
 class FeatureFlag extends FeatureFlagModel {
   /// Initializes Feature flag class.
   const FeatureFlag({
-    bool? wallet,
-  }) : super(
-          wallet: wallet,
-        );
+    super.wallet,
+  });
 
   /// Creates an instance from JSON.
   factory FeatureFlag.fromJson(Map<String, dynamic> json) => FeatureFlag(

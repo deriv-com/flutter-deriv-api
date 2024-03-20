@@ -18,10 +18,8 @@ abstract class LandingCompanyDetailsResponseModel {
 class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
   /// Initializes Landing company details response class.
   const LandingCompanyDetailsResponse({
-    LandingCompanyDetails? landingCompanyDetails,
-  }) : super(
-          landingCompanyDetails: landingCompanyDetails,
-        );
+    super.landingCompanyDetails,
+  });
 
   /// Creates an instance from JSON.
   factory LandingCompanyDetailsResponse.fromJson(
@@ -70,6 +68,7 @@ abstract class LandingCompanyDetailsModel {
     this.requirements,
     this.shortcode,
     this.supportProfessionalClient,
+    this.tinNotMandatory,
   });
 
   /// Landing Company address.
@@ -110,40 +109,30 @@ abstract class LandingCompanyDetailsModel {
 
   /// Flag that indicates whether the landing company supports professional accounts or not
   final bool? supportProfessionalClient;
+
+  /// Flag that indicates whether tax identifier number is not mandatory for the current country and landing company.
+  final bool? tinNotMandatory;
 }
 
 /// Landing company details class.
 class LandingCompanyDetails extends LandingCompanyDetailsModel {
   /// Initializes Landing company details class.
   const LandingCompanyDetails({
-    List<String>? address,
-    Map<String, dynamic>? changeableFields,
-    String? country,
-    CurrencyConfig? currencyConfig,
-    bool? hasRealityCheck,
-    List<String>? legalAllowedContractCategories,
-    List<String>? legalAllowedCurrencies,
-    List<String>? legalAllowedMarkets,
-    String? legalDefaultCurrency,
-    String? name,
-    Requirements? requirements,
-    String? shortcode,
-    bool? supportProfessionalClient,
-  }) : super(
-          address: address,
-          changeableFields: changeableFields,
-          country: country,
-          currencyConfig: currencyConfig,
-          hasRealityCheck: hasRealityCheck,
-          legalAllowedContractCategories: legalAllowedContractCategories,
-          legalAllowedCurrencies: legalAllowedCurrencies,
-          legalAllowedMarkets: legalAllowedMarkets,
-          legalDefaultCurrency: legalDefaultCurrency,
-          name: name,
-          requirements: requirements,
-          shortcode: shortcode,
-          supportProfessionalClient: supportProfessionalClient,
-        );
+    super.address,
+    super.changeableFields,
+    super.country,
+    super.currencyConfig,
+    super.hasRealityCheck,
+    super.legalAllowedContractCategories,
+    super.legalAllowedCurrencies,
+    super.legalAllowedMarkets,
+    super.legalDefaultCurrency,
+    super.name,
+    super.requirements,
+    super.shortcode,
+    super.supportProfessionalClient,
+    super.tinNotMandatory,
+  });
 
   /// Creates an instance from JSON.
   factory LandingCompanyDetails.fromJson(Map<String, dynamic> json) =>
@@ -190,6 +179,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
             : Requirements.fromJson(json['requirements']),
         shortcode: json['shortcode'],
         supportProfessionalClient: getBool(json['support_professional_client']),
+        tinNotMandatory: getBool(json['tin_not_mandatory']),
       );
 
   /// Converts an instance to JSON.
@@ -238,6 +228,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     }
     resultMap['shortcode'] = shortcode;
     resultMap['support_professional_client'] = supportProfessionalClient;
+    resultMap['tin_not_mandatory'] = tinNotMandatory;
 
     return resultMap;
   }
@@ -257,6 +248,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     Requirements? requirements,
     String? shortcode,
     bool? supportProfessionalClient,
+    bool? tinNotMandatory,
   }) =>
       LandingCompanyDetails(
         address: address ?? this.address,
@@ -275,6 +267,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         shortcode: shortcode ?? this.shortcode,
         supportProfessionalClient:
             supportProfessionalClient ?? this.supportProfessionalClient,
+        tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
 /// Currency config model class.
@@ -312,20 +305,13 @@ abstract class CurrencyConfigModel {
 class CurrencyConfig extends CurrencyConfigModel {
   /// Initializes Currency config class.
   const CurrencyConfig({
-    Map<String, dynamic>? commodities,
-    Map<String, dynamic>? cryptocurrency,
-    Map<String, dynamic>? forex,
-    Map<String, dynamic>? indices,
-    Market? market,
-    Map<String, dynamic>? syntheticIndex,
-  }) : super(
-          commodities: commodities,
-          cryptocurrency: cryptocurrency,
-          forex: forex,
-          indices: indices,
-          market: market,
-          syntheticIndex: syntheticIndex,
-        );
+    super.commodities,
+    super.cryptocurrency,
+    super.forex,
+    super.indices,
+    super.market,
+    super.syntheticIndex,
+  });
 
   /// Creates an instance from JSON.
   factory CurrencyConfig.fromJson(Map<String, dynamic> json) => CurrencyConfig(
@@ -386,10 +372,8 @@ abstract class MarketModel {
 class Market extends MarketModel {
   /// Initializes Market class.
   const Market({
-    Currency? currency,
-  }) : super(
-          currency: currency,
-        );
+    super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory Market.fromJson(Map<String, dynamic> json) => Market(
@@ -436,12 +420,9 @@ abstract class CurrencyModel {
 class Currency extends CurrencyModel {
   /// Initializes Currency class.
   const Currency({
-    int? maxPayout,
-    int? minStake,
-  }) : super(
-          maxPayout: maxPayout,
-          minStake: minStake,
-        );
+    super.maxPayout,
+    super.minStake,
+  });
 
   /// Creates an instance from JSON.
   factory Currency.fromJson(Map<String, dynamic> json) => Currency(
@@ -496,16 +477,11 @@ abstract class RequirementsModel {
 class Requirements extends RequirementsModel {
   /// Initializes Requirements class.
   const Requirements({
-    AfterFirstDeposit? afterFirstDeposit,
-    Compliance? compliance,
-    List<String>? signup,
-    List<String>? withdrawal,
-  }) : super(
-          afterFirstDeposit: afterFirstDeposit,
-          compliance: compliance,
-          signup: signup,
-          withdrawal: withdrawal,
-        );
+    super.afterFirstDeposit,
+    super.compliance,
+    super.signup,
+    super.withdrawal,
+  });
 
   /// Creates an instance from JSON.
   factory Requirements.fromJson(Map<String, dynamic> json) => Requirements(
@@ -588,10 +564,8 @@ abstract class AfterFirstDepositModel {
 class AfterFirstDeposit extends AfterFirstDepositModel {
   /// Initializes After first deposit class.
   const AfterFirstDeposit({
-    List<String>? financialAssessment,
-  }) : super(
-          financialAssessment: financialAssessment,
-        );
+    super.financialAssessment,
+  });
 
   /// Creates an instance from JSON.
   factory AfterFirstDeposit.fromJson(Map<String, dynamic> json) =>
@@ -647,12 +621,9 @@ abstract class ComplianceModel {
 class Compliance extends ComplianceModel {
   /// Initializes Compliance class.
   const Compliance({
-    List<String>? mt5,
-    List<String>? taxInformation,
-  }) : super(
-          mt5: mt5,
-          taxInformation: taxInformation,
-        );
+    super.mt5,
+    super.taxInformation,
+  });
 
   /// Creates an instance from JSON.
   factory Compliance.fromJson(Map<String, dynamic> json) => Compliance(

@@ -4,6 +4,7 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -23,11 +24,17 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
-  BinaryAPI({String? key, bool enableDebug = false})
-      : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
+  BinaryAPI({
+    String? key,
+    bool enableDebug = false,
+    this.proxyAwareConnection = false,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
 
   /// Represents the active websocket connection.
   ///
@@ -75,11 +82,18 @@ class BinaryAPI extends BaseAPI {
 
     await _setUserAgent();
 
+    HttpClient? client;
+
+    if (proxyAwareConnection) {
+      final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
+          uri.toString().replaceAll('wss', 'https'));
+
+      client = HttpClient()..findProxy = (Uri uri) => proxy;
+    }
+
     // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      '$uri',
-      pingInterval: _websocketConnectTimeOut,
-    );
+    _webSocketChannel = IOWebSocketChannel.connect('$uri',
+        pingInterval: _websocketConnectTimeOut, customClient: client);
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))

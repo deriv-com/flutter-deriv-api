@@ -31,12 +31,9 @@ abstract class P2pOrderCreateResponseModel {
 class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
   /// Initializes P2p order create response class.
   const P2pOrderCreateResponse({
-    P2pOrderCreate? p2pOrderCreate,
-    Subscription? subscription,
-  }) : super(
-          p2pOrderCreate: p2pOrderCreate,
-          subscription: subscription,
-        );
+    super.p2pOrderCreate,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCreateResponse.fromJson(
@@ -85,7 +82,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -93,7 +90,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
-  /// Throws a [P2POrderException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<P2pOrderCreateResponse?> createAndSubscribe(
     P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -112,7 +109,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
-  /// Throws a [P2POrderException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<P2pOrderCreateReceive?> createAndSubscribeRaw(
     P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -122,7 +119,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
           checkException(
             response: response,
             exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                P2POrderException(baseExceptionModel: baseExceptionModel),
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderCreateReceive ? response : null;
@@ -202,12 +199,10 @@ enum StatusEnum {
   /// pending.
   pending,
 }
-
 /// P2p order create model class.
 abstract class P2pOrderCreateModel {
   /// Initializes P2p order create model class .
   const P2pOrderCreateModel({
-    required this.verificationPending,
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -234,9 +229,6 @@ abstract class P2pOrderCreateModel {
     this.paymentMethod,
     this.paymentMethodDetails,
   });
-
-  /// Indicates that an email has been sent to verify confirmation of the order.
-  final bool verificationPending;
 
   /// Type of the order.
   final TypeEnum type;
@@ -318,60 +310,32 @@ abstract class P2pOrderCreateModel {
 class P2pOrderCreate extends P2pOrderCreateModel {
   /// Initializes P2p order create class.
   const P2pOrderCreate({
-    required String accountCurrency,
-    required AdvertDetails advertDetails,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required String chatChannelUrl,
-    required ClientDetails clientDetails,
-    required String contactInfo,
-    required DateTime createdTime,
-    required DisputeDetails disputeDetails,
-    required DateTime expiryTime,
-    required String id,
-    required bool isIncoming,
-    required bool isReviewable,
-    required bool isSeen,
-    required String localCurrency,
-    required String paymentInfo,
-    required double price,
-    required String priceDisplay,
-    required double rate,
-    required String rateDisplay,
-    required StatusEnum status,
-    required TypeEnum type,
-    required bool verificationPending,
-    String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
-  }) : super(
-          accountCurrency: accountCurrency,
-          advertDetails: advertDetails,
-          advertiserDetails: advertiserDetails,
-          amount: amount,
-          amountDisplay: amountDisplay,
-          chatChannelUrl: chatChannelUrl,
-          clientDetails: clientDetails,
-          contactInfo: contactInfo,
-          createdTime: createdTime,
-          disputeDetails: disputeDetails,
-          expiryTime: expiryTime,
-          id: id,
-          isIncoming: isIncoming,
-          isReviewable: isReviewable,
-          isSeen: isSeen,
-          localCurrency: localCurrency,
-          paymentInfo: paymentInfo,
-          price: price,
-          priceDisplay: priceDisplay,
-          rate: rate,
-          rateDisplay: rateDisplay,
-          status: status,
-          type: type,
-          verificationPending: verificationPending,
-          paymentMethod: paymentMethod,
-          paymentMethodDetails: paymentMethodDetails,
-        );
+    required super.accountCurrency,
+    required super.advertDetails,
+    required super.advertiserDetails,
+    required super.amount,
+    required super.amountDisplay,
+    required super.chatChannelUrl,
+    required super.clientDetails,
+    required super.contactInfo,
+    required super.createdTime,
+    required super.disputeDetails,
+    required super.expiryTime,
+    required super.id,
+    required super.isIncoming,
+    required super.isReviewable,
+    required super.isSeen,
+    required super.localCurrency,
+    required super.paymentInfo,
+    required super.price,
+    required super.priceDisplay,
+    required super.rate,
+    required super.rateDisplay,
+    required super.status,
+    required super.type,
+    super.paymentMethod,
+    super.paymentMethodDetails,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCreate.fromJson(Map<String, dynamic> json) => P2pOrderCreate(
@@ -399,7 +363,6 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         rateDisplay: json['rate_display'],
         status: statusEnumMapper[json['status']]!,
         type: typeEnumMapper[json['type']]!,
-        verificationPending: getBool(json['verification_pending'])!,
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
@@ -450,7 +413,6 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
-    resultMap['verification_pending'] = verificationPending;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
 
@@ -482,7 +444,6 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     String? rateDisplay,
     StatusEnum? status,
     TypeEnum? type,
-    bool? verificationPending,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) =>
@@ -510,12 +471,10 @@ class P2pOrderCreate extends P2pOrderCreateModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
-        verificationPending: verificationPending ?? this.verificationPending,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
       );
 }
-
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -523,6 +482,7 @@ abstract class AdvertDetailsModel {
     required this.type,
     required this.id,
     required this.description,
+    required this.blockTrade,
     this.paymentMethod,
   });
 
@@ -535,6 +495,9 @@ abstract class AdvertDetailsModel {
   /// General information about the advert.
   final String description;
 
+  /// Indicates if this is block trade advert or not.
+  final bool blockTrade;
+
   /// The payment method.
   final String? paymentMethod;
 }
@@ -543,19 +506,16 @@ abstract class AdvertDetailsModel {
 class AdvertDetails extends AdvertDetailsModel {
   /// Initializes Advert details class.
   const AdvertDetails({
-    required String description,
-    required String id,
-    required TypeEnum type,
-    String? paymentMethod,
-  }) : super(
-          description: description,
-          id: id,
-          type: type,
-          paymentMethod: paymentMethod,
-        );
+    required super.blockTrade,
+    required super.description,
+    required super.id,
+    required super.type,
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
+        blockTrade: getBool(json['block_trade'])!,
         description: json['description'],
         id: json['id'],
         type: typeEnumMapper[json['type']]!,
@@ -566,6 +526,7 @@ class AdvertDetails extends AdvertDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['block_trade'] = blockTrade;
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['type'] = typeEnumMapper.entries
@@ -578,19 +539,20 @@ class AdvertDetails extends AdvertDetailsModel {
 
   /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
+    bool? blockTrade,
     String? description,
     String? id,
     TypeEnum? type,
     String? paymentMethod,
   }) =>
       AdvertDetails(
+        blockTrade: blockTrade ?? this.blockTrade,
         description: description ?? this.description,
         id: id ?? this.id,
         type: type ?? this.type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -630,22 +592,14 @@ abstract class AdvertiserDetailsModel {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
@@ -695,7 +649,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -735,22 +688,14 @@ abstract class ClientDetailsModel {
 class ClientDetails extends ClientDetailsModel {
   /// Initializes Client details class.
   const ClientDetails({
-    required String id,
-    required bool isOnline,
-    required String loginid,
-    required String name,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-  }) : super(
-          id: id,
-          isOnline: isOnline,
-          loginid: loginid,
-          name: name,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-        );
+    required super.id,
+    required super.isOnline,
+    required super.loginid,
+    required super.name,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+  });
 
   /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
@@ -799,7 +744,6 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
-
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .
@@ -819,12 +763,9 @@ abstract class DisputeDetailsModel {
 class DisputeDetails extends DisputeDetailsModel {
   /// Initializes Dispute details class.
   const DisputeDetails({
-    String? disputeReason,
-    String? disputerLoginid,
-  }) : super(
-          disputeReason: disputeReason,
-          disputerLoginid: disputerLoginid,
-        );
+    super.disputeReason,
+    super.disputerLoginid,
+  });
 
   /// Creates an instance from JSON.
   factory DisputeDetails.fromJson(Map<String, dynamic> json) => DisputeDetails(
@@ -852,7 +793,6 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
-
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -892,22 +832,14 @@ abstract class PaymentMethodDetailsPropertyModel {
 class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property class.
   const PaymentMethodDetailsProperty({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required PaymentMethodDetailsPropertyTypeEnum type,
-    String? displayName,
-    List<String>? usedByAdverts,
-    List<String>? usedByOrders,
-  }) : super(
-          fields: fields,
-          isEnabled: isEnabled,
-          method: method,
-          type: type,
-          displayName: displayName,
-          usedByAdverts: usedByAdverts,
-          usedByOrders: usedByOrders,
-        );
+    required super.fields,
+    required super.isEnabled,
+    required super.method,
+    required super.type,
+    super.displayName,
+    super.usedByAdverts,
+    super.usedByOrders,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
@@ -989,7 +921,6 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -1017,16 +948,11 @@ abstract class FieldsPropertyModel {
 class FieldsProperty extends FieldsPropertyModel {
   /// Initializes Fields property class.
   const FieldsProperty({
-    required String displayName,
-    required int required,
-    required FieldsPropertyTypeEnum type,
-    required String value,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-          value: value,
-        );
+    required super.displayName,
+    required super.required,
+    required super.type,
+    required super.value,
+  });
 
   /// Creates an instance from JSON.
   factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
@@ -1065,7 +991,6 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -1081,10 +1006,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

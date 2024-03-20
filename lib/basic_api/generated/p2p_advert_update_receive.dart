@@ -9,16 +9,11 @@ class P2pAdvertUpdateReceive extends Response {
   /// Initialize P2pAdvertUpdateReceive.
   const P2pAdvertUpdateReceive({
     this.p2pAdvertUpdate,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertUpdateReceive.fromJson(Map<String, dynamic> json) =>

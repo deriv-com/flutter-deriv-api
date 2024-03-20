@@ -25,10 +25,8 @@ abstract class P2pChatCreateResponseModel {
 class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   /// Initializes P2p chat create response class.
   const P2pChatCreateResponse({
-    P2pChatCreate? p2pChatCreate,
-  }) : super(
-          p2pChatCreate: p2pChatCreate,
-        );
+    super.p2pChatCreate,
+  });
 
   /// Creates an instance from JSON.
   factory P2pChatCreateResponse.fromJson(
@@ -77,7 +75,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PChatException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -91,7 +89,6 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
       );
 }
-
 /// P2p chat create model class.
 abstract class P2pChatCreateModel {
   /// Initializes P2p chat create model class .
@@ -111,12 +108,9 @@ abstract class P2pChatCreateModel {
 class P2pChatCreate extends P2pChatCreateModel {
   /// Initializes P2p chat create class.
   const P2pChatCreate({
-    required String channelUrl,
-    required String orderId,
-  }) : super(
-          channelUrl: channelUrl,
-          orderId: orderId,
-        );
+    required super.channelUrl,
+    required super.orderId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pChatCreate.fromJson(Map<String, dynamic> json) => P2pChatCreate(

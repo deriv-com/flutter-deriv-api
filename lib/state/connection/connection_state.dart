@@ -33,7 +33,10 @@ class ConnectionConnectedState extends ConnectionState {
 /// Connection disconnected state.
 class ConnectionDisconnectedState extends ConnectionState {
   /// Initializes [ConnectionDisconnectedState].
-  const ConnectionDisconnectedState();
+  const ConnectionDisconnectedState({this.isChangingLanguage = false});
+
+  /// Is the App language changing during connection change
+  final bool isChangingLanguage;
 }
 
 /// Connection error state.

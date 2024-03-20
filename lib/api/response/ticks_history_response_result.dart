@@ -45,16 +45,11 @@ abstract class TicksHistoryResponseModel {
 class TicksHistoryResponse extends TicksHistoryResponseModel {
   /// Initializes Ticks history response class.
   const TicksHistoryResponse({
-    List<CandlesItem>? candles,
-    History? history,
-    double? pipSize,
-    Subscription? subscription,
-  }) : super(
-          candles: candles,
-          history: history,
-          pipSize: pipSize,
-          subscription: subscription,
-        );
+    super.candles,
+    super.history,
+    super.pipSize,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory TicksHistoryResponse.fromJson(
@@ -104,7 +99,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
-  /// Throws a [TickException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TicksHistoryResponse> fetchTickHistory(
     TicksHistoryRequest request,
   ) async {
@@ -113,7 +108,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TickException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TicksHistoryResponse.fromJson(response.candles, response.history,
@@ -122,7 +117,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Gets ticks history and its stream
   ///
-  /// Throws [TickException] if API response contains an error
+  /// Throws [BaseAPIException] if API response contains an error
   static Future<TickHistorySubscription?> fetchTicksAndSubscribe(
     TicksHistoryRequest request, {
     RequestCompareFunction? comparePredicate,
@@ -136,7 +131,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
       checkException(
         response: firstResponse,
         exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-            TickException(baseExceptionModel: baseExceptionModel),
+            BaseAPIException(baseExceptionModel: baseExceptionModel),
       );
       if (firstResponse is TicksHistoryReceive) {
         return TickHistorySubscription(
@@ -150,7 +145,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
               checkException(
                 response: response,
                 exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                    TickException(baseExceptionModel: baseExceptionModel),
+                    BaseAPIException(baseExceptionModel: baseExceptionModel),
               );
 
               return response is TicksReceive
@@ -190,7 +185,6 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Candles item model class.
 abstract class CandlesItemModel {
   /// Initializes Candles item model class .
@@ -222,18 +216,12 @@ abstract class CandlesItemModel {
 class CandlesItem extends CandlesItemModel {
   /// Initializes Candles item class.
   const CandlesItem({
-    double? close,
-    DateTime? epoch,
-    double? high,
-    double? low,
-    double? open,
-  }) : super(
-          close: close,
-          epoch: epoch,
-          high: high,
-          low: low,
-          open: open,
-        );
+    super.close,
+    super.epoch,
+    super.high,
+    super.low,
+    super.open,
+  });
 
   /// Creates an instance from JSON.
   factory CandlesItem.fromJson(Map<String, dynamic> json) => CandlesItem(
@@ -273,7 +261,6 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
-
 /// History model class.
 abstract class HistoryModel {
   /// Initializes History model class .
@@ -293,12 +280,9 @@ abstract class HistoryModel {
 class History extends HistoryModel {
   /// Initializes History class.
   const History({
-    List<double>? prices,
-    List<DateTime>? times,
-  }) : super(
-          prices: prices,
-          times: times,
-        );
+    super.prices,
+    super.times,
+  });
 
   /// Creates an instance from JSON.
   factory History.fromJson(Map<String, dynamic> json) => History(
@@ -350,7 +334,6 @@ class History extends HistoryModel {
         times: times ?? this.times,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -366,10 +349,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

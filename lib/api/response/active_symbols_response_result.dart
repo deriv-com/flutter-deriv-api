@@ -24,10 +24,8 @@ abstract class ActiveSymbolsResponseModel {
 class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Initializes Active symbols response class.
   const ActiveSymbolsResponse({
-    List<ActiveSymbolsItem>? activeSymbols,
-  }) : super(
-          activeSymbols: activeSymbols,
-        );
+    super.activeSymbols,
+  });
 
   /// Creates an instance from JSON.
   factory ActiveSymbolsResponse.fromJson(
@@ -63,7 +61,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Gets the list of active symbols.
   ///
   /// For parameters information refer to [ActiveSymbolsRequest].
-  /// Throws an [ActiveSymbolsException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<ActiveSymbolsResponse> fetchActiveSymbols(
     ActiveSymbolsRequest request,
   ) async {
@@ -74,7 +72,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ActiveSymbolsResponse.fromJson(response.activeSymbols);
@@ -88,7 +86,6 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
-
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
   /// Initializes Active symbols item model class .
@@ -188,52 +185,29 @@ abstract class ActiveSymbolsItemModel {
 class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   /// Initializes Active symbols item class.
   const ActiveSymbolsItem({
-    required String displayName,
-    required int displayOrder,
-    required bool exchangeIsOpen,
-    required bool isTradingSuspended,
-    required String market,
-    required String marketDisplayName,
-    required double pip,
-    required String subgroup,
-    required String subgroupDisplayName,
-    required String submarket,
-    required String submarketDisplayName,
-    required String symbol,
-    required String symbolType,
-    bool? allowForwardStarting,
-    int? delayAmount,
-    String? exchangeName,
-    int? intradayIntervalMinutes,
-    String? quotedCurrencySymbol,
-    double? spot,
-    String? spotAge,
-    String? spotPercentageChange,
-    String? spotTime,
-  }) : super(
-          displayName: displayName,
-          displayOrder: displayOrder,
-          exchangeIsOpen: exchangeIsOpen,
-          isTradingSuspended: isTradingSuspended,
-          market: market,
-          marketDisplayName: marketDisplayName,
-          pip: pip,
-          subgroup: subgroup,
-          subgroupDisplayName: subgroupDisplayName,
-          submarket: submarket,
-          submarketDisplayName: submarketDisplayName,
-          symbol: symbol,
-          symbolType: symbolType,
-          allowForwardStarting: allowForwardStarting,
-          delayAmount: delayAmount,
-          exchangeName: exchangeName,
-          intradayIntervalMinutes: intradayIntervalMinutes,
-          quotedCurrencySymbol: quotedCurrencySymbol,
-          spot: spot,
-          spotAge: spotAge,
-          spotPercentageChange: spotPercentageChange,
-          spotTime: spotTime,
-        );
+    required super.displayName,
+    required super.displayOrder,
+    required super.exchangeIsOpen,
+    required super.isTradingSuspended,
+    required super.market,
+    required super.marketDisplayName,
+    required super.pip,
+    required super.subgroup,
+    required super.subgroupDisplayName,
+    required super.submarket,
+    required super.submarketDisplayName,
+    required super.symbol,
+    required super.symbolType,
+    super.allowForwardStarting,
+    super.delayAmount,
+    super.exchangeName,
+    super.intradayIntervalMinutes,
+    super.quotedCurrencySymbol,
+    super.spot,
+    super.spotAge,
+    super.spotPercentageChange,
+    super.spotTime,
+  });
 
   /// Creates an instance from JSON.
   factory ActiveSymbolsItem.fromJson(Map<String, dynamic> json) =>

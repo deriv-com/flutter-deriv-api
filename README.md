@@ -141,6 +141,8 @@ dependencies:
 ```
 $ git submodule init
 $ git submodule update --remote
+$ ./setup.sh
+$ flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 ### Run the tests

@@ -25,10 +25,8 @@ abstract class PaymentagentListResponseModel {
 class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Initializes Paymentagent list response class.
   const PaymentagentListResponse({
-    PaymentagentList? paymentagentList,
-  }) : super(
-          paymentagentList: paymentagentList,
-        );
+    super.paymentagentList,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentListResponse.fromJson(
@@ -56,7 +54,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Returns a list of Payment Agents for a given country for a given currency.
   ///
   /// For parameters information refer to [PaymentagentListRequest].
-  /// Throws a [PaymentAgentException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PaymentagentListResponse> fetch(
     PaymentagentListRequest request,
   ) async {
@@ -65,7 +63,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PaymentAgentException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentagentListResponse.fromJson(response.paymentagentList);
@@ -79,7 +77,6 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
 }
-
 /// Paymentagent list model class.
 abstract class PaymentagentListModel {
   /// Initializes Paymentagent list model class .
@@ -99,12 +96,9 @@ abstract class PaymentagentListModel {
 class PaymentagentList extends PaymentagentListModel {
   /// Initializes Paymentagent list class.
   const PaymentagentList({
-    required List<ListItem> list,
-    List<List<String>>? availableCountries,
-  }) : super(
-          list: list,
-          availableCountries: availableCountries,
-        );
+    required super.list,
+    super.availableCountries,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentList.fromJson(Map<String, dynamic> json) =>
@@ -162,7 +156,6 @@ class PaymentagentList extends PaymentagentListModel {
         availableCountries: availableCountries ?? this.availableCountries,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -226,34 +219,20 @@ abstract class ListItemModel {
 class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
-    required String currencies,
-    required String depositCommission,
-    required String email,
-    required String furtherInformation,
-    required String name,
-    required String paymentagentLoginid,
-    required List<PhoneNumbersItem> phoneNumbers,
-    required String summary,
-    required List<SupportedPaymentMethodsItem> supportedPaymentMethods,
-    required List<UrlsItem> urls,
-    required String withdrawalCommission,
-    String? maxWithdrawal,
-    String? minWithdrawal,
-  }) : super(
-          currencies: currencies,
-          depositCommission: depositCommission,
-          email: email,
-          furtherInformation: furtherInformation,
-          name: name,
-          paymentagentLoginid: paymentagentLoginid,
-          phoneNumbers: phoneNumbers,
-          summary: summary,
-          supportedPaymentMethods: supportedPaymentMethods,
-          urls: urls,
-          withdrawalCommission: withdrawalCommission,
-          maxWithdrawal: maxWithdrawal,
-          minWithdrawal: minWithdrawal,
-        );
+    required super.currencies,
+    required super.depositCommission,
+    required super.email,
+    required super.furtherInformation,
+    required super.name,
+    required super.paymentagentLoginid,
+    required super.phoneNumbers,
+    required super.summary,
+    required super.supportedPaymentMethods,
+    required super.urls,
+    required super.withdrawalCommission,
+    super.maxWithdrawal,
+    super.minWithdrawal,
+  });
 
   /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
@@ -353,7 +332,6 @@ class ListItem extends ListItemModel {
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
       );
 }
-
 /// Phone numbers item model class.
 abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
@@ -369,10 +347,8 @@ abstract class PhoneNumbersItemModel {
 class PhoneNumbersItem extends PhoneNumbersItemModel {
   /// Initializes Phone numbers item class.
   const PhoneNumbersItem({
-    String? phoneNumber,
-  }) : super(
-          phoneNumber: phoneNumber,
-        );
+    super.phoneNumber,
+  });
 
   /// Creates an instance from JSON.
   factory PhoneNumbersItem.fromJson(Map<String, dynamic> json) =>
@@ -397,7 +373,6 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
 }
-
 /// Supported payment methods item model class.
 abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
@@ -413,10 +388,8 @@ abstract class SupportedPaymentMethodsItemModel {
 class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item class.
   const SupportedPaymentMethodsItem({
-    String? paymentMethod,
-  }) : super(
-          paymentMethod: paymentMethod,
-        );
+    super.paymentMethod,
+  });
 
   /// Creates an instance from JSON.
   factory SupportedPaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
@@ -441,7 +414,6 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-
 /// Urls item model class.
 abstract class UrlsItemModel {
   /// Initializes Urls item model class .
@@ -457,10 +429,8 @@ abstract class UrlsItemModel {
 class UrlsItem extends UrlsItemModel {
   /// Initializes Urls item class.
   const UrlsItem({
-    String? url,
-  }) : super(
-          url: url,
-        );
+    super.url,
+  });
 
   /// Creates an instance from JSON.
   factory UrlsItem.fromJson(Map<String, dynamic> json) => UrlsItem(

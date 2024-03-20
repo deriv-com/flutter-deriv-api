@@ -12,7 +12,8 @@ void main() {
 
   test('Fetch Asset Index Test', () async {
     final AssetIndexResponse assetIndices =
-        await AssetIndexResponse.fetchAssetIndices(const AssetIndexRequest());
+        await AssetIndexResponse.fetchAssetIndices(
+            const AssetIndexRequest(landingCompany: 'svg'));
 
     expect(assetIndices.assetIndex?.length, 1);
     // expect(assetIndices.assetIndex.first['symbol_code'], 'frxAUDJPY');

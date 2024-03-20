@@ -25,10 +25,8 @@ abstract class Mt5PasswordChangeResponseModel {
 class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
   /// Initializes Mt5 password change response class.
   const Mt5PasswordChangeResponse({
-    int? mt5PasswordChange,
-  }) : super(
-          mt5PasswordChange: mt5PasswordChange,
-        );
+    super.mt5PasswordChange,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordChangeResponse.fromJson(
@@ -52,7 +50,7 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
   /// Changes the password of the MT5 account.
   ///
   /// For parameters information refer to [Mt5PasswordChangeRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5PasswordChangeResponse> changePassword(
     Mt5PasswordChangeRequest request,
   ) async {
@@ -61,7 +59,7 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5PasswordChangeResponse.fromJson(response.mt5PasswordChange);

@@ -25,10 +25,8 @@ abstract class SetSettingsResponseModel {
 class SetSettingsResponse extends SetSettingsResponseModel {
   /// Initializes Set settings response class.
   const SetSettingsResponse({
-    int? setSettings,
-  }) : super(
-          setSettings: setSettings,
-        );
+    super.setSettings,
+  });
 
   /// Creates an instance from JSON.
   factory SetSettingsResponse.fromJson(
@@ -51,7 +49,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest]
   ///
-  /// Throws an [AccountSettingsException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<SetSettingsResponse> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
@@ -60,7 +58,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AccountSettingsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetSettingsResponse(setSettings: response.setSettings ?? 0);

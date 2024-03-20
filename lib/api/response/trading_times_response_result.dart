@@ -25,10 +25,8 @@ abstract class TradingTimesResponseModel {
 class TradingTimesResponse extends TradingTimesResponseModel {
   /// Initializes Trading times response class.
   const TradingTimesResponse({
-    TradingTimes? tradingTimes,
-  }) : super(
-          tradingTimes: tradingTimes,
-        );
+    super.tradingTimes,
+  });
 
   /// Creates an instance from JSON.
   factory TradingTimesResponse.fromJson(
@@ -56,7 +54,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
   /// Receives a list of market opening times for a given date.
   ///
   /// For parameters information refer to [TradingTimesRequest].
-  /// Throws a [TradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TradingTimesResponse> fetchTradingTimes(
     TradingTimesRequest request,
   ) async {
@@ -65,7 +63,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingTimesResponse.fromJson(response.tradingTimes);
@@ -115,7 +113,6 @@ enum TradingDaysItemEnum {
   /// Sat.
   sat,
 }
-
 /// Trading times model class.
 abstract class TradingTimesModel {
   /// Initializes Trading times model class .
@@ -131,10 +128,8 @@ abstract class TradingTimesModel {
 class TradingTimes extends TradingTimesModel {
   /// Initializes Trading times class.
   const TradingTimes({
-    required List<MarketsItem> markets,
-  }) : super(
-          markets: markets,
-        );
+    required super.markets,
+  });
 
   /// Creates an instance from JSON.
   factory TradingTimes.fromJson(Map<String, dynamic> json) => TradingTimes(
@@ -166,7 +161,6 @@ class TradingTimes extends TradingTimesModel {
         markets: markets ?? this.markets,
       );
 }
-
 /// Markets item model class.
 abstract class MarketsItemModel {
   /// Initializes Markets item model class .
@@ -186,12 +180,9 @@ abstract class MarketsItemModel {
 class MarketsItem extends MarketsItemModel {
   /// Initializes Markets item class.
   const MarketsItem({
-    required String name,
-    List<SubmarketsItem>? submarkets,
-  }) : super(
-          name: name,
-          submarkets: submarkets,
-        );
+    required super.name,
+    super.submarkets,
+  });
 
   /// Creates an instance from JSON.
   factory MarketsItem.fromJson(Map<String, dynamic> json) => MarketsItem(
@@ -231,7 +222,6 @@ class MarketsItem extends MarketsItemModel {
         submarkets: submarkets ?? this.submarkets,
       );
 }
-
 /// Submarkets item model class.
 abstract class SubmarketsItemModel {
   /// Initializes Submarkets item model class .
@@ -251,12 +241,9 @@ abstract class SubmarketsItemModel {
 class SubmarketsItem extends SubmarketsItemModel {
   /// Initializes Submarkets item class.
   const SubmarketsItem({
-    required String name,
-    List<SymbolsItem>? symbols,
-  }) : super(
-          name: name,
-          symbols: symbols,
-        );
+    required super.name,
+    super.symbols,
+  });
 
   /// Creates an instance from JSON.
   factory SubmarketsItem.fromJson(Map<String, dynamic> json) => SubmarketsItem(
@@ -296,7 +283,6 @@ class SubmarketsItem extends SubmarketsItemModel {
         symbols: symbols ?? this.symbols,
       );
 }
-
 /// Symbols item model class.
 abstract class SymbolsItemModel {
   /// Initializes Symbols item model class .
@@ -328,18 +314,12 @@ abstract class SymbolsItemModel {
 class SymbolsItem extends SymbolsItemModel {
   /// Initializes Symbols item class.
   const SymbolsItem({
-    required String name,
-    required String symbol,
-    List<dynamic>? events,
-    Map<String, dynamic>? times,
-    List<TradingDaysItemEnum>? tradingDays,
-  }) : super(
-          name: name,
-          symbol: symbol,
-          events: events,
-          times: times,
-          tradingDays: tradingDays,
-        );
+    required super.name,
+    required super.symbol,
+    super.events,
+    super.times,
+    super.tradingDays,
+  });
 
   /// Creates an instance from JSON.
   factory SymbolsItem.fromJson(Map<String, dynamic> json) => SymbolsItem(

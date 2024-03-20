@@ -18,7 +18,9 @@ class Mt5NewAccountRequest extends Request {
     required this.email,
     this.investPassword,
     required this.leverage,
+    this.loginid,
     required this.mainPassword,
+    this.migrate,
     this.mt5AccountCategory,
     this.mt5AccountType,
     this.mt5NewAccount = true,
@@ -27,14 +29,12 @@ class Mt5NewAccountRequest extends Request {
     this.phonePassword,
     this.server,
     this.state,
+    this.subAccountCategory,
     this.zipCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_new_account',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_new_account',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
@@ -49,7 +49,9 @@ class Mt5NewAccountRequest extends Request {
         email: json['email'] as String?,
         investPassword: json['investPassword'] as String?,
         leverage: json['leverage'] as num?,
+        loginid: json['loginid'] as String?,
         mainPassword: json['mainPassword'] as String?,
+        migrate: json['migrate'] as dynamic,
         mt5AccountCategory: json['mt5_account_category'] as String?,
         mt5AccountType: json['mt5_account_type'] as String?,
         mt5NewAccount: json['mt5_new_account'] == null
@@ -60,6 +62,7 @@ class Mt5NewAccountRequest extends Request {
         phonePassword: json['phonePassword'] as String?,
         server: json['server'] as String?,
         state: json['state'] as String?,
+        subAccountCategory: json['sub_account_category'] as String?,
         zipCode: json['zipCode'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -95,10 +98,16 @@ class Mt5NewAccountRequest extends Request {
   /// Client leverage (from 1 to 1000).
   final num? leverage;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
   final String? mainPassword;
 
-  /// [Optional] To choose whether account is conventional or not. Unavailable for financial_stp MT5_account_type
+  /// [Optional] Indicates whether the user would like to migrate his account to other jurisdiction.
+  final dynamic migrate;
+
+  /// [Optional] To choose whether account is conventional or swap_free. Unavailable for financial_stp MT5_account_type
   final String? mt5AccountCategory;
 
   /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products. If 'account_type' set to 'financial', setting 'mt5_account_type' is also required.
@@ -122,6 +131,9 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] User's state (region) of residence.
   final String? state;
 
+  /// [Optional] Indicate the sub account category that we have in the cfd group naming convention.
+  final String? subAccountCategory;
+
   /// [Optional] User's zip code.
   final String? zipCode;
 
@@ -142,7 +154,9 @@ class Mt5NewAccountRequest extends Request {
         'email': email,
         'investPassword': investPassword,
         'leverage': leverage,
+        'loginid': loginid,
         'mainPassword': mainPassword,
+        'migrate': migrate,
         'mt5_account_category': mt5AccountCategory,
         'mt5_account_type': mt5AccountType,
         'mt5_new_account': mt5NewAccount == null
@@ -155,6 +169,7 @@ class Mt5NewAccountRequest extends Request {
         'phonePassword': phonePassword,
         'server': server,
         'state': state,
+        'sub_account_category': subAccountCategory,
         'zipCode': zipCode,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -173,7 +188,9 @@ class Mt5NewAccountRequest extends Request {
     String? email,
     String? investPassword,
     num? leverage,
+    String? loginid,
     String? mainPassword,
+    dynamic migrate,
     String? mt5AccountCategory,
     String? mt5AccountType,
     bool? mt5NewAccount,
@@ -182,6 +199,7 @@ class Mt5NewAccountRequest extends Request {
     String? phonePassword,
     String? server,
     String? state,
+    String? subAccountCategory,
     String? zipCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -197,7 +215,9 @@ class Mt5NewAccountRequest extends Request {
         email: email ?? this.email,
         investPassword: investPassword ?? this.investPassword,
         leverage: leverage ?? this.leverage,
+        loginid: loginid ?? this.loginid,
         mainPassword: mainPassword ?? this.mainPassword,
+        migrate: migrate ?? this.migrate,
         mt5AccountCategory: mt5AccountCategory ?? this.mt5AccountCategory,
         mt5AccountType: mt5AccountType ?? this.mt5AccountType,
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
@@ -206,6 +226,7 @@ class Mt5NewAccountRequest extends Request {
         phonePassword: phonePassword ?? this.phonePassword,
         server: server ?? this.server,
         state: state ?? this.state,
+        subAccountCategory: subAccountCategory ?? this.subAccountCategory,
         zipCode: zipCode ?? this.zipCode,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
