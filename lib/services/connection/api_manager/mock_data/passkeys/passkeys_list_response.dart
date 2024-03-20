@@ -1,10 +1,10 @@
 /// Wallet migration response mock data.
 const String passkeysListResponse = '''{
     "echo_req": {
-        "passkeysList": 1
+        "passkeys_list": 1
     },
-    "msg_type": "passkeysList",
-    "passkeysList": [
+    "msg_type": "passkeys_list",
+    "passkeys_list": [
         {
             "created_at": 10000,
             "id": "id",
