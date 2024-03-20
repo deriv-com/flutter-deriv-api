@@ -148,8 +148,6 @@ final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
-  "advertiser_block_trade_ineligible":
-      VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
@@ -177,15 +175,13 @@ enum VisibilityStatusItemEnum {
   /// advertiser_balance.
   advertiserBalance,
 
-  /// advertiser_block_trade_ineligible.
-  advertiserBlockTradeIneligible,
-
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advertiser adverts model class.
 abstract class P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts model class .
@@ -237,6 +233,7 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
         list: list ?? this.list,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -248,7 +245,6 @@ abstract class ListItemModel {
     required this.rateDisplay,
     required this.rate,
     required this.paymentInfo,
-    required this.orderExpiryPeriod,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
@@ -266,7 +262,6 @@ abstract class ListItemModel {
     required this.country,
     required this.counterpartyType,
     required this.contactInfo,
-    required this.blockTrade,
     required this.amountDisplay,
     required this.amount,
     required this.advertiserDetails,
@@ -275,10 +270,6 @@ abstract class ListItemModel {
     this.daysUntilArchive,
     this.effectiveRate,
     this.effectiveRateDisplay,
-    this.eligibleCountries,
-    this.minCompletionRate,
-    this.minJoinDays,
-    this.minRating,
     this.paymentMethod,
     this.paymentMethodNames,
     this.price,
@@ -306,9 +297,6 @@ abstract class ListItemModel {
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
-
-  /// Expiry period (seconds) for order created against this ad.
-  final int orderExpiryPeriod;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -361,9 +349,6 @@ abstract class ListItemModel {
   /// Advertiser contact information. Only applicable for 'sell adverts'.
   final String contactInfo;
 
-  /// Indicates if this is block trade advert or not.
-  final bool blockTrade;
-
   /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String amountDisplay;
 
@@ -388,18 +373,6 @@ abstract class ListItemModel {
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
 
-  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders.
-  final List<String>? eligibleCountries;
-
-  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders.
-  final double? minCompletionRate;
-
-  /// Counterparties who joined less than this number of days ago are not allowed to place orders.
-  final int? minJoinDays;
-
-  /// Counterparties who have an average rating less than this value are not allowed to place orders.
-  final double? minRating;
-
   /// Payment method name (deprecated).
   final String? paymentMethod;
 
@@ -420,7 +393,6 @@ abstract class ListItemModel {
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
-  /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
   final List<VisibilityStatusItemEnum>? visibilityStatus;
@@ -435,7 +407,6 @@ class ListItem extends ListItemModel {
     required AdvertiserDetails advertiserDetails,
     required double amount,
     required String amountDisplay,
-    required bool blockTrade,
     required String contactInfo,
     required CounterpartyTypeEnum counterpartyType,
     required String country,
@@ -453,7 +424,6 @@ class ListItem extends ListItemModel {
     required String minOrderAmountDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required int orderExpiryPeriod,
     required String paymentInfo,
     required double rate,
     required String rateDisplay,
@@ -464,10 +434,6 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     double? effectiveRate,
     String? effectiveRateDisplay,
-    List<String>? eligibleCountries,
-    double? minCompletionRate,
-    int? minJoinDays,
-    double? minRating,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     double? price,
@@ -479,7 +445,6 @@ class ListItem extends ListItemModel {
           advertiserDetails: advertiserDetails,
           amount: amount,
           amountDisplay: amountDisplay,
-          blockTrade: blockTrade,
           contactInfo: contactInfo,
           counterpartyType: counterpartyType,
           country: country,
@@ -497,7 +462,6 @@ class ListItem extends ListItemModel {
           minOrderAmountDisplay: minOrderAmountDisplay,
           minOrderAmountLimit: minOrderAmountLimit,
           minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          orderExpiryPeriod: orderExpiryPeriod,
           paymentInfo: paymentInfo,
           rate: rate,
           rateDisplay: rateDisplay,
@@ -508,10 +472,6 @@ class ListItem extends ListItemModel {
           daysUntilArchive: daysUntilArchive,
           effectiveRate: effectiveRate,
           effectiveRateDisplay: effectiveRateDisplay,
-          eligibleCountries: eligibleCountries,
-          minCompletionRate: minCompletionRate,
-          minJoinDays: minJoinDays,
-          minRating: minRating,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
           price: price,
@@ -527,7 +487,6 @@ class ListItem extends ListItemModel {
             AdvertiserDetails.fromJson(json['advertiser_details']),
         amount: getDouble(json['amount'])!,
         amountDisplay: json['amount_display'],
-        blockTrade: getBool(json['block_trade'])!,
         contactInfo: json['contact_info'],
         counterpartyType:
             counterpartyTypeEnumMapper[json['counterparty_type']]!,
@@ -546,7 +505,6 @@ class ListItem extends ListItemModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
-        orderExpiryPeriod: json['order_expiry_period'],
         paymentInfo: json['payment_info'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
@@ -557,16 +515,6 @@ class ListItem extends ListItemModel {
         daysUntilArchive: json['days_until_archive'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
-        eligibleCountries: json['eligible_countries'] == null
-            ? null
-            : List<String>.from(
-                json['eligible_countries']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        minCompletionRate: getDouble(json['min_completion_rate']),
-        minJoinDays: json['min_join_days'],
-        minRating: getDouble(json['min_rating']),
         paymentMethod: json['payment_method'],
         paymentMethodNames: json['payment_method_names'] == null
             ? null
@@ -598,7 +546,6 @@ class ListItem extends ListItemModel {
 
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
-    resultMap['block_trade'] = blockTrade;
     resultMap['contact_info'] = contactInfo;
     resultMap['counterparty_type'] = counterpartyTypeEnumMapper.entries
         .firstWhere((MapEntry<String, CounterpartyTypeEnum> entry) =>
@@ -619,7 +566,6 @@ class ListItem extends ListItemModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
-    resultMap['order_expiry_period'] = orderExpiryPeriod;
     resultMap['payment_info'] = paymentInfo;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
@@ -635,16 +581,6 @@ class ListItem extends ListItemModel {
     resultMap['days_until_archive'] = daysUntilArchive;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
-    if (eligibleCountries != null) {
-      resultMap['eligible_countries'] = eligibleCountries!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['min_completion_rate'] = minCompletionRate;
-    resultMap['min_join_days'] = minJoinDays;
-    resultMap['min_rating'] = minRating;
     resultMap['payment_method'] = paymentMethod;
     if (paymentMethodNames != null) {
       resultMap['payment_method_names'] = paymentMethodNames!
@@ -678,7 +614,6 @@ class ListItem extends ListItemModel {
     AdvertiserDetails? advertiserDetails,
     double? amount,
     String? amountDisplay,
-    bool? blockTrade,
     String? contactInfo,
     CounterpartyTypeEnum? counterpartyType,
     String? country,
@@ -696,7 +631,6 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     double? minOrderAmountLimit,
     String? minOrderAmountLimitDisplay,
-    int? orderExpiryPeriod,
     String? paymentInfo,
     double? rate,
     String? rateDisplay,
@@ -707,10 +641,6 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     double? effectiveRate,
     String? effectiveRateDisplay,
-    List<String>? eligibleCountries,
-    double? minCompletionRate,
-    int? minJoinDays,
-    double? minRating,
     String? paymentMethod,
     List<String>? paymentMethodNames,
     double? price,
@@ -723,7 +653,6 @@ class ListItem extends ListItemModel {
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
-        blockTrade: blockTrade ?? this.blockTrade,
         contactInfo: contactInfo ?? this.contactInfo,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         country: country ?? this.country,
@@ -745,7 +674,6 @@ class ListItem extends ListItemModel {
         minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
         minOrderAmountLimitDisplay:
             minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
-        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         rate: rate ?? this.rate,
         rateDisplay: rateDisplay ?? this.rateDisplay,
@@ -757,10 +685,6 @@ class ListItem extends ListItemModel {
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
-        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
-        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
-        minJoinDays: minJoinDays ?? this.minJoinDays,
-        minRating: minRating ?? this.minRating,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         price: price ?? this.price,
@@ -768,6 +692,7 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .

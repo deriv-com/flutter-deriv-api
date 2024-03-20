@@ -108,30 +108,6 @@ enum CounterpartyTypeEnum {
   sell,
 }
 
-/// EligibilityStatusItemEnum mapper.
-final Map<String, EligibilityStatusItemEnum> eligibilityStatusItemEnumMapper =
-    <String, EligibilityStatusItemEnum>{
-  "completion_rate": EligibilityStatusItemEnum.completionRate,
-  "country": EligibilityStatusItemEnum.country,
-  "join_date": EligibilityStatusItemEnum.joinDate,
-  "rating_average": EligibilityStatusItemEnum.ratingAverage,
-};
-
-/// EligibilityStatusItem Enum.
-enum EligibilityStatusItemEnum {
-  /// completion_rate.
-  completionRate,
-
-  /// country.
-  country,
-
-  /// join_date.
-  joinDate,
-
-  /// rating_average.
-  ratingAverage,
-}
-
 /// RateTypeEnum mapper.
 final Map<String, RateTypeEnum> rateTypeEnumMapper = <String, RateTypeEnum>{
   "fixed": RateTypeEnum.fixed,
@@ -172,8 +148,6 @@ final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
-  "advertiser_block_trade_ineligible":
-      VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
@@ -201,15 +175,13 @@ enum VisibilityStatusItemEnum {
   /// advertiser_balance.
   advertiserBalance,
 
-  /// advertiser_block_trade_ineligible.
-  advertiserBlockTradeIneligible,
-
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advert list model class.
 abstract class P2pAdvertListModel {
   /// Initializes P2p advert list model class .
@@ -260,6 +232,7 @@ class P2pAdvertList extends P2pAdvertListModel {
         list: list ?? this.list,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -268,7 +241,6 @@ abstract class ListItemModel {
     required this.rateType,
     required this.rateDisplay,
     required this.rate,
-    required this.orderExpiryPeriod,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.maxOrderAmountLimitDisplay,
@@ -281,7 +253,6 @@ abstract class ListItemModel {
     required this.createdTime,
     required this.country,
     required this.counterpartyType,
-    required this.blockTrade,
     required this.advertiserDetails,
     required this.accountCurrency,
     this.activeOrders,
@@ -291,16 +262,10 @@ abstract class ListItemModel {
     this.daysUntilArchive,
     this.effectiveRate,
     this.effectiveRateDisplay,
-    this.eligibilityStatus,
-    this.eligibleCountries,
-    this.isEligible,
     this.maxOrderAmount,
     this.maxOrderAmountDisplay,
-    this.minCompletionRate,
-    this.minJoinDays,
     this.minOrderAmount,
     this.minOrderAmountDisplay,
-    this.minRating,
     this.paymentInfo,
     this.paymentMethod,
     this.paymentMethodNames,
@@ -322,9 +287,6 @@ abstract class ListItemModel {
 
   /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final double rate;
-
-  /// Expiry period (seconds) for order created against this ad.
-  final int orderExpiryPeriod;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -362,9 +324,6 @@ abstract class ListItemModel {
   /// Type of transaction from the opposite party's perspective.
   final CounterpartyTypeEnum counterpartyType;
 
-  /// Indicates if this is block trade advert or not.
-  final bool blockTrade;
-
   /// Details of the advertiser for this advert.
   final AdvertiserDetails advertiserDetails;
 
@@ -392,39 +351,17 @@ abstract class ListItemModel {
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
 
-  /// Reasons why the counterparty terms do not allow the current user to place orders against this advert. Possible values:
-  /// - `completion_rate`: current user's 30 day completion rate is less than `min_completion_rate`.
-  /// - `country`: current user's residence is not in `eligible_countries`.
-  /// - `join_date`: current user registered on P2P less than `min_join_days` in the past.
-  /// - `rating`: current user's average review rating is less than `min_rating`.
-  final List<EligibilityStatusItemEnum>? eligibilityStatus;
-
-  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders against this advert.
-  final List<String>? eligibleCountries;
-
-  /// Indicates that the current user meets the counterparty terms for placing an order.
-  final bool? isEligible;
-
   /// Maximum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double? maxOrderAmount;
 
   /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? maxOrderAmountDisplay;
 
-  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders against this advert.
-  final double? minCompletionRate;
-
-  /// Counterparties who joined less than this number of days ago are not allowed to place orders against this advert.
-  final int? minJoinDays;
-
   /// Minimum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double? minOrderAmount;
 
   /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? minOrderAmountDisplay;
-
-  /// Counterparties who have an average rating less than this value are not allowed to place orders against this advert.
-  final double? minRating;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
@@ -455,7 +392,6 @@ abstract class ListItemModel {
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
-  /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
   final List<VisibilityStatusItemEnum>? visibilityStatus;
@@ -467,7 +403,6 @@ class ListItem extends ListItemModel {
   const ListItem({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
-    required bool blockTrade,
     required CounterpartyTypeEnum counterpartyType,
     required String country,
     required DateTime createdTime,
@@ -480,7 +415,6 @@ class ListItem extends ListItemModel {
     required String maxOrderAmountLimitDisplay,
     required double minOrderAmountLimit,
     required String minOrderAmountLimitDisplay,
-    required int orderExpiryPeriod,
     required double rate,
     required String rateDisplay,
     required RateTypeEnum rateType,
@@ -492,16 +426,10 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     double? effectiveRate,
     String? effectiveRateDisplay,
-    List<EligibilityStatusItemEnum>? eligibilityStatus,
-    List<String>? eligibleCountries,
-    bool? isEligible,
     double? maxOrderAmount,
     String? maxOrderAmountDisplay,
-    double? minCompletionRate,
-    int? minJoinDays,
     double? minOrderAmount,
     String? minOrderAmountDisplay,
-    double? minRating,
     String? paymentInfo,
     String? paymentMethod,
     List<String>? paymentMethodNames,
@@ -513,7 +441,6 @@ class ListItem extends ListItemModel {
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
-          blockTrade: blockTrade,
           counterpartyType: counterpartyType,
           country: country,
           createdTime: createdTime,
@@ -526,7 +453,6 @@ class ListItem extends ListItemModel {
           maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
           minOrderAmountLimit: minOrderAmountLimit,
           minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          orderExpiryPeriod: orderExpiryPeriod,
           rate: rate,
           rateDisplay: rateDisplay,
           rateType: rateType,
@@ -538,16 +464,10 @@ class ListItem extends ListItemModel {
           daysUntilArchive: daysUntilArchive,
           effectiveRate: effectiveRate,
           effectiveRateDisplay: effectiveRateDisplay,
-          eligibilityStatus: eligibilityStatus,
-          eligibleCountries: eligibleCountries,
-          isEligible: isEligible,
           maxOrderAmount: maxOrderAmount,
           maxOrderAmountDisplay: maxOrderAmountDisplay,
-          minCompletionRate: minCompletionRate,
-          minJoinDays: minJoinDays,
           minOrderAmount: minOrderAmount,
           minOrderAmountDisplay: minOrderAmountDisplay,
-          minRating: minRating,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
           paymentMethodNames: paymentMethodNames,
@@ -563,7 +483,6 @@ class ListItem extends ListItemModel {
         accountCurrency: json['account_currency'],
         advertiserDetails:
             AdvertiserDetails.fromJson(json['advertiser_details']),
-        blockTrade: getBool(json['block_trade'])!,
         counterpartyType:
             counterpartyTypeEnumMapper[json['counterparty_type']]!,
         country: json['country'],
@@ -577,7 +496,6 @@ class ListItem extends ListItemModel {
         maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
-        orderExpiryPeriod: json['order_expiry_period'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
         rateType: rateTypeEnumMapper[json['rate_type']]!,
@@ -589,30 +507,10 @@ class ListItem extends ListItemModel {
         daysUntilArchive: json['days_until_archive'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
-        eligibilityStatus: json['eligibility_status'] == null
-            ? null
-            : List<EligibilityStatusItemEnum>.from(
-                json['eligibility_status']?.map(
-                  (dynamic item) => item == null
-                      ? null
-                      : eligibilityStatusItemEnumMapper[item],
-                ),
-              ),
-        eligibleCountries: json['eligible_countries'] == null
-            ? null
-            : List<String>.from(
-                json['eligible_countries']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
-        isEligible: getBool(json['is_eligible']),
         maxOrderAmount: getDouble(json['max_order_amount']),
         maxOrderAmountDisplay: json['max_order_amount_display'],
-        minCompletionRate: getDouble(json['min_completion_rate']),
-        minJoinDays: json['min_join_days'],
         minOrderAmount: getDouble(json['min_order_amount']),
         minOrderAmountDisplay: json['min_order_amount_display'],
-        minRating: getDouble(json['min_rating']),
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
         paymentMethodNames: json['payment_method_names'] == null
@@ -644,7 +542,6 @@ class ListItem extends ListItemModel {
     resultMap['account_currency'] = accountCurrency;
     resultMap['advertiser_details'] = advertiserDetails.toJson();
 
-    resultMap['block_trade'] = blockTrade;
     resultMap['counterparty_type'] = counterpartyTypeEnumMapper.entries
         .firstWhere((MapEntry<String, CounterpartyTypeEnum> entry) =>
             entry.value == counterpartyType)
@@ -660,7 +557,6 @@ class ListItem extends ListItemModel {
     resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
-    resultMap['order_expiry_period'] = orderExpiryPeriod;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
     resultMap['rate_type'] = rateTypeEnumMapper.entries
@@ -677,33 +573,10 @@ class ListItem extends ListItemModel {
     resultMap['days_until_archive'] = daysUntilArchive;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
-    if (eligibilityStatus != null) {
-      resultMap['eligibility_status'] = eligibilityStatus!
-          .map<dynamic>(
-            (EligibilityStatusItemEnum item) => eligibilityStatusItemEnumMapper
-                .entries
-                .firstWhere(
-                    (MapEntry<String, EligibilityStatusItemEnum> entry) =>
-                        entry.value == item)
-                .key,
-          )
-          .toList();
-    }
-    if (eligibleCountries != null) {
-      resultMap['eligible_countries'] = eligibleCountries!
-          .map<dynamic>(
-            (String item) => item,
-          )
-          .toList();
-    }
-    resultMap['is_eligible'] = isEligible;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
-    resultMap['min_completion_rate'] = minCompletionRate;
-    resultMap['min_join_days'] = minJoinDays;
     resultMap['min_order_amount'] = minOrderAmount;
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
-    resultMap['min_rating'] = minRating;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
     if (paymentMethodNames != null) {
@@ -737,7 +610,6 @@ class ListItem extends ListItemModel {
   ListItem copyWith({
     String? accountCurrency,
     AdvertiserDetails? advertiserDetails,
-    bool? blockTrade,
     CounterpartyTypeEnum? counterpartyType,
     String? country,
     DateTime? createdTime,
@@ -750,7 +622,6 @@ class ListItem extends ListItemModel {
     String? maxOrderAmountLimitDisplay,
     double? minOrderAmountLimit,
     String? minOrderAmountLimitDisplay,
-    int? orderExpiryPeriod,
     double? rate,
     String? rateDisplay,
     RateTypeEnum? rateType,
@@ -762,16 +633,10 @@ class ListItem extends ListItemModel {
     int? daysUntilArchive,
     double? effectiveRate,
     String? effectiveRateDisplay,
-    List<EligibilityStatusItemEnum>? eligibilityStatus,
-    List<String>? eligibleCountries,
-    bool? isEligible,
     double? maxOrderAmount,
     String? maxOrderAmountDisplay,
-    double? minCompletionRate,
-    int? minJoinDays,
     double? minOrderAmount,
     String? minOrderAmountDisplay,
-    double? minRating,
     String? paymentInfo,
     String? paymentMethod,
     List<String>? paymentMethodNames,
@@ -784,7 +649,6 @@ class ListItem extends ListItemModel {
       ListItem(
         accountCurrency: accountCurrency ?? this.accountCurrency,
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
-        blockTrade: blockTrade ?? this.blockTrade,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         country: country ?? this.country,
         createdTime: createdTime ?? this.createdTime,
@@ -799,7 +663,6 @@ class ListItem extends ListItemModel {
         minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
         minOrderAmountLimitDisplay:
             minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
-        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         rate: rate ?? this.rate,
         rateDisplay: rateDisplay ?? this.rateDisplay,
         rateType: rateType ?? this.rateType,
@@ -811,18 +674,12 @@ class ListItem extends ListItemModel {
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
-        eligibilityStatus: eligibilityStatus ?? this.eligibilityStatus,
-        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
-        isEligible: isEligible ?? this.isEligible,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         maxOrderAmountDisplay:
             maxOrderAmountDisplay ?? this.maxOrderAmountDisplay,
-        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
-        minJoinDays: minJoinDays ?? this.minJoinDays,
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
         minOrderAmountDisplay:
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
-        minRating: minRating ?? this.minRating,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
@@ -834,6 +691,7 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
