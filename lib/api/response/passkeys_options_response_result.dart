@@ -49,32 +49,6 @@ class PasskeysOptionsResponse extends PasskeysOptionsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
-
-  /// List all passkeys options.
-  static Future<PasskeysOptionsResponse> fetch(
-    PasskeysOptionsRequest request,
-  ) async {
-    final PasskeysOptionsReceive response = await fetchRaw(request);
-
-    return PasskeysOptionsResponse.fromJson(response.toJson());
-  }
-
-  /// Fetches raw passkeys options response.
-  static Future<PasskeysOptionsReceive> fetchRaw(
-    PasskeysOptionsRequest request,
-  ) async {
-    final PasskeysOptionsReceive response = await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
-
   /// Creates a copy of instance with given parameters.
   PasskeysOptionsResponse copyWith({
     PasskeysOptions? passkeysOptions,
