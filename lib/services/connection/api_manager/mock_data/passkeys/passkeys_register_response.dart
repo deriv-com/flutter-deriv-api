@@ -11,7 +11,7 @@ const String passkeysRegisterResponse = '''{
           "last_used": 10000,
           "name": "Passkey",
           "passkey_id": "passkeyId",
-          "stored_on": "storedOn",
+          "stored_on": "storedOn"
         }
     }
 }''';
