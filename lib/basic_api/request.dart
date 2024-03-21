@@ -11,10 +11,7 @@ class Request extends Equatable {
   });
 
   /// Generate an instance from JSON.
-  factory Request.fromJson(
-          {bool acceptNullValue = false, required Map<String, dynamic> json}) =>
-      Request(
-        acceptNullValue: acceptNullValue,
+  factory Request.fromJson(Map<String, dynamic> json) => Request(
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -42,10 +39,12 @@ class Request extends Equatable {
   Request copyWith({
     Map<String, dynamic>? passthrough,
     int? reqId,
+    bool? acceptNullValue,
   }) =>
       Request(
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
+        acceptNullValue: acceptNullValue ?? false,
       );
 
   /// Override equatable class.
