@@ -139,7 +139,8 @@ class BinaryAPI extends BaseAPI {
   }
 
   @override
-  Future<T> call<T>({required Request request}) async {
+  Future<T> call<T>(
+      {required Request request, bool acceptNullValue = false}) async {
     final Response response = await (_callManager ??= CallManager(this))(
       request: request,
     );

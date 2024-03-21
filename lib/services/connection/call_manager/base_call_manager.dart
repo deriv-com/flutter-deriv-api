@@ -43,7 +43,7 @@ abstract class BaseCallManager<T> {
   bool contains(int? requestId) => _pendingRequests.containsKey(requestId);
 
   /// Calls a API method by [request]
-  T call({required Request request});
+  T call({required Request request, bool acceptNullValue = false});
 
   /// Handle call [response] that comes from server
   void handleResponse({
@@ -62,12 +62,14 @@ abstract class BaseCallManager<T> {
   Future<Response> addToChannel({
     required Request request,
     SubscriptionStream<Response>? subscriptionStream,
+    bool acceptNullValue = false,
   }) {
     final Completer<Response> responseCompleter = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
     final Map<String, dynamic> prepareRequest = _prepareRequest(
       request: requestWithId,
       isSubscription: subscriptionStream != null,
+      acceptNullValue: acceptNullValue,
     );
 
     _addPendingRequest(
@@ -104,6 +106,7 @@ abstract class BaseCallManager<T> {
   Map<String, dynamic> _prepareRequest({
     required Request request,
     required bool isSubscription,
+    bool acceptNullValue = false,
   }) {
     final Map<String, dynamic> result = request.toJson()
       ..removeWhere((String key, dynamic value) => value == null);

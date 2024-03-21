@@ -130,7 +130,7 @@ class MockAPI extends BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<T> call<T>({required Request request}) =>
+  Future<T> call<T>({required Request request, bool acceptNullValue = false}) =>
       _getFutureResponse<T>(request);
 
   @override
