@@ -7,6 +7,7 @@ class Request extends Equatable {
     this.msgType,
     this.passthrough,
     this.reqId,
+    this.acceptNullValue = false,
   });
 
   /// Generate an instance from JSON.
@@ -24,6 +25,9 @@ class Request extends Equatable {
 
   /// [Optional] Used to map request to response.
   final int? reqId;
+
+  /// Determine accept null value in request or not.
+  final bool acceptNullValue;
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() => <String, dynamic>{
