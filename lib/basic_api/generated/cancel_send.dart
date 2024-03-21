@@ -9,17 +9,16 @@ class CancelRequest extends Request {
   /// Initialize CancelRequest.
   const CancelRequest({
     required this.cancel,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cancel',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'cancel',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
         cancel: json['cancel'] as int?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -27,10 +26,14 @@ class CancelRequest extends Request {
   /// Value should be the `contract_id` which received from the `portfolio` call.
   final int? cancel;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'cancel': cancel,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -39,11 +42,13 @@ class CancelRequest extends Request {
   @override
   CancelRequest copyWith({
     int? cancel,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       CancelRequest(
         cancel: cancel ?? this.cancel,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

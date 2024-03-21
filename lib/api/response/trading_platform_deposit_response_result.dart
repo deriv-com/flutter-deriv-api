@@ -24,10 +24,8 @@ class TradingPlatformDepositResponse
     extends TradingPlatformDepositResponseModel {
   /// Initializes Trading platform deposit response class.
   const TradingPlatformDepositResponse({
-    dynamic tradingPlatformDeposit,
-  }) : super(
-          tradingPlatformDeposit: tradingPlatformDeposit,
-        );
+    super.tradingPlatformDeposit,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformDepositResponse.fromJson(
@@ -52,7 +50,7 @@ class TradingPlatformDepositResponse
   ///
   /// Information about deposit transaction, or status of demo account top up.
   /// For parameters information refer to [TradingPlatformDepositRequest].
-  /// Throws a [TradingPlatformException] if API response contains an error.
+  /// Throws a [BaseAPIException] if API response contains an error.
   static Future<TradingPlatformDepositResponse> deposit(
     TradingPlatformDepositRequest request,
   ) async {
@@ -62,7 +60,7 @@ class TradingPlatformDepositResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TradingPlatformException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingPlatformDepositResponse.fromJson(

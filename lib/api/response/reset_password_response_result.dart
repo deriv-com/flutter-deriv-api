@@ -24,10 +24,8 @@ abstract class ResetPasswordResponseModel {
 class ResetPasswordResponse extends ResetPasswordResponseModel {
   /// Initializes Reset password response class.
   const ResetPasswordResponse({
-    bool? resetPassword,
-  }) : super(
-          resetPassword: resetPassword,
-        );
+    super.resetPassword,
+  });
 
   /// Creates an instance from JSON.
   factory ResetPasswordResponse.fromJson(
@@ -58,7 +56,7 @@ class ResetPasswordResponse extends ResetPasswordResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          UserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ResetPasswordResponse.fromJson(response?.resetPassword);

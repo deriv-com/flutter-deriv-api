@@ -26,10 +26,8 @@ abstract class P2pPingResponseModel {
 class P2pPingResponse extends P2pPingResponseModel {
   /// Initializes P2p ping response class.
   const P2pPingResponse({
-    P2pPingEnum? p2pPing,
-  }) : super(
-          p2pPing: p2pPing,
-        );
+    super.p2pPing,
+  });
 
   /// Creates an instance from JSON.
   factory P2pPingResponse.fromJson(
@@ -67,7 +65,7 @@ class P2pPingResponse extends P2pPingResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          APIBaseException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;

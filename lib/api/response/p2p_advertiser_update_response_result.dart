@@ -25,10 +25,8 @@ abstract class P2pAdvertiserUpdateResponseModel {
 class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
   /// Initializes P2p advertiser update response class.
   const P2pAdvertiserUpdateResponse({
-    P2pAdvertiserUpdate? p2pAdvertiserUpdate,
-  }) : super(
-          p2pAdvertiserUpdate: p2pAdvertiserUpdate,
-        );
+    super.p2pAdvertiserUpdate,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserUpdateResponse.fromJson(
@@ -77,7 +75,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -91,7 +89,6 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
 }
-
 /// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update model class .
@@ -122,6 +119,7 @@ abstract class P2pAdvertiserUpdateModel {
     this.activeFixedAds,
     this.activeFloatAds,
     this.advertRates,
+    this.blockTrade,
     this.blockedUntil,
     this.buyCompletionRate,
     this.buyTimeAvg,
@@ -226,6 +224,9 @@ abstract class P2pAdvertiserUpdateModel {
   /// Average difference of advert rate compared to the market rate over the past 30 days.
   final double? advertRates;
 
+  /// Block trading limits, if block trading is allowed.
+  final BlockTrade? blockTrade;
+
   /// If a temporary bar was placed, this is the epoch time at which it will end.
   final DateTime? blockedUntil;
 
@@ -303,108 +304,58 @@ abstract class P2pAdvertiserUpdateModel {
 class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update class.
   const P2pAdvertiserUpdate({
-    required double balanceAvailable,
-    required bool basicVerification,
-    required int blockedByCount,
-    required String buyOrdersAmount,
-    required int buyOrdersCount,
-    required int cancelsRemaining,
-    required String contactInfo,
-    required DateTime createdTime,
-    required String defaultAdvertDescription,
-    required bool fullVerification,
-    required String id,
-    required bool isApproved,
-    required bool isListed,
-    required bool isOnline,
-    required String name,
-    required int partnerCount,
-    required String paymentInfo,
-    required int ratingCount,
-    required String sellOrdersAmount,
-    required int sellOrdersCount,
-    required bool showName,
-    required int totalOrdersCount,
-    required String totalTurnover,
-    int? activeFixedAds,
-    int? activeFloatAds,
-    double? advertRates,
-    DateTime? blockedUntil,
-    double? buyCompletionRate,
-    int? buyTimeAvg,
-    int? cancelTimeAvg,
-    String? chatToken,
-    String? chatUserId,
-    String? dailyBuy,
-    String? dailyBuyLimit,
-    String? dailySell,
-    String? dailySellLimit,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-    String? maxOrderAmount,
-    String? minBalance,
-    String? minOrderAmount,
-    double? ratingAverage,
-    double? recommendedAverage,
-    int? recommendedCount,
-    int? releaseTimeAvg,
-    double? sellCompletionRate,
-    double? totalCompletionRate,
-    UpgradableDailyLimits? upgradableDailyLimits,
-    String? withdrawalLimit,
-  }) : super(
-          balanceAvailable: balanceAvailable,
-          basicVerification: basicVerification,
-          blockedByCount: blockedByCount,
-          buyOrdersAmount: buyOrdersAmount,
-          buyOrdersCount: buyOrdersCount,
-          cancelsRemaining: cancelsRemaining,
-          contactInfo: contactInfo,
-          createdTime: createdTime,
-          defaultAdvertDescription: defaultAdvertDescription,
-          fullVerification: fullVerification,
-          id: id,
-          isApproved: isApproved,
-          isListed: isListed,
-          isOnline: isOnline,
-          name: name,
-          partnerCount: partnerCount,
-          paymentInfo: paymentInfo,
-          ratingCount: ratingCount,
-          sellOrdersAmount: sellOrdersAmount,
-          sellOrdersCount: sellOrdersCount,
-          showName: showName,
-          totalOrdersCount: totalOrdersCount,
-          totalTurnover: totalTurnover,
-          activeFixedAds: activeFixedAds,
-          activeFloatAds: activeFloatAds,
-          advertRates: advertRates,
-          blockedUntil: blockedUntil,
-          buyCompletionRate: buyCompletionRate,
-          buyTimeAvg: buyTimeAvg,
-          cancelTimeAvg: cancelTimeAvg,
-          chatToken: chatToken,
-          chatUserId: chatUserId,
-          dailyBuy: dailyBuy,
-          dailyBuyLimit: dailyBuyLimit,
-          dailySell: dailySell,
-          dailySellLimit: dailySellLimit,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-          maxOrderAmount: maxOrderAmount,
-          minBalance: minBalance,
-          minOrderAmount: minOrderAmount,
-          ratingAverage: ratingAverage,
-          recommendedAverage: recommendedAverage,
-          recommendedCount: recommendedCount,
-          releaseTimeAvg: releaseTimeAvg,
-          sellCompletionRate: sellCompletionRate,
-          totalCompletionRate: totalCompletionRate,
-          upgradableDailyLimits: upgradableDailyLimits,
-          withdrawalLimit: withdrawalLimit,
-        );
+    required super.balanceAvailable,
+    required super.basicVerification,
+    required super.blockedByCount,
+    required super.buyOrdersAmount,
+    required super.buyOrdersCount,
+    required super.cancelsRemaining,
+    required super.contactInfo,
+    required super.createdTime,
+    required super.defaultAdvertDescription,
+    required super.fullVerification,
+    required super.id,
+    required super.isApproved,
+    required super.isListed,
+    required super.isOnline,
+    required super.name,
+    required super.partnerCount,
+    required super.paymentInfo,
+    required super.ratingCount,
+    required super.sellOrdersAmount,
+    required super.sellOrdersCount,
+    required super.showName,
+    required super.totalOrdersCount,
+    required super.totalTurnover,
+    super.activeFixedAds,
+    super.activeFloatAds,
+    super.advertRates,
+    super.blockTrade,
+    super.blockedUntil,
+    super.buyCompletionRate,
+    super.buyTimeAvg,
+    super.cancelTimeAvg,
+    super.chatToken,
+    super.chatUserId,
+    super.dailyBuy,
+    super.dailyBuyLimit,
+    super.dailySell,
+    super.dailySellLimit,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+    super.maxOrderAmount,
+    super.minBalance,
+    super.minOrderAmount,
+    super.ratingAverage,
+    super.recommendedAverage,
+    super.recommendedCount,
+    super.releaseTimeAvg,
+    super.sellCompletionRate,
+    super.totalCompletionRate,
+    super.upgradableDailyLimits,
+    super.withdrawalLimit,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserUpdate.fromJson(Map<String, dynamic> json) =>
@@ -435,6 +386,9 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         activeFixedAds: json['active_fixed_ads'],
         activeFloatAds: json['active_float_ads'],
         advertRates: getDouble(json['advert_rates']),
+        blockTrade: json['block_trade'] == null
+            ? null
+            : BlockTrade.fromJson(json['block_trade']),
         blockedUntil: getDateTime(json['blocked_until']),
         buyCompletionRate: getDouble(json['buy_completion_rate']),
         buyTimeAvg: json['buy_time_avg'],
@@ -493,6 +447,9 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     resultMap['active_fixed_ads'] = activeFixedAds;
     resultMap['active_float_ads'] = activeFloatAds;
     resultMap['advert_rates'] = advertRates;
+    if (blockTrade != null) {
+      resultMap['block_trade'] = blockTrade!.toJson();
+    }
     resultMap['blocked_until'] = getSecondsSinceEpochDateTime(blockedUntil);
     resultMap['buy_completion_rate'] = buyCompletionRate;
     resultMap['buy_time_avg'] = buyTimeAvg;
@@ -552,6 +509,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     int? activeFixedAds,
     int? activeFloatAds,
     double? advertRates,
+    BlockTrade? blockTrade,
     DateTime? blockedUntil,
     double? buyCompletionRate,
     int? buyTimeAvg,
@@ -605,6 +563,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         activeFixedAds: activeFixedAds ?? this.activeFixedAds,
         activeFloatAds: activeFloatAds ?? this.activeFloatAds,
         advertRates: advertRates ?? this.advertRates,
+        blockTrade: blockTrade ?? this.blockTrade,
         blockedUntil: blockedUntil ?? this.blockedUntil,
         buyCompletionRate: buyCompletionRate ?? this.buyCompletionRate,
         buyTimeAvg: buyTimeAvg ?? this.buyTimeAvg,
@@ -632,13 +591,62 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+/// Block trade model class.
+abstract class BlockTradeModel {
+  /// Initializes Block trade model class .
+  const BlockTradeModel({
+    required this.minOrderAmount,
+    required this.maxOrderAmount,
+  });
 
+  /// Minimum order amount for block trade adverts.
+  final String minOrderAmount;
+
+  /// Maximum order amount for block trade adverts.
+  final String maxOrderAmount;
+}
+
+/// Block trade class.
+class BlockTrade extends BlockTradeModel {
+  /// Initializes Block trade class.
+  const BlockTrade({
+    required super.maxOrderAmount,
+    required super.minOrderAmount,
+  });
+
+  /// Creates an instance from JSON.
+  factory BlockTrade.fromJson(Map<String, dynamic> json) => BlockTrade(
+        maxOrderAmount: json['max_order_amount'],
+        minOrderAmount: json['min_order_amount'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['max_order_amount'] = maxOrderAmount;
+    resultMap['min_order_amount'] = minOrderAmount;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  BlockTrade copyWith({
+    String? maxOrderAmount,
+    String? minOrderAmount,
+  }) =>
+      BlockTrade(
+        maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
+        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+      );
+}
 /// Upgradable daily limits model class.
 abstract class UpgradableDailyLimitsModel {
   /// Initializes Upgradable daily limits model class .
   const UpgradableDailyLimitsModel({
     required this.maxDailySell,
     required this.maxDailyBuy,
+    this.blockTrade,
   });
 
   /// Upgradable daily sell limit.
@@ -646,24 +654,26 @@ abstract class UpgradableDailyLimitsModel {
 
   /// Upgradable daily buy limit.
   final String maxDailyBuy;
+
+  /// When `true`, upgrade will provide block trading.
+  final bool? blockTrade;
 }
 
 /// Upgradable daily limits class.
 class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
   /// Initializes Upgradable daily limits class.
   const UpgradableDailyLimits({
-    required String maxDailyBuy,
-    required String maxDailySell,
-  }) : super(
-          maxDailyBuy: maxDailyBuy,
-          maxDailySell: maxDailySell,
-        );
+    required super.maxDailyBuy,
+    required super.maxDailySell,
+    super.blockTrade,
+  });
 
   /// Creates an instance from JSON.
   factory UpgradableDailyLimits.fromJson(Map<String, dynamic> json) =>
       UpgradableDailyLimits(
         maxDailyBuy: json['max_daily_buy'],
         maxDailySell: json['max_daily_sell'],
+        blockTrade: getBool(json['block_trade']),
       );
 
   /// Converts an instance to JSON.
@@ -672,6 +682,7 @@ class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
 
     resultMap['max_daily_buy'] = maxDailyBuy;
     resultMap['max_daily_sell'] = maxDailySell;
+    resultMap['block_trade'] = blockTrade;
 
     return resultMap;
   }
@@ -680,9 +691,11 @@ class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
   UpgradableDailyLimits copyWith({
     String? maxDailyBuy,
     String? maxDailySell,
+    bool? blockTrade,
   }) =>
       UpgradableDailyLimits(
         maxDailyBuy: maxDailyBuy ?? this.maxDailyBuy,
         maxDailySell: maxDailySell ?? this.maxDailySell,
+        blockTrade: blockTrade ?? this.blockTrade,
       );
 }

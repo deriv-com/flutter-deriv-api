@@ -10,14 +10,12 @@ class LinkWalletRequest extends Request {
   const LinkWalletRequest({
     required this.clientId,
     this.linkWallet = true,
+    this.loginid,
     required this.walletId,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'link_wallet',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'link_wallet',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LinkWalletRequest.fromJson(Map<String, dynamic> json) =>
@@ -25,6 +23,7 @@ class LinkWalletRequest extends Request {
         clientId: json['client_id'] as String?,
         linkWallet:
             json['link_wallet'] == null ? null : json['link_wallet'] == 1,
+        loginid: json['loginid'] as String?,
         walletId: json['wallet_id'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -35,6 +34,9 @@ class LinkWalletRequest extends Request {
 
   /// Must be `true`
   final bool? linkWallet;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// The unique identifier for this wallet.
   final String? walletId;
@@ -48,6 +50,7 @@ class LinkWalletRequest extends Request {
             : linkWallet!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'wallet_id': walletId,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -58,6 +61,7 @@ class LinkWalletRequest extends Request {
   LinkWalletRequest copyWith({
     String? clientId,
     bool? linkWallet,
+    String? loginid,
     String? walletId,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -65,6 +69,7 @@ class LinkWalletRequest extends Request {
       LinkWalletRequest(
         clientId: clientId ?? this.clientId,
         linkWallet: linkWallet ?? this.linkWallet,
+        loginid: loginid ?? this.loginid,
         walletId: walletId ?? this.walletId,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

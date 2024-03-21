@@ -13,7 +13,7 @@ void main() {
   test('Fetch Trading Duration Test', () async {
     final TradingDurationsResponse tradeDuration =
         await TradingDurationsResponse.fetchTradingDurations(
-      const TradingDurationsRequest(),
+      const TradingDurationsRequest(landingCompany: 'svg'),
     );
 
     expect(tradeDuration.tradingDurations?.length, 8);

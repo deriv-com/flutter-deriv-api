@@ -25,10 +25,8 @@ abstract class TncApprovalResponseModel {
 class TncApprovalResponse extends TncApprovalResponseModel {
   /// Initializes Tnc approval response class.
   const TncApprovalResponse({
-    int? tncApproval,
-  }) : super(
-          tncApproval: tncApproval,
-        );
+    super.tncApproval,
+  });
 
   /// Creates an instance from JSON.
   factory TncApprovalResponse.fromJson(
@@ -52,7 +50,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
   /// Approve the latest version of terms and conditions.
   ///
   /// For parameters information refer to [TncApprovalRequest].
-  /// Throws a [UserException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TncApprovalResponse> verify(
     TncApprovalRequest request,
   ) async {
@@ -61,7 +59,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          UserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TncApprovalResponse.fromJson(response.tncApproval);

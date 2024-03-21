@@ -25,10 +25,8 @@ abstract class TopupVirtualResponseModel {
 class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Initializes Topup virtual response class.
   const TopupVirtualResponse({
-    TopupVirtual? topupVirtual,
-  }) : super(
-          topupVirtual: topupVirtual,
-        );
+    super.topupVirtual,
+  });
 
   /// Creates an instance from JSON.
   factory TopupVirtualResponse.fromJson(
@@ -56,7 +54,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Topes up the virtual-money's account balance becomes when it becomes low.
   ///
   /// For parameters information refer to [TopupVirtualRequest].
-  /// Throws a [TopUpVirtualException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TopupVirtualResponse> topUp([
     TopupVirtualRequest? request,
   ]) async {
@@ -67,7 +65,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TopUpVirtualException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TopupVirtualResponse.fromJson(response.topupVirtual);
@@ -81,7 +79,6 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
 }
-
 /// Topup virtual model class.
 abstract class TopupVirtualModel {
   /// Initializes Topup virtual model class .
@@ -101,12 +98,9 @@ abstract class TopupVirtualModel {
 class TopupVirtual extends TopupVirtualModel {
   /// Initializes Topup virtual class.
   const TopupVirtual({
-    double? amount,
-    String? currency,
-  }) : super(
-          amount: amount,
-          currency: currency,
-        );
+    super.amount,
+    super.currency,
+  });
 
   /// Creates an instance from JSON.
   factory TopupVirtual.fromJson(Map<String, dynamic> json) => TopupVirtual(

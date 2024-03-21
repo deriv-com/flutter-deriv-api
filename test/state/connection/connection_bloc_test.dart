@@ -10,7 +10,8 @@ void main() {
     setUpAll(
       () {
         connectionCubit = ConnectionCubit(
-          ConnectionInformation(appId: '', brand: '', endpoint: ''),
+          ConnectionInformation(
+              appId: '', brand: '', endpoint: '', authEndpoint: ''),
           api: MockAPI(),
         );
       },

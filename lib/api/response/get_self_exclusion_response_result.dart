@@ -27,10 +27,8 @@ abstract class GetSelfExclusionResponseModel {
 class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Initializes Get self exclusion response class.
   const GetSelfExclusionResponse({
-    GetSelfExclusion? getSelfExclusion,
-  }) : super(
-          getSelfExclusion: getSelfExclusion,
-        );
+    super.getSelfExclusion,
+  });
 
   /// Creates an instance from JSON.
   factory GetSelfExclusionResponse.fromJson(
@@ -60,7 +58,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   ///
   /// This facility is a regulatory requirement for certain Landing Companies.
   /// For parameters information refer to [GetSelfExclusionRequest].
-  /// Throws a [SelfExclusionException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<GetSelfExclusionResponse> fetchSelfExclusion([
     GetSelfExclusionRequest? request,
   ]) async {
@@ -71,7 +69,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          SelfExclusionException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return GetSelfExclusionResponse.fromJson(response.getSelfExclusion);
@@ -80,14 +78,14 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
   ///
   /// For parameters information refer to [SetSelfExclusionRequest].
-  /// Throws a [SelfExclusionException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<bool?> setSelfExclusion(SetSelfExclusionRequest request) async {
     final SetSelfExclusionReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          SelfExclusionException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);
@@ -96,7 +94,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Excludes user from the website based this parameters
   ///
   /// (this call should be used in conjunction with [fetchSelfExclusion])
-  /// Throws a [SelfExclusionException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<bool?> exclude() async {
     final SetSelfExclusionReceive response = await _api.call(
       request: SetSelfExclusionRequest(
@@ -121,7 +119,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          SelfExclusionException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);
@@ -135,7 +133,6 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
 }
-
 /// Get self exclusion model class.
 abstract class GetSelfExclusionModel {
   /// Initializes Get self exclusion model class .
@@ -203,36 +200,21 @@ abstract class GetSelfExclusionModel {
 class GetSelfExclusion extends GetSelfExclusionModel {
   /// Initializes Get self exclusion class.
   const GetSelfExclusion({
-    String? excludeUntil,
-    double? max30dayDeposit,
-    double? max30dayLosses,
-    double? max30dayTurnover,
-    double? max7dayDeposit,
-    double? max7dayLosses,
-    double? max7dayTurnover,
-    double? maxBalance,
-    double? maxDeposit,
-    double? maxLosses,
-    int? maxOpenBets,
-    double? maxTurnover,
-    int? sessionDurationLimit,
-    DateTime? timeoutUntil,
-  }) : super(
-          excludeUntil: excludeUntil,
-          max30dayDeposit: max30dayDeposit,
-          max30dayLosses: max30dayLosses,
-          max30dayTurnover: max30dayTurnover,
-          max7dayDeposit: max7dayDeposit,
-          max7dayLosses: max7dayLosses,
-          max7dayTurnover: max7dayTurnover,
-          maxBalance: maxBalance,
-          maxDeposit: maxDeposit,
-          maxLosses: maxLosses,
-          maxOpenBets: maxOpenBets,
-          maxTurnover: maxTurnover,
-          sessionDurationLimit: sessionDurationLimit,
-          timeoutUntil: timeoutUntil,
-        );
+    super.excludeUntil,
+    super.max30dayDeposit,
+    super.max30dayLosses,
+    super.max30dayTurnover,
+    super.max7dayDeposit,
+    super.max7dayLosses,
+    super.max7dayTurnover,
+    super.maxBalance,
+    super.maxDeposit,
+    super.maxLosses,
+    super.maxOpenBets,
+    super.maxTurnover,
+    super.sessionDurationLimit,
+    super.timeoutUntil,
+  });
 
   /// Creates an instance from JSON.
   factory GetSelfExclusion.fromJson(Map<String, dynamic> json) =>

@@ -25,10 +25,8 @@ abstract class NewAccountRealResponseModel {
 class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Initializes New account real response class.
   const NewAccountRealResponse({
-    NewAccountReal? newAccountReal,
-  }) : super(
-          newAccountReal: newAccountReal,
-        );
+    super.newAccountReal,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountRealResponse.fromJson(
@@ -56,7 +54,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Opens a new real account.
   ///
   /// For parameters information refer to [NewAccountRealRequest].
-  /// Throws a [NewAccountException] ifAP
+  /// Throws a [BaseAPIException] ifAP
   static Future<NewAccountRealResponse> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {
@@ -65,7 +63,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          NewAccountException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return NewAccountRealResponse.fromJson(response.newAccountReal);
@@ -79,7 +77,6 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
 }
-
 /// New account real model class.
 abstract class NewAccountRealModel {
   /// Initializes New account real model class .
@@ -115,20 +112,13 @@ abstract class NewAccountRealModel {
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes New account real class.
   const NewAccountReal({
-    required String clientId,
-    required String landingCompany,
-    required String oauthToken,
-    String? currency,
-    String? landingCompanyShort,
-    String? landingCompanyShortcode,
-  }) : super(
-          clientId: clientId,
-          landingCompany: landingCompany,
-          oauthToken: oauthToken,
-          currency: currency,
-          landingCompanyShort: landingCompanyShort,
-          landingCompanyShortcode: landingCompanyShortcode,
-        );
+    required super.clientId,
+    required super.landingCompany,
+    required super.oauthToken,
+    super.currency,
+    super.landingCompanyShort,
+    super.landingCompanyShortcode,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(

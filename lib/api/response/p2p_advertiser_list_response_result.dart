@@ -2,12 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart'; 
+import 'package:flutter_deriv_api/basic_api/generated/api.dart'; 
+import 'package:flutter_deriv_api/helpers/helpers.dart'; 
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'; 
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-
 /// P2p advertiser list response model class.
 abstract class P2pAdvertiserListResponseModel {
   /// Initializes P2p advertiser list response model class .
@@ -23,10 +22,8 @@ abstract class P2pAdvertiserListResponseModel {
 class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
   /// Initializes P2p advertiser list response class.
   const P2pAdvertiserListResponse({
-    P2pAdvertiserList? p2pAdvertiserList,
-  }) : super(
-          p2pAdvertiserList: p2pAdvertiserList,
-        );
+    super.p2pAdvertiserList,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserListResponse.fromJson(
@@ -62,7 +59,7 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -88,7 +85,6 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
         p2pAdvertiserList: p2pAdvertiserList ?? this.p2pAdvertiserList,
       );
 }
-
 /// P2p advertiser list model class.
 abstract class P2pAdvertiserListModel {
   /// Initializes P2p advertiser list model class .
@@ -104,10 +100,8 @@ abstract class P2pAdvertiserListModel {
 class P2pAdvertiserList extends P2pAdvertiserListModel {
   /// Initializes P2p advertiser list class.
   const P2pAdvertiserList({
-    required List<ListItem> list,
-  }) : super(
-          list: list,
-        );
+    required super.list,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserList.fromJson(Map<String, dynamic> json) =>
@@ -140,7 +134,6 @@ class P2pAdvertiserList extends P2pAdvertiserListModel {
         list: list ?? this.list,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -284,74 +277,40 @@ abstract class ListItemModel {
 class ListItem extends ListItemModel {
   /// Initializes List item class.
   const ListItem({
-    required bool basicVerification,
-    required String buyOrdersAmount,
-    required int buyOrdersCount,
-    required DateTime createdTime,
-    required String defaultAdvertDescription,
-    required bool fullVerification,
-    required String id,
-    required bool isApproved,
-    required bool isBlocked,
-    required bool isListed,
-    required bool isOnline,
-    required String name,
-    required int partnerCount,
-    required int ratingCount,
-    required String sellOrdersAmount,
-    required int sellOrdersCount,
-    required int totalOrdersCount,
-    required String totalTurnover,
-    double? advertRates,
-    double? buyCompletionRate,
-    int? buyTimeAvg,
-    int? cancelTimeAvg,
-    String? firstName,
-    bool? isFavourite,
-    bool? isRecommended,
-    String? lastName,
-    DateTime? lastOnlineTime,
-    double? ratingAverage,
-    double? recommendedAverage,
-    int? recommendedCount,
-    int? releaseTimeAvg,
-    double? sellCompletionRate,
-    double? totalCompletionRate,
-  }) : super(
-          basicVerification: basicVerification,
-          buyOrdersAmount: buyOrdersAmount,
-          buyOrdersCount: buyOrdersCount,
-          createdTime: createdTime,
-          defaultAdvertDescription: defaultAdvertDescription,
-          fullVerification: fullVerification,
-          id: id,
-          isApproved: isApproved,
-          isBlocked: isBlocked,
-          isListed: isListed,
-          isOnline: isOnline,
-          name: name,
-          partnerCount: partnerCount,
-          ratingCount: ratingCount,
-          sellOrdersAmount: sellOrdersAmount,
-          sellOrdersCount: sellOrdersCount,
-          totalOrdersCount: totalOrdersCount,
-          totalTurnover: totalTurnover,
-          advertRates: advertRates,
-          buyCompletionRate: buyCompletionRate,
-          buyTimeAvg: buyTimeAvg,
-          cancelTimeAvg: cancelTimeAvg,
-          firstName: firstName,
-          isFavourite: isFavourite,
-          isRecommended: isRecommended,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-          ratingAverage: ratingAverage,
-          recommendedAverage: recommendedAverage,
-          recommendedCount: recommendedCount,
-          releaseTimeAvg: releaseTimeAvg,
-          sellCompletionRate: sellCompletionRate,
-          totalCompletionRate: totalCompletionRate,
-        );
+    required super.basicVerification,
+    required super.buyOrdersAmount,
+    required super.buyOrdersCount,
+    required super.createdTime,
+    required super.defaultAdvertDescription,
+    required super.fullVerification,
+    required super.id,
+    required super.isApproved,
+    required super.isBlocked,
+    required super.isListed,
+    required super.isOnline,
+    required super.name,
+    required super.partnerCount,
+    required super.ratingCount,
+    required super.sellOrdersAmount,
+    required super.sellOrdersCount,
+    required super.totalOrdersCount,
+    required super.totalTurnover,
+    super.advertRates,
+    super.buyCompletionRate,
+    super.buyTimeAvg,
+    super.cancelTimeAvg,
+    super.firstName,
+    super.isFavourite,
+    super.isRecommended,
+    super.lastName,
+    super.lastOnlineTime,
+    super.ratingAverage,
+    super.recommendedAverage,
+    super.recommendedCount,
+    super.releaseTimeAvg,
+    super.sellCompletionRate,
+    super.totalCompletionRate,
+  });
 
   /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(

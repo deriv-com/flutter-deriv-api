@@ -36,12 +36,9 @@ abstract class TransactionResponseModel {
 class TransactionResponse extends TransactionResponseModel {
   /// Initializes Transaction response class.
   const TransactionResponse({
-    Transaction? transaction,
-    Subscription? subscription,
-  }) : super(
-          transaction: transaction,
-          subscription: subscription,
-        );
+    super.transaction,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory TransactionResponse.fromJson(
@@ -75,7 +72,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Subscribes to account's transactions
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Stream<TransactionResponse?> subscribeTransactions({
     RequestCompareFunction? comparePredicate,
   }) =>
@@ -88,7 +85,7 @@ class TransactionResponse extends TransactionResponseModel {
         checkException(
           response: response,
           exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-              TransactionsException(baseExceptionModel: baseExceptionModel),
+              BaseAPIException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is TransactionReceive
@@ -101,7 +98,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Unsubscribes from transaction subscription.
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<ForgetResponse?> unsubscribeTransaction() async {
     if (subscription == null) {
       return null;
@@ -113,7 +110,7 @@ class TransactionResponse extends TransactionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransactionsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);
@@ -121,7 +118,7 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Unsubscribes all transaction subscriptions.
   ///
-  /// Throws a [TransactionsException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ForgetAllResponse> unsubscribeAllTransaction() async {
     final ForgetAllReceive response =
         await _api.unsubscribeAll(method: ForgetStreamType.transaction);
@@ -129,7 +126,7 @@ class TransactionResponse extends TransactionResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransactionsException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAllResponse.fromJson(response.forgetAll);
@@ -184,7 +181,6 @@ enum ActionEnum {
   /// transfer.
   transfer,
 }
-
 /// Transaction model class.
 abstract class TransactionModel {
   /// Initializes Transaction model class .
@@ -272,46 +268,26 @@ abstract class TransactionModel {
 class Transaction extends TransactionModel {
   /// Initializes Transaction class.
   const Transaction({
-    ActionEnum? action,
-    double? amount,
-    double? balance,
-    dynamic barrier,
-    int? contractId,
-    String? currency,
-    DateTime? dateExpiry,
-    String? displayName,
-    dynamic highBarrier,
-    String? id,
-    String? longcode,
-    String? lowBarrier,
-    DateTime? purchaseTime,
-    String? stopLoss,
-    String? stopOut,
-    String? symbol,
-    String? takeProfit,
-    int? transactionId,
-    DateTime? transactionTime,
-  }) : super(
-          action: action,
-          amount: amount,
-          balance: balance,
-          barrier: barrier,
-          contractId: contractId,
-          currency: currency,
-          dateExpiry: dateExpiry,
-          displayName: displayName,
-          highBarrier: highBarrier,
-          id: id,
-          longcode: longcode,
-          lowBarrier: lowBarrier,
-          purchaseTime: purchaseTime,
-          stopLoss: stopLoss,
-          stopOut: stopOut,
-          symbol: symbol,
-          takeProfit: takeProfit,
-          transactionId: transactionId,
-          transactionTime: transactionTime,
-        );
+    super.action,
+    super.amount,
+    super.balance,
+    super.barrier,
+    super.contractId,
+    super.currency,
+    super.dateExpiry,
+    super.displayName,
+    super.highBarrier,
+    super.id,
+    super.longcode,
+    super.lowBarrier,
+    super.purchaseTime,
+    super.stopLoss,
+    super.stopOut,
+    super.symbol,
+    super.takeProfit,
+    super.transactionId,
+    super.transactionTime,
+  });
 
   /// Creates an instance from JSON.
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
@@ -412,7 +388,6 @@ class Transaction extends TransactionModel {
         transactionTime: transactionTime ?? this.transactionTime,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -428,10 +403,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

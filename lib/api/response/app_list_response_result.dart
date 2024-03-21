@@ -25,10 +25,8 @@ abstract class AppListResponseModel {
 class AppListResponse extends AppListResponseModel {
   /// Initializes App list response class.
   const AppListResponse({
-    List<AppListItem>? appList,
-  }) : super(
-          appList: appList,
-        );
+    super.appList,
+  });
 
   /// Creates an instance from JSON.
   factory AppListResponse.fromJson(
@@ -64,7 +62,7 @@ class AppListResponse extends AppListResponseModel {
   /// Gets all of the account's OAuth applications.
   ///
   /// For parameters information refer to [AppListRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<AppListResponse> fetchApplicationList(
     AppListRequest request,
   ) async {
@@ -73,7 +71,7 @@ class AppListResponse extends AppListResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return AppListResponse.fromJson(response.appList);
@@ -87,7 +85,6 @@ class AppListResponse extends AppListResponseModel {
         appList: appList ?? this.appList,
       );
 }
-
 /// App list item model class.
 abstract class AppListItemModel {
   /// Initializes App list item model class .
@@ -143,30 +140,18 @@ abstract class AppListItemModel {
 class AppListItem extends AppListItemModel {
   /// Initializes App list item class.
   const AppListItem({
-    required int appId,
-    required double appMarkupPercentage,
-    required String name,
-    required String redirectUri,
-    int? active,
-    String? appstore,
-    String? github,
-    String? googleplay,
-    String? homepage,
-    List<String>? scopes,
-    String? verificationUri,
-  }) : super(
-          appId: appId,
-          appMarkupPercentage: appMarkupPercentage,
-          name: name,
-          redirectUri: redirectUri,
-          active: active,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          scopes: scopes,
-          verificationUri: verificationUri,
-        );
+    required super.appId,
+    required super.appMarkupPercentage,
+    required super.name,
+    required super.redirectUri,
+    super.active,
+    super.appstore,
+    super.github,
+    super.googleplay,
+    super.homepage,
+    super.scopes,
+    super.verificationUri,
+  });
 
   /// Creates an instance from JSON.
   factory AppListItem.fromJson(Map<String, dynamic> json) => AppListItem(

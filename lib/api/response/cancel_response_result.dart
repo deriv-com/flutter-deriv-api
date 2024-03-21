@@ -25,10 +25,8 @@ abstract class CancelResponseModel {
 class CancelResponse extends CancelResponseModel {
   /// Initializes Cancel response class.
   const CancelResponse({
-    Cancel? cancel,
-  }) : super(
-          cancel: cancel,
-        );
+    super.cancel,
+  });
 
   /// Creates an instance from JSON.
   factory CancelResponse.fromJson(
@@ -53,14 +51,14 @@ class CancelResponse extends CancelResponseModel {
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
-  /// Throws a [ContractOperationException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<CancelResponse> cancelContract(CancelRequest request) async {
     final CancelReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return CancelResponse.fromJson(response.cancel);
@@ -74,7 +72,6 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
-
 /// Cancel model class.
 abstract class CancelModel {
   /// Initializes Cancel model class .
@@ -106,18 +103,12 @@ abstract class CancelModel {
 class Cancel extends CancelModel {
   /// Initializes Cancel class.
   const Cancel({
-    double? balanceAfter,
-    int? contractId,
-    int? referenceId,
-    double? soldFor,
-    int? transactionId,
-  }) : super(
-          balanceAfter: balanceAfter,
-          contractId: contractId,
-          referenceId: referenceId,
-          soldFor: soldFor,
-          transactionId: transactionId,
-        );
+    super.balanceAfter,
+    super.contractId,
+    super.referenceId,
+    super.soldFor,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory Cancel.fromJson(Map<String, dynamic> json) => Cancel(

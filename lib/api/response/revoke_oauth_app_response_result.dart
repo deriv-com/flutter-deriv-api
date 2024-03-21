@@ -25,10 +25,8 @@ abstract class RevokeOauthAppResponseModel {
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Initializes Revoke oauth app response class.
   const RevokeOauthAppResponse({
-    int? revokeOauthApp,
-  }) : super(
-          revokeOauthApp: revokeOauthApp,
-        );
+    super.revokeOauthApp,
+  });
 
   /// Creates an instance from JSON.
   factory RevokeOauthAppResponse.fromJson(
@@ -52,7 +50,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Revokes access of a particular app.
   ///
   /// For parameters information refer to [RevokeOauthAppRequest].
-  /// Throws an [AppException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<RevokeOauthAppResponse> revokeOauthApplication(
     RevokeOauthAppRequest request,
   ) async {
@@ -61,7 +59,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AppException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return RevokeOauthAppResponse.fromJson(response.revokeOauthApp);

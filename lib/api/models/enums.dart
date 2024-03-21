@@ -319,7 +319,10 @@ enum ForgetStreamType {
   transaction,
 
   /// Website status
-  websiteStatus
+  websiteStatus,
+
+  /// Cashier payments.
+  cashierPayments,
 }
 
 /// Contract types

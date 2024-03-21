@@ -25,10 +25,8 @@ abstract class ForgetResponseModel {
 class ForgetResponse extends ForgetResponseModel {
   /// Initializes Forget response class.
   const ForgetResponse({
-    bool? forget,
-  }) : super(
-          forget: forget,
-        );
+    super.forget,
+  });
 
   /// Creates an instance from JSON.
   factory ForgetResponse.fromJson(
@@ -52,7 +50,7 @@ class ForgetResponse extends ForgetResponseModel {
   /// Immediately cancels the real-time stream of messages with a specific id.
   ///
   /// For parameters information refer to [ForgetRequest].
-  /// Throws a [ForgetException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ForgetResponse> forgetMethod(
     ForgetRequest request,
   ) async {
@@ -61,7 +59,7 @@ class ForgetResponse extends ForgetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ForgetException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetResponse.fromJson(response.forget);

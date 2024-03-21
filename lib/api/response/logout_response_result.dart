@@ -25,10 +25,8 @@ abstract class LogoutResponseModel {
 class LogoutResponse extends LogoutResponseModel {
   /// Initializes Logout response class.
   const LogoutResponse({
-    int? logout,
-  }) : super(
-          logout: logout,
-        );
+    super.logout,
+  });
 
   /// Creates an instance from JSON.
   factory LogoutResponse.fromJson(
@@ -52,7 +50,7 @@ class LogoutResponse extends LogoutResponseModel {
   /// Logs out from the web-socket's session.
   ///
   /// For parameters information refer to [LogoutRequest].
-  /// Throws an [AuthorizeException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<LogoutReceive> logoutMethodRaw([LogoutRequest? request]) async {
     final LogoutReceive response =
         await _api.call(request: request ?? const LogoutRequest());
@@ -60,7 +58,7 @@ class LogoutResponse extends LogoutResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AuthorizeException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return response;
@@ -69,7 +67,7 @@ class LogoutResponse extends LogoutResponseModel {
   /// Logs out from the web-socket's session.
   ///
   /// For parameters information refer to [LogoutRequest].
-  /// Throws an [AuthorizeException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<LogoutResponse> logoutMethod([LogoutRequest? request]) async {
     final LogoutReceive response = await logoutMethodRaw(request);
 

@@ -38,10 +38,8 @@ abstract class Mt5NewAccountResponseModel {
 class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Initializes Mt5 new account response class.
   const Mt5NewAccountResponse({
-    Mt5NewAccount? mt5NewAccount,
-  }) : super(
-          mt5NewAccount: mt5NewAccount,
-        );
+    super.mt5NewAccount,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5NewAccountResponse.fromJson(
@@ -69,7 +67,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Creates new MT5 user, either demo or real money user.
   ///
   /// For parameters information refer to [Mt5NewAccountRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5NewAccountResponse> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
@@ -78,7 +76,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5NewAccountResponse.fromJson(response.mt5NewAccount);
@@ -86,7 +84,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Allows deposit into MT5 account from binary account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5DepositResponse> deposit({
     required double amount,
     required String fromBinary,
@@ -101,7 +99,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Changes password of the MT5 account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordChangeResponse> changePassword({
     required String newPassword,
     required String oldPassword,
@@ -118,7 +116,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Validates the main password for the MT5 user.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordCheckResponse> checkPassword({
     required String password,
     required PasswordType passwordType,
@@ -133,7 +131,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Resets the password of MT5 account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5PasswordResetResponse> resetPassword({
     required String newPassword,
     required PasswordType passwordType,
@@ -150,14 +148,14 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
 
   /// Gets the MT5 user account settings.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5GetSettingsResponse> fetchSettings() =>
       Mt5GetSettingsResponse.fetchSettings(
           Mt5GetSettingsRequest(login: mt5NewAccount?.login));
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   Future<Mt5WithdrawalResponse> withdraw({
     required double amount,
     required String toBinary,
@@ -185,6 +183,7 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "demo": AccountTypeEnum.demo,
   "gaming": AccountTypeEnum.gaming,
   "financial": AccountTypeEnum.financial,
+  "all": AccountTypeEnum.all,
 };
 
 /// AccountType Enum.
@@ -197,18 +196,25 @@ enum AccountTypeEnum {
 
   /// financial.
   financial,
+
+  /// all.
+  all,
 }
 
 /// Mt5AccountCategoryEnum mapper.
 final Map<String, Mt5AccountCategoryEnum> mt5AccountCategoryEnumMapper =
     <String, Mt5AccountCategoryEnum>{
   "conventional": Mt5AccountCategoryEnum.conventional,
+  "swap_free": Mt5AccountCategoryEnum.swapFree,
 };
 
 /// Mt5AccountCategory Enum.
 enum Mt5AccountCategoryEnum {
   /// conventional.
   conventional,
+
+  /// swap_free.
+  swapFree,
 }
 
 /// Mt5AccountTypeEnum mapper.
@@ -216,6 +222,7 @@ final Map<String, Mt5AccountTypeEnum> mt5AccountTypeEnumMapper =
     <String, Mt5AccountTypeEnum>{
   "financial": Mt5AccountTypeEnum.financial,
   "financial_stp": Mt5AccountTypeEnum.financialStp,
+  "standard": Mt5AccountTypeEnum.standard,
 };
 
 /// Mt5AccountType Enum.
@@ -225,8 +232,10 @@ enum Mt5AccountTypeEnum {
 
   /// financial_stp.
   financialStp,
-}
 
+  /// standard.
+  standard,
+}
 /// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .
@@ -262,7 +271,7 @@ abstract class Mt5NewAccountModel {
   /// With default value of conventional, unavailable for `financial_stp` sub account type.
   final Mt5AccountCategoryEnum? mt5AccountCategory;
 
-  /// Sub account type, present only when account type is either `demo` or `financial`.
+  /// Sub account type for classic MT5 account.
   final Mt5AccountTypeEnum? mt5AccountType;
 }
 
@@ -270,24 +279,15 @@ abstract class Mt5NewAccountModel {
 class Mt5NewAccount extends Mt5NewAccountModel {
   /// Initializes Mt5 new account class.
   const Mt5NewAccount({
-    AccountTypeEnum? accountType,
-    String? agent,
-    double? balance,
-    String? currency,
-    String? displayBalance,
-    String? login,
-    Mt5AccountCategoryEnum? mt5AccountCategory,
-    Mt5AccountTypeEnum? mt5AccountType,
-  }) : super(
-          accountType: accountType,
-          agent: agent,
-          balance: balance,
-          currency: currency,
-          displayBalance: displayBalance,
-          login: login,
-          mt5AccountCategory: mt5AccountCategory,
-          mt5AccountType: mt5AccountType,
-        );
+    super.accountType,
+    super.agent,
+    super.balance,
+    super.currency,
+    super.displayBalance,
+    super.login,
+    super.mt5AccountCategory,
+    super.mt5AccountType,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5NewAccount.fromJson(Map<String, dynamic> json) => Mt5NewAccount(

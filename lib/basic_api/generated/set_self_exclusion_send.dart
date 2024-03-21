@@ -9,6 +9,7 @@ class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest.
   const SetSelfExclusionRequest({
     this.excludeUntil,
+    this.loginid,
     this.max30dayDeposit,
     this.max30dayLosses,
     this.max30dayTurnover,
@@ -23,18 +24,16 @@ class SetSelfExclusionRequest extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = true,
     this.timeoutUntil,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'set_self_exclusion',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'set_self_exclusion',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionRequest(
         excludeUntil: json['exclude_until'] as String?,
+        loginid: json['loginid'] as String?,
         max30dayDeposit: json['max_30day_deposit'] as num?,
         max30dayLosses: json['max_30day_losses'] as num?,
         max30dayTurnover: json['max_30day_turnover'] as num?,
@@ -57,6 +56,9 @@ class SetSelfExclusionRequest extends Request {
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final String? excludeUntil;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] 7-day limit on deposits.
   final num? max30dayDeposit;
@@ -104,6 +106,7 @@ class SetSelfExclusionRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'exclude_until': excludeUntil,
+        'loginid': loginid,
         'max_30day_deposit': max30dayDeposit,
         'max_30day_losses': max30dayLosses,
         'max_30day_turnover': max30dayTurnover,
@@ -130,6 +133,7 @@ class SetSelfExclusionRequest extends Request {
   @override
   SetSelfExclusionRequest copyWith({
     String? excludeUntil,
+    String? loginid,
     num? max30dayDeposit,
     num? max30dayLosses,
     num? max30dayTurnover,
@@ -149,6 +153,7 @@ class SetSelfExclusionRequest extends Request {
   }) =>
       SetSelfExclusionRequest(
         excludeUntil: excludeUntil ?? this.excludeUntil,
+        loginid: loginid ?? this.loginid,
         max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit,
         max30dayLosses: max30dayLosses ?? this.max30dayLosses,
         max30dayTurnover: max30dayTurnover ?? this.max30dayTurnover,

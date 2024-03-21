@@ -25,10 +25,8 @@ abstract class TradingServersResponseModel {
 class TradingServersResponse extends TradingServersResponseModel {
   /// Initializes Trading servers response class.
   const TradingServersResponse({
-    List<TradingServersItem>? tradingServers,
-  }) : super(
-          tradingServers: tradingServers,
-        );
+    super.tradingServers,
+  });
 
   /// Creates an instance from JSON.
   factory TradingServersResponse.fromJson(
@@ -64,7 +62,7 @@ class TradingServersResponse extends TradingServersResponseModel {
   /// Get the list of servers for platform. Currently, only mt5 is supported
   ///
   /// For parameters information refer to [TradingServersRequest].
-  /// Throws a [TradingException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TradingServersResponse> fetchTradingServers(
     TradingServersRequest request,
   ) async {
@@ -73,7 +71,7 @@ class TradingServersResponse extends TradingServersResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TradingException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TradingServersResponse.fromJson(response.tradingServers);
@@ -110,6 +108,7 @@ final Map<String, EnvironmentEnum> environmentEnumMapper =
   "Deriv-Demo": EnvironmentEnum.derivDemo,
   "Deriv-Server": EnvironmentEnum.derivServer,
   "Deriv-Server-02": EnvironmentEnum.derivServer02,
+  "Deriv-Server-03": EnvironmentEnum.derivServer03,
 };
 
 /// Environment Enum.
@@ -122,6 +121,9 @@ enum EnvironmentEnum {
 
   /// Deriv-Server-02.
   derivServer02,
+
+  /// Deriv-Server-03.
+  derivServer03,
 }
 
 /// IdEnum mapper.
@@ -131,6 +133,7 @@ final Map<String, IdEnum> idEnumMapper = <String, IdEnum>{
   "p01_ts03": IdEnum.p01Ts03,
   "p01_ts04": IdEnum.p01Ts04,
   "p02_ts02": IdEnum.p02Ts02,
+  "p03_ts01": IdEnum.p03Ts01,
 };
 
 /// Id Enum.
@@ -149,8 +152,10 @@ enum IdEnum {
 
   /// p02_ts02.
   p02Ts02,
-}
 
+  /// p03_ts01.
+  p03Ts01,
+}
 /// Trading servers item model class.
 abstract class TradingServersItemModel {
   /// Initializes Trading servers item model class .
@@ -198,26 +203,16 @@ abstract class TradingServersItemModel {
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes Trading servers item class.
   const TradingServersItem({
-    AccountTypeEnum? accountType,
-    bool? disabled,
-    EnvironmentEnum? environment,
-    Geolocation? geolocation,
-    IdEnum? id,
-    String? marketType,
-    String? messageToClient,
-    bool? recommended,
-    List<String>? supportedAccounts,
-  }) : super(
-          accountType: accountType,
-          disabled: disabled,
-          environment: environment,
-          geolocation: geolocation,
-          id: id,
-          marketType: marketType,
-          messageToClient: messageToClient,
-          recommended: recommended,
-          supportedAccounts: supportedAccounts,
-        );
+    super.accountType,
+    super.disabled,
+    super.environment,
+    super.geolocation,
+    super.id,
+    super.marketType,
+    super.messageToClient,
+    super.recommended,
+    super.supportedAccounts,
+  });
 
   /// Creates an instance from JSON.
   factory TradingServersItem.fromJson(Map<String, dynamic> json) =>
@@ -302,7 +297,6 @@ class TradingServersItem extends TradingServersItemModel {
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
 }
-
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .
@@ -330,16 +324,11 @@ abstract class GeolocationModel {
 class Geolocation extends GeolocationModel {
   /// Initializes Geolocation class.
   const Geolocation({
-    String? group,
-    String? location,
-    String? region,
-    int? sequence,
-  }) : super(
-          group: group,
-          location: location,
-          region: region,
-          sequence: sequence,
-        );
+    super.group,
+    super.location,
+    super.region,
+    super.sequence,
+  });
 
   /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(

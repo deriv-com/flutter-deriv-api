@@ -42,18 +42,12 @@ class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
   /// Initializes Transfer between accounts response class.
   const TransferBetweenAccountsResponse({
-    bool? transferBetweenAccounts,
-    List<AccountsItem>? accounts,
-    String? clientToFullName,
-    String? clientToLoginid,
-    int? transactionId,
-  }) : super(
-          transferBetweenAccounts: transferBetweenAccounts,
-          accounts: accounts,
-          clientToFullName: clientToFullName,
-          clientToLoginid: clientToLoginid,
-          transactionId: transactionId,
-        );
+    super.transferBetweenAccounts,
+    super.accounts,
+    super.clientToFullName,
+    super.clientToLoginid,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccountsResponse.fromJson(
@@ -103,7 +97,7 @@ class TransferBetweenAccountsResponse
   /// Transfer funds between your fiat and crypto currency accounts (for a fee).
   /// Please note that account_from should be same as current authorized account.
   /// For parameters information refer to [TransferBetweenAccountsRequest].
-  /// Throws a [TransferException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<TransferBetweenAccountsResponse> transfer(
     TransferBetweenAccountsRequest request,
   ) async {
@@ -113,7 +107,7 @@ class TransferBetweenAccountsResponse
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          TransferException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return TransferBetweenAccountsResponse.fromJson(
@@ -142,27 +136,52 @@ class TransferBetweenAccountsResponse
       );
 }
 
+/// AccountCategoryEnum mapper.
+final Map<String, AccountCategoryEnum> accountCategoryEnumMapper =
+    <String, AccountCategoryEnum>{
+  "trading": AccountCategoryEnum.trading,
+  "wallet": AccountCategoryEnum.wallet,
+};
+
+/// AccountCategory Enum.
+enum AccountCategoryEnum {
+  /// trading.
+  trading,
+
+  /// wallet.
+  wallet,
+}
+
 /// AccountTypeEnum mapper.
 final Map<String, AccountTypeEnum> accountTypeEnumMapper =
     <String, AccountTypeEnum>{
-  "trading": AccountTypeEnum.trading,
-  "mt5": AccountTypeEnum.mt5,
-  "wallet": AccountTypeEnum.wallet,
+  "binary": AccountTypeEnum.binary,
+  "crypto": AccountTypeEnum.crypto,
+  "ctrader": AccountTypeEnum.ctrader,
+  "doughflow": AccountTypeEnum.doughflow,
   "dxtrade": AccountTypeEnum.dxtrade,
   "derivez": AccountTypeEnum.derivez,
-  "binary": AccountTypeEnum.binary,
+  "mt5": AccountTypeEnum.mt5,
+  "p2p": AccountTypeEnum.p2p,
+  "paymentagent": AccountTypeEnum.paymentagent,
+  "paymentagent_client": AccountTypeEnum.paymentagentClient,
+  "standard": AccountTypeEnum.standard,
+  "virtual": AccountTypeEnum.virtual,
 };
 
 /// AccountType Enum.
 enum AccountTypeEnum {
-  /// trading.
-  trading,
+  /// binary.
+  binary,
 
-  /// mt5.
-  mt5,
+  /// crypto.
+  crypto,
 
-  /// wallet.
-  wallet,
+  /// ctrader.
+  ctrader,
+
+  /// doughflow.
+  doughflow,
 
   /// dxtrade.
   dxtrade,
@@ -170,34 +189,72 @@ enum AccountTypeEnum {
   /// derivez.
   derivez,
 
-  /// binary.
-  binary,
+  /// mt5.
+  mt5,
+
+  /// p2p.
+  p2p,
+
+  /// paymentagent.
+  paymentagent,
+
+  /// paymentagent_client.
+  paymentagentClient,
+
+  /// standard.
+  standard,
+
+  /// virtual.
+  virtual,
 }
 
 /// MarketTypeEnum mapper.
 final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
+  "all": MarketTypeEnum.all,
   "financial": MarketTypeEnum.financial,
   "synthetic": MarketTypeEnum.synthetic,
-  "all": MarketTypeEnum.all,
 };
 
 /// MarketType Enum.
 enum MarketTypeEnum {
+  /// all.
+  all,
+
   /// financial.
   financial,
 
   /// synthetic.
   synthetic,
-
-  /// all.
-  all,
 }
 
+/// TransfersEnum mapper.
+final Map<String, TransfersEnum> transfersEnumMapper = <String, TransfersEnum>{
+  "all": TransfersEnum.all,
+  "deposit": TransfersEnum.deposit,
+  "none": TransfersEnum.none,
+  "withdrawal": TransfersEnum.withdrawal,
+};
+
+/// Transfers Enum.
+enum TransfersEnum {
+  /// all.
+  all,
+
+  /// deposit.
+  deposit,
+
+  /// none.
+  none,
+
+  /// withdrawal.
+  withdrawal,
+}
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
   const AccountsItemModel({
+    this.accountCategory,
     this.accountType,
     this.balance,
     this.currency,
@@ -207,9 +264,13 @@ abstract class AccountsItemModel {
     this.marketType,
     this.mt5Group,
     this.status,
+    this.transfers,
   });
 
-  /// Type of the account. Please note that `binary` is deprecated and replaced by `trading`
+  /// Category of the account.
+  final AccountCategoryEnum? accountCategory;
+
+  /// Type of the account.
   final AccountTypeEnum? accountType;
 
   /// Account balance.
@@ -235,35 +296,33 @@ abstract class AccountsItemModel {
 
   /// The status of account.
   final String? status;
+
+  /// Type of transfers allowed between the account and the currently authorized account.
+  final TransfersEnum? transfers;
 }
 
 /// Accounts item class.
 class AccountsItem extends AccountsItemModel {
   /// Initializes Accounts item class.
   const AccountsItem({
-    AccountTypeEnum? accountType,
-    String? balance,
-    String? currency,
-    bool? demoAccount,
-    String? derivezGroup,
-    String? loginid,
-    MarketTypeEnum? marketType,
-    String? mt5Group,
-    String? status,
-  }) : super(
-          accountType: accountType,
-          balance: balance,
-          currency: currency,
-          demoAccount: demoAccount,
-          derivezGroup: derivezGroup,
-          loginid: loginid,
-          marketType: marketType,
-          mt5Group: mt5Group,
-          status: status,
-        );
+    super.accountCategory,
+    super.accountType,
+    super.balance,
+    super.currency,
+    super.demoAccount,
+    super.derivezGroup,
+    super.loginid,
+    super.marketType,
+    super.mt5Group,
+    super.status,
+    super.transfers,
+  });
 
   /// Creates an instance from JSON.
   factory AccountsItem.fromJson(Map<String, dynamic> json) => AccountsItem(
+        accountCategory: json['account_category'] == null
+            ? null
+            : accountCategoryEnumMapper[json['account_category']],
         accountType: json['account_type'] == null
             ? null
             : accountTypeEnumMapper[json['account_type']],
@@ -277,12 +336,19 @@ class AccountsItem extends AccountsItemModel {
             : marketTypeEnumMapper[json['market_type']],
         mt5Group: json['mt5_group'],
         status: json['status'],
+        transfers: json['transfers'] == null
+            ? null
+            : transfersEnumMapper[json['transfers']],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['account_category'] = accountCategoryEnumMapper.entries
+        .firstWhere((MapEntry<String, AccountCategoryEnum> entry) =>
+            entry.value == accountCategory)
+        .key;
     resultMap['account_type'] = accountTypeEnumMapper.entries
         .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
             entry.value == accountType)
@@ -298,12 +364,17 @@ class AccountsItem extends AccountsItemModel {
         .key;
     resultMap['mt5_group'] = mt5Group;
     resultMap['status'] = status;
+    resultMap['transfers'] = transfersEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, TransfersEnum> entry) => entry.value == transfers)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   AccountsItem copyWith({
+    AccountCategoryEnum? accountCategory,
     AccountTypeEnum? accountType,
     String? balance,
     String? currency,
@@ -313,8 +384,10 @@ class AccountsItem extends AccountsItemModel {
     MarketTypeEnum? marketType,
     String? mt5Group,
     String? status,
+    TransfersEnum? transfers,
   }) =>
       AccountsItem(
+        accountCategory: accountCategory ?? this.accountCategory,
         accountType: accountType ?? this.accountType,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
@@ -324,5 +397,6 @@ class AccountsItem extends AccountsItemModel {
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
         status: status ?? this.status,
+        transfers: transfers ?? this.transfers,
       );
 }

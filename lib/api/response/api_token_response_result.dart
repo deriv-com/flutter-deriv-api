@@ -24,10 +24,8 @@ abstract class ApiTokenResponseModel {
 class ApiTokenResponse extends ApiTokenResponseModel {
   /// Initializes Api token response class.
   const ApiTokenResponse({
-    ApiToken? apiToken,
-  }) : super(
-          apiToken: apiToken,
-        );
+    super.apiToken,
+  });
 
   /// Creates an instance from JSON.
   factory ApiTokenResponse.fromJson(
@@ -56,7 +54,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
   /// [scopes] is a list of permission scopes to provide with the token.
   /// [validForCurrentIPOnly] is optional and if you set this parameter during token creation,
   /// then the token created will only work for the IP address that was used to create the token
-  /// Throws an [APITokenException] if API response contains an error.
+  /// Throws an [BaseAPIException] if API response contains an error.
   static Future<ApiTokenResponse> create({
     required String name,
     required List<ScopesItemEnum> scopes,
@@ -73,7 +71,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          APITokenException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ApiTokenResponse.fromJson(response.apiToken);
@@ -81,7 +79,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
 
   /// Deletes the [token]
   ///
-  /// Throws an [APITokenException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<ApiTokenResponse> delete({
     required String token,
   }) async {
@@ -92,7 +90,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          APITokenException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ApiTokenResponse.fromJson(response.apiToken);
@@ -134,7 +132,6 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
-
 /// Api token model class.
 abstract class ApiTokenModel {
   /// Initializes Api token model class .
@@ -158,14 +155,10 @@ abstract class ApiTokenModel {
 class ApiToken extends ApiTokenModel {
   /// Initializes Api token class.
   const ApiToken({
-    int? deleteToken,
-    int? newToken,
-    List<TokensItem>? tokens,
-  }) : super(
-          deleteToken: deleteToken,
-          newToken: newToken,
-          tokens: tokens,
-        );
+    super.deleteToken,
+    super.newToken,
+    super.tokens,
+  });
 
   /// Creates an instance from JSON.
   factory ApiToken.fromJson(Map<String, dynamic> json) => ApiToken(
@@ -209,7 +202,6 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
-
 /// Tokens item model class.
 abstract class TokensItemModel {
   /// Initializes Tokens item model class .
@@ -241,18 +233,12 @@ abstract class TokensItemModel {
 class TokensItem extends TokensItemModel {
   /// Initializes Tokens item class.
   const TokensItem({
-    String? displayName,
-    String? lastUsed,
-    List<ScopesItemEnum>? scopes,
-    String? token,
-    String? validForIp,
-  }) : super(
-          displayName: displayName,
-          lastUsed: lastUsed,
-          scopes: scopes,
-          token: token,
-          validForIp: validForIp,
-        );
+    super.displayName,
+    super.lastUsed,
+    super.scopes,
+    super.token,
+    super.validForIp,
+  });
 
   /// Creates an instance from JSON.
   factory TokensItem.fromJson(Map<String, dynamic> json) => TokensItem(

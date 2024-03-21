@@ -122,8 +122,8 @@ class APIBuilder extends Builder {
               /// Initialize $classFullName.
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)}
-                  ${_getSuperClassParameters(schemaType)},
-                }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
+                  ${_getSuperClassConstructorParameters(schemaType, methodName)},
+                });
               
               ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
               
@@ -169,6 +169,7 @@ class APIBuilder extends Builder {
         return '${_isFieldRequired(key, schemaType, property) ? 'required ' : ''} this.${ReCase(key).camelCase}';
       },
     ).join(', ');
+
     return fields.isEmpty ? result : '$result , ';
   }
 
@@ -380,6 +381,7 @@ class APIBuilder extends Builder {
         fields.map(
           (String key) {
             final String name = ReCase(key).camelCase;
+
             return '$name: $name ?? this.$name';
           },
         ).join(', '),
@@ -388,40 +390,45 @@ class APIBuilder extends Builder {
       ..write('${_getSupperClassAssignments(schemaType)},);');
   }
 
-  static String _getSuperClassParameters(String? schemaType) {
+  static String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
 
-    return superClassFields.keys
-        .map((String key) =>
-            '${typeMap[superClassFields[key]!]} ${ReCase(key).camelCase}')
-        .join(', ');
+    final Iterable<String> parameters = superClassFields.keys.map((String key) {
+      final String type = typeMap[superClassFields[key]!] ?? 'dynamic';
+      final String parameterName = ReCase(key).camelCase;
+
+      return '$type $parameterName';
+    });
+
+    return parameters.join(', ');
   }
 
-  static String _getSuperClassCallParameters(
+  static String _getSuperClassConstructorParameters(
     String schemaType,
     String methodName,
   ) {
-    final StringBuffer superCallParameters = StringBuffer();
+    final Map<String, String> superClassFields =
+        _getSuperClassFields(schemaType);
+    final StringBuffer superClassParameters = StringBuffer();
 
     if (schemaType == 'send') {
-      superCallParameters.write('msgType: \'$methodName\',');
+      superClassParameters.write('super.msgType = \'$methodName\', ');
     }
 
-    superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-      (String key) {
-        final String parameterName = ReCase(key).camelCase;
-        return '$parameterName: $parameterName';
-      },
-    ).join(', '));
+    final Iterable<String> parameters = superClassFields.keys
+        .map((String key) => 'super.${ReCase(key).camelCase}');
 
-    return superCallParameters.toString();
+    superClassParameters.write(parameters.join(', '));
+
+    return superClassParameters.toString();
   }
 
   static String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(
         (String key) {
           final String propertyName = ReCase(key).camelCase;
+
           return '$propertyName: $propertyName ?? this.$propertyName';
         },
       ).join(', ');
@@ -458,7 +465,7 @@ class APIBuilder extends Builder {
   }
 }
 
-class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
+class GeneratedResponseJson implements Comparable<GeneratedResponseJson> {
   GeneratedResponseJson({
     this.msgType,
     this.fileName,

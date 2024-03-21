@@ -25,10 +25,8 @@ abstract class Mt5PasswordCheckResponseModel {
 class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// Initializes Mt5 password check response class.
   const Mt5PasswordCheckResponse({
-    int? mt5PasswordCheck,
-  }) : super(
-          mt5PasswordCheck: mt5PasswordCheck,
-        );
+    super.mt5PasswordCheck,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordCheckResponse.fromJson(
@@ -52,7 +50,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// Validates the main password for the MT5 user.
   ///
   /// For parameters information refer to [Mt5PasswordCheckRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5PasswordCheckResponse> checkPassword(
       Mt5PasswordCheckRequest request) async {
     final Mt5PasswordCheckReceive response = await _api.call(request: request);
@@ -60,7 +58,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5PasswordCheckResponse.fromJson(response.mt5PasswordCheck);

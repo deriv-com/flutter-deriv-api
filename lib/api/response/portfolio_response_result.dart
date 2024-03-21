@@ -25,10 +25,8 @@ abstract class PortfolioResponseModel {
 class PortfolioResponse extends PortfolioResponseModel {
   /// Initializes Portfolio response class.
   const PortfolioResponse({
-    Portfolio? portfolio,
-  }) : super(
-          portfolio: portfolio,
-        );
+    super.portfolio,
+  });
 
   /// Creates an instance from JSON.
   factory PortfolioResponse.fromJson(
@@ -54,7 +52,7 @@ class PortfolioResponse extends PortfolioResponseModel {
 
   /// Gets the portfolio fo logged-in account
   ///
-  /// Throws a [PortfolioException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<PortfolioResponse> fetchPortfolio(
       PortfolioRequest request) async {
     final PortfolioReceive response = await _api.call(request: request);
@@ -62,7 +60,7 @@ class PortfolioResponse extends PortfolioResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          PortfolioException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return PortfolioResponse.fromJson(response.portfolio);
@@ -76,7 +74,6 @@ class PortfolioResponse extends PortfolioResponseModel {
         portfolio: portfolio ?? this.portfolio,
       );
 }
-
 /// Portfolio model class.
 abstract class PortfolioModel {
   /// Initializes Portfolio model class .
@@ -92,10 +89,8 @@ abstract class PortfolioModel {
 class Portfolio extends PortfolioModel {
   /// Initializes Portfolio class.
   const Portfolio({
-    required List<ContractsItem> contracts,
-  }) : super(
-          contracts: contracts,
-        );
+    required super.contracts,
+  });
 
   /// Creates an instance from JSON.
   factory Portfolio.fromJson(Map<String, dynamic> json) => Portfolio(
@@ -127,7 +122,6 @@ class Portfolio extends PortfolioModel {
         contracts: contracts ?? this.contracts,
       );
 }
-
 /// Contracts item model class.
 abstract class ContractsItemModel {
   /// Initializes Contracts item model class .
@@ -191,34 +185,20 @@ abstract class ContractsItemModel {
 class ContractsItem extends ContractsItemModel {
   /// Initializes Contracts item class.
   const ContractsItem({
-    int? appId,
-    double? buyPrice,
-    int? contractId,
-    String? contractType,
-    String? currency,
-    DateTime? dateStart,
-    DateTime? expiryTime,
-    String? longcode,
-    double? payout,
-    DateTime? purchaseTime,
-    String? shortcode,
-    String? symbol,
-    int? transactionId,
-  }) : super(
-          appId: appId,
-          buyPrice: buyPrice,
-          contractId: contractId,
-          contractType: contractType,
-          currency: currency,
-          dateStart: dateStart,
-          expiryTime: expiryTime,
-          longcode: longcode,
-          payout: payout,
-          purchaseTime: purchaseTime,
-          shortcode: shortcode,
-          symbol: symbol,
-          transactionId: transactionId,
-        );
+    super.appId,
+    super.buyPrice,
+    super.contractId,
+    super.contractType,
+    super.currency,
+    super.dateStart,
+    super.expiryTime,
+    super.longcode,
+    super.payout,
+    super.purchaseTime,
+    super.shortcode,
+    super.symbol,
+    super.transactionId,
+  });
 
   /// Creates an instance from JSON.
   factory ContractsItem.fromJson(Map<String, dynamic> json) => ContractsItem(

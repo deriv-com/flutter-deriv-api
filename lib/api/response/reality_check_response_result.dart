@@ -25,10 +25,8 @@ abstract class RealityCheckResponseModel {
 class RealityCheckResponse extends RealityCheckResponseModel {
   /// Initializes Reality check response class.
   const RealityCheckResponse({
-    RealityCheck? realityCheck,
-  }) : super(
-          realityCheck: realityCheck,
-        );
+    super.realityCheck,
+  });
 
   /// Creates an instance from JSON.
   factory RealityCheckResponse.fromJson(
@@ -58,7 +56,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
   /// A `reality check` means a display of time elapsed since the session began, and associated client profit/loss.
   /// The reality check facility is a regulatory requirement for certain landing companies.
   /// For parameters information refer to [RealityCheckRequest].
-  /// Throws a [RealityCheckException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<RealityCheckResponse> check([
     RealityCheckRequest? request,
   ]) async {
@@ -69,7 +67,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          RealityCheckException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return RealityCheckResponse.fromJson(response.realityCheck);
@@ -83,7 +81,6 @@ class RealityCheckResponse extends RealityCheckResponseModel {
         realityCheck: realityCheck ?? this.realityCheck,
       );
 }
-
 /// Reality check model class.
 abstract class RealityCheckModel {
   /// Initializes Reality check model class .
@@ -131,26 +128,16 @@ abstract class RealityCheckModel {
 class RealityCheck extends RealityCheckModel {
   /// Initializes Reality check class.
   const RealityCheck({
-    double? buyAmount,
-    int? buyCount,
-    String? currency,
-    String? loginid,
-    int? openContractCount,
-    double? potentialProfit,
-    double? sellAmount,
-    int? sellCount,
-    DateTime? startTime,
-  }) : super(
-          buyAmount: buyAmount,
-          buyCount: buyCount,
-          currency: currency,
-          loginid: loginid,
-          openContractCount: openContractCount,
-          potentialProfit: potentialProfit,
-          sellAmount: sellAmount,
-          sellCount: sellCount,
-          startTime: startTime,
-        );
+    super.buyAmount,
+    super.buyCount,
+    super.currency,
+    super.loginid,
+    super.openContractCount,
+    super.potentialProfit,
+    super.sellAmount,
+    super.sellCount,
+    super.startTime,
+  });
 
   /// Creates an instance from JSON.
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(

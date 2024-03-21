@@ -17,6 +17,7 @@ const String p2pAdvertListResponse = '''
           "rating_count" : 0,
           "is_online": true
         },
+        "block_trade": 1,
         "counterparty_type": "sell",
         "country": "za",
         "created_time": 1589270475,
@@ -29,6 +30,7 @@ const String p2pAdvertListResponse = '''
         "max_order_amount_limit_display": "100.00",
         "min_order_amount_limit": 10,
         "min_order_amount_limit_display": "10.00",
+        "order_expiry_period": 3600,
         "payment_method": "bank_transfer",
         "price": 14500,
         "price_display": "14500.00",
@@ -47,6 +49,7 @@ const String p2pAdvertListResponse = '''
           "rating_count" : 0,
           "is_online": true
         },
+        "block_trade": 1,
         "counterparty_type": "sell",
         "country": "za",
         "created_time": 1589275813,
@@ -59,6 +62,7 @@ const String p2pAdvertListResponse = '''
         "max_order_amount_limit_display": "100.00",
         "min_order_amount_limit": 10,
         "min_order_amount_limit_display": "10.00",
+        "order_expiry_period": 3600,
         "payment_method": "bank_transfer",
         "price": 14500,
         "price_display": "14500.00",

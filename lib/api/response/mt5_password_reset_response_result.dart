@@ -25,10 +25,8 @@ abstract class Mt5PasswordResetResponseModel {
 class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Initializes Mt5 password reset response class.
   const Mt5PasswordResetResponse({
-    int? mt5PasswordReset,
-  }) : super(
-          mt5PasswordReset: mt5PasswordReset,
-        );
+    super.mt5PasswordReset,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordResetResponse.fromJson(
@@ -52,7 +50,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Resets the password of MT5 account.
   ///
   /// For parameters information refer to [Mt5PasswordResetRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5PasswordResetResponse> resetPassword(
     Mt5PasswordResetRequest request,
   ) async {
@@ -61,7 +59,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5PasswordResetResponse.fromJson(response.mt5PasswordReset);

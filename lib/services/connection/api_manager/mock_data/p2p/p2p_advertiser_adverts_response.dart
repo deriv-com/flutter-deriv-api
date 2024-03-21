@@ -50,7 +50,9 @@ const String p2pAdvertiserAdvertsResponse = '''
         "rate_type" : "fixed",
         "rating_count" : 0,
         "is_online" : false,
-        "blocked_by_count" : 0
+        "blocked_by_count" : 0,
+        "block_trade": true,
+        "order_expiry_period": 1
       },
       {
         "account_currency": "USD",
@@ -93,7 +95,9 @@ const String p2pAdvertiserAdvertsResponse = '''
          "rate_type" : "fixed",
          "rating_count" : 0,
          "is_online" : false,
-         "blocked_by_count" : 0
+         "blocked_by_count" : 0,
+         "block_trade": true,
+         "order_expiry_period": 1
       }
     ]
   }

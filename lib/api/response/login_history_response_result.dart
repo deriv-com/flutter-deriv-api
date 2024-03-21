@@ -25,10 +25,8 @@ abstract class LoginHistoryResponseModel {
 class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Initializes Login history response class.
   const LoginHistoryResponse({
-    List<LoginHistoryItem>? loginHistory,
-  }) : super(
-          loginHistory: loginHistory,
-        );
+    super.loginHistory,
+  });
 
   /// Creates an instance from JSON.
   factory LoginHistoryResponse.fromJson(
@@ -64,7 +62,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Retrieves a summary of login history for user.
   ///
   /// For parameters information refer to [LoginHistory].
-  /// Throws an [AuthorizeException] if API response contains an error
+  /// Throws an [BaseAPIException] if API response contains an error
   static Future<LoginHistoryResponse> fetchHistory([
     LoginHistoryRequest? request,
   ]) async {
@@ -75,7 +73,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          AuthorizeException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return LoginHistoryResponse.fromJson(response.loginHistory);
@@ -89,7 +87,6 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
         loginHistory: loginHistory ?? this.loginHistory,
       );
 }
-
 /// Login history item model class.
 abstract class LoginHistoryItemModel {
   /// Initializes Login history item model class .
@@ -117,16 +114,11 @@ abstract class LoginHistoryItemModel {
 class LoginHistoryItem extends LoginHistoryItemModel {
   /// Initializes Login history item class.
   const LoginHistoryItem({
-    required String action,
-    required String environment,
-    required bool status,
-    required DateTime time,
-  }) : super(
-          action: action,
-          environment: environment,
-          status: status,
-          time: time,
-        );
+    required super.action,
+    required super.environment,
+    required super.status,
+    required super.time,
+  });
 
   /// Creates an instance from JSON.
   factory LoginHistoryItem.fromJson(Map<String, dynamic> json) =>

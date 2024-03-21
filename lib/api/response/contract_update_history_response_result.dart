@@ -25,10 +25,8 @@ abstract class ContractUpdateHistoryResponseModel {
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   /// Initializes Contract update history response class.
   const ContractUpdateHistoryResponse({
-    List<ContractUpdateHistoryItem>? contractUpdateHistory,
-  }) : super(
-          contractUpdateHistory: contractUpdateHistory,
-        );
+    super.contractUpdateHistory,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryResponse.fromJson(
@@ -63,7 +61,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
   ///
-  /// Throws a [ContractOperationException] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<ContractUpdateHistoryResponse> fetchContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {
@@ -73,7 +71,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractUpdateHistoryResponse.fromJson(
@@ -89,7 +87,6 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
             contractUpdateHistory ?? this.contractUpdateHistory,
       );
 }
-
 /// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item model class .
@@ -121,18 +118,12 @@ abstract class ContractUpdateHistoryItemModel {
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item class.
   const ContractUpdateHistoryItem({
-    String? displayName,
-    String? orderAmount,
-    DateTime? orderDate,
-    String? orderType,
-    String? value,
-  }) : super(
-          displayName: displayName,
-          orderAmount: orderAmount,
-          orderDate: orderDate,
-          orderType: orderType,
-          value: value,
-        );
+    super.displayName,
+    super.orderAmount,
+    super.orderDate,
+    super.orderType,
+    super.value,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryItem.fromJson(Map<String, dynamic> json) =>

@@ -9,25 +9,27 @@ class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest.
   const GetSettingsRequest({
     this.getSettings = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_settings',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'get_settings',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       GetSettingsRequest(
         getSettings:
             json['get_settings'] == null ? null : json['get_settings'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? getSettings;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -37,6 +39,7 @@ class GetSettingsRequest extends Request {
             : getSettings!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -45,11 +48,13 @@ class GetSettingsRequest extends Request {
   @override
   GetSettingsRequest copyWith({
     bool? getSettings,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetSettingsRequest(
         getSettings: getSettings ?? this.getSettings,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

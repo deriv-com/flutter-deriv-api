@@ -29,12 +29,9 @@ abstract class Mt5WithdrawalResponseModel {
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Initializes Mt5 withdrawal response class.
   const Mt5WithdrawalResponse({
-    int? mt5Withdrawal,
-    int? binaryTransactionId,
-  }) : super(
-          mt5Withdrawal: mt5Withdrawal,
-          binaryTransactionId: binaryTransactionId,
-        );
+    super.mt5Withdrawal,
+    super.binaryTransactionId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5WithdrawalResponse.fromJson(
@@ -61,7 +58,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Allows withdrawal from MT5 account to Binary account.
   ///
   /// For parameters information refer to [Mt5WithdrawalRequest].
-  /// Throws a [MT5Exception] if API response contains an error
+  /// Throws a [BaseAPIException] if API response contains an error
   static Future<Mt5WithdrawalResponse> withdraw(
     Mt5WithdrawalRequest request,
   ) async {
@@ -70,7 +67,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
     checkException(
       response: response,
       exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          MT5Exception(baseExceptionModel: baseExceptionModel),
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
     );
 
     return Mt5WithdrawalResponse.fromJson(

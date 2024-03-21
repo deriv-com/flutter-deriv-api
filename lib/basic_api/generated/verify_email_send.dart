@@ -8,20 +8,19 @@ import '../request.dart';
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest.
   const VerifyEmailRequest({
+    this.loginid,
     required this.type,
     this.urlParameters,
     required this.verifyEmail,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'verify_email',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'verify_email',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       VerifyEmailRequest(
+        loginid: json['loginid'] as String?,
         type: json['type'] as String?,
         urlParameters: json['url_parameters'] as Map<String, dynamic>?,
         verifyEmail: json['verify_email'] as String?,
@@ -29,7 +28,10 @@ class VerifyEmailRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// Purpose of the email verification call.
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
+  /// Purpose of email verification, request_email and reset_password are the only two types restricted from all unoffical apps
   final String? type;
 
   /// [Optional] Extra parameters that can be attached to the verify email link URL.
@@ -41,6 +43,7 @@ class VerifyEmailRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'type': type,
         'url_parameters': urlParameters,
         'verify_email': verifyEmail,
@@ -51,6 +54,7 @@ class VerifyEmailRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailRequest copyWith({
+    String? loginid,
     String? type,
     Map<String, dynamic>? urlParameters,
     String? verifyEmail,
@@ -58,6 +62,7 @@ class VerifyEmailRequest extends Request {
     int? reqId,
   }) =>
       VerifyEmailRequest(
+        loginid: loginid ?? this.loginid,
         type: type ?? this.type,
         urlParameters: urlParameters ?? this.urlParameters,
         verifyEmail: verifyEmail ?? this.verifyEmail,
