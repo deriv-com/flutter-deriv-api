@@ -51,11 +51,12 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   @override
-  Stream<Response> call(
-      {required Request request,
-      int cacheSize = 0,
-      RequestCompareFunction? comparePredicate,
-      bool acceptNullValue = false}) {
+  Stream<Response> call({
+    required Request request,
+    int cacheSize = 0,
+    RequestCompareFunction? comparePredicate,
+    List<String> nullableKey = const <String>[],
+  }) {
     assert(cacheSize >= 0);
 
     final PendingRequest<Response>? pendingRequest = _getPendingRequest(
@@ -78,7 +79,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     addToChannel(
       request: request,
       subscriptionStream: subscriptionStream,
-      acceptNullValue: acceptNullValue,
+      nullableKey: nullableKey,
     );
 
     return subscriptionStream.stream;

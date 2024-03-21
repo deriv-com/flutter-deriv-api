@@ -29,7 +29,9 @@ class CallManager extends BaseCallManager<Future<Response>> {
   }
 
   @override
-  Future<Response> call(
-          {required Request request, bool acceptNullValue = false}) async =>
-      addToChannel(request: request, acceptNullValue: acceptNullValue);
+  Future<Response> call({
+    required Request request,
+    List<String> nullableKey = const <String>[],
+  }) async =>
+      addToChannel(request: request, nullableKey: nullableKey);
 }

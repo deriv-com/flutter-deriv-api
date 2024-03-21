@@ -140,10 +140,10 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<T> call<T>(
-      {required Request request, bool acceptNullValue = false}) async {
+      {required Request request, List<String> nullableKey = const <String>[],}) async {
     final Response response = await (_callManager ??= CallManager(this))(
       request: request,
-      acceptNullValue: acceptNullValue,
+      nullableKey: nullableKey,
     );
 
     if (response is T) {
