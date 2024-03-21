@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/p2p_advert_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
