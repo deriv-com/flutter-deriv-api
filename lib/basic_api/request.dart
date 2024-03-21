@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 /// Super class of all requests.
 class Request extends Equatable {
   /// Initializes.
-  const Request({
+  Request({
     this.msgType,
     this.passthrough,
     this.reqId,
@@ -27,7 +27,7 @@ class Request extends Equatable {
   final int? reqId;
 
   /// Determine accept null value in request or not.
-  final bool acceptNullValue;
+  bool acceptNullValue;
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() => <String, dynamic>{
