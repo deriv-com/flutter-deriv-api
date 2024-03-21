@@ -108,8 +108,13 @@ abstract class BaseCallManager<T> {
     required bool isSubscription,
     bool acceptNullValue = false,
   }) {
-    final Map<String, dynamic> result = request.toJson()
-      ..removeWhere((String key, dynamic value) => value == null);
+    final Map<String, dynamic> result;
+    if (acceptNullValue) {
+      result = request.toJson();
+    } else {
+      result = request.toJson()
+        ..removeWhere((String key, dynamic value) => value == null);
+    }
 
     if (isSubscription) {
       result.putIfAbsent('subscribe', () => 1);
