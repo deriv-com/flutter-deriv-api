@@ -143,6 +143,7 @@ class BinaryAPI extends BaseAPI {
       {required Request request, bool acceptNullValue = false}) async {
     final Response response = await (_callManager ??= CallManager(this))(
       request: request,
+      acceptNullValue: acceptNullValue,
     );
 
     if (response is T) {
