@@ -109,6 +109,7 @@ abstract class BaseCallManager<T> {
     bool acceptNullValue = false,
   }) {
     final Map<String, dynamic> result;
+    // check if acceptNullValue is true or not.
     if (acceptNullValue) {
       result = request.toJson();
     } else {
