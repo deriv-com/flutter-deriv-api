@@ -52,7 +52,7 @@ class MockCallManager extends BaseCallManager<MockResponse> {
   @override
   MockResponse call({
     required Request request,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) {
     throw UnimplementedError();
   }
@@ -65,7 +65,7 @@ class MockAPI implements BaseAPI {
   @override
   Future<T> call<T>({
     required Request request,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) =>
       throw UnimplementedError();
 

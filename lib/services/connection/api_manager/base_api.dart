@@ -35,7 +35,7 @@ abstract class BaseAPI {
   /// Calls a API method by [request].
   Future<T> call<T>({
     required Request request,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   });
 
   /// Subscribe to a [request].

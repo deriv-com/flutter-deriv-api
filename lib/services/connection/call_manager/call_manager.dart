@@ -31,7 +31,7 @@ class CallManager extends BaseCallManager<Future<Response>> {
   @override
   Future<Response> call({
     required Request request,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) async =>
-      addToChannel(request: request, nullableKey: nullableKey);
+      addToChannel(request: request, nullableKeys: nullableKeys);
 }

@@ -45,7 +45,7 @@ abstract class BaseCallManager<T> {
   /// Calls a API method by [request]
   T call({
     required Request request,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   });
 
   /// Handle call [response] that comes from server
@@ -65,14 +65,14 @@ abstract class BaseCallManager<T> {
   Future<Response> addToChannel({
     required Request request,
     SubscriptionStream<Response>? subscriptionStream,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) {
     final Completer<Response> responseCompleter = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
     final Map<String, dynamic> prepareRequest = _prepareRequest(
       request: requestWithId,
       isSubscription: subscriptionStream != null,
-      nullableKey: nullableKey,
+      nullableKeys: nullableKeys,
     );
 
     _addPendingRequest(
@@ -109,11 +109,11 @@ abstract class BaseCallManager<T> {
   Map<String, dynamic> _prepareRequest({
     required Request request,
     required bool isSubscription,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) {
     final Map<String, dynamic> result = request.toJson()
       ..removeWhere((String key, dynamic value) =>
-          value == null && !(nullableKey.contains(key)));
+          value == null && !(nullableKeys.contains(key)));
 
     if (isSubscription) {
       result.putIfAbsent('subscribe', () => 1);

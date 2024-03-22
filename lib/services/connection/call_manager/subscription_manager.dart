@@ -55,7 +55,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     required Request request,
     int cacheSize = 0,
     RequestCompareFunction? comparePredicate,
-    List<String> nullableKey = const <String>[],
+    List<String> nullableKeys = const <String>[],
   }) {
     assert(cacheSize >= 0);
 
@@ -79,7 +79,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     addToChannel(
       request: request,
       subscriptionStream: subscriptionStream,
-      nullableKey: nullableKey,
+      nullableKeys: nullableKeys,
     );
 
     return subscriptionStream.stream;
