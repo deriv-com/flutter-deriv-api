@@ -166,6 +166,8 @@ export "p2p_advertiser_update_receive.dart";
 export "p2p_advertiser_update_send.dart";
 export "p2p_chat_create_receive.dart";
 export "p2p_chat_create_send.dart";
+export "p2p_country_list_receive.dart";
+export "p2p_country_list_send.dart";
 export "p2p_order_cancel_receive.dart";
 export "p2p_order_cancel_send.dart";
 export "p2p_order_confirm_receive.dart";
