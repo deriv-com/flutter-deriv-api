@@ -130,7 +130,10 @@ class MockAPI extends BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<T> call<T>({required Request request}) =>
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) =>
       _getFutureResponse<T>(request);
 
   @override
