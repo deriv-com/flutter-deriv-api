@@ -33,7 +33,10 @@ abstract class BaseAPI {
   void addToChannel(Map<String, dynamic> request);
 
   /// Calls a API method by [request].
-  Future<T> call<T>({required Request request});
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  });
 
   /// Subscribe to a [request].
   /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
