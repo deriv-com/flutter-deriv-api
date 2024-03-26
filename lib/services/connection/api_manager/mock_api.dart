@@ -13,6 +13,9 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/new_account_wallet_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_payments_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_list_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_options_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/crypto_config_response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
@@ -381,6 +384,12 @@ class MockAPI extends BaseAPI {
         return websiteStatusResponse;
       case 'wallet_migration':
         return walletMigrationResponse;
+      case 'passkeys_register_options':
+        return passkeysRegisterOptionsResponse;
+      case 'passkeys_register':
+        return passkeysRegisterResponse;
+      case 'passkeys_list':
+        return passkeysListResponse;
 
       default:
         throw APIManagerException(
