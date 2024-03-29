@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_options_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_options_send.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// Passkeys options response model class.
 abstract class PasskeysOptionsResponseModel {
@@ -58,8 +64,6 @@ final Map<String, TransportsItemEnum> transportsItemEnumMapper =
   "usb": TransportsItemEnum.usb,
   "nfc": TransportsItemEnum.nfc,
   "ble": TransportsItemEnum.ble,
-  "smart-card": TransportsItemEnum.smartCard,
-  "hybrid": TransportsItemEnum.hybrid,
   "internal": TransportsItemEnum.internal,
 };
 
@@ -73,12 +77,6 @@ enum TransportsItemEnum {
 
   /// ble.
   ble,
-
-  /// smart-card.
-  smartCard,
-
-  /// hybrid.
-  hybrid,
 
   /// internal.
   internal,
@@ -114,6 +112,7 @@ enum UserVerificationEnum {
   /// discouraged.
   discouraged,
 }
+
 /// Passkeys options model class.
 abstract class PasskeysOptionsModel {
   /// Initializes Passkeys options model class .
@@ -159,6 +158,7 @@ class PasskeysOptions extends PasskeysOptionsModel {
         publicKey: publicKey ?? this.publicKey,
       );
 }
+
 /// Public key model class.
 abstract class PublicKeyModel {
   /// Initializes Public key model class .
@@ -178,12 +178,12 @@ abstract class PublicKeyModel {
   final String? challenge;
 
   /// Empty for now
-  final Map<String, dynamic>? extensions;
+  final Extensions? extensions;
 
   /// Relying party id.
   final String? rpId;
 
-  /// Time before expiring the ceremony in milliseconds.
+  /// Time before expiring the cermony in milliseconds.
   final DateTime? timeout;
 
   /// Ask the user to enter thier authentication method (PIN, fingerprint, etc). Default is discouraged.
@@ -212,7 +212,9 @@ class PublicKey extends PublicKeyModel {
                 ),
               ),
         challenge: json['challenge'],
-        extensions: json['extensions'],
+        extensions: json['extensions'] == null
+            ? null
+            : Extensions.fromJson(json['extensions']),
         rpId: json['rpId'],
         timeout: getDateTime(json['timeout']),
         userVerification: json['userVerification'] == null
@@ -232,7 +234,9 @@ class PublicKey extends PublicKeyModel {
           .toList();
     }
     resultMap['challenge'] = challenge;
-    resultMap['extensions'] = extensions;
+    if (extensions != null) {
+      resultMap['extensions'] = extensions!.toJson();
+    }
     resultMap['rpId'] = rpId;
     resultMap['timeout'] = getSecondsSinceEpochDateTime(timeout);
     resultMap['userVerification'] = userVerificationEnumMapper.entries
@@ -247,7 +251,7 @@ class PublicKey extends PublicKeyModel {
   PublicKey copyWith({
     List<AllowCredentialsItem>? allowCredentials,
     String? challenge,
-    Map<String, dynamic>? extensions,
+    Extensions? extensions,
     String? rpId,
     DateTime? timeout,
     UserVerificationEnum? userVerification,
@@ -261,6 +265,7 @@ class PublicKey extends PublicKeyModel {
         userVerification: userVerification ?? this.userVerification,
       );
 }
+
 /// Allow credentials item model class.
 abstract class AllowCredentialsItemModel {
   /// Initializes Allow credentials item model class .
@@ -336,5 +341,136 @@ class AllowCredentialsItem extends AllowCredentialsItemModel {
         id: id ?? this.id,
         transports: transports ?? this.transports,
         type: type ?? this.type,
+      );
+}
+
+/// Extensions model class.
+abstract class ExtensionsModel {
+  /// Initializes Extensions model class .
+  const ExtensionsModel({
+    this.exts,
+    this.loc,
+    this.txAuthGeneric,
+    this.txAuthSimple,
+    this.uvi,
+  });
+
+  /// The exts.
+  final bool? exts;
+
+  /// The loc.
+  final bool? loc;
+
+  /// The txAuthGeneric.
+  final TxAuthGeneric? txAuthGeneric;
+
+  /// The txAuthSimple.
+  final String? txAuthSimple;
+
+  /// The uvi.
+  final bool? uvi;
+}
+
+/// Extensions class.
+class Extensions extends ExtensionsModel {
+  /// Initializes Extensions class.
+  const Extensions({
+    super.exts,
+    super.loc,
+    super.txAuthGeneric,
+    super.txAuthSimple,
+    super.uvi,
+  });
+
+  /// Creates an instance from JSON.
+  factory Extensions.fromJson(Map<String, dynamic> json) => Extensions(
+        exts: getBool(json['exts']),
+        loc: getBool(json['loc']),
+        txAuthGeneric: json['txAuthGeneric'] == null
+            ? null
+            : TxAuthGeneric.fromJson(json['txAuthGeneric']),
+        txAuthSimple: json['txAuthSimple'],
+        uvi: getBool(json['uvi']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['exts'] = exts;
+    resultMap['loc'] = loc;
+    if (txAuthGeneric != null) {
+      resultMap['txAuthGeneric'] = txAuthGeneric!.toJson();
+    }
+    resultMap['txAuthSimple'] = txAuthSimple;
+    resultMap['uvi'] = uvi;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Extensions copyWith({
+    bool? exts,
+    bool? loc,
+    TxAuthGeneric? txAuthGeneric,
+    String? txAuthSimple,
+    bool? uvi,
+  }) =>
+      Extensions(
+        exts: exts ?? this.exts,
+        loc: loc ?? this.loc,
+        txAuthGeneric: txAuthGeneric ?? this.txAuthGeneric,
+        txAuthSimple: txAuthSimple ?? this.txAuthSimple,
+        uvi: uvi ?? this.uvi,
+      );
+}
+
+/// Tx auth generic model class.
+abstract class TxAuthGenericModel {
+  /// Initializes Tx auth generic model class .
+  const TxAuthGenericModel({
+    this.content,
+    this.contentType,
+  });
+
+  /// The content.
+  final String? content;
+
+  /// The contentType.
+  final String? contentType;
+}
+
+/// Tx auth generic class.
+class TxAuthGeneric extends TxAuthGenericModel {
+  /// Initializes Tx auth generic class.
+  const TxAuthGeneric({
+    super.content,
+    super.contentType,
+  });
+
+  /// Creates an instance from JSON.
+  factory TxAuthGeneric.fromJson(Map<String, dynamic> json) => TxAuthGeneric(
+        content: json['content'],
+        contentType: json['contentType'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['content'] = content;
+    resultMap['contentType'] = contentType;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  TxAuthGeneric copyWith({
+    String? content,
+    String? contentType,
+  }) =>
+      TxAuthGeneric(
+        content: content ?? this.content,
+        contentType: contentType ?? this.contentType,
       );
 }

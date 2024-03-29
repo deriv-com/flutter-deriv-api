@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_register_options_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_register_options_send.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// Passkeys register options response model class.
 abstract class PasskeysRegisterOptionsResponseModel {
@@ -111,14 +117,32 @@ enum UserVerificationEnum {
   discouraged,
 }
 
+/// ResidentKeyEnum mapper.
+final Map<String, ResidentKeyEnum> residentKeyEnumMapper =
+    <String, ResidentKeyEnum>{
+  "required": ResidentKeyEnum.required,
+  "preferred": ResidentKeyEnum.preferred,
+  "discouraged": ResidentKeyEnum.discouraged,
+};
+
+/// ResidentKey Enum.
+enum ResidentKeyEnum {
+  /// required.
+  required,
+
+  /// preferred.
+  preferred,
+
+  /// discouraged.
+  discouraged,
+}
+
 /// TransportsItemEnum mapper.
 final Map<String, TransportsItemEnum> transportsItemEnumMapper =
     <String, TransportsItemEnum>{
   "usb": TransportsItemEnum.usb,
   "nfc": TransportsItemEnum.nfc,
   "ble": TransportsItemEnum.ble,
-  "smart-card": TransportsItemEnum.smartCard,
-  "hybrid": TransportsItemEnum.hybrid,
   "internal": TransportsItemEnum.internal,
 };
 
@@ -132,12 +156,6 @@ enum TransportsItemEnum {
 
   /// ble.
   ble,
-
-  /// smart-card.
-  smartCard,
-
-  /// hybrid.
-  hybrid,
 
   /// internal.
   internal,
@@ -153,6 +171,7 @@ enum TypeEnum {
   /// public-key.
   publicKey,
 }
+
 /// Passkeys register options model class.
 abstract class PasskeysRegisterOptionsModel {
   /// Initializes Passkeys register options model class .
@@ -198,6 +217,7 @@ class PasskeysRegisterOptions extends PasskeysRegisterOptionsModel {
         publicKey: publicKey ?? this.publicKey,
       );
 }
+
 /// Public key model class.
 abstract class PublicKeyModel {
   /// Initializes Public key model class .
@@ -213,7 +233,7 @@ abstract class PublicKeyModel {
     this.user,
   });
 
-  /// The attestation settings, weather the authenticator will attest the respone on no. Default is direct.
+  /// The attestation settings, weather the authenticator will attest the respone on no. Default is none.
   final AttestationEnum? attestation;
 
   /// Settings to control authenticator behavior and selection.
@@ -226,7 +246,7 @@ abstract class PublicKeyModel {
   final List<ExcludeCredentialsItem>? excludeCredentials;
 
   /// Empty for now
-  final Map<String, dynamic>? extensions;
+  final Extensions? extensions;
 
   /// Supported public key algorithms.
   final List<PubKeyCredParamsItem>? pubKeyCredParams;
@@ -272,7 +292,9 @@ class PublicKey extends PublicKeyModel {
                   (dynamic item) => ExcludeCredentialsItem.fromJson(item),
                 ),
               ),
-        extensions: json['extensions'],
+        extensions: json['extensions'] == null
+            ? null
+            : Extensions.fromJson(json['extensions']),
         pubKeyCredParams: json['pubKeyCredParams'] == null
             ? null
             : List<PubKeyCredParamsItem>.from(
@@ -304,7 +326,9 @@ class PublicKey extends PublicKeyModel {
           )
           .toList();
     }
-    resultMap['extensions'] = extensions;
+    if (extensions != null) {
+      resultMap['extensions'] = extensions!.toJson();
+    }
     if (pubKeyCredParams != null) {
       resultMap['pubKeyCredParams'] = pubKeyCredParams!
           .map<dynamic>(
@@ -329,7 +353,7 @@ class PublicKey extends PublicKeyModel {
     AuthenticatorSelection? authenticatorSelection,
     String? challenge,
     List<ExcludeCredentialsItem>? excludeCredentials,
-    Map<String, dynamic>? extensions,
+    Extensions? extensions,
     List<PubKeyCredParamsItem>? pubKeyCredParams,
     Rp? rp,
     DateTime? timeout,
@@ -348,6 +372,7 @@ class PublicKey extends PublicKeyModel {
         user: user ?? this.user,
       );
 }
+
 /// Authenticator selection model class.
 abstract class AuthenticatorSelectionModel {
   /// Initializes Authenticator selection model class .
@@ -355,9 +380,10 @@ abstract class AuthenticatorSelectionModel {
     this.authenticatorAttachment,
     this.requireResidentKey,
     this.userVerification,
+    this.residentKey,
   });
 
-  /// Whether to allow cross platform authenticators (QR) or only the ones installed on the device itself.
+  /// Weather to allow cross platform authenticators (QR) or only the ones installed on the device itself.
   final AuthenticatorAttachmentEnum? authenticatorAttachment;
 
   /// Ask the auth to save the passkey on the device. this will allow seamless login without the need to enter the user name. will be true always
@@ -365,6 +391,9 @@ abstract class AuthenticatorSelectionModel {
 
   /// Ask the user to enter thier authentication method (PIN, fingerprint, etc). Default is required.
   final UserVerificationEnum? userVerification;
+
+  /// L2 related to requireResidentKey, will be required
+  final ResidentKeyEnum? residentKey;
 }
 
 /// Authenticator selection class.
@@ -374,6 +403,7 @@ class AuthenticatorSelection extends AuthenticatorSelectionModel {
     super.authenticatorAttachment,
     super.requireResidentKey,
     super.userVerification,
+    super.residentKey,
   });
 
   /// Creates an instance from JSON.
@@ -387,6 +417,9 @@ class AuthenticatorSelection extends AuthenticatorSelectionModel {
         userVerification: json['userVerification'] == null
             ? null
             : userVerificationEnumMapper[json['userVerification']],
+        residentKey: json['residentKey'] == null
+            ? null
+            : residentKeyEnumMapper[json['residentKey']],
       );
 
   /// Converts an instance to JSON.
@@ -403,6 +436,10 @@ class AuthenticatorSelection extends AuthenticatorSelectionModel {
         .firstWhere((MapEntry<String, UserVerificationEnum> entry) =>
             entry.value == userVerification)
         .key;
+    resultMap['residentKey'] = residentKeyEnumMapper.entries
+        .firstWhere((MapEntry<String, ResidentKeyEnum> entry) =>
+            entry.value == residentKey)
+        .key;
 
     return resultMap;
   }
@@ -412,14 +449,17 @@ class AuthenticatorSelection extends AuthenticatorSelectionModel {
     AuthenticatorAttachmentEnum? authenticatorAttachment,
     bool? requireResidentKey,
     UserVerificationEnum? userVerification,
+    ResidentKeyEnum? residentKey,
   }) =>
       AuthenticatorSelection(
         authenticatorAttachment:
             authenticatorAttachment ?? this.authenticatorAttachment,
         requireResidentKey: requireResidentKey ?? this.requireResidentKey,
         userVerification: userVerification ?? this.userVerification,
+        residentKey: residentKey ?? this.residentKey,
       );
 }
+
 /// Exclude credentials item model class.
 abstract class ExcludeCredentialsItemModel {
   /// Initializes Exclude credentials item model class .
@@ -497,6 +537,138 @@ class ExcludeCredentialsItem extends ExcludeCredentialsItemModel {
         type: type ?? this.type,
       );
 }
+
+/// Extensions model class.
+abstract class ExtensionsModel {
+  /// Initializes Extensions model class .
+  const ExtensionsModel({
+    this.exts,
+    this.loc,
+    this.txAuthGeneric,
+    this.txAuthSimple,
+    this.uvi,
+  });
+
+  /// The exts.
+  final bool? exts;
+
+  /// The loc.
+  final bool? loc;
+
+  /// The txAuthGeneric.
+  final TxAuthGeneric? txAuthGeneric;
+
+  /// The txAuthSimple.
+  final String? txAuthSimple;
+
+  /// The uvi.
+  final bool? uvi;
+}
+
+/// Extensions class.
+class Extensions extends ExtensionsModel {
+  /// Initializes Extensions class.
+  const Extensions({
+    super.exts,
+    super.loc,
+    super.txAuthGeneric,
+    super.txAuthSimple,
+    super.uvi,
+  });
+
+  /// Creates an instance from JSON.
+  factory Extensions.fromJson(Map<String, dynamic> json) => Extensions(
+        exts: getBool(json['exts']),
+        loc: getBool(json['loc']),
+        txAuthGeneric: json['txAuthGeneric'] == null
+            ? null
+            : TxAuthGeneric.fromJson(json['txAuthGeneric']),
+        txAuthSimple: json['txAuthSimple'],
+        uvi: getBool(json['uvi']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['exts'] = exts;
+    resultMap['loc'] = loc;
+    if (txAuthGeneric != null) {
+      resultMap['txAuthGeneric'] = txAuthGeneric!.toJson();
+    }
+    resultMap['txAuthSimple'] = txAuthSimple;
+    resultMap['uvi'] = uvi;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Extensions copyWith({
+    bool? exts,
+    bool? loc,
+    TxAuthGeneric? txAuthGeneric,
+    String? txAuthSimple,
+    bool? uvi,
+  }) =>
+      Extensions(
+        exts: exts ?? this.exts,
+        loc: loc ?? this.loc,
+        txAuthGeneric: txAuthGeneric ?? this.txAuthGeneric,
+        txAuthSimple: txAuthSimple ?? this.txAuthSimple,
+        uvi: uvi ?? this.uvi,
+      );
+}
+
+/// Tx auth generic model class.
+abstract class TxAuthGenericModel {
+  /// Initializes Tx auth generic model class .
+  const TxAuthGenericModel({
+    this.content,
+    this.contentType,
+  });
+
+  /// The content.
+  final String? content;
+
+  /// The contentType.
+  final String? contentType;
+}
+
+/// Tx auth generic class.
+class TxAuthGeneric extends TxAuthGenericModel {
+  /// Initializes Tx auth generic class.
+  const TxAuthGeneric({
+    super.content,
+    super.contentType,
+  });
+
+  /// Creates an instance from JSON.
+  factory TxAuthGeneric.fromJson(Map<String, dynamic> json) => TxAuthGeneric(
+        content: json['content'],
+        contentType: json['contentType'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['content'] = content;
+    resultMap['contentType'] = contentType;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  TxAuthGeneric copyWith({
+    String? content,
+    String? contentType,
+  }) =>
+      TxAuthGeneric(
+        content: content ?? this.content,
+        contentType: contentType ?? this.contentType,
+      );
+}
+
 /// Pub key cred params item model class.
 abstract class PubKeyCredParamsItemModel {
   /// Initializes Pub key cred params item model class .
@@ -547,6 +719,7 @@ class PubKeyCredParamsItem extends PubKeyCredParamsItemModel {
         type: type ?? this.type,
       );
 }
+
 /// Rp model class.
 abstract class RpModel {
   /// Initializes Rp model class .
@@ -596,6 +769,7 @@ class Rp extends RpModel {
         name: name ?? this.name,
       );
 }
+
 /// User model class.
 abstract class UserModel {
   /// Initializes User model class .
@@ -609,7 +783,7 @@ abstract class UserModel {
   final String? displayName;
 
   /// Binary user id
-  final int? id;
+  final String? id;
 
   /// Name of the user, will be email
   final String? name;
@@ -645,7 +819,7 @@ class User extends UserModel {
   /// Creates a copy of instance with given parameters.
   User copyWith({
     String? displayName,
-    int? id,
+    String? id,
     String? name,
   }) =>
       User(
