@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:deriv_dependency_injector/dependency_injector.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_list_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/passkeys_list_send.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// Passkeys list response model class.
 abstract class PasskeysListResponseModel {
@@ -59,89 +65,90 @@ class PasskeysListResponse extends PasskeysListResponseModel {
         passkeysList: passkeysList ?? this.passkeysList,
       );
 }
+
 /// Passkeys list item model class.
 abstract class PasskeysListItemModel {
   /// Initializes Passkeys list item model class .
   const PasskeysListItemModel({
-    this.createdAt,
+    this.createdOn,
     this.id,
     this.lastUsed,
     this.name,
-    this.passkeyId,
-    this.storedOn,
+    this.passkey,
+    this.userId,
   });
 
-  /// The epoch date when the passkey was created.
-  final DateTime? createdAt;
+  /// The date of the passkey creation
+  final String? createdOn;
 
-  /// The system id of the stored passkey.
-  final int? id;
+  /// The system id of the passkey
+  final String? id;
 
-  /// The epoch timestamp that the key was last used to authenticate the user.
-  final DateTime? lastUsed;
+  /// The date of the last passkey usage
+  final String? lastUsed;
 
-  /// The descriptive name of the passkey.
+  /// The name of the passkey
   final String? name;
 
-  /// The id of the passkey credential.
-  final String? passkeyId;
+  /// The id of the credential. for mock only
+  final Map<String, dynamic>? passkey;
 
-  /// The name of the device where the credential is stored on.
-  final String? storedOn;
+  /// The id of the user. for mock only
+  final String? userId;
 }
 
 /// Passkeys list item class.
 class PasskeysListItem extends PasskeysListItemModel {
   /// Initializes Passkeys list item class.
   const PasskeysListItem({
-    super.createdAt,
+    super.createdOn,
     super.id,
     super.lastUsed,
     super.name,
-    super.passkeyId,
-    super.storedOn,
+    super.passkey,
+    super.userId,
   });
 
   /// Creates an instance from JSON.
   factory PasskeysListItem.fromJson(Map<String, dynamic> json) =>
       PasskeysListItem(
-        createdAt: getDateTime(json['created_at']),
+        createdOn: json['created_on'],
         id: json['id'],
-        lastUsed: getDateTime(json['last_used']),
+        lastUsed: json['last_used'],
         name: json['name'],
-        passkeyId: json['passkey_id'],
-        storedOn: json['stored_on'],
+        passkey: json['passkey'],
+        userId: json['user_id'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['created_at'] = getSecondsSinceEpochDateTime(createdAt);
+    resultMap['created_on'] = createdOn;
     resultMap['id'] = id;
-    resultMap['last_used'] = getSecondsSinceEpochDateTime(lastUsed);
+    resultMap['last_used'] = lastUsed;
     resultMap['name'] = name;
-    resultMap['passkey_id'] = passkeyId;
-    resultMap['stored_on'] = storedOn;
+    resultMap['passkey'] = passkey;
+    resultMap['user_id'] = userId;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   PasskeysListItem copyWith({
-    DateTime? createdAt,
-    int? id,
-    DateTime? lastUsed,
+    String? createdOn,
+    String? id,
+    String? lastUsed,
     String? name,
-    String? passkeyId,
-    String? storedOn,
+    Map<String, dynamic>? passkey,
+    String? userId,
   }) =>
       PasskeysListItem(
-        createdAt: createdAt ?? this.createdAt,
+        createdOn: createdOn ?? this.createdOn,
         id: id ?? this.id,
         lastUsed: lastUsed ?? this.lastUsed,
         name: name ?? this.name,
-        passkeyId: passkeyId ?? this.passkeyId,
-        storedOn: storedOn ?? this.storedOn,
+        passkey: passkey ?? this.passkey,
+        userId: userId ?? this.userId,
       );
 }

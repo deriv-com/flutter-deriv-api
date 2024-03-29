@@ -160,6 +160,12 @@ import '../generated/verify_email_receive.dart';
 import '../generated/wallet_migration_receive.dart';
 import '../generated/website_config_receive.dart';
 import '../generated/website_status_receive.dart';
+import '../generated/passkeys_list_receive.dart';
+import '../generated/passkeys_options_receive.dart';
+import '../generated/passkeys_register_options_receive.dart';
+import '../generated/passkeys_register_receive.dart';
+import '../generated/passkeys_rename_receive.dart';
+import '../generated/passkeys_revoke_receive.dart';
 import '../response.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -480,6 +486,19 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return WebsiteConfigReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
+    case 'passkeys_list':
+      return PasskeysListReceive.fromJson(responseMap);
+
+    case 'passkeys_options':
+      return PasskeysOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register_options':
+      return PasskeysRegisterOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register':
+      return PasskeysRegisterReceive.fromJson(responseMap);
+    case 'passkeys_rename':
+      return PasskeysRenameReceive.fromJson(responseMap);
+    case 'passkeys_revoke':
+      return PasskeysRevokeReceive.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);
