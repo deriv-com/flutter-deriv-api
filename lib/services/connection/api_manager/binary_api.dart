@@ -88,7 +88,9 @@ class BinaryAPI extends BaseAPI {
       final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
           uri.toString().replaceAll('wss', 'https'));
 
-      client = HttpClient()..findProxy = (Uri uri) => proxy;
+      client = HttpClient()
+        ..userAgent = WebSocket.userAgent
+        ..findProxy = (Uri uri) => proxy;
     }
 
     // Initialize connection to websocket server.
@@ -139,8 +141,10 @@ class BinaryAPI extends BaseAPI {
   }
 
   @override
-  Future<T> call<T>(
-      {required Request request, List<String> nullableKeys = const <String>[],}) async {
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) async {
     final Response response = await (_callManager ??= CallManager(this))(
       request: request,
       nullableKeys: nullableKeys,
