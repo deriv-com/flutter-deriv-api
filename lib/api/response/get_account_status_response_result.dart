@@ -55,9 +55,10 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<GetAccountStatusReceive> fetchAccountStatusRaw() async {
+  static Future<GetAccountStatusReceive> fetchAccountStatusRaw(
+      {required String loginId}) async {
     final GetAccountStatusReceive response = await _api.call(
-      request: const GetAccountStatusRequest(),
+      request: GetAccountStatusRequest(loginid: loginId),
     );
 
     checkException(
@@ -73,8 +74,10 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<GetAccountStatusResponse> fetchAccountStatus() async {
-    final GetAccountStatusReceive response = await fetchAccountStatusRaw();
+  static Future<GetAccountStatusResponse> fetchAccountStatus(
+      {required String loginId}) async {
+    final GetAccountStatusReceive response =
+        await fetchAccountStatusRaw(loginId: loginId);
 
     return GetAccountStatusResponse.fromJson(response.getAccountStatus);
   }
@@ -268,6 +271,7 @@ enum SocialIdentityProviderEnum {
   /// apple.
   apple,
 }
+
 /// Get account status model class.
 abstract class GetAccountStatusModel {
   /// Initializes Get account status model class .
@@ -329,6 +333,7 @@ abstract class GetAccountStatusModel {
   /// - `mt5_additional_kyc_required`: client tax information, place of birth and account opening reason is missing.
   /// - `poi_expiring_soon`: the POI documents of the client will get expired soon, allow them to reupload POI documents.
   /// - `poa_expiring_soon`: the POA documents of the client will get outdated soon, allow them to reupload POA documents.
+  /// - `tin_manually_approved`: the client's tax_identification_number has been manually approved as client is not applicable for tax_identification_number
   final List<String> status;
 
   /// Client risk classification: `low`, `standard`, `high`.
@@ -490,6 +495,7 @@ class GetAccountStatus extends GetAccountStatusModel {
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
 }
+
 /// Currency config property model class.
 abstract class CurrencyConfigPropertyModel {
   /// Initializes Currency config property model class .
@@ -541,6 +547,7 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
 }
+
 /// Authentication model class.
 abstract class AuthenticationModel {
   /// Initializes Authentication model class .
@@ -653,6 +660,7 @@ class Authentication extends AuthenticationModel {
         ownership: ownership ?? this.ownership,
       );
 }
+
 /// Attempts model class.
 abstract class AttemptsModel {
   /// Initializes Attempts model class .
@@ -723,6 +731,7 @@ class Attempts extends AttemptsModel {
         latest: latest ?? this.latest,
       );
 }
+
 /// History item model class.
 abstract class HistoryItemModel {
   /// Initializes History item model class .
@@ -812,6 +821,7 @@ class HistoryItem extends HistoryItemModel {
         timestamp: timestamp ?? this.timestamp,
       );
 }
+
 /// Document model class.
 abstract class DocumentModel {
   /// Initializes Document model class .
@@ -819,6 +829,7 @@ abstract class DocumentModel {
     this.authenticatedWithIdv,
     this.expiryDate,
     this.status,
+    this.verifiedJurisdiction,
   });
 
   /// This represents the current status of idv authentication for each mt5 jurisdiction.
@@ -829,6 +840,9 @@ abstract class DocumentModel {
 
   /// This represents the current status of the proof of address document submitted for authentication.
   final DocumentStatusEnum? status;
+
+  /// This represents the current status of authentication for each mt5 jurisdiction.
+  final VerifiedJurisdiction? verifiedJurisdiction;
 }
 
 /// Document class.
@@ -838,6 +852,7 @@ class Document extends DocumentModel {
     super.authenticatedWithIdv,
     super.expiryDate,
     super.status,
+    super.verifiedJurisdiction,
   });
 
   /// Creates an instance from JSON.
@@ -849,6 +864,9 @@ class Document extends DocumentModel {
         status: json['status'] == null
             ? null
             : documentStatusEnumMapper[json['status']],
+        verifiedJurisdiction: json['verified_jurisdiction'] == null
+            ? null
+            : VerifiedJurisdiction.fromJson(json['verified_jurisdiction']),
       );
 
   /// Converts an instance to JSON.
@@ -863,6 +881,9 @@ class Document extends DocumentModel {
         .firstWhere((MapEntry<String, DocumentStatusEnum> entry) =>
             entry.value == status)
         .key;
+    if (verifiedJurisdiction != null) {
+      resultMap['verified_jurisdiction'] = verifiedJurisdiction!.toJson();
+    }
 
     return resultMap;
   }
@@ -872,13 +893,16 @@ class Document extends DocumentModel {
     AuthenticatedWithIdv? authenticatedWithIdv,
     DateTime? expiryDate,
     DocumentStatusEnum? status,
+    VerifiedJurisdiction? verifiedJurisdiction,
   }) =>
       Document(
         authenticatedWithIdv: authenticatedWithIdv ?? this.authenticatedWithIdv,
         expiryDate: expiryDate ?? this.expiryDate,
         status: status ?? this.status,
+        verifiedJurisdiction: verifiedJurisdiction ?? this.verifiedJurisdiction,
       );
 }
+
 /// Authenticated with idv model class.
 abstract class AuthenticatedWithIdvModel {
   /// Initializes Authenticated with idv model class .
@@ -1010,6 +1034,139 @@ class AuthenticatedWithIdv extends AuthenticatedWithIdvModel {
         virtual: virtual ?? this.virtual,
       );
 }
+
+/// Verified jurisdiction model class.
+abstract class VerifiedJurisdictionModel {
+  /// Initializes Verified jurisdiction model class .
+  const VerifiedJurisdictionModel({
+    this.bvi,
+    this.dsl,
+    this.iom,
+    this.labuan,
+    this.malta,
+    this.maltainvest,
+    this.samoa,
+    this.samoaVirtual,
+    this.svg,
+    this.vanuatu,
+    this.virtual,
+  });
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? bvi;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? dsl;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? iom;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? labuan;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? malta;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? maltainvest;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? samoa;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? samoaVirtual;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? svg;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? vanuatu;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? virtual;
+}
+
+/// Verified jurisdiction class.
+class VerifiedJurisdiction extends VerifiedJurisdictionModel {
+  /// Initializes Verified jurisdiction class.
+  const VerifiedJurisdiction({
+    super.bvi,
+    super.dsl,
+    super.iom,
+    super.labuan,
+    super.malta,
+    super.maltainvest,
+    super.samoa,
+    super.samoaVirtual,
+    super.svg,
+    super.vanuatu,
+    super.virtual,
+  });
+
+  /// Creates an instance from JSON.
+  factory VerifiedJurisdiction.fromJson(Map<String, dynamic> json) =>
+      VerifiedJurisdiction(
+        bvi: getBool(json['bvi']),
+        dsl: getBool(json['dsl']),
+        iom: getBool(json['iom']),
+        labuan: getBool(json['labuan']),
+        malta: getBool(json['malta']),
+        maltainvest: getBool(json['maltainvest']),
+        samoa: getBool(json['samoa']),
+        samoaVirtual: getBool(json['samoa-virtual']),
+        svg: getBool(json['svg']),
+        vanuatu: getBool(json['vanuatu']),
+        virtual: getBool(json['virtual']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['bvi'] = bvi;
+    resultMap['dsl'] = dsl;
+    resultMap['iom'] = iom;
+    resultMap['labuan'] = labuan;
+    resultMap['malta'] = malta;
+    resultMap['maltainvest'] = maltainvest;
+    resultMap['samoa'] = samoa;
+    resultMap['samoa-virtual'] = samoaVirtual;
+    resultMap['svg'] = svg;
+    resultMap['vanuatu'] = vanuatu;
+    resultMap['virtual'] = virtual;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  VerifiedJurisdiction copyWith({
+    bool? bvi,
+    bool? dsl,
+    bool? iom,
+    bool? labuan,
+    bool? malta,
+    bool? maltainvest,
+    bool? samoa,
+    bool? samoaVirtual,
+    bool? svg,
+    bool? vanuatu,
+    bool? virtual,
+  }) =>
+      VerifiedJurisdiction(
+        bvi: bvi ?? this.bvi,
+        dsl: dsl ?? this.dsl,
+        iom: iom ?? this.iom,
+        labuan: labuan ?? this.labuan,
+        malta: malta ?? this.malta,
+        maltainvest: maltainvest ?? this.maltainvest,
+        samoa: samoa ?? this.samoa,
+        samoaVirtual: samoaVirtual ?? this.samoaVirtual,
+        svg: svg ?? this.svg,
+        vanuatu: vanuatu ?? this.vanuatu,
+        virtual: virtual ?? this.virtual,
+      );
+}
+
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -1077,6 +1234,7 @@ class Identity extends IdentityModel {
         status: status ?? this.status,
       );
 }
+
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -1141,12 +1299,14 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
+
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
   const IdvModel({
     this.expiryDate,
     this.lastRejected,
+    this.reportAvailable,
     this.reportedProperties,
     this.status,
     this.submissionsLeft,
@@ -1157,6 +1317,9 @@ abstract class IdvModel {
 
   /// Show the last IDV reported reasons for the rejected cases
   final List<String>? lastRejected;
+
+  /// Indicate if the verification report was returned by the provider
+  final bool? reportAvailable;
 
   /// Shows the latest document properties detected and reported by IDVS
   final Map<String, dynamic>? reportedProperties;
@@ -1174,6 +1337,7 @@ class Idv extends IdvModel {
   const Idv({
     super.expiryDate,
     super.lastRejected,
+    super.reportAvailable,
     super.reportedProperties,
     super.status,
     super.submissionsLeft,
@@ -1189,6 +1353,7 @@ class Idv extends IdvModel {
                   (dynamic item) => item,
                 ),
               ),
+        reportAvailable: getBool(json['report_available']),
         reportedProperties: json['reported_properties'],
         status:
             json['status'] == null ? null : idvStatusEnumMapper[json['status']],
@@ -1207,6 +1372,7 @@ class Idv extends IdvModel {
           )
           .toList();
     }
+    resultMap['report_available'] = reportAvailable;
     resultMap['reported_properties'] = reportedProperties;
     resultMap['status'] = idvStatusEnumMapper.entries
         .firstWhere(
@@ -1221,6 +1387,7 @@ class Idv extends IdvModel {
   Idv copyWith({
     DateTime? expiryDate,
     List<String>? lastRejected,
+    bool? reportAvailable,
     Map<String, dynamic>? reportedProperties,
     IdvStatusEnum? status,
     int? submissionsLeft,
@@ -1228,11 +1395,13 @@ class Idv extends IdvModel {
       Idv(
         expiryDate: expiryDate ?? this.expiryDate,
         lastRejected: lastRejected ?? this.lastRejected,
+        reportAvailable: reportAvailable ?? this.reportAvailable,
         reportedProperties: reportedProperties ?? this.reportedProperties,
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
+
 /// Manual model class.
 abstract class ManualModel {
   /// Initializes Manual model class .
@@ -1278,6 +1447,7 @@ class Manual extends ManualModel {
         status: status ?? this.status,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -1422,6 +1592,7 @@ class Onfido extends OnfidoModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
+
 /// Income model class.
 abstract class IncomeModel {
   /// Initializes Income model class .
@@ -1476,6 +1647,7 @@ class Income extends IncomeModel {
         status: status ?? this.status,
       );
 }
+
 /// Ownership model class.
 abstract class OwnershipModel {
   /// Initializes Ownership model class .
@@ -1542,6 +1714,7 @@ class Ownership extends OwnershipModel {
         status: status ?? this.status,
       );
 }
+
 /// Requests item model class.
 abstract class RequestsItemModel {
   /// Initializes Requests item model class .
