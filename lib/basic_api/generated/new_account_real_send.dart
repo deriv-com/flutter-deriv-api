@@ -36,6 +36,7 @@ class NewAccountRealRequest extends Request {
     super.msgType = 'new_account_real',
     super.passthrough,
     super.reqId,
+    this.fatcaDeclaration,
   });
 
   /// Creates an instance from JSON.
@@ -70,6 +71,7 @@ class NewAccountRealRequest extends Request {
         taxResidence: json['tax_residence'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
+        fatcaDeclaration: json['fatca_declaration'] as int?,
       );
 
   /// [Optional] Purpose and reason for requesting the account opening.
@@ -147,6 +149,9 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String? taxResidence;
 
+  /// [Optional] Indicates client's self-declaration of FATCA.
+  final int? fatcaDeclaration;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -181,6 +186,7 @@ class NewAccountRealRequest extends Request {
         'tax_residence': taxResidence,
         'passthrough': passthrough,
         'req_id': reqId,
+        'fatca_declaration': fatcaDeclaration,
       };
 
   /// Creates a copy of instance with given parameters
@@ -213,6 +219,7 @@ class NewAccountRealRequest extends Request {
     String? taxResidence,
     Map<String, dynamic>? passthrough,
     int? reqId,
+    int? fatcaDeclaration,
   }) =>
       NewAccountRealRequest(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
@@ -243,6 +250,7 @@ class NewAccountRealRequest extends Request {
         taxResidence: taxResidence ?? this.taxResidence,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
       );
 
   /// Override equatable class.
