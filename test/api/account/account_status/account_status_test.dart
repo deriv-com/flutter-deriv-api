@@ -11,7 +11,7 @@ void main() {
 
   test('Account Status Test', () async {
     final GetAccountStatusResponse accountStatus =
-        await GetAccountStatusResponse.fetchAccountStatus(loginId: 'CR12345');
+        await GetAccountStatusResponse.fetchAccountStatus();
 
     expect(accountStatus.getAccountStatus?.currencyConfig.length, 1);
     expect(accountStatus.getAccountStatus?.currencyConfig.keys.first, 'USD');
