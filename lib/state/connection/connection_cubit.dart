@@ -86,6 +86,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Stream subscription for connectivity.
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
 
+  BaseAPI get api => _api as BinaryAPI;
+
   /// Reconnect to Websocket.
   Future<void> reconnect({
     ConnectionInformation? connectionInformation,
