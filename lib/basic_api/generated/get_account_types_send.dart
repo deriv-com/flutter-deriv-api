@@ -10,6 +10,7 @@ class GetAccountTypesRequest extends Request {
   const GetAccountTypesRequest({
     this.company,
     this.getAccountTypes = true,
+    this.loginid,
     super.msgType = 'get_account_types',
     super.passthrough,
     super.reqId,
@@ -22,6 +23,7 @@ class GetAccountTypesRequest extends Request {
         getAccountTypes: json['get_account_types'] == null
             ? null
             : json['get_account_types'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -32,6 +34,9 @@ class GetAccountTypesRequest extends Request {
   /// Must be `true`
   final bool? getAccountTypes;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -41,6 +46,7 @@ class GetAccountTypesRequest extends Request {
             : getAccountTypes!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,12 +56,14 @@ class GetAccountTypesRequest extends Request {
   GetAccountTypesRequest copyWith({
     String? company,
     bool? getAccountTypes,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetAccountTypesRequest(
         company: company ?? this.company,
         getAccountTypes: getAccountTypes ?? this.getAccountTypes,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

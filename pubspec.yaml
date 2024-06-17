@@ -16,9 +16,8 @@ dependencies:
 
   deriv_dependency_injector:
     git:
-      url: git@github.com:regentmarkets/flutter-deriv-packages.git
-      path: packages/deriv_dependency_injector
-      ref: flutter-version-3
+      url: https://github.com/deriv-com/deriv-dependency-injector.git
+      ref: master
 
   build: ^2.3.1
   dart_style: ^2.3.0
@@ -29,10 +28,13 @@ dependencies:
   meta: ^1.8.0
   recase: ^4.0.0
   rxdart: ^0.27.7
-  web_socket_channel: ^2.3.0
   device_info_plus: ^8.1.0
+  flutter_system_proxy:
+    git:
+      url: git@github.com:BrowserStackCE/flutter_system_proxy.git
+      ref: main
   package_info_plus: ^4.2.0
-  connectivity_plus: ^3.0.3
+  connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:

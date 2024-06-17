@@ -8,23 +8,25 @@ import '../request.dart';
 class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest.
   const RealityCheckRequest({
+    this.loginid,
     this.realityCheck = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'reality_check',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'reality_check',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       RealityCheckRequest(
+        loginid: json['loginid'] as String?,
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? realityCheck;
@@ -32,6 +34,7 @@ class RealityCheckRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'reality_check': realityCheck == null
             ? null
             : realityCheck!
@@ -44,11 +47,13 @@ class RealityCheckRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   RealityCheckRequest copyWith({
+    String? loginid,
     bool? realityCheck,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       RealityCheckRequest(
+        loginid: loginid ?? this.loginid,
         realityCheck: realityCheck ?? this.realityCheck,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

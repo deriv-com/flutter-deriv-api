@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
@@ -14,6 +13,10 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/new_account_wallet_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_payments_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_list_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_options_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/crypto_config_response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 
@@ -104,6 +107,7 @@ import 'mock_data/p2p/p2p_order_confirm_response.dart';
 import 'mock_data/p2p/p2p_order_create_response.dart';
 import 'mock_data/p2p/p2p_order_info_response.dart';
 import 'mock_data/p2p/p2p_order_list_response.dart';
+import 'mock_data/trading_platform/trading_platform_password_reset_response.dart';
 import 'mock_data/user/get_financial_assessment_response.dart';
 import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
@@ -130,7 +134,10 @@ class MockAPI extends BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<T> call<T>({required Request request}) =>
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) =>
       _getFutureResponse<T>(request);
 
   @override
@@ -223,6 +230,8 @@ class MockAPI extends BaseAPI {
         return copyTradingListResponse;
       case 'copytrading_statistics':
         return copyTradingStatisticsResponse;
+      case 'crypto_config':
+        return cryptoConfigResponse;
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
@@ -361,6 +370,8 @@ class MockAPI extends BaseAPI {
         return topUpVirtualResponse;
       case 'trading_durations':
         return tradingDurationsResponse;
+      case 'trading_platform_password_reset':
+        return tradingPlatformPasswordResetResponse;
       case 'trading_times':
         return tradingTimesResponse;
       case 'transaction':
@@ -373,6 +384,12 @@ class MockAPI extends BaseAPI {
         return websiteStatusResponse;
       case 'wallet_migration':
         return walletMigrationResponse;
+      case 'passkeys_register_options':
+        return passkeysRegisterOptionsResponse;
+      case 'passkeys_register':
+        return passkeysRegisterResponse;
+      case 'passkeys_list':
+        return passkeysListResponse;
 
       default:
         throw APIManagerException(

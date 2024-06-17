@@ -25,10 +25,8 @@ abstract class Mt5PasswordResetResponseModel {
 class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Initializes Mt5 password reset response class.
   const Mt5PasswordResetResponse({
-    int? mt5PasswordReset,
-  }) : super(
-          mt5PasswordReset: mt5PasswordReset,
-        );
+    super.mt5PasswordReset,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordResetResponse.fromJson(

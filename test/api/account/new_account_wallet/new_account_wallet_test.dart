@@ -17,6 +17,11 @@ void main() {
       request: const NewAccountWalletRequest(
         accountType: 'crypto',
         currency: 'BTC',
+        acceptRisk: null,
+        financialAssessment: {},
+        salutation: '',
+        taxIdentificationNumber: '',
+        taxResidence: '',
       ),
     );
 

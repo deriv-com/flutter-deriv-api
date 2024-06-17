@@ -22,10 +22,17 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
     this.enableDebug = false,
+        // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
     this.printResponse = false,
+    this.proxyAwareConnection = false,
   }) : super(const ConnectionInitialState()) {
     APIInitializer().initialize(
-      api: api ?? BinaryAPI(key: _key, enableDebug: enableDebug),
+      api: api ??
+          BinaryAPI(
+            key: _key,
+            proxyAwareConnection: proxyAwareConnection,
+            enableDebug: enableDebug,
+          ),
     );
 
     _api = Injector()<BaseAPI>();
@@ -51,6 +58,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Default value is `false`.
   final bool printResponse;
 
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
+
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
 
@@ -67,15 +77,21 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets endpoint of websocket.
   static String get endpoint => _connectionInformation.endpoint;
 
+  /// Gets auth endpoint of websocket.
+  static String get authEndpoint => _connectionInformation.authEndpoint;
+
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
-  /// Streamsubscription for connectivity.
+  /// Stream subscription for connectivity.
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
 
   /// Reconnect to Websocket.
-  Future<void> reconnect({ConnectionInformation? connectionInformation}) async {
-    emit(const ConnectionDisconnectedState());
+  Future<void> reconnect({
+    ConnectionInformation? connectionInformation,
+    bool isChangingLanguage = false,
+  }) async {
+    emit(ConnectionDisconnectedState(isChangingLanguage: isChangingLanguage));
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;

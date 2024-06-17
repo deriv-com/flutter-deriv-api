@@ -18,7 +18,7 @@ abstract class ExchangeRatesResponseModel {
     this.subscription,
   });
 
-  /// Exchange rate values from base to all other currencies
+  /// Exchange rate values from base to target currency
   final ExchangeRates? exchangeRates;
 
   /// For subscription requests only.
@@ -29,12 +29,9 @@ abstract class ExchangeRatesResponseModel {
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes Exchange rates response class.
   const ExchangeRatesResponse({
-    ExchangeRates? exchangeRates,
-    Subscription? subscription,
-  }) : super(
-          exchangeRates: exchangeRates,
-          subscription: subscription,
-        );
+    super.exchangeRates,
+    super.subscription,
+  });
 
   /// Creates an instance from JSON.
   factory ExchangeRatesResponse.fromJson(
@@ -106,7 +103,6 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
@@ -122,7 +118,7 @@ abstract class ExchangeRatesModel {
   /// Date retrieval epoch time represented as an integer number
   final DateTime? date;
 
-  /// Rates of exchanging a unit of base currency into the target currencies
+  /// Rate of exchanging a unit of base currency into a target currency
   final Map<String, double>? rates;
 }
 
@@ -130,14 +126,10 @@ abstract class ExchangeRatesModel {
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes Exchange rates class.
   const ExchangeRates({
-    String? baseCurrency,
-    DateTime? date,
-    Map<String, double>? rates,
-  }) : super(
-          baseCurrency: baseCurrency,
-          date: date,
-          rates: rates,
-        );
+    super.baseCurrency,
+    super.date,
+    super.rates,
+  });
 
   /// Creates an instance from JSON.
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
@@ -176,7 +168,6 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
@@ -192,10 +183,8 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes Subscription class.
   const Subscription({
-    required String id,
-  }) : super(
-          id: id,
-        );
+    required super.id,
+  });
 
   /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(

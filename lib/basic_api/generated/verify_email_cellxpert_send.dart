@@ -8,26 +8,28 @@ import '../request.dart';
 class VerifyEmailCellxpertRequest extends Request {
   /// Initialize VerifyEmailCellxpertRequest.
   const VerifyEmailCellxpertRequest({
+    this.loginid,
     required this.type,
     this.urlParameters,
     required this.verifyEmailCellxpert,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'verify_email_cellxpert',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'verify_email_cellxpert',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory VerifyEmailCellxpertRequest.fromJson(Map<String, dynamic> json) =>
       VerifyEmailCellxpertRequest(
+        loginid: json['loginid'] as String?,
         type: json['type'] as String?,
         urlParameters: json['url_parameters'] as Map<String, dynamic>?,
         verifyEmailCellxpert: json['verify_email_cellxpert'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Purpose of the email verification call.
   final String? type;
@@ -41,6 +43,7 @@ class VerifyEmailCellxpertRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'type': type,
         'url_parameters': urlParameters,
         'verify_email_cellxpert': verifyEmailCellxpert,
@@ -51,6 +54,7 @@ class VerifyEmailCellxpertRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailCellxpertRequest copyWith({
+    String? loginid,
     String? type,
     Map<String, dynamic>? urlParameters,
     String? verifyEmailCellxpert,
@@ -58,6 +62,7 @@ class VerifyEmailCellxpertRequest extends Request {
     int? reqId,
   }) =>
       VerifyEmailCellxpertRequest(
+        loginid: loginid ?? this.loginid,
         type: type ?? this.type,
         urlParameters: urlParameters ?? this.urlParameters,
         verifyEmailCellxpert: verifyEmailCellxpert ?? this.verifyEmailCellxpert,

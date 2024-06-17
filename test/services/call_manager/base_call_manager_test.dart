@@ -50,7 +50,10 @@ class MockCallManager extends BaseCallManager<MockResponse> {
   MockCallManager(BaseAPI api) : super(api);
 
   @override
-  MockResponse call({required Request request}) {
+  MockResponse call({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) {
     throw UnimplementedError();
   }
 }
@@ -60,7 +63,11 @@ class MockAPI implements BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<T> call<T>({required Request request}) => throw UnimplementedError();
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) =>
+      throw UnimplementedError();
 
   @override
   Future<void> connect(

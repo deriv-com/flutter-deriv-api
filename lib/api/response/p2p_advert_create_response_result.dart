@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
 
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_receive.dart';
@@ -25,10 +25,8 @@ abstract class P2pAdvertCreateResponseModel {
 class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
   /// Initializes P2p advert create response class.
   const P2pAdvertCreateResponse({
-    P2pAdvertCreate? p2pAdvertCreate,
-  }) : super(
-          p2pAdvertCreate: p2pAdvertCreate,
-        );
+    super.p2pAdvertCreate,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertCreateResponse.fromJson(
@@ -185,6 +183,8 @@ final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
+  "advertiser_block_trade_ineligible":
+      VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
@@ -212,6 +212,9 @@ enum VisibilityStatusItemEnum {
   /// advertiser_balance.
   advertiserBalance,
 
+  /// advertiser_block_trade_ineligible.
+  advertiserBlockTradeIneligible,
+
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
@@ -229,6 +232,7 @@ abstract class P2pAdvertCreateModel {
     required this.rateType,
     required this.rateDisplay,
     required this.rate,
+    required this.orderExpiryPeriod,
     required this.minOrderAmountLimitDisplay,
     required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
@@ -245,6 +249,7 @@ abstract class P2pAdvertCreateModel {
     required this.createdTime,
     required this.country,
     required this.counterpartyType,
+    required this.blockTrade,
     required this.amountDisplay,
     required this.amount,
     required this.advertiserDetails,
@@ -253,6 +258,10 @@ abstract class P2pAdvertCreateModel {
     this.contactInfo,
     this.effectiveRate,
     this.effectiveRateDisplay,
+    this.eligibleCountries,
+    this.minCompletionRate,
+    this.minJoinDays,
+    this.minRating,
     this.paymentInfo,
     this.paymentMethod,
     this.paymentMethodDetails,
@@ -279,6 +288,9 @@ abstract class P2pAdvertCreateModel {
 
   /// Conversion rate from advertiser's account currency to `local_currency`. An absolute rate value (fixed), or percentage offset from current market rate (floating).
   final double rate;
+
+  /// Expiry period (seconds) for order created against this ad.
+  final int orderExpiryPeriod;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountLimitDisplay;
@@ -328,6 +340,9 @@ abstract class P2pAdvertCreateModel {
   /// Type of transaction from the opposite party's perspective.
   final CounterpartyTypeEnum counterpartyType;
 
+  /// Indicates if this is block trade advert or not.
+  final bool blockTrade;
+
   /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String amountDisplay;
 
@@ -351,6 +366,18 @@ abstract class P2pAdvertCreateModel {
 
   /// Conversion rate from account currency to local currency, using current market rate if applicable, formatted to appropriate decimal places.
   final String? effectiveRateDisplay;
+
+  /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders against this advert.
+  final List<String>? eligibleCountries;
+
+  /// Counterparties who have a 30 day completion rate less than this value are not allowed to place orders against this advert.
+  final double? minCompletionRate;
+
+  /// Counterparties who joined less than this number of days ago are not allowed to place orders against this advert.
+  final int? minJoinDays;
+
+  /// Counterparties who have an average rating less than this value are not allowed to place orders against this advert.
+  final double? minRating;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
@@ -378,6 +405,7 @@ abstract class P2pAdvertCreateModel {
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
   final List<VisibilityStatusItemEnum>? visibilityStatus;
@@ -387,82 +415,50 @@ abstract class P2pAdvertCreateModel {
 class P2pAdvertCreate extends P2pAdvertCreateModel {
   /// Initializes P2p advert create class.
   const P2pAdvertCreate({
-    required String accountCurrency,
-    required int activeOrders,
-    required AdvertiserDetails advertiserDetails,
-    required double amount,
-    required String amountDisplay,
-    required CounterpartyTypeEnum counterpartyType,
-    required String country,
-    required DateTime createdTime,
-    required String description,
-    required String id,
-    required bool isActive,
-    required bool isVisible,
-    required String localCurrency,
-    required double maxOrderAmount,
-    required String maxOrderAmountDisplay,
-    required double maxOrderAmountLimit,
-    required String maxOrderAmountLimitDisplay,
-    required double minOrderAmount,
-    required String minOrderAmountDisplay,
-    required double minOrderAmountLimit,
-    required String minOrderAmountLimitDisplay,
-    required double rate,
-    required String rateDisplay,
-    required RateTypeEnum rateType,
-    required double remainingAmount,
-    required String remainingAmountDisplay,
-    required P2pAdvertCreateTypeEnum type,
-    String? contactInfo,
-    double? effectiveRate,
-    String? effectiveRateDisplay,
-    String? paymentInfo,
-    String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
-    List<String>? paymentMethodNames,
-    double? price,
-    String? priceDisplay,
-    List<VisibilityStatusItemEnum>? visibilityStatus,
-  }) : super(
-          accountCurrency: accountCurrency,
-          activeOrders: activeOrders,
-          advertiserDetails: advertiserDetails,
-          amount: amount,
-          amountDisplay: amountDisplay,
-          counterpartyType: counterpartyType,
-          country: country,
-          createdTime: createdTime,
-          description: description,
-          id: id,
-          isActive: isActive,
-          isVisible: isVisible,
-          localCurrency: localCurrency,
-          maxOrderAmount: maxOrderAmount,
-          maxOrderAmountDisplay: maxOrderAmountDisplay,
-          maxOrderAmountLimit: maxOrderAmountLimit,
-          maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
-          minOrderAmount: minOrderAmount,
-          minOrderAmountDisplay: minOrderAmountDisplay,
-          minOrderAmountLimit: minOrderAmountLimit,
-          minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
-          rate: rate,
-          rateDisplay: rateDisplay,
-          rateType: rateType,
-          remainingAmount: remainingAmount,
-          remainingAmountDisplay: remainingAmountDisplay,
-          type: type,
-          contactInfo: contactInfo,
-          effectiveRate: effectiveRate,
-          effectiveRateDisplay: effectiveRateDisplay,
-          paymentInfo: paymentInfo,
-          paymentMethod: paymentMethod,
-          paymentMethodDetails: paymentMethodDetails,
-          paymentMethodNames: paymentMethodNames,
-          price: price,
-          priceDisplay: priceDisplay,
-          visibilityStatus: visibilityStatus,
-        );
+    required super.accountCurrency,
+    required super.activeOrders,
+    required super.advertiserDetails,
+    required super.amount,
+    required super.amountDisplay,
+    required super.blockTrade,
+    required super.counterpartyType,
+    required super.country,
+    required super.createdTime,
+    required super.description,
+    required super.id,
+    required super.isActive,
+    required super.isVisible,
+    required super.localCurrency,
+    required super.maxOrderAmount,
+    required super.maxOrderAmountDisplay,
+    required super.maxOrderAmountLimit,
+    required super.maxOrderAmountLimitDisplay,
+    required super.minOrderAmount,
+    required super.minOrderAmountDisplay,
+    required super.minOrderAmountLimit,
+    required super.minOrderAmountLimitDisplay,
+    required super.orderExpiryPeriod,
+    required super.rate,
+    required super.rateDisplay,
+    required super.rateType,
+    required super.remainingAmount,
+    required super.remainingAmountDisplay,
+    required super.type,
+    super.contactInfo,
+    super.effectiveRate,
+    super.effectiveRateDisplay,
+    super.eligibleCountries,
+    super.minCompletionRate,
+    super.minJoinDays,
+    super.minRating,
+    super.paymentInfo,
+    super.paymentMethod,
+    super.paymentMethodDetails,
+    super.paymentMethodNames,
+    super.price,
+    super.priceDisplay,
+    super.visibilityStatus,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertCreate.fromJson(Map<String, dynamic> json) =>
@@ -473,6 +469,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
             AdvertiserDetails.fromJson(json['advertiser_details']),
         amount: getDouble(json['amount'])!,
         amountDisplay: json['amount_display'],
+        blockTrade: getBool(json['block_trade'])!,
         counterpartyType:
             counterpartyTypeEnumMapper[json['counterparty_type']]!,
         country: json['country'],
@@ -490,6 +487,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
+        orderExpiryPeriod: json['order_expiry_period'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
         rateType: rateTypeEnumMapper[json['rate_type']]!,
@@ -499,6 +497,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         contactInfo: json['contact_info'],
         effectiveRate: getDouble(json['effective_rate']),
         effectiveRateDisplay: json['effective_rate_display'],
+        eligibleCountries: json['eligible_countries'] == null
+            ? null
+            : List<String>.from(
+                json['eligible_countries']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        minCompletionRate: getDouble(json['min_completion_rate']),
+        minJoinDays: json['min_join_days'],
+        minRating: getDouble(json['min_rating']),
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
@@ -542,6 +550,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
 
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
+    resultMap['block_trade'] = blockTrade;
     resultMap['counterparty_type'] = counterpartyTypeEnumMapper.entries
         .firstWhere((MapEntry<String, CounterpartyTypeEnum> entry) =>
             entry.value == counterpartyType)
@@ -561,6 +570,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['min_order_amount_limit'] = minOrderAmountLimit;
     resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
+    resultMap['order_expiry_period'] = orderExpiryPeriod;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
     resultMap['rate_type'] = rateTypeEnumMapper.entries
@@ -576,6 +586,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     resultMap['contact_info'] = contactInfo;
     resultMap['effective_rate'] = effectiveRate;
     resultMap['effective_rate_display'] = effectiveRateDisplay;
+    if (eligibleCountries != null) {
+      resultMap['eligible_countries'] = eligibleCountries!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['min_completion_rate'] = minCompletionRate;
+    resultMap['min_join_days'] = minJoinDays;
+    resultMap['min_rating'] = minRating;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
     resultMap['payment_method_details'] = paymentMethodDetails;
@@ -611,6 +631,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     AdvertiserDetails? advertiserDetails,
     double? amount,
     String? amountDisplay,
+    bool? blockTrade,
     CounterpartyTypeEnum? counterpartyType,
     String? country,
     DateTime? createdTime,
@@ -627,6 +648,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     String? minOrderAmountDisplay,
     double? minOrderAmountLimit,
     String? minOrderAmountLimitDisplay,
+    int? orderExpiryPeriod,
     double? rate,
     String? rateDisplay,
     RateTypeEnum? rateType,
@@ -636,6 +658,10 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     String? contactInfo,
     double? effectiveRate,
     String? effectiveRateDisplay,
+    List<String>? eligibleCountries,
+    double? minCompletionRate,
+    int? minJoinDays,
+    double? minRating,
     String? paymentInfo,
     String? paymentMethod,
     Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
@@ -650,6 +676,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
+        blockTrade: blockTrade ?? this.blockTrade,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         country: country ?? this.country,
         createdTime: createdTime ?? this.createdTime,
@@ -670,6 +697,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
         minOrderAmountLimitDisplay:
             minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
+        orderExpiryPeriod: orderExpiryPeriod ?? this.orderExpiryPeriod,
         rate: rate ?? this.rate,
         rateDisplay: rateDisplay ?? this.rateDisplay,
         rateType: rateType ?? this.rateType,
@@ -680,6 +708,10 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         contactInfo: contactInfo ?? this.contactInfo,
         effectiveRate: effectiveRate ?? this.effectiveRate,
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
+        eligibleCountries: eligibleCountries ?? this.eligibleCountries,
+        minCompletionRate: minCompletionRate ?? this.minCompletionRate,
+        minJoinDays: minJoinDays ?? this.minJoinDays,
+        minRating: minRating ?? this.minRating,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
@@ -749,32 +781,19 @@ abstract class AdvertiserDetailsModel {
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes Advertiser details class.
   const AdvertiserDetails({
-    required int completedOrdersCount,
-    required String id,
-    required bool isOnline,
-    required String name,
-    required int ratingCount,
-    String? firstName,
-    String? lastName,
-    DateTime? lastOnlineTime,
-    double? ratingAverage,
-    double? recommendedAverage,
-    int? recommendedCount,
-    double? totalCompletionRate,
-  }) : super(
-          completedOrdersCount: completedOrdersCount,
-          id: id,
-          isOnline: isOnline,
-          name: name,
-          ratingCount: ratingCount,
-          firstName: firstName,
-          lastName: lastName,
-          lastOnlineTime: lastOnlineTime,
-          ratingAverage: ratingAverage,
-          recommendedAverage: recommendedAverage,
-          recommendedCount: recommendedCount,
-          totalCompletionRate: totalCompletionRate,
-        );
+    required super.completedOrdersCount,
+    required super.id,
+    required super.isOnline,
+    required super.name,
+    required super.ratingCount,
+    super.firstName,
+    super.lastName,
+    super.lastOnlineTime,
+    super.ratingAverage,
+    super.recommendedAverage,
+    super.recommendedCount,
+    super.totalCompletionRate,
+  });
 
   /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
@@ -884,22 +903,14 @@ abstract class PaymentMethodDetailsPropertyModel {
 class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property class.
   const PaymentMethodDetailsProperty({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    required PaymentMethodDetailsPropertyTypeEnum type,
-    String? displayName,
-    List<String>? usedByAdverts,
-    List<String>? usedByOrders,
-  }) : super(
-          fields: fields,
-          isEnabled: isEnabled,
-          method: method,
-          type: type,
-          displayName: displayName,
-          usedByAdverts: usedByAdverts,
-          usedByOrders: usedByOrders,
-        );
+    required super.fields,
+    required super.isEnabled,
+    required super.method,
+    required super.type,
+    super.displayName,
+    super.usedByAdverts,
+    super.usedByOrders,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
@@ -1009,16 +1020,11 @@ abstract class FieldsPropertyModel {
 class FieldsProperty extends FieldsPropertyModel {
   /// Initializes Fields property class.
   const FieldsProperty({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-          value: value,
-        );
+    required super.displayName,
+    required super.required,
+    required super.type,
+    required super.value,
+  });
 
   /// Creates an instance from JSON.
   factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
