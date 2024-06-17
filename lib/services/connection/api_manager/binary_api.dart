@@ -4,7 +4,6 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -81,20 +80,8 @@ class BinaryAPI extends BaseAPI {
 
     _logDebugInfo('connecting to $uri.');
 
-
     if (!kIsWeb) {
       await _setUserAgent();
-    }
-
-    HttpClient? client;
-
-    if (proxyAwareConnection) {
-      final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
-          uri.toString().replaceAll('wss', 'https'));
-
-      client = HttpClient()
-        ..userAgent = WebSocket.userAgent
-        ..findProxy = (Uri uri) => proxy;
     }
 
     // Initialize connection to websocket server.
@@ -104,7 +91,7 @@ class BinaryAPI extends BaseAPI {
       _webSocketChannel = IOWebSocketChannel.connect(
         '$uri',
         pingInterval: _websocketConnectTimeOut,
-      customClient: client);
+      );
     }
 
     _webSocketListener = _webSocketChannel?.stream
