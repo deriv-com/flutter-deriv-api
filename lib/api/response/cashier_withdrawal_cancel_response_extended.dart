@@ -11,9 +11,9 @@ import 'package:flutter_deriv_api/basic_api/generated/cashier_withdrawal_cancel_
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
-/// The extended version of the [CashierWithdrawlCancelResponseExtended] class to implement
+/// The extended version of the [CashierWithdrawalCancelResponseExtended] class to implement
 /// the API call methods.
-class CashierWithdrawlCancelResponseExtended
+class CashierWithdrawalCancelResponseExtended
     extends CashierWithdrawalCancelResponseModel {
   static final BaseAPI _api = Injector()<BaseAPI>();
 
