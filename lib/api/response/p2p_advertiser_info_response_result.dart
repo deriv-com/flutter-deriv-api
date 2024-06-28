@@ -182,6 +182,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// P2p advertiser info model class.
 abstract class P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info model class .
@@ -711,6 +712,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+
 /// Block trade model class.
 abstract class BlockTradeModel {
   /// Initializes Block trade model class .
@@ -760,6 +762,7 @@ class BlockTrade extends BlockTradeModel {
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
       );
 }
+
 /// Upgradable daily limits model class.
 abstract class UpgradableDailyLimitsModel {
   /// Initializes Upgradable daily limits model class .
@@ -819,6 +822,7 @@ class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
         blockTrade: blockTrade ?? this.blockTrade,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

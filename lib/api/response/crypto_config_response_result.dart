@@ -51,6 +51,7 @@ class CryptoConfigResponse extends CryptoConfigResponseModel {
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
       );
 }
+
 /// Crypto config model class.
 abstract class CryptoConfigModel {
   /// Initializes Crypto config model class .
@@ -97,6 +98,7 @@ class CryptoConfig extends CryptoConfigModel {
         currenciesConfig: currenciesConfig ?? this.currenciesConfig,
       );
 }
+
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .

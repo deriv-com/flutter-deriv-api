@@ -74,6 +74,7 @@ class TradingPlatformAssetListingResponse
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Trading platform asset listing property model class.
 abstract class TradingPlatformAssetListingPropertyModel {
   /// Initializes Trading platform asset listing property model class .
@@ -129,6 +130,7 @@ class TradingPlatformAssetListingProperty
         assets: assets ?? this.assets,
       );
 }
+
 /// Assets item model class.
 abstract class AssetsItemModel {
   /// Initializes Assets item model class .
@@ -232,6 +234,7 @@ class AssetsItem extends AssetsItemModel {
         symbol: symbol ?? this.symbol,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

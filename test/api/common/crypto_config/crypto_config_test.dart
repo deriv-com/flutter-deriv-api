@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/response/crypto_config_response_extended.dart';
 import 'package:flutter_deriv_api/api/response/crypto_config_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/crypto_config_send.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import '../../../services/call_manager/base_call_manager_test.dart';
 

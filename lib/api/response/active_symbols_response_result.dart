@@ -86,6 +86,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
+
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
   /// Initializes Active symbols item model class .

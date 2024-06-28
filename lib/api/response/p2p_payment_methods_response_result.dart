@@ -121,6 +121,7 @@ enum P2pPaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
+
 /// P2p payment methods property model class.
 abstract class P2pPaymentMethodsPropertyModel {
   /// Initializes P2p payment methods property model class .
@@ -189,6 +190,7 @@ class P2pPaymentMethodsProperty extends P2pPaymentMethodsPropertyModel {
         type: type ?? this.type,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .

@@ -87,6 +87,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
             contractUpdateHistory ?? this.contractUpdateHistory,
       );
 }
+
 /// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel {
   /// Initializes Contract update history item model class .

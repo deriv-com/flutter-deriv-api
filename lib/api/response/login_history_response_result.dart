@@ -87,6 +87,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
         loginHistory: loginHistory ?? this.loginHistory,
       );
 }
+
 /// Login history item model class.
 abstract class LoginHistoryItemModel {
   /// Initializes Login history item model class .

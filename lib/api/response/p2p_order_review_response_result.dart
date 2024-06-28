@@ -88,6 +88,7 @@ class P2pOrderReviewResponse extends P2pOrderReviewResponseModel {
         p2pOrderReview: p2pOrderReview ?? this.p2pOrderReview,
       );
 }
+
 /// P2p order review model class.
 abstract class P2pOrderReviewModel {
   /// Initializes P2p order review model class .

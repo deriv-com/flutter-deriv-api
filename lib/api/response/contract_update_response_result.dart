@@ -76,6 +76,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
 }
+
 /// Contract update model class.
 abstract class ContractUpdateModel {
   /// Initializes Contract update model class .
@@ -133,6 +134,7 @@ class ContractUpdate extends ContractUpdateModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -207,6 +209,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .

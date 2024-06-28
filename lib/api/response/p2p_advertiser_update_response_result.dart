@@ -89,6 +89,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
 }
+
 /// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel {
   /// Initializes P2p advertiser update model class .
@@ -591,6 +592,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+
 /// Block trade model class.
 abstract class BlockTradeModel {
   /// Initializes Block trade model class .
@@ -640,6 +642,7 @@ class BlockTrade extends BlockTradeModel {
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
       );
 }
+
 /// Upgradable daily limits model class.
 abstract class UpgradableDailyLimitsModel {
   /// Initializes Upgradable daily limits model class .

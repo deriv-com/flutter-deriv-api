@@ -236,6 +236,7 @@ enum Mt5AccountTypeEnum {
   /// standard.
   standard,
 }
+
 /// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .

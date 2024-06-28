@@ -51,6 +51,7 @@ class AccountStatisticsResponse extends AccountStatisticsResponseModel {
         accountStatistics: accountStatistics ?? this.accountStatistics,
       );
 }
+
 /// Account statistics model class.
 abstract class AccountStatisticsModel {
   /// Initializes Account statistics model class .

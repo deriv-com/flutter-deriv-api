@@ -51,6 +51,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
   Future<ActiveSymbolsResponse> _fetchActiveSymbols() async =>
       ActiveSymbolsResponse.fetchActiveSymbols(const ActiveSymbolsRequest(
         activeSymbols: 'brief',
-        productType: 'basic', landingCompany: '',
+        productType: 'basic',
+        landingCompany: '',
       ));
 }

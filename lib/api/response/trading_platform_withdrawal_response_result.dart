@@ -54,6 +54,7 @@ class TradingPlatformWithdrawalResponse
             tradingPlatformWithdrawal ?? this.tradingPlatformWithdrawal,
       );
 }
+
 /// Trading platform withdrawal model class.
 abstract class TradingPlatformWithdrawalModel {
   /// Initializes Trading platform withdrawal model class .

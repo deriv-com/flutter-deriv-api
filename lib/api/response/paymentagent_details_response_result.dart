@@ -3,6 +3,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// Paymentagent details response model class.
 abstract class PaymentagentDetailsResponseModel {
   /// Initializes Paymentagent details response model class .
@@ -50,6 +51,7 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
         paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
       );
 }
+
 /// Paymentagent details model class.
 abstract class PaymentagentDetailsModel {
   /// Initializes Paymentagent details model class .
@@ -294,6 +296,7 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         urls: urls ?? this.urls,
       );
 }
+
 /// Phone numbers item model class.
 abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
@@ -335,6 +338,7 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
 }
+
 /// Supported payment methods item model class.
 abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
@@ -376,6 +380,7 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Urls item model class.
 abstract class UrlsItemModel {
   /// Initializes Urls item model class .

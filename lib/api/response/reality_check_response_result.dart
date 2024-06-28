@@ -81,6 +81,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
         realityCheck: realityCheck ?? this.realityCheck,
       );
 }
+
 /// Reality check model class.
 abstract class RealityCheckModel {
   /// Initializes Reality check model class .

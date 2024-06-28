@@ -130,6 +130,7 @@ enum PaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
+
 /// P2p country list property model class.
 abstract class P2pCountryListPropertyModel {
   /// Initializes P2p country list property model class .
@@ -240,6 +241,7 @@ class P2pCountryListProperty extends P2pCountryListPropertyModel {
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
+
 /// Payment methods property model class.
 abstract class PaymentMethodsPropertyModel {
   /// Initializes Payment methods property model class .
@@ -311,6 +313,7 @@ class PaymentMethodsProperty extends PaymentMethodsPropertyModel {
         type: type ?? this.type,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .

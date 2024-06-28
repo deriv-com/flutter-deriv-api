@@ -10,9 +10,6 @@ environment:
   sdk: ">=3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   deriv_dependency_injector:
     git:
       url: https://github.com/deriv-com/deriv-dependency-injector.git
@@ -37,9 +34,6 @@ dependencies:
   web_socket_channel: ^2.4.5
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
   bloc_test: ^9.1.1
   code_builder: ^4.1.0
   build_config: ^1.0.0

@@ -82,6 +82,7 @@ class GetFinancialAssessmentResponse
             getFinancialAssessment ?? this.getFinancialAssessment,
       );
 }
+
 /// Get financial assessment model class.
 abstract class GetFinancialAssessmentModel {
   /// Initializes Get financial assessment model class .

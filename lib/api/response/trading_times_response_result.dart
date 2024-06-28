@@ -113,6 +113,7 @@ enum TradingDaysItemEnum {
   /// Sat.
   sat,
 }
+
 /// Trading times model class.
 abstract class TradingTimesModel {
   /// Initializes Trading times model class .
@@ -161,6 +162,7 @@ class TradingTimes extends TradingTimesModel {
         markets: markets ?? this.markets,
       );
 }
+
 /// Markets item model class.
 abstract class MarketsItemModel {
   /// Initializes Markets item model class .
@@ -222,6 +224,7 @@ class MarketsItem extends MarketsItemModel {
         submarkets: submarkets ?? this.submarkets,
       );
 }
+
 /// Submarkets item model class.
 abstract class SubmarketsItemModel {
   /// Initializes Submarkets item model class .
@@ -283,6 +286,7 @@ class SubmarketsItem extends SubmarketsItemModel {
         symbols: symbols ?? this.symbols,
       );
 }
+
 /// Symbols item model class.
 abstract class SymbolsItemModel {
   /// Initializes Symbols item model class .

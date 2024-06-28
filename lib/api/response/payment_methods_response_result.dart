@@ -83,6 +83,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
+
 /// Payment methods item model class.
 abstract class PaymentMethodsItemModel {
   /// Initializes Payment methods item model class .
@@ -262,6 +263,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawalTime: withdrawalTime ?? this.withdrawalTime,
       );
 }
+
 /// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel {
   /// Initializes Deposit limits property model class .
@@ -312,6 +314,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         min: min ?? this.min,
       );
 }
+
 /// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel {
   /// Initializes Withdraw limits property model class .
