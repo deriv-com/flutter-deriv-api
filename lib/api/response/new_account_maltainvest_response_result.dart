@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 /// New account maltainvest response model class.
 abstract class NewAccountMaltainvestResponseModel {
   /// Initializes New account maltainvest response model class .
@@ -51,6 +50,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
             newAccountMaltainvest ?? this.newAccountMaltainvest,
       );
 }
+
 /// New account maltainvest model class.
 abstract class NewAccountMaltainvestModel {
   /// Initializes New account maltainvest model class .

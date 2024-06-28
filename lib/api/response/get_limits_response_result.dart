@@ -77,6 +77,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
         getLimits: getLimits ?? this.getLimits,
       );
 }
+
 /// Get limits model class.
 abstract class GetLimitsModel {
   /// Initializes Get limits model class .
@@ -285,6 +286,7 @@ class GetLimits extends GetLimitsModel {
             this.withdrawalSinceInceptionMonetary,
       );
 }
+
 /// Lifetime transfers model class.
 abstract class LifetimeTransfersModel {
   /// Initializes Lifetime transfers model class .
@@ -356,6 +358,7 @@ class LifetimeTransfers extends LifetimeTransfersModel {
         fiatToCrypto: fiatToCrypto ?? this.fiatToCrypto,
       );
 }
+
 /// Crypto to crypto model class.
 abstract class CryptoToCryptoModel {
   /// Initializes Crypto to crypto model class .
@@ -405,6 +408,7 @@ class CryptoToCrypto extends CryptoToCryptoModel {
         available: available ?? this.available,
       );
 }
+
 /// Crypto to fiat model class.
 abstract class CryptoToFiatModel {
   /// Initializes Crypto to fiat model class .
@@ -454,6 +458,7 @@ class CryptoToFiat extends CryptoToFiatModel {
         available: available ?? this.available,
       );
 }
+
 /// Fiat to crypto model class.
 abstract class FiatToCryptoModel {
   /// Initializes Fiat to crypto model class .
@@ -503,6 +508,7 @@ class FiatToCrypto extends FiatToCryptoModel {
         available: available ?? this.available,
       );
 }
+
 /// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel {
   /// Initializes Market specific property item model class .
@@ -580,6 +586,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
 }
+
 /// Payout per symbol model class.
 abstract class PayoutPerSymbolModel {
   /// Initializes Payout per symbol model class .
@@ -633,6 +640,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
         nonAtm: nonAtm ?? this.nonAtm,
       );
 }
+
 /// Non atm model class.
 abstract class NonAtmModel {
   /// Initializes Non atm model class .

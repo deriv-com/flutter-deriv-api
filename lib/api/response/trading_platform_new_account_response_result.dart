@@ -197,6 +197,7 @@ enum SubAccountTypeEnum {
   /// swap_free.
   swapFree,
 }
+
 /// Trading platform new account model class.
 abstract class TradingPlatformNewAccountModel {
   /// Initializes Trading platform new account model class .

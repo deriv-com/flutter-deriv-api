@@ -86,6 +86,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
         oauthApps: oauthApps ?? this.oauthApps,
       );
 }
+
 /// Oauth apps item model class.
 abstract class OauthAppsItemModel {
   /// Initializes Oauth apps item model class .

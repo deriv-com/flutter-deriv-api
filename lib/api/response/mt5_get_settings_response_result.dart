@@ -225,6 +225,7 @@ enum SubAccountTypeEnum {
   /// standard.
   standard,
 }
+
 /// Mt5 get settings model class.
 abstract class Mt5GetSettingsModel {
   /// Initializes Mt5 get settings model class .
@@ -492,6 +493,7 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         zipCode: zipCode ?? this.zipCode,
       );
 }
+
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -559,6 +561,7 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .

@@ -93,6 +93,7 @@ class P2pAdvertiserRelationsResponse
             p2pAdvertiserRelations ?? this.p2pAdvertiserRelations,
       );
 }
+
 /// P2p advertiser relations model class.
 abstract class P2pAdvertiserRelationsModel {
   /// Initializes P2p advertiser relations model class .
@@ -160,6 +161,7 @@ class P2pAdvertiserRelations extends P2pAdvertiserRelationsModel {
         favouriteAdvertisers: favouriteAdvertisers ?? this.favouriteAdvertisers,
       );
 }
+
 /// Blocked advertisers item model class.
 abstract class BlockedAdvertisersItemModel {
   /// Initializes Blocked advertisers item model class .
@@ -219,6 +221,7 @@ class BlockedAdvertisersItem extends BlockedAdvertisersItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Favourite advertisers item model class.
 abstract class FavouriteAdvertisersItemModel {
   /// Initializes Favourite advertisers item model class .

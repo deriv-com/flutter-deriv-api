@@ -101,6 +101,7 @@ enum TypeEnum {
   /// pa_client.
   paClient,
 }
+
 /// Get available accounts to transfer model class.
 abstract class GetAvailableAccountsToTransferModel {
   /// Initializes Get available accounts to transfer model class .
@@ -153,6 +154,7 @@ class GetAvailableAccountsToTransfer
         accountList: accountList ?? this.accountList,
       );
 }
+
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .

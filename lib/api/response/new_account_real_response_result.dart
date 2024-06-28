@@ -77,6 +77,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
 }
+
 /// New account real model class.
 abstract class NewAccountRealModel {
   /// Initializes New account real model class .

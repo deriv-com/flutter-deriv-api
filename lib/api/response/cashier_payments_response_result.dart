@@ -137,6 +137,7 @@ enum TransactionTypeEnum {
   /// withdrawal.
   withdrawal,
 }
+
 /// Cashier payments model class.
 abstract class CashierPaymentsModel {
   /// Initializes Cashier payments model class .
@@ -190,6 +191,7 @@ class CashierPayments extends CashierPaymentsModel {
         crypto: crypto ?? this.crypto,
       );
 }
+
 /// Crypto item model class.
 abstract class CryptoItemModel {
   /// Initializes Crypto item model class .
@@ -335,6 +337,7 @@ class CryptoItem extends CryptoItemModel {
         transactionUrl: transactionUrl ?? this.transactionUrl,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

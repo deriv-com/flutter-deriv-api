@@ -94,6 +94,7 @@ class SellResponse extends SellResponseModel {
         sell: sell ?? this.sell,
       );
 }
+
 /// Sell model class.
 abstract class SellModel {
   /// Initializes Sell model class .

@@ -51,6 +51,7 @@ class AccountSecurityResponse extends AccountSecurityResponseModel {
         accountSecurity: accountSecurity ?? this.accountSecurity,
       );
 }
+
 /// Account security model class.
 abstract class AccountSecurityModel {
   /// Initializes Account security model class .
@@ -94,6 +95,7 @@ class AccountSecurity extends AccountSecurityModel {
         totp: totp ?? this.totp,
       );
 }
+
 /// Totp model class.
 abstract class TotpModel {
   /// Initializes Totp model class .

@@ -51,6 +51,7 @@ class GetAccountTypesResponse extends GetAccountTypesResponseModel {
         getAccountTypes: getAccountTypes ?? this.getAccountTypes,
       );
 }
+
 /// Get account types model class.
 abstract class GetAccountTypesModel {
   /// Initializes Get account types model class .
@@ -111,6 +112,7 @@ class GetAccountTypes extends GetAccountTypesModel {
         wallet: wallet ?? this.wallet,
       );
 }
+
 /// Trading property model class.
 abstract class TradingPropertyModel {
   /// Initializes Trading property model class .
@@ -190,6 +192,7 @@ class TradingProperty extends TradingPropertyModel {
         linkableWalletTypes: linkableWalletTypes ?? this.linkableWalletTypes,
       );
 }
+
 /// Wallet property model class.
 abstract class WalletPropertyModel {
   /// Initializes Wallet property model class .

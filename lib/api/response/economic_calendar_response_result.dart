@@ -3,6 +3,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// Economic calendar response model class.
 abstract class EconomicCalendarResponseModel {
   /// Initializes Economic calendar response model class .
@@ -50,6 +51,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
         economicCalendar: economicCalendar ?? this.economicCalendar,
       );
 }
+
 /// Economic calendar model class.
 abstract class EconomicCalendarModel {
   /// Initializes Economic calendar model class .
@@ -103,6 +105,7 @@ class EconomicCalendar extends EconomicCalendarModel {
         events: events ?? this.events,
       );
 }
+
 /// Events item model class.
 abstract class EventsItemModel {
   /// Initializes Events item model class .
@@ -207,6 +210,7 @@ class EventsItem extends EventsItemModel {
         releaseDate: releaseDate ?? this.releaseDate,
       );
 }
+
 /// Actual model class.
 abstract class ActualModel {
   /// Initializes Actual model class .
@@ -247,6 +251,7 @@ class Actual extends ActualModel {
         displayValue: displayValue ?? this.displayValue,
       );
 }
+
 /// Forecast model class.
 abstract class ForecastModel {
   /// Initializes Forecast model class .
@@ -287,6 +292,7 @@ class Forecast extends ForecastModel {
         displayValue: displayValue ?? this.displayValue,
       );
 }
+
 /// Previous model class.
 abstract class PreviousModel {
   /// Initializes Previous model class .

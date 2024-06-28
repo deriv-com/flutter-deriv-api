@@ -118,6 +118,7 @@ enum ActionTypeEnum {
   /// transfer.
   transfer,
 }
+
 /// Statement model class.
 abstract class StatementModel {
   /// Initializes Statement model class .
@@ -179,6 +180,7 @@ class Statement extends StatementModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .
@@ -367,6 +369,7 @@ class TransactionsItem extends TransactionsItemModel {
         withdrawalDetails: withdrawalDetails ?? this.withdrawalDetails,
       );
 }
+
 /// Fees model class.
 abstract class FeesModel {
   /// Initializes Fees model class .
@@ -434,6 +437,7 @@ class Fees extends FeesModel {
         percentage: percentage ?? this.percentage,
       );
 }
+
 /// From model class.
 abstract class FromModel {
   /// Initializes From model class .
@@ -474,6 +478,7 @@ class From extends FromModel {
         loginid: loginid ?? this.loginid,
       );
 }
+
 /// To model class.
 abstract class ToModel {
   /// Initializes To model class .

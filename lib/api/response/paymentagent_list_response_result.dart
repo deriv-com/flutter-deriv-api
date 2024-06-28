@@ -77,6 +77,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
 }
+
 /// Paymentagent list model class.
 abstract class PaymentagentListModel {
   /// Initializes Paymentagent list model class .
@@ -156,6 +157,7 @@ class PaymentagentList extends PaymentagentListModel {
         availableCountries: availableCountries ?? this.availableCountries,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -332,6 +334,7 @@ class ListItem extends ListItemModel {
         minWithdrawal: minWithdrawal ?? this.minWithdrawal,
       );
 }
+
 /// Phone numbers item model class.
 abstract class PhoneNumbersItemModel {
   /// Initializes Phone numbers item model class .
@@ -373,6 +376,7 @@ class PhoneNumbersItem extends PhoneNumbersItemModel {
         phoneNumber: phoneNumber ?? this.phoneNumber,
       );
 }
+
 /// Supported payment methods item model class.
 abstract class SupportedPaymentMethodsItemModel {
   /// Initializes Supported payment methods item model class .
@@ -414,6 +418,7 @@ class SupportedPaymentMethodsItem extends SupportedPaymentMethodsItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Urls item model class.
 abstract class UrlsItemModel {
   /// Initializes Urls item model class .

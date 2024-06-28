@@ -51,6 +51,7 @@ class AffiliateAddPersonResponse extends AffiliateAddPersonResponseModel {
         affiliateAddPerson: affiliateAddPerson ?? this.affiliateAddPerson,
       );
 }
+
 /// Affiliate add person model class.
 abstract class AffiliateAddPersonModel {
   /// Initializes Affiliate add person model class .

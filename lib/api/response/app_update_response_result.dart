@@ -75,6 +75,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
         appUpdate: appUpdate ?? this.appUpdate,
       );
 }
+
 /// App update model class.
 abstract class AppUpdateModel {
   /// Initializes App update model class .
