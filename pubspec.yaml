@@ -28,13 +28,14 @@ dependencies:
   meta: ^1.8.0
   recase: ^4.0.0
   rxdart: ^0.27.7
-  device_info_plus: ^8.1.0
+  device_info_plus: ^10.0.0
   flutter_system_proxy:
     git:
       url: git@github.com:BrowserStackCE/flutter_system_proxy.git
       ref: main
-  package_info_plus: ^4.2.0
+  package_info_plus: ^7.0.0
   connectivity_plus: ^5.0.2
+  web_socket_channel: ^2.4.5
 
 dev_dependencies:
   flutter_test:
@@ -48,12 +49,3 @@ dev_dependencies:
   json_schema2: ^2.0.2
   path: ^1.8.0
   test: ^1.19.5
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.deriv.flutter_deriv_api
-        pluginClass: FlutterDerivApiPlugin
-      ios:
-        pluginClass: FlutterDerivApiPlugin
