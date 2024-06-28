@@ -3,6 +3,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// Document upload response model class.
 abstract class DocumentUploadResponseModel {
   /// Initializes Document upload response model class .
@@ -50,6 +51,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
         documentUpload: documentUpload ?? this.documentUpload,
       );
 }
+
 /// Document upload model class.
 abstract class DocumentUploadModel {
   /// Initializes Document upload model class .

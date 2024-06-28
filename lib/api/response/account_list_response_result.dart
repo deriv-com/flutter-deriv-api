@@ -106,6 +106,7 @@ enum PlatformEnum {
   /// mt5.
   mt5,
 }
+
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .
@@ -240,6 +241,7 @@ class AccountListItem extends AccountListItemModel {
         broker: broker ?? this.broker,
       );
 }
+
 /// Linked to item model class.
 abstract class LinkedToItemModel {
   /// Initializes Linked to item model class .

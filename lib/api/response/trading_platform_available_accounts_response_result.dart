@@ -127,6 +127,7 @@ enum SubAccountTypeEnum {
   /// stp.
   stp,
 }
+
 /// Trading platform available accounts item model class.
 abstract class TradingPlatformAvailableAccountsItemModel {
   /// Initializes Trading platform available accounts item model class .
@@ -250,6 +251,7 @@ class TradingPlatformAvailableAccountsItem
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
+
 /// Requirements model class.
 abstract class RequirementsModel {
   /// Initializes Requirements model class .
@@ -349,6 +351,7 @@ class Requirements extends RequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// After first deposit model class.
 abstract class AfterFirstDepositModel {
   /// Initializes After first deposit model class .
@@ -402,6 +405,7 @@ class AfterFirstDeposit extends AfterFirstDepositModel {
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Compliance model class.
 abstract class ComplianceModel {
   /// Initializes Compliance model class .

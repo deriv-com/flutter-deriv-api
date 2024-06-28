@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 /// Sell expired response model class.
 abstract class SellExpiredResponseModel {
   /// Initializes Sell expired response model class .
@@ -50,6 +49,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
         sellExpired: sellExpired ?? this.sellExpired,
       );
 }
+
 /// Sell expired model class.
 abstract class SellExpiredModel {
   /// Initializes Sell expired model class .

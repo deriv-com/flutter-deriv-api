@@ -2,11 +2,17 @@ import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
 import 'package:recase/recase.dart';
 
 part 'helpers/from_json_helper.dart';
+
 part 'helpers/to_json_helper.dart';
+
 part 'helpers/copy_with_helper.dart';
+
 part 'helpers/constructor_helper.dart';
+
 part 'helpers/other_helpers.dart';
+
 part 'helpers/equatable_helper.dart';
+
 part 'helpers/deceleration_helper.dart';
 
 /// Represents dynamic type. mostly used for unknown types.

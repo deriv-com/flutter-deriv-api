@@ -151,6 +151,7 @@ enum StatusEnum {
   /// dispute-completed.
   disputeCompleted,
 }
+
 /// P2p order dispute model class.
 abstract class P2pOrderDisputeModel {
   /// Initializes P2p order dispute model class .
@@ -443,6 +444,7 @@ class P2pOrderDispute extends P2pOrderDisputeModel {
             verificationTokenExpiry ?? this.verificationTokenExpiry,
       );
 }
+
 /// Advert details model class.
 abstract class AdvertDetailsModel {
   /// Initializes Advert details model class .
@@ -521,6 +523,7 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -617,6 +620,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Client details model class.
 abstract class ClientDetailsModel {
   /// Initializes Client details model class .
@@ -712,6 +716,7 @@ class ClientDetails extends ClientDetailsModel {
         lastOnlineTime: lastOnlineTime ?? this.lastOnlineTime,
       );
 }
+
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
   /// Initializes Dispute details model class .

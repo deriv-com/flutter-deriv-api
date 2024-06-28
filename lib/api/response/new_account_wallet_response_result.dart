@@ -51,6 +51,7 @@ class NewAccountWalletResponse extends NewAccountWalletResponseModel {
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
       );
 }
+
 /// New account wallet model class.
 abstract class NewAccountWalletModel {
   /// Initializes New account wallet model class .

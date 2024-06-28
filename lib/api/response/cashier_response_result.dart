@@ -101,6 +101,7 @@ enum ActionEnum {
   /// withdraw.
   withdraw,
 }
+
 /// Cashier object model class.
 abstract class CashierObjectModel {
   /// Initializes Cashier object model class .
@@ -165,6 +166,7 @@ class CashierObject extends CashierObjectModel {
         withdraw: withdraw ?? this.withdraw,
       );
 }
+
 /// Deposit model class.
 abstract class DepositModel {
   /// Initializes Deposit model class .

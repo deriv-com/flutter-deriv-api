@@ -54,6 +54,7 @@ class TradingPlatformLeverageResponse
             tradingPlatformLeverage ?? this.tradingPlatformLeverage,
       );
 }
+
 /// Trading platform leverage model class.
 abstract class TradingPlatformLeverageModel {
   /// Initializes Trading platform leverage model class .
@@ -102,6 +103,7 @@ class TradingPlatformLeverage extends TradingPlatformLeverageModel {
         leverage: leverage ?? this.leverage,
       );
 }
+
 /// Leverage property model class.
 abstract class LeveragePropertyModel {
   /// Initializes Leverage property model class .
@@ -193,6 +195,7 @@ class LeverageProperty extends LeveragePropertyModel {
         volume: volume ?? this.volume,
       );
 }
+
 /// Volume model class.
 abstract class VolumeModel {
   /// Initializes Volume model class .
@@ -254,6 +257,7 @@ class Volume extends VolumeModel {
         unit: unit ?? this.unit,
       );
 }
+
 /// Data item model class.
 abstract class DataItemModel {
   /// Initializes Data item model class .

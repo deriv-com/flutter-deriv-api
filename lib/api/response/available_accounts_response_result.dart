@@ -79,6 +79,7 @@ enum AccountTypeEnum {
   /// p2p.
   p2p,
 }
+
 /// Available accounts model class.
 abstract class AvailableAccountsModel {
   /// Initializes Available accounts model class .
@@ -128,6 +129,7 @@ class AvailableAccounts extends AvailableAccountsModel {
         wallets: wallets ?? this.wallets,
       );
 }
+
 /// Wallets item model class.
 abstract class WalletsItemModel {
   /// Initializes Wallets item model class .
