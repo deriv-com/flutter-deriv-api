@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_se
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));

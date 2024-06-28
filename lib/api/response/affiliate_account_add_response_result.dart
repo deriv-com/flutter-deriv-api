@@ -53,6 +53,7 @@ class AffiliateAccountAddResponse extends AffiliateAccountAddResponseModel {
         affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
       );
 }
+
 /// Affiliate account add model class.
 abstract class AffiliateAccountAddModel {
   /// Initializes Affiliate account add model class .

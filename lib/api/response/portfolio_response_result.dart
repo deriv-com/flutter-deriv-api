@@ -74,6 +74,7 @@ class PortfolioResponse extends PortfolioResponseModel {
         portfolio: portfolio ?? this.portfolio,
       );
 }
+
 /// Portfolio model class.
 abstract class PortfolioModel {
   /// Initializes Portfolio model class .
@@ -122,6 +123,7 @@ class Portfolio extends PortfolioModel {
         contracts: contracts ?? this.contracts,
       );
 }
+
 /// Contracts item model class.
 abstract class ContractsItemModel {
   /// Initializes Contracts item model class .

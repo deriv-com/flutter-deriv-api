@@ -83,6 +83,7 @@ class StatesListResponse extends StatesListResponseModel {
         statesList: statesList ?? this.statesList,
       );
 }
+
 /// States list item model class.
 abstract class StatesListItemModel {
   /// Initializes States list item model class .

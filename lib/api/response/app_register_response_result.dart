@@ -77,6 +77,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
         appRegister: appRegister ?? this.appRegister,
       );
 }
+
 /// App register model class.
 abstract class AppRegisterModel {
   /// Initializes App register model class .

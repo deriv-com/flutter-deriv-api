@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 /// Sell contract for multiple accounts response model class.
 abstract class SellContractForMultipleAccountsResponseModel {
   /// Initializes Sell contract for multiple accounts response model class .
@@ -55,6 +54,7 @@ class SellContractForMultipleAccountsResponse
             this.sellContractForMultipleAccounts,
       );
 }
+
 /// Sell contract for multiple accounts model class.
 abstract class SellContractForMultipleAccountsModel {
   /// Initializes Sell contract for multiple accounts model class .

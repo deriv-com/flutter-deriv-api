@@ -179,6 +179,7 @@ class ProposalResponse extends ProposalResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Proposal model class.
 abstract class ProposalModel extends Equatable {
   /// Initializes Proposal model class .
@@ -418,6 +419,7 @@ class Proposal extends ProposalModel {
         limitOrder,
       ];
 }
+
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
@@ -474,6 +476,7 @@ class Cancellation extends CancellationModel {
         dateExpiry,
       ];
 }
+
 /// Contract details model class.
 abstract class ContractDetailsModel {
   /// Initializes Contract details model class .
@@ -599,6 +602,7 @@ class ContractDetails extends ContractDetailsModel {
         ticksStayedIn: ticksStayedIn ?? this.ticksStayedIn,
       );
 }
+
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
@@ -677,6 +681,7 @@ class LimitOrder extends LimitOrderModel {
         takeProfit,
       ];
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -751,6 +756,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
@@ -825,6 +831,7 @@ class StopOut extends StopOutModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -899,6 +906,7 @@ class TakeProfit extends TakeProfitModel {
         orderAmount,
       ];
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

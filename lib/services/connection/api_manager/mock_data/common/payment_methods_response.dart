@@ -1,5 +1,3 @@
-
-
 /// Payment methods response
 const String paymentMethodsResponse = '''
 {

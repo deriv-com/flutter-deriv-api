@@ -181,6 +181,7 @@ enum ActionEnum {
   /// transfer.
   transfer,
 }
+
 /// Transaction model class.
 abstract class TransactionModel {
   /// Initializes Transaction model class .
@@ -388,6 +389,7 @@ class Transaction extends TransactionModel {
         transactionTime: transactionTime ?? this.transactionTime,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

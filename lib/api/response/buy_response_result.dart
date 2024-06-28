@@ -16,6 +16,7 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// Buy response model class.
 abstract class BuyResponseModel {
   /// Initializes Buy response model class .
@@ -157,6 +158,7 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Buy model class.
 abstract class BuyModel {
   /// Initializes Buy model class .
@@ -269,6 +271,7 @@ class Buy extends BuyModel {
         transactionId: transactionId ?? this.transactionId,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

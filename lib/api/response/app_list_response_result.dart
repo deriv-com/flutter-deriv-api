@@ -85,6 +85,7 @@ class AppListResponse extends AppListResponseModel {
         appList: appList ?? this.appList,
       );
 }
+
 /// App list item model class.
 abstract class AppListItemModel {
   /// Initializes App list item model class .
