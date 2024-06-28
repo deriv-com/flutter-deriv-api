@@ -14,7 +14,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(api: MockAPI()));

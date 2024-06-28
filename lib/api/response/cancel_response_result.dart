@@ -72,6 +72,7 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
+
 /// Cancel model class.
 abstract class CancelModel {
   /// Initializes Cancel model class .

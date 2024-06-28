@@ -61,6 +61,7 @@ class TradingPlatformProductListingResponse
             tradingPlatformProductListing ?? this.tradingPlatformProductListing,
       );
 }
+
 /// Trading platform product listing property model class.
 abstract class TradingPlatformProductListingPropertyModel {
   /// Initializes Trading platform product listing property model class .
@@ -167,6 +168,7 @@ class TradingPlatformProductListingProperty
         productList: productList ?? this.productList,
       );
 }
+
 /// Product list item model class.
 abstract class ProductListItemModel {
   /// Initializes Product list item model class .
@@ -277,6 +279,7 @@ class ProductListItem extends ProductListItemModel {
         symbol: symbol ?? this.symbol,
       );
 }
+
 /// Market model class.
 abstract class MarketModel {
   /// Initializes Market model class .
@@ -326,6 +329,7 @@ class Market extends MarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Submarket model class.
 abstract class SubmarketModel {
   /// Initializes Submarket model class .
@@ -375,6 +379,7 @@ class Submarket extends SubmarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Symbol model class.
 abstract class SymbolModel {
   /// Initializes Symbol model class .

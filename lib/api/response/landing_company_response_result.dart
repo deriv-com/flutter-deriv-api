@@ -130,6 +130,7 @@ enum StandardEnum {
   /// none.
   none,
 }
+
 /// Landing company model class.
 abstract class LandingCompanyModel {
   /// Initializes Landing company model class .
@@ -479,6 +480,7 @@ class LandingCompany extends LandingCompanyModel {
         virtualCompany: virtualCompany ?? this.virtualCompany,
       );
 }
+
 /// Ctrader model class.
 abstract class CtraderModel {
   /// Initializes Ctrader model class .
@@ -521,6 +523,7 @@ class Ctrader extends CtraderModel {
         all: all ?? this.all,
       );
 }
+
 /// All model class.
 abstract class AllModel {
   /// Initializes All model class .
@@ -566,6 +569,7 @@ class All extends AllModel {
         standard: standard ?? this.standard,
       );
 }
+
 /// Derivez model class.
 abstract class DerivezModel {
   /// Initializes Derivez model class .
@@ -608,6 +612,7 @@ class Derivez extends DerivezModel {
         all: all ?? this.all,
       );
 }
+
 /// Derivez all model class.
 abstract class DerivezAllModel {
   /// Initializes Derivez all model class .
@@ -653,6 +658,7 @@ class DerivezAll extends DerivezAllModel {
         standard: standard ?? this.standard,
       );
 }
+
 /// Dxtrade all company model class.
 abstract class DxtradeAllCompanyModel {
   /// Initializes Dxtrade all company model class .
@@ -698,6 +704,7 @@ class DxtradeAllCompany extends DxtradeAllCompanyModel {
         standard: standard ?? this.standard,
       );
 }
+
 /// Standard model class.
 abstract class StandardModel {
   /// Initializes Standard model class .
@@ -912,6 +919,7 @@ class Standard extends StandardModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Requirements model class.
 abstract class RequirementsModel {
   /// Initializes Requirements model class .
@@ -1011,6 +1019,7 @@ class Requirements extends RequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// After first deposit model class.
 abstract class AfterFirstDepositModel {
   /// Initializes After first deposit model class .
@@ -1064,6 +1073,7 @@ class AfterFirstDeposit extends AfterFirstDepositModel {
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Compliance model class.
 abstract class ComplianceModel {
   /// Initializes Compliance model class .
@@ -1137,6 +1147,7 @@ class Compliance extends ComplianceModel {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Dxtrade financial company model class.
 abstract class DxtradeFinancialCompanyModel {
   /// Initializes Dxtrade financial company model class .
@@ -1182,6 +1193,7 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
         standard: standard ?? this.standard,
       );
 }
+
 /// Dxtrade financial company standard model class.
 abstract class DxtradeFinancialCompanyStandardModel {
   /// Initializes Dxtrade financial company standard model class .
@@ -1398,6 +1410,7 @@ class DxtradeFinancialCompanyStandard
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Standard requirements model class.
 abstract class StandardRequirementsModel {
   /// Initializes Standard requirements model class .
@@ -1499,6 +1512,7 @@ class StandardRequirements extends StandardRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit model class.
 abstract class RequirementsAfterFirstDepositModel {
   /// Initializes Requirements after first deposit model class .
@@ -1552,6 +1566,7 @@ class RequirementsAfterFirstDeposit extends RequirementsAfterFirstDepositModel {
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance model class.
 abstract class RequirementsComplianceModel {
   /// Initializes Requirements compliance model class .
@@ -1626,6 +1641,7 @@ class RequirementsCompliance extends RequirementsComplianceModel {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Dxtrade gaming company model class.
 abstract class DxtradeGamingCompanyModel {
   /// Initializes Dxtrade gaming company model class .
@@ -1671,6 +1687,7 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
         standard: standard ?? this.standard,
       );
 }
+
 /// Dxtrade gaming company standard model class.
 abstract class DxtradeGamingCompanyStandardModel {
   /// Initializes Dxtrade gaming company standard model class .
@@ -1886,6 +1903,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Standard requirements16 model class.
 abstract class StandardRequirements16Model {
   /// Initializes Standard requirements16 model class .
@@ -1987,6 +2005,7 @@ class StandardRequirements16 extends StandardRequirements16Model {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit14 model class.
 abstract class RequirementsAfterFirstDeposit14Model {
   /// Initializes Requirements after first deposit14 model class .
@@ -2041,6 +2060,7 @@ class RequirementsAfterFirstDeposit14
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance15 model class.
 abstract class RequirementsCompliance15Model {
   /// Initializes Requirements compliance15 model class .
@@ -2115,6 +2135,7 @@ class RequirementsCompliance15 extends RequirementsCompliance15Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Financial company model class.
 abstract class FinancialCompanyModel {
   /// Initializes Financial company model class .
@@ -2330,6 +2351,7 @@ class FinancialCompany extends FinancialCompanyModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Financial company requirements model class.
 abstract class FinancialCompanyRequirementsModel {
   /// Initializes Financial company requirements model class .
@@ -2431,6 +2453,7 @@ class FinancialCompanyRequirements extends FinancialCompanyRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit19 model class.
 abstract class RequirementsAfterFirstDeposit19Model {
   /// Initializes Requirements after first deposit19 model class .
@@ -2485,6 +2508,7 @@ class RequirementsAfterFirstDeposit19
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance20 model class.
 abstract class RequirementsCompliance20Model {
   /// Initializes Requirements compliance20 model class .
@@ -2559,6 +2583,7 @@ class RequirementsCompliance20 extends RequirementsCompliance20Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Gaming company model class.
 abstract class GamingCompanyModel {
   /// Initializes Gaming company model class .
@@ -2773,6 +2798,7 @@ class GamingCompany extends GamingCompanyModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Gaming company requirements model class.
 abstract class GamingCompanyRequirementsModel {
   /// Initializes Gaming company requirements model class .
@@ -2874,6 +2900,7 @@ class GamingCompanyRequirements extends GamingCompanyRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit23 model class.
 abstract class RequirementsAfterFirstDeposit23Model {
   /// Initializes Requirements after first deposit23 model class .
@@ -2928,6 +2955,7 @@ class RequirementsAfterFirstDeposit23
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance24 model class.
 abstract class RequirementsCompliance24Model {
   /// Initializes Requirements compliance24 model class .
@@ -3002,6 +3030,7 @@ class RequirementsCompliance24 extends RequirementsCompliance24Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Mt all company model class.
 abstract class MtAllCompanyModel {
   /// Initializes Mt all company model class .
@@ -3046,6 +3075,7 @@ class MtAllCompany extends MtAllCompanyModel {
         swapFree: swapFree ?? this.swapFree,
       );
 }
+
 /// Swap free model class.
 abstract class SwapFreeModel {
   /// Initializes Swap free model class .
@@ -3260,6 +3290,7 @@ class SwapFree extends SwapFreeModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Swap free requirements model class.
 abstract class SwapFreeRequirementsModel {
   /// Initializes Swap free requirements model class .
@@ -3361,6 +3392,7 @@ class SwapFreeRequirements extends SwapFreeRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit27 model class.
 abstract class RequirementsAfterFirstDeposit27Model {
   /// Initializes Requirements after first deposit27 model class .
@@ -3415,6 +3447,7 @@ class RequirementsAfterFirstDeposit27
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance28 model class.
 abstract class RequirementsCompliance28Model {
   /// Initializes Requirements compliance28 model class .
@@ -3489,6 +3522,7 @@ class RequirementsCompliance28 extends RequirementsCompliance28Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Mt financial company model class.
 abstract class MtFinancialCompanyModel {
   /// Initializes Mt financial company model class .
@@ -3547,6 +3581,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
         financialStp: financialStp ?? this.financialStp,
       );
 }
+
 /// Financial model class.
 abstract class FinancialModel {
   /// Initializes Financial model class .
@@ -3761,6 +3796,7 @@ class Financial extends FinancialModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Financial requirements model class.
 abstract class FinancialRequirementsModel {
   /// Initializes Financial requirements model class .
@@ -3862,6 +3898,7 @@ class FinancialRequirements extends FinancialRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit32 model class.
 abstract class RequirementsAfterFirstDeposit32Model {
   /// Initializes Requirements after first deposit32 model class .
@@ -3916,6 +3953,7 @@ class RequirementsAfterFirstDeposit32
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance33 model class.
 abstract class RequirementsCompliance33Model {
   /// Initializes Requirements compliance33 model class .
@@ -3990,6 +4028,7 @@ class RequirementsCompliance33 extends RequirementsCompliance33Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Financial stp model class.
 abstract class FinancialStpModel {
   /// Initializes Financial stp model class .
@@ -4204,6 +4243,7 @@ class FinancialStp extends FinancialStpModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Financial stp requirements model class.
 abstract class FinancialStpRequirementsModel {
   /// Initializes Financial stp requirements model class .
@@ -4305,6 +4345,7 @@ class FinancialStpRequirements extends FinancialStpRequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit36 model class.
 abstract class RequirementsAfterFirstDeposit36Model {
   /// Initializes Requirements after first deposit36 model class .
@@ -4359,6 +4400,7 @@ class RequirementsAfterFirstDeposit36
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance37 model class.
 abstract class RequirementsCompliance37Model {
   /// Initializes Requirements compliance37 model class .
@@ -4433,6 +4475,7 @@ class RequirementsCompliance37 extends RequirementsCompliance37Model {
         taxInformation: taxInformation ?? this.taxInformation,
       );
 }
+
 /// Mt gaming company model class.
 abstract class MtGamingCompanyModel {
   /// Initializes Mt gaming company model class .
@@ -4478,6 +4521,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
         financial: financial ?? this.financial,
       );
 }
+
 /// Mt gaming company financial model class.
 abstract class MtGamingCompanyFinancialModel {
   /// Initializes Mt gaming company financial model class .
@@ -4693,6 +4737,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Financial requirements43 model class.
 abstract class FinancialRequirements43Model {
   /// Initializes Financial requirements43 model class .
@@ -4794,6 +4839,7 @@ class FinancialRequirements43 extends FinancialRequirements43Model {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// Requirements after first deposit41 model class.
 abstract class RequirementsAfterFirstDeposit41Model {
   /// Initializes Requirements after first deposit41 model class .
@@ -4848,6 +4894,7 @@ class RequirementsAfterFirstDeposit41
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Requirements compliance42 model class.
 abstract class RequirementsCompliance42Model {
   /// Initializes Requirements compliance42 model class .

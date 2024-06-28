@@ -3,6 +3,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// Landing company details response model class.
 abstract class LandingCompanyDetailsResponseModel {
   /// Initializes Landing company details response model class .
@@ -51,6 +52,7 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
             landingCompanyDetails ?? this.landingCompanyDetails,
       );
 }
+
 /// Landing company details model class.
 abstract class LandingCompanyDetailsModel {
   /// Initializes Landing company details model class .
@@ -270,6 +272,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         tinNotMandatory: tinNotMandatory ?? this.tinNotMandatory,
       );
 }
+
 /// Currency config model class.
 abstract class CurrencyConfigModel {
   /// Initializes Currency config model class .
@@ -357,6 +360,7 @@ class CurrencyConfig extends CurrencyConfigModel {
         syntheticIndex: syntheticIndex ?? this.syntheticIndex,
       );
 }
+
 /// Market model class.
 abstract class MarketModel {
   /// Initializes Market model class .
@@ -401,6 +405,7 @@ class Market extends MarketModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Currency model class.
 abstract class CurrencyModel {
   /// Initializes Currency model class .
@@ -450,6 +455,7 @@ class Currency extends CurrencyModel {
         minStake: minStake ?? this.minStake,
       );
 }
+
 /// Requirements model class.
 abstract class RequirementsModel {
   /// Initializes Requirements model class .
@@ -549,6 +555,7 @@ class Requirements extends RequirementsModel {
         withdrawal: withdrawal ?? this.withdrawal,
       );
 }
+
 /// After first deposit model class.
 abstract class AfterFirstDepositModel {
   /// Initializes After first deposit model class .
@@ -602,6 +609,7 @@ class AfterFirstDeposit extends AfterFirstDepositModel {
         financialAssessment: financialAssessment ?? this.financialAssessment,
       );
 }
+
 /// Compliance model class.
 abstract class ComplianceModel {
   /// Initializes Compliance model class .

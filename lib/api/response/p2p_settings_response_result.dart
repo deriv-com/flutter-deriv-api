@@ -105,6 +105,7 @@ enum FloatRateAdvertsEnum {
   /// list_only.
   listOnly,
 }
+
 /// P2p settings model class.
 abstract class P2pSettingsModel {
   /// Initializes P2p settings model class .
@@ -390,6 +391,7 @@ class P2pSettings extends P2pSettingsModel {
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 }
+
 /// Block trade model class.
 abstract class BlockTradeModel {
   /// Initializes Block trade model class .
@@ -439,6 +441,7 @@ class BlockTrade extends BlockTradeModel {
         maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
       );
 }
+
 /// Local currencies item model class.
 abstract class LocalCurrenciesItemModel {
   /// Initializes Local currencies item model class .
@@ -507,6 +510,7 @@ class LocalCurrenciesItem extends LocalCurrenciesItemModel {
         isDefault: isDefault ?? this.isDefault,
       );
 }
+
 /// Counterparty term steps model class.
 abstract class CounterpartyTermStepsModel {
   /// Initializes Counterparty term steps model class .
@@ -592,6 +596,7 @@ class CounterpartyTermSteps extends CounterpartyTermStepsModel {
         rating: rating ?? this.rating,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

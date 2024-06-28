@@ -143,6 +143,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel {
   /// Initializes P2p advertiser create model class .
@@ -573,6 +574,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

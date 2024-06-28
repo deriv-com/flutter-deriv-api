@@ -51,6 +51,7 @@ class AppMarkupStatisticsResponse extends AppMarkupStatisticsResponseModel {
         appMarkupStatistics: appMarkupStatistics ?? this.appMarkupStatistics,
       );
 }
+
 /// App markup statistics model class.
 abstract class AppMarkupStatisticsModel {
   /// Initializes App markup statistics model class .
@@ -123,6 +124,7 @@ class AppMarkupStatistics extends AppMarkupStatisticsModel {
             totalTransactionsCount ?? this.totalTransactionsCount,
       );
 }
+
 /// Breakdown item model class.
 abstract class BreakdownItemModel {
   /// Initializes Breakdown item model class .

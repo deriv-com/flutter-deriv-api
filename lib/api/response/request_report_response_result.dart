@@ -51,6 +51,7 @@ class RequestReportResponse extends RequestReportResponseModel {
         requestReport: requestReport ?? this.requestReport,
       );
 }
+
 /// Request report model class.
 abstract class RequestReportModel {
   /// Initializes Request report model class .

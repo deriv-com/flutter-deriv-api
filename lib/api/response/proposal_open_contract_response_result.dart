@@ -20,6 +20,7 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// Proposal open contract response model class.
 abstract class ProposalOpenContractResponseModel {
   /// Initializes Proposal open contract response model class .
@@ -212,6 +213,7 @@ enum StatusEnum {
   /// null.
   _null,
 }
+
 /// Proposal open contract model class.
 abstract class ProposalOpenContractModel {
   /// Initializes Proposal open contract model class .
@@ -922,6 +924,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationErrorCode: validationErrorCode ?? this.validationErrorCode,
       );
 }
+
 /// Audit details model class.
 abstract class AuditDetailsModel {
   /// Initializes Audit details model class .
@@ -1016,6 +1019,7 @@ class AuditDetails extends AuditDetailsModel {
         contractStart: contractStart ?? this.contractStart,
       );
 }
+
 /// All ticks item model class.
 abstract class AllTicksItemModel {
   /// Initializes All ticks item model class .
@@ -1092,6 +1096,7 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Contract end item model class.
 abstract class ContractEndItemModel {
   /// Initializes Contract end item model class .
@@ -1169,6 +1174,7 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Contract start item model class.
 abstract class ContractStartItemModel {
   /// Initializes Contract start item model class .
@@ -1246,6 +1252,7 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Cancellation model class.
 abstract class CancellationModel extends Equatable {
   /// Initializes Cancellation model class .
@@ -1302,6 +1309,7 @@ class Cancellation extends CancellationModel {
         dateExpiry,
       ];
 }
+
 /// Limit order model class.
 abstract class LimitOrderModel extends Equatable {
   /// Initializes Limit order model class .
@@ -1380,6 +1388,7 @@ class LimitOrder extends LimitOrderModel {
         takeProfit,
       ];
 }
+
 /// Stop loss model class.
 abstract class StopLossModel extends Equatable {
   /// Initializes Stop loss model class .
@@ -1454,6 +1463,7 @@ class StopLoss extends StopLossModel {
         orderAmount,
       ];
 }
+
 /// Stop out model class.
 abstract class StopOutModel extends Equatable {
   /// Initializes Stop out model class .
@@ -1528,6 +1538,7 @@ class StopOut extends StopOutModel {
         orderAmount,
       ];
 }
+
 /// Take profit model class.
 abstract class TakeProfitModel extends Equatable {
   /// Initializes Take profit model class .
@@ -1602,6 +1613,7 @@ class TakeProfit extends TakeProfitModel {
         orderAmount,
       ];
 }
+
 /// Tick stream item model class.
 abstract class TickStreamItemModel {
   /// Initializes Tick stream item model class .
@@ -1660,6 +1672,7 @@ class TickStreamItem extends TickStreamItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
+
 /// Transaction ids model class.
 abstract class TransactionIdsModel {
   /// Initializes Transaction ids model class .
@@ -1709,6 +1722,7 @@ class TransactionIds extends TransactionIdsModel {
         sell: sell ?? this.sell,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

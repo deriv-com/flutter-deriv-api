@@ -86,6 +86,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
         tradingDurations: tradingDurations ?? this.tradingDurations,
       );
 }
+
 /// Trading durations item model class.
 abstract class TradingDurationsItemModel {
   /// Initializes Trading durations item model class .
@@ -165,6 +166,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
         submarket: submarket ?? this.submarket,
       );
 }
+
 /// Data item model class.
 abstract class DataItemModel {
   /// Initializes Data item model class .
@@ -262,6 +264,7 @@ class DataItem extends DataItemModel {
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
 }
+
 /// Market model class.
 abstract class MarketModel {
   /// Initializes Market model class .
@@ -311,6 +314,7 @@ class Market extends MarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Submarket model class.
 abstract class SubmarketModel {
   /// Initializes Submarket model class .
@@ -360,6 +364,7 @@ class Submarket extends SubmarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Symbol item model class.
 abstract class SymbolItemModel {
   /// Initializes Symbol item model class .
@@ -409,6 +414,7 @@ class SymbolItem extends SymbolItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Trade durations item model class.
 abstract class TradeDurationsItemModel {
   /// Initializes Trade durations item model class .
@@ -475,6 +481,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
         tradeType: tradeType ?? this.tradeType,
       );
 }
+
 /// Durations item model class.
 abstract class DurationsItemModel {
   /// Initializes Durations item model class .
@@ -542,6 +549,7 @@ class DurationsItem extends DurationsItemModel {
         name: name ?? this.name,
       );
 }
+
 /// Trade type model class.
 abstract class TradeTypeModel {
   /// Initializes Trade type model class .
@@ -591,6 +599,7 @@ class TradeType extends TradeTypeModel {
         name: name ?? this.name,
       );
 }
+
 /// Trading durations item market model class.
 abstract class TradingDurationsItemMarketModel {
   /// Initializes Trading durations item market model class .
@@ -641,6 +650,7 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
         name: name ?? this.name,
       );
 }
+
 /// Trading durations item submarket model class.
 abstract class TradingDurationsItemSubmarketModel {
   /// Initializes Trading durations item submarket model class .

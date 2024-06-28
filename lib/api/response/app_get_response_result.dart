@@ -184,6 +184,7 @@ class AppGetResponse extends AppGetResponseModel {
         appGet: appGet ?? this.appGet,
       );
 }
+
 /// App get model class.
 abstract class AppGetModel {
   /// Initializes App get model class .

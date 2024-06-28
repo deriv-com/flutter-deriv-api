@@ -51,6 +51,7 @@ class PasskeysLoginResponse extends PasskeysLoginResponseModel {
         passkeysLogin: passkeysLogin ?? this.passkeysLogin,
       );
 }
+
 /// Passkeys login model class.
 abstract class PasskeysLoginModel {
   /// Initializes Passkeys login model class .

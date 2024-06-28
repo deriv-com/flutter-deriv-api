@@ -79,6 +79,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
 }
+
 /// Topup virtual model class.
 abstract class TopupVirtualModel {
   /// Initializes Topup virtual model class .

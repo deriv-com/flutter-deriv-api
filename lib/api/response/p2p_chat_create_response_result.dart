@@ -89,6 +89,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
       );
 }
+
 /// P2p chat create model class.
 abstract class P2pChatCreateModel {
   /// Initializes P2p chat create model class .

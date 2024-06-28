@@ -103,6 +103,7 @@ enum StatusEnum {
   /// completed.
   completed,
 }
+
 /// P2p order confirm model class.
 abstract class P2pOrderConfirmModel {
   /// Initializes P2p order confirm model class .
