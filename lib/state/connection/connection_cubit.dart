@@ -22,7 +22,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
     this.enableDebug = false,
-        // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
+    // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
     this.printResponse = false,
     this.proxyAwareConnection = false,
   }) : super(const ConnectionInitialState()) {

@@ -78,6 +78,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
         copytradingList: copytradingList ?? this.copytradingList,
       );
 }
+
 /// Copytrading list model class.
 abstract class CopytradingListModel {
   /// Initializes Copytrading list model class .
@@ -145,6 +146,7 @@ class CopytradingList extends CopytradingListModel {
         traders: traders ?? this.traders,
       );
 }
+
 /// Copiers item model class.
 abstract class CopiersItemModel {
   /// Initializes Copiers item model class .
@@ -185,6 +187,7 @@ class CopiersItem extends CopiersItemModel {
         loginid: loginid ?? this.loginid,
       );
 }
+
 /// Traders item model class.
 abstract class TradersItemModel {
   /// Initializes Traders item model class .

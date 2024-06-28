@@ -92,6 +92,7 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
         serviceToken: serviceToken ?? this.serviceToken,
       );
 }
+
 /// Service token model class.
 abstract class ServiceTokenModel {
   /// Initializes Service token model class .
@@ -205,6 +206,7 @@ class ServiceToken extends ServiceTokenModel {
         wyre: wyre ?? this.wyre,
       );
 }
+
 /// Banxa model class.
 abstract class BanxaModel {
   /// Initializes Banxa model class .
@@ -263,6 +265,7 @@ class Banxa extends BanxaModel {
         urlIframe: urlIframe ?? this.urlIframe,
       );
 }
+
 /// Ctrader model class.
 abstract class CtraderModel {
   /// Initializes Ctrader model class .
@@ -303,6 +306,7 @@ class Ctrader extends CtraderModel {
         token: token ?? this.token,
       );
 }
+
 /// Dxtrade model class.
 abstract class DxtradeModel {
   /// Initializes Dxtrade model class .
@@ -343,6 +347,7 @@ class Dxtrade extends DxtradeModel {
         token: token ?? this.token,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -383,6 +388,7 @@ class Onfido extends OnfidoModel {
         token: token ?? this.token,
       );
 }
+
 /// Pandats model class.
 abstract class PandatsModel {
   /// Initializes Pandats model class .
@@ -423,6 +429,7 @@ class Pandats extends PandatsModel {
         token: token ?? this.token,
       );
 }
+
 /// Sendbird model class.
 abstract class SendbirdModel {
   /// Initializes Sendbird model class .
@@ -481,6 +488,7 @@ class Sendbird extends SendbirdModel {
         token: token ?? this.token,
       );
 }
+
 /// Wyre model class.
 abstract class WyreModel {
   /// Initializes Wyre model class .

@@ -86,6 +86,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
         residenceList: residenceList ?? this.residenceList,
       );
 }
+
 /// Residence list item model class.
 abstract class ResidenceListItemModel {
   /// Initializes Residence list item model class .
@@ -197,6 +198,7 @@ class ResidenceListItem extends ResidenceListItemModel {
         value: value ?? this.value,
       );
 }
+
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -241,6 +243,7 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
       );
 }
+
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -294,6 +297,7 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
+
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
@@ -360,6 +364,7 @@ class Idv extends IdvModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
+
 /// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel {
   /// Initializes Documents supported property model class .
@@ -423,6 +428,7 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
         format: format ?? this.format,
       );
 }
+
 /// Additional model class.
 abstract class AdditionalModel {
   /// Initializes Additional model class .
@@ -472,6 +478,7 @@ class Additional extends AdditionalModel {
         format: format ?? this.format,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -533,6 +540,7 @@ class Onfido extends OnfidoModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
+
 /// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes Documents supported documents supported property model class .

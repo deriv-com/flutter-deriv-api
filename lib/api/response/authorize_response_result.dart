@@ -137,6 +137,7 @@ enum PlatformEnum {
   /// mt5.
   mt5,
 }
+
 /// Authorize model class.
 abstract class AuthorizeModel {
   /// Initializes Authorize model class .
@@ -371,6 +372,7 @@ class Authorize extends AuthorizeModel {
         userId: userId ?? this.userId,
       );
 }
+
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .
@@ -519,6 +521,7 @@ class AccountListItem extends AccountListItemModel {
         loginid: loginid ?? this.loginid,
       );
 }
+
 /// Linked to item model class.
 abstract class LinkedToItemModel {
   /// Initializes Linked to item model class .
@@ -573,6 +576,7 @@ class LinkedToItem extends LinkedToItemModel {
         platform: platform ?? this.platform,
       );
 }
+
 /// Authorize linked to item model class.
 abstract class AuthorizeLinkedToItemModel {
   /// Initializes Authorize linked to item model class .
@@ -628,6 +632,7 @@ class AuthorizeLinkedToItem extends AuthorizeLinkedToItemModel {
         platform: platform ?? this.platform,
       );
 }
+
 /// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel {
   /// Initializes Local currencies property model class .

@@ -78,6 +78,7 @@ class ContractsForResponse extends ContractsForResponseModel {
         contractsFor: contractsFor ?? this.contractsFor,
       );
 }
+
 /// Contracts for model class.
 abstract class ContractsForModel {
   /// Initializes Contracts for model class .
@@ -193,6 +194,7 @@ class ContractsFor extends ContractsForModel {
         spot: spot ?? this.spot,
       );
 }
+
 /// Available item model class.
 abstract class AvailableItemModel {
   /// Initializes Available item model class .
@@ -592,6 +594,7 @@ class AvailableItem extends AvailableItemModel {
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
 }
+
 /// Forward starting options item model class.
 abstract class ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item model class .

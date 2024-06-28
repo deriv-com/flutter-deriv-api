@@ -51,6 +51,7 @@ class AffiliateAddCompanyResponse extends AffiliateAddCompanyResponseModel {
         affiliateAddCompany: affiliateAddCompany ?? this.affiliateAddCompany,
       );
 }
+
 /// Affiliate add company model class.
 abstract class AffiliateAddCompanyModel {
   /// Initializes Affiliate add company model class .

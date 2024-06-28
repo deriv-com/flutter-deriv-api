@@ -170,6 +170,7 @@ enum StateEnum {
   /// failed.
   failed,
 }
+
 /// Wallet migration model class.
 abstract class WalletMigrationModel {
   /// Initializes Wallet migration model class .
@@ -234,6 +235,7 @@ class WalletMigration extends WalletMigrationModel {
         accountList: accountList ?? this.accountList,
       );
 }
+
 /// Account list item model class.
 abstract class AccountListItemModel {
   /// Initializes Account list item model class .
@@ -335,6 +337,7 @@ class AccountListItem extends AccountListItemModel {
         platform: platform ?? this.platform,
       );
 }
+
 /// Link accounts item model class.
 abstract class LinkAccountsItemModel {
   /// Initializes Link accounts item model class .

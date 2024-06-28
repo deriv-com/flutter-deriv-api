@@ -250,6 +250,7 @@ enum TransfersEnum {
   /// withdrawal.
   withdrawal,
 }
+
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .

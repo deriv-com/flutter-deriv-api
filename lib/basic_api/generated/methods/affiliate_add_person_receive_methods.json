@@ -1,4 +1,4 @@
 {
-"methods": "",
-"imports": "import 'package:flutter_deriv_api/helpers/helpers.dart';\n"
+  "methods": "",
+  "imports": "import 'package:flutter_deriv_api/helpers/helpers.dart';\n"
 }

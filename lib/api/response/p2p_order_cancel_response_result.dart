@@ -99,6 +99,7 @@ enum StatusEnum {
   /// cancelled.
   cancelled,
 }
+
 /// P2p order cancel model class.
 abstract class P2pOrderCancelModel {
   /// Initializes P2p order cancel model class .

@@ -156,6 +156,7 @@ enum IdEnum {
   /// p03_ts01.
   p03Ts01,
 }
+
 /// Trading servers item model class.
 abstract class TradingServersItemModel {
   /// Initializes Trading servers item model class .
@@ -297,6 +298,7 @@ class TradingServersItem extends TradingServersItemModel {
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
 }
+
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .

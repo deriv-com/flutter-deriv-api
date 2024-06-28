@@ -133,6 +133,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
 }
+
 /// Get self exclusion model class.
 abstract class GetSelfExclusionModel {
   /// Initializes Get self exclusion model class .

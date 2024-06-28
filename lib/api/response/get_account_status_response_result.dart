@@ -268,6 +268,7 @@ enum SocialIdentityProviderEnum {
   /// apple.
   apple,
 }
+
 /// Get account status model class.
 abstract class GetAccountStatusModel {
   /// Initializes Get account status model class .
@@ -490,6 +491,7 @@ class GetAccountStatus extends GetAccountStatusModel {
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
 }
+
 /// Currency config property model class.
 abstract class CurrencyConfigPropertyModel {
   /// Initializes Currency config property model class .
@@ -541,6 +543,7 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
 }
+
 /// Authentication model class.
 abstract class AuthenticationModel {
   /// Initializes Authentication model class .
@@ -653,6 +656,7 @@ class Authentication extends AuthenticationModel {
         ownership: ownership ?? this.ownership,
       );
 }
+
 /// Attempts model class.
 abstract class AttemptsModel {
   /// Initializes Attempts model class .
@@ -723,6 +727,7 @@ class Attempts extends AttemptsModel {
         latest: latest ?? this.latest,
       );
 }
+
 /// History item model class.
 abstract class HistoryItemModel {
   /// Initializes History item model class .
@@ -812,6 +817,7 @@ class HistoryItem extends HistoryItemModel {
         timestamp: timestamp ?? this.timestamp,
       );
 }
+
 /// Document model class.
 abstract class DocumentModel {
   /// Initializes Document model class .
@@ -879,6 +885,7 @@ class Document extends DocumentModel {
         status: status ?? this.status,
       );
 }
+
 /// Authenticated with idv model class.
 abstract class AuthenticatedWithIdvModel {
   /// Initializes Authenticated with idv model class .
@@ -1010,6 +1017,7 @@ class AuthenticatedWithIdv extends AuthenticatedWithIdvModel {
         virtual: virtual ?? this.virtual,
       );
 }
+
 /// Identity model class.
 abstract class IdentityModel {
   /// Initializes Identity model class .
@@ -1077,6 +1085,7 @@ class Identity extends IdentityModel {
         status: status ?? this.status,
       );
 }
+
 /// Services model class.
 abstract class ServicesModel {
   /// Initializes Services model class .
@@ -1141,6 +1150,7 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
+
 /// Idv model class.
 abstract class IdvModel {
   /// Initializes Idv model class .
@@ -1233,6 +1243,7 @@ class Idv extends IdvModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
+
 /// Manual model class.
 abstract class ManualModel {
   /// Initializes Manual model class .
@@ -1278,6 +1289,7 @@ class Manual extends ManualModel {
         status: status ?? this.status,
       );
 }
+
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -1422,6 +1434,7 @@ class Onfido extends OnfidoModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
+
 /// Income model class.
 abstract class IncomeModel {
   /// Initializes Income model class .
@@ -1476,6 +1489,7 @@ class Income extends IncomeModel {
         status: status ?? this.status,
       );
 }
+
 /// Ownership model class.
 abstract class OwnershipModel {
   /// Initializes Ownership model class .
@@ -1542,6 +1556,7 @@ class Ownership extends OwnershipModel {
         status: status ?? this.status,
       );
 }
+
 /// Requests item model class.
 abstract class RequestsItemModel {
   /// Initializes Requests item model class .

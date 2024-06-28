@@ -184,6 +184,7 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advertiser adverts model class.
 abstract class P2pAdvertiserAdvertsModel {
   /// Initializes P2p advertiser adverts model class .
@@ -233,6 +234,7 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
         list: list ?? this.list,
       );
 }
+
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -720,6 +722,7 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .

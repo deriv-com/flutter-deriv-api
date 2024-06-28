@@ -132,6 +132,7 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
+
 /// Api token model class.
 abstract class ApiTokenModel {
   /// Initializes Api token model class .
@@ -202,6 +203,7 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
+
 /// Tokens item model class.
 abstract class TokensItemModel {
   /// Initializes Tokens item model class .

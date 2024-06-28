@@ -17,6 +17,7 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_receive.
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
+
 /// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
   /// Initializes P2p advert info response model class .
@@ -375,6 +376,7 @@ enum VisibilityStatusItemEnum {
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
+
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel {
   /// Initializes P2p advert info model class .
@@ -939,6 +941,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
+
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
@@ -1107,6 +1110,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
+
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -1235,6 +1239,7 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -1304,6 +1309,7 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

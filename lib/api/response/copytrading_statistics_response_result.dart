@@ -80,6 +80,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
             copytradingStatistics ?? this.copytradingStatistics,
       );
 }
+
 /// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel {
   /// Initializes Copytrading statistics model class .
