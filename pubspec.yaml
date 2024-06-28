@@ -1,7 +1,7 @@
 name: flutter_deriv_api
 description: Support for the deriv.com websockets API
 
-version: 0.2.0
+version: 1.0.0
 
 homepage: https://developers.binary.com
 publish_to: "none"
