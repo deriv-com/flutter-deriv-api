@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:build/build.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:json_schema2/json_schema2.dart';
 import 'package:recase/recase.dart';
-import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
@@ -13,8 +13,7 @@ final List<GeneratedResponseJson> generatedResponses =
 
 /// A Code generator class responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
-/// objects suitable for marshalling and deserialization from our WebSockets
-/// API.
+/// objects suitable for marshalling and deserialization from our WebSockets API.
 class APIBuilder extends Builder {
   static const Map<String, String> typeMap = <String, String>{
     'integer': 'int',
@@ -35,7 +34,7 @@ class APIBuilder extends Builder {
 
   static const Map<String, String> schemaTypeMap = <String, String>{
     'send': 'Request',
-    'receive': 'Response',
+    'receive': 'Receive',
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{
@@ -63,10 +62,10 @@ class APIBuilder extends Builder {
 
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
-      // We keep our list of property keys in original form here so we can iterate over and map them
+      // We keep our list of property keys in original form here so we can iterate over and map them.
       final List<String> properties = schema.properties.keys.toList()..sort();
 
-      // Some minor chicanery here to find out which API method we're supposed to be processing
+      // Some minor chicanery here to find out which API method we're supposed to be processing.
       final Iterable<RegExpMatch> matches =
           RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
               .allMatches(buildStep.inputId.toString());
@@ -123,8 +122,8 @@ class APIBuilder extends Builder {
               /// Initialize $classFullName.
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)}
-                  ${_getSuperClassParameters(schemaType)},
-                }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
+                  ${_getSuperClassConstructorParameters(schemaType, methodName)},
+                });
               
               ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
               
@@ -170,6 +169,7 @@ class APIBuilder extends Builder {
         return '${_isFieldRequired(key, schemaType, property) ? 'required ' : ''} this.${ReCase(key).camelCase}';
       },
     ).join(', ');
+
     return fields.isEmpty ? result : '$result , ';
   }
 
@@ -247,14 +247,17 @@ class APIBuilder extends Builder {
                   ? 'bool'
                   : property.type?.toString();
 
-  static bool _isBoolean(String key, JsonSchema property) =>
-      key == 'subscribe' ||
-      property.description!.contains('Must be `1`') ||
-      property.description!.contains('Must be 1') ||
-      property.type?.toString() == 'integer' &&
-          property.enumValues?.length == 2 &&
-          property.enumValues!.first == 0 &&
-          property.enumValues!.last == 1;
+  static bool _isBoolean(String key, JsonSchema property) {
+    final List<dynamic> enumValues = property.enumValues ?? <dynamic>[];
+
+    return key == 'subscribe' ||
+        property.description!.contains('Must be `1`') ||
+        property.description!.contains('Must be 1') ||
+        property.type?.toString() == 'integer' &&
+            enumValues.length == 2 &&
+            enumValues.contains(0) &&
+            enumValues.contains(1);
+  }
 
   static StringBuffer _getFromJsonMethod(
     String classFullName,
@@ -378,6 +381,7 @@ class APIBuilder extends Builder {
         fields.map(
           (String key) {
             final String name = ReCase(key).camelCase;
+
             return '$name: $name ?? this.$name';
           },
         ).join(', '),
@@ -386,40 +390,45 @@ class APIBuilder extends Builder {
       ..write('${_getSupperClassAssignments(schemaType)},);');
   }
 
-  static String _getSuperClassParameters(String? schemaType) {
+  static String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
 
-    return superClassFields.keys
-        .map((String key) =>
-            '${typeMap[superClassFields[key]!]} ${ReCase(key).camelCase}')
-        .join(', ');
+    final Iterable<String> parameters = superClassFields.keys.map((String key) {
+      final String type = typeMap[superClassFields[key]!] ?? 'dynamic';
+      final String parameterName = ReCase(key).camelCase;
+
+      return '$type $parameterName';
+    });
+
+    return parameters.join(', ');
   }
 
-  static String _getSuperClassCallParameters(
+  static String _getSuperClassConstructorParameters(
     String schemaType,
     String methodName,
   ) {
-    final StringBuffer superCallParameters = StringBuffer();
+    final Map<String, String> superClassFields =
+        _getSuperClassFields(schemaType);
+    final StringBuffer superClassParameters = StringBuffer();
 
     if (schemaType == 'send') {
-      superCallParameters.write('msgType: \'$methodName\',');
+      superClassParameters.write('super.msgType = \'$methodName\', ');
     }
 
-    superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-      (String key) {
-        final String parameterName = ReCase(key).camelCase;
-        return '$parameterName: $parameterName';
-      },
-    ).join(', '));
+    final Iterable<String> parameters = superClassFields.keys
+        .map((String key) => 'super.${ReCase(key).camelCase}');
 
-    return superCallParameters.toString();
+    superClassParameters.write(parameters.join(', '));
+
+    return superClassParameters.toString();
   }
 
   static String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(
         (String key) {
           final String propertyName = ReCase(key).camelCase;
+
           return '$propertyName: $propertyName ?? this.$propertyName';
         },
       ).join(', ');
@@ -456,7 +465,7 @@ class APIBuilder extends Builder {
   }
 }
 
-class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
+class GeneratedResponseJson implements Comparable<GeneratedResponseJson> {
   GeneratedResponseJson({
     this.msgType,
     this.fileName,

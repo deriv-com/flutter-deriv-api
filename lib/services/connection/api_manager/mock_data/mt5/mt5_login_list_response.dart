@@ -7,7 +7,7 @@ const String mt5LoginListResponse = '''
   "msg_type": "mt5_login_list",
   "mt5_login_list": [
     {
-      "account_type": "gaming",
+      "account_type": "demo",
       "balance": 350.0,
       "country": "India",
       "currency": "USD",

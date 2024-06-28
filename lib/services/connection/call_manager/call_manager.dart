@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
@@ -29,6 +29,9 @@ class CallManager extends BaseCallManager<Future<Response>> {
   }
 
   @override
-  Future<Response> call({required Request request}) async =>
-      addToChannel(request: request);
+  Future<Response> call({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) async =>
+      addToChannel(request: request, nullableKeys: nullableKeys);
 }

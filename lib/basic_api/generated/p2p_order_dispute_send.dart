@@ -10,20 +10,19 @@ class P2pOrderDisputeRequest extends Request {
   const P2pOrderDisputeRequest({
     required this.disputeReason,
     required this.id,
+    this.loginid,
     this.p2pOrderDispute = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_dispute',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_dispute',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderDisputeRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderDisputeRequest(
         disputeReason: json['dispute_reason'] as String?,
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         p2pOrderDispute: json['p2p_order_dispute'] == null
             ? null
             : json['p2p_order_dispute'] == 1,
@@ -37,6 +36,9 @@ class P2pOrderDisputeRequest extends Request {
   /// The unique identifier for this order.
   final String? id;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pOrderDispute;
 
@@ -45,6 +47,7 @@ class P2pOrderDisputeRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'dispute_reason': disputeReason,
         'id': id,
+        'loginid': loginid,
         'p2p_order_dispute': p2pOrderDispute == null
             ? null
             : p2pOrderDispute!
@@ -59,6 +62,7 @@ class P2pOrderDisputeRequest extends Request {
   P2pOrderDisputeRequest copyWith({
     String? disputeReason,
     String? id,
+    String? loginid,
     bool? p2pOrderDispute,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -66,6 +70,7 @@ class P2pOrderDisputeRequest extends Request {
       P2pOrderDisputeRequest(
         disputeReason: disputeReason ?? this.disputeReason,
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         p2pOrderDispute: p2pOrderDispute ?? this.p2pOrderDispute,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

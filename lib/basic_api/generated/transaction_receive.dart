@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Transaction response class.
-class TransactionResponse extends Response {
-  /// Initialize TransactionResponse.
-  const TransactionResponse({
+/// Transaction receive class.
+class TransactionReceive extends Response {
+  /// Initialize TransactionReceive.
+  const TransactionReceive({
     this.subscription,
     this.transaction,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
-      TransactionResponse(
+  factory TransactionReceive.fromJson(Map<String, dynamic> json) =>
+      TransactionReceive(
         subscription: json['subscription'] as Map<String, dynamic>?,
         transaction: json['transaction'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +46,7 @@ class TransactionResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TransactionResponse copyWith({
+  TransactionReceive copyWith({
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? transaction,
     Map<String, dynamic>? echoReq,
@@ -59,7 +54,7 @@ class TransactionResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      TransactionResponse(
+      TransactionReceive(
         subscription: subscription ?? this.subscription,
         transaction: transaction ?? this.transaction,
         echoReq: echoReq ?? this.echoReq,

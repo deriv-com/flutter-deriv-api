@@ -10,13 +10,11 @@ class CashierWithdrawalCancelRequest extends Request {
   const CashierWithdrawalCancelRequest({
     this.cashierWithdrawalCancel = true,
     required this.id,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cashier_withdrawal_cancel',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'cashier_withdrawal_cancel',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CashierWithdrawalCancelRequest.fromJson(Map<String, dynamic> json) =>
@@ -25,6 +23,7 @@ class CashierWithdrawalCancelRequest extends Request {
             ? null
             : json['cashier_withdrawal_cancel'] == 1,
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -35,6 +34,9 @@ class CashierWithdrawalCancelRequest extends Request {
   /// The unique identifier for the transaction.
   final String? id;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -44,6 +46,7 @@ class CashierWithdrawalCancelRequest extends Request {
                 ? 1
                 : 0,
         'id': id,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -53,6 +56,7 @@ class CashierWithdrawalCancelRequest extends Request {
   CashierWithdrawalCancelRequest copyWith({
     bool? cashierWithdrawalCancel,
     String? id,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -60,6 +64,7 @@ class CashierWithdrawalCancelRequest extends Request {
         cashierWithdrawalCancel:
             cashierWithdrawalCancel ?? this.cashierWithdrawalCancel,
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// P2p advertiser payment methods response class.
-class P2pAdvertiserPaymentMethodsResponse extends Response {
-  /// Initialize P2pAdvertiserPaymentMethodsResponse.
-  const P2pAdvertiserPaymentMethodsResponse({
+/// P2p advertiser payment methods receive class.
+class P2pAdvertiserPaymentMethodsReceive extends Response {
+  /// Initialize P2pAdvertiserPaymentMethodsReceive.
+  const P2pAdvertiserPaymentMethodsReceive({
     this.p2pAdvertiserPaymentMethods,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserPaymentMethodsResponse.fromJson(
+  factory P2pAdvertiserPaymentMethodsReceive.fromJson(
           Map<String, dynamic> json) =>
-      P2pAdvertiserPaymentMethodsResponse(
+      P2pAdvertiserPaymentMethodsReceive(
         p2pAdvertiserPaymentMethods:
             json['p2p_advertiser_payment_methods'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +42,14 @@ class P2pAdvertiserPaymentMethodsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserPaymentMethodsResponse copyWith({
+  P2pAdvertiserPaymentMethodsReceive copyWith({
     Map<String, dynamic>? p2pAdvertiserPaymentMethods,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pAdvertiserPaymentMethodsResponse(
+      P2pAdvertiserPaymentMethodsReceive(
         p2pAdvertiserPaymentMethods:
             p2pAdvertiserPaymentMethods ?? this.p2pAdvertiserPaymentMethods,
         echoReq: echoReq ?? this.echoReq,

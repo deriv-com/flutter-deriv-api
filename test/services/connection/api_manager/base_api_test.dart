@@ -1,14 +1,15 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:test/test.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(isMock: true));
+  setUp(() => APIInitializer().initialize(api: MockAPI()));
+
+  tearDown(() => Injector().dispose());
 
   test('Base API Test', () {
-    expect(Injector.getInjector().get<BaseAPI>() is MockAPI, true);
+    expect(Injector()<BaseAPI>() is MockAPI, true);
   });
 }

@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Revoke oauth app response class.
-class RevokeOauthAppResponse extends Response {
-  /// Initialize RevokeOauthAppResponse.
-  const RevokeOauthAppResponse({
+/// Revoke oauth app receive class.
+class RevokeOauthAppReceive extends Response {
+  /// Initialize RevokeOauthAppReceive.
+  const RevokeOauthAppReceive({
     this.revokeOauthApp,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
-      RevokeOauthAppResponse(
+  factory RevokeOauthAppReceive.fromJson(Map<String, dynamic> json) =>
+      RevokeOauthAppReceive(
         revokeOauthApp: json['revoke_oauth_app'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class RevokeOauthAppResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  RevokeOauthAppResponse copyWith({
+  RevokeOauthAppReceive copyWith({
     int? revokeOauthApp,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      RevokeOauthAppResponse(
+      RevokeOauthAppReceive(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

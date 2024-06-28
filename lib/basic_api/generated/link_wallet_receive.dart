@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Link wallet response class.
-class LinkWalletResponse extends Response {
-  /// Initialize LinkWalletResponse.
-  const LinkWalletResponse({
+/// Link wallet receive class.
+class LinkWalletReceive extends Response {
+  /// Initialize LinkWalletReceive.
+  const LinkWalletReceive({
     this.linkWallet,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory LinkWalletResponse.fromJson(Map<String, dynamic> json) =>
-      LinkWalletResponse(
+  factory LinkWalletReceive.fromJson(Map<String, dynamic> json) =>
+      LinkWalletReceive(
         linkWallet: json['link_wallet'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class LinkWalletResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  LinkWalletResponse copyWith({
+  LinkWalletReceive copyWith({
     int? linkWallet,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      LinkWalletResponse(
+      LinkWalletReceive(
         linkWallet: linkWallet ?? this.linkWallet,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -3,7 +3,7 @@ const String mt5NewAccountResponse = '''
 {
   "echo_req": {
     "mt5_new_account": 1,
-    "account_type": "gaming",
+    "account_type": "demo",
     "address": "Dummy address",
     "city": "Valletta",
     "company": "Binary Limited",
@@ -21,12 +21,12 @@ const String mt5NewAccountResponse = '''
   },
   "msg_type": "mt5_new_account",
   "mt5_new_account": {
-    "account_type": "gaming",
+    "account_type": "demo",
     "balance": 350.0,
     "currency": "USD",
     "display_balance": "350.0",
     "login": "MT346525",
-    "mt5_account_type": "advanced"
+    "mt5_account_type": "financial"
   }
 }
 ''';

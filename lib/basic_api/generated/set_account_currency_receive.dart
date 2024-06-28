@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Set account currency response class.
-class SetAccountCurrencyResponse extends Response {
-  /// Initialize SetAccountCurrencyResponse.
-  const SetAccountCurrencyResponse({
+/// Set account currency receive class.
+class SetAccountCurrencyReceive extends Response {
+  /// Initialize SetAccountCurrencyReceive.
+  const SetAccountCurrencyReceive({
     this.setAccountCurrency,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
-      SetAccountCurrencyResponse(
+  factory SetAccountCurrencyReceive.fromJson(Map<String, dynamic> json) =>
+      SetAccountCurrencyReceive(
         setAccountCurrency: json['set_account_currency'] == null
             ? null
             : json['set_account_currency'] == 1,
@@ -51,14 +46,14 @@ class SetAccountCurrencyResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetAccountCurrencyResponse copyWith({
+  SetAccountCurrencyReceive copyWith({
     bool? setAccountCurrency,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      SetAccountCurrencyResponse(
+      SetAccountCurrencyReceive(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

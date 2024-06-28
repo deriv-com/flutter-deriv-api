@@ -15,7 +15,10 @@ const String p2pAdvertUpdateResponse = '''
     "account_currency": "USD",
     "advertiser_details": {
       "id": "3",
-      "name": "za advertiser 1010"
+      "name": "za advertiser 1010",
+       "completed_orders_count" : 1,
+       "rating_count" : 0,
+      "is_online": true
     },
     "amount": 100,
     "amount_display": "100.00",
@@ -25,7 +28,7 @@ const String p2pAdvertUpdateResponse = '''
     "created_time": 1589279547,
     "description": "advert information",
     "id": "25",
-    "is_active": 1,
+    "is_active": 0,
     "local_currency": "ZAR",
     "max_order_amount": 50,
     "max_order_amount_display": "50.00",

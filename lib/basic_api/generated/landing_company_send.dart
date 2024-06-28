@@ -9,13 +9,10 @@ class LandingCompanyRequest extends Request {
   /// Initialize LandingCompanyRequest.
   const LandingCompanyRequest({
     required this.landingCompany,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'landing_company',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'landing_company',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>

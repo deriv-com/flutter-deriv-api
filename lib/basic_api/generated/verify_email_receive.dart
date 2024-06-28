@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Verify email response class.
-class VerifyEmailResponse extends Response {
-  /// Initialize VerifyEmailResponse.
-  const VerifyEmailResponse({
+/// Verify email receive class.
+class VerifyEmailReceive extends Response {
+  /// Initialize VerifyEmailReceive.
+  const VerifyEmailReceive({
     this.verifyEmail,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
-      VerifyEmailResponse(
+  factory VerifyEmailReceive.fromJson(Map<String, dynamic> json) =>
+      VerifyEmailReceive(
         verifyEmail:
             json['verify_email'] == null ? null : json['verify_email'] == 1,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -50,14 +45,14 @@ class VerifyEmailResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  VerifyEmailResponse copyWith({
+  VerifyEmailReceive copyWith({
     bool? verifyEmail,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      VerifyEmailResponse(
+      VerifyEmailReceive(
         verifyEmail: verifyEmail ?? this.verifyEmail,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
