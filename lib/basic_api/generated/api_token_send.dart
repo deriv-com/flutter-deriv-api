@@ -10,22 +10,21 @@ class ApiTokenRequest extends Request {
   const ApiTokenRequest({
     this.apiToken = true,
     this.deleteToken,
+    this.loginid,
     this.newToken,
     this.newTokenScopes,
     this.validForCurrentIpOnly,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'api_token',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'api_token',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       ApiTokenRequest(
         apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
         deleteToken: json['delete_token'] as String?,
+        loginid: json['loginid'] as String?,
         newToken: json['new_token'] as String?,
         newTokenScopes: (json['new_token_scopes'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
@@ -42,6 +41,9 @@ class ApiTokenRequest extends Request {
 
   /// [Optional] The token to remove.
   final String? deleteToken;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] The name of the created token.
   final String? newToken;
@@ -61,6 +63,7 @@ class ApiTokenRequest extends Request {
                 ? 1
                 : 0,
         'delete_token': deleteToken,
+        'loginid': loginid,
         'new_token': newToken,
         'new_token_scopes': newTokenScopes,
         'valid_for_current_ip_only': validForCurrentIpOnly == null
@@ -77,6 +80,7 @@ class ApiTokenRequest extends Request {
   ApiTokenRequest copyWith({
     bool? apiToken,
     String? deleteToken,
+    String? loginid,
     String? newToken,
     List<String>? newTokenScopes,
     bool? validForCurrentIpOnly,
@@ -86,6 +90,7 @@ class ApiTokenRequest extends Request {
       ApiTokenRequest(
         apiToken: apiToken ?? this.apiToken,
         deleteToken: deleteToken ?? this.deleteToken,
+        loginid: loginid ?? this.loginid,
         newToken: newToken ?? this.newToken,
         newTokenScopes: newTokenScopes ?? this.newTokenScopes,
         validForCurrentIpOnly:

@@ -15,7 +15,7 @@ class SubscribeProposal extends PriceProposalEvent {
   });
 
   /// Contract
-  AvailableContractModel? contract;
+  AvailableItem? contract;
 
   /// Basis
   final String basis;
@@ -39,7 +39,7 @@ class YieldProposalLoaded extends PriceProposalEvent {
   YieldProposalLoaded(this.proposal);
 
   /// Loaded proposal
-  final PriceProposal? proposal;
+  final ProposalResponse proposal;
 
   @override
   String toString() => 'Yield $proposal loaded';

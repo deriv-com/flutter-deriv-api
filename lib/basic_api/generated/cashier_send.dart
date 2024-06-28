@@ -12,16 +12,15 @@ class CashierRequest extends Request {
     this.amount,
     required this.cashier,
     this.dryRun,
+    this.estimatedFeeUniqueId,
+    this.loginid,
     this.provider,
     this.type,
     this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'cashier',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'cashier',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
@@ -29,6 +28,8 @@ class CashierRequest extends Request {
         amount: json['amount'] as num?,
         cashier: json['cashier'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        estimatedFeeUniqueId: json['estimated_fee_unique_id'] as String?,
+        loginid: json['loginid'] as String?,
         provider: json['provider'] as String?,
         type: json['type'] as String?,
         verificationCode: json['verification_code'] as String?,
@@ -48,10 +49,16 @@ class CashierRequest extends Request {
   /// [Optional] If set to `true`, only validation is performed. Only applicable for `withdraw` using `crypto` provider and `api` type.
   final bool? dryRun;
 
+  /// [Optional] The `unique_id` of the estimated fee received from `crypto_estimations` call in case the client is willing to pay the returned fee in order to prioritise their withdrawal request.
+  final String? estimatedFeeUniqueId;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Cashier provider. `crypto` will be default option for crypto currency accounts.
   final String? provider;
 
-  /// [Optional] Data need to be returned from cashier. `api` is supported only for `crypto` provider.
+  /// [Optional] Data is returned from the cashier. The `crypto` provider only supports `api` (not `url`) for crypto accounts.
   final String? type;
 
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
@@ -68,6 +75,8 @@ class CashierRequest extends Request {
             : dryRun!
                 ? 1
                 : 0,
+        'estimated_fee_unique_id': estimatedFeeUniqueId,
+        'loginid': loginid,
         'provider': provider,
         'type': type,
         'verification_code': verificationCode,
@@ -82,6 +91,8 @@ class CashierRequest extends Request {
     num? amount,
     String? cashier,
     bool? dryRun,
+    String? estimatedFeeUniqueId,
+    String? loginid,
     String? provider,
     String? type,
     String? verificationCode,
@@ -93,6 +104,8 @@ class CashierRequest extends Request {
         amount: amount ?? this.amount,
         cashier: cashier ?? this.cashier,
         dryRun: dryRun ?? this.dryRun,
+        estimatedFeeUniqueId: estimatedFeeUniqueId ?? this.estimatedFeeUniqueId,
+        loginid: loginid ?? this.loginid,
         provider: provider ?? this.provider,
         type: type ?? this.type,
         verificationCode: verificationCode ?? this.verificationCode,

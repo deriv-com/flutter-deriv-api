@@ -11,13 +11,11 @@ class ContractUpdateHistoryRequest extends Request {
     required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'contract_update_history',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'contract_update_history',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +25,7 @@ class ContractUpdateHistoryRequest extends Request {
             ? null
             : json['contract_update_history'] == 1,
         limit: json['limit'] as num?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -40,6 +39,9 @@ class ContractUpdateHistoryRequest extends Request {
   /// [Optional] Maximum number of historical updates to receive.
   final num? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -50,6 +52,7 @@ class ContractUpdateHistoryRequest extends Request {
                 ? 1
                 : 0,
         'limit': limit,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -60,6 +63,7 @@ class ContractUpdateHistoryRequest extends Request {
     int? contractId,
     bool? contractUpdateHistory,
     num? limit,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -68,6 +72,7 @@ class ContractUpdateHistoryRequest extends Request {
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

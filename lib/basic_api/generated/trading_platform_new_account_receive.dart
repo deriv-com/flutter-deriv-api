@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Trading platform new account response class.
-class TradingPlatformNewAccountResponse extends Response {
-  /// Initialize TradingPlatformNewAccountResponse.
-  const TradingPlatformNewAccountResponse({
+/// Trading platform new account receive class.
+class TradingPlatformNewAccountReceive extends Response {
+  /// Initialize TradingPlatformNewAccountReceive.
+  const TradingPlatformNewAccountReceive({
     this.tradingPlatformNewAccount,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TradingPlatformNewAccountResponse.fromJson(
+  factory TradingPlatformNewAccountReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformNewAccountResponse(
+      TradingPlatformNewAccountReceive(
         tradingPlatformNewAccount:
             json['trading_platform_new_account'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +42,14 @@ class TradingPlatformNewAccountResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformNewAccountResponse copyWith({
+  TradingPlatformNewAccountReceive copyWith({
     Map<String, dynamic>? tradingPlatformNewAccount,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformNewAccountResponse(
+      TradingPlatformNewAccountReceive(
         tradingPlatformNewAccount:
             tradingPlatformNewAccount ?? this.tradingPlatformNewAccount,
         echoReq: echoReq ?? this.echoReq,

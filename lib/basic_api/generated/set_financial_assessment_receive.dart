@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Set financial assessment response class.
-class SetFinancialAssessmentResponse extends Response {
-  /// Initialize SetFinancialAssessmentResponse.
-  const SetFinancialAssessmentResponse({
+/// Set financial assessment receive class.
+class SetFinancialAssessmentReceive extends Response {
+  /// Initialize SetFinancialAssessmentReceive.
+  const SetFinancialAssessmentReceive({
     this.setFinancialAssessment,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
-      SetFinancialAssessmentResponse(
+  factory SetFinancialAssessmentReceive.fromJson(Map<String, dynamic> json) =>
+      SetFinancialAssessmentReceive(
         setFinancialAssessment:
             json['set_financial_assessment'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +41,14 @@ class SetFinancialAssessmentResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetFinancialAssessmentResponse copyWith({
+  SetFinancialAssessmentReceive copyWith({
     Map<String, dynamic>? setFinancialAssessment,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      SetFinancialAssessmentResponse(
+      SetFinancialAssessmentReceive(
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
         echoReq: echoReq ?? this.echoReq,

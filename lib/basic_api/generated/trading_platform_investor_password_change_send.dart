@@ -9,23 +9,22 @@ class TradingPlatformInvestorPasswordChangeRequest extends Request {
   /// Initialize TradingPlatformInvestorPasswordChangeRequest.
   const TradingPlatformInvestorPasswordChangeRequest({
     required this.accountId,
+    this.loginid,
     required this.newPassword,
     required this.oldPassword,
     required this.platform,
     this.tradingPlatformInvestorPasswordChange = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_investor_password_change',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_investor_password_change',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformInvestorPasswordChangeRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformInvestorPasswordChangeRequest(
         accountId: json['account_id'] as String?,
+        loginid: json['loginid'] as String?,
         newPassword: json['new_password'] as String?,
         oldPassword: json['old_password'] as String?,
         platform: json['platform'] as String?,
@@ -39,6 +38,9 @@ class TradingPlatformInvestorPasswordChangeRequest extends Request {
 
   /// Trading account ID.
   final String? accountId;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// New investor password. Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address.
   final String? newPassword;
@@ -56,6 +58,7 @@ class TradingPlatformInvestorPasswordChangeRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_id': accountId,
+        'loginid': loginid,
         'new_password': newPassword,
         'old_password': oldPassword,
         'platform': platform,
@@ -73,6 +76,7 @@ class TradingPlatformInvestorPasswordChangeRequest extends Request {
   @override
   TradingPlatformInvestorPasswordChangeRequest copyWith({
     String? accountId,
+    String? loginid,
     String? newPassword,
     String? oldPassword,
     String? platform,
@@ -82,6 +86,7 @@ class TradingPlatformInvestorPasswordChangeRequest extends Request {
   }) =>
       TradingPlatformInvestorPasswordChangeRequest(
         accountId: accountId ?? this.accountId,
+        loginid: loginid ?? this.loginid,
         newPassword: newPassword ?? this.newPassword,
         oldPassword: oldPassword ?? this.oldPassword,
         platform: platform ?? this.platform,

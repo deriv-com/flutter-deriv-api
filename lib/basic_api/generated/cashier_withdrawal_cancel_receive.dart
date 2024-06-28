@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Cashier withdrawal cancel response class.
-class CashierWithdrawalCancelResponse extends Response {
-  /// Initialize CashierWithdrawalCancelResponse.
-  const CashierWithdrawalCancelResponse({
+/// Cashier withdrawal cancel receive class.
+class CashierWithdrawalCancelReceive extends Response {
+  /// Initialize CashierWithdrawalCancelReceive.
+  const CashierWithdrawalCancelReceive({
     this.cashierWithdrawalCancel,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory CashierWithdrawalCancelResponse.fromJson(Map<String, dynamic> json) =>
-      CashierWithdrawalCancelResponse(
+  factory CashierWithdrawalCancelReceive.fromJson(Map<String, dynamic> json) =>
+      CashierWithdrawalCancelReceive(
         cashierWithdrawalCancel:
             json['cashier_withdrawal_cancel'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -46,14 +41,14 @@ class CashierWithdrawalCancelResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CashierWithdrawalCancelResponse copyWith({
+  CashierWithdrawalCancelReceive copyWith({
     Map<String, dynamic>? cashierWithdrawalCancel,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CashierWithdrawalCancelResponse(
+      CashierWithdrawalCancelReceive(
         cashierWithdrawalCancel:
             cashierWithdrawalCancel ?? this.cashierWithdrawalCancel,
         echoReq: echoReq ?? this.echoReq,

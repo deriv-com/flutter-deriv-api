@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// App update response class.
-class AppUpdateResponse extends Response {
-  /// Initialize AppUpdateResponse.
-  const AppUpdateResponse({
+/// App update receive class.
+class AppUpdateReceive extends Response {
+  /// Initialize AppUpdateReceive.
+  const AppUpdateReceive({
     this.appUpdate,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>
-      AppUpdateResponse(
+  factory AppUpdateReceive.fromJson(Map<String, dynamic> json) =>
+      AppUpdateReceive(
         appUpdate: json['app_update'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class AppUpdateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppUpdateResponse copyWith({
+  AppUpdateReceive copyWith({
     Map<String, dynamic>? appUpdate,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AppUpdateResponse(
+      AppUpdateReceive(
         appUpdate: appUpdate ?? this.appUpdate,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

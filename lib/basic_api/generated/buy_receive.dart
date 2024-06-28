@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Buy response class.
-class BuyResponse extends Response {
-  /// Initialize BuyResponse.
-  const BuyResponse({
+/// Buy receive class.
+class BuyReceive extends Response {
+  /// Initialize BuyReceive.
+  const BuyReceive({
     this.buy,
     this.subscription,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory BuyResponse.fromJson(Map<String, dynamic> json) => BuyResponse(
+  factory BuyReceive.fromJson(Map<String, dynamic> json) => BuyReceive(
         buy: json['buy'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -50,7 +45,7 @@ class BuyResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  BuyResponse copyWith({
+  BuyReceive copyWith({
     Map<String, dynamic>? buy,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -58,7 +53,7 @@ class BuyResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      BuyResponse(
+      BuyReceive(
         buy: buy ?? this.buy,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,
