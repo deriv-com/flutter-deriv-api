@@ -49,6 +49,8 @@ const String getAccountStatusResponse = '''{
         "is_withdrawal_suspended": 0
       }
     },
+    "p2p_poa_required": 1,
+    "p2p_status": "active",
     "prompt_client_to_authenticate": 0,
     "risk_classification": "low",
     "status": [

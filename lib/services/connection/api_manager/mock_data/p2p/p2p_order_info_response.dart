@@ -8,6 +8,7 @@ const String p2pOrderInfoResponse = '''{
   "p2p_order_info": {
     "account_currency": "USD",
     "advert_details": {
+      "block_trade": 1,
       "description": "Please contact via whatsapp 1234",
       "id": "6",
       "payment_method": "bank_transfer",
