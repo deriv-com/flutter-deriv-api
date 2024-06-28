@@ -2,13 +2,14 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart'; 
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart'; 
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_receive.dart'; 
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_send.dart'; 
-import 'package:flutter_deriv_api/helpers/helpers.dart'; 
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'; 
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_payment_methods_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+
 /// P2p advertiser payment methods response model class.
 abstract class P2pAdvertiserPaymentMethodsResponseModel {
   /// Initializes P2p advertiser payment methods response model class .
@@ -137,6 +138,7 @@ enum P2pAdvertiserPaymentMethodsPropertyTypeEnum {
   /// other.
   other,
 }
+
 /// P2p advertiser payment methods property model class.
 abstract class P2pAdvertiserPaymentMethodsPropertyModel {
   /// Initializes P2p advertiser payment methods property model class .
@@ -269,6 +271,7 @@ class P2pAdvertiserPaymentMethodsProperty
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
+
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .

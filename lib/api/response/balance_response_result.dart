@@ -169,6 +169,7 @@ enum TypeEnum {
   /// deriv.
   deriv,
 }
+
 /// Balance model class.
 abstract class BalanceModel {
   /// Initializes Balance model class .
@@ -263,6 +264,7 @@ class Balance extends BalanceModel {
         total: total ?? this.total,
       );
 }
+
 /// Accounts property model class.
 abstract class AccountsPropertyModel {
   /// Initializes Accounts property model class .
@@ -351,6 +353,7 @@ class AccountsProperty extends AccountsPropertyModel {
         type: type ?? this.type,
       );
 }
+
 /// Total model class.
 abstract class TotalModel {
   /// Initializes Total model class .
@@ -430,6 +433,7 @@ class Total extends TotalModel {
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
 }
+
 /// Deriv model class.
 abstract class DerivModel {
   /// Initializes Deriv model class .
@@ -479,6 +483,7 @@ class Deriv extends DerivModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Deriv demo model class.
 abstract class DerivDemoModel {
   /// Initializes Deriv demo model class .
@@ -528,6 +533,7 @@ class DerivDemo extends DerivDemoModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Mt5 model class.
 abstract class Mt5Model {
   /// Initializes Mt5 model class .
@@ -577,6 +583,7 @@ class Mt5 extends Mt5Model {
         currency: currency ?? this.currency,
       );
 }
+
 /// Mt5 demo model class.
 abstract class Mt5DemoModel {
   /// Initializes Mt5 demo model class .
@@ -626,6 +633,7 @@ class Mt5Demo extends Mt5DemoModel {
         currency: currency ?? this.currency,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

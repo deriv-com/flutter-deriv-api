@@ -2,7 +2,8 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/helpers/helpers.dart';    
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 /// Trading platform investor password reset response model class.
 abstract class TradingPlatformInvestorPasswordResetResponseModel {
   /// Initializes Trading platform investor password reset response model class .

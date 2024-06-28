@@ -66,6 +66,7 @@ enum StatusCodeEnum {
   /// CANCELLED.
   cancelled,
 }
+
 /// Cashier withdrawal cancel model class.
 abstract class CashierWithdrawalCancelModel {
   /// Initializes Cashier withdrawal cancel model class .

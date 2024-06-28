@@ -68,6 +68,7 @@ class CryptoEstimationsResponse extends CryptoEstimationsResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Crypto estimations property model class.
 abstract class CryptoEstimationsPropertyModel {
   /// Initializes Crypto estimations property model class .
@@ -113,6 +114,7 @@ class CryptoEstimationsProperty extends CryptoEstimationsPropertyModel {
         withdrawalFee: withdrawalFee ?? this.withdrawalFee,
       );
 }
+
 /// Withdrawal fee model class.
 abstract class WithdrawalFeeModel {
   /// Initializes Withdrawal fee model class .
@@ -171,6 +173,7 @@ class WithdrawalFee extends WithdrawalFeeModel {
         value: value ?? this.value,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

@@ -76,6 +76,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
 }
+
 /// App markup details model class.
 abstract class AppMarkupDetailsModel {
   /// Initializes App markup details model class .
@@ -129,6 +130,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 }
+
 /// Transactions item model class.
 abstract class TransactionsItemModel {
   /// Initializes Transactions item model class .

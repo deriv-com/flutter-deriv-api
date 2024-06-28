@@ -118,6 +118,7 @@ class TicksResponse extends TicksResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Tick model class.
 abstract class TickModel {
   /// Initializes Tick model class .
@@ -212,6 +213,7 @@ class Tick extends TickModel {
         symbol: symbol ?? this.symbol,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

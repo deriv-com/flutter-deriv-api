@@ -80,6 +80,7 @@ enum TypeEnum {
   /// crypto.
   crypto,
 }
+
 /// Website config model class.
 abstract class WebsiteConfigModel {
   /// Initializes Website config model class .
@@ -192,6 +193,7 @@ class WebsiteConfig extends WebsiteConfigModel {
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
 }
+
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes Currencies config property model class .
@@ -302,6 +304,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         name: name ?? this.name,
       );
 }
+
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
   /// Initializes Transfer between accounts model class .
@@ -392,6 +395,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
 }
+
 /// Limits model class.
 abstract class LimitsModel {
   /// Initializes Limits model class .
@@ -441,6 +445,7 @@ class Limits extends LimitsModel {
         max: max ?? this.max,
       );
 }
+
 /// Payment agents model class.
 abstract class PaymentAgentsModel {
   /// Initializes Payment agents model class .
@@ -486,6 +491,7 @@ class PaymentAgents extends PaymentAgentsModel {
             initialDepositPerCountry ?? this.initialDepositPerCountry,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

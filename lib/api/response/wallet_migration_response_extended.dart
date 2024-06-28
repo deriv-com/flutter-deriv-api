@@ -35,14 +35,16 @@ class WalletMigrationResponseExtended extends WalletMigrationResponse {
   }
 
   /// Starts the user's migration process to wallet.
-  static Future<WalletMigrationResponse> startMigration() => fetchWalletMigration(
+  static Future<WalletMigrationResponse> startMigration() =>
+      fetchWalletMigration(
         request: const WalletMigrationRequest(
           walletMigration: 'start',
         ),
       );
 
   /// Resets the user's migration process to wallet.
-  static Future<WalletMigrationResponse> resetMigration() => fetchWalletMigration(
+  static Future<WalletMigrationResponse> resetMigration() =>
+      fetchWalletMigration(
         request: const WalletMigrationRequest(
           walletMigration: 'reset',
         ),

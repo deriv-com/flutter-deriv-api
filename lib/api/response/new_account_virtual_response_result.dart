@@ -92,6 +92,7 @@ enum TypeEnum {
   /// wallet.
   wallet,
 }
+
 /// New account virtual model class.
 abstract class NewAccountVirtualModel {
   /// Initializes New account virtual model class .

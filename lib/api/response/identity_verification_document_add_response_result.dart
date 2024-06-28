@@ -2,7 +2,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
 /// Identity verification document add response model class.
 abstract class IdentityVerificationDocumentAddResponseModel {
   /// Initializes Identity verification document add response model class .

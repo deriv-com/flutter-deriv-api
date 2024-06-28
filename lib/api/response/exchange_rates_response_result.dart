@@ -103,6 +103,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
   /// Initializes Exchange rates model class .
@@ -168,6 +169,7 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 }
+
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
