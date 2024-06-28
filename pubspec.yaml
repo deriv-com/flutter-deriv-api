@@ -31,7 +31,6 @@ dependencies:
       ref: main
   package_info_plus: ^4.2.0
   connectivity_plus: ^5.0.2
-  web_socket_channel: ^2.4.5
 
 dev_dependencies:
   bloc_test: ^9.1.1
