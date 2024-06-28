@@ -1,47 +1,47 @@
 PODS:
-  - connectivity (0.0.1):
+  - connectivity_plus (0.0.1):
     - Flutter
-    - Reachability
-  - device_info (0.0.1):
+    - ReachabilitySwift
+  - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_deriv_api (0.0.1):
+  - flutter_system_proxy (0.0.1):
     - Flutter
-  - package_info (0.0.1):
+  - package_info_plus (0.4.5):
     - Flutter
-  - Reachability (3.2)
+  - ReachabilitySwift (5.2.3)
 
 DEPENDENCIES:
-  - connectivity (from `.symlinks/plugins/connectivity/ios`)
-  - device_info (from `.symlinks/plugins/device_info/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - flutter_deriv_api (from `.symlinks/plugins/flutter_deriv_api/ios`)
-  - package_info (from `.symlinks/plugins/package_info/ios`)
+  - flutter_system_proxy (from `.symlinks/plugins/flutter_system_proxy/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
 
 SPEC REPOS:
   trunk:
-    - Reachability
+    - ReachabilitySwift
 
 EXTERNAL SOURCES:
-  connectivity:
-    :path: ".symlinks/plugins/connectivity/ios"
-  device_info:
-    :path: ".symlinks/plugins/device_info/ios"
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  flutter_deriv_api:
-    :path: ".symlinks/plugins/flutter_deriv_api/ios"
-  package_info:
-    :path: ".symlinks/plugins/package_info/ios"
+  flutter_system_proxy:
+    :path: ".symlinks/plugins/flutter_system_proxy/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
 
 SPEC CHECKSUMS:
-  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
-  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_deriv_api: 9e29abd7cc5091b72303f9c8be549618415f1437
-  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
+  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_system_proxy: 96eb97e3857a1d1bc533a6f7387a1f0dcb63d782
+  package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
+  ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.13.0
