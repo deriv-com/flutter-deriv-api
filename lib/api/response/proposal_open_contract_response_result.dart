@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:build/build.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
@@ -163,14 +164,21 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// Default be 0 for 'sell at market'.
   /// Throws a [BaseAPIException] if API response contains an error
   static Future<SellResponse> sell(
-          {required int contractId, double price = 0}) =>
-      SellResponse.sellContract(SellRequest(sell: contractId, price: price));
+          {required int contractId, double price = 0, String? loginId}) =>
+      SellResponse.sellContract(SellRequest(
+        sell: contractId,
+        price: price,
+        loginid: loginId,
+      ));
 
   /// Cancels this contract
   ///
   /// Throws a [BaseAPIException] if API response contains an error
-  static Future<CancelResponse> cancel(int contractId) =>
-      CancelResponse.cancelContract(CancelRequest(cancel: contractId));
+  static Future<CancelResponse> cancel(int contractId, {String? loginId}) =>
+      CancelResponse.cancelContract(CancelRequest(
+        cancel: contractId,
+        loginid: loginId,
+      ));
 
   /// Creates a copy of instance with given parameters.
   ProposalOpenContractResponse copyWith({
