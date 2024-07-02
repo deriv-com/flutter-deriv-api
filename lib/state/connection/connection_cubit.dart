@@ -86,7 +86,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Stream subscription for connectivity.
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
 
-  /// Getter for [BaseAPI] implementation class.
+  /// Getter for [BaseAPI] implementation class. By default, it will be [BinaryAPI].
   BaseAPI get api => _api;
 
   /// Reconnect to Websocket.
