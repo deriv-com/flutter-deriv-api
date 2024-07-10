@@ -44,7 +44,7 @@ class CallHistory implements CallHistoryProvider {
         NetworkPayload(
             method: method,
             body: message,
-            direction: 'RECEIVED',
+            direction: NetworkDirections.received,
             timeStamp: timestamp),
       );
     }
@@ -65,7 +65,7 @@ class CallHistory implements CallHistoryProvider {
         NetworkPayload(
             method: method,
             body: message,
-            direction: 'SENT',
+            direction: NetworkDirections.sent,
             timeStamp: timestamp),
       );
     }

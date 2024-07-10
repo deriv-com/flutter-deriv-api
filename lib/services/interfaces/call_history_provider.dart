@@ -22,8 +22,16 @@ class NetworkPayload {
   final Object body;
 
   /// direction of the api i.e SENT or RECEIVED.
-  final String direction;
+  final NetworkDirections direction;
 
   /// time of the api.
   final int timeStamp;
+}
+
+enum NetworkDirections {
+  /// Going out from the web socket.
+  sent,
+
+  /// Coming in from the web socket.
+  received
 }
