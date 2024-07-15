@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
+import 'package:build/build.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
@@ -55,11 +56,13 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
   ///
   /// For parameters information refer to [TopupVirtualRequest].
   /// Throws a [BaseAPIException] if API response contains an error
-  static Future<TopupVirtualResponse> topUp([
+  static Future<TopupVirtualResponse> topUp({
     TopupVirtualRequest? request,
-  ]) async {
+    String? loginId,
+  }) async {
     final TopupVirtualReceive response = await _api.call(
-      request: request ?? const TopupVirtualRequest(),
+      request: request?.copyWith(loginid: loginId) ??
+          TopupVirtualRequest(loginid: loginId),
     );
 
     checkException(
