@@ -330,6 +330,7 @@ abstract class GetAccountStatusModel {
   /// - `mt5_additional_kyc_required`: client tax information, place of birth and account opening reason is missing.
   /// - `poi_expiring_soon`: the POI documents of the client will get expired soon, allow them to reupload POI documents.
   /// - `poa_expiring_soon`: the POA documents of the client will get outdated soon, allow them to reupload POA documents.
+  /// - `tin_manually_approved`: the client's tax_identification_number has been manually approved as client is not applicable for tax_identification_number
   final List<String> status;
 
   /// Client risk classification: `low`, `standard`, `high`.
@@ -825,6 +826,7 @@ abstract class DocumentModel {
     this.authenticatedWithIdv,
     this.expiryDate,
     this.status,
+    this.verifiedJurisdiction,
   });
 
   /// This represents the current status of idv authentication for each mt5 jurisdiction.
@@ -835,6 +837,9 @@ abstract class DocumentModel {
 
   /// This represents the current status of the proof of address document submitted for authentication.
   final DocumentStatusEnum? status;
+
+  /// This represents the current status of authentication for each mt5 jurisdiction.
+  final VerifiedJurisdiction? verifiedJurisdiction;
 }
 
 /// Document class.
@@ -844,6 +849,7 @@ class Document extends DocumentModel {
     super.authenticatedWithIdv,
     super.expiryDate,
     super.status,
+    super.verifiedJurisdiction,
   });
 
   /// Creates an instance from JSON.
@@ -855,6 +861,9 @@ class Document extends DocumentModel {
         status: json['status'] == null
             ? null
             : documentStatusEnumMapper[json['status']],
+        verifiedJurisdiction: json['verified_jurisdiction'] == null
+            ? null
+            : VerifiedJurisdiction.fromJson(json['verified_jurisdiction']),
       );
 
   /// Converts an instance to JSON.
@@ -869,6 +878,9 @@ class Document extends DocumentModel {
         .firstWhere((MapEntry<String, DocumentStatusEnum> entry) =>
             entry.value == status)
         .key;
+    if (verifiedJurisdiction != null) {
+      resultMap['verified_jurisdiction'] = verifiedJurisdiction!.toJson();
+    }
 
     return resultMap;
   }
@@ -878,11 +890,13 @@ class Document extends DocumentModel {
     AuthenticatedWithIdv? authenticatedWithIdv,
     DateTime? expiryDate,
     DocumentStatusEnum? status,
+    VerifiedJurisdiction? verifiedJurisdiction,
   }) =>
       Document(
         authenticatedWithIdv: authenticatedWithIdv ?? this.authenticatedWithIdv,
         expiryDate: expiryDate ?? this.expiryDate,
         status: status ?? this.status,
+        verifiedJurisdiction: verifiedJurisdiction ?? this.verifiedJurisdiction,
       );
 }
 
@@ -1004,6 +1018,138 @@ class AuthenticatedWithIdv extends AuthenticatedWithIdvModel {
     bool? virtual,
   }) =>
       AuthenticatedWithIdv(
+        bvi: bvi ?? this.bvi,
+        dsl: dsl ?? this.dsl,
+        iom: iom ?? this.iom,
+        labuan: labuan ?? this.labuan,
+        malta: malta ?? this.malta,
+        maltainvest: maltainvest ?? this.maltainvest,
+        samoa: samoa ?? this.samoa,
+        samoaVirtual: samoaVirtual ?? this.samoaVirtual,
+        svg: svg ?? this.svg,
+        vanuatu: vanuatu ?? this.vanuatu,
+        virtual: virtual ?? this.virtual,
+      );
+}
+
+/// Verified jurisdiction model class.
+abstract class VerifiedJurisdictionModel {
+  /// Initializes Verified jurisdiction model class .
+  const VerifiedJurisdictionModel({
+    this.bvi,
+    this.dsl,
+    this.iom,
+    this.labuan,
+    this.malta,
+    this.maltainvest,
+    this.samoa,
+    this.samoaVirtual,
+    this.svg,
+    this.vanuatu,
+    this.virtual,
+  });
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? bvi;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? dsl;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? iom;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? labuan;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? malta;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? maltainvest;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? samoa;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? samoaVirtual;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? svg;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? vanuatu;
+
+  /// This represents whether the client is allowed or not to create an account under this jurisdiction
+  final bool? virtual;
+}
+
+/// Verified jurisdiction class.
+class VerifiedJurisdiction extends VerifiedJurisdictionModel {
+  /// Initializes Verified jurisdiction class.
+  const VerifiedJurisdiction({
+    super.bvi,
+    super.dsl,
+    super.iom,
+    super.labuan,
+    super.malta,
+    super.maltainvest,
+    super.samoa,
+    super.samoaVirtual,
+    super.svg,
+    super.vanuatu,
+    super.virtual,
+  });
+
+  /// Creates an instance from JSON.
+  factory VerifiedJurisdiction.fromJson(Map<String, dynamic> json) =>
+      VerifiedJurisdiction(
+        bvi: getBool(json['bvi']),
+        dsl: getBool(json['dsl']),
+        iom: getBool(json['iom']),
+        labuan: getBool(json['labuan']),
+        malta: getBool(json['malta']),
+        maltainvest: getBool(json['maltainvest']),
+        samoa: getBool(json['samoa']),
+        samoaVirtual: getBool(json['samoa-virtual']),
+        svg: getBool(json['svg']),
+        vanuatu: getBool(json['vanuatu']),
+        virtual: getBool(json['virtual']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['bvi'] = bvi;
+    resultMap['dsl'] = dsl;
+    resultMap['iom'] = iom;
+    resultMap['labuan'] = labuan;
+    resultMap['malta'] = malta;
+    resultMap['maltainvest'] = maltainvest;
+    resultMap['samoa'] = samoa;
+    resultMap['samoa-virtual'] = samoaVirtual;
+    resultMap['svg'] = svg;
+    resultMap['vanuatu'] = vanuatu;
+    resultMap['virtual'] = virtual;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  VerifiedJurisdiction copyWith({
+    bool? bvi,
+    bool? dsl,
+    bool? iom,
+    bool? labuan,
+    bool? malta,
+    bool? maltainvest,
+    bool? samoa,
+    bool? samoaVirtual,
+    bool? svg,
+    bool? vanuatu,
+    bool? virtual,
+  }) =>
+      VerifiedJurisdiction(
         bvi: bvi ?? this.bvi,
         dsl: dsl ?? this.dsl,
         iom: iom ?? this.iom,
@@ -1157,6 +1303,7 @@ abstract class IdvModel {
   const IdvModel({
     this.expiryDate,
     this.lastRejected,
+    this.reportAvailable,
     this.reportedProperties,
     this.status,
     this.submissionsLeft,
@@ -1167,6 +1314,9 @@ abstract class IdvModel {
 
   /// Show the last IDV reported reasons for the rejected cases
   final List<String>? lastRejected;
+
+  /// Indicate if the verification report was returned by the provider
+  final bool? reportAvailable;
 
   /// Shows the latest document properties detected and reported by IDVS
   final Map<String, dynamic>? reportedProperties;
@@ -1184,6 +1334,7 @@ class Idv extends IdvModel {
   const Idv({
     super.expiryDate,
     super.lastRejected,
+    super.reportAvailable,
     super.reportedProperties,
     super.status,
     super.submissionsLeft,
@@ -1199,6 +1350,7 @@ class Idv extends IdvModel {
                   (dynamic item) => item,
                 ),
               ),
+        reportAvailable: getBool(json['report_available']),
         reportedProperties: json['reported_properties'],
         status:
             json['status'] == null ? null : idvStatusEnumMapper[json['status']],
@@ -1217,6 +1369,7 @@ class Idv extends IdvModel {
           )
           .toList();
     }
+    resultMap['report_available'] = reportAvailable;
     resultMap['reported_properties'] = reportedProperties;
     resultMap['status'] = idvStatusEnumMapper.entries
         .firstWhere(
@@ -1231,6 +1384,7 @@ class Idv extends IdvModel {
   Idv copyWith({
     DateTime? expiryDate,
     List<String>? lastRejected,
+    bool? reportAvailable,
     Map<String, dynamic>? reportedProperties,
     IdvStatusEnum? status,
     int? submissionsLeft,
@@ -1238,6 +1392,7 @@ class Idv extends IdvModel {
       Idv(
         expiryDate: expiryDate ?? this.expiryDate,
         lastRejected: lastRejected ?? this.lastRejected,
+        reportAvailable: reportAvailable ?? this.reportAvailable,
         reportedProperties: reportedProperties ?? this.reportedProperties,
         status: status ?? this.status,
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
