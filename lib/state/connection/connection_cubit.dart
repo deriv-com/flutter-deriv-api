@@ -46,7 +46,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   final String _key = '${UniqueKey()}';
 
-  late final BaseAPI? _api;
+  late final BaseAPI _api;
 
   /// Enables debug mode.
   ///
@@ -86,6 +86,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Stream subscription for connectivity.
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
 
+  /// Getter for [BaseAPI] implementation class. By default, it will be [BinaryAPI].
+  BaseAPI get api => _api;
+
   /// Reconnect to Websocket.
   Future<void> reconnect({
     ConnectionInformation? connectionInformation,
@@ -109,7 +112,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     emit(const ConnectionConnectingState());
 
     try {
-      await _api!.disconnect().timeout(_pingTimeout);
+      await _api.disconnect().timeout(_pingTimeout);
     } on Exception catch (e) {
       dev.log('$runtimeType disconnect exception: $e', error: e);
 
@@ -118,7 +121,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       return;
     }
 
-    await _api!.connect(
+    await _api.connect(
       _connectionInformation,
       printResponse: enableDebug && printResponse,
       onOpen: (String key) {

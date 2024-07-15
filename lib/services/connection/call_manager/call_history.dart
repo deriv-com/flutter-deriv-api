@@ -1,7 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter_deriv_api/services/connection/call_manager/call_history_entry.dart';
+import 'package:flutter_deriv_api/services/interfaces/call_history_provider.dart';
 
 /// Provides storage for messages sent/received via the web socket connection
-class CallHistory {
+class CallHistory implements CallHistoryProvider {
+  /// It initializes [CallHistory] instance.
+  CallHistory() {
+    _callHistoryBroadcaster = StreamController<NetworkPayload>.broadcast();
+  }
+
+  late final StreamController<NetworkPayload> _callHistoryBroadcaster;
+
   /// Messages that were sent to the remote endpoint
   final List<CallHistoryEntry> outgoing = <CallHistoryEntry>[];
 
@@ -29,7 +39,15 @@ class CallHistory {
     incoming.add(
       CallHistoryEntry(timeStamp: timestamp, method: method, message: message),
     );
-
+    if (!method.contains('ping')) {
+      _callHistoryBroadcaster.add(
+        NetworkPayload(
+            method: method,
+            body: message,
+            direction: NetworkDirections.received,
+            timeStamp: timestamp),
+      );
+    }
     _trimHistory(incoming);
   }
 
@@ -42,6 +60,15 @@ class CallHistory {
     outgoing.add(
       CallHistoryEntry(timeStamp: timestamp, method: method, message: message),
     );
+    if (!method.contains('ping')) {
+      _callHistoryBroadcaster.add(
+        NetworkPayload(
+            method: method,
+            body: message,
+            direction: NetworkDirections.sent,
+            timeStamp: timestamp),
+      );
+    }
 
     _trimHistory(outgoing);
   }
@@ -52,4 +79,7 @@ class CallHistory {
       callHistory.removeRange(0, callHistory.length - limit);
     }
   }
+
+  @override
+  Stream<NetworkPayload> get stream => _callHistoryBroadcaster.stream;
 }
