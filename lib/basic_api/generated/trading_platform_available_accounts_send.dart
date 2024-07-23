@@ -8,20 +8,19 @@ import '../request.dart';
 class TradingPlatformAvailableAccountsRequest extends Request {
   /// Initialize TradingPlatformAvailableAccountsRequest.
   const TradingPlatformAvailableAccountsRequest({
+    this.loginid,
     required this.platform,
     this.tradingPlatformAvailableAccounts = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_available_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_available_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformAvailableAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformAvailableAccountsRequest(
+        loginid: json['loginid'] as String?,
         platform: json['platform'] as String?,
         tradingPlatformAvailableAccounts:
             json['trading_platform_available_accounts'] == null
@@ -30,6 +29,9 @@ class TradingPlatformAvailableAccountsRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Name of trading platform.
   final String? platform;
@@ -40,6 +42,7 @@ class TradingPlatformAvailableAccountsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'platform': platform,
         'trading_platform_available_accounts':
             tradingPlatformAvailableAccounts == null
@@ -54,12 +57,14 @@ class TradingPlatformAvailableAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingPlatformAvailableAccountsRequest copyWith({
+    String? loginid,
     String? platform,
     bool? tradingPlatformAvailableAccounts,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       TradingPlatformAvailableAccountsRequest(
+        loginid: loginid ?? this.loginid,
         platform: platform ?? this.platform,
         tradingPlatformAvailableAccounts: tradingPlatformAvailableAccounts ??
             this.tradingPlatformAvailableAccounts,

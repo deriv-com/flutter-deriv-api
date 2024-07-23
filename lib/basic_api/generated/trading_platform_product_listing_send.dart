@@ -11,13 +11,10 @@ class TradingPlatformProductListingRequest extends Request {
     this.appId,
     required this.countryCode,
     this.tradingPlatformProductListing = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_product_listing',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_product_listing',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformProductListingRequest.fromJson(

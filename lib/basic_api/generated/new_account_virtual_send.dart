@@ -11,8 +11,10 @@ class NewAccountVirtualRequest extends Request {
     this.affiliateToken,
     required this.clientPassword,
     this.dateFirstContact,
+    this.email,
     this.emailConsent,
     this.gclidUrl,
+    this.loginid,
     this.newAccountVirtual = true,
     required this.residence,
     this.signupDevice,
@@ -30,13 +32,10 @@ class NewAccountVirtualRequest extends Request {
     this.utmSource,
     this.utmTerm,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'new_account_virtual',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'new_account_virtual',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
@@ -44,8 +43,11 @@ class NewAccountVirtualRequest extends Request {
         affiliateToken: json['affiliate_token'] as String?,
         clientPassword: json['client_password'] as String?,
         dateFirstContact: json['date_first_contact'] as String?,
-        emailConsent: json['email_consent'] as int?,
+        email: json['email'] as String?,
+        emailConsent:
+            json['email_consent'] == null ? null : json['email_consent'] == 1,
         gclidUrl: json['gclid_url'] as String?,
+        loginid: json['loginid'] as String?,
         newAccountVirtual: json['new_account_virtual'] == null
             ? null
             : json['new_account_virtual'] == 1,
@@ -78,11 +80,17 @@ class NewAccountVirtualRequest extends Request {
   /// [Optional] Date of first contact, format: `yyyy-mm-dd` in GMT timezone.
   final String? dateFirstContact;
 
-  /// [Optional] Boolean value: 1 or 0, indicating whether the client has given consent for marketing emails.
-  final int? emailConsent;
+  /// [Optional] Email address for signup.
+  final String? email;
+
+  /// [Optional] Boolean value: `true` or `false`, indicating whether the client has given consent for marketing emails.
+  final bool? emailConsent;
 
   /// [Optional] Google Click Identifier to track source.
   final String? gclidUrl;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? newAccountVirtual;
@@ -141,8 +149,14 @@ class NewAccountVirtualRequest extends Request {
         'affiliate_token': affiliateToken,
         'client_password': clientPassword,
         'date_first_contact': dateFirstContact,
-        'email_consent': emailConsent,
+        'email': email,
+        'email_consent': emailConsent == null
+            ? null
+            : emailConsent!
+                ? 1
+                : 0,
         'gclid_url': gclidUrl,
+        'loginid': loginid,
         'new_account_virtual': newAccountVirtual == null
             ? null
             : newAccountVirtual!
@@ -174,8 +188,10 @@ class NewAccountVirtualRequest extends Request {
     String? affiliateToken,
     String? clientPassword,
     String? dateFirstContact,
-    int? emailConsent,
+    String? email,
+    bool? emailConsent,
     String? gclidUrl,
+    String? loginid,
     bool? newAccountVirtual,
     String? residence,
     String? signupDevice,
@@ -200,8 +216,10 @@ class NewAccountVirtualRequest extends Request {
         affiliateToken: affiliateToken ?? this.affiliateToken,
         clientPassword: clientPassword ?? this.clientPassword,
         dateFirstContact: dateFirstContact ?? this.dateFirstContact,
+        email: email ?? this.email,
         emailConsent: emailConsent ?? this.emailConsent,
         gclidUrl: gclidUrl ?? this.gclidUrl,
+        loginid: loginid ?? this.loginid,
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
         residence: residence ?? this.residence,
         signupDevice: signupDevice ?? this.signupDevice,

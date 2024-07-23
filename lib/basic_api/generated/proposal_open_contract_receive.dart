@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Proposal open contract response class.
-class ProposalOpenContractResponse extends Response {
-  /// Initialize ProposalOpenContractResponse.
-  const ProposalOpenContractResponse({
+/// Proposal open contract receive class.
+class ProposalOpenContractReceive extends Response {
+  /// Initialize ProposalOpenContractReceive.
+  const ProposalOpenContractReceive({
     this.proposalOpenContract,
     this.subscription,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
-      ProposalOpenContractResponse(
+  factory ProposalOpenContractReceive.fromJson(Map<String, dynamic> json) =>
+      ProposalOpenContractReceive(
         proposalOpenContract:
             json['proposal_open_contract'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
@@ -52,7 +47,7 @@ class ProposalOpenContractResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProposalOpenContractResponse copyWith({
+  ProposalOpenContractReceive copyWith({
     Map<String, dynamic>? proposalOpenContract,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -60,7 +55,7 @@ class ProposalOpenContractResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      ProposalOpenContractResponse(
+      ProposalOpenContractReceive(
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,

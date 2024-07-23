@@ -4,24 +4,19 @@
 
 import '../response.dart';
 
-/// Paymentagent create response class.
-class PaymentagentCreateResponse extends Response {
-  /// Initialize PaymentagentCreateResponse.
-  const PaymentagentCreateResponse({
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+/// Paymentagent create receive class.
+class PaymentagentCreateReceive extends Response {
+  /// Initialize PaymentagentCreateReceive.
+  const PaymentagentCreateReceive({
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory PaymentagentCreateResponse.fromJson(Map<String, dynamic> json) =>
-      PaymentagentCreateResponse(
+  factory PaymentagentCreateReceive.fromJson(Map<String, dynamic> json) =>
+      PaymentagentCreateReceive(
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
@@ -39,13 +34,13 @@ class PaymentagentCreateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentCreateResponse copyWith({
+  PaymentagentCreateReceive copyWith({
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      PaymentagentCreateResponse(
+      PaymentagentCreateReceive(
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

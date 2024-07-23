@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// New account wallet response class.
-class NewAccountWalletResponse extends Response {
-  /// Initialize NewAccountWalletResponse.
-  const NewAccountWalletResponse({
+/// New account wallet receive class.
+class NewAccountWalletReceive extends Response {
+  /// Initialize NewAccountWalletReceive.
+  const NewAccountWalletReceive({
     this.newAccountWallet,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory NewAccountWalletResponse.fromJson(Map<String, dynamic> json) =>
-      NewAccountWalletResponse(
+  factory NewAccountWalletReceive.fromJson(Map<String, dynamic> json) =>
+      NewAccountWalletReceive(
         newAccountWallet: json['new_account_wallet'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class NewAccountWalletResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountWalletResponse copyWith({
+  NewAccountWalletReceive copyWith({
     Map<String, dynamic>? newAccountWallet,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      NewAccountWalletResponse(
+      NewAccountWalletReceive(
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

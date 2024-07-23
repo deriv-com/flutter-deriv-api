@@ -10,13 +10,10 @@ class TicksRequest extends Request {
   const TicksRequest({
     this.subscribe,
     this.ticks,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'ticks',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'ticks',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(

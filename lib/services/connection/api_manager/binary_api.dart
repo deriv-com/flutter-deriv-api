@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_system_proxy/flutter_system_proxy.dart';
+import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
@@ -18,20 +21,24 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
-
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
-  /// Initializes binary api.
-  BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
+  /// Initializes [BinaryAPI] instance.
+  BinaryAPI({
+    String? key,
+    bool enableDebug = false,
+    this.proxyAwareConnection = false,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
-  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
+  static const Duration _disconnectTimeOut = Duration(seconds: 5);
+  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
 
-  /// Indicates current connection status - only set `true` once we have established SSL *and* web socket handshake steps.
-  bool _connected = false;
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
 
-  /// Represents the active web socket connection.
+  /// Represents the active websocket connection.
+  ///
+  /// This is used to send and receive data from the websocket server.
   IOWebSocketChannel? _webSocketChannel;
 
   /// Stream subscription to API data.
@@ -52,13 +59,11 @@ class BinaryAPI extends BaseAPI {
   @override
   Future<void> connect(
     ConnectionInformation? connectionInformation, {
-    ConnectionCallback? onDone,
     ConnectionCallback? onOpen,
+    ConnectionCallback? onDone,
     ConnectionCallback? onError,
     bool printResponse = false,
   }) async {
-    _connected = false;
-
     _resetCallManagers();
 
     final Uri uri = Uri(
@@ -73,44 +78,51 @@ class BinaryAPI extends BaseAPI {
       },
     );
 
-    dev.log('connecting to $uri.');
+    _logDebugInfo('connecting to $uri.');
 
     await _setUserAgent();
 
-    // Initialize connection to web socket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      uri.toString(),
-      pingInterval: _wsConnectTimeOut,
-    );
+    HttpClient? client;
+
+    if (proxyAwareConnection) {
+      final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
+          uri.toString().replaceAll('wss', 'https'));
+
+      client = HttpClient()
+        ..userAgent = WebSocket.userAgent
+        ..findProxy = (Uri uri) => proxy;
+    }
+
+    // Initialize connection to websocket server.
+    _webSocketChannel = IOWebSocketChannel.connect('$uri',
+        pingInterval: _websocketConnectTimeOut, customClient: client);
 
     _webSocketListener = _webSocketChannel?.stream
-        .map<Map<String, dynamic>?>(
-            (Object? result) => jsonDecode(result.toString()))
+        .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
-        _connected = true;
-
-        onOpen?.call(uniqueKey);
+        onOpen?.call(key);
 
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
         }
       },
-      onError: (Object error) {
-        dev.log('the web socket connection is closed: $error.');
-
-        onError?.call(uniqueKey);
-      },
       onDone: () async {
-        dev.log('web socket is closed.');
+        _logDebugInfo('the websocket is closed.');
 
-        _connected = false;
+        onDone?.call(key);
+      },
+      onError: (Object error) {
+        _logDebugInfo(
+          'the websocket connection is closed with error.',
+          error: error,
+        );
 
-        onDone?.call(uniqueKey);
+        onError?.call(key);
       },
     );
 
-    dev.log('send initial message.');
+    _logDebugInfo('send initial message.');
   }
 
   void _resetCallManagers() {
@@ -119,13 +131,23 @@ class BinaryAPI extends BaseAPI {
   }
 
   @override
-  void addToChannel(Map<String, dynamic> request) =>
+  void addToChannel(Map<String, dynamic> request) {
+    try {
       _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
+      // ignore: avoid_catches_without_on_clauses
+    } catch (error) {
+      _logDebugInfo('error while adding to channel.', error: error);
+    }
+  }
 
   @override
-  Future<T> call<T>({required Request request}) async {
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) async {
     final Response response = await (_callManager ??= CallManager(this))(
       request: request,
+      nullableKeys: nullableKeys,
     );
 
     if (response is T) {
@@ -148,13 +170,13 @@ class BinaryAPI extends BaseAPI {
       );
 
   @override
-  Future<ForgetResponse> unsubscribe({required String? subscriptionId}) =>
+  Future<ForgetReceive> unsubscribe({required String subscriptionId}) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
       );
 
   @override
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     required ForgetStreamType method,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))
@@ -162,14 +184,20 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<void> disconnect() async {
-    await _webSocketListener?.cancel();
+    try {
+      await _webSocketListener?.cancel();
 
-    if (_connected) {
-      await _webSocketChannel?.sink.close(status.goingAway);
+      await _webSocketChannel?.sink.close().timeout(
+            _disconnectTimeOut,
+            onTimeout: () => throw TimeoutException('Could not close sink.'),
+          );
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      _logDebugInfo('disconnect error.', error: e);
+    } finally {
+      _webSocketListener = null;
+      _webSocketChannel = null;
     }
-
-    _webSocketListener = null;
-    _webSocketChannel = null;
   }
 
   /// Handles responses that come from server, by using its reqId,
@@ -179,25 +207,19 @@ class BinaryAPI extends BaseAPI {
     required bool printResponse,
   }) {
     try {
+      _logDebugInfo('the websocket is connected.');
+
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception.
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
-      if (!_connected) {
-        dev.log('web socket is connected.');
-
-        _connected = true;
-      }
-
       if (printResponse) {
-        dev.log('api response: $message.');
+        _logDebugInfo('api response: $message.');
       }
 
       if (message.containsKey('req_id')) {
         final int requestId = message['req_id'];
 
-        if (printResponse) {
-          dev.log('have request id: $requestId.');
-        }
+        _logDebugInfo('have request id: $requestId.');
 
         if (_callManager?.contains(requestId) ?? false) {
           _callManager!.handleResponse(
@@ -210,13 +232,15 @@ class BinaryAPI extends BaseAPI {
             response: message,
           );
         } else {
-          dev.log('$requestId, does not match anything in our pending queue.');
+          _logDebugInfo(
+            '$runtimeType $requestId, does not match anything in our pending queue.',
+          );
         }
       } else {
-        dev.log('no req_id, ignoring.');
+        _logDebugInfo('no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      dev.log('failed to process $response - $e', error: e);
+      _logDebugInfo('failed to process $response.', error: e);
     }
   }
 
@@ -225,6 +249,12 @@ class BinaryAPI extends BaseAPI {
 
     if (userAgent.isNotEmpty) {
       WebSocket.userAgent = userAgent;
+    }
+  }
+
+  void _logDebugInfo(String message, {Object? error}) {
+    if (enableDebug) {
+      dev.log('$runtimeType $key $message', error: error);
     }
   }
 }

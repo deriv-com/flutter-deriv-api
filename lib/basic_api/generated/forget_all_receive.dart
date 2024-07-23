@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Forget all response class.
-class ForgetAllResponse extends Response {
-  /// Initialize ForgetAllResponse.
-  const ForgetAllResponse({
+/// Forget all receive class.
+class ForgetAllReceive extends Response {
+  /// Initialize ForgetAllReceive.
+  const ForgetAllReceive({
     this.forgetAll,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
-      ForgetAllResponse(
+  factory ForgetAllReceive.fromJson(Map<String, dynamic> json) =>
+      ForgetAllReceive(
         forgetAll: json['forget_all'] as List<dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class ForgetAllResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ForgetAllResponse copyWith({
+  ForgetAllReceive copyWith({
     List<dynamic>? forgetAll,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ForgetAllResponse(
+      ForgetAllReceive(
         forgetAll: forgetAll ?? this.forgetAll,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

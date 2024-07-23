@@ -9,24 +9,26 @@ class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest.
   const GetLimitsRequest({
     this.getLimits = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_limits',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'get_limits',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       GetLimitsRequest(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? getLimits;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -36,6 +38,7 @@ class GetLimitsRequest extends Request {
             : getLimits!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -44,11 +47,13 @@ class GetLimitsRequest extends Request {
   @override
   GetLimitsRequest copyWith({
     bool? getLimits,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetLimitsRequest(
         getLimits: getLimits ?? this.getLimits,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

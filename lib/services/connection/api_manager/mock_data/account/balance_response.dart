@@ -7,7 +7,8 @@ const String balanceResponse = '''{
         "converted_amount": 10006.86,
         "currency": "USD",
         "demo_account": 1,
-        "type": "deriv"
+        "type": "deriv",
+        "status": 1
       }
     },
     "balance": 9650.74,

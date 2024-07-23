@@ -2,9 +2,9 @@ analyzer:
   exclude:
     - lib/basic_api/generated/api.dart
 
-  strong-mode:
-    implicit-dynamic: false
-
+  language:
+    strict-raw-types: true
+    
   errors:
     todo: ignore
     missing_required_param: warning
@@ -60,7 +60,7 @@ linter:
     - empty_catches
     - empty_constructor_bodies
     - empty_statements
-    # - exhaustive_cases # required SDK 2.9.0
+    - exhaustive_cases # required SDK 2.9.0
     - file_names
     - flutter_style_todos
     - hash_and_equals
@@ -73,6 +73,7 @@ linter:
     - list_remove_unrelated_type
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
+    - no_leading_underscores_for_local_identifiers
     - non_constant_identifier_names
     - null_closures
     - only_throw_errors
@@ -91,7 +92,6 @@ linter:
     - prefer_const_literals_to_create_immutables
     - prefer_constructors_over_static_methods
     - prefer_contains
-    - prefer_equal_for_default_values
     - prefer_expression_function_bodies # https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo#consider-using--for-short-functions-and-methods
     - prefer_final_fields
     - prefer_final_in_for_each

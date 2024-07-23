@@ -15,7 +15,7 @@ APIInitializer().initialize();
 Establishing a connection to WebSocket needs an instance of the `ConnectionInformation` class for initializing API connection.
 
 ```dart
-final BaseAPI api = Injector.getInjector().get<BaseAPI>();
+final BaseAPI api = Injector()<BaseAPI>();
 
 api.connect(
     ConnectionInformation(
@@ -45,7 +45,7 @@ print(ping.succeeded);
 #### Calling method directly with `BaseAPI`
 
 ```dart
-final BaseAPI api = Injector.getInjector().get<BaseAPI>();
+final BaseAPI api = Injector()<BaseAPI>();
 
 final PingResponse response =
     await api.call(request: const PingRequest());
@@ -133,6 +133,8 @@ dependencies:
 ```
 $ git submodule init
 $ git submodule update --remote
+$ ./setup.sh
+$ dart run build_runner build --delete-conflicting-outputs
 ```
 
 ### Run the tests

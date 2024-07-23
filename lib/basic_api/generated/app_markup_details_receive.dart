@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// App markup details response class.
-class AppMarkupDetailsResponse extends Response {
-  /// Initialize AppMarkupDetailsResponse.
-  const AppMarkupDetailsResponse({
+/// App markup details receive class.
+class AppMarkupDetailsReceive extends Response {
+  /// Initialize AppMarkupDetailsReceive.
+  const AppMarkupDetailsReceive({
     this.appMarkupDetails,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      AppMarkupDetailsResponse(
+  factory AppMarkupDetailsReceive.fromJson(Map<String, dynamic> json) =>
+      AppMarkupDetailsReceive(
         appMarkupDetails: json['app_markup_details'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class AppMarkupDetailsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppMarkupDetailsResponse copyWith({
+  AppMarkupDetailsReceive copyWith({
     Map<String, dynamic>? appMarkupDetails,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AppMarkupDetailsResponse(
+      AppMarkupDetailsReceive(
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
