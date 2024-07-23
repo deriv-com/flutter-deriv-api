@@ -9,19 +9,18 @@ class PaymentMethodsRequest extends Request {
   /// Initialize PaymentMethodsRequest.
   const PaymentMethodsRequest({
     this.country,
+    this.loginid,
     this.paymentMethods = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'payment_methods',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'payment_methods',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsRequest(
         country: json['country'] as String?,
+        loginid: json['loginid'] as String?,
         paymentMethods: json['payment_methods'] == null
             ? null
             : json['payment_methods'] == 1,
@@ -32,6 +31,9 @@ class PaymentMethodsRequest extends Request {
   /// [Optional] 2-letter country code (ISO standard).
   final String? country;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? paymentMethods;
 
@@ -39,6 +41,7 @@ class PaymentMethodsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'country': country,
+        'loginid': loginid,
         'payment_methods': paymentMethods == null
             ? null
             : paymentMethods!
@@ -52,12 +55,14 @@ class PaymentMethodsRequest extends Request {
   @override
   PaymentMethodsRequest copyWith({
     String? country,
+    String? loginid,
     bool? paymentMethods,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       PaymentMethodsRequest(
         country: country ?? this.country,
+        loginid: loginid ?? this.loginid,
         paymentMethods: paymentMethods ?? this.paymentMethods,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

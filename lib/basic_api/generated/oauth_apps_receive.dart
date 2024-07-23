@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Oauth apps response class.
-class OauthAppsResponse extends Response {
-  /// Initialize OauthAppsResponse.
-  const OauthAppsResponse({
+/// Oauth apps receive class.
+class OauthAppsReceive extends Response {
+  /// Initialize OauthAppsReceive.
+  const OauthAppsReceive({
     this.oauthApps,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
-      OauthAppsResponse(
+  factory OauthAppsReceive.fromJson(Map<String, dynamic> json) =>
+      OauthAppsReceive(
         oauthApps: (json['oauth_apps'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -33,7 +28,7 @@ class OauthAppsResponse extends Response {
         reqId: json['req_id'] as int?,
       );
 
-  /// List of OAuth applications that used for the authorized account.
+  /// List of 3rd party OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>>? oauthApps;
 
   /// Converts this instance to JSON
@@ -48,14 +43,14 @@ class OauthAppsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  OauthAppsResponse copyWith({
+  OauthAppsReceive copyWith({
     List<Map<String, dynamic>>? oauthApps,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      OauthAppsResponse(
+      OauthAppsReceive(
         oauthApps: oauthApps ?? this.oauthApps,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

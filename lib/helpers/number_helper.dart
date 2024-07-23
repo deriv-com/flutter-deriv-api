@@ -46,7 +46,9 @@ class NumberValidator {
     final String newString = stringValue.replaceAll(RegExp(r','), '');
 
     try {
-      double.parse(newString,);
+      double.parse(
+        newString,
+      );
     } on Exception {
       return false;
     }

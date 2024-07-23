@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
-
-import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
-import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
-import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 import '../available_contracts/available_contracts_bloc.dart';
@@ -24,42 +22,38 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
         add(SubscribeProposal(state.selectedContract));
       }
     });
+
+    on<SubscribeProposal>(
+        (SubscribeProposal event, Emitter<PriceProposalState> emit) =>
+            _handleSubscribeProposal(event, emit));
+
+    on<YieldProposalLoaded>(
+        (YieldProposalLoaded event, Emitter<PriceProposalState> emit) =>
+            emit(PriceProposalLoaded(event.proposal.proposal)));
+
+    on<YieldError>((YieldError event, Emitter<PriceProposalState> emit) =>
+        emit(PriceProposalError(event.message)));
   }
 
-  @override
-  Stream<Transition<PriceProposalEvent, PriceProposalState>> transformEvents(
-    Stream<PriceProposalEvent> events,
-    TransitionFunction<PriceProposalEvent, PriceProposalState> transitionFn,
-  ) =>
-      super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 200)),
-        transitionFn,
-      );
+  Future<void> _handleSubscribeProposal(
+    SubscribeProposal event,
+    Emitter<PriceProposalState> emit,
+  ) async {
+    emit(PriceProposalLoading());
 
-  @override
-  Stream<PriceProposalState> mapEventToState(
-    PriceProposalEvent event,
-  ) async* {
-    if (event is SubscribeProposal) {
-      yield PriceProposalLoading();
+    await _unsubscribeProposal();
 
-      await _unsubscribeProposal();
-
-      _subscribeProposal(event)
-          .handleError((dynamic error) => error is ContractOperationException
-              ? add(YieldError(error.message))
-              : add(YieldError(error.toString())))
-          .listen(
-              (PriceProposal? proposal) => add(YieldProposalLoaded(proposal)));
-    } else if (event is YieldProposalLoaded) {
-      yield PriceProposalLoaded(event.proposal);
-    } else if (event is YieldError) {
-      yield PriceProposalError(event.message);
-    }
+    _subscribeProposal(event)
+        .handleError((dynamic error) => error is BaseAPIException
+            ? add(YieldError(error.message))
+            : add(YieldError(error.toString())))
+        .listen((ProposalResponse? proposal) =>
+            add(YieldProposalLoaded(proposal!)));
   }
 
-  Stream<PriceProposal?> _subscribeProposal(SubscribeProposal event) =>
-      PriceProposal.subscribePriceForContract(
+  Stream<ProposalResponse?> _subscribeProposal(SubscribeProposal event) =>
+      ProposalResponse.subscribePriceForContract(
+        // ignore: missing_required_param
         ProposalRequest(
           amount: event.amount,
           durationUnit: event.durationUnit,
@@ -73,8 +67,8 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
         ),
       );
 
-  Future<ForgetAll> _unsubscribeProposal() =>
-      PriceProposal.unsubscribeAllProposal();
+  Future<ForgetAllResponse> _unsubscribeProposal() =>
+      ProposalResponse.unsubscribeAllProposal();
 
   @override
   Future<void> close() async {

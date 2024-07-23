@@ -57,7 +57,7 @@ class _TopSnackBarWidgetState extends State<TopSnackBarWidget> {
     _dismissible = widget.dismissible ?? true;
     _duration = widget.duration ?? const Duration(seconds: 2);
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _calculateSizes());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _calculateSizes());
 
     widget.snackAnimationController.addListener(() {
       setState(() {});

@@ -13,16 +13,14 @@ class ProfitTableRequest extends Request {
     this.dateTo,
     this.description,
     this.limit,
+    this.loginid,
     this.offset,
     this.profitTable = true,
     this.sort,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'profit_table',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'profit_table',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
@@ -35,7 +33,8 @@ class ProfitTableRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        loginid: json['loginid'] as String?,
+        offset: json['offset'] as int?,
         profitTable:
             json['profit_table'] == null ? null : json['profit_table'] == 1,
         sort: json['sort'] as String?,
@@ -58,8 +57,11 @@ class ProfitTableRequest extends Request {
   /// [Optional] Apply upper limit to count of transactions received.
   final num? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// Must be `true`
   final bool? profitTable;
@@ -79,6 +81,7 @@ class ProfitTableRequest extends Request {
                 ? 1
                 : 0,
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'profit_table': profitTable == null
             ? null
@@ -98,7 +101,8 @@ class ProfitTableRequest extends Request {
     String? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    String? loginid,
+    int? offset,
     bool? profitTable,
     String? sort,
     Map<String, dynamic>? passthrough,
@@ -110,6 +114,7 @@ class ProfitTableRequest extends Request {
         dateTo: dateTo ?? this.dateTo,
         description: description ?? this.description,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         profitTable: profitTable ?? this.profitTable,
         sort: sort ?? this.sort,

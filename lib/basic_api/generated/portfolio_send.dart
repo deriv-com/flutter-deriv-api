@@ -9,14 +9,12 @@ class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest.
   const PortfolioRequest({
     required this.contractType,
+    this.loginid,
     this.portfolio = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'portfolio',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'portfolio',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +22,7 @@ class PortfolioRequest extends Request {
         contractType: (json['contract_type'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
             .toList(),
+        loginid: json['loginid'] as String?,
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -32,6 +31,9 @@ class PortfolioRequest extends Request {
   /// Return only contracts of the specified types
   final List<String>? contractType;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? portfolio;
 
@@ -39,6 +41,7 @@ class PortfolioRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_type': contractType,
+        'loginid': loginid,
         'portfolio': portfolio == null
             ? null
             : portfolio!
@@ -52,12 +55,14 @@ class PortfolioRequest extends Request {
   @override
   PortfolioRequest copyWith({
     List<String>? contractType,
+    String? loginid,
     bool? portfolio,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       PortfolioRequest(
         contractType: contractType ?? this.contractType,
+        loginid: loginid ?? this.loginid,
         portfolio: portfolio ?? this.portfolio,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Trading platform withdrawal response class.
-class TradingPlatformWithdrawalResponse extends Response {
-  /// Initialize TradingPlatformWithdrawalResponse.
-  const TradingPlatformWithdrawalResponse({
+/// Trading platform withdrawal receive class.
+class TradingPlatformWithdrawalReceive extends Response {
+  /// Initialize TradingPlatformWithdrawalReceive.
+  const TradingPlatformWithdrawalReceive({
     this.tradingPlatformWithdrawal,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TradingPlatformWithdrawalResponse.fromJson(
+  factory TradingPlatformWithdrawalReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformWithdrawalResponse(
+      TradingPlatformWithdrawalReceive(
         tradingPlatformWithdrawal:
             json['trading_platform_withdrawal'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +42,14 @@ class TradingPlatformWithdrawalResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformWithdrawalResponse copyWith({
+  TradingPlatformWithdrawalReceive copyWith({
     Map<String, dynamic>? tradingPlatformWithdrawal,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformWithdrawalResponse(
+      TradingPlatformWithdrawalReceive(
         tradingPlatformWithdrawal:
             tradingPlatformWithdrawal ?? this.tradingPlatformWithdrawal,
         echoReq: echoReq ?? this.echoReq,

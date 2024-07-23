@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
-import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 
 /// ContractsTypeListDialog
@@ -12,17 +11,17 @@ class ContractsTypeListDialog extends StatelessWidget {
       BlocBuilder<AvailableContractsBloc, AvailableContractsState>(
         builder: (BuildContext context, AvailableContractsState state) {
           if (state is AvailableContractsLoaded) {
-            final ContractsForSymbol contractsForSymbol = state.contracts!;
+            final ContractsFor contractsForSymbol = state.contracts;
 
             return Material(
               child: ListView.builder(
-                  itemCount: contractsForSymbol.availableContracts!.length,
+                  itemCount: contractsForSymbol.available.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final AvailableContractModel contract =
-                        contractsForSymbol.availableContracts![index]!;
+                    final AvailableItem contract =
+                        contractsForSymbol.available[index];
                     return ListTile(
                       title: Text(
-                        '${contract.contractDisplay}, ${contract.contractType}',
+                        '${contract.contractCategoryDisplay}, ${contract.contractType}',
                       ),
                       subtitle: Text('${contract.contractCategory}'),
                       onTap: () {

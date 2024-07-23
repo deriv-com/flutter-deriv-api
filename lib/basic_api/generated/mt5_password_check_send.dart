@@ -9,21 +9,20 @@ class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest.
   const Mt5PasswordCheckRequest({
     required this.login,
+    this.loginid,
     this.mt5PasswordCheck = true,
     required this.password,
     this.passwordType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_password_check',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_password_check',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckRequest(
         login: json['login'] as String?,
+        loginid: json['loginid'] as String?,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
@@ -35,6 +34,9 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// MT5 user login
   final String? login;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? mt5PasswordCheck;
@@ -49,6 +51,7 @@ class Mt5PasswordCheckRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
+        'loginid': loginid,
         'mt5_password_check': mt5PasswordCheck == null
             ? null
             : mt5PasswordCheck!
@@ -64,6 +67,7 @@ class Mt5PasswordCheckRequest extends Request {
   @override
   Mt5PasswordCheckRequest copyWith({
     String? login,
+    String? loginid,
     bool? mt5PasswordCheck,
     String? password,
     String? passwordType,
@@ -72,6 +76,7 @@ class Mt5PasswordCheckRequest extends Request {
   }) =>
       Mt5PasswordCheckRequest(
         login: login ?? this.login,
+        loginid: loginid ?? this.loginid,
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
         password: password ?? this.password,
         passwordType: passwordType ?? this.passwordType,

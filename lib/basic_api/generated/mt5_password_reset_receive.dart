@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Mt5 password reset response class.
-class Mt5PasswordResetResponse extends Response {
-  /// Initialize Mt5PasswordResetResponse.
-  const Mt5PasswordResetResponse({
+/// Mt5 password reset receive class.
+class Mt5PasswordResetReceive extends Response {
+  /// Initialize Mt5PasswordResetReceive.
+  const Mt5PasswordResetReceive({
     this.mt5PasswordReset,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5PasswordResetResponse(
+  factory Mt5PasswordResetReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5PasswordResetReceive(
         mt5PasswordReset: json['mt5_password_reset'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class Mt5PasswordResetResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5PasswordResetResponse copyWith({
+  Mt5PasswordResetReceive copyWith({
     int? mt5PasswordReset,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5PasswordResetResponse(
+      Mt5PasswordResetReceive(
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
-
-import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
-import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
-import 'package:flutter_deriv_api/api/common/tick/tick.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 import '../active_symbols/active_symbols_bloc.dart';
@@ -24,45 +22,37 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }
     });
+
+    on<SubscribeTicks>((SubscribeTicks event, Emitter<TicksState> emit) =>
+        _handleSubscribeTicks(event, emit));
+
+    on<YieldTick>((YieldTick event, Emitter<TicksState> emit) =>
+        emit(TicksLoaded(event.tick?.tick)));
+
+    on<YieldError>((YieldError event, Emitter<TicksState> emit) =>
+        emit(TicksError(event.message)));
   }
 
-  @override
-  Stream<Transition<TicksEvent, TicksState>> transformEvents(
-    Stream<TicksEvent> events,
-    TransitionFunction<TicksEvent, TicksState> transitionFn,
-  ) =>
-      super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 200)),
-        transitionFn,
-      );
+  Future<void> _handleSubscribeTicks(
+      SubscribeTicks event, Emitter<TicksState> emit) async {
+    emit(TicksLoading());
 
-  @override
-  Stream<TicksState> mapEventToState(
-    TicksEvent event,
-  ) async* {
-    if (event is SubscribeTicks) {
-      yield TicksLoading();
+    await _unsubscribeTick();
 
-      await _unsubscribeTick();
-
-      _subscribeTick(event.selectedSymbol!)
-          .handleError((dynamic error) => error is TickException
-              ? add(YieldError(error.message))
-              : add(YieldError(error.toString())))
-          .listen((Tick? tick) => add(YieldTick(tick)));
-    } else if (event is YieldTick) {
-      yield TicksLoaded(event.tick);
-    } else if (event is YieldError) {
-      yield TicksError(event.message);
-    }
+    _subscribeTick(event.selectedSymbol!)
+        .handleError((dynamic error) => error is BaseAPIException
+            ? add(YieldError(error.message))
+            : add(YieldError(error.toString())))
+        .listen((TicksResponse? tick) => add(YieldTick(tick)));
   }
 
-  Stream<Tick?> _subscribeTick(ActiveSymbol selectedSymbol) =>
-      Tick.subscribeTick(
+  Stream<TicksResponse?> _subscribeTick(ActiveSymbolsItem selectedSymbol) =>
+      TicksResponse.subscribeTick(
         TicksRequest(ticks: selectedSymbol.symbol),
       );
 
-  Future<ForgetAll> _unsubscribeTick() => Tick.unsubscribeAllTicks();
+  Future<ForgetAllResponse> _unsubscribeTick() =>
+      TicksResponse.unsubscribeAllTicks();
 
   @override
   Future<void> close() async {

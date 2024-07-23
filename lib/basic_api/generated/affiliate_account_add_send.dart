@@ -15,6 +15,7 @@ class AffiliateAccountAddRequest extends Request {
     required this.addressState,
     this.affiliateAccountAdd = true,
     required this.country,
+    required this.dateOfBirth,
     required this.firstName,
     required this.lastName,
     required this.nonPepDeclaration,
@@ -42,6 +43,7 @@ class AffiliateAccountAddRequest extends Request {
             ? null
             : json['affiliate_account_add'] == 1,
         country: json['country'] as String?,
+        dateOfBirth: json['date_of_birth'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
@@ -73,6 +75,9 @@ class AffiliateAccountAddRequest extends Request {
 
   /// Country of legal citizenship, 2-letter country code.
   final String? country;
+
+  /// Birth date of affiliate user trying to register
+  final String? dateOfBirth;
 
   /// The official first name of the affiliate. Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
@@ -109,6 +114,7 @@ class AffiliateAccountAddRequest extends Request {
                 ? 1
                 : 0,
         'country': country,
+        'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
         'non_pep_declaration': nonPepDeclaration,
@@ -130,6 +136,7 @@ class AffiliateAccountAddRequest extends Request {
     String? addressState,
     bool? affiliateAccountAdd,
     String? country,
+    String? dateOfBirth,
     String? firstName,
     String? lastName,
     int? nonPepDeclaration,
@@ -148,6 +155,7 @@ class AffiliateAccountAddRequest extends Request {
         addressState: addressState ?? this.addressState,
         affiliateAccountAdd: affiliateAccountAdd ?? this.affiliateAccountAdd,
         country: country ?? this.country,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,

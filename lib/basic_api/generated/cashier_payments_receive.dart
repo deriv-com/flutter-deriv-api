@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Cashier payments response class.
-class CashierPaymentsResponse extends Response {
-  /// Initialize CashierPaymentsResponse.
-  const CashierPaymentsResponse({
+/// Cashier payments receive class.
+class CashierPaymentsReceive extends Response {
+  /// Initialize CashierPaymentsReceive.
+  const CashierPaymentsReceive({
     this.cashierPayments,
     this.subscription,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory CashierPaymentsResponse.fromJson(Map<String, dynamic> json) =>
-      CashierPaymentsResponse(
+  factory CashierPaymentsReceive.fromJson(Map<String, dynamic> json) =>
+      CashierPaymentsReceive(
         cashierPayments: json['cashier_payments'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +46,7 @@ class CashierPaymentsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CashierPaymentsResponse copyWith({
+  CashierPaymentsReceive copyWith({
     Map<String, dynamic>? cashierPayments,
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
@@ -59,7 +54,7 @@ class CashierPaymentsResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      CashierPaymentsResponse(
+      CashierPaymentsReceive(
         cashierPayments: cashierPayments ?? this.cashierPayments,
         subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,

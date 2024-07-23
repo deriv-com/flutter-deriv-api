@@ -4,25 +4,19 @@
 
 import '../response.dart';
 
-/// P2p ping response class.
-class P2pPingResponse extends Response {
-  /// Initialize P2pPingResponse.
-  const P2pPingResponse({
+/// P2p ping receive class.
+class P2pPingReceive extends Response {
+  /// Initialize P2pPingReceive.
+  const P2pPingReceive({
     this.p2pPing,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory P2pPingResponse.fromJson(Map<String, dynamic> json) =>
-      P2pPingResponse(
+  factory P2pPingReceive.fromJson(Map<String, dynamic> json) => P2pPingReceive(
         p2pPing: json['p2p_ping'] as String?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +39,14 @@ class P2pPingResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pPingResponse copyWith({
+  P2pPingReceive copyWith({
     String? p2pPing,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      P2pPingResponse(
+      P2pPingReceive(
         p2pPing: p2pPing ?? this.p2pPing,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

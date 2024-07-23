@@ -22,6 +22,7 @@ class NewAccountRealRequest extends Request {
     required this.dateOfBirth,
     required this.firstName,
     required this.lastName,
+    this.loginid,
     this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
@@ -32,13 +33,11 @@ class NewAccountRealRequest extends Request {
     this.secretQuestion,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'new_account_real',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'new_account_real',
+    super.passthrough,
+    super.reqId,
+    this.fatcaDeclaration,
+  });
 
   /// Creates an instance from JSON.
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
@@ -57,6 +56,7 @@ class NewAccountRealRequest extends Request {
         dateOfBirth: json['date_of_birth'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
+        loginid: json['loginid'] as String?,
         newAccountReal: json['new_account_real'] == null
             ? null
             : json['new_account_real'] == 1,
@@ -71,6 +71,7 @@ class NewAccountRealRequest extends Request {
         taxResidence: json['tax_residence'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
+        fatcaDeclaration: json['fatca_declaration'] as int?,
       );
 
   /// [Optional] Purpose and reason for requesting the account opening.
@@ -115,6 +116,9 @@ class NewAccountRealRequest extends Request {
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? lastName;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? newAccountReal;
 
@@ -145,6 +149,9 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String? taxResidence;
 
+  /// [Optional] Indicates client's self-declaration of FATCA.
+  final int? fatcaDeclaration;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -162,6 +169,7 @@ class NewAccountRealRequest extends Request {
         'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
+        'loginid': loginid,
         'new_account_real': newAccountReal == null
             ? null
             : newAccountReal!
@@ -178,6 +186,7 @@ class NewAccountRealRequest extends Request {
         'tax_residence': taxResidence,
         'passthrough': passthrough,
         'req_id': reqId,
+        'fatca_declaration': fatcaDeclaration,
       };
 
   /// Creates a copy of instance with given parameters
@@ -197,6 +206,7 @@ class NewAccountRealRequest extends Request {
     String? dateOfBirth,
     String? firstName,
     String? lastName,
+    String? loginid,
     bool? newAccountReal,
     int? nonPepDeclaration,
     String? phone,
@@ -209,6 +219,7 @@ class NewAccountRealRequest extends Request {
     String? taxResidence,
     Map<String, dynamic>? passthrough,
     int? reqId,
+    int? fatcaDeclaration,
   }) =>
       NewAccountRealRequest(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
@@ -225,6 +236,7 @@ class NewAccountRealRequest extends Request {
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        loginid: loginid ?? this.loginid,
         newAccountReal: newAccountReal ?? this.newAccountReal,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
@@ -238,6 +250,7 @@ class NewAccountRealRequest extends Request {
         taxResidence: taxResidence ?? this.taxResidence,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
       );
 
   /// Override equatable class.

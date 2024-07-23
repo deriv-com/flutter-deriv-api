@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Mt5 deposit response class.
-class Mt5DepositResponse extends Response {
-  /// Initialize Mt5DepositResponse.
-  const Mt5DepositResponse({
+/// Mt5 deposit receive class.
+class Mt5DepositReceive extends Response {
+  /// Initialize Mt5DepositReceive.
+  const Mt5DepositReceive({
     this.binaryTransactionId,
     this.mt5Deposit,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5DepositResponse(
+  factory Mt5DepositReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5DepositReceive(
         binaryTransactionId: json['binary_transaction_id'] as int?,
         mt5Deposit: json['mt5_deposit'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +46,7 @@ class Mt5DepositResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5DepositResponse copyWith({
+  Mt5DepositReceive copyWith({
     int? binaryTransactionId,
     int? mt5Deposit,
     Map<String, dynamic>? echoReq,
@@ -59,7 +54,7 @@ class Mt5DepositResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      Mt5DepositResponse(
+      Mt5DepositReceive(
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,
         echoReq: echoReq ?? this.echoReq,

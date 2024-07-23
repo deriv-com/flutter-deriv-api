@@ -8,22 +8,21 @@ import '../request.dart';
 class TradingPlatformPasswordChangeRequest extends Request {
   /// Initialize TradingPlatformPasswordChangeRequest.
   const TradingPlatformPasswordChangeRequest({
+    this.loginid,
     required this.newPassword,
     required this.oldPassword,
     required this.platform,
     this.tradingPlatformPasswordChange = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_password_change',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_password_change',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformPasswordChangeRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformPasswordChangeRequest(
+        loginid: json['loginid'] as String?,
         newPassword: json['new_password'] as String?,
         oldPassword: json['old_password'] as String?,
         platform: json['platform'] as String?,
@@ -34,6 +33,9 @@ class TradingPlatformPasswordChangeRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// New trading password. Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address.
   final String? newPassword;
@@ -50,6 +52,7 @@ class TradingPlatformPasswordChangeRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'new_password': newPassword,
         'old_password': oldPassword,
         'platform': platform,
@@ -66,6 +69,7 @@ class TradingPlatformPasswordChangeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingPlatformPasswordChangeRequest copyWith({
+    String? loginid,
     String? newPassword,
     String? oldPassword,
     String? platform,
@@ -74,6 +78,7 @@ class TradingPlatformPasswordChangeRequest extends Request {
     int? reqId,
   }) =>
       TradingPlatformPasswordChangeRequest(
+        loginid: loginid ?? this.loginid,
         newPassword: newPassword ?? this.newPassword,
         oldPassword: oldPassword ?? this.oldPassword,
         platform: platform ?? this.platform,

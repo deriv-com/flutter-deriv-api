@@ -5,6 +5,7 @@ class ConnectionInformation {
     required this.appId,
     required this.brand,
     required this.endpoint,
+    required this.authEndpoint,
     this.language = 'en',
   });
 
@@ -16,6 +17,9 @@ class ConnectionInformation {
 
   /// API endpoint.
   final String endpoint;
+
+  /// Auth endpoint.
+  final String authEndpoint;
 
   /// API language.
   final String language;

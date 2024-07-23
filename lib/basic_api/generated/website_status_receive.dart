@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Website status response class.
-class WebsiteStatusResponse extends Response {
-  /// Initialize WebsiteStatusResponse.
-  const WebsiteStatusResponse({
+/// Website status receive class.
+class WebsiteStatusReceive extends Response {
+  /// Initialize WebsiteStatusReceive.
+  const WebsiteStatusReceive({
     this.subscription,
     this.websiteStatus,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
-      WebsiteStatusResponse(
+  factory WebsiteStatusReceive.fromJson(Map<String, dynamic> json) =>
+      WebsiteStatusReceive(
         subscription: json['subscription'] as Map<String, dynamic>?,
         websiteStatus: json['website_status'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -51,7 +46,7 @@ class WebsiteStatusResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  WebsiteStatusResponse copyWith({
+  WebsiteStatusReceive copyWith({
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? websiteStatus,
     Map<String, dynamic>? echoReq,
@@ -59,7 +54,7 @@ class WebsiteStatusResponse extends Response {
     String? msgType,
     int? reqId,
   }) =>
-      WebsiteStatusResponse(
+      WebsiteStatusReceive(
         subscription: subscription ?? this.subscription,
         websiteStatus: websiteStatus ?? this.websiteStatus,
         echoReq: echoReq ?? this.echoReq,

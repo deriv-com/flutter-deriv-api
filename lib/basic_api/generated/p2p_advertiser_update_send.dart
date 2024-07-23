@@ -11,16 +11,15 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.contactInfo,
     this.defaultAdvertDescription,
     this.isListed,
+    this.loginid,
     this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
     this.showName,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_update',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.upgradeLimits,
+    super.msgType = 'p2p_advertiser_update',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -28,11 +27,13 @@ class P2pAdvertiserUpdateRequest extends Request {
         contactInfo: json['contact_info'] as String?,
         defaultAdvertDescription: json['default_advert_description'] as String?,
         isListed: json['is_listed'] == null ? null : json['is_listed'] == 1,
+        loginid: json['loginid'] as String?,
         p2pAdvertiserUpdate: json['p2p_advertiser_update'] == null
             ? null
             : json['p2p_advertiser_update'] == 1,
         paymentInfo: json['payment_info'] as String?,
         showName: json['show_name'] == null ? null : json['show_name'] == 1,
+        upgradeLimits: json['upgrade_limits'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -46,6 +47,9 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Used to set if the advertiser's adverts could be listed. When `false`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
   final bool? isListed;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pAdvertiserUpdate;
 
@@ -54,6 +58,9 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
   final bool? showName;
+
+  /// [Optional] Used to upgrade daily limits of eligible advertiser.
+  final int? upgradeLimits;
 
   /// Converts this instance to JSON
   @override
@@ -65,6 +72,7 @@ class P2pAdvertiserUpdateRequest extends Request {
             : isListed!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'p2p_advertiser_update': p2pAdvertiserUpdate == null
             ? null
             : p2pAdvertiserUpdate!
@@ -76,6 +84,7 @@ class P2pAdvertiserUpdateRequest extends Request {
             : showName!
                 ? 1
                 : 0,
+        'upgrade_limits': upgradeLimits,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -86,9 +95,11 @@ class P2pAdvertiserUpdateRequest extends Request {
     String? contactInfo,
     String? defaultAdvertDescription,
     bool? isListed,
+    String? loginid,
     bool? p2pAdvertiserUpdate,
     String? paymentInfo,
     bool? showName,
+    int? upgradeLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -97,9 +108,11 @@ class P2pAdvertiserUpdateRequest extends Request {
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,
         isListed: isListed ?? this.isListed,
+        loginid: loginid ?? this.loginid,
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         showName: showName ?? this.showName,
+        upgradeLimits: upgradeLimits ?? this.upgradeLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

@@ -9,13 +9,10 @@ class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest.
   const TradingTimesRequest({
     required this.tradingTimes,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_times',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_times',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>

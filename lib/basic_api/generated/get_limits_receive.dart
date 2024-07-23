@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Get limits response class.
-class GetLimitsResponse extends Response {
-  /// Initialize GetLimitsResponse.
-  const GetLimitsResponse({
+/// Get limits receive class.
+class GetLimitsReceive extends Response {
+  /// Initialize GetLimitsReceive.
+  const GetLimitsReceive({
     this.getLimits,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
-      GetLimitsResponse(
+  factory GetLimitsReceive.fromJson(Map<String, dynamic> json) =>
+      GetLimitsReceive(
         getLimits: json['get_limits'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class GetLimitsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetLimitsResponse copyWith({
+  GetLimitsReceive copyWith({
     Map<String, dynamic>? getLimits,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      GetLimitsResponse(
+      GetLimitsReceive(
         getLimits: getLimits ?? this.getLimits,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

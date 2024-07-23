@@ -31,7 +31,7 @@ const String appMarkupDetailsResponse = '''
         "dev_currcode": "USD",
         "dev_loginid": "CR45627",
         "transaction_id": 10867502908,
-        "transaction_time": 1587544006
+        "transaction_time": "1587544006"
       }
     ]
   },

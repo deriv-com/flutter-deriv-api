@@ -9,22 +9,21 @@ class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest.
   const Mt5PasswordResetRequest({
     required this.login,
+    this.loginid,
     this.mt5PasswordReset = true,
     required this.newPassword,
     this.passwordType,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_password_reset',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_password_reset',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordResetRequest(
         login: json['login'] as String?,
+        loginid: json['loginid'] as String?,
         mt5PasswordReset: json['mt5_password_reset'] == null
             ? null
             : json['mt5_password_reset'] == 1,
@@ -37,6 +36,9 @@ class Mt5PasswordResetRequest extends Request {
 
   /// MT5 user login
   final String? login;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? mt5PasswordReset;
@@ -54,6 +56,7 @@ class Mt5PasswordResetRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
+        'loginid': loginid,
         'mt5_password_reset': mt5PasswordReset == null
             ? null
             : mt5PasswordReset!
@@ -70,6 +73,7 @@ class Mt5PasswordResetRequest extends Request {
   @override
   Mt5PasswordResetRequest copyWith({
     String? login,
+    String? loginid,
     bool? mt5PasswordReset,
     String? newPassword,
     String? passwordType,
@@ -79,6 +83,7 @@ class Mt5PasswordResetRequest extends Request {
   }) =>
       Mt5PasswordResetRequest(
         login: login ?? this.login,
+        loginid: loginid ?? this.loginid,
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,
         newPassword: newPassword ?? this.newPassword,
         passwordType: passwordType ?? this.passwordType,

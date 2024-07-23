@@ -9,14 +9,12 @@ class AccountClosureRequest extends Request {
   /// Initialize AccountClosureRequest.
   const AccountClosureRequest({
     this.accountClosure = true,
+    this.loginid,
     required this.reason,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'account_closure',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'account_closure',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +22,7 @@ class AccountClosureRequest extends Request {
         accountClosure: json['account_closure'] == null
             ? null
             : json['account_closure'] == 1,
+        loginid: json['loginid'] as String?,
         reason: json['reason'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -31,6 +30,9 @@ class AccountClosureRequest extends Request {
 
   /// Must be `true`
   final bool? accountClosure;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Reason for closing off accounts.
   final String? reason;
@@ -43,6 +45,7 @@ class AccountClosureRequest extends Request {
             : accountClosure!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'reason': reason,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -52,12 +55,14 @@ class AccountClosureRequest extends Request {
   @override
   AccountClosureRequest copyWith({
     bool? accountClosure,
+    String? loginid,
     String? reason,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       AccountClosureRequest(
         accountClosure: accountClosure ?? this.accountClosure,
+        loginid: loginid ?? this.loginid,
         reason: reason ?? this.reason,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

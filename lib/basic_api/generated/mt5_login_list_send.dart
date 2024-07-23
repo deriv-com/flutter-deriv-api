@@ -8,23 +8,25 @@ import '../request.dart';
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest.
   const Mt5LoginListRequest({
+    this.loginid,
     this.mt5LoginList = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_login_list',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_login_list',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListRequest(
+        loginid: json['loginid'] as String?,
         mt5LoginList:
             json['mt5_login_list'] == null ? null : json['mt5_login_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? mt5LoginList;
@@ -32,6 +34,7 @@ class Mt5LoginListRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'mt5_login_list': mt5LoginList == null
             ? null
             : mt5LoginList!
@@ -44,11 +47,13 @@ class Mt5LoginListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5LoginListRequest copyWith({
+    String? loginid,
     bool? mt5LoginList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       Mt5LoginListRequest(
+        loginid: loginid ?? this.loginid,
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

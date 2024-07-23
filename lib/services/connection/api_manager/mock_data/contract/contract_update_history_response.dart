@@ -3,7 +3,7 @@ const String contractUpdateHistoryResponse = '''{
   "contract_update_history": [
     {
       "display_name": "localized display name",
-      "order_amount": 430.0,
+      "order_amount": "430.0",
       "order_date": 1587744006,
       "order_type": "stop loss",
       "value": "100.0"

@@ -9,20 +9,19 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Initialize P2pAdvertiserAdvertsRequest.
   const P2pAdvertiserAdvertsRequest({
     this.limit,
+    this.loginid,
     this.offset,
     this.p2pAdvertiserAdverts = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_adverts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_adverts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdvertsRequest(
         limit: json['limit'] as int?,
+        loginid: json['loginid'] as String?,
         offset: json['offset'] as int?,
         p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] == null
             ? null
@@ -34,6 +33,9 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// [Optional] Used for paging. This value will also apply to subsription responses.
   final int? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Used for paging. This value will also apply to subsription responses.
   final int? offset;
 
@@ -44,6 +46,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'p2p_advertiser_adverts': p2pAdvertiserAdverts == null
             ? null
@@ -58,6 +61,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   @override
   P2pAdvertiserAdvertsRequest copyWith({
     int? limit,
+    String? loginid,
     int? offset,
     bool? p2pAdvertiserAdverts,
     Map<String, dynamic>? passthrough,
@@ -65,6 +69,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   }) =>
       P2pAdvertiserAdvertsRequest(
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,
         passthrough: passthrough ?? this.passthrough,

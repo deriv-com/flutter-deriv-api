@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Contract update response class.
-class ContractUpdateResponse extends Response {
-  /// Initialize ContractUpdateResponse.
-  const ContractUpdateResponse({
+/// Contract update receive class.
+class ContractUpdateReceive extends Response {
+  /// Initialize ContractUpdateReceive.
+  const ContractUpdateReceive({
     this.contractUpdate,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
-      ContractUpdateResponse(
+  factory ContractUpdateReceive.fromJson(Map<String, dynamic> json) =>
+      ContractUpdateReceive(
         contractUpdate: json['contract_update'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class ContractUpdateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractUpdateResponse copyWith({
+  ContractUpdateReceive copyWith({
     Map<String, dynamic>? contractUpdate,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ContractUpdateResponse(
+      ContractUpdateReceive(
         contractUpdate: contractUpdate ?? this.contractUpdate,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

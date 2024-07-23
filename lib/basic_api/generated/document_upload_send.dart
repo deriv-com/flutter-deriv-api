@@ -10,22 +10,20 @@ class DocumentUploadRequest extends Request {
   const DocumentUploadRequest({
     required this.documentFormat,
     this.documentId,
-    this.documentIssuingCountry,
+    required this.documentIssuingCountry,
     required this.documentType,
     this.documentUpload = true,
     required this.expectedChecksum,
     this.expirationDate,
     required this.fileSize,
     this.lifetimeValid,
+    this.loginid,
     this.pageType,
     this.proofOfOwnership,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'document_upload',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'document_upload',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +40,7 @@ class DocumentUploadRequest extends Request {
         fileSize: json['file_size'] as int?,
         lifetimeValid:
             json['lifetime_valid'] == null ? null : json['lifetime_valid'] == 1,
+        loginid: json['loginid'] as String?,
         pageType: json['page_type'] as String?,
         proofOfOwnership: json['proof_of_ownership'] as Map<String, dynamic>?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -54,7 +53,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
   final String? documentId;
 
-  /// [Optional] 2-letter country code
+  /// 2-letter country code, mandatory for POI only
   final String? documentIssuingCountry;
 
   /// Document type
@@ -74,6 +73,9 @@ class DocumentUploadRequest extends Request {
 
   /// [Optional] Boolean value that indicates whether this document is lifetime valid (only applies to POI document types, cancels out the expiration_date given if any)
   final bool? lifetimeValid;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] To determine document side
   final String? pageType;
@@ -101,6 +103,7 @@ class DocumentUploadRequest extends Request {
             : lifetimeValid!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'page_type': pageType,
         'proof_of_ownership': proofOfOwnership,
         'passthrough': passthrough,
@@ -119,6 +122,7 @@ class DocumentUploadRequest extends Request {
     String? expirationDate,
     int? fileSize,
     bool? lifetimeValid,
+    String? loginid,
     String? pageType,
     Map<String, dynamic>? proofOfOwnership,
     Map<String, dynamic>? passthrough,
@@ -135,6 +139,7 @@ class DocumentUploadRequest extends Request {
         expirationDate: expirationDate ?? this.expirationDate,
         fileSize: fileSize ?? this.fileSize,
         lifetimeValid: lifetimeValid ?? this.lifetimeValid,
+        loginid: loginid ?? this.loginid,
         pageType: pageType ?? this.pageType,
         proofOfOwnership: proofOfOwnership ?? this.proofOfOwnership,
         passthrough: passthrough ?? this.passthrough,

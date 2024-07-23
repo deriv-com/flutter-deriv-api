@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Identity verification document add response class.
-class IdentityVerificationDocumentAddResponse extends Response {
-  /// Initialize IdentityVerificationDocumentAddResponse.
-  const IdentityVerificationDocumentAddResponse({
+/// Identity verification document add receive class.
+class IdentityVerificationDocumentAddReceive extends Response {
+  /// Initialize IdentityVerificationDocumentAddReceive.
+  const IdentityVerificationDocumentAddReceive({
     this.identityVerificationDocumentAdd,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory IdentityVerificationDocumentAddResponse.fromJson(
+  factory IdentityVerificationDocumentAddReceive.fromJson(
           Map<String, dynamic> json) =>
-      IdentityVerificationDocumentAddResponse(
+      IdentityVerificationDocumentAddReceive(
         identityVerificationDocumentAdd:
             json['identity_verification_document_add'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -47,14 +42,14 @@ class IdentityVerificationDocumentAddResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  IdentityVerificationDocumentAddResponse copyWith({
+  IdentityVerificationDocumentAddReceive copyWith({
     int? identityVerificationDocumentAdd,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      IdentityVerificationDocumentAddResponse(
+      IdentityVerificationDocumentAddReceive(
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??
             this.identityVerificationDocumentAdd,
         echoReq: echoReq ?? this.echoReq,

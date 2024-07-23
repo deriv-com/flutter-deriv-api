@@ -20,7 +20,10 @@ const String activeSymbolsResponse = '''
       "submarket": "smart_fx",
       "submarket_display_name": "Smart FX",
       "symbol": "WLDAUD",
-      "symbol_type": "smart_fx"
+      "symbol_type": "smart_fx",
+      "display_order": 12,
+      "subgroup": "synthetics",
+      "subgroup_display_name": "Synthetics"
     }
   ],
   "echo_req": {

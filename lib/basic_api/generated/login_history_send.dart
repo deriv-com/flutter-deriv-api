@@ -10,13 +10,11 @@ class LoginHistoryRequest extends Request {
   const LoginHistoryRequest({
     this.limit,
     this.loginHistory = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'login_history',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'login_history',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +22,7 @@ class LoginHistoryRequest extends Request {
         limit: json['limit'] as int?,
         loginHistory:
             json['login_history'] == null ? null : json['login_history'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -34,6 +33,9 @@ class LoginHistoryRequest extends Request {
   /// Must be `true`
   final bool? loginHistory;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -43,6 +45,7 @@ class LoginHistoryRequest extends Request {
             : loginHistory!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -52,12 +55,14 @@ class LoginHistoryRequest extends Request {
   LoginHistoryRequest copyWith({
     int? limit,
     bool? loginHistory,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       LoginHistoryRequest(
         limit: limit ?? this.limit,
         loginHistory: loginHistory ?? this.loginHistory,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Payout currencies response class.
-class PayoutCurrenciesResponse extends Response {
-  /// Initialize PayoutCurrenciesResponse.
-  const PayoutCurrenciesResponse({
+/// Payout currencies receive class.
+class PayoutCurrenciesReceive extends Response {
+  /// Initialize PayoutCurrenciesReceive.
+  const PayoutCurrenciesReceive({
     this.payoutCurrencies,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
-      PayoutCurrenciesResponse(
+  factory PayoutCurrenciesReceive.fromJson(Map<String, dynamic> json) =>
+      PayoutCurrenciesReceive(
         payoutCurrencies: (json['payout_currencies'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
             .toList(),
@@ -47,14 +42,14 @@ class PayoutCurrenciesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PayoutCurrenciesResponse copyWith({
+  PayoutCurrenciesReceive copyWith({
     List<String>? payoutCurrencies,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      PayoutCurrenciesResponse(
+      PayoutCurrenciesReceive(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

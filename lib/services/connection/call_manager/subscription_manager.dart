@@ -55,6 +55,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     required Request request,
     int cacheSize = 0,
     RequestCompareFunction? comparePredicate,
+    List<String> nullableKeys = const <String>[],
   }) {
     assert(cacheSize >= 0);
 
@@ -78,14 +79,15 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     addToChannel(
       request: request,
       subscriptionStream: subscriptionStream,
+      nullableKeys: nullableKeys,
     );
 
     return subscriptionStream.stream;
   }
 
   /// Unsubscribe with a specific [subscriptionId]
-  Future<ForgetResponse> unsubscribe({
-    required String? subscriptionId,
+  Future<ForgetReceive> unsubscribe({
+    required String subscriptionId,
     bool onlyCurrentListener = true,
   }) async {
     final int requestId = pendingRequests.keys.singleWhere(
@@ -94,7 +96,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     if (requestId == -1) {
-      return const ForgetResponse(
+      return const ForgetReceive(
         forget: true,
         msgType: 'forget',
         error: <String, dynamic>{
@@ -108,23 +110,23 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         pendingRequests[requestId]!,
       );
 
-      return const ForgetResponse(forget: true, msgType: 'forget');
+      return const ForgetReceive(forget: true, msgType: 'forget');
     }
 
-    // Send forget request
-    final ForgetResponse response = await api.call<ForgetResponse>(
-      request: ForgetRequest(forget: getSubscriptionId(requestId)!),
+    // Request forget request
+    final Response response = await api.call(
+      request: ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 
     if (response.error == null) {
       await _removePendingRequest(requestId);
     }
 
-    return response;
+    return response as ForgetReceive;
   }
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     required ForgetStreamType method,
   }) async {
     final String? methodName = getStringFromEnum(method);
@@ -138,17 +140,17 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       },
     ).toList();
 
-    final ForgetAllResponse? response = await api.call<ForgetAllResponse>(
+    final ForgetAllReceive response = await api.call(
       request: ForgetAllRequest(forgetAll: methodName),
     );
 
-    if (response?.error == null) {
+    if (response.error == null) {
       for (final int id in requestIds) {
         await _removePendingRequest(id);
       }
     }
 
-    return response!;
+    return response;
   }
 
   Future<void> _removePendingRequest(int? requestId) async {

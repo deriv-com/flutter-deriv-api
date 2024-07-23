@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Reset password response class.
-class ResetPasswordResponse extends Response {
-  /// Initialize ResetPasswordResponse.
-  const ResetPasswordResponse({
+/// Reset password receive class.
+class ResetPasswordReceive extends Response {
+  /// Initialize ResetPasswordReceive.
+  const ResetPasswordReceive({
     this.resetPassword,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) =>
-      ResetPasswordResponse(
+  factory ResetPasswordReceive.fromJson(Map<String, dynamic> json) =>
+      ResetPasswordReceive(
         resetPassword:
             json['reset_password'] == null ? null : json['reset_password'] == 1,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -50,14 +45,14 @@ class ResetPasswordResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ResetPasswordResponse copyWith({
+  ResetPasswordReceive copyWith({
     bool? resetPassword,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ResetPasswordResponse(
+      ResetPasswordReceive(
         resetPassword: resetPassword ?? this.resetPassword,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

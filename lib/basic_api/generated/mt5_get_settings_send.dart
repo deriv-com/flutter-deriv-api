@@ -9,19 +9,18 @@ class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest.
   const Mt5GetSettingsRequest({
     required this.login,
+    this.loginid,
     this.mt5GetSettings = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_get_settings',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_get_settings',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsRequest(
         login: json['login'] as String?,
+        loginid: json['loginid'] as String?,
         mt5GetSettings: json['mt5_get_settings'] == null
             ? null
             : json['mt5_get_settings'] == 1,
@@ -32,6 +31,9 @@ class Mt5GetSettingsRequest extends Request {
   /// MT5 user login
   final String? login;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? mt5GetSettings;
 
@@ -39,6 +41,7 @@ class Mt5GetSettingsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
+        'loginid': loginid,
         'mt5_get_settings': mt5GetSettings == null
             ? null
             : mt5GetSettings!
@@ -52,12 +55,14 @@ class Mt5GetSettingsRequest extends Request {
   @override
   Mt5GetSettingsRequest copyWith({
     String? login,
+    String? loginid,
     bool? mt5GetSettings,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       Mt5GetSettingsRequest(
         login: login ?? this.login,
+        loginid: loginid ?? this.loginid,
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

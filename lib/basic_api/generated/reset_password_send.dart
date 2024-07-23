@@ -8,22 +8,17 @@ import '../request.dart';
 class ResetPasswordRequest extends Request {
   /// Initialize ResetPasswordRequest.
   const ResetPasswordRequest({
-    this.dateOfBirth,
     required this.newPassword,
     this.resetPassword = true,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'reset_password',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'reset_password',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
       ResetPasswordRequest(
-        dateOfBirth: json['date_of_birth'] as String?,
         newPassword: json['new_password'] as String?,
         resetPassword:
             json['reset_password'] == null ? null : json['reset_password'] == 1,
@@ -31,9 +26,6 @@ class ResetPasswordRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
-
-  /// [Optional] Date of birth format: `yyyy-mm-dd`. Only required for clients with real-money accounts.
-  final String? dateOfBirth;
 
   /// New password. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String? newPassword;
@@ -47,7 +39,6 @@ class ResetPasswordRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'date_of_birth': dateOfBirth,
         'new_password': newPassword,
         'reset_password': resetPassword == null
             ? null
@@ -62,7 +53,6 @@ class ResetPasswordRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ResetPasswordRequest copyWith({
-    String? dateOfBirth,
     String? newPassword,
     bool? resetPassword,
     String? verificationCode,
@@ -70,7 +60,6 @@ class ResetPasswordRequest extends Request {
     int? reqId,
   }) =>
       ResetPasswordRequest(
-        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         newPassword: newPassword ?? this.newPassword,
         resetPassword: resetPassword ?? this.resetPassword,
         verificationCode: verificationCode ?? this.verificationCode,

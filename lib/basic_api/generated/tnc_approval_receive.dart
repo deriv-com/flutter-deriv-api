@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Tnc approval response class.
-class TncApprovalResponse extends Response {
-  /// Initialize TncApprovalResponse.
-  const TncApprovalResponse({
+/// Tnc approval receive class.
+class TncApprovalReceive extends Response {
+  /// Initialize TncApprovalReceive.
+  const TncApprovalReceive({
     this.tncApproval,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
-      TncApprovalResponse(
+  factory TncApprovalReceive.fromJson(Map<String, dynamic> json) =>
+      TncApprovalReceive(
         tncApproval: json['tnc_approval'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class TncApprovalResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TncApprovalResponse copyWith({
+  TncApprovalReceive copyWith({
     int? tncApproval,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TncApprovalResponse(
+      TncApprovalReceive(
         tncApproval: tncApproval ?? this.tncApproval,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

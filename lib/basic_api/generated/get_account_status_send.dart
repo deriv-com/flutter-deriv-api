@@ -9,13 +9,11 @@ class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest.
   const GetAccountStatusRequest({
     this.getAccountStatus = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_account_status',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'get_account_status',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +21,16 @@ class GetAccountStatusRequest extends Request {
         getAccountStatus: json['get_account_status'] == null
             ? null
             : json['get_account_status'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? getAccountStatus;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -38,6 +40,7 @@ class GetAccountStatusRequest extends Request {
             : getAccountStatus!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -46,11 +49,13 @@ class GetAccountStatusRequest extends Request {
   @override
   GetAccountStatusRequest copyWith({
     bool? getAccountStatus,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetAccountStatusRequest(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

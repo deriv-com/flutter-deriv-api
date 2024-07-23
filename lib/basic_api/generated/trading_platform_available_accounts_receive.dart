@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Trading platform available accounts response class.
-class TradingPlatformAvailableAccountsResponse extends Response {
-  /// Initialize TradingPlatformAvailableAccountsResponse.
-  const TradingPlatformAvailableAccountsResponse({
+/// Trading platform available accounts receive class.
+class TradingPlatformAvailableAccountsReceive extends Response {
+  /// Initialize TradingPlatformAvailableAccountsReceive.
+  const TradingPlatformAvailableAccountsReceive({
     this.tradingPlatformAvailableAccounts,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TradingPlatformAvailableAccountsResponse.fromJson(
+  factory TradingPlatformAvailableAccountsReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformAvailableAccountsResponse(
+      TradingPlatformAvailableAccountsReceive(
         tradingPlatformAvailableAccounts:
             (json['trading_platform_available_accounts'] as List<dynamic>?)
                 ?.map<Map<String, dynamic>>(
@@ -50,14 +45,14 @@ class TradingPlatformAvailableAccountsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformAvailableAccountsResponse copyWith({
+  TradingPlatformAvailableAccountsReceive copyWith({
     List<Map<String, dynamic>>? tradingPlatformAvailableAccounts,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformAvailableAccountsResponse(
+      TradingPlatformAvailableAccountsReceive(
         tradingPlatformAvailableAccounts: tradingPlatformAvailableAccounts ??
             this.tradingPlatformAvailableAccounts,
         echoReq: echoReq ?? this.echoReq,

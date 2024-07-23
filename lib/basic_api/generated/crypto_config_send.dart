@@ -10,13 +10,11 @@ class CryptoConfigRequest extends Request {
   const CryptoConfigRequest({
     this.cryptoConfig = true,
     this.currencyCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'crypto_config',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'crypto_config',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory CryptoConfigRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +22,7 @@ class CryptoConfigRequest extends Request {
         cryptoConfig:
             json['crypto_config'] == null ? null : json['crypto_config'] == 1,
         currencyCode: json['currency_code'] as String?,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -34,6 +33,9 @@ class CryptoConfigRequest extends Request {
   /// [Optional] Cryptocurrency code. Sending request with currency_code provides crypto config for the sent cryptocurrency code only.
   final String? currencyCode;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -43,6 +45,7 @@ class CryptoConfigRequest extends Request {
                 ? 1
                 : 0,
         'currency_code': currencyCode,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -52,12 +55,14 @@ class CryptoConfigRequest extends Request {
   CryptoConfigRequest copyWith({
     bool? cryptoConfig,
     String? currencyCode,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       CryptoConfigRequest(
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         currencyCode: currencyCode ?? this.currencyCode,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

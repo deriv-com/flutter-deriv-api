@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Account statistics response class.
-class AccountStatisticsResponse extends Response {
-  /// Initialize AccountStatisticsResponse.
-  const AccountStatisticsResponse({
+/// Account statistics receive class.
+class AccountStatisticsReceive extends Response {
+  /// Initialize AccountStatisticsReceive.
+  const AccountStatisticsReceive({
     this.accountStatistics,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory AccountStatisticsResponse.fromJson(Map<String, dynamic> json) =>
-      AccountStatisticsResponse(
+  factory AccountStatisticsReceive.fromJson(Map<String, dynamic> json) =>
+      AccountStatisticsReceive(
         accountStatistics: json['account_statistics'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class AccountStatisticsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AccountStatisticsResponse copyWith({
+  AccountStatisticsReceive copyWith({
     Map<String, dynamic>? accountStatistics,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AccountStatisticsResponse(
+      AccountStatisticsReceive(
         accountStatistics: accountStatistics ?? this.accountStatistics,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

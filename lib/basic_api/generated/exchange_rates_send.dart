@@ -10,15 +10,13 @@ class ExchangeRatesRequest extends Request {
   const ExchangeRatesRequest({
     required this.baseCurrency,
     this.exchangeRates = true,
+    this.loginid,
     this.subscribe,
     this.targetCurrency,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'exchange_rates',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'exchange_rates',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +24,7 @@ class ExchangeRatesRequest extends Request {
         baseCurrency: json['base_currency'] as String?,
         exchangeRates:
             json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
+        loginid: json['loginid'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         targetCurrency: json['target_currency'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -38,10 +37,13 @@ class ExchangeRatesRequest extends Request {
   /// Must be `true`
   final bool? exchangeRates;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] `true` - to initiate a realtime stream of exchange rates relative to base currency.
   final bool? subscribe;
 
-  /// [Optional] Local currency
+  /// [Optional] Target currency for the exchange rate. If subscribe is set, target_currency must be specified as well.
   final String? targetCurrency;
 
   /// Converts this instance to JSON
@@ -53,6 +55,7 @@ class ExchangeRatesRequest extends Request {
             : exchangeRates!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'subscribe': subscribe == null
             ? null
             : subscribe!
@@ -68,6 +71,7 @@ class ExchangeRatesRequest extends Request {
   ExchangeRatesRequest copyWith({
     String? baseCurrency,
     bool? exchangeRates,
+    String? loginid,
     bool? subscribe,
     String? targetCurrency,
     Map<String, dynamic>? passthrough,
@@ -76,6 +80,7 @@ class ExchangeRatesRequest extends Request {
       ExchangeRatesRequest(
         baseCurrency: baseCurrency ?? this.baseCurrency,
         exchangeRates: exchangeRates ?? this.exchangeRates,
+        loginid: loginid ?? this.loginid,
         subscribe: subscribe ?? this.subscribe,
         targetCurrency: targetCurrency ?? this.targetCurrency,
         passthrough: passthrough ?? this.passthrough,

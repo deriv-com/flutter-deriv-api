@@ -4,24 +4,19 @@
 
 import '../response.dart';
 
-/// Forget response class.
-class ForgetResponse extends Response {
-  /// Initialize ForgetResponse.
-  const ForgetResponse({
+/// Forget receive class.
+class ForgetReceive extends Response {
+  /// Initialize ForgetReceive.
+  const ForgetReceive({
     this.forget,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ForgetResponse.fromJson(Map<String, dynamic> json) => ForgetResponse(
+  factory ForgetReceive.fromJson(Map<String, dynamic> json) => ForgetReceive(
         forget: json['forget'] == null ? null : json['forget'] == 1,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -48,14 +43,14 @@ class ForgetResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ForgetResponse copyWith({
+  ForgetReceive copyWith({
     bool? forget,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ForgetResponse(
+      ForgetReceive(
         forget: forget ?? this.forget,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

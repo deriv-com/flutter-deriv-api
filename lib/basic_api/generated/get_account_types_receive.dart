@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Get account types response class.
-class GetAccountTypesResponse extends Response {
-  /// Initialize GetAccountTypesResponse.
-  const GetAccountTypesResponse({
+/// Get account types receive class.
+class GetAccountTypesReceive extends Response {
+  /// Initialize GetAccountTypesReceive.
+  const GetAccountTypesReceive({
     this.getAccountTypes,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory GetAccountTypesResponse.fromJson(Map<String, dynamic> json) =>
-      GetAccountTypesResponse(
+  factory GetAccountTypesReceive.fromJson(Map<String, dynamic> json) =>
+      GetAccountTypesReceive(
         getAccountTypes: json['get_account_types'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class GetAccountTypesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetAccountTypesResponse copyWith({
+  GetAccountTypesReceive copyWith({
     Map<String, dynamic>? getAccountTypes,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      GetAccountTypesResponse(
+      GetAccountTypesReceive(
         getAccountTypes: getAccountTypes ?? this.getAccountTypes,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

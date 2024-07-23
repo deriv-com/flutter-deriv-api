@@ -14,17 +14,15 @@ class AppRegisterRequest extends Request {
     this.github,
     this.googleplay,
     this.homepage,
+    this.loginid,
     required this.name,
     this.redirectUri,
     required this.scopes,
     this.verificationUri,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_register',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_register',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
@@ -36,6 +34,7 @@ class AppRegisterRequest extends Request {
         github: json['github'] as String?,
         googleplay: json['googleplay'] as String?,
         homepage: json['homepage'] as String?,
+        loginid: json['loginid'] as String?,
         name: json['name'] as String?,
         redirectUri: json['redirect_uri'] as String?,
         scopes: (json['scopes'] as List<dynamic>?)
@@ -46,7 +45,7 @@ class AppRegisterRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
+  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout). Max markup: 3%.
   final num? appMarkupPercentage;
 
   /// Must be `true`
@@ -63,6 +62,9 @@ class AppRegisterRequest extends Request {
 
   /// [Optional] Application's homepage URL.
   final String? homepage;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Application name.
   final String? name;
@@ -89,6 +91,7 @@ class AppRegisterRequest extends Request {
         'github': github,
         'googleplay': googleplay,
         'homepage': homepage,
+        'loginid': loginid,
         'name': name,
         'redirect_uri': redirectUri,
         'scopes': scopes,
@@ -106,6 +109,7 @@ class AppRegisterRequest extends Request {
     String? github,
     String? googleplay,
     String? homepage,
+    String? loginid,
     String? name,
     String? redirectUri,
     List<String>? scopes,
@@ -120,6 +124,7 @@ class AppRegisterRequest extends Request {
         github: github ?? this.github,
         googleplay: googleplay ?? this.googleplay,
         homepage: homepage ?? this.homepage,
+        loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         redirectUri: redirectUri ?? this.redirectUri,
         scopes: scopes ?? this.scopes,

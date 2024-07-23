@@ -9,20 +9,19 @@ class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest.
   const P2pOrderInfoRequest({
     required this.id,
+    this.loginid,
     this.p2pOrderInfo = true,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_info',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_info',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderInfoRequest(
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
@@ -32,6 +31,9 @@ class P2pOrderInfoRequest extends Request {
 
   /// The unique identifier for the order.
   final String? id;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? p2pOrderInfo;
@@ -43,6 +45,7 @@ class P2pOrderInfoRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
+        'loginid': loginid,
         'p2p_order_info': p2pOrderInfo == null
             ? null
             : p2pOrderInfo!
@@ -61,6 +64,7 @@ class P2pOrderInfoRequest extends Request {
   @override
   P2pOrderInfoRequest copyWith({
     String? id,
+    String? loginid,
     bool? p2pOrderInfo,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
@@ -68,6 +72,7 @@ class P2pOrderInfoRequest extends Request {
   }) =>
       P2pOrderInfoRequest(
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         p2pOrderInfo: p2pOrderInfo ?? this.p2pOrderInfo,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,

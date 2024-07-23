@@ -12,15 +12,13 @@ class PaymentagentTransferRequest extends Request {
     required this.currency,
     this.description,
     this.dryRun,
+    this.loginid,
     this.paymentagentTransfer = true,
     required this.transferTo,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'paymentagent_transfer',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'paymentagent_transfer',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +27,7 @@ class PaymentagentTransferRequest extends Request {
         currency: json['currency'] as String?,
         description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        loginid: json['loginid'] as String?,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
@@ -49,6 +48,9 @@ class PaymentagentTransferRequest extends Request {
   /// [Optional] If set to `true`, just do validation.
   final bool? dryRun;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? paymentagentTransfer;
 
@@ -66,6 +68,7 @@ class PaymentagentTransferRequest extends Request {
             : dryRun!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'paymentagent_transfer': paymentagentTransfer == null
             ? null
             : paymentagentTransfer!
@@ -83,6 +86,7 @@ class PaymentagentTransferRequest extends Request {
     String? currency,
     String? description,
     bool? dryRun,
+    String? loginid,
     bool? paymentagentTransfer,
     String? transferTo,
     Map<String, dynamic>? passthrough,
@@ -93,6 +97,7 @@ class PaymentagentTransferRequest extends Request {
         currency: currency ?? this.currency,
         description: description ?? this.description,
         dryRun: dryRun ?? this.dryRun,
+        loginid: loginid ?? this.loginid,
         paymentagentTransfer: paymentagentTransfer ?? this.paymentagentTransfer,
         transferTo: transferTo ?? this.transferTo,
         passthrough: passthrough ?? this.passthrough,

@@ -9,20 +9,19 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Initialize P2pAdvertiserInfoRequest.
   const P2pAdvertiserInfoRequest({
     this.id,
+    this.loginid,
     this.p2pAdvertiserInfo = true,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_info',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_info',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserInfoRequest(
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         p2pAdvertiserInfo: json['p2p_advertiser_info'] == null
             ? null
             : json['p2p_advertiser_info'] == 1,
@@ -34,6 +33,9 @@ class P2pAdvertiserInfoRequest extends Request {
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
   final String? id;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pAdvertiserInfo;
 
@@ -44,6 +46,7 @@ class P2pAdvertiserInfoRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
+        'loginid': loginid,
         'p2p_advertiser_info': p2pAdvertiserInfo == null
             ? null
             : p2pAdvertiserInfo!
@@ -62,6 +65,7 @@ class P2pAdvertiserInfoRequest extends Request {
   @override
   P2pAdvertiserInfoRequest copyWith({
     String? id,
+    String? loginid,
     bool? p2pAdvertiserInfo,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
@@ -69,6 +73,7 @@ class P2pAdvertiserInfoRequest extends Request {
   }) =>
       P2pAdvertiserInfoRequest(
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         p2pAdvertiserInfo: p2pAdvertiserInfo ?? this.p2pAdvertiserInfo,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,

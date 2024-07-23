@@ -9,21 +9,20 @@ class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest.
   const P2pAdvertInfoRequest({
     this.id,
+    this.loginid,
     this.p2pAdvertInfo = true,
     this.subscribe,
     this.useClientLimits,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advert_info',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advert_info',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoRequest(
         id: json['id'] as String?,
+        loginid: json['loginid'] as String?,
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
             : json['p2p_advert_info'] == 1,
@@ -38,6 +37,9 @@ class P2pAdvertInfoRequest extends Request {
   /// [Optional] The unique identifier for this advert. Optional when subscribe is 1. If not provided, all advertiser adverts will be subscribed.
   final String? id;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pAdvertInfo;
 
@@ -51,6 +53,7 @@ class P2pAdvertInfoRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
+        'loginid': loginid,
         'p2p_advert_info': p2pAdvertInfo == null
             ? null
             : p2pAdvertInfo!
@@ -74,6 +77,7 @@ class P2pAdvertInfoRequest extends Request {
   @override
   P2pAdvertInfoRequest copyWith({
     String? id,
+    String? loginid,
     bool? p2pAdvertInfo,
     bool? subscribe,
     bool? useClientLimits,
@@ -82,6 +86,7 @@ class P2pAdvertInfoRequest extends Request {
   }) =>
       P2pAdvertInfoRequest(
         id: id ?? this.id,
+        loginid: loginid ?? this.loginid,
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
         subscribe: subscribe ?? this.subscribe,
         useClientLimits: useClientLimits ?? this.useClientLimits,

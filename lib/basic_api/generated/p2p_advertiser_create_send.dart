@@ -10,23 +10,22 @@ class P2pAdvertiserCreateRequest extends Request {
   const P2pAdvertiserCreateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
+    this.loginid,
     required this.name,
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_advertiser_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_advertiser_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateRequest(
         contactInfo: json['contact_info'] as String?,
         defaultAdvertDescription: json['default_advert_description'] as String?,
+        loginid: json['loginid'] as String?,
         name: json['name'] as String?,
         p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
             ? null
@@ -42,6 +41,9 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// [Optional] Default description that can be used every time an advert is created.
   final String? defaultAdvertDescription;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// The advertiser's displayed name.
   final String? name;
@@ -60,6 +62,7 @@ class P2pAdvertiserCreateRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contact_info': contactInfo,
         'default_advert_description': defaultAdvertDescription,
+        'loginid': loginid,
         'name': name,
         'p2p_advertiser_create': p2pAdvertiserCreate == null
             ? null
@@ -81,6 +84,7 @@ class P2pAdvertiserCreateRequest extends Request {
   P2pAdvertiserCreateRequest copyWith({
     String? contactInfo,
     String? defaultAdvertDescription,
+    String? loginid,
     String? name,
     bool? p2pAdvertiserCreate,
     String? paymentInfo,
@@ -92,6 +96,7 @@ class P2pAdvertiserCreateRequest extends Request {
         contactInfo: contactInfo ?? this.contactInfo,
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,
+        loginid: loginid ?? this.loginid,
         name: name ?? this.name,
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,

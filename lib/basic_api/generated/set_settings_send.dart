@@ -17,10 +17,13 @@ class SetSettingsRequest extends Request {
     this.allowCopiers,
     this.citizen,
     this.dateOfBirth,
+    required this.dxtradeUserException,
     this.emailConsent,
+    this.employmentStatus,
     this.featureFlag,
     this.firstName,
     this.lastName,
+    this.loginid,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
@@ -33,13 +36,11 @@ class SetSettingsRequest extends Request {
     this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'set_settings',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.tradingHub,
+    super.msgType = 'set_settings',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
@@ -54,11 +55,16 @@ class SetSettingsRequest extends Request {
             json['allow_copiers'] == null ? null : json['allow_copiers'] == 1,
         citizen: json['citizen'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
+        dxtradeUserException: json['dxtrade_user_exception'] == null
+            ? null
+            : json['dxtrade_user_exception'] == 1,
         emailConsent:
             json['email_consent'] == null ? null : json['email_consent'] == 1,
+        employmentStatus: json['employment_status'] as String?,
         featureFlag: json['feature_flag'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
+        loginid: json['loginid'] as String?,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
         phone: json['phone'] as String?,
         placeOfBirth: json['place_of_birth'] as String?,
@@ -72,6 +78,8 @@ class SetSettingsRequest extends Request {
             json['set_settings'] == null ? null : json['set_settings'] == 1,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tradingHub:
+            json['trading_hub'] == null ? null : json['trading_hub'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -103,8 +111,14 @@ class SetSettingsRequest extends Request {
   /// [Optional] Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
   final String? dateOfBirth;
 
+  /// Boolean value `true` or `false`, indicating if user email belong to dxtrade exception list.
+  final bool? dxtradeUserException;
+
   /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool? emailConsent;
+
+  /// [Optional] Employment Status.
+  final String? employmentStatus;
 
   /// [Optional] Enable or disable one or multiple features.
   final Map<String, dynamic>? featureFlag;
@@ -114,6 +128,9 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? lastName;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
   final int? nonPepDeclaration;
@@ -151,6 +168,9 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String? taxResidence;
 
+  /// [Optional] Enable/Disable Trading Hub dashboard
+  final bool? tradingHub;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -167,14 +187,21 @@ class SetSettingsRequest extends Request {
                 : 0,
         'citizen': citizen,
         'date_of_birth': dateOfBirth,
+        'dxtrade_user_exception': dxtradeUserException == null
+            ? null
+            : dxtradeUserException!
+                ? 1
+                : 0,
         'email_consent': emailConsent == null
             ? null
             : emailConsent!
                 ? 1
                 : 0,
+        'employment_status': employmentStatus,
         'feature_flag': featureFlag,
         'first_name': firstName,
         'last_name': lastName,
+        'loginid': loginid,
         'non_pep_declaration': nonPepDeclaration,
         'phone': phone,
         'place_of_birth': placeOfBirth,
@@ -191,6 +218,11 @@ class SetSettingsRequest extends Request {
                 : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'trading_hub': tradingHub == null
+            ? null
+            : tradingHub!
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -207,10 +239,13 @@ class SetSettingsRequest extends Request {
     bool? allowCopiers,
     String? citizen,
     String? dateOfBirth,
+    bool? dxtradeUserException,
     bool? emailConsent,
+    String? employmentStatus,
     Map<String, dynamic>? featureFlag,
     String? firstName,
     String? lastName,
+    String? loginid,
     int? nonPepDeclaration,
     String? phone,
     String? placeOfBirth,
@@ -223,6 +258,7 @@ class SetSettingsRequest extends Request {
     bool? setSettings,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tradingHub,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -236,10 +272,13 @@ class SetSettingsRequest extends Request {
         allowCopiers: allowCopiers ?? this.allowCopiers,
         citizen: citizen ?? this.citizen,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        dxtradeUserException: dxtradeUserException ?? this.dxtradeUserException,
         emailConsent: emailConsent ?? this.emailConsent,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        loginid: loginid ?? this.loginid,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
@@ -254,6 +293,7 @@ class SetSettingsRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tradingHub: tradingHub ?? this.tradingHub,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

@@ -9,14 +9,30 @@ const String p2pOrderCreateResponse = '''{
   "p2p_order_create": {
     "account_currency": "USD",
     "advert_details": {
+      "block_trade": 1,
       "description": "Please contact via whatsapp 1234",
       "id": "6",
+      "order_expiry_period": 3600,
       "payment_method": "bank_transfer",
       "type": "sell"
     },
     "advertiser_details": {
       "id": "2",
-      "name": "advertiser CR90000018"
+      "name": "advertiser CR90000018",
+      "loginid": "CR90000006",
+      "completed_orders_count": 0,
+      "is_online": true
+    },
+    "client_details": {
+      "id":"5",
+      "loginid": "CR90000006",
+      "name": "client CR90000006",
+      "completed_orders_count": 0,
+      "is_online": true
+    },
+    "dispute_details": {
+      "dispute_reason": null,
+      "disputer_loginid": null
     },
     "amount": 50,
     "amount_display": "50.00",
@@ -33,7 +49,10 @@ const String p2pOrderCreateResponse = '''{
     "rate": 13500,
     "rate_display": "13500.00",
     "status": "pending",
-    "type": "buy"
+    "type": "buy",
+    "is_reviewable" : true,
+    "verification_pending": true,
+    "is_seen" : true
   },
   "subscription": {
     "id": "857cfc96-1014-66ce-9c49-0a4dbd22857a"

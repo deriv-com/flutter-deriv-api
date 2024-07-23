@@ -24,6 +24,7 @@ class _SampleAppState extends State<SampleApp> {
         appId: '1089',
         brand: 'binary',
         endpoint: 'frontend.binaryws.com',
+        authEndpoint: '',
       ),
     );
   }

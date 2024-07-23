@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Statement response class.
-class StatementResponse extends Response {
-  /// Initialize StatementResponse.
-  const StatementResponse({
+/// Statement receive class.
+class StatementReceive extends Response {
+  /// Initialize StatementReceive.
+  const StatementReceive({
     this.statement,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory StatementResponse.fromJson(Map<String, dynamic> json) =>
-      StatementResponse(
+  factory StatementReceive.fromJson(Map<String, dynamic> json) =>
+      StatementReceive(
         statement: json['statement'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class StatementResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  StatementResponse copyWith({
+  StatementReceive copyWith({
     Map<String, dynamic>? statement,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      StatementResponse(
+      StatementReceive(
         statement: statement ?? this.statement,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -4,26 +4,21 @@
 
 import '../response.dart';
 
-/// Trading platform investor password reset response class.
-class TradingPlatformInvestorPasswordResetResponse extends Response {
-  /// Initialize TradingPlatformInvestorPasswordResetResponse.
-  const TradingPlatformInvestorPasswordResetResponse({
+/// Trading platform investor password reset receive class.
+class TradingPlatformInvestorPasswordResetReceive extends Response {
+  /// Initialize TradingPlatformInvestorPasswordResetReceive.
+  const TradingPlatformInvestorPasswordResetReceive({
     this.tradingPlatformPasswordReset,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TradingPlatformInvestorPasswordResetResponse.fromJson(
+  factory TradingPlatformInvestorPasswordResetReceive.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformInvestorPasswordResetResponse(
+      TradingPlatformInvestorPasswordResetReceive(
         tradingPlatformPasswordReset:
             json['trading_platform_password_reset'] == null
                 ? null
@@ -53,14 +48,14 @@ class TradingPlatformInvestorPasswordResetResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformInvestorPasswordResetResponse copyWith({
+  TradingPlatformInvestorPasswordResetReceive copyWith({
     bool? tradingPlatformPasswordReset,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TradingPlatformInvestorPasswordResetResponse(
+      TradingPlatformInvestorPasswordResetReceive(
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,
         echoReq: echoReq ?? this.echoReq,

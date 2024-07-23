@@ -10,22 +10,21 @@ class TradingPlatformDepositRequest extends Request {
   const TradingPlatformDepositRequest({
     required this.amount,
     required this.fromAccount,
+    this.loginid,
     required this.platform,
     required this.toAccount,
     this.tradingPlatformDeposit = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_deposit',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_deposit',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformDepositRequest.fromJson(Map<String, dynamic> json) =>
       TradingPlatformDepositRequest(
         amount: json['amount'] as num?,
         fromAccount: json['from_account'] as String?,
+        loginid: json['loginid'] as String?,
         platform: json['platform'] as String?,
         toAccount: json['to_account'] as String?,
         tradingPlatformDeposit: json['trading_platform_deposit'] == null
@@ -41,6 +40,9 @@ class TradingPlatformDepositRequest extends Request {
   /// Wallet account to transfer money from.
   final String? fromAccount;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Name of trading platform.
   final String? platform;
 
@@ -55,6 +57,7 @@ class TradingPlatformDepositRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_account': fromAccount,
+        'loginid': loginid,
         'platform': platform,
         'to_account': toAccount,
         'trading_platform_deposit': tradingPlatformDeposit == null
@@ -71,6 +74,7 @@ class TradingPlatformDepositRequest extends Request {
   TradingPlatformDepositRequest copyWith({
     num? amount,
     String? fromAccount,
+    String? loginid,
     String? platform,
     String? toAccount,
     bool? tradingPlatformDeposit,
@@ -80,6 +84,7 @@ class TradingPlatformDepositRequest extends Request {
       TradingPlatformDepositRequest(
         amount: amount ?? this.amount,
         fromAccount: fromAccount ?? this.fromAccount,
+        loginid: loginid ?? this.loginid,
         platform: platform ?? this.platform,
         toAccount: toAccount ?? this.toAccount,
         tradingPlatformDeposit:

@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// New account virtual response class.
-class NewAccountVirtualResponse extends Response {
-  /// Initialize NewAccountVirtualResponse.
-  const NewAccountVirtualResponse({
+/// New account virtual receive class.
+class NewAccountVirtualReceive extends Response {
+  /// Initialize NewAccountVirtualReceive.
+  const NewAccountVirtualReceive({
     this.newAccountVirtual,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
-      NewAccountVirtualResponse(
+  factory NewAccountVirtualReceive.fromJson(Map<String, dynamic> json) =>
+      NewAccountVirtualReceive(
         newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class NewAccountVirtualResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountVirtualResponse copyWith({
+  NewAccountVirtualReceive copyWith({
     Map<String, dynamic>? newAccountVirtual,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      NewAccountVirtualResponse(
+      NewAccountVirtualReceive(
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -9,20 +9,19 @@ class BuyRequest extends Request {
   /// Initialize BuyRequest.
   const BuyRequest({
     required this.buy,
+    this.loginid,
     this.parameters,
     required this.price,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'buy',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'buy',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
         buy: json['buy'] as String?,
+        loginid: json['loginid'] as String?,
         parameters: json['parameters'] as Map<String, dynamic>?,
         price: json['price'] as num?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
@@ -32,6 +31,9 @@ class BuyRequest extends Request {
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String? buy;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] Used to pass the parameters for contract buy.
   final Map<String, dynamic>? parameters;
@@ -46,6 +48,7 @@ class BuyRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'buy': buy,
+        'loginid': loginid,
         'parameters': parameters,
         'price': price,
         'subscribe': subscribe == null
@@ -61,6 +64,7 @@ class BuyRequest extends Request {
   @override
   BuyRequest copyWith({
     String? buy,
+    String? loginid,
     Map<String, dynamic>? parameters,
     num? price,
     bool? subscribe,
@@ -69,6 +73,7 @@ class BuyRequest extends Request {
   }) =>
       BuyRequest(
         buy: buy ?? this.buy,
+        loginid: loginid ?? this.loginid,
         parameters: parameters ?? this.parameters,
         price: price ?? this.price,
         subscribe: subscribe ?? this.subscribe,

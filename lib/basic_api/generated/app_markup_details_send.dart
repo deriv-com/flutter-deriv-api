@@ -15,16 +15,14 @@ class AppMarkupDetailsRequest extends Request {
     required this.dateTo,
     this.description,
     this.limit,
+    this.loginid,
     this.offset,
     this.sort,
     this.sortFields,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'app_markup_details',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'app_markup_details',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
@@ -39,7 +37,8 @@ class AppMarkupDetailsRequest extends Request {
         description:
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
+        loginid: json['loginid'] as String?,
+        offset: json['offset'] as int?,
         sort: json['sort'] as String?,
         sortFields: (json['sort_fields'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
@@ -69,8 +68,11 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] Apply upper limit to count of transactions received.
   final num? limit;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Number of transactions to skip.
-  final num? offset;
+  final int? offset;
 
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
   final String? sort;
@@ -96,6 +98,7 @@ class AppMarkupDetailsRequest extends Request {
                 ? 1
                 : 0,
         'limit': limit,
+        'loginid': loginid,
         'offset': offset,
         'sort': sort,
         'sort_fields': sortFields,
@@ -113,7 +116,8 @@ class AppMarkupDetailsRequest extends Request {
     String? dateTo,
     bool? description,
     num? limit,
-    num? offset,
+    String? loginid,
+    int? offset,
     String? sort,
     List<String>? sortFields,
     Map<String, dynamic>? passthrough,
@@ -127,6 +131,7 @@ class AppMarkupDetailsRequest extends Request {
         dateTo: dateTo ?? this.dateTo,
         description: description ?? this.description,
         limit: limit ?? this.limit,
+        loginid: loginid ?? this.loginid,
         offset: offset ?? this.offset,
         sort: sort ?? this.sort,
         sortFields: sortFields ?? this.sortFields,

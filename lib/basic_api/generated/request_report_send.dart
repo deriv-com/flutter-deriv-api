@@ -10,21 +10,20 @@ class RequestReportRequest extends Request {
   const RequestReportRequest({
     required this.dateFrom,
     required this.dateTo,
+    this.loginid,
     required this.reportType,
     this.requestReport = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'request_report',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'request_report',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
       RequestReportRequest(
         dateFrom: json['date_from'] as int?,
         dateTo: json['date_to'] as int?,
+        loginid: json['loginid'] as String?,
         reportType: json['report_type'] as String?,
         requestReport:
             json['request_report'] == null ? null : json['request_report'] == 1,
@@ -38,6 +37,9 @@ class RequestReportRequest extends Request {
   /// End date of the report
   final int? dateTo;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Type of report to be sent to client's registered e-mail address
   final String? reportType;
 
@@ -49,6 +51,7 @@ class RequestReportRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'date_from': dateFrom,
         'date_to': dateTo,
+        'loginid': loginid,
         'report_type': reportType,
         'request_report': requestReport == null
             ? null
@@ -64,6 +67,7 @@ class RequestReportRequest extends Request {
   RequestReportRequest copyWith({
     int? dateFrom,
     int? dateTo,
+    String? loginid,
     String? reportType,
     bool? requestReport,
     Map<String, dynamic>? passthrough,
@@ -72,6 +76,7 @@ class RequestReportRequest extends Request {
       RequestReportRequest(
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,
+        loginid: loginid ?? this.loginid,
         reportType: reportType ?? this.reportType,
         requestReport: requestReport ?? this.requestReport,
         passthrough: passthrough ?? this.passthrough,

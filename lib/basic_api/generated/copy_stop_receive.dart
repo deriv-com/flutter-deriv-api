@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Copy stop response class.
-class CopyStopResponse extends Response {
-  /// Initialize CopyStopResponse.
-  const CopyStopResponse({
+/// Copy stop receive class.
+class CopyStopReceive extends Response {
+  /// Initialize CopyStopReceive.
+  const CopyStopReceive({
     this.copyStop,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
-      CopyStopResponse(
+  factory CopyStopReceive.fromJson(Map<String, dynamic> json) =>
+      CopyStopReceive(
         copyStop: json['copy_stop'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class CopyStopResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopyStopResponse copyWith({
+  CopyStopReceive copyWith({
     int? copyStop,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      CopyStopResponse(
+      CopyStopReceive(
         copyStop: copyStop ?? this.copyStop,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

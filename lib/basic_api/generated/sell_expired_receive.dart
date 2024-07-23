@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Sell expired response class.
-class SellExpiredResponse extends Response {
-  /// Initialize SellExpiredResponse.
-  const SellExpiredResponse({
+/// Sell expired receive class.
+class SellExpiredReceive extends Response {
+  /// Initialize SellExpiredReceive.
+  const SellExpiredReceive({
     this.sellExpired,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
-      SellExpiredResponse(
+  factory SellExpiredReceive.fromJson(Map<String, dynamic> json) =>
+      SellExpiredReceive(
         sellExpired: json['sell_expired'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class SellExpiredResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SellExpiredResponse copyWith({
+  SellExpiredReceive copyWith({
     Map<String, dynamic>? sellExpired,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      SellExpiredResponse(
+      SellExpiredReceive(
         sellExpired: sellExpired ?? this.sellExpired,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

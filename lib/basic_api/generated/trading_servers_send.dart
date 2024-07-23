@@ -10,22 +10,21 @@ class TradingServersRequest extends Request {
   const TradingServersRequest({
     this.accountType,
     this.environment,
+    this.loginid,
     this.marketType,
     this.platform,
     this.tradingServers = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_servers',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_servers',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>
       TradingServersRequest(
         accountType: json['account_type'] as String?,
         environment: json['environment'] as String?,
+        loginid: json['loginid'] as String?,
         marketType: json['market_type'] as String?,
         platform: json['platform'] as String?,
         tradingServers: json['trading_servers'] == null
@@ -41,6 +40,9 @@ class TradingServersRequest extends Request {
   /// [Optional] Pass the environment (installation) instance. Currently, there are one demo and two real environments. Defaults to 'all'.
   final String? environment;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// [Optional] Market type.
   final String? marketType;
 
@@ -55,6 +57,7 @@ class TradingServersRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_type': accountType,
         'environment': environment,
+        'loginid': loginid,
         'market_type': marketType,
         'platform': platform,
         'trading_servers': tradingServers == null
@@ -71,6 +74,7 @@ class TradingServersRequest extends Request {
   TradingServersRequest copyWith({
     String? accountType,
     String? environment,
+    String? loginid,
     String? marketType,
     String? platform,
     bool? tradingServers,
@@ -80,6 +84,7 @@ class TradingServersRequest extends Request {
       TradingServersRequest(
         accountType: accountType ?? this.accountType,
         environment: environment ?? this.environment,
+        loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         platform: platform ?? this.platform,
         tradingServers: tradingServers ?? this.tradingServers,

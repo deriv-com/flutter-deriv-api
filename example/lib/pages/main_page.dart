@@ -1,10 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_deriv_api_example/widgets/active_symbols_widget.dart';
 import 'package:flutter_deriv_api_example/widgets/contracts_type_widget.dart';
+import 'package:flutter_deriv_api_example/widgets/exchange_rate_widget.dart';
 import 'package:flutter_deriv_api_example/widgets/price_proposal_widget.dart';
 
 /// MainPage
@@ -48,6 +48,7 @@ class _MainPageState extends State<MainPage> {
             Expanded(child: ActiveSymbolsWidget()),
             Expanded(child: ContractsTypeWidget()),
             Expanded(flex: 2, child: PriceProposalWidget()),
+            const Expanded(flex: 2, child: ExchangeRateWidget()),
           ],
         ),
       );

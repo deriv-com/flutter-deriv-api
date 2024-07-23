@@ -8,22 +8,24 @@ import '../request.dart';
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest.
   const LandingCompanyDetailsRequest({
+    this.country,
     required this.landingCompanyDetails,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'landing_company_details',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'landing_company_details',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailsRequest(
+        country: json['country'] as String?,
         landingCompanyDetails: json['landing_company_details'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] Will return an extra field `tin_not_mandatory` indicating if the landing company does not require tax identification number for the provided country.
+  final String? country;
 
   /// Landing company shortcode.
   final String? landingCompanyDetails;
@@ -31,6 +33,7 @@ class LandingCompanyDetailsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'country': country,
         'landing_company_details': landingCompanyDetails,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -39,11 +42,13 @@ class LandingCompanyDetailsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanyDetailsRequest copyWith({
+    String? country,
     String? landingCompanyDetails,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       LandingCompanyDetailsRequest(
+        country: country ?? this.country,
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
         passthrough: passthrough ?? this.passthrough,

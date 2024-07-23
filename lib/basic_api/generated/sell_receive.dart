@@ -4,24 +4,19 @@
 
 import '../response.dart';
 
-/// Sell response class.
-class SellResponse extends Response {
-  /// Initialize SellResponse.
-  const SellResponse({
+/// Sell receive class.
+class SellReceive extends Response {
+  /// Initialize SellReceive.
+  const SellReceive({
     this.sell,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory SellResponse.fromJson(Map<String, dynamic> json) => SellResponse(
+  factory SellReceive.fromJson(Map<String, dynamic> json) => SellReceive(
         sell: json['sell'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +39,14 @@ class SellResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SellResponse copyWith({
+  SellReceive copyWith({
     Map<String, dynamic>? sell,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      SellResponse(
+      SellReceive(
         sell: sell ?? this.sell,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

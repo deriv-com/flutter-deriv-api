@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Mt5 get settings response class.
-class Mt5GetSettingsResponse extends Response {
-  /// Initialize Mt5GetSettingsResponse.
-  const Mt5GetSettingsResponse({
+/// Mt5 get settings receive class.
+class Mt5GetSettingsReceive extends Response {
+  /// Initialize Mt5GetSettingsReceive.
+  const Mt5GetSettingsReceive({
     this.mt5GetSettings,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5GetSettingsResponse(
+  factory Mt5GetSettingsReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5GetSettingsReceive(
         mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class Mt5GetSettingsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5GetSettingsResponse copyWith({
+  Mt5GetSettingsReceive copyWith({
     Map<String, dynamic>? mt5GetSettings,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      Mt5GetSettingsResponse(
+      Mt5GetSettingsReceive(
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

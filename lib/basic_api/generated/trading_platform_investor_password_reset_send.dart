@@ -9,23 +9,22 @@ class TradingPlatformInvestorPasswordResetRequest extends Request {
   /// Initialize TradingPlatformInvestorPasswordResetRequest.
   const TradingPlatformInvestorPasswordResetRequest({
     required this.accountId,
+    this.loginid,
     required this.newPassword,
     required this.platform,
     this.tradingPlatformInvestorPasswordReset = true,
     required this.verificationCode,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_investor_password_reset',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_investor_password_reset',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformInvestorPasswordResetRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformInvestorPasswordResetRequest(
         accountId: json['account_id'] as String?,
+        loginid: json['loginid'] as String?,
         newPassword: json['new_password'] as String?,
         platform: json['platform'] as String?,
         tradingPlatformInvestorPasswordReset:
@@ -39,6 +38,9 @@ class TradingPlatformInvestorPasswordResetRequest extends Request {
 
   /// Trading account ID.
   final String? accountId;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String? newPassword;
@@ -56,6 +58,7 @@ class TradingPlatformInvestorPasswordResetRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_id': accountId,
+        'loginid': loginid,
         'new_password': newPassword,
         'platform': platform,
         'trading_platform_investor_password_reset':
@@ -73,6 +76,7 @@ class TradingPlatformInvestorPasswordResetRequest extends Request {
   @override
   TradingPlatformInvestorPasswordResetRequest copyWith({
     String? accountId,
+    String? loginid,
     String? newPassword,
     String? platform,
     bool? tradingPlatformInvestorPasswordReset,
@@ -82,6 +86,7 @@ class TradingPlatformInvestorPasswordResetRequest extends Request {
   }) =>
       TradingPlatformInvestorPasswordResetRequest(
         accountId: accountId ?? this.accountId,
+        loginid: loginid ?? this.loginid,
         newPassword: newPassword ?? this.newPassword,
         platform: platform ?? this.platform,
         tradingPlatformInvestorPasswordReset:

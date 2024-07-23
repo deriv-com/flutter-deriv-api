@@ -8,22 +8,21 @@ import '../request.dart';
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest.
   const SellContractForMultipleAccountsRequest({
+    this.loginid,
     required this.price,
     this.sellContractForMultipleAccounts = true,
     required this.shortcode,
     required this.tokens,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'sell_contract_for_multiple_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'sell_contract_for_multiple_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsRequest(
+        loginid: json['loginid'] as String?,
         price: json['price'] as num?,
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] == null
@@ -36,6 +35,9 @@ class SellContractForMultipleAccountsRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num? price;
@@ -52,6 +54,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'loginid': loginid,
         'price': price,
         'sell_contract_for_multiple_accounts':
             sellContractForMultipleAccounts == null
@@ -68,6 +71,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellContractForMultipleAccountsRequest copyWith({
+    String? loginid,
     num? price,
     bool? sellContractForMultipleAccounts,
     String? shortcode,
@@ -76,6 +80,7 @@ class SellContractForMultipleAccountsRequest extends Request {
     int? reqId,
   }) =>
       SellContractForMultipleAccountsRequest(
+        loginid: loginid ?? this.loginid,
         price: price ?? this.price,
         sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
             this.sellContractForMultipleAccounts,

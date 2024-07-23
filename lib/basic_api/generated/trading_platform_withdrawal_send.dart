@@ -10,16 +10,14 @@ class TradingPlatformWithdrawalRequest extends Request {
   const TradingPlatformWithdrawalRequest({
     required this.amount,
     required this.fromAccount,
+    this.loginid,
     required this.platform,
     required this.toAccount,
     this.tradingPlatformWithdrawal = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'trading_platform_withdrawal',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'trading_platform_withdrawal',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TradingPlatformWithdrawalRequest.fromJson(
@@ -27,6 +25,7 @@ class TradingPlatformWithdrawalRequest extends Request {
       TradingPlatformWithdrawalRequest(
         amount: json['amount'] as num?,
         fromAccount: json['from_account'] as String?,
+        loginid: json['loginid'] as String?,
         platform: json['platform'] as String?,
         toAccount: json['to_account'] as String?,
         tradingPlatformWithdrawal: json['trading_platform_withdrawal'] == null
@@ -42,6 +41,9 @@ class TradingPlatformWithdrawalRequest extends Request {
   /// Trading account login to withdraw money from.
   final String? fromAccount;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Name of trading platform.
   final String? platform;
 
@@ -56,6 +58,7 @@ class TradingPlatformWithdrawalRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_account': fromAccount,
+        'loginid': loginid,
         'platform': platform,
         'to_account': toAccount,
         'trading_platform_withdrawal': tradingPlatformWithdrawal == null
@@ -72,6 +75,7 @@ class TradingPlatformWithdrawalRequest extends Request {
   TradingPlatformWithdrawalRequest copyWith({
     num? amount,
     String? fromAccount,
+    String? loginid,
     String? platform,
     String? toAccount,
     bool? tradingPlatformWithdrawal,
@@ -81,6 +85,7 @@ class TradingPlatformWithdrawalRequest extends Request {
       TradingPlatformWithdrawalRequest(
         amount: amount ?? this.amount,
         fromAccount: fromAccount ?? this.fromAccount,
+        loginid: loginid ?? this.loginid,
         platform: platform ?? this.platform,
         toAccount: toAccount ?? this.toAccount,
         tradingPlatformWithdrawal:

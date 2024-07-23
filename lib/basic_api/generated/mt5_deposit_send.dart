@@ -10,21 +10,20 @@ class Mt5DepositRequest extends Request {
   const Mt5DepositRequest({
     required this.amount,
     required this.fromBinary,
+    this.loginid,
     this.mt5Deposit = true,
     required this.toMt5,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_deposit',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_deposit',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       Mt5DepositRequest(
         amount: json['amount'] as num?,
         fromBinary: json['from_binary'] as String?,
+        loginid: json['loginid'] as String?,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
         toMt5: json['to_mt5'] as String?,
@@ -38,6 +37,9 @@ class Mt5DepositRequest extends Request {
   /// Binary account loginid to transfer money from
   final String? fromBinary;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? mt5Deposit;
 
@@ -49,6 +51,7 @@ class Mt5DepositRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_binary': fromBinary,
+        'loginid': loginid,
         'mt5_deposit': mt5Deposit == null
             ? null
             : mt5Deposit!
@@ -64,6 +67,7 @@ class Mt5DepositRequest extends Request {
   Mt5DepositRequest copyWith({
     num? amount,
     String? fromBinary,
+    String? loginid,
     bool? mt5Deposit,
     String? toMt5,
     Map<String, dynamic>? passthrough,
@@ -72,6 +76,7 @@ class Mt5DepositRequest extends Request {
       Mt5DepositRequest(
         amount: amount ?? this.amount,
         fromBinary: fromBinary ?? this.fromBinary,
+        loginid: loginid ?? this.loginid,
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,
         toMt5: toMt5 ?? this.toMt5,
         passthrough: passthrough ?? this.passthrough,

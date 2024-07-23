@@ -8,7 +8,7 @@ const String p2pAdvertiserStatsResponse = '''
   "p2p_advertiser_stats": {
     "buy_orders_count": 5,
     "cancel_time_avg": 100,
-    "completion_rate": 50.0,
+    "total_completion_rate": 50.0,
     "release_time_avg": 150,
     "sell_orders_count": 15,
     "total_orders_count": 12

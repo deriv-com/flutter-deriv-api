@@ -9,13 +9,11 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest.
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_financial_assessment',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'get_financial_assessment',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +21,16 @@ class GetFinancialAssessmentRequest extends Request {
         getFinancialAssessment: json['get_financial_assessment'] == null
             ? null
             : json['get_financial_assessment'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? getFinancialAssessment;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -38,6 +40,7 @@ class GetFinancialAssessmentRequest extends Request {
             : getFinancialAssessment!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -46,12 +49,14 @@ class GetFinancialAssessmentRequest extends Request {
   @override
   GetFinancialAssessmentRequest copyWith({
     bool? getFinancialAssessment,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetFinancialAssessmentRequest(
         getFinancialAssessment:
             getFinancialAssessment ?? this.getFinancialAssessment,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

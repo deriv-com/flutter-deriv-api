@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Authorize response class.
-class AuthorizeResponse extends Response {
-  /// Initialize AuthorizeResponse.
-  const AuthorizeResponse({
+/// Authorize receive class.
+class AuthorizeReceive extends Response {
+  /// Initialize AuthorizeReceive.
+  const AuthorizeReceive({
     this.authorize,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
-      AuthorizeResponse(
+  factory AuthorizeReceive.fromJson(Map<String, dynamic> json) =>
+      AuthorizeReceive(
         authorize: json['authorize'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class AuthorizeResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  AuthorizeResponse copyWith({
+  AuthorizeReceive copyWith({
     Map<String, dynamic>? authorize,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      AuthorizeResponse(
+      AuthorizeReceive(
         authorize: authorize ?? this.authorize,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

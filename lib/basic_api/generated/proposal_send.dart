@@ -20,7 +20,9 @@ class ProposalRequest extends Request {
     this.dateStart,
     this.duration,
     this.durationUnit,
+    this.growthRate,
     required this.limitOrder,
+    this.loginid,
     this.multiplier,
     this.productType,
     this.proposal = true,
@@ -28,13 +30,10 @@ class ProposalRequest extends Request {
     this.subscribe,
     required this.symbol,
     this.tradingPeriodStart,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'proposal',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'proposal',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
@@ -51,7 +50,9 @@ class ProposalRequest extends Request {
         dateStart: json['date_start'] as int?,
         duration: json['duration'] as int?,
         durationUnit: json['duration_unit'] as String?,
+        growthRate: json['growth_rate'] as num?,
         limitOrder: json['limit_order'] as Map<String, dynamic>?,
+        loginid: json['loginid'] as String?,
         multiplier: json['multiplier'] as num?,
         productType: json['product_type'] as String?,
         proposal: json['proposal'] == null ? null : json['proposal'] == 1,
@@ -99,8 +100,14 @@ class ProposalRequest extends Request {
   /// [Optional] Duration unit - `s`: seconds, `m`: minutes, `h`: hours, `d`: days, `t`: ticks.
   final String? durationUnit;
 
-  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN` contracts). Supported orders: `take_profit`, `stop_loss`.
+  /// [Optional] Growth rate of an accumulator contract.
+  final num? growthRate;
+
+  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN` and 'ACCU' contracts). Supported orders: `take_profit`, `stop_loss`.
   final Map<String, dynamic>? limitOrder;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// [Optional] The multiplier for non-binary options. E.g. lookbacks.
   final num? multiplier;
@@ -138,7 +145,9 @@ class ProposalRequest extends Request {
         'date_start': dateStart,
         'duration': duration,
         'duration_unit': durationUnit,
+        'growth_rate': growthRate,
         'limit_order': limitOrder,
+        'loginid': loginid,
         'multiplier': multiplier,
         'product_type': productType,
         'proposal': proposal == null
@@ -173,7 +182,9 @@ class ProposalRequest extends Request {
     int? dateStart,
     int? duration,
     String? durationUnit,
+    num? growthRate,
     Map<String, dynamic>? limitOrder,
+    String? loginid,
     num? multiplier,
     String? productType,
     bool? proposal,
@@ -197,7 +208,9 @@ class ProposalRequest extends Request {
         dateStart: dateStart ?? this.dateStart,
         duration: duration ?? this.duration,
         durationUnit: durationUnit ?? this.durationUnit,
+        growthRate: growthRate ?? this.growthRate,
         limitOrder: limitOrder ?? this.limitOrder,
+        loginid: loginid ?? this.loginid,
         multiplier: multiplier ?? this.multiplier,
         productType: productType ?? this.productType,
         proposal: proposal ?? this.proposal,

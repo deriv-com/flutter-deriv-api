@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Service token response class.
-class ServiceTokenResponse extends Response {
-  /// Initialize ServiceTokenResponse.
-  const ServiceTokenResponse({
+/// Service token receive class.
+class ServiceTokenReceive extends Response {
+  /// Initialize ServiceTokenReceive.
+  const ServiceTokenReceive({
     this.serviceToken,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ServiceTokenResponse.fromJson(Map<String, dynamic> json) =>
-      ServiceTokenResponse(
+  factory ServiceTokenReceive.fromJson(Map<String, dynamic> json) =>
+      ServiceTokenReceive(
         serviceToken: json['service_token'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -45,14 +40,14 @@ class ServiceTokenResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ServiceTokenResponse copyWith({
+  ServiceTokenReceive copyWith({
     Map<String, dynamic>? serviceToken,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ServiceTokenResponse(
+      ServiceTokenReceive(
         serviceToken: serviceToken ?? this.serviceToken,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

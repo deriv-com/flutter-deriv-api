@@ -4,25 +4,20 @@
 
 import '../response.dart';
 
-/// Change email response class.
-class ChangeEmailResponse extends Response {
-  /// Initialize ChangeEmailResponse.
-  const ChangeEmailResponse({
+/// Change email receive class.
+class ChangeEmailReceive extends Response {
+  /// Initialize ChangeEmailReceive.
+  const ChangeEmailReceive({
     this.changeEmail,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory ChangeEmailResponse.fromJson(Map<String, dynamic> json) =>
-      ChangeEmailResponse(
+  factory ChangeEmailReceive.fromJson(Map<String, dynamic> json) =>
+      ChangeEmailReceive(
         changeEmail:
             json['change_email'] == null ? null : json['change_email'] == 1,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -50,14 +45,14 @@ class ChangeEmailResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ChangeEmailResponse copyWith({
+  ChangeEmailReceive copyWith({
     bool? changeEmail,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      ChangeEmailResponse(
+      ChangeEmailReceive(
         changeEmail: changeEmail ?? this.changeEmail,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

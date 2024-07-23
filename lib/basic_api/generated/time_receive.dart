@@ -4,24 +4,19 @@
 
 import '../response.dart';
 
-/// Time response class.
-class TimeResponse extends Response {
-  /// Initialize TimeResponse.
-  const TimeResponse({
+/// Time receive class.
+class TimeReceive extends Response {
+  /// Initialize TimeReceive.
+  const TimeReceive({
     this.time,
-    Map<String, dynamic>? echoReq,
-    Map<String, dynamic>? error,
-    String? msgType,
-    int? reqId,
-  }) : super(
-          echoReq: echoReq,
-          error: error,
-          msgType: msgType,
-          reqId: reqId,
-        );
+    super.echoReq,
+    super.error,
+    super.msgType,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
-  factory TimeResponse.fromJson(Map<String, dynamic> json) => TimeResponse(
+  factory TimeReceive.fromJson(Map<String, dynamic> json) => TimeReceive(
         time: json['time'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
@@ -44,14 +39,14 @@ class TimeResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TimeResponse copyWith({
+  TimeReceive copyWith({
     int? time,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
     int? reqId,
   }) =>
-      TimeResponse(
+      TimeReceive(
         time: time ?? this.time,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -9,22 +9,21 @@ class Mt5PasswordChangeRequest extends Request {
   /// Initialize Mt5PasswordChangeRequest.
   const Mt5PasswordChangeRequest({
     required this.login,
+    this.loginid,
     this.mt5PasswordChange = true,
     required this.newPassword,
     required this.oldPassword,
     this.passwordType,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'mt5_password_change',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'mt5_password_change',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordChangeRequest(
         login: json['login'] as String?,
+        loginid: json['loginid'] as String?,
         mt5PasswordChange: json['mt5_password_change'] == null
             ? null
             : json['mt5_password_change'] == 1,
@@ -37,6 +36,9 @@ class Mt5PasswordChangeRequest extends Request {
 
   /// MT5 user login
   final String? login;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Must be `true`
   final bool? mt5PasswordChange;
@@ -54,6 +56,7 @@ class Mt5PasswordChangeRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
+        'loginid': loginid,
         'mt5_password_change': mt5PasswordChange == null
             ? null
             : mt5PasswordChange!
@@ -70,6 +73,7 @@ class Mt5PasswordChangeRequest extends Request {
   @override
   Mt5PasswordChangeRequest copyWith({
     String? login,
+    String? loginid,
     bool? mt5PasswordChange,
     String? newPassword,
     String? oldPassword,
@@ -79,6 +83,7 @@ class Mt5PasswordChangeRequest extends Request {
   }) =>
       Mt5PasswordChangeRequest(
         login: login ?? this.login,
+        loginid: loginid ?? this.loginid,
         mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,
         newPassword: newPassword ?? this.newPassword,
         oldPassword: oldPassword ?? this.oldPassword,

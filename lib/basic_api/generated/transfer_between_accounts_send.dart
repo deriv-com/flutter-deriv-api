@@ -13,14 +13,12 @@ class TransferBetweenAccountsRequest extends Request {
     this.accounts,
     this.amount,
     this.currency,
+    this.loginid,
     required this.transferBetweenAccounts,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'transfer_between_accounts',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'transfer_between_accounts',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +28,7 @@ class TransferBetweenAccountsRequest extends Request {
         accounts: json['accounts'] as String?,
         amount: json['amount'] as num?,
         currency: json['currency'] as String?,
+        loginid: json['loginid'] as String?,
         transferBetweenAccounts: json['transfer_between_accounts'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -50,6 +49,9 @@ class TransferBetweenAccountsRequest extends Request {
   /// [Optional] Currency code.
   final String? currency;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   final int? transferBetweenAccounts;
 
@@ -61,6 +63,7 @@ class TransferBetweenAccountsRequest extends Request {
         'accounts': accounts,
         'amount': amount,
         'currency': currency,
+        'loginid': loginid,
         'transfer_between_accounts': transferBetweenAccounts,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -74,6 +77,7 @@ class TransferBetweenAccountsRequest extends Request {
     String? accounts,
     num? amount,
     String? currency,
+    String? loginid,
     int? transferBetweenAccounts,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -84,6 +88,7 @@ class TransferBetweenAccountsRequest extends Request {
         accounts: accounts ?? this.accounts,
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
+        loginid: loginid ?? this.loginid,
         transferBetweenAccounts:
             transferBetweenAccounts ?? this.transferBetweenAccounts,
         passthrough: passthrough ?? this.passthrough,

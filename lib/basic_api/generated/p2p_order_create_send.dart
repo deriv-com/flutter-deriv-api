@@ -11,18 +11,16 @@ class P2pOrderCreateRequest extends Request {
     required this.advertId,
     required this.amount,
     this.contactInfo,
+    this.loginid,
     this.p2pOrderCreate = true,
     this.paymentInfo,
     required this.paymentMethodIds,
     this.rate,
     this.subscribe,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'p2p_order_create',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    super.msgType = 'p2p_order_create',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +28,7 @@ class P2pOrderCreateRequest extends Request {
         advertId: json['advert_id'] as String?,
         amount: json['amount'] as num?,
         contactInfo: json['contact_info'] as String?,
+        loginid: json['loginid'] as String?,
         p2pOrderCreate: json['p2p_order_create'] == null
             ? null
             : json['p2p_order_create'] == 1,
@@ -52,6 +51,9 @@ class P2pOrderCreateRequest extends Request {
   /// [Optional] Seller contact information. Only applicable for 'sell orders'.
   final String? contactInfo;
 
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
+
   /// Must be `true`
   final bool? p2pOrderCreate;
 
@@ -73,6 +75,7 @@ class P2pOrderCreateRequest extends Request {
         'advert_id': advertId,
         'amount': amount,
         'contact_info': contactInfo,
+        'loginid': loginid,
         'p2p_order_create': p2pOrderCreate == null
             ? null
             : p2pOrderCreate!
@@ -96,6 +99,7 @@ class P2pOrderCreateRequest extends Request {
     String? advertId,
     num? amount,
     String? contactInfo,
+    String? loginid,
     bool? p2pOrderCreate,
     String? paymentInfo,
     List<int>? paymentMethodIds,
@@ -108,6 +112,7 @@ class P2pOrderCreateRequest extends Request {
         advertId: advertId ?? this.advertId,
         amount: amount ?? this.amount,
         contactInfo: contactInfo ?? this.contactInfo,
+        loginid: loginid ?? this.loginid,
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,

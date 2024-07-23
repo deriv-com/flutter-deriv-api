@@ -9,13 +9,11 @@ class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest.
   const GetSelfExclusionRequest({
     this.getSelfExclusion = true,
-    Map<String, dynamic>? passthrough,
-    int? reqId,
-  }) : super(
-          msgType: 'get_self_exclusion',
-          passthrough: passthrough,
-          reqId: reqId,
-        );
+    this.loginid,
+    super.msgType = 'get_self_exclusion',
+    super.passthrough,
+    super.reqId,
+  });
 
   /// Creates an instance from JSON.
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +21,16 @@ class GetSelfExclusionRequest extends Request {
         getSelfExclusion: json['get_self_exclusion'] == null
             ? null
             : json['get_self_exclusion'] == 1,
+        loginid: json['loginid'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
   final bool? getSelfExclusion;
+
+  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  final String? loginid;
 
   /// Converts this instance to JSON
   @override
@@ -38,6 +40,7 @@ class GetSelfExclusionRequest extends Request {
             : getSelfExclusion!
                 ? 1
                 : 0,
+        'loginid': loginid,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -46,11 +49,13 @@ class GetSelfExclusionRequest extends Request {
   @override
   GetSelfExclusionRequest copyWith({
     bool? getSelfExclusion,
+    String? loginid,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       GetSelfExclusionRequest(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
+        loginid: loginid ?? this.loginid,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
