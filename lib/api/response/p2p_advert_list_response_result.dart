@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_single_quotes, unnecessary_import, unused_import
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
 
+import 'package:flutter_deriv_api/api/exceptions/p2p_advert_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
@@ -163,21 +163,33 @@ enum TypeEnum {
 /// VisibilityStatusItemEnum mapper.
 final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
     <String, VisibilityStatusItemEnum>{
+  "advert_fixed_rate_disabled":
+      VisibilityStatusItemEnum.advertFixedRateDisabled,
+  "advert_float_rate_disabled":
+      VisibilityStatusItemEnum.advertFloatRateDisabled,
   "advert_inactive": VisibilityStatusItemEnum.advertInactive,
   "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
   "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
   "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advert_no_payment_methods": VisibilityStatusItemEnum.advertNoPaymentMethods,
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
   "advertiser_block_trade_ineligible":
       VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_schedule": VisibilityStatusItemEnum.advertiserSchedule,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
 
 /// VisibilityStatusItem Enum.
 enum VisibilityStatusItemEnum {
+  /// advert_fixed_rate_disabled.
+  advertFixedRateDisabled,
+
+  /// advert_float_rate_disabled.
+  advertFloatRateDisabled,
+
   /// advert_inactive.
   advertInactive,
 
@@ -189,6 +201,9 @@ enum VisibilityStatusItemEnum {
 
   /// advert_remaining.
   advertRemaining,
+
+  /// advert_no_payment_methods.
+  advertNoPaymentMethods,
 
   /// advertiser_ads_paused.
   advertiserAdsPaused,
@@ -205,10 +220,12 @@ enum VisibilityStatusItemEnum {
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
+  /// advertiser_schedule.
+  advertiserSchedule,
+
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
-
 /// P2p advert list model class.
 abstract class P2pAdvertListModel {
   /// Initializes P2p advert list model class .
@@ -257,7 +274,6 @@ class P2pAdvertList extends P2pAdvertListModel {
         list: list ?? this.list,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -291,6 +307,7 @@ abstract class ListItemModel {
     this.effectiveRateDisplay,
     this.eligibilityStatus,
     this.eligibleCountries,
+    this.isClientScheduleAvailable,
     this.isEligible,
     this.maxOrderAmount,
     this.maxOrderAmountDisplay,
@@ -400,6 +417,9 @@ abstract class ListItemModel {
   /// 2 letter country codes. Counterparties who do not live in these countries are not allowed to place orders against this advert.
   final List<String>? eligibleCountries;
 
+  /// Inidcates whether the current user's schedule has availability between now and now + order_expiry_period.
+  final bool? isClientScheduleAvailable;
+
   /// Indicates that the current user meets the counterparty terms for placing an order.
   final bool? isEligible;
 
@@ -445,14 +465,18 @@ abstract class ListItemModel {
   /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? remainingAmountDisplay;
 
-  /// Reasons why an advert is not visible, only visible to the advert owner. Possible values:
+  /// Reasons why an advert is not visible. Possible values:
+  /// - `advert_fixed_rate_disabled`: fixed rate adverts are no longer available in the advert's country.
+  /// - `advert_float_rate_disabled`: floating rate adverts are no longer available in the advert's country.
   /// - `advert_inactive`: the advert is set inactive.
   /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
   /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
   /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advert_no_payment_methods`: the advert has no valid payment methods.
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_schedule`: the advertiser's schedule does not have availability between now and now + order_expiry_period.
   /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
@@ -492,6 +516,7 @@ class ListItem extends ListItemModel {
     super.effectiveRateDisplay,
     super.eligibilityStatus,
     super.eligibleCountries,
+    super.isClientScheduleAvailable,
     super.isEligible,
     super.maxOrderAmount,
     super.maxOrderAmountDisplay,
@@ -557,6 +582,8 @@ class ListItem extends ListItemModel {
                   (dynamic item) => item,
                 ),
               ),
+        isClientScheduleAvailable:
+            getBool(json['is_client_schedule_available']),
         isEligible: getBool(json['is_eligible']),
         maxOrderAmount: getDouble(json['max_order_amount']),
         maxOrderAmountDisplay: json['max_order_amount_display'],
@@ -648,6 +675,7 @@ class ListItem extends ListItemModel {
           )
           .toList();
     }
+    resultMap['is_client_schedule_available'] = isClientScheduleAvailable;
     resultMap['is_eligible'] = isEligible;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
@@ -716,6 +744,7 @@ class ListItem extends ListItemModel {
     String? effectiveRateDisplay,
     List<EligibilityStatusItemEnum>? eligibilityStatus,
     List<String>? eligibleCountries,
+    bool? isClientScheduleAvailable,
     bool? isEligible,
     double? maxOrderAmount,
     String? maxOrderAmountDisplay,
@@ -765,6 +794,8 @@ class ListItem extends ListItemModel {
         effectiveRateDisplay: effectiveRateDisplay ?? this.effectiveRateDisplay,
         eligibilityStatus: eligibilityStatus ?? this.eligibilityStatus,
         eligibleCountries: eligibleCountries ?? this.eligibleCountries,
+        isClientScheduleAvailable:
+            isClientScheduleAvailable ?? this.isClientScheduleAvailable,
         isEligible: isEligible ?? this.isEligible,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         maxOrderAmountDisplay:
@@ -786,13 +817,13 @@ class ListItem extends ListItemModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.ratingCount,
     required this.name,
+    required this.isScheduleAvailable,
     required this.isOnline,
     required this.id,
     required this.completedOrdersCount,
@@ -813,6 +844,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's displayed name.
   final String name;
+
+  /// Inidcates whether the advertiser's schedule has availability between now and now + order_expiry_period.
+  final bool isScheduleAvailable;
 
   /// Indicates if the advertiser is currently online.
   final bool isOnline;
@@ -861,6 +895,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required super.completedOrdersCount,
     required super.id,
     required super.isOnline,
+    required super.isScheduleAvailable,
     required super.name,
     required super.ratingCount,
     super.firstName,
@@ -881,6 +916,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         isOnline: getBool(json['is_online'])!,
+        isScheduleAvailable: getBool(json['is_schedule_available'])!,
         name: json['name'],
         ratingCount: json['rating_count'],
         firstName: json['first_name'],
@@ -902,6 +938,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['is_online'] = isOnline;
+    resultMap['is_schedule_available'] = isScheduleAvailable;
     resultMap['name'] = name;
     resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
@@ -924,6 +961,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     int? completedOrdersCount,
     String? id,
     bool? isOnline,
+    bool? isScheduleAvailable,
     String? name,
     int? ratingCount,
     String? firstName,
@@ -941,6 +979,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
         id: id ?? this.id,
         isOnline: isOnline ?? this.isOnline,
+        isScheduleAvailable: isScheduleAvailable ?? this.isScheduleAvailable,
         name: name ?? this.name,
         ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,

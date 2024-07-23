@@ -105,7 +105,6 @@ enum FloatRateAdvertsEnum {
   /// list_only.
   listOnly,
 }
-
 /// P2p settings model class.
 abstract class P2pSettingsModel {
   /// Initializes P2p settings model class .
@@ -114,6 +113,7 @@ abstract class P2pSettingsModel {
     required this.reviewPeriod,
     required this.paymentMethodsEnabled,
     required this.orderPaymentPeriod,
+    required this.orderExpiryOptions,
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
@@ -128,6 +128,7 @@ abstract class P2pSettingsModel {
     required this.cancellationGracePeriod,
     required this.cancellationCountPeriod,
     required this.cancellationBlockDuration,
+    required this.businessHoursMinutesInterval,
     required this.blockTrade,
     required this.advertsActiveLimit,
     this.advertsArchivePeriod,
@@ -147,6 +148,9 @@ abstract class P2pSettingsModel {
 
   /// Time allowed for order payment, in minutes after order creation.
   final int orderPaymentPeriod;
+
+  /// List of order expiry values available for adverts, in seconds.
+  final List<int> orderExpiryOptions;
 
   /// Maximum number of orders a user may create per day.
   final int orderDailyLimit;
@@ -190,6 +194,9 @@ abstract class P2pSettingsModel {
   /// A buyer will be blocked for this duration after exceeding the cancellation limit, in hours.
   final int cancellationBlockDuration;
 
+  /// Advertiser schedule start and end times must be exact multiples of this value, unless it is zero.
+  final int businessHoursMinutesInterval;
+
   /// Block trading settings
   final BlockTrade blockTrade;
 
@@ -215,6 +222,7 @@ class P2pSettings extends P2pSettingsModel {
   const P2pSettings({
     required super.advertsActiveLimit,
     required super.blockTrade,
+    required super.businessHoursMinutesInterval,
     required super.cancellationBlockDuration,
     required super.cancellationCountPeriod,
     required super.cancellationGracePeriod,
@@ -229,6 +237,7 @@ class P2pSettings extends P2pSettingsModel {
     required super.maximumAdvertAmount,
     required super.maximumOrderAmount,
     required super.orderDailyLimit,
+    required super.orderExpiryOptions,
     required super.orderPaymentPeriod,
     required super.paymentMethodsEnabled,
     required super.reviewPeriod,
@@ -243,6 +252,7 @@ class P2pSettings extends P2pSettingsModel {
   factory P2pSettings.fromJson(Map<String, dynamic> json) => P2pSettings(
         advertsActiveLimit: json['adverts_active_limit'],
         blockTrade: BlockTrade.fromJson(json['block_trade']),
+        businessHoursMinutesInterval: json['business_hours_minutes_interval'],
         cancellationBlockDuration: json['cancellation_block_duration'],
         cancellationCountPeriod: json['cancellation_count_period'],
         cancellationGracePeriod: json['cancellation_grace_period'],
@@ -263,6 +273,11 @@ class P2pSettings extends P2pSettingsModel {
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
+        orderExpiryOptions: List<int>.from(
+          json['order_expiry_options'].map(
+            (dynamic item) => item,
+          ),
+        ),
         orderPaymentPeriod: json['order_payment_period'],
         paymentMethodsEnabled: getBool(json['payment_methods_enabled'])!,
         reviewPeriod: getDouble(json['review_period'])!,
@@ -286,6 +301,7 @@ class P2pSettings extends P2pSettingsModel {
     resultMap['adverts_active_limit'] = advertsActiveLimit;
     resultMap['block_trade'] = blockTrade.toJson();
 
+    resultMap['business_hours_minutes_interval'] = businessHoursMinutesInterval;
     resultMap['cancellation_block_duration'] = cancellationBlockDuration;
     resultMap['cancellation_count_period'] = cancellationCountPeriod;
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
@@ -311,6 +327,12 @@ class P2pSettings extends P2pSettingsModel {
     resultMap['maximum_advert_amount'] = maximumAdvertAmount;
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
+    resultMap['order_expiry_options'] = orderExpiryOptions
+        .map<dynamic>(
+          (int item) => item,
+        )
+        .toList();
+
     resultMap['order_payment_period'] = orderPaymentPeriod;
     resultMap['payment_methods_enabled'] = paymentMethodsEnabled;
     resultMap['review_period'] = reviewPeriod;
@@ -334,6 +356,7 @@ class P2pSettings extends P2pSettingsModel {
   P2pSettings copyWith({
     int? advertsActiveLimit,
     BlockTrade? blockTrade,
+    int? businessHoursMinutesInterval,
     int? cancellationBlockDuration,
     int? cancellationCountPeriod,
     int? cancellationGracePeriod,
@@ -348,6 +371,7 @@ class P2pSettings extends P2pSettingsModel {
     double? maximumAdvertAmount,
     double? maximumOrderAmount,
     int? orderDailyLimit,
+    List<int>? orderExpiryOptions,
     int? orderPaymentPeriod,
     bool? paymentMethodsEnabled,
     double? reviewPeriod,
@@ -360,6 +384,8 @@ class P2pSettings extends P2pSettingsModel {
       P2pSettings(
         advertsActiveLimit: advertsActiveLimit ?? this.advertsActiveLimit,
         blockTrade: blockTrade ?? this.blockTrade,
+        businessHoursMinutesInterval:
+            businessHoursMinutesInterval ?? this.businessHoursMinutesInterval,
         cancellationBlockDuration:
             cancellationBlockDuration ?? this.cancellationBlockDuration,
         cancellationCountPeriod:
@@ -378,6 +404,7 @@ class P2pSettings extends P2pSettingsModel {
         maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
         maximumOrderAmount: maximumOrderAmount ?? this.maximumOrderAmount,
         orderDailyLimit: orderDailyLimit ?? this.orderDailyLimit,
+        orderExpiryOptions: orderExpiryOptions ?? this.orderExpiryOptions,
         orderPaymentPeriod: orderPaymentPeriod ?? this.orderPaymentPeriod,
         paymentMethodsEnabled:
             paymentMethodsEnabled ?? this.paymentMethodsEnabled,
@@ -391,7 +418,6 @@ class P2pSettings extends P2pSettingsModel {
         overrideExchangeRate: overrideExchangeRate ?? this.overrideExchangeRate,
       );
 }
-
 /// Block trade model class.
 abstract class BlockTradeModel {
   /// Initializes Block trade model class .
@@ -441,7 +467,6 @@ class BlockTrade extends BlockTradeModel {
         maximumAdvertAmount: maximumAdvertAmount ?? this.maximumAdvertAmount,
       );
 }
-
 /// Local currencies item model class.
 abstract class LocalCurrenciesItemModel {
   /// Initializes Local currencies item model class .
@@ -510,7 +535,6 @@ class LocalCurrenciesItem extends LocalCurrenciesItemModel {
         isDefault: isDefault ?? this.isDefault,
       );
 }
-
 /// Counterparty term steps model class.
 abstract class CounterpartyTermStepsModel {
   /// Initializes Counterparty term steps model class .
@@ -596,7 +620,6 @@ class CounterpartyTermSteps extends CounterpartyTermStepsModel {
         rating: rating ?? this.rating,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .
