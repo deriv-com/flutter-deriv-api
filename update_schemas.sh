@@ -5,6 +5,7 @@ set -e
 
 # Define the path for the submodule within the main repository
 SUBMODULE_PATH="binary-websocket-api"
+TARGET_PATH="schemas"
 
 # Create a temporary directory
 TEMP_DIR=$(mktemp -d)
@@ -25,13 +26,13 @@ if [ ! -d "$TEMP_DIR/bom-core/$SUBMODULE_PATH" ]; then
 fi
 
 # Remove existing submodule directory if necessary
-if [ -d "$SUBMODULE_PATH" ]; then
-    echo "Removing existing directory: $SUBMODULE_PATH"
-    rm -rf "$SUBMODULE_PATH"
+if [ -d "$TARGET_PATH" ]; then
+    echo "Removing existing directory: $TARGET_PATH"
+    rm -rf "$TARGET_PATH"
 fi
 
 # Copy the binary-websocket-api directory from the temporary directory to the current directory
-cp -r "$TEMP_DIR/bom-core/$SUBMODULE_PATH" "$SUBMODULE_PATH"
+cp -r "$TEMP_DIR/bom-core/$SUBMODULE_PATH/config/v3/" "$TARGET_PATH"
 
 
 echo "Submodule 'binary-websocket-api' successfully copied into the main repository."
