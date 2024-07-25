@@ -55,8 +55,9 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<GetAccountStatusReceive> fetchAccountStatusRaw(
-      {String? loginId}) async {
+  static Future<GetAccountStatusReceive> fetchAccountStatusRaw({
+    String? loginId,
+  }) async {
     final GetAccountStatusReceive response = await _api.call(
       request: GetAccountStatusRequest(loginid: loginId),
     );
@@ -74,8 +75,9 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   ///
   /// For parameters information refer to [GetAccountStatusRequest].
   /// Throws an [BaseAPIException] if API response contains an error.
-  static Future<GetAccountStatusResponse> fetchAccountStatus(
-      {String? loginId}) async {
+  static Future<GetAccountStatusResponse> fetchAccountStatus({
+    String? loginId,
+  }) async {
     final GetAccountStatusReceive response =
         await fetchAccountStatusRaw(loginId: loginId);
 
