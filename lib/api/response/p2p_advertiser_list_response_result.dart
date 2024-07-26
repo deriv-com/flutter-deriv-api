@@ -2,12 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart'; 
+import 'package:flutter_deriv_api/basic_api/generated/api.dart'; 
+import 'package:flutter_deriv_api/helpers/helpers.dart'; 
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'; 
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-
 /// P2p advertiser list response model class.
 abstract class P2pAdvertiserListResponseModel {
   /// Initializes P2p advertiser list response model class .
@@ -86,7 +85,6 @@ class P2pAdvertiserListResponse extends P2pAdvertiserListResponseModel {
         p2pAdvertiserList: p2pAdvertiserList ?? this.p2pAdvertiserList,
       );
 }
-
 /// P2p advertiser list model class.
 abstract class P2pAdvertiserListModel {
   /// Initializes P2p advertiser list model class .
@@ -136,7 +134,6 @@ class P2pAdvertiserList extends P2pAdvertiserListModel {
         list: list ?? this.list,
       );
 }
-
 /// List item model class.
 abstract class ListItemModel {
   /// Initializes List item model class .
@@ -148,6 +145,7 @@ abstract class ListItemModel {
     required this.ratingCount,
     required this.partnerCount,
     required this.name,
+    required this.isScheduleAvailable,
     required this.isOnline,
     required this.isListed,
     required this.isBlocked,
@@ -172,6 +170,7 @@ abstract class ListItemModel {
     this.recommendedAverage,
     this.recommendedCount,
     this.releaseTimeAvg,
+    this.schedule,
     this.sellCompletionRate,
     this.totalCompletionRate,
   });
@@ -196,6 +195,9 @@ abstract class ListItemModel {
 
   /// The advertiser's displayed name.
   final String name;
+
+  /// Inidcates whether the advertiser's schedule allows P2P transactions at the current time.
+  final bool isScheduleAvailable;
 
   /// Indicates if the advertiser is currently online.
   final bool isOnline;
@@ -269,6 +271,9 @@ abstract class ListItemModel {
   /// The average time in seconds taken to release funds as a seller within the past 30 days.
   final int? releaseTimeAvg;
 
+  /// [Optional] Weekly availability schedule. Ads are visible and orders can be created only during available periods.
+  final List<ScheduleItem>? schedule;
+
   /// The percentage of completed orders out of total orders as a seller within the past 30 days.
   final double? sellCompletionRate;
 
@@ -291,6 +296,7 @@ class ListItem extends ListItemModel {
     required super.isBlocked,
     required super.isListed,
     required super.isOnline,
+    required super.isScheduleAvailable,
     required super.name,
     required super.partnerCount,
     required super.ratingCount,
@@ -311,6 +317,7 @@ class ListItem extends ListItemModel {
     super.recommendedAverage,
     super.recommendedCount,
     super.releaseTimeAvg,
+    super.schedule,
     super.sellCompletionRate,
     super.totalCompletionRate,
   });
@@ -328,6 +335,7 @@ class ListItem extends ListItemModel {
         isBlocked: getBool(json['is_blocked'])!,
         isListed: getBool(json['is_listed'])!,
         isOnline: getBool(json['is_online'])!,
+        isScheduleAvailable: getBool(json['is_schedule_available'])!,
         name: json['name'],
         partnerCount: json['partner_count'],
         ratingCount: json['rating_count'],
@@ -348,6 +356,13 @@ class ListItem extends ListItemModel {
         recommendedAverage: getDouble(json['recommended_average']),
         recommendedCount: json['recommended_count'],
         releaseTimeAvg: json['release_time_avg'],
+        schedule: json['schedule'] == null
+            ? null
+            : List<ScheduleItem>.from(
+                json['schedule']?.map(
+                  (dynamic item) => ScheduleItem.fromJson(item),
+                ),
+              ),
         sellCompletionRate: getDouble(json['sell_completion_rate']),
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
@@ -367,6 +382,7 @@ class ListItem extends ListItemModel {
     resultMap['is_blocked'] = isBlocked;
     resultMap['is_listed'] = isListed;
     resultMap['is_online'] = isOnline;
+    resultMap['is_schedule_available'] = isScheduleAvailable;
     resultMap['name'] = name;
     resultMap['partner_count'] = partnerCount;
     resultMap['rating_count'] = ratingCount;
@@ -388,6 +404,13 @@ class ListItem extends ListItemModel {
     resultMap['recommended_average'] = recommendedAverage;
     resultMap['recommended_count'] = recommendedCount;
     resultMap['release_time_avg'] = releaseTimeAvg;
+    if (schedule != null) {
+      resultMap['schedule'] = schedule!
+          .map<dynamic>(
+            (ScheduleItem item) => item.toJson(),
+          )
+          .toList();
+    }
     resultMap['sell_completion_rate'] = sellCompletionRate;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
@@ -407,6 +430,7 @@ class ListItem extends ListItemModel {
     bool? isBlocked,
     bool? isListed,
     bool? isOnline,
+    bool? isScheduleAvailable,
     String? name,
     int? partnerCount,
     int? ratingCount,
@@ -427,6 +451,7 @@ class ListItem extends ListItemModel {
     double? recommendedAverage,
     int? recommendedCount,
     int? releaseTimeAvg,
+    List<ScheduleItem>? schedule,
     double? sellCompletionRate,
     double? totalCompletionRate,
   }) =>
@@ -443,6 +468,7 @@ class ListItem extends ListItemModel {
         isBlocked: isBlocked ?? this.isBlocked,
         isListed: isListed ?? this.isListed,
         isOnline: isOnline ?? this.isOnline,
+        isScheduleAvailable: isScheduleAvailable ?? this.isScheduleAvailable,
         name: name ?? this.name,
         partnerCount: partnerCount ?? this.partnerCount,
         ratingCount: ratingCount ?? this.ratingCount,
@@ -463,7 +489,57 @@ class ListItem extends ListItemModel {
         recommendedAverage: recommendedAverage ?? this.recommendedAverage,
         recommendedCount: recommendedCount ?? this.recommendedCount,
         releaseTimeAvg: releaseTimeAvg ?? this.releaseTimeAvg,
+        schedule: schedule ?? this.schedule,
         sellCompletionRate: sellCompletionRate ?? this.sellCompletionRate,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
+      );
+}
+/// Schedule item model class.
+abstract class ScheduleItemModel {
+  /// Initializes Schedule item model class .
+  const ScheduleItemModel({
+    this.endMin,
+    this.startMin,
+  });
+
+  /// Minute of week when availablility ends. Zero is Sunday 00:00 UST.
+  final int? endMin;
+
+  /// Minute of week when availablility starts. Zero is Sunday 00:00 UST.
+  final int? startMin;
+}
+
+/// Schedule item class.
+class ScheduleItem extends ScheduleItemModel {
+  /// Initializes Schedule item class.
+  const ScheduleItem({
+    super.endMin,
+    super.startMin,
+  });
+
+  /// Creates an instance from JSON.
+  factory ScheduleItem.fromJson(Map<String, dynamic> json) => ScheduleItem(
+        endMin: json['end_min'],
+        startMin: json['start_min'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['end_min'] = endMin;
+    resultMap['start_min'] = startMin;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  ScheduleItem copyWith({
+    int? endMin,
+    int? startMin,
+  }) =>
+      ScheduleItem(
+        endMin: endMin ?? this.endMin,
+        startMin: startMin ?? this.startMin,
       );
 }

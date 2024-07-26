@@ -14,6 +14,7 @@ class P2pAdvertiserCreateRequest extends Request {
     required this.name,
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
+    this.schedule,
     this.subscribe,
     super.msgType = 'p2p_advertiser_create',
     super.passthrough,
@@ -31,6 +32,10 @@ class P2pAdvertiserCreateRequest extends Request {
             ? null
             : json['p2p_advertiser_create'] == 1,
         paymentInfo: json['payment_info'] as String?,
+        schedule: (json['schedule'] as List<dynamic>?)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            .toList(),
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -42,7 +47,7 @@ class P2pAdvertiserCreateRequest extends Request {
   /// [Optional] Default description that can be used every time an advert is created.
   final String? defaultAdvertDescription;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// The advertiser's displayed name.
@@ -53,6 +58,9 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String? paymentInfo;
+
+  /// [Optional] Weekly availability schedule. Ads are visible and orders can be created only during available periods.
+  final List<Map<String, dynamic>>? schedule;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
   final bool? subscribe;
@@ -70,6 +78,7 @@ class P2pAdvertiserCreateRequest extends Request {
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
+        'schedule': schedule,
         'subscribe': subscribe == null
             ? null
             : subscribe!
@@ -88,6 +97,7 @@ class P2pAdvertiserCreateRequest extends Request {
     String? name,
     bool? p2pAdvertiserCreate,
     String? paymentInfo,
+    List<Map<String, dynamic>>? schedule,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -100,6 +110,7 @@ class P2pAdvertiserCreateRequest extends Request {
         name: name ?? this.name,
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
+        schedule: schedule ?? this.schedule,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
