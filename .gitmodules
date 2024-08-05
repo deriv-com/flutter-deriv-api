@@ -1,4 +1,0 @@
-[submodule "binary-websocket-api"]
-	path = binary-websocket-api
-	url = git@github.com:regentmarkets/binary-websocket-api.git
-	branch = master
