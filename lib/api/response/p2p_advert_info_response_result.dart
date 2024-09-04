@@ -17,7 +17,6 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_receive.
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
-
 /// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
   /// Initializes P2p advert info response model class .
@@ -331,21 +330,33 @@ enum P2pAdvertInfoTypeEnum {
 /// VisibilityStatusItemEnum mapper.
 final Map<String, VisibilityStatusItemEnum> visibilityStatusItemEnumMapper =
     <String, VisibilityStatusItemEnum>{
+  "advert_fixed_rate_disabled":
+      VisibilityStatusItemEnum.advertFixedRateDisabled,
+  "advert_float_rate_disabled":
+      VisibilityStatusItemEnum.advertFloatRateDisabled,
   "advert_inactive": VisibilityStatusItemEnum.advertInactive,
   "advert_max_limit": VisibilityStatusItemEnum.advertMaxLimit,
   "advert_min_limit": VisibilityStatusItemEnum.advertMinLimit,
   "advert_remaining": VisibilityStatusItemEnum.advertRemaining,
+  "advert_no_payment_methods": VisibilityStatusItemEnum.advertNoPaymentMethods,
   "advertiser_ads_paused": VisibilityStatusItemEnum.advertiserAdsPaused,
   "advertiser_approval": VisibilityStatusItemEnum.advertiserApproval,
   "advertiser_balance": VisibilityStatusItemEnum.advertiserBalance,
   "advertiser_block_trade_ineligible":
       VisibilityStatusItemEnum.advertiserBlockTradeIneligible,
   "advertiser_daily_limit": VisibilityStatusItemEnum.advertiserDailyLimit,
+  "advertiser_schedule": VisibilityStatusItemEnum.advertiserSchedule,
   "advertiser_temp_ban": VisibilityStatusItemEnum.advertiserTempBan,
 };
 
 /// VisibilityStatusItem Enum.
 enum VisibilityStatusItemEnum {
+  /// advert_fixed_rate_disabled.
+  advertFixedRateDisabled,
+
+  /// advert_float_rate_disabled.
+  advertFloatRateDisabled,
+
   /// advert_inactive.
   advertInactive,
 
@@ -357,6 +368,9 @@ enum VisibilityStatusItemEnum {
 
   /// advert_remaining.
   advertRemaining,
+
+  /// advert_no_payment_methods.
+  advertNoPaymentMethods,
 
   /// advertiser_ads_paused.
   advertiserAdsPaused,
@@ -373,10 +387,12 @@ enum VisibilityStatusItemEnum {
   /// advertiser_daily_limit.
   advertiserDailyLimit,
 
+  /// advertiser_schedule.
+  advertiserSchedule,
+
   /// advertiser_temp_ban.
   advertiserTempBan,
 }
-
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel {
   /// Initializes P2p advert info model class .
@@ -400,6 +416,7 @@ abstract class P2pAdvertInfoModel {
     this.eligibleCountries,
     this.id,
     this.isActive,
+    this.isClientScheduleAvailable,
     this.isEligible,
     this.isVisible,
     this.localCurrency,
@@ -491,10 +508,13 @@ abstract class P2pAdvertInfoModel {
   /// The activation status of the advert.
   final bool? isActive;
 
+  /// Inidcates whether the current user's schedule has availability from now until now + order_expiry_period.
+  final bool? isClientScheduleAvailable;
+
   /// Indicates that the current user meets the counterparty terms for placing orders against this advert.
   final bool? isEligible;
 
-  /// Indicates that this advert will appear on the main advert list. It is only visible to the advert owner.
+  /// Indicates that this advert will appear on the main advert list.
   final bool? isVisible;
 
   /// Local currency for this advert. This is the form of payment to be arranged directly between advertiser and client.
@@ -572,14 +592,18 @@ abstract class P2pAdvertInfoModel {
   /// Whether this is a buy or a sell.
   final P2pAdvertInfoTypeEnum? type;
 
-  /// Reasons why an advert is not visible, only visible to the advert owner. Possible values:
+  /// Reasons why an advert is not visible. Possible values:
+  /// - `advert_fixed_rate_disabled`: fixed rate adverts are no longer available in the advert's country.
+  /// - `advert_float_rate_disabled`: floating rate adverts are no longer available in the advert's country.
   /// - `advert_inactive`: the advert is set inactive.
   /// - `advert_max_limit`: the minimum order amount exceeds the system maximum order.
   /// - `advert_min_limit`: the maximum order amount is too small to be shown on the advert list.
   /// - `advert_remaining`: the remaining amount of the advert is below the minimum order.
+  /// - `advert_no_payment_methods`: the advert has no valid payment methods.
   /// - `advertiser_ads_paused`: the advertiser has paused all adverts.
   /// - `advertiser_approval`: the advertiser's proof of identity is not verified.
   /// - `advertiser_balance`: the advertiser's P2P balance is less than the minimum order.
+  /// - `advertiser_schedule`: the advertiser's schedule does not have availability between now and now + order_expiry_period.
   /// - `advertiser_block_trade_ineligible`: the advertiser is not currently eligible for block trading.
   /// - `advertiser_daily_limit`: the advertiser's remaining daily limit is less than the minimum order.
   /// - `advertiser_temp_ban`: the advertiser is temporarily banned from P2P.
@@ -609,6 +633,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     super.eligibleCountries,
     super.id,
     super.isActive,
+    super.isClientScheduleAvailable,
     super.isEligible,
     super.isVisible,
     super.localCurrency,
@@ -678,6 +703,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
               ),
         id: json['id'],
         isActive: getBool(json['is_active']),
+        isClientScheduleAvailable:
+            getBool(json['is_client_schedule_available']),
         isEligible: getBool(json['is_eligible']),
         isVisible: getBool(json['is_visible']),
         localCurrency: json['local_currency'],
@@ -781,6 +808,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     }
     resultMap['id'] = id;
     resultMap['is_active'] = isActive;
+    resultMap['is_client_schedule_available'] = isClientScheduleAvailable;
     resultMap['is_eligible'] = isEligible;
     resultMap['is_visible'] = isVisible;
     resultMap['local_currency'] = localCurrency;
@@ -857,6 +885,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     List<String>? eligibleCountries,
     String? id,
     bool? isActive,
+    bool? isClientScheduleAvailable,
     bool? isEligible,
     bool? isVisible,
     String? localCurrency,
@@ -906,6 +935,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         eligibleCountries: eligibleCountries ?? this.eligibleCountries,
         id: id ?? this.id,
         isActive: isActive ?? this.isActive,
+        isClientScheduleAvailable:
+            isClientScheduleAvailable ?? this.isClientScheduleAvailable,
         isEligible: isEligible ?? this.isEligible,
         isVisible: isVisible ?? this.isVisible,
         localCurrency: localCurrency ?? this.localCurrency,
@@ -941,13 +972,13 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         visibilityStatus: visibilityStatus ?? this.visibilityStatus,
       );
 }
-
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
   /// Initializes Advertiser details model class .
   const AdvertiserDetailsModel({
     required this.ratingCount,
     required this.name,
+    required this.isScheduleAvailable,
     required this.isOnline,
     required this.id,
     required this.completedOrdersCount,
@@ -968,6 +999,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's displayed name.
   final String name;
+
+  /// Inidcates whether the advertiser's schedule has availability between now and now + order_expiry_period.
+  final bool isScheduleAvailable;
 
   /// Indicates if the advertiser is currently online.
   final bool isOnline;
@@ -1016,6 +1050,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required super.completedOrdersCount,
     required super.id,
     required super.isOnline,
+    required super.isScheduleAvailable,
     required super.name,
     required super.ratingCount,
     super.firstName,
@@ -1036,6 +1071,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: json['completed_orders_count'],
         id: json['id'],
         isOnline: getBool(json['is_online'])!,
+        isScheduleAvailable: getBool(json['is_schedule_available'])!,
         name: json['name'],
         ratingCount: json['rating_count'],
         firstName: json['first_name'],
@@ -1057,6 +1093,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['completed_orders_count'] = completedOrdersCount;
     resultMap['id'] = id;
     resultMap['is_online'] = isOnline;
+    resultMap['is_schedule_available'] = isScheduleAvailable;
     resultMap['name'] = name;
     resultMap['rating_count'] = ratingCount;
     resultMap['first_name'] = firstName;
@@ -1079,6 +1116,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     int? completedOrdersCount,
     String? id,
     bool? isOnline,
+    bool? isScheduleAvailable,
     String? name,
     int? ratingCount,
     String? firstName,
@@ -1096,6 +1134,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         completedOrdersCount: completedOrdersCount ?? this.completedOrdersCount,
         id: id ?? this.id,
         isOnline: isOnline ?? this.isOnline,
+        isScheduleAvailable: isScheduleAvailable ?? this.isScheduleAvailable,
         name: name ?? this.name,
         ratingCount: ratingCount ?? this.ratingCount,
         firstName: firstName ?? this.firstName,
@@ -1110,7 +1149,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
-
 /// Payment method details property model class.
 abstract class PaymentMethodDetailsPropertyModel {
   /// Initializes Payment method details property model class .
@@ -1239,7 +1277,6 @@ class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
         usedByOrders: usedByOrders ?? this.usedByOrders,
       );
 }
-
 /// Fields property model class.
 abstract class FieldsPropertyModel {
   /// Initializes Fields property model class .
@@ -1309,7 +1346,6 @@ class FieldsProperty extends FieldsPropertyModel {
         value: value ?? this.value,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

@@ -182,7 +182,6 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// P2p advertiser info model class.
 abstract class P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info model class .
@@ -194,6 +193,7 @@ abstract class P2pAdvertiserInfoModel {
     required this.ratingCount,
     required this.partnerCount,
     required this.name,
+    required this.isScheduleAvailable,
     required this.isOnline,
     required this.isListed,
     required this.isApproved,
@@ -236,6 +236,7 @@ abstract class P2pAdvertiserInfoModel {
     this.recommendedAverage,
     this.recommendedCount,
     this.releaseTimeAvg,
+    this.schedule,
     this.sellCompletionRate,
     this.showName,
     this.totalCompletionRate,
@@ -263,6 +264,9 @@ abstract class P2pAdvertiserInfoModel {
 
   /// The advertiser's displayed name.
   final String name;
+
+  /// Inidcates whether the advertiser's schedule allows P2P transactions at the current time.
+  final bool isScheduleAvailable;
 
   /// Indicates if the advertiser is currently online.
   final bool isOnline;
@@ -390,6 +394,9 @@ abstract class P2pAdvertiserInfoModel {
   /// The average time in seconds taken to release funds as a seller within the past 30 days.
   final int? releaseTimeAvg;
 
+  /// [Optional] Weekly availability schedule. Ads are visible and orders can be created only during available periods.
+  final List<ScheduleItem>? schedule;
+
   /// The percentage of completed orders out of total orders as a seller within the past 30 days.
   final double? sellCompletionRate;
 
@@ -420,6 +427,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     required super.isApproved,
     required super.isListed,
     required super.isOnline,
+    required super.isScheduleAvailable,
     required super.name,
     required super.partnerCount,
     required super.ratingCount,
@@ -459,6 +467,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     super.recommendedAverage,
     super.recommendedCount,
     super.releaseTimeAvg,
+    super.schedule,
     super.sellCompletionRate,
     super.showName,
     super.totalCompletionRate,
@@ -479,6 +488,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         isApproved: getBool(json['is_approved'])!,
         isListed: getBool(json['is_listed'])!,
         isOnline: getBool(json['is_online'])!,
+        isScheduleAvailable: getBool(json['is_schedule_available'])!,
         name: json['name'],
         partnerCount: json['partner_count'],
         ratingCount: json['rating_count'],
@@ -520,6 +530,13 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         recommendedAverage: getDouble(json['recommended_average']),
         recommendedCount: json['recommended_count'],
         releaseTimeAvg: json['release_time_avg'],
+        schedule: json['schedule'] == null
+            ? null
+            : List<ScheduleItem>.from(
+                json['schedule']?.map(
+                  (dynamic item) => ScheduleItem.fromJson(item),
+                ),
+              ),
         sellCompletionRate: getDouble(json['sell_completion_rate']),
         showName: getBool(json['show_name']),
         totalCompletionRate: getDouble(json['total_completion_rate']),
@@ -543,6 +560,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     resultMap['is_approved'] = isApproved;
     resultMap['is_listed'] = isListed;
     resultMap['is_online'] = isOnline;
+    resultMap['is_schedule_available'] = isScheduleAvailable;
     resultMap['name'] = name;
     resultMap['partner_count'] = partnerCount;
     resultMap['rating_count'] = ratingCount;
@@ -585,6 +603,13 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     resultMap['recommended_average'] = recommendedAverage;
     resultMap['recommended_count'] = recommendedCount;
     resultMap['release_time_avg'] = releaseTimeAvg;
+    if (schedule != null) {
+      resultMap['schedule'] = schedule!
+          .map<dynamic>(
+            (ScheduleItem item) => item.toJson(),
+          )
+          .toList();
+    }
     resultMap['sell_completion_rate'] = sellCompletionRate;
     resultMap['show_name'] = showName;
     resultMap['total_completion_rate'] = totalCompletionRate;
@@ -608,6 +633,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     bool? isApproved,
     bool? isListed,
     bool? isOnline,
+    bool? isScheduleAvailable,
     String? name,
     int? partnerCount,
     int? ratingCount,
@@ -647,6 +673,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     double? recommendedAverage,
     int? recommendedCount,
     int? releaseTimeAvg,
+    List<ScheduleItem>? schedule,
     double? sellCompletionRate,
     bool? showName,
     double? totalCompletionRate,
@@ -665,6 +692,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         isApproved: isApproved ?? this.isApproved,
         isListed: isListed ?? this.isListed,
         isOnline: isOnline ?? this.isOnline,
+        isScheduleAvailable: isScheduleAvailable ?? this.isScheduleAvailable,
         name: name ?? this.name,
         partnerCount: partnerCount ?? this.partnerCount,
         ratingCount: ratingCount ?? this.ratingCount,
@@ -704,6 +732,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         recommendedAverage: recommendedAverage ?? this.recommendedAverage,
         recommendedCount: recommendedCount ?? this.recommendedCount,
         releaseTimeAvg: releaseTimeAvg ?? this.releaseTimeAvg,
+        schedule: schedule ?? this.schedule,
         sellCompletionRate: sellCompletionRate ?? this.sellCompletionRate,
         showName: showName ?? this.showName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
@@ -712,7 +741,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         withdrawalLimit: withdrawalLimit ?? this.withdrawalLimit,
       );
 }
-
 /// Block trade model class.
 abstract class BlockTradeModel {
   /// Initializes Block trade model class .
@@ -762,7 +790,55 @@ class BlockTrade extends BlockTradeModel {
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
       );
 }
+/// Schedule item model class.
+abstract class ScheduleItemModel {
+  /// Initializes Schedule item model class .
+  const ScheduleItemModel({
+    this.endMin,
+    this.startMin,
+  });
 
+  /// Minute of week when availablility ends. Zero is Sunday 00:00 UST.
+  final int? endMin;
+
+  /// Minute of week when availablility starts. Zero is Sunday 00:00 UST.
+  final int? startMin;
+}
+
+/// Schedule item class.
+class ScheduleItem extends ScheduleItemModel {
+  /// Initializes Schedule item class.
+  const ScheduleItem({
+    super.endMin,
+    super.startMin,
+  });
+
+  /// Creates an instance from JSON.
+  factory ScheduleItem.fromJson(Map<String, dynamic> json) => ScheduleItem(
+        endMin: json['end_min'],
+        startMin: json['start_min'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['end_min'] = endMin;
+    resultMap['start_min'] = startMin;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  ScheduleItem copyWith({
+    int? endMin,
+    int? startMin,
+  }) =>
+      ScheduleItem(
+        endMin: endMin ?? this.endMin,
+        startMin: startMin ?? this.startMin,
+      );
+}
 /// Upgradable daily limits model class.
 abstract class UpgradableDailyLimitsModel {
   /// Initializes Upgradable daily limits model class .
@@ -822,7 +898,6 @@ class UpgradableDailyLimits extends UpgradableDailyLimitsModel {
         blockTrade: blockTrade ?? this.blockTrade,
       );
 }
-
 /// Subscription model class.
 abstract class SubscriptionModel {
   /// Initializes Subscription model class .

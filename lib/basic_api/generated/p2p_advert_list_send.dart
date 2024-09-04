@@ -14,6 +14,7 @@ class P2pAdvertListRequest extends Request {
     this.blockTrade,
     this.counterpartyType,
     this.favouritesOnly,
+    this.hideClientScheduleUnavailable,
     this.hideIneligible,
     this.limit,
     this.localCurrency,
@@ -40,6 +41,10 @@ class P2pAdvertListRequest extends Request {
         favouritesOnly: json['favourites_only'] == null
             ? null
             : json['favourites_only'] == 1,
+        hideClientScheduleUnavailable:
+            json['hide_client_schedule_unavailable'] == null
+                ? null
+                : json['hide_client_schedule_unavailable'] == 1,
         hideIneligible: json['hide_ineligible'] == null
             ? null
             : json['hide_ineligible'] == 1,
@@ -79,6 +84,9 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Only show adverts from favourite advertisers. Default is `false`.
   final bool? favouritesOnly;
 
+  /// [Optional] If set to `true`, adverts for which the current user's shcedule does not have availability from now until the full possible order expiry are not returned.
+  final bool? hideClientScheduleUnavailable;
+
   /// [Optional] If set to `true`, adverts for which the current user does not meet counteryparty terms are not returned.
   final bool? hideIneligible;
 
@@ -88,7 +96,7 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Currency to conduct payment transaction in. If not provided, only ads from country of residence will be returned.
   final String? localCurrency;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// [Optional] Used for paging.
@@ -123,6 +131,12 @@ class P2pAdvertListRequest extends Request {
             : favouritesOnly!
                 ? 1
                 : 0,
+        'hide_client_schedule_unavailable':
+            hideClientScheduleUnavailable == null
+                ? null
+                : hideClientScheduleUnavailable!
+                    ? 1
+                    : 0,
         'hide_ineligible': hideIneligible == null
             ? null
             : hideIneligible!
@@ -157,6 +171,7 @@ class P2pAdvertListRequest extends Request {
     bool? blockTrade,
     String? counterpartyType,
     bool? favouritesOnly,
+    bool? hideClientScheduleUnavailable,
     bool? hideIneligible,
     int? limit,
     String? localCurrency,
@@ -176,6 +191,8 @@ class P2pAdvertListRequest extends Request {
         blockTrade: blockTrade ?? this.blockTrade,
         counterpartyType: counterpartyType ?? this.counterpartyType,
         favouritesOnly: favouritesOnly ?? this.favouritesOnly,
+        hideClientScheduleUnavailable:
+            hideClientScheduleUnavailable ?? this.hideClientScheduleUnavailable,
         hideIneligible: hideIneligible ?? this.hideIneligible,
         limit: limit ?? this.limit,
         localCurrency: localCurrency ?? this.localCurrency,

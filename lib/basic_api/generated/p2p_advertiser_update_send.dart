@@ -14,6 +14,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.loginid,
     this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
+    this.schedule,
     this.showName,
     this.upgradeLimits,
     super.msgType = 'p2p_advertiser_update',
@@ -32,6 +33,10 @@ class P2pAdvertiserUpdateRequest extends Request {
             ? null
             : json['p2p_advertiser_update'] == 1,
         paymentInfo: json['payment_info'] as String?,
+        schedule: (json['schedule'] as List<dynamic>?)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            .toList(),
         showName: json['show_name'] == null ? null : json['show_name'] == 1,
         upgradeLimits: json['upgrade_limits'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -47,7 +52,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Used to set if the advertiser's adverts could be listed. When `false`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
   final bool? isListed;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// Must be `true`
@@ -55,6 +60,9 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String? paymentInfo;
+
+  /// [Optional] Weekly availability schedule. Ads are visible and orders can be created only during available periods.
+  final List<Map<String, dynamic>>? schedule;
 
   /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
   final bool? showName;
@@ -79,6 +87,7 @@ class P2pAdvertiserUpdateRequest extends Request {
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
+        'schedule': schedule,
         'show_name': showName == null
             ? null
             : showName!
@@ -98,6 +107,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     String? loginid,
     bool? p2pAdvertiserUpdate,
     String? paymentInfo,
+    List<Map<String, dynamic>>? schedule,
     bool? showName,
     int? upgradeLimits,
     Map<String, dynamic>? passthrough,
@@ -111,6 +121,7 @@ class P2pAdvertiserUpdateRequest extends Request {
         loginid: loginid ?? this.loginid,
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
+        schedule: schedule ?? this.schedule,
         showName: showName ?? this.showName,
         upgradeLimits: upgradeLimits ?? this.upgradeLimits,
         passthrough: passthrough ?? this.passthrough,
