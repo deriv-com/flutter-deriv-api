@@ -108,6 +108,13 @@ $ cd flutter-deriv-api
 $ flutter pub get
 ```
 
+### Setup
+```bash
+$ make update_schemas
+$ make setup
+$ dart run build_runner build --delete-conflicting-outputs
+```
+
 ### Use this package as a library
 
 Add this to your package's `pubspec.yaml` file:
@@ -119,30 +126,6 @@ dependencies:
         git:
             url: https://github.com/regentmarkets/flutter-deriv-api.git
             ref: master
-```
-
-### Use this package as a submodule
-
-```
-$ git submodule add https://github.com/regentmarkets/flutter-deriv-api.git
-```
-
-Add this to your package's `pubspec.yaml` file:
-
-```
-dependencies:
-    ...
-    flutter_deriv_api:
-        path: ./flutter-deriv-api/
-```
-
-### Initialize and update submodule
-
-```
-$ git submodule init
-$ git submodule update --remote
-$ ./setup.sh
-$ dart run build_runner build --delete-conflicting-outputs
 ```
 
 ### Run the tests
