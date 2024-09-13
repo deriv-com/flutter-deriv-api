@@ -35,7 +35,7 @@ class TradingPlatformStatusResponse extends TradingPlatformStatusResponseModel {
   /// This call gets the status of external trading accounts, either demo or real money.
   /// For parameters information refer to [TradingPlatformStatusRequest].
   /// Throws a [BaseAPIException] if API response contains an error.
-  static Future<TradingPlatformStatusResponseModel> create(
+  static Future<TradingPlatformStatusResponseModel> getStatus(
     TradingPlatformStatusRequest request,
   ) async {
     final TradingPlatformStatusReceive response =
