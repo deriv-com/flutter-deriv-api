@@ -8,6 +8,8 @@ import '../generated/account_list_receive.dart';
 import '../generated/account_security_receive.dart';
 import '../generated/account_statistics_receive.dart';
 import '../generated/active_symbols_receive.dart';
+import '../generated/affiliate_add_company_receive.dart';
+import '../generated/affiliate_add_person_receive.dart';
 import '../generated/affiliate_register_person_receive.dart';
 import '../generated/api_token_receive.dart';
 import '../generated/app_delete_receive.dart';
@@ -21,12 +23,6 @@ import '../generated/asset_index_receive.dart';
 import '../generated/authorize_receive.dart';
 import '../generated/available_accounts_receive.dart';
 import '../generated/balance_receive.dart';
-import '../generated/bot_create_receive.dart';
-import '../generated/bot_list_receive.dart';
-import '../generated/bot_notification_receive.dart';
-import '../generated/bot_remove_receive.dart';
-import '../generated/bot_start_receive.dart';
-import '../generated/bot_stop_receive.dart';
 import '../generated/buy_contract_for_multiple_accounts_receive.dart';
 import '../generated/buy_receive.dart';
 import '../generated/cancel_receive.dart';
@@ -38,7 +34,6 @@ import '../generated/change_password_receive.dart';
 import '../generated/confirm_email_receive.dart';
 import '../generated/contract_update_history_receive.dart';
 import '../generated/contract_update_receive.dart';
-import '../generated/contracts_for_company_receive.dart';
 import '../generated/contracts_for_receive.dart';
 import '../generated/copy_start_receive.dart';
 import '../generated/copy_stop_receive.dart';
@@ -78,8 +73,6 @@ import '../generated/new_account_real_receive.dart';
 import '../generated/new_account_virtual_receive.dart';
 import '../generated/new_account_wallet_receive.dart';
 import '../generated/notification_event_receive.dart';
-import '../generated/notifications_list_receive.dart';
-import '../generated/notifications_update_status_receive.dart';
 import '../generated/oauth_apps_receive.dart';
 import '../generated/p2p_advert_create_receive.dart';
 import '../generated/p2p_advert_info_receive.dart';
@@ -104,9 +97,6 @@ import '../generated/p2p_order_review_receive.dart';
 import '../generated/p2p_payment_methods_receive.dart';
 import '../generated/p2p_ping_receive.dart';
 import '../generated/p2p_settings_receive.dart';
-import '../generated/partner_accounts_receive.dart';
-import '../generated/partner_settings_receive.dart';
-import '../generated/partner_settings_update_receive.dart';
 import '../generated/passkeys_list_receive.dart';
 import '../generated/passkeys_login_receive.dart';
 import '../generated/passkeys_options_receive.dart';
@@ -122,15 +112,12 @@ import '../generated/paymentagent_transfer_receive.dart';
 import '../generated/paymentagent_withdraw_justification_receive.dart';
 import '../generated/paymentagent_withdraw_receive.dart';
 import '../generated/payout_currencies_receive.dart';
-import '../generated/phone_number_challenge_receive.dart';
-import '../generated/phone_number_verify_receive.dart';
 import '../generated/ping_receive.dart';
 import '../generated/portfolio_receive.dart';
 import '../generated/profit_table_receive.dart';
 import '../generated/proposal_open_contract_receive.dart';
 import '../generated/proposal_receive.dart';
 import '../generated/reality_check_receive.dart';
-import '../generated/receive_receive.dart';
 import '../generated/request_report_receive.dart';
 import '../generated/reset_password_receive.dart';
 import '../generated/residence_list_receive.dart';
@@ -148,11 +135,11 @@ import '../generated/states_list_receive.dart';
 import '../generated/ticks_history_receive.dart';
 import '../generated/ticks_receive.dart';
 import '../generated/time_receive.dart';
-import '../generated/tin_validations_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
 import '../generated/trading_platform_accounts_receive.dart';
+import '../generated/trading_platform_asset_listing_receive.dart';
 import '../generated/trading_platform_available_accounts_receive.dart';
 import '../generated/trading_platform_deposit_receive.dart';
 import '../generated/trading_platform_investor_password_change_receive.dart';
@@ -162,18 +149,23 @@ import '../generated/trading_platform_new_account_receive.dart';
 import '../generated/trading_platform_password_change_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
 import '../generated/trading_platform_product_listing_receive.dart';
-import '../generated/trading_platform_status_receive.dart';
 import '../generated/trading_platform_withdrawal_receive.dart';
-import '../generated/trading_platforms_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
 import '../generated/transaction_receive.dart';
 import '../generated/transfer_between_accounts_receive.dart';
 import '../generated/unsubscribe_email_receive.dart';
+import '../generated/verify_email_cellxpert_receive.dart';
 import '../generated/verify_email_receive.dart';
 import '../generated/wallet_migration_receive.dart';
 import '../generated/website_config_receive.dart';
 import '../generated/website_status_receive.dart';
+import '../generated/passkeys_list_receive.dart';
+import '../generated/passkeys_options_receive.dart';
+import '../generated/passkeys_register_options_receive.dart';
+import '../generated/passkeys_register_receive.dart';
+import '../generated/passkeys_rename_receive.dart';
+import '../generated/passkeys_revoke_receive.dart';
 import '../response.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -190,6 +182,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AccountStatisticsReceive.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsReceive.fromJson(responseMap);
+    case 'affiliate_add_company':
+      return AffiliateAddCompanyReceive.fromJson(responseMap);
+    case 'affiliate_add_person':
+      return AffiliateAddPersonReceive.fromJson(responseMap);
     case 'affiliate_register_person':
       return AffiliateRegisterPersonReceive.fromJson(responseMap);
     case 'api_token':
@@ -216,18 +212,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return AvailableAccountsReceive.fromJson(responseMap);
     case 'balance':
       return BalanceReceive.fromJson(responseMap);
-    case 'bot_create':
-      return BotCreateReceive.fromJson(responseMap);
-    case 'bot_list':
-      return BotListReceive.fromJson(responseMap);
-    case 'bot_notification':
-      return BotNotificationReceive.fromJson(responseMap);
-    case 'bot_remove':
-      return BotRemoveReceive.fromJson(responseMap);
-    case 'bot_start':
-      return BotStartReceive.fromJson(responseMap);
-    case 'bot_stop':
-      return BotStopReceive.fromJson(responseMap);
     case 'buy_contract_for_multiple_accounts':
       return BuyContractForMultipleAccountsReceive.fromJson(responseMap);
     case 'buy':
@@ -250,8 +234,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ContractUpdateHistoryReceive.fromJson(responseMap);
     case 'contract_update':
       return ContractUpdateReceive.fromJson(responseMap);
-    case 'contracts_for_company':
-      return ContractsForCompanyReceive.fromJson(responseMap);
     case 'contracts_for':
       return ContractsForReceive.fromJson(responseMap);
     case 'copy_start':
@@ -330,10 +312,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return NewAccountWalletReceive.fromJson(responseMap);
     case 'notification_event':
       return NotificationEventReceive.fromJson(responseMap);
-    case 'notifications_list':
-      return NotificationsListReceive.fromJson(responseMap);
-    case 'notifications_update_status':
-      return NotificationsUpdateStatusReceive.fromJson(responseMap);
     case 'oauth_apps':
       return OauthAppsReceive.fromJson(responseMap);
     case 'p2p_advert_create':
@@ -382,12 +360,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pPingReceive.fromJson(responseMap);
     case 'p2p_settings':
       return P2pSettingsReceive.fromJson(responseMap);
-    case 'partner_accounts':
-      return PartnerAccountsReceive.fromJson(responseMap);
-    case 'partner_settings':
-      return PartnerSettingsReceive.fromJson(responseMap);
-    case 'partner_settings_update':
-      return PartnerSettingsUpdateReceive.fromJson(responseMap);
     case 'passkeys_list':
       return PasskeysListReceive.fromJson(responseMap);
     case 'passkeys_login':
@@ -418,10 +390,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return PaymentagentWithdrawReceive.fromJson(responseMap);
     case 'payout_currencies':
       return PayoutCurrenciesReceive.fromJson(responseMap);
-    case 'phone_number_challenge':
-      return PhoneNumberChallengeReceive.fromJson(responseMap);
-    case 'phone_number_verify':
-      return PhoneNumberVerifyReceive.fromJson(responseMap);
     case 'ping':
       return PingReceive.fromJson(responseMap);
     case 'portfolio':
@@ -434,8 +402,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ProposalReceive.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckReceive.fromJson(responseMap);
-    case 'p2p_order_create':
-      return ReceiveReceive.fromJson(responseMap);
     case 'request_report':
       return RequestReportReceive.fromJson(responseMap);
     case 'reset_password':
@@ -470,8 +436,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TicksReceive.fromJson(responseMap);
     case 'time':
       return TimeReceive.fromJson(responseMap);
-    case 'tin_validations':
-      return TinValidationsReceive.fromJson(responseMap);
     case 'tnc_approval':
       return TncApprovalReceive.fromJson(responseMap);
     case 'topup_virtual':
@@ -480,6 +444,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingDurationsReceive.fromJson(responseMap);
     case 'trading_platform_accounts':
       return TradingPlatformAccountsReceive.fromJson(responseMap);
+    case 'trading_platform_asset_listing':
+      return TradingPlatformAssetListingReceive.fromJson(responseMap);
     case 'trading_platform_available_accounts':
       return TradingPlatformAvailableAccountsReceive.fromJson(responseMap);
     case 'trading_platform_deposit':
@@ -498,12 +464,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TradingPlatformPasswordResetReceive.fromJson(responseMap);
     case 'trading_platform_product_listing':
       return TradingPlatformProductListingReceive.fromJson(responseMap);
-    case 'trading_platform_status':
-      return TradingPlatformStatusReceive.fromJson(responseMap);
     case 'trading_platform_withdrawal':
       return TradingPlatformWithdrawalReceive.fromJson(responseMap);
-    case 'trading_platforms':
-      return TradingPlatformsReceive.fromJson(responseMap);
     case 'trading_servers':
       return TradingServersReceive.fromJson(responseMap);
     case 'trading_times':
@@ -514,6 +476,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TransferBetweenAccountsReceive.fromJson(responseMap);
     case 'unsubscribe_email':
       return UnsubscribeEmailReceive.fromJson(responseMap);
+    case 'verify_email_cellxpert':
+      return VerifyEmailCellxpertReceive.fromJson(responseMap);
     case 'verify_email':
       return VerifyEmailReceive.fromJson(responseMap);
     case 'wallet_migration':
@@ -522,6 +486,19 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return WebsiteConfigReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
+    case 'passkeys_list':
+      return PasskeysListReceive.fromJson(responseMap);
+
+    case 'passkeys_options':
+      return PasskeysOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register_options':
+      return PasskeysRegisterOptionsReceive.fromJson(responseMap);
+    case 'passkeys_register':
+      return PasskeysRegisterReceive.fromJson(responseMap);
+    case 'passkeys_rename':
+      return PasskeysRenameReceive.fromJson(responseMap);
+    case 'passkeys_revoke':
+      return PasskeysRevokeReceive.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);
