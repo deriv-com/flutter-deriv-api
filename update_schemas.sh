@@ -3,36 +3,36 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Define the source and target directories
-SOURCE_DIR="schemas"
-TARGET_DIR="lib/basic_api/generated"
+# Define the path for the submodule within the main repository
+SUBMODULE_PATH="binary-websocket-api"
+TARGET_PATH="schemas"
 
-# Remove the target directory if it exists
-if [ -d "$TARGET_DIR" ]; then
-    echo "Removing existing directory: $TARGET_DIR"
-    rm -rf "$TARGET_DIR"
+# Create a temporary directory
+TEMP_DIR=$(mktemp -d)
+
+# Function to clean up the temporary directory on exit
+cleanup() {
+    rm -rf "$TEMP_DIR"
+}
+trap cleanup EXIT
+
+# Clone the bom-core repository into the temporary directory
+git clone --depth 1 git@github.com:regentmarkets/bom-core.git "$TEMP_DIR/bom-core"
+
+# Check if the binary-websocket-api directory exists in the cloned repository
+if [ ! -d "$TEMP_DIR/bom-core/$SUBMODULE_PATH" ]; then
+    echo "Directory $SUBMODULE_PATH does not exist in the bom-core repository. Aborting."
+    exit 1
 fi
 
-# Ensure the target directory exists
-mkdir -p "$TARGET_DIR"
+# Remove existing submodule directory if necessary
+if [ -d "$TARGET_PATH" ]; then
+    echo "Removing existing directory: $TARGET_PATH"
+    rm -rf "$TARGET_PATH"
+fi
 
-# Create symlinks for the JSON files
-find "$SOURCE_DIR" -type f \( -name 'receive.json' -o -name 'send.json' \) | while read -r file; do
-    base=$(echo "$file" | sed "s|^$SOURCE_DIR/||")
-    target="$TARGET_DIR/$(echo "$base" | tr '/' '_')"
-    if [ ! -e "$target" ]; then
-        ln -s "../../../$file" "$target"
-        echo "Symlink created: $target -> $file"
-    else
-        echo "Symlink already exists: $target"
-    fi
-done
+# Copy the binary-websocket-api directory from the temporary directory to the current directory
+cp -r "$TEMP_DIR/bom-core/$SUBMODULE_PATH/config/v3/" "$TARGET_PATH"
 
-# Uncomment the following line if you want to copy manually added JSON files to the target directory if not already there
-# cp -n lib/basic_api/manually/*.json "$TARGET_DIR"
 
-# Generate lib/basic_api/generated/api.dart
-ls "$TARGET_DIR" | grep '\.json$' | awk '{print "export \"" $0 ".dart\";"}' > "$TARGET_DIR/api.dart"
-perl -pi -e 's/.json//g' "$TARGET_DIR/api.dart"
-
-echo "api.dart generated at $TARGET_DIR/api.dart"
+echo "Submodule 'binary-websocket-api' successfully copied into the main repository."
