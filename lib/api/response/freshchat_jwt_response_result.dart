@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_single_quotes
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/basic_api/generated/freshchat_auth_jwt_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/freshchat_auth_jwt_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/service_token_receive.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
