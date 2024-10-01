@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/basic_api/generated/freshchat_auth_jwt_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/freshchat_user_jwt_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/service_token_receive.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -67,7 +67,7 @@ class FreshChatJwtResponse extends FreshChatJwtResponseModel {
   ///
   /// Throws a [BaseAPIException] if the API response contains an error.
   static Future<FreshChatJwtResponse> fetchFreshworksJwt(
-    FreshworksAuthJwtRequest
+    FreshworksUserJwtRequest
         request, // Replace with your actual request type if available
   ) async {
     final ServiceTokenReceive response = await _api.call(

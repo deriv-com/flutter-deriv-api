@@ -3,21 +3,21 @@
 import '../request.dart';
 
 /// Freshworks Auth JWT request class.
-class FreshworksAuthJwtRequest extends Request {
+class FreshworksUserJwtRequest extends Request {
   /// Initializes the Freshworks Auth JWT request class.
-  const FreshworksAuthJwtRequest({
+  const FreshworksUserJwtRequest({
     required this.serviceToken,
     required this.referrer,
     required this.extraFields,
-    this.service = 'freshworks_auth_jwt',
-    super.msgType = 'freshworks_auth_jwt',
+    this.service = 'freshworks_user_jwt',
+    super.msgType = 'freshworks_user_jwt',
     super.passthrough,
     super.reqId,
   }); // Set service to the value of msgType
 
   /// Creates an instance from JSON.
-  factory FreshworksAuthJwtRequest.fromJson(Map<String, dynamic> json) =>
-      FreshworksAuthJwtRequest(
+  factory FreshworksUserJwtRequest.fromJson(Map<String, dynamic> json) =>
+      FreshworksUserJwtRequest(
         serviceToken: json['service_token'] as int,
         referrer: json['referrer'] as String,
         extraFields: ExtraFields.fromJson(json['extra_fields']),
@@ -50,7 +50,7 @@ class FreshworksAuthJwtRequest extends Request {
 
   /// Creates a copy of the instance with given parameters.
   @override
-  FreshworksAuthJwtRequest copyWith({
+  FreshworksUserJwtRequest copyWith({
     int? serviceToken,
     String? referrer,
     ExtraFields? extraFields,
@@ -58,7 +58,7 @@ class FreshworksAuthJwtRequest extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      FreshworksAuthJwtRequest(
+      FreshworksUserJwtRequest(
         serviceToken: serviceToken ?? this.serviceToken,
         referrer: referrer ?? this.referrer,
         extraFields: extraFields ?? this.extraFields,
