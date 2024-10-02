@@ -9,6 +9,7 @@ class FreshworksUserJwtRequest extends Request {
     required this.serviceToken,
     required this.referrer,
     required this.extraFields,
+    required this.loginId,
     this.service = 'freshworks_user_jwt',
     super.msgType = 'freshworks_user_jwt',
     super.passthrough,
@@ -23,6 +24,7 @@ class FreshworksUserJwtRequest extends Request {
         extraFields: ExtraFields.fromJson(json['extra_fields']),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
+        loginId: json['login_id'] as String,
       );
 
   /// The service for the request, same as msgType.
@@ -37,10 +39,14 @@ class FreshworksUserJwtRequest extends Request {
   /// Extra fields for the request.
   final ExtraFields extraFields;
 
+  /// Login ID for the request.
+  final String loginId;
+
   /// Converts this instance to JSON.
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'service_token': serviceToken,
+        'login_id': loginId,
         'referrer': referrer,
         'extra_fields': extraFields.toJson(),
         'service': service, // Add service field to JSON
@@ -57,6 +63,7 @@ class FreshworksUserJwtRequest extends Request {
     String? service,
     Map<String, dynamic>? passthrough,
     int? reqId,
+    String? loginId,
   }) =>
       FreshworksUserJwtRequest(
         serviceToken: serviceToken ?? this.serviceToken,
@@ -65,6 +72,7 @@ class FreshworksUserJwtRequest extends Request {
         service: service ?? this.service, // Include service in copy
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
+        loginId: loginId ?? this.loginId,
       );
 
   /// Override equatable class.
@@ -76,6 +84,7 @@ class FreshworksUserJwtRequest extends Request {
         service, // Include service in props for equality
         passthrough,
         reqId,
+        loginId,
       ];
 }
 
