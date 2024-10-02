@@ -24,7 +24,7 @@ class FreshworksUserJwtRequest extends Request {
         extraFields: ExtraFields.fromJson(json['extra_fields']),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
-        loginId: json['login_id'] as String,
+        loginId: json['loginid'] as String,
       );
 
   /// The service for the request, same as msgType.
@@ -46,7 +46,7 @@ class FreshworksUserJwtRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'service_token': serviceToken,
-        'login_id': loginId,
+        'loginid': loginId,
         'referrer': referrer,
         'extra_fields': extraFields.toJson(),
         'service': service, // Add service field to JSON
