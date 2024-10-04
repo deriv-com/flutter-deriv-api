@@ -31,6 +31,12 @@ jobs:
       - name: 📦 Install Dependencies
         run: flutter pub get
 
+      # Setup Node.js to ensure Node.js 20 is used
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
       # do not fail if the analyze issue is info level
       - name: 🕵️ Analyze
         run: |
