@@ -10,6 +10,7 @@ const String p2pAdvertiserUpdateResponse = '''
     "favourited" : 1,
     "buy_orders_amount" : "1",
     "buy_orders_count" : 1,
+    "is_schedule_available": true,
     "full_verification" : 1,
     "sell_orders_count" : 1,
     "total_orders_count" : 1,
