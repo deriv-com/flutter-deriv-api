@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:build/build.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:json_schema2/json_schema.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:recase/recase.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
