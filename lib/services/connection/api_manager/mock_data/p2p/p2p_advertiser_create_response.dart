@@ -26,6 +26,7 @@ const String p2pAdvertiserCreateResponse = '''
     "partner_count": 1,
     "sell_orders_amount" : "",
     "total_turnover" : "",
+    "is_schedule_available": true,
     "balance_available" : 1,
     "cancels_remaining" : 1,
     "show_name" : true,

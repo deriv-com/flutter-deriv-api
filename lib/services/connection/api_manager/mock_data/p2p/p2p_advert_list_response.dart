@@ -15,6 +15,7 @@ const String p2pAdvertListResponse = '''
           "name": "advertiser CR90000018",
           "completed_orders_count" : 1,
           "rating_count" : 0,
+          "is_schedule_available": true,
           "is_online": true
         },
         "block_trade": 1,
@@ -47,6 +48,7 @@ const String p2pAdvertListResponse = '''
           "name": "advertiser CR90000022",
           "completed_orders_count" : 1,
           "rating_count" : 0,
+          "is_schedule_available": true,
           "is_online": true
         },
         "block_trade": 1,
