@@ -92,7 +92,6 @@ class ServiceTokenResponse extends ServiceTokenResponseModel {
         serviceToken: serviceToken ?? this.serviceToken,
       );
 }
-
 /// Service token model class.
 abstract class ServiceTokenModel {
   /// Initializes Service token model class .
@@ -100,10 +99,10 @@ abstract class ServiceTokenModel {
     this.banxa,
     this.ctrader,
     this.dxtrade,
+    this.freshworksAuthJwt,
+    this.freshworksUserJwt,
     this.onfido,
-    this.pandats,
     this.sendbird,
-    this.wyre,
   });
 
   /// Banxa order data.
@@ -115,17 +114,17 @@ abstract class ServiceTokenModel {
   /// Deriv X data.
   final Dxtrade? dxtrade;
 
+  /// Freshchat data.
+  final FreshworksAuthJwt? freshworksAuthJwt;
+
+  /// Freshchat data.
+  final FreshworksUserJwt? freshworksUserJwt;
+
   /// Onfido data.
   final Onfido? onfido;
 
-  /// Deriv EZ data.
-  final Pandats? pandats;
-
   /// Sendbird data.
   final Sendbird? sendbird;
-
-  /// Wyre reservation data.
-  final Wyre? wyre;
 }
 
 /// Service token class.
@@ -135,10 +134,10 @@ class ServiceToken extends ServiceTokenModel {
     super.banxa,
     super.ctrader,
     super.dxtrade,
+    super.freshworksAuthJwt,
+    super.freshworksUserJwt,
     super.onfido,
-    super.pandats,
     super.sendbird,
-    super.wyre,
   });
 
   /// Creates an instance from JSON.
@@ -148,13 +147,16 @@ class ServiceToken extends ServiceTokenModel {
             json['ctrader'] == null ? null : Ctrader.fromJson(json['ctrader']),
         dxtrade:
             json['dxtrade'] == null ? null : Dxtrade.fromJson(json['dxtrade']),
+        freshworksAuthJwt: json['freshworks_auth_jwt'] == null
+            ? null
+            : FreshworksAuthJwt.fromJson(json['freshworks_auth_jwt']),
+        freshworksUserJwt: json['freshworks_user_jwt'] == null
+            ? null
+            : FreshworksUserJwt.fromJson(json['freshworks_user_jwt']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
-        pandats:
-            json['pandats'] == null ? null : Pandats.fromJson(json['pandats']),
         sendbird: json['sendbird'] == null
             ? null
             : Sendbird.fromJson(json['sendbird']),
-        wyre: json['wyre'] == null ? null : Wyre.fromJson(json['wyre']),
       );
 
   /// Converts an instance to JSON.
@@ -170,17 +172,17 @@ class ServiceToken extends ServiceTokenModel {
     if (dxtrade != null) {
       resultMap['dxtrade'] = dxtrade!.toJson();
     }
+    if (freshworksAuthJwt != null) {
+      resultMap['freshworks_auth_jwt'] = freshworksAuthJwt!.toJson();
+    }
+    if (freshworksUserJwt != null) {
+      resultMap['freshworks_user_jwt'] = freshworksUserJwt!.toJson();
+    }
     if (onfido != null) {
       resultMap['onfido'] = onfido!.toJson();
     }
-    if (pandats != null) {
-      resultMap['pandats'] = pandats!.toJson();
-    }
     if (sendbird != null) {
       resultMap['sendbird'] = sendbird!.toJson();
-    }
-    if (wyre != null) {
-      resultMap['wyre'] = wyre!.toJson();
     }
 
     return resultMap;
@@ -191,22 +193,21 @@ class ServiceToken extends ServiceTokenModel {
     Banxa? banxa,
     Ctrader? ctrader,
     Dxtrade? dxtrade,
+    FreshworksAuthJwt? freshworksAuthJwt,
+    FreshworksUserJwt? freshworksUserJwt,
     Onfido? onfido,
-    Pandats? pandats,
     Sendbird? sendbird,
-    Wyre? wyre,
   }) =>
       ServiceToken(
         banxa: banxa ?? this.banxa,
         ctrader: ctrader ?? this.ctrader,
         dxtrade: dxtrade ?? this.dxtrade,
+        freshworksAuthJwt: freshworksAuthJwt ?? this.freshworksAuthJwt,
+        freshworksUserJwt: freshworksUserJwt ?? this.freshworksUserJwt,
         onfido: onfido ?? this.onfido,
-        pandats: pandats ?? this.pandats,
         sendbird: sendbird ?? this.sendbird,
-        wyre: wyre ?? this.wyre,
       );
 }
-
 /// Banxa model class.
 abstract class BanxaModel {
   /// Initializes Banxa model class .
@@ -265,7 +266,6 @@ class Banxa extends BanxaModel {
         urlIframe: urlIframe ?? this.urlIframe,
       );
 }
-
 /// Ctrader model class.
 abstract class CtraderModel {
   /// Initializes Ctrader model class .
@@ -306,7 +306,6 @@ class Ctrader extends CtraderModel {
         token: token ?? this.token,
       );
 }
-
 /// Dxtrade model class.
 abstract class DxtradeModel {
   /// Initializes Dxtrade model class .
@@ -347,7 +346,88 @@ class Dxtrade extends DxtradeModel {
         token: token ?? this.token,
       );
 }
+/// Freshworks auth jwt model class.
+abstract class FreshworksAuthJwtModel {
+  /// Initializes Freshworks auth jwt model class .
+  const FreshworksAuthJwtModel({
+    this.token,
+  });
 
+  /// Freshchat auth JWT token.
+  final String? token;
+}
+
+/// Freshworks auth jwt class.
+class FreshworksAuthJwt extends FreshworksAuthJwtModel {
+  /// Initializes Freshworks auth jwt class.
+  const FreshworksAuthJwt({
+    super.token,
+  });
+
+  /// Creates an instance from JSON.
+  factory FreshworksAuthJwt.fromJson(Map<String, dynamic> json) =>
+      FreshworksAuthJwt(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FreshworksAuthJwt copyWith({
+    String? token,
+  }) =>
+      FreshworksAuthJwt(
+        token: token ?? this.token,
+      );
+}
+/// Freshworks user jwt model class.
+abstract class FreshworksUserJwtModel {
+  /// Initializes Freshworks user jwt model class .
+  const FreshworksUserJwtModel({
+    this.token,
+  });
+
+  /// Freshchat user JWT token.
+  final String? token;
+}
+
+/// Freshworks user jwt class.
+class FreshworksUserJwt extends FreshworksUserJwtModel {
+  /// Initializes Freshworks user jwt class.
+  const FreshworksUserJwt({
+    super.token,
+  });
+
+  /// Creates an instance from JSON.
+  factory FreshworksUserJwt.fromJson(Map<String, dynamic> json) =>
+      FreshworksUserJwt(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FreshworksUserJwt copyWith({
+    String? token,
+  }) =>
+      FreshworksUserJwt(
+        token: token ?? this.token,
+      );
+}
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -388,48 +468,6 @@ class Onfido extends OnfidoModel {
         token: token ?? this.token,
       );
 }
-
-/// Pandats model class.
-abstract class PandatsModel {
-  /// Initializes Pandats model class .
-  const PandatsModel({
-    this.token,
-  });
-
-  /// Deriv EZ SSO token
-  final String? token;
-}
-
-/// Pandats class.
-class Pandats extends PandatsModel {
-  /// Initializes Pandats class.
-  const Pandats({
-    super.token,
-  });
-
-  /// Creates an instance from JSON.
-  factory Pandats.fromJson(Map<String, dynamic> json) => Pandats(
-        token: json['token'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['token'] = token;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  Pandats copyWith({
-    String? token,
-  }) =>
-      Pandats(
-        token: token ?? this.token,
-      );
-}
-
 /// Sendbird model class.
 abstract class SendbirdModel {
   /// Initializes Sendbird model class .
@@ -486,55 +524,5 @@ class Sendbird extends SendbirdModel {
         appId: appId ?? this.appId,
         expiryTime: expiryTime ?? this.expiryTime,
         token: token ?? this.token,
-      );
-}
-
-/// Wyre model class.
-abstract class WyreModel {
-  /// Initializes Wyre model class .
-  const WyreModel({
-    this.token,
-    this.url,
-  });
-
-  /// Wyre reservation id token
-  final String? token;
-
-  /// Wyre reservation URL
-  final String? url;
-}
-
-/// Wyre class.
-class Wyre extends WyreModel {
-  /// Initializes Wyre class.
-  const Wyre({
-    super.token,
-    super.url,
-  });
-
-  /// Creates an instance from JSON.
-  factory Wyre.fromJson(Map<String, dynamic> json) => Wyre(
-        token: json['token'],
-        url: json['url'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['token'] = token;
-    resultMap['url'] = url;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  Wyre copyWith({
-    String? token,
-    String? url,
-  }) =>
-      Wyre(
-        token: token ?? this.token,
-        url: url ?? this.url,
       );
 }
