@@ -17,6 +17,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/pass
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_options_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/crypto_config_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/user/identity_verification_document_add_response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 
@@ -390,6 +391,8 @@ class MockAPI extends BaseAPI {
         return passkeysRegisterResponse;
       case 'passkeys_list':
         return passkeysListResponse;
+      case 'identity_verification_document_add':
+        return identityVerificationDocumentAddResponse;
 
       default:
         throw APIManagerException(
