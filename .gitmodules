@@ -2,3 +2,6 @@
 	path = bom-core
 	url = https://github.com/regentmarkets/bom-core.git
 	branch = master
+[submodule "bom-core"]
+	path = bom-core
+	url = https://github.com/regentmarkets/bom-core.git

@@ -13,6 +13,7 @@ const String p2pAdvertiserAdvertsResponse = '''
           "id": "1",
           "name": "John Doe",
           "completed_orders_count" : 1,
+          "is_schedule_available": true,
           "rating_count" : 0,
           "is_online": true
         },
@@ -60,6 +61,7 @@ const String p2pAdvertiserAdvertsResponse = '''
           "id": "1",
           "name": "John Doe",
           "completed_orders_count" : 1,
+          "is_schedule_available": true,
           "rating_count" : 0,
           "is_online": true
         },
