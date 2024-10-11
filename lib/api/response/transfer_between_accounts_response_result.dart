@@ -160,7 +160,6 @@ final Map<String, AccountTypeEnum> accountTypeEnumMapper =
   "ctrader": AccountTypeEnum.ctrader,
   "doughflow": AccountTypeEnum.doughflow,
   "dxtrade": AccountTypeEnum.dxtrade,
-  "derivez": AccountTypeEnum.derivez,
   "mt5": AccountTypeEnum.mt5,
   "p2p": AccountTypeEnum.p2p,
   "paymentagent": AccountTypeEnum.paymentagent,
@@ -185,9 +184,6 @@ enum AccountTypeEnum {
 
   /// dxtrade.
   dxtrade,
-
-  /// derivez.
-  derivez,
 
   /// mt5.
   mt5,
@@ -228,6 +224,65 @@ enum MarketTypeEnum {
   synthetic,
 }
 
+/// ProductEnum mapper.
+final Map<String, ProductEnum> productEnumMapper = <String, ProductEnum>{
+  "synthetic": ProductEnum.synthetic,
+  "financial": ProductEnum.financial,
+  "swap_free": ProductEnum.swapFree,
+  "zero_spread": ProductEnum.zeroSpread,
+  "standard": ProductEnum.standard,
+  "stp": ProductEnum.stp,
+};
+
+/// Product Enum.
+enum ProductEnum {
+  /// synthetic.
+  synthetic,
+
+  /// financial.
+  financial,
+
+  /// swap_free.
+  swapFree,
+
+  /// zero_spread.
+  zeroSpread,
+
+  /// standard.
+  standard,
+
+  /// stp.
+  stp,
+}
+
+/// SubAccountTypeEnum mapper.
+final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
+    <String, SubAccountTypeEnum>{
+  "financial": SubAccountTypeEnum.financial,
+  "financial_stp": SubAccountTypeEnum.financialStp,
+  "standard": SubAccountTypeEnum.standard,
+  "swap_free": SubAccountTypeEnum.swapFree,
+  "zero_spread": SubAccountTypeEnum.zeroSpread,
+};
+
+/// SubAccountType Enum.
+enum SubAccountTypeEnum {
+  /// financial.
+  financial,
+
+  /// financial_stp.
+  financialStp,
+
+  /// standard.
+  standard,
+
+  /// swap_free.
+  swapFree,
+
+  /// zero_spread.
+  zeroSpread,
+}
+
 /// TransfersEnum mapper.
 final Map<String, TransfersEnum> transfersEnumMapper = <String, TransfersEnum>{
   "all": TransfersEnum.all,
@@ -250,7 +305,6 @@ enum TransfersEnum {
   /// withdrawal.
   withdrawal,
 }
-
 /// Accounts item model class.
 abstract class AccountsItemModel {
   /// Initializes Accounts item model class .
@@ -260,11 +314,13 @@ abstract class AccountsItemModel {
     this.balance,
     this.currency,
     this.demoAccount,
-    this.derivezGroup,
+    this.landingCompanyShort,
     this.loginid,
     this.marketType,
     this.mt5Group,
+    this.product,
     this.status,
+    this.subAccountType,
     this.transfers,
   });
 
@@ -283,8 +339,8 @@ abstract class AccountsItemModel {
   /// 0 for real accounts; `true` for virtual/demo accounts.
   final bool? demoAccount;
 
-  /// The group of derivez account.
-  final String? derivezGroup;
+  /// Landing company shortcode of the Trading account.
+  final String? landingCompanyShort;
 
   /// Account identifier used for system transfers.
   final String? loginid;
@@ -295,8 +351,14 @@ abstract class AccountsItemModel {
   /// The group of mt5 account.
   final String? mt5Group;
 
+  /// Product name that Deriv offer
+  final ProductEnum? product;
+
   /// The status of account.
   final String? status;
+
+  /// Sub account type
+  final SubAccountTypeEnum? subAccountType;
 
   /// Type of transfers allowed between the account and the currently authorized account.
   final TransfersEnum? transfers;
@@ -311,11 +373,13 @@ class AccountsItem extends AccountsItemModel {
     super.balance,
     super.currency,
     super.demoAccount,
-    super.derivezGroup,
+    super.landingCompanyShort,
     super.loginid,
     super.marketType,
     super.mt5Group,
+    super.product,
     super.status,
+    super.subAccountType,
     super.transfers,
   });
 
@@ -330,13 +394,18 @@ class AccountsItem extends AccountsItemModel {
         balance: json['balance'],
         currency: json['currency'],
         demoAccount: getBool(json['demo_account']),
-        derivezGroup: json['derivez_group'],
+        landingCompanyShort: json['landing_company_short'],
         loginid: json['loginid'],
         marketType: json['market_type'] == null
             ? null
             : marketTypeEnumMapper[json['market_type']],
         mt5Group: json['mt5_group'],
+        product:
+            json['product'] == null ? null : productEnumMapper[json['product']],
         status: json['status'],
+        subAccountType: json['sub_account_type'] == null
+            ? null
+            : subAccountTypeEnumMapper[json['sub_account_type']],
         transfers: json['transfers'] == null
             ? null
             : transfersEnumMapper[json['transfers']],
@@ -357,14 +426,22 @@ class AccountsItem extends AccountsItemModel {
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['demo_account'] = demoAccount;
-    resultMap['derivez_group'] = derivezGroup;
+    resultMap['landing_company_short'] = landingCompanyShort;
     resultMap['loginid'] = loginid;
     resultMap['market_type'] = marketTypeEnumMapper.entries
         .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
             entry.value == marketType)
         .key;
     resultMap['mt5_group'] = mt5Group;
+    resultMap['product'] = productEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, ProductEnum> entry) => entry.value == product)
+        .key;
     resultMap['status'] = status;
+    resultMap['sub_account_type'] = subAccountTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, SubAccountTypeEnum> entry) =>
+            entry.value == subAccountType)
+        .key;
     resultMap['transfers'] = transfersEnumMapper.entries
         .firstWhere(
             (MapEntry<String, TransfersEnum> entry) => entry.value == transfers)
@@ -380,11 +457,13 @@ class AccountsItem extends AccountsItemModel {
     String? balance,
     String? currency,
     bool? demoAccount,
-    String? derivezGroup,
+    String? landingCompanyShort,
     String? loginid,
     MarketTypeEnum? marketType,
     String? mt5Group,
+    ProductEnum? product,
     String? status,
+    SubAccountTypeEnum? subAccountType,
     TransfersEnum? transfers,
   }) =>
       AccountsItem(
@@ -393,11 +472,13 @@ class AccountsItem extends AccountsItemModel {
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         demoAccount: demoAccount ?? this.demoAccount,
-        derivezGroup: derivezGroup ?? this.derivezGroup,
+        landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         loginid: loginid ?? this.loginid,
         marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
+        product: product ?? this.product,
         status: status ?? this.status,
+        subAccountType: subAccountType ?? this.subAccountType,
         transfers: transfers ?? this.transfers,
       );
 }
