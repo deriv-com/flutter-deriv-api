@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
@@ -280,8 +281,6 @@ class IsolateWrappingAPI extends BaseAPI {
     });
   }
 
-  static const Duration _disconnectTimeOut = Duration(seconds: 5);
-
   final ReceivePort _isolateIncomingPort = ReceivePort();
   SendPort? _isolateSendPort;
   int _eventId = 0;
@@ -290,14 +289,6 @@ class IsolateWrappingAPI extends BaseAPI {
 
   /// A flag to indicate if the connection is proxy aware.
   final bool proxyAwareConnection;
-
-  /// Represents the active websocket connection.
-  ///
-  /// This is used to send and receive data from the websocket server.
-  IOWebSocketChannel? _webSocketChannel;
-
-  /// Stream subscription to API data.
-  StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
 
   /// Call manager instance.
   CallManager? _callManager;
@@ -358,44 +349,30 @@ class IsolateWrappingAPI extends BaseAPI {
   }
 
   @override
-  Future<ForgetReceive> unsubscribe({required String subscriptionId}) =>
-      (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
-        subscriptionId: subscriptionId,
-      );
+  Future<ForgetReceive> unsubscribe({required String subscriptionId}) {
+    final event =
+        _UnSubEvent(subscriptionId: subscriptionId, eventId: _getEventId);
+    _isolateSendPort?.send(event);
+    return event.completer.future;
+  }
 
   @override
   Future<ForgetAllReceive> unsubscribeAll({
     required ForgetStreamType method,
-  }) =>
-      (_subscriptionManager ??= SubscriptionManager(this))
-          .unsubscribeAll(method: method);
+  }) {
+    final event = _UnSubAllEvent(streamType: method, eventId: _getEventId);
+    _isolateSendPort?.send(event);
+    return event.completer.future;
+  }
 
   @override
   Future<void> disconnect() async {
-    try {
-      await _webSocketListener?.cancel();
-
-      await _webSocketChannel?.sink.close().timeout(
-            _disconnectTimeOut,
-            onTimeout: () => throw TimeoutException('Could not close sink.'),
-          );
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
-      _logDebugInfo('disconnect error.', error: e);
-    } finally {
-      _webSocketListener = null;
-      _webSocketChannel = null;
-    }
-  }
-
-  void _logDebugInfo(String message, {Object? error}) {
-    if (enableDebug) {
-      dev.log('$runtimeType $key $message', error: error);
-    }
+    _isolateSendPort?.send(_DisconnectEvent(eventId: _getEventId));
   }
 }
 
 void _isolateTask(SendPort sendPort) {
+  print('##### Isolate spawned');
   final ReceivePort receivePort = ReceivePort();
 
   final BinaryAPI binaryAPI = BinaryAPI();
@@ -408,21 +385,37 @@ void _isolateTask(SendPort sendPort) {
       // Connect WS
     }
 
-    switch (message) {
-      case _AddToChannelEvent():
-        binaryAPI.addToChannel(message.request);
-        break;
-      case _CallEvent():
-        final response = await binaryAPI.call(request: message.request);
-        message.completer.complete(response);
-        break;
+    if (message is _IsolateEvent) {
+      switch (message) {
+        case _AddToChannelEvent():
+          binaryAPI.addToChannel(message.request);
+          break;
+        case _CallEvent():
+          final response = await binaryAPI.call(request: message.request);
+          message.completer.complete(response);
+          break;
 
-      case _SubEvent():
-        final stream = binaryAPI.subscribe(request: message.request);
-        stream?.listen((event) {
-          message.stream.add(event);
-        });
-        break;
+        case _SubEvent():
+          final stream = binaryAPI.subscribe(request: message.request);
+          stream?.listen((event) {
+            message.stream.add(event);
+          });
+          break;
+        case _UnSubEvent():
+          final response = await binaryAPI.unsubscribe(
+            subscriptionId: message.subscriptionId,
+          );
+          message.completer.complete(response);
+          break;
+        case _UnSubAllEvent():
+          final response =
+              await binaryAPI.unsubscribeAll(method: message.streamType);
+          message.completer.complete(response);
+          break;
+        case _DisconnectEvent():
+          await binaryAPI.disconnect();
+          break;
+      }
     }
   });
 }
@@ -464,13 +457,28 @@ class _CallEvent<T> extends _IsolateEvent {
 }
 
 class _SubEvent<T> extends _IsolateEvent {
-  _SubEvent({
-    required this.request,
-    required super.eventId,
-    required this.stream,
-  });
+  _SubEvent(
+      {required this.request, required super.eventId, required this.stream});
 
   final Request request;
 
   final BehaviorSubject<T> stream;
+}
+
+class _UnSubEvent extends _IsolateEvent {
+  _UnSubEvent({required this.subscriptionId, required super.eventId});
+
+  final String subscriptionId;
+  final Completer<ForgetReceive> completer = Completer<ForgetReceive>();
+}
+
+class _UnSubAllEvent extends _IsolateEvent {
+  _UnSubAllEvent({required this.streamType, required super.eventId});
+
+  final ForgetStreamType streamType;
+  final Completer<ForgetAllReceive> completer = Completer<ForgetAllReceive>();
+}
+
+class _DisconnectEvent extends _IsolateEvent {
+  _DisconnectEvent({required super.eventId});
 }

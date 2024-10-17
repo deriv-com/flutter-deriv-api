@@ -30,7 +30,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     APIInitializer().initialize(
       api: api ??
-          BinaryAPI(
+          IsolateWrappingAPI(
             key: _key,
             proxyAwareConnection: proxyAwareConnection,
             enableDebug: enableDebug,
@@ -141,7 +141,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       },
     );
 
-    if (_api is BinaryAPI) {
+    if (_api is IsolateWrappingAPI) {
       _setupConnectivityListener();
     }
   }
