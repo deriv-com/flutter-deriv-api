@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
@@ -257,4 +258,197 @@ class BinaryAPI extends BaseAPI {
       dev.log('$runtimeType $key $message', error: error);
     }
   }
+}
+
+/// This class is for handling Binary API connection and calling Binary APIs.
+class IsolateWrappingAPI extends BaseAPI {
+  /// Initializes [BinaryAPI] instance.
+  IsolateWrappingAPI({
+    String? key,
+    bool enableDebug = false,
+    this.proxyAwareConnection = false,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
+    Isolate.spawn(_isolateTask, _isolateIncomingPort.sendPort);
+
+    _isolateIncomingPort.listen((dynamic message) {
+      if (message is SendPort) {
+        _isolateSendPort = message;
+      }
+
+      // Check for other messages coming out from Isolate.
+    });
+  }
+
+  static const Duration _disconnectTimeOut = Duration(seconds: 5);
+  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+
+  final ReceivePort _isolateIncomingPort = ReceivePort();
+  SendPort? _isolateSendPort;
+  int _eventId = 0;
+
+  int get _getEventId => _eventId++;
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
+
+  /// Represents the active websocket connection.
+  ///
+  /// This is used to send and receive data from the websocket server.
+  IOWebSocketChannel? _webSocketChannel;
+
+  /// Stream subscription to API data.
+  StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
+
+  /// Call manager instance.
+  CallManager? _callManager;
+
+  /// Subscription manager instance.
+  SubscriptionManager? _subscriptionManager;
+
+  /// Gets API call history.
+  CallHistory? get callHistory => _callManager?.callHistory;
+
+  /// Gets API subscription history.
+  CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
+
+  @override
+  Future<void> connect(
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onDone,
+    ConnectionCallback? onError,
+    bool printResponse = false,
+  }) async {
+    _isolateSendPort?.send(_WSConnectConfig(
+      connectionInformation: connectionInformation,
+      onOpen: onOpen,
+      onError: onError,
+      onClosed: onDone,
+      printResponse: printResponse,
+    ));
+  }
+
+  @override
+  void addToChannel(Map<String, dynamic> request) => _isolateSendPort
+      ?.send(_AddToChannelEvent(request: request, eventId: _getEventId));
+
+  @override
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) async {
+    final event = _CallEvent<T>(request: request, eventId: _getEventId);
+    _isolateSendPort?.send(event);
+    return event.completer.future;
+  }
+
+  @override
+  Stream<Response>? subscribe({
+    required Request request,
+    int cacheSize = 0,
+    RequestCompareFunction? comparePredicate,
+  }) =>
+      (_subscriptionManager ??= SubscriptionManager(this))(
+        request: request,
+        cacheSize: cacheSize,
+        comparePredicate: comparePredicate,
+      );
+
+  @override
+  Future<ForgetReceive> unsubscribe({required String subscriptionId}) =>
+      (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
+        subscriptionId: subscriptionId,
+      );
+
+  @override
+  Future<ForgetAllReceive> unsubscribeAll({
+    required ForgetStreamType method,
+  }) =>
+      (_subscriptionManager ??= SubscriptionManager(this))
+          .unsubscribeAll(method: method);
+
+  @override
+  Future<void> disconnect() async {
+    try {
+      await _webSocketListener?.cancel();
+
+      await _webSocketChannel?.sink.close().timeout(
+            _disconnectTimeOut,
+            onTimeout: () => throw TimeoutException('Could not close sink.'),
+          );
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      _logDebugInfo('disconnect error.', error: e);
+    } finally {
+      _webSocketListener = null;
+      _webSocketChannel = null;
+    }
+  }
+
+  void _logDebugInfo(String message, {Object? error}) {
+    if (enableDebug) {
+      dev.log('$runtimeType $key $message', error: error);
+    }
+  }
+}
+
+void _isolateTask(SendPort sendPort) {
+  final ReceivePort receivePort = ReceivePort();
+
+  final BinaryAPI binaryAPI = BinaryAPI();
+
+  sendPort.send(receivePort.sendPort);
+
+  receivePort.listen((dynamic message) async {
+    if (message is _WSConnectConfig) {
+      await binaryAPI.connect(message.connectionInformation);
+      // Connect WS
+    }
+
+    switch (message) {
+      case _AddToChannelEvent():
+        binaryAPI.addToChannel(message.request);
+        break;
+      case _CallEvent():
+        final response = await binaryAPI.call(request: message.request);
+        message.completer.complete(response);
+        break;
+    }
+  });
+}
+
+class _WSConnectConfig {
+  _WSConnectConfig({
+    this.onOpen,
+    this.onError,
+    this.onClosed,
+    this.connectionInformation,
+    this.printResponse = false,
+  });
+
+  final ConnectionInformation? connectionInformation;
+
+  final ConnectionCallback? onOpen;
+  final ConnectionCallback? onError;
+  final ConnectionCallback? onClosed;
+  final bool printResponse;
+}
+
+sealed class _IsolateEvent {
+  _IsolateEvent({required this.eventId});
+
+  final int eventId;
+}
+
+class _AddToChannelEvent extends _IsolateEvent {
+  _AddToChannelEvent({required this.request, required super.eventId});
+
+  final Map<String, dynamic> request;
+}
+
+class _CallEvent<T> extends _IsolateEvent {
+  _CallEvent({required this.request, required super.eventId});
+
+  final Request request;
+  final Completer<T> completer = Completer<T>();
 }
