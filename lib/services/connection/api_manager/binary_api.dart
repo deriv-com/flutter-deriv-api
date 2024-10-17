@@ -6,6 +6,7 @@ import 'dart:isolate';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -280,7 +281,6 @@ class IsolateWrappingAPI extends BaseAPI {
   }
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
 
   final ReceivePort _isolateIncomingPort = ReceivePort();
   SendPort? _isolateSendPort;
@@ -347,12 +347,15 @@ class IsolateWrappingAPI extends BaseAPI {
     required Request request,
     int cacheSize = 0,
     RequestCompareFunction? comparePredicate,
-  }) =>
-      (_subscriptionManager ??= SubscriptionManager(this))(
-        request: request,
-        cacheSize: cacheSize,
-        comparePredicate: comparePredicate,
-      );
+  }) {
+    final BehaviorSubject<Response> stream = BehaviorSubject<Response>();
+    _isolateSendPort?.send(_SubEvent<Response>(
+      request: request,
+      eventId: _getEventId,
+      stream: stream,
+    ));
+    return stream;
+  }
 
   @override
   Future<ForgetReceive> unsubscribe({required String subscriptionId}) =>
@@ -413,6 +416,13 @@ void _isolateTask(SendPort sendPort) {
         final response = await binaryAPI.call(request: message.request);
         message.completer.complete(response);
         break;
+
+      case _SubEvent():
+        final stream = binaryAPI.subscribe(request: message.request);
+        stream?.listen((event) {
+          message.stream.add(event);
+        });
+        break;
     }
   });
 }
@@ -451,4 +461,16 @@ class _CallEvent<T> extends _IsolateEvent {
 
   final Request request;
   final Completer<T> completer = Completer<T>();
+}
+
+class _SubEvent<T> extends _IsolateEvent {
+  _SubEvent({
+    required this.request,
+    required super.eventId,
+    required this.stream,
+  });
+
+  final Request request;
+
+  final BehaviorSubject<T> stream;
 }
