@@ -276,8 +276,9 @@ class IsolateWrappingAPI extends BaseAPI {
     Isolate.spawn<IsolateConfig>(
       _isolateTask,
       IsolateConfig(
-          sendPort: _isolateIncomingPort.sendPort,
-          rootIsolateToken: ServicesBinding?.rootIsolateToken),
+        sendPort: _isolateIncomingPort.sendPort,
+        rootIsolateToken: ServicesBinding.rootIsolateToken,
+      ),
     );
 
     _isolateIncomingPort.listen((dynamic message) {
@@ -292,20 +293,35 @@ class IsolateWrappingAPI extends BaseAPI {
       if (message is ConnectionEventReply) {
         switch (message.callback) {
           case ConnectionCallbacks.onOpen:
+            print('##### WS OnOpen');
             _onOpen?.call(message.key);
             break;
           case ConnectionCallbacks.onDone:
+            print('##### WS OnDone');
             _onDone?.call(message.key);
             break;
           case ConnectionCallbacks.onError:
+            print('##### WS OnError');
             _onError?.call(message.key);
             break;
+        }
+      }
+
+      if (message is IsolateResponse) {
+        print('##### On Message $message');
+        final Completer<dynamic>? completer = _pendingEvents[message.eventId];
+        if (completer != null) {
+          completer.complete(message.response);
+          _pendingEvents.remove(message.eventId);
         }
       }
 
       // Check for other messages coming out from Isolate.
     });
   }
+
+  final Map<int, Completer<dynamic>> _pendingEvents =
+      <int, Completer<dynamic>>{};
 
   late final Completer<void> _canStartCompleter;
 
@@ -352,6 +368,15 @@ class IsolateWrappingAPI extends BaseAPI {
     _onError = onError;
   }
 
+  Future<T> _callEvent<T>(_IsolateEvent event) {
+    final Completer<T> responseCompleter = Completer<T>();
+    _pendingEvents[event.eventId] = responseCompleter;
+
+    _isolateSendPort?.send(event);
+
+    return responseCompleter.future;
+  }
+
   @override
   void addToChannel(Map<String, dynamic> request) => _isolateSendPort
       ?.send(_AddToChannelEvent(request: request, eventId: _getEventId));
@@ -362,8 +387,7 @@ class IsolateWrappingAPI extends BaseAPI {
     List<String> nullableKeys = const <String>[],
   }) async {
     final event = _CallEvent<T>(request: request, eventId: _getEventId);
-    _isolateSendPort?.send(event);
-    return event.completer.future;
+    return _callEvent(event);
   }
 
   @override
@@ -385,8 +409,7 @@ class IsolateWrappingAPI extends BaseAPI {
   Future<ForgetReceive> unsubscribe({required String subscriptionId}) {
     final event =
         _UnSubEvent(subscriptionId: subscriptionId, eventId: _getEventId);
-    _isolateSendPort?.send(event);
-    return event.completer.future;
+    return _callEvent(event);
   }
 
   @override
@@ -394,8 +417,7 @@ class IsolateWrappingAPI extends BaseAPI {
     required ForgetStreamType method,
   }) {
     final event = _UnSubAllEvent(streamType: method, eventId: _getEventId);
-    _isolateSendPort?.send(event);
-    return event.completer.future;
+    return _callEvent(event);
   }
 
   @override
@@ -445,7 +467,9 @@ void _isolateTask(IsolateConfig isolateConfig) {
           break;
         case _CallEvent():
           final response = await binaryAPI.call(request: message.request);
-          message.completer.complete(response);
+          sendPort.send(
+            IsolateResponse(response: response, eventId: message.eventId),
+          );
           break;
 
         case _SubEvent():
@@ -458,15 +482,19 @@ void _isolateTask(IsolateConfig isolateConfig) {
           final response = await binaryAPI.unsubscribe(
             subscriptionId: message.subscriptionId,
           );
-          message.completer.complete(response);
+          sendPort.send(
+            IsolateResponse(response: response, eventId: message.eventId),
+          );
           break;
         case _UnSubAllEvent():
           final response =
               await binaryAPI.unsubscribeAll(method: message.streamType);
-          message.completer.complete(response);
+          sendPort.send(
+              IsolateResponse(response: response, eventId: message.eventId));
           break;
         case _DisconnectEvent():
-          await binaryAPI.disconnect();
+          final response = await binaryAPI.disconnect();
+
           break;
       }
     }
@@ -500,12 +528,14 @@ class _CallEvent<T> extends _IsolateEvent {
   _CallEvent({required this.request, required super.eventId});
 
   final Request request;
-  final Completer<T> completer = Completer<T>();
 }
 
 class _SubEvent<T> extends _IsolateEvent {
-  _SubEvent(
-      {required this.request, required super.eventId, required this.stream});
+  _SubEvent({
+    required this.request,
+    required super.eventId,
+    required this.stream,
+  });
 
   final Request request;
 
@@ -516,14 +546,12 @@ class _UnSubEvent extends _IsolateEvent {
   _UnSubEvent({required this.subscriptionId, required super.eventId});
 
   final String subscriptionId;
-  final Completer<ForgetReceive> completer = Completer<ForgetReceive>();
 }
 
 class _UnSubAllEvent extends _IsolateEvent {
   _UnSubAllEvent({required this.streamType, required super.eventId});
 
   final ForgetStreamType streamType;
-  final Completer<ForgetAllReceive> completer = Completer<ForgetAllReceive>();
 }
 
 class _DisconnectEvent extends _IsolateEvent {
@@ -541,4 +569,14 @@ class ConnectionEventReply {
 
   final String key;
   final ConnectionCallbacks callback;
+}
+
+class IsolateResponse<T> {
+  IsolateResponse({required this.response, required this.eventId});
+
+  final T response;
+  final int eventId;
+
+  @override
+  String toString() => 'ResponseEvent: [$eventId]: $response';
 }
