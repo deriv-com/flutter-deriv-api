@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
@@ -270,16 +271,43 @@ class IsolateWrappingAPI extends BaseAPI {
     bool enableDebug = false,
     this.proxyAwareConnection = false,
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
-    Isolate.spawn(_isolateTask, _isolateIncomingPort.sendPort);
+    _canStartCompleter = Completer<void>();
+
+    Isolate.spawn<IsolateConfig>(
+      _isolateTask,
+      IsolateConfig(
+          sendPort: _isolateIncomingPort.sendPort,
+          rootIsolateToken: ServicesBinding?.rootIsolateToken),
+    );
 
     _isolateIncomingPort.listen((dynamic message) {
       if (message is SendPort) {
         _isolateSendPort = message;
+        print('Isolate send port is ready ${DateTime.now()}');
+        if (!_canStartCompleter.isCompleted) {
+          _canStartCompleter.complete();
+        }
+      }
+
+      if (message is ConnectionEventReply) {
+        switch (message.callback) {
+          case ConnectionCallbacks.onOpen:
+            _onOpen?.call(message.key);
+            break;
+          case ConnectionCallbacks.onDone:
+            _onDone?.call(message.key);
+            break;
+          case ConnectionCallbacks.onError:
+            _onError?.call(message.key);
+            break;
+        }
       }
 
       // Check for other messages coming out from Isolate.
     });
   }
+
+  late final Completer<void> _canStartCompleter;
 
   final ReceivePort _isolateIncomingPort = ReceivePort();
   SendPort? _isolateSendPort;
@@ -302,6 +330,10 @@ class IsolateWrappingAPI extends BaseAPI {
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
+  ConnectionCallback? _onOpen;
+  ConnectionCallback? _onDone;
+  ConnectionCallback? _onError;
+
   @override
   Future<void> connect(
     ConnectionInformation? connectionInformation, {
@@ -310,13 +342,14 @@ class IsolateWrappingAPI extends BaseAPI {
     ConnectionCallback? onError,
     bool printResponse = false,
   }) async {
+    await _canStartCompleter.future;
+    print('Sending Connect event to Ioslate ${DateTime.now()}');
     _isolateSendPort?.send(_WSConnectConfig(
       connectionInformation: connectionInformation,
-      onOpen: onOpen,
-      onError: onError,
-      onClosed: onDone,
-      printResponse: printResponse,
     ));
+    _onOpen = onOpen;
+    _onDone = onDone;
+    _onError = onError;
   }
 
   @override
@@ -371,18 +404,38 @@ class IsolateWrappingAPI extends BaseAPI {
   }
 }
 
-void _isolateTask(SendPort sendPort) {
-  print('##### Isolate spawned');
+class IsolateConfig {
+  IsolateConfig({required this.sendPort, required this.rootIsolateToken});
+
+  final SendPort sendPort;
+  final ui.RootIsolateToken? rootIsolateToken;
+}
+
+void _isolateTask(IsolateConfig isolateConfig) {
+  if (isolateConfig.rootIsolateToken != null) {
+    ui.PlatformDispatcher.instance
+        .registerBackgroundIsolate(isolateConfig.rootIsolateToken!);
+    BackgroundIsolateBinaryMessenger.ensureInitialized(
+        isolateConfig.rootIsolateToken!);
+  }
+  final sendPort = isolateConfig.sendPort;
+
   final ReceivePort receivePort = ReceivePort();
 
   final BinaryAPI binaryAPI = BinaryAPI();
 
   sendPort.send(receivePort.sendPort);
-
-  receivePort.listen((dynamic message) async {
+  receivePort.listen((message) async {
     if (message is _WSConnectConfig) {
-      await binaryAPI.connect(message.connectionInformation);
-      // Connect WS
+      await binaryAPI.connect(
+        message.connectionInformation,
+        onOpen: (key) => sendPort.send(ConnectionEventReply(
+            key: key, callback: ConnectionCallbacks.onOpen)),
+        onDone: (key) => sendPort.send(ConnectionEventReply(
+            key: key, callback: ConnectionCallbacks.onDone)),
+        onError: (key) => sendPort.send(ConnectionEventReply(
+            key: key, callback: ConnectionCallbacks.onError)),
+      );
     }
 
     if (message is _IsolateEvent) {
@@ -422,18 +475,12 @@ void _isolateTask(SendPort sendPort) {
 
 class _WSConnectConfig {
   _WSConnectConfig({
-    this.onOpen,
-    this.onError,
-    this.onClosed,
     this.connectionInformation,
     this.printResponse = false,
   });
 
   final ConnectionInformation? connectionInformation;
 
-  final ConnectionCallback? onOpen;
-  final ConnectionCallback? onError;
-  final ConnectionCallback? onClosed;
   final bool printResponse;
 }
 
@@ -481,4 +528,17 @@ class _UnSubAllEvent extends _IsolateEvent {
 
 class _DisconnectEvent extends _IsolateEvent {
   _DisconnectEvent({required super.eventId});
+}
+
+enum ConnectionCallbacks {
+  onOpen,
+  onDone,
+  onError,
+}
+
+class ConnectionEventReply {
+  ConnectionEventReply({required this.key, required this.callback});
+
+  final String key;
+  final ConnectionCallbacks callback;
 }
