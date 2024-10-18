@@ -285,7 +285,6 @@ class IsolateWrappingAPI extends BaseAPI {
     _isolateIncomingPort.listen((dynamic message) {
       if (message is SendPort) {
         _isolateSendPort = message;
-        print('Isolate send port is ready ${DateTime.now()}');
         if (!_canStartCompleter.isCompleted) {
           _canStartCompleter.complete();
         }
@@ -294,26 +293,26 @@ class IsolateWrappingAPI extends BaseAPI {
       if (message is ConnectionEventReply) {
         switch (message.callback) {
           case ConnectionCallbacks.onOpen:
-            print('##### WS OnOpen');
             _onOpen?.call(message.key);
             break;
           case ConnectionCallbacks.onDone:
-            print('##### WS OnDone');
             _onDone?.call(message.key);
             break;
           case ConnectionCallbacks.onError:
-            print('##### WS OnError');
             _onError?.call(message.key);
             break;
         }
       }
 
       if (message is IsolateResponse) {
-        print('##### On Message $message');
-        final Completer<dynamic>? completer = _pendingEvents[message.eventId];
-        if (completer != null) {
-          completer.complete(message.response);
-          _pendingEvents.remove(message.eventId);
+        if (message.isSubscription) {
+          _pendingSubscriptions[message.eventId]?.add(message.response);
+        } else {
+          final Completer<dynamic>? completer = _pendingEvents[message.eventId];
+          if (completer != null) {
+            completer.complete(message.response);
+            _pendingEvents.remove(message.eventId);
+          }
         }
       }
 
@@ -323,6 +322,9 @@ class IsolateWrappingAPI extends BaseAPI {
 
   final Map<int, Completer<dynamic>> _pendingEvents =
       <int, Completer<dynamic>>{};
+
+  final Map<int, StreamController<dynamic>> _pendingSubscriptions =
+      <int, StreamController<dynamic>>{};
 
   late final Completer<void> _canStartCompleter;
 
@@ -397,12 +399,16 @@ class IsolateWrappingAPI extends BaseAPI {
     int cacheSize = 0,
     RequestCompareFunction? comparePredicate,
   }) {
-    final BehaviorSubject<Response> stream = BehaviorSubject<Response>();
-    _isolateSendPort?.send(_SubEvent<Response>(
+    final StreamController<Response> responseStream =
+        StreamController.broadcast();
+    final subEvent = _SubEvent<Response>(
       request: request,
       eventId: _getEventId,
-    ));
-    return stream;
+    );
+    _pendingSubscriptions[subEvent.eventId] = responseStream;
+
+    _isolateSendPort?.send(subEvent);
+    return responseStream.stream;
   }
 
   @override
@@ -480,9 +486,15 @@ void _isolateTask(IsolateConfig isolateConfig) {
 
         case _SubEvent():
           final stream = binaryAPI.subscribe(request: message.request);
-          // stream?.listen((event) {
-          //   message.stream.add(event);
-          // });
+          stream?.listen((event) {
+            sendPort.send(
+              IsolateResponse(
+                response: event,
+                eventId: message.eventId,
+                isSubscription: true,
+              ),
+            );
+          });
           break;
         case _UnSubEvent():
           final response = await binaryAPI.unsubscribe(
@@ -519,9 +531,10 @@ class _WSConnectConfig {
 }
 
 sealed class _IsolateEvent {
-  _IsolateEvent({required this.eventId});
+  _IsolateEvent({required this.eventId, this.isSubscription = false});
 
   final int eventId;
+  final bool isSubscription;
 }
 
 class _AddToChannelEvent extends _IsolateEvent {
@@ -540,7 +553,7 @@ class _SubEvent<T> extends _IsolateEvent {
   _SubEvent({
     required this.request,
     required super.eventId,
-  });
+  }) : super(isSubscription: true);
 
   final Request request;
 }
@@ -575,10 +588,15 @@ class ConnectionEventReply {
 }
 
 class IsolateResponse<T> {
-  IsolateResponse({required this.response, required this.eventId});
+  IsolateResponse({
+    required this.response,
+    required this.eventId,
+    this.isSubscription = false,
+  });
 
   final T response;
   final int eventId;
+  final bool isSubscription;
 
   @override
   String toString() => 'ResponseEvent: [$eventId]: $response';
