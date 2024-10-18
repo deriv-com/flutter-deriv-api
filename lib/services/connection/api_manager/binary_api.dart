@@ -278,6 +278,7 @@ class IsolateWrappingAPI extends BaseAPI {
       IsolateConfig(
         sendPort: _isolateIncomingPort.sendPort,
         rootIsolateToken: ServicesBinding.rootIsolateToken,
+        apiInstanceKey: super.key,
       ),
     );
 
@@ -400,7 +401,6 @@ class IsolateWrappingAPI extends BaseAPI {
     _isolateSendPort?.send(_SubEvent<Response>(
       request: request,
       eventId: _getEventId,
-      stream: stream,
     ));
     return stream;
   }
@@ -427,10 +427,16 @@ class IsolateWrappingAPI extends BaseAPI {
 }
 
 class IsolateConfig {
-  IsolateConfig({required this.sendPort, required this.rootIsolateToken});
+  IsolateConfig({
+    required this.sendPort,
+    required this.rootIsolateToken,
+    required this.apiInstanceKey,
+  });
 
   final SendPort sendPort;
   final ui.RootIsolateToken? rootIsolateToken;
+
+  final String apiInstanceKey;
 }
 
 void _isolateTask(IsolateConfig isolateConfig) {
@@ -444,7 +450,7 @@ void _isolateTask(IsolateConfig isolateConfig) {
 
   final ReceivePort receivePort = ReceivePort();
 
-  final BinaryAPI binaryAPI = BinaryAPI();
+  final BinaryAPI binaryAPI = BinaryAPI(key: isolateConfig.apiInstanceKey);
 
   sendPort.send(receivePort.sendPort);
   receivePort.listen((message) async {
@@ -474,9 +480,9 @@ void _isolateTask(IsolateConfig isolateConfig) {
 
         case _SubEvent():
           final stream = binaryAPI.subscribe(request: message.request);
-          stream?.listen((event) {
-            message.stream.add(event);
-          });
+          // stream?.listen((event) {
+          //   message.stream.add(event);
+          // });
           break;
         case _UnSubEvent():
           final response = await binaryAPI.unsubscribe(
@@ -534,12 +540,9 @@ class _SubEvent<T> extends _IsolateEvent {
   _SubEvent({
     required this.request,
     required super.eventId,
-    required this.stream,
   });
 
   final Request request;
-
-  final BehaviorSubject<T> stream;
 }
 
 class _UnSubEvent extends _IsolateEvent {
