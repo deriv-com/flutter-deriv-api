@@ -144,6 +144,21 @@ void _handleCustomEvent(
       });
 
     case CustomEvent.proposalOpenContract:
+    case CustomEvent.authorize:
+      final AuthorizeReceive response = await api.call(
+        request: message.request,
+      );
+
+      checkException(
+        response: response,
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+            BaseAPIException(baseExceptionModel: baseExceptionModel),
+      );
+
+      sendPort.send(message.copyWith(data: response));
+    case CustomEvent.landingCompany:
+    case CustomEvent.statesList:
+    case CustomEvent.residenceList:
   }
 }
 

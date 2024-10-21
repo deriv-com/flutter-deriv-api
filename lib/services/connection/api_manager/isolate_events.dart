@@ -120,7 +120,11 @@ class CustomIsolateEvent<T> extends _IsolateEvent {
 
 enum CustomEvent {
   ping,
+  authorize,
+  landingCompany,
   activeSymbols,
+  statesList,
+  residenceList,
   assetIndex,
   balance,
   buy,

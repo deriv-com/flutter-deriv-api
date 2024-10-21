@@ -11,6 +11,7 @@ import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
 import 'package:flutter_deriv_api/api/manually/tick.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
 import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
@@ -320,6 +321,8 @@ class IsolateWrappingAPI extends BaseAPI {
         if (message.isSubscription) {
           _pendingSubscriptions[message.eventId]?.add(message.response);
         } else {
+          print(
+              '#### Retrieved response ${(message.response as Response).msgType}');
           final Completer<dynamic>? completer = _pendingEvents[message.eventId];
           if (completer != null) {
             completer.complete(message.response);
@@ -362,6 +365,13 @@ class IsolateWrappingAPI extends BaseAPI {
           case CustomEvent.ticks:
             _pendingSubscriptions[message.eventId]?.add(message.data);
           case CustomEvent.proposalOpenContract:
+          case CustomEvent.authorize:
+            final AuthorizeReceive authorizeReceive =
+                message.data as AuthorizeReceive;
+            _pendingEvents[message.eventId]?.complete(authorizeReceive);
+          case CustomEvent.landingCompany:
+          case CustomEvent.statesList:
+          case CustomEvent.residenceList:
         }
       }
 
@@ -509,5 +519,15 @@ class IsolateWrappingAPI extends BaseAPI {
   @override
   Future<void> disconnect() async {
     _isolateSendPort?.send(_DisconnectEvent(eventId: _getEventId));
+  }
+
+  Future<AuthorizeReceive> authorize(AuthorizeRequest request) {
+    final event = CustomIsolateEvent<AuthorizeReceive>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.authorize,
+    );
+
+    return _callEvent(event);
   }
 }
