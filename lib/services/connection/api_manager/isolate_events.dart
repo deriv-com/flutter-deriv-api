@@ -82,3 +82,49 @@ class IsolateResponse<T> {
   @override
   String toString() => 'ResponseEvent: [$eventId]: $response';
 }
+
+/// To communicate event and get the response for custom events that in addition
+/// to get the BE JSON the deserialization of the JSON response to dart models
+/// also happens inside the isolate.
+abstract class CustomIsolateEvent<T> extends _IsolateEvent {
+  CustomIsolateEvent({
+    required super.eventId,
+    required this.event,
+    required this.request,
+    this.data,
+  });
+
+  final CustomEvent event;
+
+  final Request request;
+
+  final T? data;
+}
+
+enum CustomEvent {
+  ping,
+  activeSymbols,
+  assetIndex,
+  balance,
+  buy,
+  accountList,
+  accountClosure,
+  cancel,
+  cashierPayment,
+  changeEmail,
+  changePassword,
+  confirmEmail,
+  contractUpdateHistory,
+  contractUpdate,
+  contractsFor,
+  getAccountStatus,
+  getAccountTypes,
+  getAvailableAccounts,
+  getFinancialAssessment,
+  getLimits,
+  getSelfExclusion,
+  getSettings,
+  identityVerification,
+  jTokenCreate,
+  kycAuthStatus,
+}
