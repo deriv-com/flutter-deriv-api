@@ -97,18 +97,8 @@ void _handleCustomEvent(
   switch (message.event) {
     case CustomEvent.ping:
     case CustomEvent.activeSymbols:
-      final ActiveSymbolsReceive response = await api.call(
-        request: message.request,
-      );
-
-      checkException(
-        response: response,
-        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-            BaseAPIException(baseExceptionModel: baseExceptionModel),
-      );
-
-      final asResponse = ActiveSymbolsResponse.fromJson(response.activeSymbols);
-      sendPort.send(message.copyWith(data: asResponse));
+      await _fetchActiveSymbols(api, message, sendPort);
+      break;
 
     case CustomEvent.assetIndex:
     case CustomEvent.balance:
@@ -133,5 +123,45 @@ void _handleCustomEvent(
     case CustomEvent.identityVerification:
     case CustomEvent.jTokenCreate:
     case CustomEvent.kycAuthStatus:
+    case CustomEvent.ticks:
+      api.subscribe(request: message.request)!.map<TicksResponse?>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
+          );
+
+          return response is TicksReceive
+              ? TicksResponse.fromJson(
+                  response.tick,
+                  response.subscription,
+                )
+              : null;
+        },
+      ).listen((TicksResponse? tick) {
+        sendPort.send(message.copyWith(data: tick, isSubscription: true));
+      });
+
+    case CustomEvent.proposalOpenContract:
   }
+}
+
+Future<void> _fetchActiveSymbols(
+  BinaryAPI api,
+  CustomIsolateEvent<dynamic> message,
+  SendPort sendPort,
+) async {
+  final ActiveSymbolsReceive response = await api.call(
+    request: message.request,
+  );
+
+  checkException(
+    response: response,
+    exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+        BaseAPIException(baseExceptionModel: baseExceptionModel),
+  );
+
+  final asResponse = ActiveSymbolsResponse.fromJson(response.activeSymbols);
+  sendPort.send(message.copyWith(data: asResponse));
 }

@@ -92,11 +92,14 @@ class CustomIsolateEvent<T> extends _IsolateEvent {
     required this.event,
     required this.request,
     this.data,
+    this.isSubscription = false,
   });
 
   final CustomEvent event;
 
   final Request request;
+
+  final bool isSubscription;
 
   final T? data;
 
@@ -104,12 +107,14 @@ class CustomIsolateEvent<T> extends _IsolateEvent {
     CustomEvent? event,
     Request? request,
     T? data,
+    bool? isSubscription,
   }) =>
       CustomIsolateEvent<T>(
         eventId: eventId,
         event: event ?? this.event,
         request: request ?? this.request,
         data: data ?? this.data,
+        isSubscription: isSubscription ?? this.isSubscription,
       );
 }
 
@@ -139,4 +144,6 @@ enum CustomEvent {
   identityVerification,
   jTokenCreate,
   kycAuthStatus,
+  ticks,
+  proposalOpenContract,
 }

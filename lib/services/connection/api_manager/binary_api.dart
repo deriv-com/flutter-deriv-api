@@ -8,10 +8,13 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/manually/tick.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
@@ -356,6 +359,9 @@ class IsolateWrappingAPI extends BaseAPI {
           case CustomEvent.identityVerification:
           case CustomEvent.jTokenCreate:
           case CustomEvent.kycAuthStatus:
+          case CustomEvent.ticks:
+            _pendingSubscriptions[message.eventId]?.add(message.data);
+          case CustomEvent.proposalOpenContract:
         }
       }
 
@@ -450,6 +456,21 @@ class IsolateWrappingAPI extends BaseAPI {
     );
 
     return _callEvent(event);
+  }
+
+  Stream<TicksResponse> subscribeTick(TicksRequest request) {
+    final event = CustomIsolateEvent<TicksResponse>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.ticks,
+    );
+
+    final StreamController<TicksResponse> responseStream =
+        StreamController.broadcast();
+    _pendingSubscriptions[event.eventId] = responseStream;
+
+    _isolateSendPort?.send(event);
+    return responseStream.stream;
   }
 
   @override
