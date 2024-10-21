@@ -86,7 +86,7 @@ class IsolateResponse<T> {
 /// To communicate event and get the response for custom events that in addition
 /// to get the BE JSON the deserialization of the JSON response to dart models
 /// also happens inside the isolate.
-abstract class CustomIsolateEvent<T> extends _IsolateEvent {
+class CustomIsolateEvent<T> extends _IsolateEvent {
   CustomIsolateEvent({
     required super.eventId,
     required this.event,
@@ -99,6 +99,18 @@ abstract class CustomIsolateEvent<T> extends _IsolateEvent {
   final Request request;
 
   final T? data;
+
+  CustomIsolateEvent<T> copyWith({
+    CustomEvent? event,
+    Request? request,
+    T? data,
+  }) =>
+      CustomIsolateEvent<T>(
+        eventId: eventId,
+        event: event ?? this.event,
+        request: request ?? this.request,
+        data: data ?? this.data,
+      );
 }
 
 enum CustomEvent {

@@ -7,6 +7,11 @@ import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
@@ -26,6 +31,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/ca
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 part 'isolate_events.dart';
+
 part 'isolate_task.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs.
@@ -319,6 +325,40 @@ class IsolateWrappingAPI extends BaseAPI {
         }
       }
 
+      if (message is CustomIsolateEvent) {
+        switch (message.event) {
+          case CustomEvent.ping:
+          case CustomEvent.activeSymbols:
+            final ActiveSymbolsResponse activeSymbolsResponse =
+                message.data as ActiveSymbolsResponse;
+            _pendingEvents[message.eventId]?.complete(activeSymbolsResponse);
+
+          case CustomEvent.assetIndex:
+          case CustomEvent.balance:
+          case CustomEvent.buy:
+          case CustomEvent.accountList:
+          case CustomEvent.accountClosure:
+          case CustomEvent.cancel:
+          case CustomEvent.cashierPayment:
+          case CustomEvent.changeEmail:
+          case CustomEvent.changePassword:
+          case CustomEvent.confirmEmail:
+          case CustomEvent.contractUpdateHistory:
+          case CustomEvent.contractUpdate:
+          case CustomEvent.contractsFor:
+          case CustomEvent.getAccountStatus:
+          case CustomEvent.getAccountTypes:
+          case CustomEvent.getAvailableAccounts:
+          case CustomEvent.getFinancialAssessment:
+          case CustomEvent.getLimits:
+          case CustomEvent.getSelfExclusion:
+          case CustomEvent.getSettings:
+          case CustomEvent.identityVerification:
+          case CustomEvent.jTokenCreate:
+          case CustomEvent.kycAuthStatus:
+        }
+      }
+
       // Check for other messages coming out from Isolate.
     });
   }
@@ -396,6 +436,22 @@ class IsolateWrappingAPI extends BaseAPI {
     return _callEvent(event);
   }
 
+  /// Gets the list of active symbols.
+  ///
+  /// For parameters information refer to [ActiveSymbolsRequest].
+  /// Throws an [BaseAPIException] if API response contains an error
+  Future<ActiveSymbolsResponse> fetchActiveSymbols(
+    ActiveSymbolsRequest request,
+  ) async {
+    final event = CustomIsolateEvent<ActiveSymbolsResponse>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.activeSymbols,
+    );
+
+    return _callEvent(event);
+  }
+
   @override
   Stream<Response>? subscribe({
     required Request request,
@@ -434,4 +490,3 @@ class IsolateWrappingAPI extends BaseAPI {
     _isolateSendPort?.send(_DisconnectEvent(eventId: _getEventId));
   }
 }
-

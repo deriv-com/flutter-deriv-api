@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 
 /// Active symbols response model class.
 abstract class ActiveSymbolsResponseModel {
@@ -56,7 +57,8 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
+  static final IsolateWrappingAPI _api =
+      Injector()<BaseAPI>() as IsolateWrappingAPI;
 
   /// Gets the list of active symbols.
   ///
@@ -64,19 +66,8 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Throws an [BaseAPIException] if API response contains an error
   static Future<ActiveSymbolsResponse> fetchActiveSymbols(
     ActiveSymbolsRequest request,
-  ) async {
-    final ActiveSymbolsReceive response = await _api.call(
-      request: request,
-    );
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return ActiveSymbolsResponse.fromJson(response.activeSymbols);
-  }
+  ) async =>
+      _api.fetchActiveSymbols(request);
 
   /// Creates a copy of instance with given parameters.
   ActiveSymbolsResponse copyWith({

@@ -82,7 +82,56 @@ void _isolateTask(IsolateConfig isolateConfig) {
           final response = await binaryAPI.disconnect();
 
           break;
+        case CustomIsolateEvent():
+          _handleCustomEvent(message, binaryAPI, sendPort);
       }
     }
   });
+}
+
+void _handleCustomEvent(
+  CustomIsolateEvent<dynamic> message,
+  BinaryAPI api,
+  SendPort sendPort,
+) async {
+  switch (message.event) {
+    case CustomEvent.ping:
+    case CustomEvent.activeSymbols:
+      final ActiveSymbolsReceive response = await api.call(
+        request: message.request,
+      );
+
+      checkException(
+        response: response,
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+            BaseAPIException(baseExceptionModel: baseExceptionModel),
+      );
+
+      final asResponse = ActiveSymbolsResponse.fromJson(response.activeSymbols);
+      sendPort.send(message.copyWith(data: asResponse));
+
+    case CustomEvent.assetIndex:
+    case CustomEvent.balance:
+    case CustomEvent.buy:
+    case CustomEvent.accountList:
+    case CustomEvent.accountClosure:
+    case CustomEvent.cancel:
+    case CustomEvent.cashierPayment:
+    case CustomEvent.changeEmail:
+    case CustomEvent.changePassword:
+    case CustomEvent.confirmEmail:
+    case CustomEvent.contractUpdateHistory:
+    case CustomEvent.contractUpdate:
+    case CustomEvent.contractsFor:
+    case CustomEvent.getAccountStatus:
+    case CustomEvent.getAccountTypes:
+    case CustomEvent.getAvailableAccounts:
+    case CustomEvent.getFinancialAssessment:
+    case CustomEvent.getLimits:
+    case CustomEvent.getSelfExclusion:
+    case CustomEvent.getSettings:
+    case CustomEvent.identityVerification:
+    case CustomEvent.jTokenCreate:
+    case CustomEvent.kycAuthStatus:
+  }
 }
