@@ -157,9 +157,25 @@ void _handleCustomEvent(
 
       sendPort.send(message.copyWith(data: response));
     case CustomEvent.landingCompany:
+      await _fetchLandingCompnay(api, message, sendPort);
     case CustomEvent.statesList:
     case CustomEvent.residenceList:
   }
+}
+
+Future<void> _fetchLandingCompnay(BinaryAPI api,
+    CustomIsolateEvent<dynamic> message, SendPort sendPort) async {
+  final LandingCompanyReceive response =
+      await api.call(request: message.request);
+
+  checkException(
+    response: response,
+    exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+        BaseAPIException(baseExceptionModel: baseExceptionModel),
+  );
+
+  sendPort.send(message.copyWith(
+      data: LandingCompanyResponse.fromJson(response.landingCompany)));
 }
 
 Future<void> _fetchActiveSymbols(

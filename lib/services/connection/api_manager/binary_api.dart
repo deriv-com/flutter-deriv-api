@@ -12,6 +12,7 @@ import 'package:flutter_deriv_api/api/manually/tick.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
 import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
 import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
