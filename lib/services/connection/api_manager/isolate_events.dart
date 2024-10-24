@@ -118,6 +118,42 @@ class CustomIsolateEvent<T> extends _IsolateEvent {
       );
 }
 
+class TicksHistoryEvent<TickHistorySubscription> extends CustomIsolateEvent {
+  TicksHistoryEvent({
+    required super.eventId,
+    required super.event,
+    required super.request,
+    super.data,
+    super.isSubscription,
+    this.tickStreamItem,
+    this.tickHistory,
+  });
+
+  /// The history of tick
+  final TicksHistoryResponse? tickHistory;
+
+  /// The stream of the tick
+  final TickBase? tickStreamItem;
+
+  @override
+  TicksHistoryEvent<TickHistorySubscription> copyWith({
+    CustomEvent? event,
+    Request? request,
+    data,
+    bool? isSubscription,
+    TicksHistoryResponse? tickHistory,
+    TickBase? tickStreamItem,
+  }) =>
+      TicksHistoryEvent(
+        eventId: eventId,
+        event: event ?? super.event,
+        request: request ?? super.request,
+        data: data ?? super.data,
+        tickHistory: tickHistory ?? this.tickHistory,
+        tickStreamItem: tickStreamItem ?? this.tickStreamItem,
+      );
+}
+
 enum CustomEvent {
   ping,
   authorize,
@@ -149,5 +185,6 @@ enum CustomEvent {
   jTokenCreate,
   kycAuthStatus,
   ticks,
+  ticksHistory,
   proposalOpenContract,
 }

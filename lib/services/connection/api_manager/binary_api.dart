@@ -8,11 +8,16 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
-import 'package:flutter_deriv_api/api/manually/tick.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response_result.dart';
+import 'package:flutter_deriv_api/api/manually/tick.dart' as man_tick;
+import 'package:flutter_deriv_api/api/manually/tick_base.dart';
+import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
 import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
 import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_history_response_result.dart';
 import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
@@ -339,6 +344,7 @@ class IsolateWrappingAPI extends BaseAPI {
             final ActiveSymbolsResponse activeSymbolsResponse =
                 message.data as ActiveSymbolsResponse;
             _pendingEvents[message.eventId]?.complete(activeSymbolsResponse);
+            _pendingEvents.remove(message.eventId);
 
           case CustomEvent.assetIndex:
           case CustomEvent.balance:
@@ -370,9 +376,24 @@ class IsolateWrappingAPI extends BaseAPI {
             final AuthorizeReceive authorizeReceive =
                 message.data as AuthorizeReceive;
             _pendingEvents[message.eventId]?.complete(authorizeReceive);
+            _pendingEvents.remove(message.eventId);
           case CustomEvent.landingCompany:
           case CustomEvent.statesList:
           case CustomEvent.residenceList:
+          case CustomEvent.ticksHistory:
+            final historyMessage = message as TicksHistoryEvent;
+
+            if (historyMessage.tickHistory != null) {
+              final TicksHistoryResponse historyResponse =
+                  historyMessage.tickHistory!;
+              _pendingEvents[historyMessage.eventId]?.complete(
+                TickHistorySubscription(tickHistory: historyResponse),
+              );
+              _pendingEvents.remove(historyMessage.eventId);
+            } else if (historyMessage.tickStreamItem != null) {
+              _pendingSubscriptions[historyMessage.eventId]
+                  ?.add(historyMessage.tickStreamItem);
+            }
         }
       }
 
@@ -482,6 +503,34 @@ class IsolateWrappingAPI extends BaseAPI {
 
     _isolateSendPort?.send(event);
     return responseStream.stream;
+  }
+
+  Future<TickHistorySubscription> subscribeTickHistory(
+    TicksHistoryRequest request,
+  ) async {
+    final event = TicksHistoryEvent(
+      eventId: _getEventId,
+      event: CustomEvent.ticksHistory,
+      request: request,
+    );
+
+    final StreamController<TickBase> tickStreamController =
+        StreamController.broadcast();
+    final completer = Completer<TickHistorySubscription>();
+
+    _pendingSubscriptions[event.eventId] = tickStreamController;
+    _pendingEvents[event.eventId] = completer;
+
+    _isolateSendPort?.send(event);
+
+    final tickHistorySubscription = await completer.future;
+
+    final response = tickHistorySubscription.copyWith(
+      tickHistorySubscription.tickHistory!,
+      tickStreamController.stream,
+    );
+
+    return response;
   }
 
   @override

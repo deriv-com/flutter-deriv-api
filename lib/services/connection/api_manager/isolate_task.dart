@@ -94,6 +94,7 @@ void _handleCustomEvent(
   BinaryAPI api,
   SendPort sendPort,
 ) async {
+  print('@@@@@@12 ${message.event}');
   switch (message.event) {
     case CustomEvent.ping:
     case CustomEvent.activeSymbols:
@@ -142,6 +143,56 @@ void _handleCustomEvent(
       ).listen((TicksResponse? tick) {
         sendPort.send(message.copyWith(data: tick, isSubscription: true));
       });
+      break;
+
+    case CustomEvent.ticksHistory:
+      final Stream<Response>? responseStream =
+          api.subscribe(request: message.request);
+      final Response? firstResponse = await responseStream?.first;
+
+      checkException(
+        response: firstResponse,
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+            BaseAPIException(baseExceptionModel: baseExceptionModel),
+      );
+
+      final tickHistory = message as TicksHistoryEvent;
+
+      if (firstResponse is TicksHistoryReceive) {
+
+        sendPort.send(tickHistory.copyWith(
+          tickHistory: TicksHistoryResponse.fromJson(
+            firstResponse.candles,
+            firstResponse.history,
+            firstResponse.pipSize,
+            firstResponse.subscription,
+          ),
+        ));
+
+        responseStream?.map<TickBase?>(
+          (Response response) {
+            checkException(
+              response: response,
+              exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+                  BaseAPIException(baseExceptionModel: baseExceptionModel),
+            );
+
+            return response is TicksReceive
+                ? man_tick.Tick.fromJson(
+                    response.tick!,
+                    subscriptionJson: response.subscription,
+                  )
+                : response is OHLCResponse
+                    ? OHLC.fromJson(
+                        response.ohlc!,
+                        subscriptionJson: response.subscription,
+                      )
+                    : null;
+          },
+        ).listen((tick) =>
+            sendPort.send(tickHistory.copyWith(tickStreamItem: tick)));
+      }
+      break;
 
     case CustomEvent.proposalOpenContract:
     case CustomEvent.authorize:
