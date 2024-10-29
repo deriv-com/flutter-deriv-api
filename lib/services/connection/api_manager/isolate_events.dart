@@ -187,4 +187,5 @@ enum CustomEvent {
   ticks,
   ticksHistory,
   proposalOpenContract,
+  proposal,
 }

@@ -159,7 +159,6 @@ void _handleCustomEvent(
       final tickHistory = message as TicksHistoryEvent;
 
       if (firstResponse is TicksHistoryReceive) {
-
         sendPort.send(tickHistory.copyWith(
           tickHistory: TicksHistoryResponse.fromJson(
             firstResponse.candles,
@@ -211,6 +210,25 @@ void _handleCustomEvent(
       await _fetchLandingCompnay(api, message, sendPort);
     case CustomEvent.statesList:
     case CustomEvent.residenceList:
+    case CustomEvent.proposal:
+      api.subscribe(request: message.request)!.map<ProposalResponse?>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+                BaseAPIException(baseExceptionModel: baseExceptionModel),
+          );
+
+          return response is ProposalReceive
+              ? ProposalResponse.fromJson(
+                  response.proposal,
+                  response.subscription,
+                )
+              : null;
+        },
+      ).listen((ProposalResponse? response) {
+        sendPort.send(message.copyWith(data: response));
+      });
   }
 }
 

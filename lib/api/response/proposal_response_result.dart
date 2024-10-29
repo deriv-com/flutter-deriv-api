@@ -17,6 +17,7 @@ import 'package:flutter_deriv_api/basic_api/generated/proposal_send.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
 
@@ -69,7 +70,8 @@ class ProposalResponse extends ProposalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
+  static final IsolateWrappingAPI _api =
+      Injector()<BaseAPI>() as IsolateWrappingAPI;
 
   /// Gets the price proposal for contract
   ///
@@ -97,24 +99,7 @@ class ProposalResponse extends ProposalResponseModel {
     ProposalRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)!
-          .map<ProposalResponse?>(
-        (Response response) {
-          checkException(
-            response: response,
-            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
-          );
-
-          return response is ProposalReceive
-              ? ProposalResponse.fromJson(
-                  response.proposal,
-                  response.subscription,
-                )
-              : null;
-        },
-      );
+      _api.subscribePriceForContract(request);
 
   /// Unsubscribes from price proposal subscription.
   ///

@@ -15,15 +15,14 @@ import 'package:flutter_deriv_api/api/manually/tick_base.dart';
 import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
-import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
 import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_response_result.dart';
 import 'package:flutter_deriv_api/api/response/ticks_history_response_result.dart';
 import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -326,13 +325,15 @@ class IsolateWrappingAPI extends BaseAPI {
       if (message is IsolateResponse) {
         if (message.isSubscription) {
           _pendingSubscriptions[message.eventId]?.add(message.response);
-          print('####12 SUBSCRIPTION : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
+          print(
+              '####12 SUBSCRIPTION : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
         } else {
           final Completer<dynamic>? completer = _pendingEvents[message.eventId];
           if (completer != null) {
             completer.complete(message.response);
             _pendingEvents.remove(message.eventId);
-            print('####12 FUTURE : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
+            print(
+                '####12 FUTURE : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
           }
         }
       }
@@ -404,6 +405,11 @@ class IsolateWrappingAPI extends BaseAPI {
               print('####12 SUBSCRIPTION : REAL ONE ${DateTime.now()} ');
             }
             break;
+          case CustomEvent.proposal:
+            final proposalMessage =
+                message as CustomIsolateEvent<ProposalResponse>;
+
+            _pendingSubscriptions[message.eventId]?.add(proposalMessage.data);
         }
       }
 
@@ -498,6 +504,22 @@ class IsolateWrappingAPI extends BaseAPI {
     );
 
     return _callEvent(event);
+  }
+
+  Stream<ProposalResponse?> subscribePriceForContract(
+    ProposalRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) {
+    final event = CustomIsolateEvent<ProposalResponse>(
+      eventId: _getEventId,
+      request: request,
+      event: CustomEvent.proposal,
+    );
+    final StreamController<ProposalResponse> responseStream =
+        StreamController.broadcast();
+    _pendingSubscriptions[event.eventId] = responseStream;
+    _isolateSendPort?.send(event);
+    return responseStream.stream;
   }
 
   Stream<TicksResponse> subscribeTick(TicksRequest request) {
