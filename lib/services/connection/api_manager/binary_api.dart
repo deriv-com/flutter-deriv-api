@@ -326,13 +326,13 @@ class IsolateWrappingAPI extends BaseAPI {
       if (message is IsolateResponse) {
         if (message.isSubscription) {
           _pendingSubscriptions[message.eventId]?.add(message.response);
+          print('####12 SUBSCRIPTION : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
         } else {
-          print(
-              '#### Retrieved response ${(message.response as Response).msgType}');
           final Completer<dynamic>? completer = _pendingEvents[message.eventId];
           if (completer != null) {
             completer.complete(message.response);
             _pendingEvents.remove(message.eventId);
+            print('####12 FUTURE : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
           }
         }
       }
@@ -345,6 +345,8 @@ class IsolateWrappingAPI extends BaseAPI {
                 message.data as ActiveSymbolsResponse;
             _pendingEvents[message.eventId]?.complete(activeSymbolsResponse);
             _pendingEvents.remove(message.eventId);
+            print('####12 FUTURE : REAL ONE ${DateTime.now()}');
+            break;
 
           case CustomEvent.assetIndex:
           case CustomEvent.balance:
@@ -371,12 +373,17 @@ class IsolateWrappingAPI extends BaseAPI {
           case CustomEvent.kycAuthStatus:
           case CustomEvent.ticks:
             _pendingSubscriptions[message.eventId]?.add(message.data);
+            print('####12 SUBSCRIPTION : REAL ONE ${DateTime.now()} ');
+            break;
           case CustomEvent.proposalOpenContract:
           case CustomEvent.authorize:
             final AuthorizeReceive authorizeReceive =
                 message.data as AuthorizeReceive;
             _pendingEvents[message.eventId]?.complete(authorizeReceive);
             _pendingEvents.remove(message.eventId);
+            print('####12 FUTURE : REAL ONE ${DateTime.now()} ');
+            break;
+
           case CustomEvent.landingCompany:
           case CustomEvent.statesList:
           case CustomEvent.residenceList:
@@ -390,10 +397,13 @@ class IsolateWrappingAPI extends BaseAPI {
                 TickHistorySubscription(tickHistory: historyResponse),
               );
               _pendingEvents.remove(historyMessage.eventId);
+              print('####12 FUTURE : REAL ONE ${DateTime.now()} ');
             } else if (historyMessage.tickStreamItem != null) {
               _pendingSubscriptions[historyMessage.eventId]
                   ?.add(historyMessage.tickStreamItem);
+              print('####12 SUBSCRIPTION : REAL ONE ${DateTime.now()} ');
             }
+            break;
         }
       }
 
