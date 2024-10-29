@@ -26,6 +26,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     this.printResponse = false,
     this.proxyAwareConnection = false,
   }) : super(const ConnectionInitialState()) {
+    _connectionInformation = connectionInformation;
+
     APIInitializer().initialize(
       api: api ??
           BinaryAPI(
@@ -36,8 +38,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     );
 
     _api = Injector()<BaseAPI>();
-
-    _connectionInformation = connectionInformation;
 
     _connect(_connectionInformation);
 

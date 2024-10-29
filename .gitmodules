@@ -1,4 +1,7 @@
-[submodule "binary-websocket-api"]
-	path = binary-websocket-api
-	url = git@github.com:regentmarkets/binary-websocket-api.git
+[submodule "bom-core"]
+	path = bom-core
+	url = https://github.com/regentmarkets/bom-core.git
 	branch = master
+[submodule "bom-core"]
+	path = bom-core
+	url = https://github.com/regentmarkets/bom-core.git
