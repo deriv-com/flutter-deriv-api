@@ -43,7 +43,8 @@ class CryptoEstimationsResponseExtended extends CryptoEstimationsResponse {
   /// unsubscribe from the subscribed Crypto Estimates <br>
   /// In case of error, It will throw [BaseAPIException].
   static Future<bool> unsubscribeFromCryptoEstimates(
-      String subscriptionId) async {
+      String subscriptionId,
+      ) async {
     final ForgetReceive response =
     await _api.unsubscribe(subscriptionId: subscriptionId);
     checkException(
