@@ -97,12 +97,14 @@ class BinaryAPI extends BaseAPI {
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
         pingInterval: _websocketConnectTimeOut, customClient: client);
 
+    unawaited(_webSocketChannel?.ready.then((_) {
+      onOpen?.call(key);
+    }));
+
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
-        onOpen?.call(key);
-
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
         }
