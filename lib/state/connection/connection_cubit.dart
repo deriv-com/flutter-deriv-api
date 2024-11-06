@@ -18,8 +18,7 @@ part 'connection_state.dart';
 /// Bringing [ConnectionCubit] to flutter-deriv-api to simplify the usage of api.
 class ConnectionCubit extends Cubit<ConnectionState> {
   /// Initializes [ConnectionCubit].
-  ConnectionCubit(
-    ConnectionInformation connectionInformation, {
+  ConnectionCubit(ConnectionInformation connectionInformation, {
     BaseAPI? api,
     this.enableDebug = false,
     // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
@@ -123,7 +122,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       return;
     }
 
-    final Stopwatch stopwatch = Stopwatch()..start();
+    final Stopwatch stopwatch = Stopwatch()
+      ..start();
     print('@@@@@ Connecting to websocket ${DateTime.now()}');
     await _api.connect(
       _connectionInformation,
@@ -160,10 +160,10 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() {
     connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
-      (List<ConnectivityResult> statuses) async {
+          (List<ConnectivityResult> statuses) async {
         print('@@@@@ Connectivity changed $statuses ${DateTime.now()}');
         final bool isConnectedToNetwork = statuses.any((status) =>
-            status == ConnectivityResult.mobile ||
+        status == ConnectivityResult.mobile ||
             status == ConnectivityResult.wifi ||
             status == ConnectivityResult.vpn);
 
@@ -171,7 +171,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
           // final bool isConnected = await _ping();
 
           // if (!isConnected) {
-            await reconnect(source: 7);
+          await reconnect(source: 7);
           // }
         } else {
           emit(const ConnectionDisconnectedState());
@@ -181,6 +181,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   }
 
   void _startKeepAliveTimer() {
+    _ping();
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer =
           Timer.periodic(_connectivityCheckInterval, (Timer timer) => _ping());
@@ -190,7 +191,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   Future<bool> _ping() async {
     try {
       final PingResponse response =
-          await PingResponse.pingMethod().timeout(_pingTimeout);
+      await PingResponse.pingMethod().timeout(_pingTimeout);
       return response.ping == PingEnum.pong;
     } on Exception catch (_) {
       return false;
