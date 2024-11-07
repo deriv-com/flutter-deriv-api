@@ -4,6 +4,7 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -20,6 +21,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
@@ -55,6 +57,21 @@ class BinaryAPI extends BaseAPI {
 
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
+
+  /// A timer to schedule sending ping requests right after the WebSocket is
+  /// ready to receive the first response from the server. This helps ensure
+  /// that the connection is established.
+  ///
+  /// Ideally, we would use the [WebSocketChannel.ready] future to determine
+  /// if the connection is ready to send and receive messages. However, it
+  /// doesn't always work as expected. In testing, we noticed that even after
+  /// the `ready` future completes, we often don't receive a response from the
+  /// server.
+  ///
+  /// Until we find a better solution to make [WebSocketChannel.ready] more
+  /// reliable, we rely on the incoming stream to wait for and receive the first
+  /// `pong` response, which confirms that the connection is established.
+  Timer? _connectionTimer;
 
   @override
   Future<void> connect(
@@ -97,17 +114,14 @@ class BinaryAPI extends BaseAPI {
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
         pingInterval: _websocketConnectTimeOut, customClient: client);
 
-    // unawaited(_webSocketChannel?.ready.then((_) {
-    //   onOpen?.call(key);
-    // }, onError: (_) {
-    //   onDone?.call(key);
-    // }));
+    unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
         onOpen?.call(key);
+        _stopConnectionTimer();
         if (message != null) {
           _handleResponse(message, printResponse: printResponse);
         }
@@ -256,6 +270,21 @@ class BinaryAPI extends BaseAPI {
       WebSocket.userAgent = userAgent;
     }
   }
+
+  void _startConnectionTimer() {
+    if (!(_connectionTimer?.isActive ?? false)) {
+      _connectionTimer = Timer.periodic(
+          const Duration(milliseconds: 500), (Timer timer) => _ping());
+    }
+  }
+
+  void _stopConnectionTimer() {
+    if (_connectionTimer?.isActive ?? false) {
+      _connectionTimer?.cancel();
+    }
+  }
+
+  void _ping() => PingResponse.pingMethod();
 
   void _logDebugInfo(String message, {Object? error}) {
     if (enableDebug) {
