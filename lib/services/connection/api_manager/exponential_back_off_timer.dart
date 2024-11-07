@@ -58,9 +58,6 @@ class ExponentialBackoffTimer {
   void start() => _setupTimer();
 
   /// Stops the timer and resets the interval to the initial interval.
-  ///
-  /// This method can be used when you want to temporarily halt the recurring
-  /// action without destroying the [ExponentialBackoffTimer] instance.
   void stop() {
     _timer?.cancel();
     _currentInterval = initialInterval;
@@ -77,16 +74,6 @@ class ExponentialBackoffTimer {
       _increaseInterval();
       _restartTimer();
     });
-  }
-
-  /// Resets the timer, restoring the interval to the initial interval and
-  /// restarting it.
-  ///
-  /// Useful for situations where you need to restart the exponential back-off
-  /// process such as after receiving a successful response from the server.
-  void reset() {
-    stop();
-    start();
   }
 
   /// Doubles the current interval for the next action, up to the maximum
