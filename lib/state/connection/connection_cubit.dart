@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
@@ -39,8 +38,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     _api = Injector()<BaseAPI>();
 
     _connect(_connectionInformation);
-
-    _startKeepAliveTimer();
   }
 
   final String _key = '${UniqueKey()}';
@@ -62,10 +59,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
-
-  final Duration _connectivityCheckInterval = const Duration(seconds: 5);
-
-  Timer? _connectivityTimer;
 
   static late ConnectionInformation _connectionInformation;
 
@@ -90,7 +83,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     ConnectionInformation? connectionInformation,
     bool isChangingLanguage = false,
   }) async {
-    _emitDisconnectedState(isLanguageSwitch: isChangingLanguage);
+    emit(ConnectionDisconnectedState(isChangingLanguage: isChangingLanguage));
 
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
@@ -123,7 +116,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       onOpen: (String key) {
         if (_key == key) {
           emit(const ConnectionConnectedState());
-          _startKeepAliveTimer();
         }
       },
       onDone: (String key) {
@@ -133,39 +125,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       },
       onError: (String key) {
         if (_key == key) {
-          _emitDisconnectedState();
+          emit(const ConnectionDisconnectedState());
         }
       },
     );
-  }
-
-  void _emitDisconnectedState({bool isLanguageSwitch = false}) {
-    emit(ConnectionDisconnectedState(isChangingLanguage: isLanguageSwitch));
-    _stopKeepAliveTimer();
-  }
-
-  void _startKeepAliveTimer() {
-    if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
-      _connectivityTimer =
-          Timer.periodic(_connectivityCheckInterval, (Timer timer) => _ping());
-    }
-  }
-
-  void _stopKeepAliveTimer() => _connectivityTimer?.cancel();
-
-  Future<bool> _ping() async {
-    try {
-      final PingResponse response =
-          await PingResponse.pingMethod().timeout(_pingTimeout);
-      return response.ping == PingEnum.pong;
-    } on Exception catch (_) {
-      return false;
-    }
-  }
-
-  @override
-  Future<void> close() {
-    _stopKeepAliveTimer();
-    return super.close();
   }
 }
