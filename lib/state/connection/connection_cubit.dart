@@ -129,7 +129,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
       _connectionInformation,
       printResponse: enableDebug && printResponse,
       onOpen: (String key) {
-        print('@@@@@ Connected ${DateTime.now()}');
         if (_key == key) {
           if (stopwatch.isRunning) {
             stopwatch.stop();
@@ -169,11 +168,11 @@ class ConnectionCubit extends Cubit<ConnectionState> {
             status == ConnectivityResult.vpn);
 
         if (isConnectedToNetwork) {
-          // final bool isConnected = await _ping();
+          final bool isConnected = await _ping();
 
-          // if (!isConnected) {
-          await reconnect(source: 7);
-          // }
+          if (!isConnected) {
+            await reconnect(source: 7);
+          }
         } else {
           _emitDisconnectedState();
         }
