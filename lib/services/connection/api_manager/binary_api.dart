@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/exponential_back_off_timer.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -71,7 +72,11 @@ class BinaryAPI extends BaseAPI {
   /// Until we find a better solution to make [WebSocketChannel.ready] more
   /// reliable, we rely on the incoming stream to wait for and receive the first
   /// `pong` response, which confirms that the connection is established.
-  Timer? _connectionTimer;
+  late final ExponentialBackoffTimer _connectionTimer = ExponentialBackoffTimer(
+    initialInterval: const Duration(milliseconds: 200),
+    maxInterval: const Duration(seconds: 5),
+    onDoAction: _ping,
+  );
 
   @override
   Future<void> connect(
@@ -272,15 +277,14 @@ class BinaryAPI extends BaseAPI {
   }
 
   void _startConnectionTimer() {
-    if (!(_connectionTimer?.isActive ?? false)) {
-      _connectionTimer = Timer.periodic(
-          const Duration(milliseconds: 500), (Timer timer) => _ping());
+    if (!_connectionTimer.isActive) {
+      _connectionTimer.start();
     }
   }
 
   void _stopConnectionTimer() {
-    if (_connectionTimer?.isActive ?? false) {
-      _connectionTimer?.cancel();
+    if (_connectionTimer.isActive) {
+      _connectionTimer.stop();
     }
   }
 
