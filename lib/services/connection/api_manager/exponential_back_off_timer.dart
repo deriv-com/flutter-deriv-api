@@ -17,7 +17,7 @@ class ExponentialBackoffTimer {
   /// - [initialInterval]: The starting interval between consecutive actions.
   /// - [maxInterval]: The upper limit for the interval. Once reached,
   ///                  the interval will no longer increase.
-  /// - [onPingRequest]: The callback function that will be executed at each
+  /// - [onDoAction]: The callback function that will be executed at each
   ///                  interval.
   /// Example usage:
   /// ```dart
@@ -43,8 +43,6 @@ class ExponentialBackoffTimer {
   final Duration maxInterval;
 
   /// The callback function to be executed at each timer interval.
-  ///
-  /// This is typically where you place your recurring action, such as sending a ping.
   final VoidCallback onDoAction;
 
   Timer? _timer;
@@ -57,13 +55,7 @@ class ExponentialBackoffTimer {
   ///
   /// The [onDoAction] callback will be triggered at the initial interval,
   /// and the interval will double after each execution up to [maxInterval].
-  void start() {
-    _timer = Timer.periodic(_currentInterval, (_) {
-      onDoAction();
-      _increaseInterval();
-      _restartTimer();
-    });
-  }
+  void start() => _setupTimer();
 
   /// Stops the timer and resets the interval to the initial interval.
   ///
@@ -74,16 +66,31 @@ class ExponentialBackoffTimer {
     _currentInterval = initialInterval;
   }
 
-  /// Resets the timer, restoring the interval to the initial interval and restarting it.
+  void _restartTimer() {
+    _timer?.cancel();
+    _setupTimer();
+  }
+
+  void _setupTimer() {
+    _timer = Timer.periodic(_currentInterval, (_) {
+      onDoAction();
+      _increaseInterval();
+      _restartTimer();
+    });
+  }
+
+  /// Resets the timer, restoring the interval to the initial interval and
+  /// restarting it.
   ///
-  /// Useful for situations where you need to restart the exponential back-off process,
-  /// such as after receiving a successful response from the server.
+  /// Useful for situations where you need to restart the exponential back-off
+  /// process such as after receiving a successful response from the server.
   void reset() {
     stop();
     start();
   }
 
-  /// Doubles the current interval for the next action, up to the maximum allowed interval.
+  /// Doubles the current interval for the next action, up to the maximum
+  /// allowed interval.
   void _increaseInterval() {
     _currentInterval = Duration(
       milliseconds: (_currentInterval.inMilliseconds * 2).clamp(
@@ -91,15 +98,5 @@ class ExponentialBackoffTimer {
         maxInterval.inMilliseconds,
       ),
     );
-  }
-
-  /// Restarts the timer with the updated interval, applying the current exponential back-off delay.
-  void _restartTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(_currentInterval, (_) {
-      onDoAction();
-      _increaseInterval();
-      _restartTimer();
-    });
   }
 }
