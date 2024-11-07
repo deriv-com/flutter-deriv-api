@@ -33,7 +33,7 @@ class BinaryAPI extends BaseAPI {
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
+  static const Duration _websocketConnectTimeOut = Duration(seconds: 5);
 
   /// A flag to indicate if the connection is proxy aware.
   final bool proxyAwareConnection;

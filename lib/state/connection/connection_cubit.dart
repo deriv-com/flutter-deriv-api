@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,15 +82,11 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
 
-  /// Stream subscription for connectivity.
-  StreamSubscription<List<ConnectivityResult>>? connectivitySubscription;
-
   /// Getter for [BaseAPI] implementation class. By default, it will be [BinaryAPI].
   BaseAPI get api => _api;
 
   /// Reconnect to Websocket.
   Future<void> reconnect({
-    required int source,
     ConnectionInformation? connectionInformation,
     bool isChangingLanguage = false,
   }) async {
@@ -100,7 +95,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
     }
-    print('@@@@@ Reconnect from source $source ${DateTime.now()}');
 
     await _connect(_connectionInformation);
   }
@@ -118,62 +112,27 @@ class ConnectionCubit extends Cubit<ConnectionState> {
     } on Exception catch (e) {
       dev.log('$runtimeType disconnect exception: $e', error: e);
 
-      unawaited(reconnect(source: 5));
+      unawaited(reconnect());
 
       return;
     }
 
-    final Stopwatch stopwatch = Stopwatch()..start();
-    print('@@@@@ Connecting to websocket ${DateTime.now()}');
     await _api.connect(
       _connectionInformation,
       printResponse: enableDebug && printResponse,
       onOpen: (String key) {
         if (_key == key) {
-          if (stopwatch.isRunning) {
-            stopwatch.stop();
-            print(
-                '@@@@@ Reconnecting took ${stopwatch.elapsedMilliseconds} ms');
-          }
           emit(const ConnectionConnectedState());
           _startKeepAliveTimer();
         }
       },
       onDone: (String key) {
-        print('@@@@@ ON Done ${DateTime.now()}');
         if (_key == key) {
-          unawaited(reconnect(source: 6));
+          unawaited(reconnect());
         }
       },
       onError: (String key) {
-        print('@@@@@ ON Error${DateTime.now()}');
         if (_key == key) {
-          _emitDisconnectedState();
-        }
-      },
-    );
-
-    if (_api is BinaryAPI) {
-      _setupConnectivityListener();
-    }
-  }
-
-  void _setupConnectivityListener() {
-    connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
-      (List<ConnectivityResult> statuses) async {
-        print('@@@@@ Connectivity changed $statuses ${DateTime.now()}');
-        final bool isConnectedToNetwork = statuses.any((status) =>
-            status == ConnectivityResult.mobile ||
-            status == ConnectivityResult.wifi ||
-            status == ConnectivityResult.vpn);
-
-        if (isConnectedToNetwork) {
-          final bool isConnected = await _ping();
-
-          if (!isConnected) {
-            await reconnect(source: 7);
-          }
-        } else {
           _emitDisconnectedState();
         }
       },
@@ -207,8 +166,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   @override
   Future<void> close() {
     _stopKeepAliveTimer();
-    connectivitySubscription?.cancel();
-    connectivitySubscription = null;
     return super.close();
   }
 }

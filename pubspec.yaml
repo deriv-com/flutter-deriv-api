@@ -29,7 +29,6 @@ dependencies:
       url: https://github.com/BrowserStackCE/flutter_system_proxy.git
       ref: v0.1.5
   package_info_plus: ^8.0.2
-  connectivity_plus: ^6.1.0
   web_socket_channel: ^3.0.1
   device_info_plus: ^10.1.2
 
