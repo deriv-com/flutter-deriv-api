@@ -119,10 +119,7 @@ class BinaryAPI extends BaseAPI {
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
         pingInterval: _websocketConnectTimeOut, customClient: client);
 
-    unawaited(_webSocketChannel?.ready.then((_) {
-      print('#### Timer started ${DateTime.now()}');
-      _startConnectionTimer();
-    }));
+    unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
@@ -292,10 +289,7 @@ class BinaryAPI extends BaseAPI {
     }
   }
 
-  void _ping() {
-    print('#### Sending ping ${DateTime.now()}');
-    PingResponse.pingMethod();
-  }
+  void _ping() => PingResponse.pingMethod();
 
   void _logDebugInfo(String message, {Object? error}) {
     if (enableDebug) {
