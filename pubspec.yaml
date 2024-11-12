@@ -31,7 +31,6 @@ dependencies:
   package_info_plus: ^8.0.2
   web_socket_channel: ^3.0.1
   device_info_plus: ^10.1.2
-  win32: ^5.8.0
 
 dev_dependencies:
   bloc_test: ^9.1.1
