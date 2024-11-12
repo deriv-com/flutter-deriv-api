@@ -34,7 +34,7 @@ class BinaryAPI extends BaseAPI {
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 5);
+  static const Duration _keepAlivePingInterval = Duration(seconds: 10);
 
   /// A flag to indicate if the connection is proxy aware.
   final bool proxyAwareConnection;
@@ -117,7 +117,7 @@ class BinaryAPI extends BaseAPI {
 
     // Initialize connection to websocket server.
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
-        pingInterval: _websocketConnectTimeOut, customClient: client);
+        pingInterval: _keepAlivePingInterval, customClient: client);
 
     unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
 
@@ -283,7 +283,6 @@ class BinaryAPI extends BaseAPI {
   }
 
   Future<void> _stopConnectionTimer() async {
-    await Future<void>.delayed(const Duration(seconds: 5));
     if (_connectionTimer.isActive) {
       _connectionTimer.stop();
     }
