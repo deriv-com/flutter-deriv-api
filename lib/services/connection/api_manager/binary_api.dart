@@ -73,7 +73,7 @@ class BinaryAPI extends BaseAPI {
   /// reliable, we rely on the incoming stream to wait for and receive the first
   /// `pong` response, which confirms that the connection is established.
   late final ExponentialBackoffTimer _connectionTimer = ExponentialBackoffTimer(
-    initialInterval: const Duration(milliseconds: 200),
+    initialInterval: const Duration(milliseconds: 50),
     maxInterval: const Duration(seconds: 5),
     onDoAction: _ping,
   );
@@ -119,7 +119,10 @@ class BinaryAPI extends BaseAPI {
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
         pingInterval: _websocketConnectTimeOut, customClient: client);
 
-    unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
+    unawaited(_webSocketChannel?.ready.then((_) {
+      print('#### Timer started ${DateTime.now()}');
+      _startConnectionTimer();
+    }));
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
@@ -282,13 +285,17 @@ class BinaryAPI extends BaseAPI {
     }
   }
 
-  void _stopConnectionTimer() {
+  Future<void> _stopConnectionTimer() async {
+    await Future<void>.delayed(const Duration(seconds: 5));
     if (_connectionTimer.isActive) {
       _connectionTimer.stop();
     }
   }
 
-  void _ping() => PingResponse.pingMethod();
+  void _ping() {
+    print('#### Sending ping ${DateTime.now()}');
+    PingResponse.pingMethod();
+  }
 
   void _logDebugInfo(String message, {Object? error}) {
     if (enableDebug) {

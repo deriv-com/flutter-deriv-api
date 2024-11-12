@@ -69,7 +69,7 @@ class ExponentialBackoffTimer {
   }
 
   void _setupTimer() {
-    _timer = Timer.periodic(_currentInterval, (_) {
+    _timer = Timer(_currentInterval, () {
       onDoAction();
       _increaseInterval();
       _restartTimer();
