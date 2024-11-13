@@ -7,14 +7,14 @@ void main() {
     late Duration initialInterval;
     late Duration maxInterval;
     late int actionCount;
-    late ExponentialBackoffTimer timer;
+    late SimpleExponentialBackoffTimer timer;
 
     setUp(() {
       initialInterval = const Duration(milliseconds: 500);
       maxInterval = const Duration(seconds: 5);
       actionCount = 0;
 
-      timer = ExponentialBackoffTimer(
+      timer = SimpleExponentialBackoffTimer(
         initialInterval: initialInterval,
         maxInterval: maxInterval,
         onDoAction: () => actionCount++,

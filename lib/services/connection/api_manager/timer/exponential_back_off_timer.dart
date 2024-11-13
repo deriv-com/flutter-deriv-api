@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'connection_timer.dart';
 
-/// A timer utility that implements an exponential back-off strategy for
-/// recurring actions.
+/// A timer utility that implements a simple exponential back-off strategy for
+/// recurring actions and increases the interval between actions until a
+/// maximum interval duration is reached.
 ///
 /// This class is useful for scenarios where you need send a request to a server
 /// and you don't want to flood the server with too many frequent requests.
@@ -11,9 +12,9 @@ import 'connection_timer.dart';
 /// The timer will call the provided [onDoAction] callback every time the
 /// interval elapses, allowing you to perform the action without needing to
 /// manually handle the timing logic.
-class ExponentialBackoffTimer extends ConnectionTimer {
-  /// Creates an [ExponentialBackoffTimer] with a specified [initialInterval],
-  /// [maxInterval], and an [onDoAction] callback.
+class SimpleExponentialBackoffTimer extends ConnectionTimer {
+  /// Creates an [SimpleExponentialBackoffTimer] with a specified
+  /// [initialInterval], [maxInterval], and an [onDoAction] callback.
   ///
   /// - [initialInterval]: The starting interval between consecutive actions.
   /// - [maxInterval]: The upper limit for the interval. Once reached,
@@ -22,7 +23,7 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   ///                  interval.
   /// Example usage:
   /// ```dart
-  /// final timer = ExponentialBackoffTimer(
+  /// final timer = SimpleExponentialBackoffTimer(
   ///   initialInterval: Duration(milliseconds: 500),
   ///   maxInterval: Duration(seconds: 10),
   ///   onDoAction: () {
@@ -31,7 +32,7 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   /// );
   /// timer.start();
   /// ```
-  ExponentialBackoffTimer({
+  SimpleExponentialBackoffTimer({
     required this.initialInterval,
     required this.maxInterval,
     required super.onDoAction,

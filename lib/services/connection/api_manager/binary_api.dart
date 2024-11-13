@@ -36,7 +36,7 @@ class BinaryAPI extends BaseAPI {
     ConnectionTimer? connectionTimer,
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
     _connectionTimer = connectionTimer ??
-        ExponentialBackoffTimer(
+        SimpleExponentialBackoffTimer(
           initialInterval: const Duration(milliseconds: 50),
           maxInterval: const Duration(seconds: 5),
           onDoAction: _ping,
