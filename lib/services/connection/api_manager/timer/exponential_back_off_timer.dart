@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:ui';
+
+import 'connection_timer.dart';
 
 /// A timer utility that implements an exponential back-off strategy for
 /// recurring actions.
@@ -10,7 +11,7 @@ import 'dart:ui';
 /// The timer will call the provided [onDoAction] callback every time the
 /// interval elapses, allowing you to perform the action without needing to
 /// manually handle the timing logic.
-class ExponentialBackoffTimer {
+class ExponentialBackoffTimer extends ConnectionTimer {
   /// Creates an [ExponentialBackoffTimer] with a specified [initialInterval],
   /// [maxInterval], and an [onDoAction] callback.
   ///
@@ -33,8 +34,9 @@ class ExponentialBackoffTimer {
   ExponentialBackoffTimer({
     required this.initialInterval,
     required this.maxInterval,
-    required this.onDoAction,
-  }) : _currentInterval = initialInterval;
+    required super.onDoAction,
+  })  : _currentInterval = initialInterval,
+        super(interval: initialInterval);
 
   /// The initial interval duration between consecutive actions.
   final Duration initialInterval;
@@ -42,22 +44,22 @@ class ExponentialBackoffTimer {
   /// The maximum interval duration for the exponential back-off.
   final Duration maxInterval;
 
-  /// The callback function to be executed at each timer interval.
-  final VoidCallback onDoAction;
-
   Timer? _timer;
   Duration _currentInterval;
 
   /// Returns `true` if the timer is active, otherwise `false`.
+  @override
   bool get isActive => _timer?.isActive ?? false;
 
   /// Starts the exponential back-off timer.
   ///
   /// The [onDoAction] callback will be triggered at the initial interval,
   /// and the interval will double after each execution up to [maxInterval].
+  @override
   void start() => _setupTimer();
 
   /// Stops the timer and resets the interval to the initial interval.
+  @override
   void stop() {
     _timer?.cancel();
     _currentInterval = initialInterval;

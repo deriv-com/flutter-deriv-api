@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/exponential_back_off_timer.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/timer/exponential_back_off_timer.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -24,6 +24,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/ca
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import 'timer/connection_timer.dart';
+
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
@@ -31,7 +33,15 @@ class BinaryAPI extends BaseAPI {
     String? key,
     bool enableDebug = false,
     this.proxyAwareConnection = false,
-  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
+    ConnectionTimer? connectionTimer,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
+    _connectionTimer = connectionTimer ??
+        ExponentialBackoffTimer(
+          initialInterval: const Duration(milliseconds: 50),
+          maxInterval: const Duration(seconds: 5),
+          onDoAction: _ping,
+        );
+  }
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _keepAlivePingInterval = Duration(seconds: 10);
@@ -72,11 +82,7 @@ class BinaryAPI extends BaseAPI {
   /// Until we find a better solution to make [WebSocketChannel.ready] more
   /// reliable, we rely on the incoming stream to wait for and receive the first
   /// `pong` response, which confirms that the connection is established.
-  late final ExponentialBackoffTimer _connectionTimer = ExponentialBackoffTimer(
-    initialInterval: const Duration(milliseconds: 50),
-    maxInterval: const Duration(seconds: 5),
-    onDoAction: _ping,
-  );
+  late final ConnectionTimer _connectionTimer;
 
   @override
   Future<void> connect(

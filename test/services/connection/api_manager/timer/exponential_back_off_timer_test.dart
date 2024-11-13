@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/services/connection/api_manager/exponential_back_off_timer.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/timer/exponential_back_off_timer.dart';
 import 'package:test/test.dart';
 import 'package:fake_async/fake_async.dart';
 
