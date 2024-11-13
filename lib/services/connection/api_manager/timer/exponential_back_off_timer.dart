@@ -12,8 +12,8 @@ import 'connection_timer.dart';
 /// The timer will call the provided [onDoAction] callback every time the
 /// interval elapses, allowing you to perform the action without needing to
 /// manually handle the timing logic.
-class SimpleExponentialBackoffTimer extends ConnectionTimer {
-  /// Creates an [SimpleExponentialBackoffTimer] with a specified
+class ExponentialBackoffTimer extends ConnectionTimer {
+  /// Creates an [ExponentialBackoffTimer] with a specified
   /// [initialInterval], [maxInterval], and an [onDoAction] callback.
   ///
   /// - [initialInterval]: The starting interval between consecutive actions.
@@ -23,7 +23,7 @@ class SimpleExponentialBackoffTimer extends ConnectionTimer {
   ///                  interval.
   /// Example usage:
   /// ```dart
-  /// final timer = SimpleExponentialBackoffTimer(
+  /// final timer = ExponentialBackoffTimer(
   ///   initialInterval: Duration(milliseconds: 500),
   ///   maxInterval: Duration(seconds: 10),
   ///   onDoAction: () {
@@ -32,7 +32,7 @@ class SimpleExponentialBackoffTimer extends ConnectionTimer {
   /// );
   /// timer.start();
   /// ```
-  SimpleExponentialBackoffTimer({
+  ExponentialBackoffTimer({
     required this.initialInterval,
     required this.maxInterval,
     required super.onDoAction,
