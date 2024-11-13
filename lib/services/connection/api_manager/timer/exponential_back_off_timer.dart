@@ -21,6 +21,12 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   ///                  the interval will no longer increase.
   /// - [onDoAction]: The callback function that will be executed at each
   ///                  interval.
+  /// - [multiplier]: Factor by which the interval increases after each attempt.
+  ///                 Default is `2.0`.
+  /// - [jitter]: If `true`, adds random jitter (±15%) to the interval to reduce
+  ///                 server load spikes. Default is `true`.
+  /// - [maxAttempts]: Optional limit on the number of attempts; stops the timer
+  ///                 if exceeded.
   /// Example usage:
   /// ```dart
   /// final timer = ExponentialBackoffTimer(
@@ -36,6 +42,9 @@ class ExponentialBackoffTimer extends ConnectionTimer {
     required this.initialInterval,
     required this.maxInterval,
     required super.onDoAction,
+    this.multiplier = 2.0,
+    this.jitter = true,
+    this.maxAttempts,
   })  : _currentInterval = initialInterval,
         super(interval: initialInterval);
 
@@ -44,6 +53,18 @@ class ExponentialBackoffTimer extends ConnectionTimer {
 
   /// The maximum interval duration for the exponential back-off.
   final Duration maxInterval;
+
+  /// The factor by which the interval increases after each attempt.
+  final double multiplier;
+
+  /// If `true`, adds random jitter (±15%) to the interval to reduce server
+  final bool jitter;
+
+  /// Optional limit on the number of attempts; stops the timer
+  /// if exceeded.
+  final int? maxAttempts;
+
+  int _attemptCount = 0;
 
   Timer? _timer;
   Duration _currentInterval;
@@ -72,21 +93,37 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   }
 
   void _setupTimer() {
+    if (maxAttempts != null && _attemptCount >= maxAttempts!) {
+      return;
+    }
+
     _timer = Timer(_currentInterval, () {
+      _attemptCount++;
       onDoAction();
       _increaseInterval();
       _restartTimer();
     });
   }
 
-  /// Doubles the current interval for the next action, up to the maximum
-  /// allowed interval.
+  /// Increases the current interval for the next action [multiplier] times,
+  /// up to the maximum allowed interval.
   void _increaseInterval() {
-    _currentInterval = Duration(
-      milliseconds: (_currentInterval.inMilliseconds * 2).clamp(
-        initialInterval.inMilliseconds,
-        maxInterval.inMilliseconds,
-      ),
+    final int newInterval =
+        (_currentInterval.inMilliseconds * multiplier).round();
+    final int clampedInterval = newInterval.clamp(
+      initialInterval.inMilliseconds,
+      maxInterval.inMilliseconds,
     );
+
+    if (jitter) {
+      // Add random jitter of ±15% to prevent thundering herd problem
+      final int jitterRange = (clampedInterval * 0.15).round();
+      final int random =
+          DateTime.now().millisecondsSinceEpoch % (jitterRange * 2) -
+              jitterRange;
+      _currentInterval = Duration(milliseconds: clampedInterval + random);
+    } else {
+      _currentInterval = Duration(milliseconds: clampedInterval);
+    }
   }
 }

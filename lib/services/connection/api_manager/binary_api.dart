@@ -40,6 +40,7 @@ class BinaryAPI extends BaseAPI {
           initialInterval: const Duration(milliseconds: 50),
           maxInterval: const Duration(seconds: 5),
           onDoAction: _ping,
+          maxAttempts: 10,
         );
   }
 

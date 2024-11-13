@@ -17,6 +17,7 @@ void main() {
       timer = ExponentialBackoffTimer(
         initialInterval: initialInterval,
         maxInterval: maxInterval,
+        jitter: false,
         onDoAction: () => actionCount++,
       );
     });
