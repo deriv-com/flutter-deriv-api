@@ -83,6 +83,7 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   /// Stops the timer and resets the interval to the initial interval.
   @override
   void stop() {
+    _attemptCount = 0;
     _timer?.cancel();
     _currentInterval = initialInterval;
   }
