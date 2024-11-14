@@ -78,11 +78,16 @@ class ExponentialBackoffTimer extends ConnectionTimer {
   /// The [onDoAction] callback will be triggered at the initial interval,
   /// and the interval will double after each execution up to [maxInterval].
   @override
-  void start() => _setupTimer();
+  void start() {
+    _reset();
+    _setupTimer();
+  }
 
   /// Stops the timer and resets the interval to the initial interval.
   @override
-  void stop() {
+  void stop() => _reset();
+
+  void _reset() {
     _attemptCount = 0;
     _timer?.cancel();
     _currentInterval = initialInterval;
