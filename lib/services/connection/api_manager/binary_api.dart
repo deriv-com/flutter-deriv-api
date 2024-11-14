@@ -34,6 +34,7 @@ class BinaryAPI extends BaseAPI {
     bool enableDebug = false,
     this.proxyAwareConnection = false,
     ConnectionTimer? connectionTimer,
+    this.callTimeout,
   }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
     _connectionTimer = connectionTimer ??
         ExponentialBackoffTimer(
@@ -49,6 +50,18 @@ class BinaryAPI extends BaseAPI {
 
   /// A flag to indicate if the connection is proxy aware.
   final bool proxyAwareConnection;
+
+  /// The timeout duration for the API calls that are request/response model
+  /// and are not subscription. The return type of these calls are [Future].
+  ///
+  /// If this duration is set, and the [call] method takes more than this
+  /// duration to complete, it will throw a [TimeoutException].
+  ///
+  /// Since these are calls from a remote server and because of lack of
+  /// connection or some other reason their future may never complete. This can
+  /// cause the caller of the methods to wait indefinitely. To prevent this, we
+  /// set a timeout duration for these calls.
+  final Duration? callTimeout;
 
   /// Represents the active websocket connection.
   ///
@@ -176,10 +189,15 @@ class BinaryAPI extends BaseAPI {
     required Request request,
     List<String> nullableKeys = const <String>[],
   }) async {
-    final Response response = await (_callManager ??= CallManager(this))(
+    final Future<Response> responseFuture =
+        (_callManager ??= CallManager(this))(
       request: request,
       nullableKeys: nullableKeys,
     );
+
+    final Response response = await (callTimeout != null
+        ? responseFuture.timeout(callTimeout!)
+        : responseFuture);
 
     if (response is T) {
       return response as T;
