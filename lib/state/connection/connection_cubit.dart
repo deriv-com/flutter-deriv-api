@@ -10,6 +10,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
 
 part 'connection_state.dart';
 
@@ -19,22 +20,12 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   ConnectionCubit(
     ConnectionInformation connectionInformation, {
     BaseAPI? api,
-    this.enableDebug = false,
-    // TODO(NA): Refactor to only get BinaryAPI instance. and printResponse and proxyAwareConnection can be part of BinaryAPI only.
-    this.printResponse = false,
-    this.proxyAwareConnection = false,
-    Duration? callTimeout,
+    this.connectionConfig = const ConnectionConfig(),
   }) : super(const ConnectionInitialState()) {
     _connectionInformation = connectionInformation;
 
     APIInitializer().initialize(
-      api: api ??
-          BinaryAPI(
-            key: _key,
-            proxyAwareConnection: proxyAwareConnection,
-            enableDebug: enableDebug,
-            callTimeout: callTimeout,
-          ),
+      api: api ?? BinaryAPI(key: _key, connectionConfig: connectionConfig),
     );
 
     _api = Injector()<BaseAPI>();
@@ -46,18 +37,8 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   late final BaseAPI _api;
 
-  /// Enables debug mode.
-  ///
-  /// Default value is `false`.
-  final bool enableDebug;
-
-  /// Prints API response to console, only works if [enableDebug] is `true`.
-  ///
-  /// Default value is `false`.
-  final bool printResponse;
-
-  /// A flag to indicate if the connection is proxy aware.
-  final bool proxyAwareConnection;
+  /// Connection configuration.
+  final ConnectionConfig connectionConfig;
 
   // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 5 sec.
   final Duration _pingTimeout = const Duration(seconds: 5);
@@ -114,7 +95,6 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
     await _api.connect(
       _connectionInformation,
-      printResponse: enableDebug && printResponse,
       onOpen: (String key) {
         if (_key == key) {
           emit(const ConnectionConnectedState());

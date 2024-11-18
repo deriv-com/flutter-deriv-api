@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/timer/exponential_back_off_timer.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
@@ -31,11 +32,12 @@ class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
   BinaryAPI({
     String? key,
-    bool enableDebug = false,
-    this.proxyAwareConnection = false,
     ConnectionTimer? connectionTimer,
-    this.callTimeout,
-  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
+    this.connectionConfig = const ConnectionConfig(),
+  }) : super(
+          key: key ?? '${UniqueKey()}',
+          enableDebug: connectionConfig.enableDebug,
+        ) {
     _connectionTimer = connectionTimer ??
         ExponentialBackoffTimer(
           initialInterval: const Duration(milliseconds: 50),
@@ -48,25 +50,13 @@ class BinaryAPI extends BaseAPI {
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
   static const Duration _keepAlivePingInterval = Duration(seconds: 10);
 
-  /// A flag to indicate if the connection is proxy aware.
-  final bool proxyAwareConnection;
-
-  /// The timeout duration for the API calls that are request/response model
-  /// and are not subscription. The return type of these calls are [Future].
-  ///
-  /// If this duration is set, and the [call] method takes more than this
-  /// duration to complete, it will throw a [TimeoutException].
-  ///
-  /// Since these are calls from a remote server and because of lack of
-  /// connection or some other reason their future may never complete. This can
-  /// cause the caller of the methods to wait indefinitely. To prevent this, we
-  /// set a timeout duration for these calls.
-  final Duration? callTimeout;
-
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
   IOWebSocketChannel? _webSocketChannel;
+
+  /// Connection configuration.
+  final ConnectionConfig connectionConfig;
 
   /// Stream subscription to API data.
   StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
@@ -104,7 +94,6 @@ class BinaryAPI extends BaseAPI {
     ConnectionCallback? onOpen,
     ConnectionCallback? onDone,
     ConnectionCallback? onError,
-    bool printResponse = false,
   }) async {
     _resetCallManagers();
 
@@ -126,7 +115,7 @@ class BinaryAPI extends BaseAPI {
 
     HttpClient? client;
 
-    if (proxyAwareConnection) {
+    if (connectionConfig.proxyAwareConnection) {
       final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
           uri.toString().replaceAll('wss', 'https'));
 
@@ -148,7 +137,11 @@ class BinaryAPI extends BaseAPI {
         onOpen?.call(key);
         _stopConnectionTimer();
         if (message != null) {
-          _handleResponse(message, printResponse: printResponse);
+          _handleResponse(
+            message,
+            printResponse:
+                connectionConfig.enableDebug && connectionConfig.printResponse,
+          );
         }
       },
       onDone: () async {
@@ -195,8 +188,8 @@ class BinaryAPI extends BaseAPI {
       nullableKeys: nullableKeys,
     );
 
-    final Response response = await (callTimeout != null
-        ? responseFuture.timeout(callTimeout!)
+    final Response response = await (connectionConfig.callTimeout != null
+        ? responseFuture.timeout(connectionConfig.callTimeout!)
         : responseFuture);
 
     if (response is T) {
