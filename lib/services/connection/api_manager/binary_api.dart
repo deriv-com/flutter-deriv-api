@@ -48,7 +48,10 @@ class BinaryAPI extends BaseAPI {
   }
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _keepAlivePingInterval = Duration(seconds: 10);
+
+  // Instead of the 5-sec ping timer which we had in ConnectionCubit that is
+  // removed, we are using the 5-sec ping interval for the WebSocketChannel.
+  static const Duration _keepAlivePingInterval = Duration(seconds: 5);
 
   /// Represents the active websocket connection.
   ///
