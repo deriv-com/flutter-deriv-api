@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 
 /// Authorize response model class.
 abstract class AuthorizeResponseModel {
@@ -48,7 +49,8 @@ class AuthorizeResponse extends AuthorizeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
+  static final IsolateWrappingAPI _api =
+      Injector()<BaseAPI>() as IsolateWrappingAPI;
 
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///
@@ -56,19 +58,8 @@ class AuthorizeResponse extends AuthorizeResponseModel {
   /// Throws an [BaseAPIException] if API response contains an error.
   static Future<AuthorizeReceive> authorizeMethodRaw(
     AuthorizeRequest request,
-  ) async {
-    final AuthorizeReceive response = await _api.call(
-      request: request,
-    );
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          BaseAPIException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return response;
-  }
+  ) async =>
+      _api.authorize(request);
 
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///

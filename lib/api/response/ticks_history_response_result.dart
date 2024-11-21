@@ -15,6 +15,7 @@ import 'package:flutter_deriv_api/basic_api/generated/ticks_receive.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
 
@@ -95,7 +96,8 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
+  static final IsolateWrappingAPI _api =
+      Injector()<BaseAPI>() as IsolateWrappingAPI;
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
@@ -124,46 +126,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     bool subscribe = true,
   }) async {
     if (subscribe) {
-      final Stream<Response>? responseStream =
-          _api.subscribe(request: request, comparePredicate: comparePredicate);
-      final Response? firstResponse = await responseStream?.first;
-
-      checkException(
-        response: firstResponse,
-        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-            BaseAPIException(baseExceptionModel: baseExceptionModel),
-      );
-      if (firstResponse is TicksHistoryReceive) {
-        return TickHistorySubscription(
-          tickHistory: TicksHistoryResponse.fromJson(
-              firstResponse.candles,
-              firstResponse.history,
-              firstResponse.pipSize,
-              firstResponse.subscription),
-          tickStream: responseStream?.map<TickBase?>(
-            (Response response) {
-              checkException(
-                response: response,
-                exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                    BaseAPIException(baseExceptionModel: baseExceptionModel),
-              );
-
-              return response is TicksReceive
-                  ? Tick.fromJson(
-                      response.tick!,
-                      subscriptionJson: response.subscription,
-                    )
-                  : response is OHLCResponse
-                      ? OHLC.fromJson(
-                          response.ohlc!,
-                          subscriptionJson: response.subscription,
-                        )
-                      : null;
-            },
-          ),
-        );
-      }
-      return null;
+      return _api.subscribeTickHistory(request);
     } else {
       return TickHistorySubscription(
         tickHistory: await fetchTickHistory(request),

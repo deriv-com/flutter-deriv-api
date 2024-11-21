@@ -2,8 +2,26 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response_result.dart';
+import 'package:flutter_deriv_api/api/manually/tick.dart' as man_tick;
+import 'package:flutter_deriv_api/api/manually/tick_base.dart';
+import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_history_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -20,6 +38,10 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
+
+part 'isolate_events.dart';
+
+part 'isolate_task.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
@@ -256,5 +278,338 @@ class BinaryAPI extends BaseAPI {
     if (enableDebug) {
       dev.log('$runtimeType $key $message', error: error);
     }
+  }
+}
+
+/// This class is for handling Binary API connection and calling Binary APIs.
+class IsolateWrappingAPI extends BaseAPI {
+  /// Initializes [BinaryAPI] instance.
+  IsolateWrappingAPI({
+    String? key,
+    bool enableDebug = false,
+    this.proxyAwareConnection = false,
+  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug) {
+    _canStartCompleter = Completer<void>();
+
+    Isolate.spawn<IsolateConfig>(
+      _isolateTask,
+      IsolateConfig(
+        sendPort: _isolateIncomingPort.sendPort,
+        rootIsolateToken: ServicesBinding.rootIsolateToken,
+        apiInstanceKey: super.key,
+      ),
+    );
+
+    _isolateIncomingPort.listen((dynamic message) {
+      if (message is SendPort) {
+        _isolateSendPort = message;
+        if (!_canStartCompleter.isCompleted) {
+          _canStartCompleter.complete();
+        }
+      }
+
+      if (message is ConnectionEventReply) {
+        switch (message.callback) {
+          case ConnectionCallbacks.onOpen:
+            _onOpen?.call(message.key);
+            break;
+          case ConnectionCallbacks.onDone:
+            _onDone?.call(message.key);
+            break;
+          case ConnectionCallbacks.onError:
+            _onError?.call(message.key);
+            break;
+        }
+      }
+
+      if (message is IsolateResponse) {
+        if (message.isSubscription) {
+          _pendingSubscriptions[message.eventId]?.add(message.response);
+          // print(
+          //     '####12 SUBSCRIPTION : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
+        } else {
+          final Completer<dynamic>? completer = _pendingEvents[message.eventId];
+          if (completer != null) {
+            completer.complete(message.response);
+            _pendingEvents.remove(message.eventId);
+            // print(
+            //     '####12 FUTURE : NORMAL ONE -> ${message.response} : ${DateTime.now()}');
+          }
+        }
+      }
+
+      if (message is CustomIsolateEvent) {
+        switch (message.event) {
+          case CustomEvent.ping:
+          case CustomEvent.activeSymbols:
+            final ActiveSymbolsResponse activeSymbolsResponse =
+                message.data as ActiveSymbolsResponse;
+            _pendingEvents[message.eventId]?.complete(activeSymbolsResponse);
+            _pendingEvents.remove(message.eventId);
+            // print('####12 FUTURE : REAL ONE ${DateTime.now()}');
+            break;
+
+          case CustomEvent.assetIndex:
+          case CustomEvent.balance:
+          case CustomEvent.buy:
+          case CustomEvent.accountList:
+          case CustomEvent.accountClosure:
+          case CustomEvent.cancel:
+          case CustomEvent.cashierPayment:
+          case CustomEvent.changeEmail:
+          case CustomEvent.changePassword:
+          case CustomEvent.confirmEmail:
+          case CustomEvent.contractUpdateHistory:
+          case CustomEvent.contractUpdate:
+          case CustomEvent.contractsFor:
+          case CustomEvent.getAccountStatus:
+          case CustomEvent.getAccountTypes:
+          case CustomEvent.getAvailableAccounts:
+          case CustomEvent.getFinancialAssessment:
+          case CustomEvent.getLimits:
+          case CustomEvent.getSelfExclusion:
+          case CustomEvent.getSettings:
+          case CustomEvent.identityVerification:
+          case CustomEvent.jTokenCreate:
+          case CustomEvent.kycAuthStatus:
+          case CustomEvent.ticks:
+            _pendingSubscriptions[message.eventId]?.add(message.data);
+            // print('####12 SUBSCRIPTION : REAL ONE ${DateTime.now()} ');
+            break;
+          case CustomEvent.proposalOpenContract:
+          case CustomEvent.authorize:
+            final AuthorizeReceive authorizeReceive =
+                message.data as AuthorizeReceive;
+            _pendingEvents[message.eventId]?.complete(authorizeReceive);
+            _pendingEvents.remove(message.eventId);
+            // print('####12 FUTURE : REAL ONE ${DateTime.now()} ');
+            break;
+
+          case CustomEvent.landingCompany:
+          case CustomEvent.statesList:
+          case CustomEvent.residenceList:
+          case CustomEvent.ticksHistory:
+            final historyMessage = message as TicksHistoryEvent;
+
+            if (historyMessage.tickHistory != null) {
+              final TicksHistoryResponse historyResponse =
+                  historyMessage.tickHistory!;
+              _pendingEvents[historyMessage.eventId]?.complete(
+                TickHistorySubscription(tickHistory: historyResponse),
+              );
+              _pendingEvents.remove(historyMessage.eventId);
+              // print('####12 FUTURE : REAL ONE ${DateTime.now()} ');
+            } else if (historyMessage.tickStreamItem != null) {
+              _pendingSubscriptions[historyMessage.eventId]
+                  ?.add(historyMessage.tickStreamItem);
+              // print('####12 SUBSCRIPTION : REAL ONE ${DateTime.now()} ');
+            }
+            break;
+          case CustomEvent.proposal:
+            final proposalMessage =
+                message as CustomIsolateEvent<ProposalResponse>;
+
+            _pendingSubscriptions[message.eventId]?.add(proposalMessage.data);
+        }
+      }
+
+      // Check for other messages coming out from Isolate.
+    });
+  }
+
+  final Map<int, Completer<dynamic>> _pendingEvents =
+      <int, Completer<dynamic>>{};
+
+  final Map<int, StreamController<dynamic>> _pendingSubscriptions =
+      <int, StreamController<dynamic>>{};
+
+  late final Completer<void> _canStartCompleter;
+
+  final ReceivePort _isolateIncomingPort = ReceivePort();
+  SendPort? _isolateSendPort;
+  int _eventId = 0;
+
+  int get _getEventId => _eventId++;
+
+  /// A flag to indicate if the connection is proxy aware.
+  final bool proxyAwareConnection;
+
+  /// Call manager instance.
+  CallManager? _callManager;
+
+  /// Subscription manager instance.
+  SubscriptionManager? _subscriptionManager;
+
+  /// Gets API call history.
+  CallHistory? get callHistory => _callManager?.callHistory;
+
+  /// Gets API subscription history.
+  CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
+
+  ConnectionCallback? _onOpen;
+  ConnectionCallback? _onDone;
+  ConnectionCallback? _onError;
+
+  @override
+  Future<void> connect(
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onDone,
+    ConnectionCallback? onError,
+    bool printResponse = false,
+  }) async {
+    await _canStartCompleter.future;
+    print('Sending Connect event to Ioslate ${DateTime.now()}');
+    _isolateSendPort?.send(_WSConnectConfig(
+      connectionInformation: connectionInformation,
+    ));
+    _onOpen = onOpen;
+    _onDone = onDone;
+    _onError = onError;
+  }
+
+  Future<T> _callEvent<T>(_IsolateEvent event) {
+    final Completer<T> responseCompleter = Completer<T>();
+    _pendingEvents[event.eventId] = responseCompleter;
+
+    _isolateSendPort?.send(event);
+
+    return responseCompleter.future;
+  }
+
+  @override
+  void addToChannel(Map<String, dynamic> request) => _isolateSendPort
+      ?.send(_AddToChannelEvent(request: request, eventId: _getEventId));
+
+  @override
+  Future<T> call<T>({
+    required Request request,
+    List<String> nullableKeys = const <String>[],
+  }) async {
+    final event = _CallEvent<T>(request: request, eventId: _getEventId);
+    return _callEvent(event);
+  }
+
+  /// Gets the list of active symbols.
+  ///
+  /// For parameters information refer to [ActiveSymbolsRequest].
+  /// Throws an [BaseAPIException] if API response contains an error
+  Future<ActiveSymbolsResponse> fetchActiveSymbols(
+    ActiveSymbolsRequest request,
+  ) async {
+    final event = CustomIsolateEvent<ActiveSymbolsResponse>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.activeSymbols,
+    );
+
+    return _callEvent(event);
+  }
+
+  Stream<ProposalResponse?> subscribePriceForContract(
+    ProposalRequest request, {
+    RequestCompareFunction? comparePredicate,
+  }) {
+    final event = CustomIsolateEvent<ProposalResponse>(
+      eventId: _getEventId,
+      request: request,
+      event: CustomEvent.proposal,
+    );
+    final StreamController<ProposalResponse> responseStream =
+        StreamController.broadcast();
+    _pendingSubscriptions[event.eventId] = responseStream;
+    _isolateSendPort?.send(event);
+    return responseStream.stream;
+  }
+
+  Stream<TicksResponse> subscribeTick(TicksRequest request) {
+    final event = CustomIsolateEvent<TicksResponse>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.ticks,
+    );
+
+    final StreamController<TicksResponse> responseStream =
+        StreamController.broadcast();
+    _pendingSubscriptions[event.eventId] = responseStream;
+
+    _isolateSendPort?.send(event);
+    return responseStream.stream;
+  }
+
+  Future<TickHistorySubscription> subscribeTickHistory(
+    TicksHistoryRequest request,
+  ) async {
+    final event = TicksHistoryEvent(
+      eventId: _getEventId,
+      event: CustomEvent.ticksHistory,
+      request: request,
+    );
+
+    final StreamController<TickBase> tickStreamController =
+        StreamController.broadcast();
+    final completer = Completer<TickHistorySubscription>();
+
+    _pendingSubscriptions[event.eventId] = tickStreamController;
+    _pendingEvents[event.eventId] = completer;
+
+    _isolateSendPort?.send(event);
+
+    final tickHistorySubscription = await completer.future;
+
+    final response = tickHistorySubscription.copyWith(
+      tickHistorySubscription.tickHistory!,
+      tickStreamController.stream,
+    );
+
+    return response;
+  }
+
+  @override
+  Stream<Response>? subscribe({
+    required Request request,
+    int cacheSize = 0,
+    RequestCompareFunction? comparePredicate,
+  }) {
+    final StreamController<Response> responseStream =
+        StreamController.broadcast();
+    final subEvent = _SubEvent<Response>(
+      request: request,
+      eventId: _getEventId,
+    );
+    _pendingSubscriptions[subEvent.eventId] = responseStream;
+
+    _isolateSendPort?.send(subEvent);
+    return responseStream.stream;
+  }
+
+  @override
+  Future<ForgetReceive> unsubscribe({required String subscriptionId}) {
+    final event =
+        _UnSubEvent(subscriptionId: subscriptionId, eventId: _getEventId);
+    return _callEvent(event);
+  }
+
+  @override
+  Future<ForgetAllReceive> unsubscribeAll({
+    required ForgetStreamType method,
+  }) {
+    final event = _UnSubAllEvent(streamType: method, eventId: _getEventId);
+    return _callEvent(event);
+  }
+
+  @override
+  Future<void> disconnect() async {
+    _isolateSendPort?.send(_DisconnectEvent(eventId: _getEventId));
+  }
+
+  Future<AuthorizeReceive> authorize(AuthorizeRequest request) {
+    final event = CustomIsolateEvent<AuthorizeReceive>(
+      request: request,
+      eventId: _getEventId,
+      event: CustomEvent.authorize,
+    );
+
+    return _callEvent(event);
   }
 }

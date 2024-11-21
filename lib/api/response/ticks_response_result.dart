@@ -12,6 +12,7 @@ import 'package:flutter_deriv_api/basic_api/generated/ticks_send.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
 
@@ -64,33 +65,17 @@ class TicksResponse extends TicksResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector()<BaseAPI>();
+  static final IsolateWrappingAPI _api =
+      Injector()<BaseAPI>() as IsolateWrappingAPI;
 
   /// Subscribes to a tick for given [TickRequest]
   ///
   /// Throws [BaseAPIException] if API response contains an error
-  static Stream<TicksResponse?> subscribeTick(
+  static Stream<TicksResponse> subscribeTick(
     TicksRequest tickRequest, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: tickRequest, comparePredicate: comparePredicate)!
-          .map<TicksResponse?>(
-        (Response response) {
-          checkException(
-            response: response,
-            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-                BaseAPIException(baseExceptionModel: baseExceptionModel),
-          );
-
-          return response is TicksReceive
-              ? TicksResponse.fromJson(
-                  response.tick,
-                  response.subscription,
-                )
-              : null;
-        },
-      );
+      _api.subscribeTick(tickRequest);
 
   /// Unsubscribes all ticks.
   ///
