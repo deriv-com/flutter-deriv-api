@@ -3,6 +3,8 @@
 // uses collected `msg_type`s from the 1st step to create a helper
 // function that maps the `msg_type`s to equivalent Response objects
 
+import 'package:flutter_deriv_api/basic_api/generated/ticks_batch_receive.dart';
+
 import '../generated/account_closure_receive.dart';
 import '../generated/account_list_receive.dart';
 import '../generated/account_security_receive.dart';
@@ -434,6 +436,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TicksHistoryReceive.fromJson(responseMap);
     case 'tick':
       return TicksReceive.fromJson(responseMap);
+    case 'ticks_batch':
+      return TicksBatchReceive.fromJson(responseMap);
     case 'time':
       return TimeReceive.fromJson(responseMap);
     case 'tnc_approval':
