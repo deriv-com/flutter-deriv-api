@@ -73,5 +73,5 @@ class TicksBatchRequest extends Request {
 
   /// Override equatable class.
   @override
-  List<Object?> get props => <Object?>[market];
+  List<Object?> get props => <Object?>[];
 }
