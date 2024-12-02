@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:deriv_dependency_injector/dependency_injector.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
 
 part 'connection_state.dart';
 
@@ -57,6 +58,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Gets app id of websocket.
   static String get appId => _connectionInformation.appId;
+
+  /// Stream subscription for connectivity.
+  StreamSubscription<ConnectivityResult>? _connectivitySubscription;
 
   /// Getter for [BaseAPI] implementation class. By default, it will be [BinaryAPI].
   BaseAPI get api => _api;
@@ -111,5 +115,26 @@ class ConnectionCubit extends Cubit<ConnectionState> {
         }
       },
     );
+
+    if (_api is BinaryAPI) {
+      _setupConnectivityListener();
+    }
+  }
+
+  void _setupConnectivityListener() {
+    _connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult status) async {
+        if (status == ConnectivityResult.none) {
+          emit(const ConnectionDisconnectedState());
+        }
+      },
+    );
+  }
+
+  @override
+  Future<void> close() {
+    _connectivitySubscription?.cancel();
+    _connectivitySubscription = null;
+    return super.close();
   }
 }
