@@ -26,7 +26,6 @@ abstract class BaseAPI {
     ConnectionCallback? onDone,
     ConnectionCallback? onOpen,
     ConnectionCallback? onError,
-    bool printResponse,
   });
 
   /// Adds request to stream channel.

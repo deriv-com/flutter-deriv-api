@@ -18,14 +18,12 @@ class _SampleAppState extends State<SampleApp> {
   void initState() {
     super.initState();
 
-    _connectionCubit = conn.ConnectionCubit(
-        ConnectionInformation(
-          appId: '36544',
-          brand: 'deriv',
-          endpoint: 'ws.derivws.com',
-          authEndpoint: '',
-        ),
-        proxyAwareConnection: false);
+    _connectionCubit = conn.ConnectionCubit(const ConnectionInformation(
+      appId: '36544',
+      brand: 'deriv',
+      endpoint: 'ws.derivws.com',
+      authEndpoint: '',
+    ));
   }
 
   @override

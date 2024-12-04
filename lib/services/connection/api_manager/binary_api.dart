@@ -4,6 +4,9 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/timer/exponential_back_off_timer.dart';
 import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -20,26 +23,43 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+import 'timer/connection_timer.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes [BinaryAPI] instance.
   BinaryAPI({
     String? key,
-    bool enableDebug = false,
-    this.proxyAwareConnection = false,
-  }) : super(key: key ?? '${UniqueKey()}', enableDebug: enableDebug);
+    ConnectionTimer? connectionTimer,
+    this.connectionConfig = const ConnectionConfig(),
+  }) : super(
+          key: key ?? '${UniqueKey()}',
+          enableDebug: connectionConfig.enableDebug,
+        ) {
+    _connectionTimer = connectionTimer ??
+        ExponentialBackoffTimer(
+          initialInterval: const Duration(milliseconds: 50),
+          maxInterval: const Duration(seconds: 5),
+          onDoAction: _ping,
+          maxAttempts: 10,
+        );
+  }
 
   static const Duration _disconnectTimeOut = Duration(seconds: 5);
-  static const Duration _websocketConnectTimeOut = Duration(seconds: 10);
 
-  /// A flag to indicate if the connection is proxy aware.
-  final bool proxyAwareConnection;
+  // Instead of the 5-sec ping timer which we had in ConnectionCubit that is
+  // removed, we are using the 5-sec ping interval for the WebSocketChannel.
+  static const Duration _keepAlivePingInterval = Duration(seconds: 5);
 
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
   IOWebSocketChannel? _webSocketChannel;
+
+  /// Connection configuration.
+  final ConnectionConfig connectionConfig;
 
   /// Stream subscription to API data.
   StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
@@ -56,13 +76,27 @@ class BinaryAPI extends BaseAPI {
   /// Gets API subscription history.
   CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
+  /// A timer to schedule sending ping requests right after the WebSocket is
+  /// ready to receive the first response from the server. This helps ensure
+  /// that the connection is established.
+  ///
+  /// Ideally, we would use the [WebSocketChannel.ready] future to determine
+  /// if the connection is ready to send and receive messages. However, it
+  /// doesn't always work as expected. In testing, we noticed that even after
+  /// the `ready` future completes, we often don't receive a response from the
+  /// server.
+  ///
+  /// Until we find a better solution to make [WebSocketChannel.ready] more
+  /// reliable, we rely on the incoming stream to wait for and receive the first
+  /// `pong` response, which confirms that the connection is established.
+  late final ConnectionTimer _connectionTimer;
+
   @override
   Future<void> connect(
     ConnectionInformation? connectionInformation, {
     ConnectionCallback? onOpen,
     ConnectionCallback? onDone,
     ConnectionCallback? onError,
-    bool printResponse = false,
   }) async {
     _resetCallManagers();
 
@@ -84,7 +118,7 @@ class BinaryAPI extends BaseAPI {
 
     HttpClient? client;
 
-    if (proxyAwareConnection) {
+    if (connectionConfig.proxyAwareConnection) {
       final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
           uri.toString().replaceAll('wss', 'https'));
 
@@ -95,16 +129,22 @@ class BinaryAPI extends BaseAPI {
 
     // Initialize connection to websocket server.
     _webSocketChannel = IOWebSocketChannel.connect('$uri',
-        pingInterval: _websocketConnectTimeOut, customClient: client);
+        pingInterval: _keepAlivePingInterval, customClient: client);
+
+    unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
 
     _webSocketListener = _webSocketChannel?.stream
         .map<Map<String, dynamic>?>((Object? result) => jsonDecode('$result'))
         .listen(
       (Map<String, dynamic>? message) {
         onOpen?.call(key);
-
+        _stopConnectionTimer();
         if (message != null) {
-          _handleResponse(message, printResponse: printResponse);
+          _handleResponse(
+            message,
+            printResponse:
+                connectionConfig.enableDebug && connectionConfig.printResponse,
+          );
         }
       },
       onDone: () async {
@@ -145,10 +185,15 @@ class BinaryAPI extends BaseAPI {
     required Request request,
     List<String> nullableKeys = const <String>[],
   }) async {
-    final Response response = await (_callManager ??= CallManager(this))(
+    final Future<Response> responseFuture =
+        (_callManager ??= CallManager(this))(
       request: request,
       nullableKeys: nullableKeys,
     );
+
+    final Response response = await (connectionConfig.callTimeout != null
+        ? responseFuture.timeout(connectionConfig.callTimeout!)
+        : responseFuture);
 
     if (response is T) {
       return response as T;
@@ -251,6 +296,20 @@ class BinaryAPI extends BaseAPI {
       WebSocket.userAgent = userAgent;
     }
   }
+
+  void _startConnectionTimer() {
+    if (!_connectionTimer.isActive) {
+      _connectionTimer.start();
+    }
+  }
+
+  Future<void> _stopConnectionTimer() async {
+    if (_connectionTimer.isActive) {
+      _connectionTimer.stop();
+    }
+  }
+
+  void _ping() => PingResponse.pingMethod();
 
   void _logDebugInfo(String message, {Object? error}) {
     if (enableDebug) {
