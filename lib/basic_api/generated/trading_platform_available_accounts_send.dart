@@ -8,6 +8,7 @@ import '../request.dart';
 class TradingPlatformAvailableAccountsRequest extends Request {
   /// Initialize TradingPlatformAvailableAccountsRequest.
   const TradingPlatformAvailableAccountsRequest({
+    this.countryCode,
     this.loginid,
     required this.platform,
     this.tradingPlatformAvailableAccounts = true,
@@ -20,6 +21,7 @@ class TradingPlatformAvailableAccountsRequest extends Request {
   factory TradingPlatformAvailableAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformAvailableAccountsRequest(
+        countryCode: json['country_code'] as String?,
         loginid: json['loginid'] as String?,
         platform: json['platform'] as String?,
         tradingPlatformAvailableAccounts:
@@ -30,7 +32,10 @@ class TradingPlatformAvailableAccountsRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] Country code for which available accounts are returned. If not specified (deprecated) the current user residence country is used or (not deprecated) country code corresponding to the caller IP address is used.
+  final String? countryCode;
+
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// Name of trading platform.
@@ -42,6 +47,7 @@ class TradingPlatformAvailableAccountsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'country_code': countryCode,
         'loginid': loginid,
         'platform': platform,
         'trading_platform_available_accounts':
@@ -57,6 +63,7 @@ class TradingPlatformAvailableAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingPlatformAvailableAccountsRequest copyWith({
+    String? countryCode,
     String? loginid,
     String? platform,
     bool? tradingPlatformAvailableAccounts,
@@ -64,6 +71,7 @@ class TradingPlatformAvailableAccountsRequest extends Request {
     int? reqId,
   }) =>
       TradingPlatformAvailableAccountsRequest(
+        countryCode: countryCode ?? this.countryCode,
         loginid: loginid ?? this.loginid,
         platform: platform ?? this.platform,
         tradingPlatformAvailableAccounts: tradingPlatformAvailableAccounts ??
