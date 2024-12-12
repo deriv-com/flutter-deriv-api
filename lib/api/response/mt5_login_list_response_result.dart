@@ -102,6 +102,64 @@ enum AccountTypeEnum {
   real,
 }
 
+/// PoaStatusEnum mapper.
+final Map<String, PoaStatusEnum> poaStatusEnumMapper = <String, PoaStatusEnum>{
+  "none": PoaStatusEnum.none,
+  "pending": PoaStatusEnum.pending,
+  "expired": PoaStatusEnum.expired,
+  "verified": PoaStatusEnum.verified,
+  "rejected": PoaStatusEnum.rejected,
+};
+
+/// PoaStatus Enum.
+enum PoaStatusEnum {
+  /// none.
+  none,
+
+  /// pending.
+  pending,
+
+  /// expired.
+  expired,
+
+  /// verified.
+  verified,
+
+  /// rejected.
+  rejected,
+}
+
+/// PoiStatusEnum mapper.
+final Map<String, PoiStatusEnum> poiStatusEnumMapper = <String, PoiStatusEnum>{
+  "none": PoiStatusEnum.none,
+  "pending": PoiStatusEnum.pending,
+  "verified": PoiStatusEnum.verified,
+  "suspected": PoiStatusEnum.suspected,
+  "rejected": PoiStatusEnum.rejected,
+  "expired": PoiStatusEnum.expired,
+};
+
+/// PoiStatus Enum.
+enum PoiStatusEnum {
+  /// none.
+  none,
+
+  /// pending.
+  pending,
+
+  /// verified.
+  verified,
+
+  /// suspected.
+  suspected,
+
+  /// rejected.
+  rejected,
+
+  /// expired.
+  expired,
+}
+
 /// LandingCompanyShortEnum mapper.
 final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
     <String, LandingCompanyShortEnum>{
@@ -112,6 +170,7 @@ final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
   "svg": LandingCompanyShortEnum.svg,
   "vanuatu": LandingCompanyShortEnum.vanuatu,
   "seychelles": LandingCompanyShortEnum.seychelles,
+  "dml": LandingCompanyShortEnum.dml,
 };
 
 /// LandingCompanyShort Enum.
@@ -136,6 +195,9 @@ enum LandingCompanyShortEnum {
 
   /// seychelles.
   seychelles,
+
+  /// dml.
+  dml,
 }
 
 /// MarketTypeEnum mapper.
@@ -166,6 +228,7 @@ final Map<String, ProductEnum> productEnumMapper = <String, ProductEnum>{
   "zero_spread": ProductEnum.zeroSpread,
   "standard": ProductEnum.standard,
   "stp": ProductEnum.stp,
+  "gold": ProductEnum.gold,
 };
 
 /// Product Enum.
@@ -187,6 +250,9 @@ enum ProductEnum {
 
   /// stp.
   stp,
+
+  /// gold.
+  gold,
 }
 
 /// EnvironmentEnum mapper.
@@ -211,6 +277,9 @@ final Map<String, EnvironmentEnum> environmentEnumMapper =
   "DerivBVI-Server": EnvironmentEnum.derivBVIServer,
   "DerivBVI-Server-02": EnvironmentEnum.derivBVIServer02,
   "DerivBVI-Server-03": EnvironmentEnum.derivBVIServer03,
+  "DerivMU-Server": EnvironmentEnum.derivMUServer,
+  "DerivMU-Server-02": EnvironmentEnum.derivMUServer02,
+  "DerivMU-Server-03": EnvironmentEnum.derivMUServer03,
 };
 
 /// Environment Enum.
@@ -271,6 +340,15 @@ enum EnvironmentEnum {
 
   /// DerivBVI-Server-03.
   derivBVIServer03,
+
+  /// DerivMU-Server.
+  derivMUServer,
+
+  /// DerivMU-Server-02.
+  derivMUServer02,
+
+  /// DerivMU-Server-03.
+  derivMUServer03,
 }
 
 /// SubAccountCategoryEnum mapper.
@@ -283,6 +361,7 @@ final Map<String, SubAccountCategoryEnum> subAccountCategoryEnumMapper =
   "ab": SubAccountCategoryEnum.ab,
   "ba": SubAccountCategoryEnum.ba,
   "stp": SubAccountCategoryEnum.stp,
+  "gold": SubAccountCategoryEnum.gold,
 };
 
 /// SubAccountCategory Enum.
@@ -307,6 +386,9 @@ enum SubAccountCategoryEnum {
 
   /// stp.
   stp,
+
+  /// gold.
+  gold,
 }
 
 /// SubAccountTypeEnum mapper.
@@ -319,6 +401,7 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
   "ibt": SubAccountTypeEnum.ibt,
   "stp": SubAccountTypeEnum.stp,
   "zero_spread": SubAccountTypeEnum.zeroSpread,
+  "gold": SubAccountTypeEnum.gold,
 };
 
 /// SubAccountType Enum.
@@ -343,6 +426,9 @@ enum SubAccountTypeEnum {
 
   /// zero_spread.
   zeroSpread,
+
+  /// gold.
+  gold,
 }
 /// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel {
@@ -350,12 +436,14 @@ abstract class Mt5LoginListItemModel {
   const Mt5LoginListItemModel({
     this.accountType,
     this.balance,
+    this.clientKycStatus,
     this.country,
     this.currency,
     this.displayBalance,
     this.eligibleToMigrate,
     this.email,
     this.group,
+    this.isMainAgent,
     this.landingCompany,
     this.landingCompanyShort,
     this.leverage,
@@ -380,6 +468,9 @@ abstract class Mt5LoginListItemModel {
   /// Balance of the MT5 account.
   final double? balance;
 
+  /// [Optional] Pertains to client KYC. Returned only if the client fails to meet the requirements, including proof of identity (POI), validity of the tax identification number (TIN), and proof of address (POA).
+  final ClientKycStatus? clientKycStatus;
+
   /// Residence of the MT5 account.
   final String? country;
 
@@ -397,6 +488,9 @@ abstract class Mt5LoginListItemModel {
 
   /// Group type of the MT5 account, e.g. `demo\svg_financial`
   final String? group;
+
+  /// Indicate if the account is a main agent - an IB account
+  final bool? isMainAgent;
 
   /// Broker name
   final String? landingCompany;
@@ -453,12 +547,14 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
   const Mt5LoginListItem({
     super.accountType,
     super.balance,
+    super.clientKycStatus,
     super.country,
     super.currency,
     super.displayBalance,
     super.eligibleToMigrate,
     super.email,
     super.group,
+    super.isMainAgent,
     super.landingCompany,
     super.landingCompanyShort,
     super.leverage,
@@ -484,12 +580,16 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
             ? null
             : accountTypeEnumMapper[json['account_type']],
         balance: getDouble(json['balance']),
+        clientKycStatus: json['client_kyc_status'] == null
+            ? null
+            : ClientKycStatus.fromJson(json['client_kyc_status']),
         country: json['country'],
         currency: json['currency'],
         displayBalance: json['display_balance'],
         eligibleToMigrate: json['eligible_to_migrate'],
         email: json['email'],
         group: json['group'],
+        isMainAgent: getBool(json['is_main_agent']),
         landingCompany: json['landing_company'],
         landingCompanyShort: json['landing_company_short'] == null
             ? null
@@ -530,12 +630,16 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
             entry.value == accountType)
         .key;
     resultMap['balance'] = balance;
+    if (clientKycStatus != null) {
+      resultMap['client_kyc_status'] = clientKycStatus!.toJson();
+    }
     resultMap['country'] = country;
     resultMap['currency'] = currency;
     resultMap['display_balance'] = displayBalance;
     resultMap['eligible_to_migrate'] = eligibleToMigrate;
     resultMap['email'] = email;
     resultMap['group'] = group;
+    resultMap['is_main_agent'] = isMainAgent;
     resultMap['landing_company'] = landingCompany;
     resultMap['landing_company_short'] = landingCompanyShortEnumMapper.entries
         .firstWhere((MapEntry<String, LandingCompanyShortEnum> entry) =>
@@ -582,12 +686,14 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
   Mt5LoginListItem copyWith({
     AccountTypeEnum? accountType,
     double? balance,
+    ClientKycStatus? clientKycStatus,
     String? country,
     String? currency,
     String? displayBalance,
     Map<String, dynamic>? eligibleToMigrate,
     String? email,
     String? group,
+    bool? isMainAgent,
     String? landingCompany,
     LandingCompanyShortEnum? landingCompanyShort,
     double? leverage,
@@ -608,12 +714,14 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
       Mt5LoginListItem(
         accountType: accountType ?? this.accountType,
         balance: balance ?? this.balance,
+        clientKycStatus: clientKycStatus ?? this.clientKycStatus,
         country: country ?? this.country,
         currency: currency ?? this.currency,
         displayBalance: displayBalance ?? this.displayBalance,
         eligibleToMigrate: eligibleToMigrate ?? this.eligibleToMigrate,
         email: email ?? this.email,
         group: group ?? this.group,
+        isMainAgent: isMainAgent ?? this.isMainAgent,
         landingCompany: landingCompany ?? this.landingCompany,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         leverage: leverage ?? this.leverage,
@@ -630,6 +738,75 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
         webtraderUrl: webtraderUrl ?? this.webtraderUrl,
         whiteLabelLinks: whiteLabelLinks ?? this.whiteLabelLinks,
+      );
+}
+/// Client kyc status model class.
+abstract class ClientKycStatusModel {
+  /// Initializes Client kyc status model class .
+  const ClientKycStatusModel({
+    this.poaStatus,
+    this.poiStatus,
+    this.validTin,
+  });
+
+  /// Status of proof of address (POA).
+  final PoaStatusEnum? poaStatus;
+
+  /// Status of proof of identity (POI).
+  final PoiStatusEnum? poiStatus;
+
+  /// Indicates whether the tax identification number (TIN) is valid (1) or not (0).
+  final bool? validTin;
+}
+
+/// Client kyc status class.
+class ClientKycStatus extends ClientKycStatusModel {
+  /// Initializes Client kyc status class.
+  const ClientKycStatus({
+    super.poaStatus,
+    super.poiStatus,
+    super.validTin,
+  });
+
+  /// Creates an instance from JSON.
+  factory ClientKycStatus.fromJson(Map<String, dynamic> json) =>
+      ClientKycStatus(
+        poaStatus: json['poa_status'] == null
+            ? null
+            : poaStatusEnumMapper[json['poa_status']],
+        poiStatus: json['poi_status'] == null
+            ? null
+            : poiStatusEnumMapper[json['poi_status']],
+        validTin: getBool(json['valid_tin']),
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['poa_status'] = poaStatusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, PoaStatusEnum> entry) => entry.value == poaStatus)
+        .key;
+    resultMap['poi_status'] = poiStatusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, PoiStatusEnum> entry) => entry.value == poiStatus)
+        .key;
+    resultMap['valid_tin'] = validTin;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  ClientKycStatus copyWith({
+    PoaStatusEnum? poaStatus,
+    PoiStatusEnum? poiStatus,
+    bool? validTin,
+  }) =>
+      ClientKycStatus(
+        poaStatus: poaStatus ?? this.poaStatus,
+        poiStatus: poiStatus ?? this.poiStatus,
+        validTin: validTin ?? this.validTin,
       );
 }
 /// Rights model class.
