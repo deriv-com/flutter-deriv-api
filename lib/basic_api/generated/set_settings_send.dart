@@ -36,6 +36,7 @@ class SetSettingsRequest extends Request {
     this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
+    this.tinSkipped,
     this.tradingHub,
     super.msgType = 'set_settings',
     super.passthrough,
@@ -78,6 +79,8 @@ class SetSettingsRequest extends Request {
             json['set_settings'] == null ? null : json['set_settings'] == 1,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tinSkipped:
+            json['tin_skipped'] == null ? null : json['tin_skipped'] == 1,
         tradingHub:
             json['trading_hub'] == null ? null : json['trading_hub'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -123,13 +126,13 @@ class SetSettingsRequest extends Request {
   /// [Optional] Enable or disable one or multiple features.
   final Map<String, dynamic>? featureFlag;
 
-  /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
+  /// [Optional] Within 1-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? firstName;
 
-  /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
+  /// [Optional] Within 1-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? lastName;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
@@ -167,6 +170,9 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String? taxResidence;
+
+  /// [Optional] Whether the client has skipped the TIN form. Only applicable for real money account.
+  final bool? tinSkipped;
 
   /// [Optional] Enable/Disable Trading Hub dashboard
   final bool? tradingHub;
@@ -218,6 +224,11 @@ class SetSettingsRequest extends Request {
                 : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'tin_skipped': tinSkipped == null
+            ? null
+            : tinSkipped!
+                ? 1
+                : 0,
         'trading_hub': tradingHub == null
             ? null
             : tradingHub!
@@ -258,6 +269,7 @@ class SetSettingsRequest extends Request {
     bool? setSettings,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tinSkipped,
     bool? tradingHub,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -293,6 +305,7 @@ class SetSettingsRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tinSkipped: tinSkipped ?? this.tinSkipped,
         tradingHub: tradingHub ?? this.tradingHub,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -205,6 +205,7 @@ abstract class GetSettingsModel {
     this.email,
     this.emailConsent,
     this.employmentStatus,
+    this.fatcaDeclaration,
     this.featureFlag,
     this.firstName,
     this.hasSecretAnswer,
@@ -213,6 +214,7 @@ abstract class GetSettingsModel {
     this.lastName,
     this.nonPepDeclaration,
     this.phone,
+    this.phoneNumberVerification,
     this.placeOfBirth,
     this.preferredLanguage,
     this.requestProfessionalStatus,
@@ -220,6 +222,8 @@ abstract class GetSettingsModel {
     this.salutation,
     this.taxIdentificationNumber,
     this.taxResidence,
+    this.tinSkipped,
+    this.tncStatus,
     this.tradingHub,
     this.userHash,
   });
@@ -275,6 +279,9 @@ abstract class GetSettingsModel {
   /// Employment Status.
   final EmploymentStatusEnum? employmentStatus;
 
+  /// Indicates client's self-declaration for FATCA.
+  final int? fatcaDeclaration;
+
   /// Contains features that are enabled or disabled for this user
   final FeatureFlag? featureFlag;
 
@@ -299,6 +306,9 @@ abstract class GetSettingsModel {
   /// Telephone (note: Only available for users who have at least one real account)
   final String? phone;
 
+  /// The status of the Phone Number Verification.
+  final PhoneNumberVerification? phoneNumberVerification;
+
   /// Place of birth, 2-letter country code.
   final String? placeOfBirth;
 
@@ -319,6 +329,12 @@ abstract class GetSettingsModel {
 
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account.
   final String? taxResidence;
+
+  /// [Optional] Whether the client has skipped the TIN form. Only applicable for real money account.
+  final bool? tinSkipped;
+
+  /// Terms and condition status tells us whether all the accounts of this user has accepted the latest T&C version.
+  final Map<String, dynamic>? tncStatus;
 
   /// Boolean value 1 or 0, indicating if client has enabled the Trading Hub dashboard
   final int? tradingHub;
@@ -348,6 +364,7 @@ class GetSettings extends GetSettingsModel {
     super.email,
     super.emailConsent,
     super.employmentStatus,
+    super.fatcaDeclaration,
     super.featureFlag,
     super.firstName,
     super.hasSecretAnswer,
@@ -356,6 +373,7 @@ class GetSettings extends GetSettingsModel {
     super.lastName,
     super.nonPepDeclaration,
     super.phone,
+    super.phoneNumberVerification,
     super.placeOfBirth,
     super.preferredLanguage,
     super.requestProfessionalStatus,
@@ -363,6 +381,8 @@ class GetSettings extends GetSettingsModel {
     super.salutation,
     super.taxIdentificationNumber,
     super.taxResidence,
+    super.tinSkipped,
+    super.tncStatus,
     super.tradingHub,
     super.userHash,
   });
@@ -389,6 +409,7 @@ class GetSettings extends GetSettingsModel {
         employmentStatus: json['employment_status'] == null
             ? null
             : employmentStatusEnumMapper[json['employment_status']],
+        fatcaDeclaration: json['fatca_declaration'],
         featureFlag: json['feature_flag'] == null
             ? null
             : FeatureFlag.fromJson(json['feature_flag']),
@@ -406,6 +427,10 @@ class GetSettings extends GetSettingsModel {
         lastName: json['last_name'],
         nonPepDeclaration: getBool(json['non_pep_declaration']),
         phone: json['phone'],
+        phoneNumberVerification: json['phone_number_verification'] == null
+            ? null
+            : PhoneNumberVerification.fromJson(
+                json['phone_number_verification']),
         placeOfBirth: json['place_of_birth'],
         preferredLanguage: json['preferred_language'],
         requestProfessionalStatus: getBool(json['request_professional_status']),
@@ -413,6 +438,8 @@ class GetSettings extends GetSettingsModel {
         salutation: json['salutation'],
         taxIdentificationNumber: json['tax_identification_number'],
         taxResidence: json['tax_residence'],
+        tinSkipped: getBool(json['tin_skipped']),
+        tncStatus: json['tnc_status'],
         tradingHub: json['trading_hub'],
         userHash: json['user_hash'],
       );
@@ -442,6 +469,7 @@ class GetSettings extends GetSettingsModel {
         .firstWhere((MapEntry<String, EmploymentStatusEnum> entry) =>
             entry.value == employmentStatus)
         .key;
+    resultMap['fatca_declaration'] = fatcaDeclaration;
     if (featureFlag != null) {
       resultMap['feature_flag'] = featureFlag!.toJson();
     }
@@ -458,6 +486,10 @@ class GetSettings extends GetSettingsModel {
     resultMap['last_name'] = lastName;
     resultMap['non_pep_declaration'] = nonPepDeclaration;
     resultMap['phone'] = phone;
+    if (phoneNumberVerification != null) {
+      resultMap['phone_number_verification'] =
+          phoneNumberVerification!.toJson();
+    }
     resultMap['place_of_birth'] = placeOfBirth;
     resultMap['preferred_language'] = preferredLanguage;
     resultMap['request_professional_status'] = requestProfessionalStatus;
@@ -465,6 +497,8 @@ class GetSettings extends GetSettingsModel {
     resultMap['salutation'] = salutation;
     resultMap['tax_identification_number'] = taxIdentificationNumber;
     resultMap['tax_residence'] = taxResidence;
+    resultMap['tin_skipped'] = tinSkipped;
+    resultMap['tnc_status'] = tncStatus;
     resultMap['trading_hub'] = tradingHub;
     resultMap['user_hash'] = userHash;
 
@@ -490,6 +524,7 @@ class GetSettings extends GetSettingsModel {
     String? email,
     bool? emailConsent,
     EmploymentStatusEnum? employmentStatus,
+    int? fatcaDeclaration,
     FeatureFlag? featureFlag,
     String? firstName,
     bool? hasSecretAnswer,
@@ -498,6 +533,7 @@ class GetSettings extends GetSettingsModel {
     String? lastName,
     bool? nonPepDeclaration,
     String? phone,
+    PhoneNumberVerification? phoneNumberVerification,
     String? placeOfBirth,
     String? preferredLanguage,
     bool? requestProfessionalStatus,
@@ -505,6 +541,8 @@ class GetSettings extends GetSettingsModel {
     String? salutation,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tinSkipped,
+    Map<String, dynamic>? tncStatus,
     int? tradingHub,
     String? userHash,
   }) =>
@@ -527,6 +565,7 @@ class GetSettings extends GetSettingsModel {
         email: email ?? this.email,
         emailConsent: emailConsent ?? this.emailConsent,
         employmentStatus: employmentStatus ?? this.employmentStatus,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
         featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         hasSecretAnswer: hasSecretAnswer ?? this.hasSecretAnswer,
@@ -536,6 +575,8 @@ class GetSettings extends GetSettingsModel {
         lastName: lastName ?? this.lastName,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
+        phoneNumberVerification:
+            phoneNumberVerification ?? this.phoneNumberVerification,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
         preferredLanguage: preferredLanguage ?? this.preferredLanguage,
         requestProfessionalStatus:
@@ -545,6 +586,8 @@ class GetSettings extends GetSettingsModel {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tinSkipped: tinSkipped ?? this.tinSkipped,
+        tncStatus: tncStatus ?? this.tncStatus,
         tradingHub: tradingHub ?? this.tradingHub,
         userHash: userHash ?? this.userHash,
       );
@@ -588,5 +631,104 @@ class FeatureFlag extends FeatureFlagModel {
   }) =>
       FeatureFlag(
         wallet: wallet ?? this.wallet,
+      );
+}
+
+/// Phone number verification model class.
+abstract class PhoneNumberVerificationModel {
+  /// Initializes Phone number verification model class .
+  const PhoneNumberVerificationModel({
+    required this.verified,
+    this.challengeAttemptsRemaining,
+    this.nextAttempt,
+    this.nextEmailAttempt,
+    this.nextVerifyAttempt,
+    this.sessionTimestamp,
+    this.verifyAttemptsRemaining,
+  });
+
+  /// Indicates the verification status of the client's phone number.
+  final bool verified;
+
+  /// Indicates the attempts remaining for /phone_number_challenge
+  final int? challengeAttemptsRemaining;
+
+  /// (Optional) Indicates the timestamp for the next verification attempt
+  final int? nextAttempt;
+
+  /// (Optional) Indicates the timestamp for the next email verification attempt
+  final int? nextEmailAttempt;
+
+  /// (Optional) Indicates the timestamp for the next verify attempt
+  final int? nextVerifyAttempt;
+
+  /// (Optional) Indicates the timestamp for the current's session email code expiry
+  final DateTime? sessionTimestamp;
+
+  /// Indicates the attempts remaining for /phone_number_verification
+  final int? verifyAttemptsRemaining;
+}
+
+/// Phone number verification class.
+class PhoneNumberVerification extends PhoneNumberVerificationModel {
+  /// Initializes Phone number verification class.
+  const PhoneNumberVerification({
+    required super.verified,
+    super.challengeAttemptsRemaining,
+    super.nextAttempt,
+    super.nextEmailAttempt,
+    super.nextVerifyAttempt,
+    super.sessionTimestamp,
+    super.verifyAttemptsRemaining,
+  });
+
+  /// Creates an instance from JSON.
+  factory PhoneNumberVerification.fromJson(Map<String, dynamic> json) =>
+      PhoneNumberVerification(
+        verified: getBool(json['verified'])!,
+        challengeAttemptsRemaining: json['challenge_attempts_remaining'],
+        nextAttempt: json['next_attempt'],
+        nextEmailAttempt: json['next_email_attempt'],
+        nextVerifyAttempt: json['next_verify_attempt'],
+        sessionTimestamp: getDateTime(json['session_timestamp']),
+        verifyAttemptsRemaining: json['verify_attempts_remaining'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['verified'] = verified;
+    resultMap['challenge_attempts_remaining'] = challengeAttemptsRemaining;
+    resultMap['next_attempt'] = nextAttempt;
+    resultMap['next_email_attempt'] = nextEmailAttempt;
+    resultMap['next_verify_attempt'] = nextVerifyAttempt;
+    resultMap['session_timestamp'] =
+        getSecondsSinceEpochDateTime(sessionTimestamp);
+    resultMap['verify_attempts_remaining'] = verifyAttemptsRemaining;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PhoneNumberVerification copyWith({
+    bool? verified,
+    int? challengeAttemptsRemaining,
+    int? nextAttempt,
+    int? nextEmailAttempt,
+    int? nextVerifyAttempt,
+    DateTime? sessionTimestamp,
+    int? verifyAttemptsRemaining,
+  }) =>
+      PhoneNumberVerification(
+        verified: verified ?? this.verified,
+        challengeAttemptsRemaining:
+            challengeAttemptsRemaining ?? this.challengeAttemptsRemaining,
+        nextAttempt: nextAttempt ?? this.nextAttempt,
+        nextEmailAttempt: nextEmailAttempt ?? this.nextEmailAttempt,
+        nextVerifyAttempt: nextVerifyAttempt ?? this.nextVerifyAttempt,
+        sessionTimestamp: sessionTimestamp ?? this.sessionTimestamp,
+        verifyAttemptsRemaining:
+            verifyAttemptsRemaining ?? this.verifyAttemptsRemaining,
       );
 }
