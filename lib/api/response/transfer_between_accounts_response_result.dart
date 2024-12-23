@@ -232,6 +232,7 @@ final Map<String, ProductEnum> productEnumMapper = <String, ProductEnum>{
   "zero_spread": ProductEnum.zeroSpread,
   "standard": ProductEnum.standard,
   "stp": ProductEnum.stp,
+  "gold": ProductEnum.gold,
 };
 
 /// Product Enum.
@@ -253,6 +254,9 @@ enum ProductEnum {
 
   /// stp.
   stp,
+
+  /// gold.
+  gold,
 }
 
 /// SubAccountTypeEnum mapper.
@@ -263,6 +267,7 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
   "standard": SubAccountTypeEnum.standard,
   "swap_free": SubAccountTypeEnum.swapFree,
   "zero_spread": SubAccountTypeEnum.zeroSpread,
+  "gold": SubAccountTypeEnum.gold,
 };
 
 /// SubAccountType Enum.
@@ -281,6 +286,9 @@ enum SubAccountTypeEnum {
 
   /// zero_spread.
   zeroSpread,
+
+  /// gold.
+  gold,
 }
 
 /// TransfersEnum mapper.
