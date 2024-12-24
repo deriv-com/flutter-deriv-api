@@ -101,8 +101,11 @@ abstract class ServiceTokenModel {
     this.dxtrade,
     this.freshworksAuthJwt,
     this.freshworksUserJwt,
+    this.intercom,
     this.onfido,
     this.sendbird,
+    this.smileid,
+    this.supabase,
   });
 
   /// Banxa order data.
@@ -120,11 +123,20 @@ abstract class ServiceTokenModel {
   /// Freshchat data.
   final FreshworksUserJwt? freshworksUserJwt;
 
+  /// Intercom data.
+  final Intercom? intercom;
+
   /// Onfido data.
   final Onfido? onfido;
 
   /// Sendbird data.
   final Sendbird? sendbird;
+
+  /// SmileID data.
+  final Smileid? smileid;
+
+  /// Supabase token.
+  final Supabase? supabase;
 }
 
 /// Service token class.
@@ -136,8 +148,11 @@ class ServiceToken extends ServiceTokenModel {
     super.dxtrade,
     super.freshworksAuthJwt,
     super.freshworksUserJwt,
+    super.intercom,
     super.onfido,
     super.sendbird,
+    super.smileid,
+    super.supabase,
   });
 
   /// Creates an instance from JSON.
@@ -153,10 +168,18 @@ class ServiceToken extends ServiceTokenModel {
         freshworksUserJwt: json['freshworks_user_jwt'] == null
             ? null
             : FreshworksUserJwt.fromJson(json['freshworks_user_jwt']),
+        intercom: json['intercom'] == null
+            ? null
+            : Intercom.fromJson(json['intercom']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
         sendbird: json['sendbird'] == null
             ? null
             : Sendbird.fromJson(json['sendbird']),
+        smileid:
+            json['smileid'] == null ? null : Smileid.fromJson(json['smileid']),
+        supabase: json['supabase'] == null
+            ? null
+            : Supabase.fromJson(json['supabase']),
       );
 
   /// Converts an instance to JSON.
@@ -178,11 +201,20 @@ class ServiceToken extends ServiceTokenModel {
     if (freshworksUserJwt != null) {
       resultMap['freshworks_user_jwt'] = freshworksUserJwt!.toJson();
     }
+    if (intercom != null) {
+      resultMap['intercom'] = intercom!.toJson();
+    }
     if (onfido != null) {
       resultMap['onfido'] = onfido!.toJson();
     }
     if (sendbird != null) {
       resultMap['sendbird'] = sendbird!.toJson();
+    }
+    if (smileid != null) {
+      resultMap['smileid'] = smileid!.toJson();
+    }
+    if (supabase != null) {
+      resultMap['supabase'] = supabase!.toJson();
     }
 
     return resultMap;
@@ -195,8 +227,11 @@ class ServiceToken extends ServiceTokenModel {
     Dxtrade? dxtrade,
     FreshworksAuthJwt? freshworksAuthJwt,
     FreshworksUserJwt? freshworksUserJwt,
+    Intercom? intercom,
     Onfido? onfido,
     Sendbird? sendbird,
+    Smileid? smileid,
+    Supabase? supabase,
   }) =>
       ServiceToken(
         banxa: banxa ?? this.banxa,
@@ -204,8 +239,11 @@ class ServiceToken extends ServiceTokenModel {
         dxtrade: dxtrade ?? this.dxtrade,
         freshworksAuthJwt: freshworksAuthJwt ?? this.freshworksAuthJwt,
         freshworksUserJwt: freshworksUserJwt ?? this.freshworksUserJwt,
+        intercom: intercom ?? this.intercom,
         onfido: onfido ?? this.onfido,
         sendbird: sendbird ?? this.sendbird,
+        smileid: smileid ?? this.smileid,
+        supabase: supabase ?? this.supabase,
       );
 }
 /// Banxa model class.
@@ -428,6 +466,82 @@ class FreshworksUserJwt extends FreshworksUserJwtModel {
         token: token ?? this.token,
       );
 }
+/// Intercom model class.
+abstract class IntercomModel {
+  /// Initializes Intercom model class .
+  const IntercomModel({
+    this.email,
+    this.name,
+    this.phone,
+    this.signature,
+    this.userId,
+  });
+
+  /// Email address of the user
+  final String? email;
+
+  /// Name of the user
+  final String? name;
+
+  /// Phone number of the user
+  final String? phone;
+
+  /// Intercom signature.
+  final String? signature;
+
+  /// Deriv User ID.
+  final String? userId;
+}
+
+/// Intercom class.
+class Intercom extends IntercomModel {
+  /// Initializes Intercom class.
+  const Intercom({
+    super.email,
+    super.name,
+    super.phone,
+    super.signature,
+    super.userId,
+  });
+
+  /// Creates an instance from JSON.
+  factory Intercom.fromJson(Map<String, dynamic> json) => Intercom(
+        email: json['email'],
+        name: json['name'],
+        phone: json['phone'],
+        signature: json['signature'],
+        userId: json['user_id'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['email'] = email;
+    resultMap['name'] = name;
+    resultMap['phone'] = phone;
+    resultMap['signature'] = signature;
+    resultMap['user_id'] = userId;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Intercom copyWith({
+    String? email,
+    String? name,
+    String? phone,
+    String? signature,
+    String? userId,
+  }) =>
+      Intercom(
+        email: email ?? this.email,
+        name: name ?? this.name,
+        phone: phone ?? this.phone,
+        signature: signature ?? this.signature,
+        userId: userId ?? this.userId,
+      );
+}
 /// Onfido model class.
 abstract class OnfidoModel {
   /// Initializes Onfido model class .
@@ -523,6 +637,86 @@ class Sendbird extends SendbirdModel {
       Sendbird(
         appId: appId ?? this.appId,
         expiryTime: expiryTime ?? this.expiryTime,
+        token: token ?? this.token,
+      );
+}
+/// Smileid model class.
+abstract class SmileidModel {
+  /// Initializes Smileid model class .
+  const SmileidModel({
+    this.token,
+  });
+
+  /// SmileID web token.
+  final String? token;
+}
+
+/// Smileid class.
+class Smileid extends SmileidModel {
+  /// Initializes Smileid class.
+  const Smileid({
+    super.token,
+  });
+
+  /// Creates an instance from JSON.
+  factory Smileid.fromJson(Map<String, dynamic> json) => Smileid(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Smileid copyWith({
+    String? token,
+  }) =>
+      Smileid(
+        token: token ?? this.token,
+      );
+}
+/// Supabase model class.
+abstract class SupabaseModel {
+  /// Initializes Supabase model class .
+  const SupabaseModel({
+    this.token,
+  });
+
+  /// JWT for Supabase.
+  final String? token;
+}
+
+/// Supabase class.
+class Supabase extends SupabaseModel {
+  /// Initializes Supabase class.
+  const Supabase({
+    super.token,
+  });
+
+  /// Creates an instance from JSON.
+  factory Supabase.fromJson(Map<String, dynamic> json) => Supabase(
+        token: json['token'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['token'] = token;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  Supabase copyWith({
+    String? token,
+  }) =>
+      Supabase(
         token: token ?? this.token,
       );
 }
