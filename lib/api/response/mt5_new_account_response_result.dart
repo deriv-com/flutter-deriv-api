@@ -206,6 +206,7 @@ final Map<String, Mt5AccountCategoryEnum> mt5AccountCategoryEnumMapper =
     <String, Mt5AccountCategoryEnum>{
   "conventional": Mt5AccountCategoryEnum.conventional,
   "swap_free": Mt5AccountCategoryEnum.swapFree,
+  "gold": Mt5AccountCategoryEnum.gold,
 };
 
 /// Mt5AccountCategory Enum.
@@ -215,6 +216,9 @@ enum Mt5AccountCategoryEnum {
 
   /// swap_free.
   swapFree,
+
+  /// gold.
+  gold,
 }
 
 /// Mt5AccountTypeEnum mapper.
@@ -223,6 +227,7 @@ final Map<String, Mt5AccountTypeEnum> mt5AccountTypeEnumMapper =
   "financial": Mt5AccountTypeEnum.financial,
   "financial_stp": Mt5AccountTypeEnum.financialStp,
   "standard": Mt5AccountTypeEnum.standard,
+  "gold": Mt5AccountTypeEnum.gold,
 };
 
 /// Mt5AccountType Enum.
@@ -235,8 +240,77 @@ enum Mt5AccountTypeEnum {
 
   /// standard.
   standard,
+
+  /// gold.
+  gold,
 }
 
+/// ProductEnum mapper.
+final Map<String, ProductEnum> productEnumMapper = <String, ProductEnum>{
+  "synthetic": ProductEnum.synthetic,
+  "financial": ProductEnum.financial,
+  "swap_free": ProductEnum.swapFree,
+  "zero_spread": ProductEnum.zeroSpread,
+  "standard": ProductEnum.standard,
+  "stp": ProductEnum.stp,
+  "gold": ProductEnum.gold,
+};
+
+/// Product Enum.
+enum ProductEnum {
+  /// synthetic.
+  synthetic,
+
+  /// financial.
+  financial,
+
+  /// swap_free.
+  swapFree,
+
+  /// zero_spread.
+  zeroSpread,
+
+  /// standard.
+  standard,
+
+  /// stp.
+  stp,
+
+  /// gold.
+  gold,
+}
+
+/// SubAccountTypeEnum mapper.
+final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
+    <String, SubAccountTypeEnum>{
+  "standard": SubAccountTypeEnum.standard,
+  "stp": SubAccountTypeEnum.stp,
+  "ibt": SubAccountTypeEnum.ibt,
+  "swap_free": SubAccountTypeEnum.swapFree,
+  "zero_spread": SubAccountTypeEnum.zeroSpread,
+  "gold": SubAccountTypeEnum.gold,
+};
+
+/// SubAccountType Enum.
+enum SubAccountTypeEnum {
+  /// standard.
+  standard,
+
+  /// stp.
+  stp,
+
+  /// ibt.
+  ibt,
+
+  /// swap_free.
+  swapFree,
+
+  /// zero_spread.
+  zeroSpread,
+
+  /// gold.
+  gold,
+}
 /// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .
@@ -249,6 +323,8 @@ abstract class Mt5NewAccountModel {
     this.login,
     this.mt5AccountCategory,
     this.mt5AccountType,
+    this.product,
+    this.subAccountType,
   });
 
   /// Account type.
@@ -274,6 +350,12 @@ abstract class Mt5NewAccountModel {
 
   /// Sub account type for classic MT5 account.
   final Mt5AccountTypeEnum? mt5AccountType;
+
+  /// Product name that Deriv offer
+  final ProductEnum? product;
+
+  /// Indicate the different offerings for mt5 account.
+  final SubAccountTypeEnum? subAccountType;
 }
 
 /// Mt5 new account class.
@@ -288,6 +370,8 @@ class Mt5NewAccount extends Mt5NewAccountModel {
     super.login,
     super.mt5AccountCategory,
     super.mt5AccountType,
+    super.product,
+    super.subAccountType,
   });
 
   /// Creates an instance from JSON.
@@ -306,6 +390,11 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         mt5AccountType: json['mt5_account_type'] == null
             ? null
             : mt5AccountTypeEnumMapper[json['mt5_account_type']],
+        product:
+            json['product'] == null ? null : productEnumMapper[json['product']],
+        subAccountType: json['sub_account_type'] == null
+            ? null
+            : subAccountTypeEnumMapper[json['sub_account_type']],
       );
 
   /// Converts an instance to JSON.
@@ -329,6 +418,14 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         .firstWhere((MapEntry<String, Mt5AccountTypeEnum> entry) =>
             entry.value == mt5AccountType)
         .key;
+    resultMap['product'] = productEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, ProductEnum> entry) => entry.value == product)
+        .key;
+    resultMap['sub_account_type'] = subAccountTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, SubAccountTypeEnum> entry) =>
+            entry.value == subAccountType)
+        .key;
 
     return resultMap;
   }
@@ -343,6 +440,8 @@ class Mt5NewAccount extends Mt5NewAccountModel {
     String? login,
     Mt5AccountCategoryEnum? mt5AccountCategory,
     Mt5AccountTypeEnum? mt5AccountType,
+    ProductEnum? product,
+    SubAccountTypeEnum? subAccountType,
   }) =>
       Mt5NewAccount(
         accountType: accountType ?? this.accountType,
@@ -353,5 +452,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         login: login ?? this.login,
         mt5AccountCategory: mt5AccountCategory ?? this.mt5AccountCategory,
         mt5AccountType: mt5AccountType ?? this.mt5AccountType,
+        product: product ?? this.product,
+        subAccountType: subAccountType ?? this.subAccountType,
       );
 }

@@ -34,10 +34,10 @@ class TradingPlatformPasswordChangeRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
-  /// New trading password. Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address.
+  /// New password of the account. For validation (Accepts any printable ASCII character. DerivX: Must be within 8-25 characters, include numbers, lowercase, uppercase letters. Must not be the same as the user's email address). Accepts any printable ASCII character. MT5: Must be within 8-16 characters, include numbers, lowercase, uppercase letters and special characters. Must not be the same as the user's email address.
   final String? newPassword;
 
   /// Old password for validation. Must be empty if a password has not been set yet.
