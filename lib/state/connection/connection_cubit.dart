@@ -124,10 +124,9 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   void _setupConnectivityListener() {
     _connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
       (List<ConnectivityResult> results) async {
-        for (final ConnectivityResult status in results) {
-          if (status == ConnectivityResult.none) {
-            emit(const ConnectionDisconnectedState());
-          }
+        if (results.any(
+            (ConnectivityResult status) => status == ConnectivityResult.none)) {
+          emit(const ConnectionDisconnectedState());
         }
       },
     );
