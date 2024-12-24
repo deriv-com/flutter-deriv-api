@@ -60,7 +60,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   static String get appId => _connectionInformation.appId;
 
   /// Stream subscription for connectivity.
-  StreamSubscription<ConnectivityResult>? _connectivitySubscription;
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
   /// Getter for [BaseAPI] implementation class. By default, it will be [BinaryAPI].
   BaseAPI get api => _api;
@@ -123,9 +123,11 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   void _setupConnectivityListener() {
     _connectivitySubscription ??= Connectivity().onConnectivityChanged.listen(
-      (ConnectivityResult status) async {
-        if (status == ConnectivityResult.none) {
-          emit(const ConnectionDisconnectedState());
+      (List<ConnectivityResult> results) async {
+        for (final ConnectivityResult status in results) {
+          if (status == ConnectivityResult.none) {
+            emit(const ConnectionDisconnectedState());
+          }
         }
       },
     );
