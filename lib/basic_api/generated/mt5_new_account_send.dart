@@ -27,9 +27,11 @@ class Mt5NewAccountRequest extends Request {
     required this.name,
     this.phone,
     this.phonePassword,
+    required this.product,
     this.server,
     this.state,
     this.subAccountCategory,
+    this.subAccountType,
     this.zipCode,
     super.msgType = 'mt5_new_account',
     super.passthrough,
@@ -60,9 +62,11 @@ class Mt5NewAccountRequest extends Request {
         name: json['name'] as String?,
         phone: json['phone'] as String?,
         phonePassword: json['phonePassword'] as String?,
+        product: json['product'] as String?,
         server: json['server'] as String?,
         state: json['state'] as String?,
         subAccountCategory: json['sub_account_category'] as String?,
+        subAccountType: json['sub_account_type'] as String?,
         zipCode: json['zipCode'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -98,7 +102,7 @@ class Mt5NewAccountRequest extends Request {
   /// Client leverage (from 1 to 1000).
   final num? leverage;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
@@ -125,14 +129,20 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] The user's phone password.
   final String? phonePassword;
 
+  /// Product name that Deriv offer
+  final String? product;
+
   /// [Optional] Trade server.
   final String? server;
 
   /// [Optional] User's state (region) of residence.
   final String? state;
 
-  /// [Optional] Indicate the sub account category that we have in the cfd group naming convention.
+  /// [Optional] Indicate the additional risk management for each account
   final String? subAccountCategory;
+
+  /// [Optional] Indicate the different offerings for mt5 account
+  final String? subAccountType;
 
   /// [Optional] User's zip code.
   final String? zipCode;
@@ -167,9 +177,11 @@ class Mt5NewAccountRequest extends Request {
         'name': name,
         'phone': phone,
         'phonePassword': phonePassword,
+        'product': product,
         'server': server,
         'state': state,
         'sub_account_category': subAccountCategory,
+        'sub_account_type': subAccountType,
         'zipCode': zipCode,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -197,9 +209,11 @@ class Mt5NewAccountRequest extends Request {
     String? name,
     String? phone,
     String? phonePassword,
+    String? product,
     String? server,
     String? state,
     String? subAccountCategory,
+    String? subAccountType,
     String? zipCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -224,9 +238,11 @@ class Mt5NewAccountRequest extends Request {
         name: name ?? this.name,
         phone: phone ?? this.phone,
         phonePassword: phonePassword ?? this.phonePassword,
+        product: product ?? this.product,
         server: server ?? this.server,
         state: state ?? this.state,
         subAccountCategory: subAccountCategory ?? this.subAccountCategory,
+        subAccountType: subAccountType ?? this.subAccountType,
         zipCode: zipCode ?? this.zipCode,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
