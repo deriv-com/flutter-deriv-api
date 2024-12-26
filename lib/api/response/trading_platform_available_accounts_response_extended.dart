@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/helpers/miscellaneous_helper.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 
 /// Extended functionality for [TradingPlatformAvailableAccountsResponse] class.
-class TradingPlatformAvailableAccountsExtended
+class TradingPlatformAvailableAccountsResponseExtended
     extends TradingPlatformAvailableAccountsResponse {
   static final BaseAPI _api = Injector()<BaseAPI>();
 
