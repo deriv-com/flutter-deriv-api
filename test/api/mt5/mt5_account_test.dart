@@ -24,7 +24,7 @@ void main() {
     test('Create New MT5 Account Test', () async {
       final new_account.Mt5NewAccountResponse mt5Account =
           await new_account.Mt5NewAccountResponse.createNewAccount(
-        Mt5NewAccountRequest(
+        const Mt5NewAccountRequest(
           accountType: 'demo',
           address: 'Dummy address',
           city: 'Valletta',
@@ -40,7 +40,7 @@ void main() {
           phonePassword: 'AbcDv1234',
           state: 'Valleta',
           zipCode: 'VLT 1117',
-          product: new_account.ProductEnum.standard.toString(),
+          product: null,
         ),
       );
 
@@ -52,8 +52,7 @@ void main() {
       expect(mt5Account.mt5NewAccount?.login, 'MT346525');
       expect(mt5Account.mt5NewAccount?.mt5AccountType,
           new_account.Mt5AccountTypeEnum.financial);
-      expect(mt5Account.mt5NewAccount?.product,
-          new_account.ProductEnum.standard.toString());
+      expect(mt5Account.mt5NewAccount?.product, null);
     });
 
     test('MT5 Login List Test', () async {
