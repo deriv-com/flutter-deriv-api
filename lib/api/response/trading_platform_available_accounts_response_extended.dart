@@ -27,4 +27,23 @@ class TradingPlatformAvailableAccountsResponseExtended
 
     return TradingPlatformAvailableAccountsResponse.fromJson(response.toJson());
   }
+
+  /// Fetch available platform accounts in raw format.
+  /// This method returns the raw response from the API call, which includes
+  /// all records regardless of already registered products and account types.
+  /// Returns a [TradingPlatformAvailableAccountsReceive] object containing the raw response.
+  static Future<TradingPlatformAvailableAccountsReceive>
+      fetchAvailableAccountsRaw(
+          {required TradingPlatformAvailableAccountsRequest request}) async {
+    final TradingPlatformAvailableAccountsReceive response =
+        await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          BaseAPIException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return response;
+  }
 }
