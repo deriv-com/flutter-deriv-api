@@ -210,6 +210,7 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "financial": SubAccountTypeEnum.financial,
   "financial_stp": SubAccountTypeEnum.financialStp,
+  "standard": SubAccountTypeEnum.standard,
   "swap_free": SubAccountTypeEnum.swapFree,
 };
 
@@ -221,10 +222,12 @@ enum SubAccountTypeEnum {
   /// financial_stp.
   financialStp,
 
+  /// standard.
+  standard,
+
   /// swap_free.
   swapFree,
 }
-
 /// Trading platform accounts item model class.
 abstract class TradingPlatformAccountsItemModel {
   /// Initializes Trading platform accounts item model class .
@@ -448,7 +451,6 @@ class TradingPlatformAccountsItem extends TradingPlatformAccountsItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
-
 /// Server info model class.
 abstract class ServerInfoModel {
   /// Initializes Server info model class .
@@ -516,7 +518,6 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
-
 /// Geolocation model class.
 abstract class GeolocationModel {
   /// Initializes Geolocation model class .

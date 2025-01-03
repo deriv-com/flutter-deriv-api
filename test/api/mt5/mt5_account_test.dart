@@ -40,6 +40,7 @@ void main() {
           phonePassword: 'AbcDv1234',
           state: 'Valleta',
           zipCode: 'VLT 1117',
+          product: null,
         ),
       );
 
@@ -51,6 +52,7 @@ void main() {
       expect(mt5Account.mt5NewAccount?.login, 'MT346525');
       expect(mt5Account.mt5NewAccount?.mt5AccountType,
           new_account.Mt5AccountTypeEnum.financial);
+      expect(mt5Account.mt5NewAccount?.product, null);
     });
 
     test('MT5 Login List Test', () async {
