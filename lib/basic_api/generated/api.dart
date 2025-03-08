@@ -264,6 +264,8 @@ export "ticks_receive.dart";
 export "ticks_send.dart";
 export "time_receive.dart";
 export "time_send.dart";
+export "tin_validations_receive.dart";
+export "tin_validations_send.dart";
 export "tnc_approval_receive.dart";
 export "tnc_approval_send.dart";
 export "topup_virtual_receive.dart";
