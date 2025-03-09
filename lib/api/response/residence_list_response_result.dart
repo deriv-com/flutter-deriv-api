@@ -138,7 +138,7 @@ abstract class ResidenceListItemModel {
   final String? value;
 
   /// Flag which indicates whether wallet signup is available in this country
-  final int? walletSignup;
+  final bool? walletSignup;
 }
 
 /// Residence list item class.
@@ -188,7 +188,7 @@ class ResidenceListItem extends ResidenceListItemModel {
                 ),
               ),
         value: json['value'],
-        walletSignup: json['wallet_signup'],
+        walletSignup: getBool(json['wallet_signup']),
       );
 
   /// Converts an instance to JSON.
@@ -196,7 +196,7 @@ class ResidenceListItem extends ResidenceListItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_opening_self_declaration_required'] =
-        accountOpeningSelfDeclarationRequired;
+        getInt(value: accountOpeningSelfDeclarationRequired);
     if (commonReportingStandard != null) {
       resultMap['common_reporting_standard'] =
           commonReportingStandard!.toJson();
@@ -209,7 +209,7 @@ class ResidenceListItem extends ResidenceListItemModel {
       resultMap['jurisdiction_risk_assessment'] =
           jurisdictionRiskAssessment!.toJson();
     }
-    resultMap['partner_signup'] = partnerSignup;
+    resultMap['partner_signup'] = getInt(value: partnerSignup);
     resultMap['phone_idd'] = phoneIdd;
     resultMap['selected'] = selected;
     resultMap['text'] = text;
@@ -221,7 +221,7 @@ class ResidenceListItem extends ResidenceListItemModel {
           .toList();
     }
     resultMap['value'] = value;
-    resultMap['wallet_signup'] = walletSignup;
+    resultMap['wallet_signup'] = getInt(value: walletSignup);
 
     return resultMap;
   }
@@ -239,7 +239,7 @@ class ResidenceListItem extends ResidenceListItemModel {
     String? text,
     List<String>? tinFormat,
     String? value,
-    int? walletSignup,
+    bool? walletSignup,
   }) =>
       ResidenceListItem(
         accountOpeningSelfDeclarationRequired:
@@ -376,7 +376,9 @@ class NonParticipatingJurisdictions extends NonParticipatingJurisdictionsModel {
 
     resultMap['default'] =
         nonParticipatingJurisdictionsDefault;
-    resultMap['landing_company'] = landingCompany;
+    resultMap['landing_company'] = landingCompany?.map(
+      (String key, bool value) => MapEntry<String, dynamic>(key, value),
+    );
 
     return resultMap;
   }
@@ -665,9 +667,12 @@ class Idv extends IdvModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['documents_supported'] = documentsSupported;
-    resultMap['has_visual_sample'] = hasVisualSample;
-    resultMap['is_country_supported'] = isCountrySupported;
+    resultMap['documents_supported'] = documentsSupported?.map(
+      (String key, DocumentsSupportedProperty value) =>
+          MapEntry<String, dynamic>(key, value.toJson()),
+    );
+    resultMap['has_visual_sample'] = getInt(value: hasVisualSample);
+    resultMap['is_country_supported'] = getInt(value: isCountrySupported);
 
     return resultMap;
   }
@@ -840,8 +845,11 @@ class Onfido extends OnfidoModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['documents_supported'] = documentsSupported;
-    resultMap['is_country_supported'] = isCountrySupported;
+    resultMap['documents_supported'] = documentsSupported?.map(
+      (String key, DocumentsSupportedDocumentsSupportedProperty value) =>
+          MapEntry<String, dynamic>(key, value.toJson()),
+    );
+    resultMap['is_country_supported'] = getInt(value: isCountrySupported);
 
     return resultMap;
   }
@@ -1069,7 +1077,9 @@ class RiskLevel extends RiskLevelModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['default'] = riskLevelDefault;
-    resultMap['landing_company'] = landingCompany;
+    resultMap['landing_company'] = landingCompany?.map(
+      (String key, String value) => MapEntry<String, dynamic>(key, value),
+    );
 
     return resultMap;
   }
