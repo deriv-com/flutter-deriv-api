@@ -8,6 +8,7 @@ import '../request.dart';
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest.
   const ResidenceListRequest({
+    this.query,
     this.residenceList = true,
     super.msgType = 'residence_list',
     super.passthrough,
@@ -17,11 +18,17 @@ class ResidenceListRequest extends Request {
   /// Creates an instance from JSON.
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       ResidenceListRequest(
+        query: (json['query'] as List<dynamic>?)
+            ?.map<String>((dynamic item) => item as String)
+            .toList(),
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
+
+  /// [Optional] Specific keys from the response that you want. If not passed, it will return all the keys.
+  final List<String>? query;
 
   /// Must be `true`
   final bool? residenceList;
@@ -29,6 +36,7 @@ class ResidenceListRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'query': query,
         'residence_list': residenceList == null
             ? null
             : residenceList!
@@ -41,11 +49,13 @@ class ResidenceListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ResidenceListRequest copyWith({
+    List<String>? query,
     bool? residenceList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
       ResidenceListRequest(
+        query: query ?? this.query,
         residenceList: residenceList ?? this.residenceList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

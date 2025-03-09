@@ -11,14 +11,13 @@ void main() {
 
   test('Fetch Residence List Test', () async {
     final ResidenceListResponse residenceList =
-        await ResidenceListResponse.fetchResidenceList();
+    await ResidenceListResponse.fetchResidenceList();
     final ResidenceListItem residence = residenceList.residenceList!.first;
-    expect(residence.phoneIdd, '00');
-    // expect(residence.countryName, 'SampleCountry');
-    // expect(residence.countryCode, 'sc');
-    // expect(residence.disabled, 'DISABLED');
-    // expect(residence.isDisabled, true);
-    // expect(residence.isSelected, false);
+
+    expect(residence.phoneIdd, '35818');
+    expect(residence.text, 'Aland Islands');
+    expect(residence.value, 'ax');
+    expect(residence.disabled, 'DISABLED');
     expect(residenceList.residenceList?.length, 1);
   });
 }
