@@ -40,6 +40,7 @@ class NewAccountRealRequest extends Request {
     super.passthrough,
     super.reqId,
     this.fatcaDeclaration,
+    this.financialInformationVersion,
   });
 
   /// Creates an instance from JSON.
@@ -58,6 +59,8 @@ class NewAccountRealRequest extends Request {
         currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
         employmentStatus: json['employment_status'] as String?,
+        financialInformationVersion:
+            json['financial_information_version'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         loginid: json['loginid'] as String?,
@@ -120,6 +123,9 @@ class NewAccountRealRequest extends Request {
 
   /// Employment status.
   final String? employmentStatus;
+
+  /// The version of the financial information form.
+  final String? financialInformationVersion;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
@@ -185,6 +191,7 @@ class NewAccountRealRequest extends Request {
         'currency': currency,
         'date_of_birth': dateOfBirth,
         'employment_status': employmentStatus,
+        'financial_information_version': financialInformationVersion,
         'first_name': firstName,
         'last_name': lastName,
         'loginid': loginid,
@@ -233,6 +240,7 @@ class NewAccountRealRequest extends Request {
     String? currency,
     String? dateOfBirth,
     String? employmentStatus,
+    String? financialInformationVersion,
     String? firstName,
     String? lastName,
     String? loginid,
@@ -266,6 +274,8 @@ class NewAccountRealRequest extends Request {
         currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         employmentStatus: employmentStatus ?? this.employmentStatus,
+        financialInformationVersion:
+            financialInformationVersion ?? this.financialInformationVersion,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         loginid: loginid ?? this.loginid,
