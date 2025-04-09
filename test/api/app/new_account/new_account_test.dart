@@ -25,6 +25,8 @@ void main() {
           addressPostcode: '3002',
           addressState: 'Victoria',
           dateOfBirth: '1980-01-31',
+          employmentStatus: 'Employed full-time',
+          financialInformationVersion: 'v2',
           firstName: 'Peter',
           lastName: 'Pan',
           nonPepDeclaration: 1,
@@ -36,6 +38,8 @@ void main() {
           secretQuestion: 'Mothers maiden name',
           taxIdentificationNumber: '012142545',
           taxResidence: 'ar,sg',
+          tinSkipped: false,
+          tncAcceptance: true,
         ),
       );
 

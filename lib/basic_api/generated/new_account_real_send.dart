@@ -20,6 +20,7 @@ class NewAccountRealRequest extends Request {
     this.clientType,
     this.currency,
     required this.dateOfBirth,
+    required this.employmentStatus,
     required this.firstName,
     required this.lastName,
     this.loginid,
@@ -33,10 +34,13 @@ class NewAccountRealRequest extends Request {
     this.secretQuestion,
     this.taxIdentificationNumber,
     this.taxResidence,
+    this.tinSkipped,
+    required this.tncAcceptance,
     super.msgType = 'new_account_real',
     super.passthrough,
     super.reqId,
     this.fatcaDeclaration,
+    this.financialInformationVersion,
   });
 
   /// Creates an instance from JSON.
@@ -54,6 +58,9 @@ class NewAccountRealRequest extends Request {
         clientType: json['client_type'] as String?,
         currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
+        employmentStatus: json['employment_status'] as String?,
+        financialInformationVersion:
+            json['financial_information_version'] as String?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         loginid: json['loginid'] as String?,
@@ -69,6 +76,10 @@ class NewAccountRealRequest extends Request {
         secretQuestion: json['secret_question'] as String?,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tinSkipped:
+            json['tin_skipped'] == null ? null : json['tin_skipped'] == 1,
+        tncAcceptance:
+            json['tnc_acceptance'] == null ? null : json['tnc_acceptance'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
         fatcaDeclaration: json['fatca_declaration'] as int?,
@@ -110,6 +121,12 @@ class NewAccountRealRequest extends Request {
   /// Date of birth format: `yyyy-mm-dd`.
   final String? dateOfBirth;
 
+  /// Employment status.
+  final String? employmentStatus;
+
+  /// The version of the financial information form.
+  final String? financialInformationVersion;
+
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
 
@@ -149,6 +166,12 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String? taxResidence;
 
+  /// [Optional] Whether the client has skipped the TIN form.
+  final bool? tinSkipped;
+
+  /// The terms and conditions acceptance status.
+  final bool? tncAcceptance;
+
   /// [Optional] Indicates client's self-declaration of FATCA.
   final int? fatcaDeclaration;
 
@@ -167,6 +190,8 @@ class NewAccountRealRequest extends Request {
         'client_type': clientType,
         'currency': currency,
         'date_of_birth': dateOfBirth,
+        'employment_status': employmentStatus,
+        'financial_information_version': financialInformationVersion,
         'first_name': firstName,
         'last_name': lastName,
         'loginid': loginid,
@@ -184,6 +209,16 @@ class NewAccountRealRequest extends Request {
         'secret_question': secretQuestion,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'tin_skipped': tinSkipped == null
+            ? null
+            : tinSkipped!
+                ? 1
+                : 0,
+        'tnc_acceptance': tncAcceptance == null
+            ? null
+            : tncAcceptance!
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
         'fatca_declaration': fatcaDeclaration,
@@ -204,6 +239,8 @@ class NewAccountRealRequest extends Request {
     String? clientType,
     String? currency,
     String? dateOfBirth,
+    String? employmentStatus,
+    String? financialInformationVersion,
     String? firstName,
     String? lastName,
     String? loginid,
@@ -217,6 +254,8 @@ class NewAccountRealRequest extends Request {
     String? secretQuestion,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tinSkipped,
+    bool? tncAcceptance,
     Map<String, dynamic>? passthrough,
     int? reqId,
     int? fatcaDeclaration,
@@ -234,6 +273,9 @@ class NewAccountRealRequest extends Request {
         clientType: clientType ?? this.clientType,
         currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
+        financialInformationVersion:
+            financialInformationVersion ?? this.financialInformationVersion,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         loginid: loginid ?? this.loginid,
@@ -248,6 +290,8 @@ class NewAccountRealRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tinSkipped: tinSkipped ?? this.tinSkipped,
+        tncAcceptance: tncAcceptance ?? this.tncAcceptance,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
         fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,

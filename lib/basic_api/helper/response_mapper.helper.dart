@@ -135,6 +135,7 @@ import '../generated/states_list_receive.dart';
 import '../generated/ticks_history_receive.dart';
 import '../generated/ticks_receive.dart';
 import '../generated/time_receive.dart';
+import '../generated/tin_validations_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
@@ -436,6 +437,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TicksReceive.fromJson(responseMap);
     case 'time':
       return TimeReceive.fromJson(responseMap);
+    case 'tin_validations':
+      return TinValidationsReceive.fromJson(responseMap);
     case 'tnc_approval':
       return TncApprovalReceive.fromJson(responseMap);
     case 'topup_virtual':
