@@ -2,12 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_config.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/timer/exponential_back_off_timer.dart';
-import 'package:flutter_system_proxy/flutter_system_proxy.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -56,7 +55,7 @@ class BinaryAPI extends BaseAPI {
   /// Represents the active websocket connection.
   ///
   /// This is used to send and receive data from the websocket server.
-  IOWebSocketChannel? _webSocketChannel;
+  WebSocketChannel? _webSocketChannel;
 
   /// Connection configuration.
   final ConnectionConfig connectionConfig;
@@ -114,22 +113,17 @@ class BinaryAPI extends BaseAPI {
 
     _logDebugInfo('connecting to $uri.');
 
-    await _setUserAgent();
-
-    HttpClient? client;
-
-    if (connectionConfig.proxyAwareConnection) {
-      final String proxy = await FlutterSystemProxy.findProxyFromEnvironment(
-          uri.toString().replaceAll('wss', 'https'));
-
-      client = HttpClient()
-        ..userAgent = WebSocket.userAgent
-        ..findProxy = (Uri uri) => proxy;
+    if (!kIsWeb) {
+      await _setUserAgent();
     }
 
-    // Initialize connection to websocket server.
-    _webSocketChannel = IOWebSocketChannel.connect('$uri',
-        pingInterval: _keepAlivePingInterval, customClient: client);
+    if (kIsWeb) {
+      _webSocketChannel = WebSocketChannel.connect(uri);
+    } else {
+      // Initialize connection to websocket server.
+      _webSocketChannel = IOWebSocketChannel.connect('$uri',
+          pingInterval: _keepAlivePingInterval);
+    }
 
     unawaited(_webSocketChannel?.ready.then((_) => _startConnectionTimer()));
 
