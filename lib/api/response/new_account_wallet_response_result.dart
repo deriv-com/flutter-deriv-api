@@ -51,7 +51,6 @@ class NewAccountWalletResponse extends NewAccountWalletResponseModel {
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
       );
 }
-
 /// New account wallet model class.
 abstract class NewAccountWalletModel {
   /// Initializes New account wallet model class .
@@ -60,6 +59,7 @@ abstract class NewAccountWalletModel {
     required this.landingCompany,
     required this.clientId,
     this.currency,
+    this.currencyType,
     this.landingCompanyShort,
     this.landingCompanyShortcode,
   });
@@ -76,6 +76,9 @@ abstract class NewAccountWalletModel {
   /// Currency of an account
   final String? currency;
 
+  /// Currency type against the currency
+  final String? currencyType;
+
   /// Landing company shortcode
   final String? landingCompanyShort;
 
@@ -91,6 +94,7 @@ class NewAccountWallet extends NewAccountWalletModel {
     required super.landingCompany,
     required super.oauthToken,
     super.currency,
+    super.currencyType,
     super.landingCompanyShort,
     super.landingCompanyShortcode,
   });
@@ -102,6 +106,7 @@ class NewAccountWallet extends NewAccountWalletModel {
         landingCompany: json['landing_company'],
         oauthToken: json['oauth_token'],
         currency: json['currency'],
+        currencyType: json['currency_type'],
         landingCompanyShort: json['landing_company_short'],
         landingCompanyShortcode: json['landing_company_shortcode'],
       );
@@ -114,6 +119,7 @@ class NewAccountWallet extends NewAccountWalletModel {
     resultMap['landing_company'] = landingCompany;
     resultMap['oauth_token'] = oauthToken;
     resultMap['currency'] = currency;
+    resultMap['currency_type'] = currencyType;
     resultMap['landing_company_short'] = landingCompanyShort;
     resultMap['landing_company_shortcode'] = landingCompanyShortcode;
 
@@ -126,6 +132,7 @@ class NewAccountWallet extends NewAccountWalletModel {
     String? landingCompany,
     String? oauthToken,
     String? currency,
+    String? currencyType,
     String? landingCompanyShort,
     String? landingCompanyShortcode,
   }) =>
@@ -134,6 +141,7 @@ class NewAccountWallet extends NewAccountWalletModel {
         landingCompany: landingCompany ?? this.landingCompany,
         oauthToken: oauthToken ?? this.oauthToken,
         currency: currency ?? this.currency,
+        currencyType: currencyType ?? this.currencyType,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
         landingCompanyShortcode:
             landingCompanyShortcode ?? this.landingCompanyShortcode,

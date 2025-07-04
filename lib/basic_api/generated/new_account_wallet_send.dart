@@ -16,10 +16,14 @@ class NewAccountWalletRequest extends Request {
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
+    this.affiliateToken,
+    this.callingCountryCode,
     this.citizen,
     this.clientType,
     required this.currency,
     this.dateOfBirth,
+    required this.employmentStatus,
+    this.fatcaDeclaration,
     required this.financialAssessment,
     this.firstName,
     this.landingCompanyShort,
@@ -28,9 +32,14 @@ class NewAccountWalletRequest extends Request {
     this.newAccountWallet = true,
     this.nonPepDeclaration,
     this.phone,
+    this.placeOfBirth,
+    required this.residence,
+    this.residentSelfDeclaration,
     required this.salutation,
     required this.taxIdentificationNumber,
     required this.taxResidence,
+    this.tinSkipped,
+    required this.tncAcceptance,
     super.msgType = 'new_account_wallet',
     super.passthrough,
     super.reqId,
@@ -48,10 +57,16 @@ class NewAccountWalletRequest extends Request {
         addressLine2: json['address_line_2'] as String?,
         addressPostcode: json['address_postcode'] as String?,
         addressState: json['address_state'] as String?,
+        affiliateToken: json['affiliate_token'] as String?,
+        callingCountryCode: json['calling_country_code'] as String?,
         citizen: json['citizen'] as String?,
         clientType: json['client_type'] as String?,
         currency: json['currency'] as String?,
         dateOfBirth: json['date_of_birth'] as String?,
+        employmentStatus: json['employment_status'] as String?,
+        fatcaDeclaration: json['fatca_declaration'] == null
+            ? null
+            : json['fatca_declaration'] == 1,
         financialAssessment:
             json['financial_assessment'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
@@ -63,9 +78,16 @@ class NewAccountWalletRequest extends Request {
             : json['new_account_wallet'] == 1,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
         phone: json['phone'] as String?,
+        placeOfBirth: json['place_of_birth'] as String?,
+        residence: json['residence'] as String?,
+        residentSelfDeclaration: json['resident_self_declaration'] as int?,
         salutation: json['salutation'] as String?,
         taxIdentificationNumber: json['tax_identification_number'] as String?,
         taxResidence: json['tax_residence'] as String?,
+        tinSkipped:
+            json['tin_skipped'] == null ? null : json['tin_skipped'] == 1,
+        tncAcceptance:
+            json['tnc_acceptance'] == null ? null : json['tnc_acceptance'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -94,6 +116,12 @@ class NewAccountWalletRequest extends Request {
   /// [Optional] Possible value receive from `states_list` call.
   final String? addressState;
 
+  /// [Optional] Affiliate token, within 32 characters.
+  final String? affiliateToken;
+
+  /// [Optional] The phone's calling country code. Don't include the `+` sign. Up to 4 digits.
+  final String? callingCountryCode;
+
   /// [Optional] Country of legal citizenship, 2-letter country code. Possible value receive from `residence_list` call.
   final String? citizen;
 
@@ -106,19 +134,25 @@ class NewAccountWalletRequest extends Request {
   /// [Optional] Date of birth format: `yyyy-mm-dd`.
   final String? dateOfBirth;
 
+  /// Employment Status.
+  final String? employmentStatus;
+
+  /// [Optional] Indicates client's self-declaration of FATCA.
+  final bool? fatcaDeclaration;
+
   /// Required for maltainvest
   final Map<String, dynamic>? financialAssessment;
 
-  /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
+  /// [Optional] Within 1-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? firstName;
 
   /// [Optional] Set the landing company of the wallet. Default value is 'svg' if company not provided
   final String? landingCompanyShort;
 
-  /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
+  /// [Optional] Within 1-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String? lastName;
 
-  /// [Optional] The login id of the user. If left unspecified, it defaults to the initial authorized token's login id.
+  /// [Optional] The login id of the user. Mandatory when multiple tokens were provided during authorize.
   final String? loginid;
 
   /// Must be `true`
@@ -127,8 +161,17 @@ class NewAccountWalletRequest extends Request {
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int? nonPepDeclaration;
 
-  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] The phone's national format, don't include the `+` sign nor the calling country code. Up to 15 digits are allowed.
   final String? phone;
+
+  /// [Optional] Place of birth, 2-letter country code.
+  final String? placeOfBirth;
+
+  /// 2-letter country code, possible value receive from `residence_list` call.
+  final String? residence;
+
+  /// [Optional] Indicates client's self declaration for opening account under own initiative, must be 1
+  final int? residentSelfDeclaration;
 
   /// Accept any value in enum list.
   final String? salutation;
@@ -138,6 +181,12 @@ class NewAccountWalletRequest extends Request {
 
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String? taxResidence;
+
+  /// [Optional] Whether the client has skipped the TIN form. Only applicable for real money account.
+  final bool? tinSkipped;
+
+  /// The tnc acceptance status of the user.
+  final bool? tncAcceptance;
 
   /// Converts this instance to JSON
   @override
@@ -154,10 +203,18 @@ class NewAccountWalletRequest extends Request {
         'address_line_2': addressLine2,
         'address_postcode': addressPostcode,
         'address_state': addressState,
+        'affiliate_token': affiliateToken,
+        'calling_country_code': callingCountryCode,
         'citizen': citizen,
         'client_type': clientType,
         'currency': currency,
         'date_of_birth': dateOfBirth,
+        'employment_status': employmentStatus,
+        'fatca_declaration': fatcaDeclaration == null
+            ? null
+            : fatcaDeclaration!
+                ? 1
+                : 0,
         'financial_assessment': financialAssessment,
         'first_name': firstName,
         'landing_company_short': landingCompanyShort,
@@ -170,9 +227,22 @@ class NewAccountWalletRequest extends Request {
                 : 0,
         'non_pep_declaration': nonPepDeclaration,
         'phone': phone,
+        'place_of_birth': placeOfBirth,
+        'residence': residence,
+        'resident_self_declaration': residentSelfDeclaration,
         'salutation': salutation,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'tin_skipped': tinSkipped == null
+            ? null
+            : tinSkipped!
+                ? 1
+                : 0,
+        'tnc_acceptance': tncAcceptance == null
+            ? null
+            : tncAcceptance!
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -188,10 +258,14 @@ class NewAccountWalletRequest extends Request {
     String? addressLine2,
     String? addressPostcode,
     String? addressState,
+    String? affiliateToken,
+    String? callingCountryCode,
     String? citizen,
     String? clientType,
     String? currency,
     String? dateOfBirth,
+    String? employmentStatus,
+    bool? fatcaDeclaration,
     Map<String, dynamic>? financialAssessment,
     String? firstName,
     String? landingCompanyShort,
@@ -200,9 +274,14 @@ class NewAccountWalletRequest extends Request {
     bool? newAccountWallet,
     int? nonPepDeclaration,
     String? phone,
+    String? placeOfBirth,
+    String? residence,
+    int? residentSelfDeclaration,
     String? salutation,
     String? taxIdentificationNumber,
     String? taxResidence,
+    bool? tinSkipped,
+    bool? tncAcceptance,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -215,10 +294,14 @@ class NewAccountWalletRequest extends Request {
         addressLine2: addressLine2 ?? this.addressLine2,
         addressPostcode: addressPostcode ?? this.addressPostcode,
         addressState: addressState ?? this.addressState,
+        affiliateToken: affiliateToken ?? this.affiliateToken,
+        callingCountryCode: callingCountryCode ?? this.callingCountryCode,
         citizen: citizen ?? this.citizen,
         clientType: clientType ?? this.clientType,
         currency: currency ?? this.currency,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
+        fatcaDeclaration: fatcaDeclaration ?? this.fatcaDeclaration,
         financialAssessment: financialAssessment ?? this.financialAssessment,
         firstName: firstName ?? this.firstName,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
@@ -227,10 +310,16 @@ class NewAccountWalletRequest extends Request {
         newAccountWallet: newAccountWallet ?? this.newAccountWallet,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
+        placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        residence: residence ?? this.residence,
+        residentSelfDeclaration:
+            residentSelfDeclaration ?? this.residentSelfDeclaration,
         salutation: salutation ?? this.salutation,
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
+        tinSkipped: tinSkipped ?? this.tinSkipped,
+        tncAcceptance: tncAcceptance ?? this.tncAcceptance,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
