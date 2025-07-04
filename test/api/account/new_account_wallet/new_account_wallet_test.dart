@@ -22,6 +22,10 @@ void main() {
         salutation: '',
         taxIdentificationNumber: '',
         taxResidence: '',
+        employmentStatus: '',
+        residence: '',
+        dateOfBirth: '',
+        tncAcceptance: true,
       ),
     );
 
