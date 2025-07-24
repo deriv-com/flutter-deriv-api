@@ -83,7 +83,6 @@ class SetFinancialAssessmentResponse
             setFinancialAssessment ?? this.setFinancialAssessment,
       );
 }
-
 /// Set financial assessment model class.
 abstract class SetFinancialAssessmentModel {
   /// Initializes Set financial assessment model class .

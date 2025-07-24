@@ -44,6 +44,7 @@ import '../generated/crypto_estimations_receive.dart';
 import '../generated/document_upload_receive.dart';
 import '../generated/economic_calendar_receive.dart';
 import '../generated/exchange_rates_receive.dart';
+import '../generated/financial_assessment_questions_receive.dart';
 import '../generated/forget_all_receive.dart';
 import '../generated/forget_receive.dart';
 import '../generated/get_account_status_receive.dart';
@@ -161,12 +162,6 @@ import '../generated/verify_email_receive.dart';
 import '../generated/wallet_migration_receive.dart';
 import '../generated/website_config_receive.dart';
 import '../generated/website_status_receive.dart';
-import '../generated/passkeys_list_receive.dart';
-import '../generated/passkeys_options_receive.dart';
-import '../generated/passkeys_register_options_receive.dart';
-import '../generated/passkeys_register_receive.dart';
-import '../generated/passkeys_rename_receive.dart';
-import '../generated/passkeys_revoke_receive.dart';
 import '../response.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -255,6 +250,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return EconomicCalendarReceive.fromJson(responseMap);
     case 'exchange_rates':
       return ExchangeRatesReceive.fromJson(responseMap);
+    case 'financial_assessment_questions':
+      return FinancialAssessmentQuestionsReceive.fromJson(responseMap);
     case 'forget_all':
       return ForgetAllReceive.fromJson(responseMap);
     case 'forget':
@@ -489,19 +486,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return WebsiteConfigReceive.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusReceive.fromJson(responseMap);
-    case 'passkeys_list':
-      return PasskeysListReceive.fromJson(responseMap);
-
-    case 'passkeys_options':
-      return PasskeysOptionsReceive.fromJson(responseMap);
-    case 'passkeys_register_options':
-      return PasskeysRegisterOptionsReceive.fromJson(responseMap);
-    case 'passkeys_register':
-      return PasskeysRegisterReceive.fromJson(responseMap);
-    case 'passkeys_rename':
-      return PasskeysRenameReceive.fromJson(responseMap);
-    case 'passkeys_revoke':
-      return PasskeysRevokeReceive.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);

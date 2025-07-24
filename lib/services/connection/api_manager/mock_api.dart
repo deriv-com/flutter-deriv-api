@@ -14,6 +14,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/new_account_wallet_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_payments_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/crypto_config_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/financial_assessment_questions_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/tin_validations_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_list_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/passkeys/passkeys_register_options_response.dart';
@@ -237,6 +238,8 @@ class MockAPI extends BaseAPI {
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
+      case 'financial_assessment_questions':
+        return financialAssessmentQuestionsResponse;
       case 'forget':
         return forgetResponse;
       case 'forget_all':

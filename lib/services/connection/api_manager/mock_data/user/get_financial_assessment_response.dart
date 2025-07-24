@@ -16,6 +16,7 @@ const String getFinancialAssessmentResponse = '''
     "employment_status": "part-time employee",
     "estimated_worth": "Less than \$100,000",
     "financial_information_score": 0,
+     "financial_information_version": "v1",
     "forex_trading_experience": "0-1 year",
     "forex_trading_frequency": "0-5 transactions in the past 12 months",
     "income_source": "Salaried Employee",
