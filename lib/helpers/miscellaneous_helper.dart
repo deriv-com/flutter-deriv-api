@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/base_api_exception.dart';
@@ -50,6 +51,10 @@ void checkException({
 /// Generates device specific user agent.
 Future<String> getUserAgent() async {
   String userAgent = '';
+
+  if (kIsWeb) {
+    return 'Mozilla/Dart';
+  }
 
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
